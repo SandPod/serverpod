@@ -148,16 +148,31 @@ Current type was $T''');
     where ??= Expression('TRUE');
 
     var tableName = table.tableName;
-    var query = 'SELECT * FROM $tableName WHERE $where';
+    var query = 'SELECT * FROM $tableName ';
+
+    if (include != null) {
+      for (var i in include.includes.whereType<Include>()) {
+        var relation = table.getRelation(i.table);
+        if (relation == null) {
+          continue;
+        }
+
+        query +=
+            'LEFT JOIN ${i.table.tableName} ON ${table.tableName}.${relation.referencingColumn} = ${i.table.tableName}.${relation.referencedColumn} ';
+      }
+    }
+
+    query += 'WHERE $where';
+
     if (orderBy != null) {
-      query += ' ORDER BY $orderBy';
+      query += ' ORDER BY ${table.tableName}.$orderBy';
       if (orderDescending) query += ' DESC';
     } else if (orderByList != null) {
       assert(orderByList.isNotEmpty);
 
       var strList = <String>[];
       for (var order in orderByList) {
-        strList.add(order.toString());
+        strList.add('${table.tableName}.${order.toString()}');
       }
 
       query += ' ORDER BY ${strList.join(',')}';
@@ -178,6 +193,17 @@ Current type was $T''');
         substitutionValues: {},
       );
       for (var rawRow in result) {
+        if (include != null) {
+          for (var i in include.includes.whereType<Include>()) {
+            var relation = table.getRelation(i.table);
+            if (relation == null) {
+              continue;
+            }
+
+            rawRow[tableName]?[relation.relationField] =
+                rawRow[i.table.tableName];
+          }
+        }
         list.add(_formatTableRow<T>(tableName, rawRow[tableName]));
       }
     } catch (e, trace) {
