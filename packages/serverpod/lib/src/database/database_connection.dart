@@ -151,15 +151,7 @@ Current type was $T''');
     var query = 'SELECT * FROM $tableName ';
 
     if (include != null) {
-      for (var i in include.includes.whereType<Include>()) {
-        var relation = table.getRelation(i.table);
-        if (relation == null) {
-          continue;
-        }
-
-        query +=
-            'LEFT JOIN ${i.table.tableName} ON ${table.tableName}.${relation.referencingColumn} = ${i.table.tableName}.${relation.referencedColumn} ';
-      }
+      query += _createJoinFromIncludes(include, table);
     }
 
     query += 'WHERE $where';
@@ -193,18 +185,19 @@ Current type was $T''');
         substitutionValues: {},
       );
       for (var rawRow in result) {
-        if (include != null) {
-          for (var i in include.includes.whereType<Include>()) {
-            var relation = table.getRelation(i.table);
-            if (relation == null) {
-              continue;
-            }
+        var rawTableRow = rawRow[tableName];
+        if (rawTableRow == null) continue;
 
-            rawRow[tableName]?[relation.relationField] =
-                rawRow[i.table.tableName];
-          }
+        if (include != null) {
+          rawTableRow = _resolveRowDataHierarchy(
+            include,
+            table,
+            rawRow,
+            rawTableRow,
+          );
         }
-        list.add(_formatTableRow<T>(tableName, rawRow[tableName]));
+
+        list.add(_formatTableRow<T>(tableName, rawTableRow));
       }
     } catch (e, trace) {
       _logQuery(session, query, startTime, exception: e, trace: trace);
@@ -213,6 +206,45 @@ Current type was $T''');
 
     _logQuery(session, query, startTime, numRowsAffected: list.length);
     return list.cast<T>();
+  }
+
+  Map<String, dynamic> _resolveRowDataHierarchy(
+    Include include,
+    Table table,
+    Map<String, Map<String, dynamic>> rawRow,
+    Map<String, dynamic> rawTableRow,
+  ) {
+    for (var i in include.includes.whereType<Include>()) {
+      var relation = table.getRelation(i.table);
+      if (relation == null) {
+        continue;
+      }
+
+      var rawRelationRow = rawRow[i.table.tableName];
+      if (rawRelationRow == null) {
+        continue;
+      }
+
+      rawTableRow[relation.relationField] =
+          _resolveRowDataHierarchy(i, i.table, rawRow, rawRelationRow);
+    }
+
+    return rawTableRow;
+  }
+
+  String _createJoinFromIncludes(Include include, Table table) {
+    String query = '';
+    for (var i in include.includes.whereType<Include>()) {
+      var relation = table.getRelation(i.table);
+      if (relation == null) {
+        continue;
+      }
+
+      query +=
+          'LEFT JOIN ${i.table.tableName} ON ${table.tableName}.${relation.referencingColumn} = ${i.table.tableName}.${relation.referencedColumn} ';
+      query += _createJoinFromIncludes(i, i.table);
+    }
+    return query;
   }
 
   /// For most cases use the corresponding method in [Database] instead.
@@ -247,10 +279,10 @@ Current type was $T''');
 
   //TODO: is this still needed?
   T? _formatTableRow<T extends TableRow>(
-      String tableName, Map<String, dynamic>? rawRow) {
+      String tableName, Map<String, dynamic> rawRow) {
     var data = <String, dynamic>{};
 
-    for (var columnName in rawRow!.keys) {
+    for (var columnName in rawRow.keys) {
       var value = rawRow[columnName];
 
       if (value is DateTime) {
@@ -478,7 +510,9 @@ Current type was $T''');
         substitutionValues: {},
       );
       for (var rawRow in result) {
-        list.add(_formatTableRow<T>(tableName, rawRow[tableName]));
+        var rawTableRow = rawRow[tableName];
+        if (rawTableRow == null) continue;
+        list.add(_formatTableRow<T>(tableName, rawTableRow));
       }
     } catch (e, trace) {
       _logQuery(session, query, startTime, exception: e, trace: trace);
