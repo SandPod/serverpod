@@ -747,61 +747,64 @@ class SerializableEntityLibraryGenerator {
             var objectRelationFields =
                 fields.where((f) => f.relation is ObjectRelationDefinition);
             if (objectRelationFields.isNotEmpty) {
-              c.methods.add(Method((m) => m
-                ..annotations.add(refer('override'))
-                ..returns = TypeReference((t) => t
-                  ..symbol = 'TableRelation?'
-                  ..url = 'package:serverpod/serverpod.dart')
-                ..name = 'getRelation'
-                ..requiredParameters.add(
-                  Parameter(
-                    (p) => p
-                      ..type = refer('Table', serverpodUrl(serverCode))
-                      ..name = 'foreignTable',
-                  ),
-                )
-                ..body = (BlockBuilder()
-                      ..statements.addAll([
-                        for (var objectRelationField in objectRelationFields)
-                          Block.of([
-                            const Code('if (foreignTable is '),
-                            lazyCode(() => objectRelationField.type
-                                .reference(
-                                  serverCode,
-                                  subDirParts: classDefinition.subDirParts,
-                                  config: config,
-                                  typeSuffix: 'Table',
-                                  nullable: false,
-                                )
-                                .code),
-                            const Code(') { return '),
-                            lazyCode(() {
-                              var objectRelation = objectRelationField.relation
-                                  as ObjectRelationDefinition;
-                              var foreignRelationField = fields.firstWhere(
-                                  (f) =>
-                                      f.name ==
-                                          objectRelation.scalarFieldName &&
-                                      f.relation is ForeignRelationDefinition);
-                              var foreignRelation = foreignRelationField
-                                  .relation as ForeignRelationDefinition;
-                              return refer(
-                                      'TableRelation', serverpodUrl(serverCode))
-                                  .call([], {
-                                'referencedColumn': refer('foreignTable')
-                                    .property(
-                                        foreignRelation.referenceFieldName),
-                                'referencingColumn':
-                                    refer(foreignRelationField.name),
-                                'relationField':
-                                    literalString(objectRelationField.name)
-                              }).code;
-                            }),
-                            const Code(';}')
-                          ]),
-                        const Code('return null;'),
-                      ]))
-                    .build()));
+              c.methods.add(Method(
+                (m) => m
+                  ..annotations.add(refer('override'))
+                  ..returns = TypeReference((t) => t
+                    ..symbol = 'TableRelation?'
+                    ..url = 'package:serverpod/serverpod.dart')
+                  ..name = 'getRelation'
+                  ..requiredParameters.add(
+                    Parameter(
+                      (p) => p
+                        ..type = refer('String')
+                        ..name = 'relationField',
+                    ),
+                  )
+                  ..body = (BlockBuilder()
+                        ..statements.addAll([
+                          for (var objectRelationField in objectRelationFields)
+                            Block.of([
+                              Code(
+                                  'if (relationField == ${literalString(objectRelationField.name)}) {'),
+                              lazyCode(() {
+                                var objectRelation = objectRelationField
+                                    .relation as ObjectRelationDefinition;
+                                var foreignRelationField = fields.firstWhere(
+                                    (f) =>
+                                        f.name ==
+                                            objectRelation.scalarFieldName &&
+                                        f.relation
+                                            is ForeignRelationDefinition);
+                                var foreignRelation = foreignRelationField
+                                    .relation as ForeignRelationDefinition;
+                                return refer('TableRelation',
+                                        serverpodUrl(serverCode))
+                                    .call([], {
+                                      'referencedColumn': objectRelationField
+                                          .type
+                                          .reference(
+                                            serverCode,
+                                            subDirParts:
+                                                classDefinition.subDirParts,
+                                            config: config,
+                                            nullable: false,
+                                          )
+                                          .property('t')
+                                          .property(foreignRelation
+                                              .referenceFieldName),
+                                      'referencingColumn':
+                                          refer(foreignRelationField.name),
+                                    })
+                                    .returned
+                                    .statement;
+                              }),
+                              const Code('}'),
+                            ]),
+                          const Code('return null;'),
+                        ]))
+                      .build(),
+              ));
             }
           }));
 
@@ -850,15 +853,18 @@ class SerializableEntityLibraryGenerator {
               (m) => m
                 ..annotations.add(refer('override'))
                 ..returns = TypeReference((t) => t
-                  ..symbol = 'List'
-                  ..types.add(
-                      refer('Include?', 'package:serverpod/serverpod.dart')))
+                  ..symbol = 'Map'
+                  ..types.addAll([
+                    refer('String'),
+                    refer('Include?', 'package:serverpod/serverpod.dart'),
+                  ]))
                 ..name = 'includes'
                 ..lambda = true
                 ..type = MethodType.getter
-                ..body = literalList([
-                  for (var field in objectRelationFields) refer(field.name)
-                ]).code,
+                ..body = literalMap({
+                  for (var field in objectRelationFields)
+                    literalString(field.name): refer(field.name)
+                }).code,
             ));
 
             // Add table getter

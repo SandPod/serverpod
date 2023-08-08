@@ -148,11 +148,22 @@ Current type was $T''');
     where ??= Expression('TRUE');
 
     var tableName = table.tableName;
-    var query = 'SELECT * FROM $tableName ';
-
-    if (include != null) {
-      query += _createJoinFromIncludes(include, table);
+    var selectQuery = 'SELECT ';
+    var columns = table.columns;
+    for (var index = 0; index < table.columns.length; index++) {
+      var column = columns[index];
+      selectQuery += '${index == 0 ? '' : ', '}$tableName.${column.toString()}';
     }
+
+    var joinQuery = '';
+    if (include != null) {
+      var queryFromIncludes =
+          _createQueryFromIncludes(include, table, tableName);
+      selectQuery += queryFromIncludes.select;
+      joinQuery += queryFromIncludes.join;
+    }
+
+    var query = '$selectQuery FROM $tableName $joinQuery';
 
     query += 'WHERE $where';
 
@@ -194,6 +205,7 @@ Current type was $T''');
             table,
             rawRow,
             rawTableRow,
+            tableName,
           );
         }
 
@@ -212,39 +224,75 @@ Current type was $T''');
     Include include,
     Table table,
     Map<String, Map<String, dynamic>> rawRow,
-    Map<String, dynamic> rawTableRow,
+    Map<String, dynamic> parentTableRow,
+    String prefix,
   ) {
-    for (var i in include.includes.whereType<Include>()) {
-      var relation = table.getRelation(i.table);
-      if (relation == null) {
-        continue;
+    include.includes.forEach((relationField, i) {
+      if (i == null) return;
+
+      var rawRelationTableRow = rawRow[i.table.tableName];
+      if (rawRelationTableRow == null) return;
+
+      var includePrefix = _createIncludePrefix(prefix, relationField);
+
+      var nonPrefixedRelationTableRow = <String, dynamic>{};
+      for (var column in i.table.columns) {
+        var columnName = column.columnName;
+        var includePrefixedColumnName = '$includePrefix.${column.columnName}';
+
+        var columnData = rawRelationTableRow[includePrefixedColumnName];
+        if (columnData != null) {
+          nonPrefixedRelationTableRow[columnName] =
+              rawRelationTableRow[includePrefixedColumnName];
+        }
       }
 
-      var rawRelationRow = rawRow[i.table.tableName];
-      if (rawRelationRow == null) {
-        continue;
+      if (nonPrefixedRelationTableRow.isNotEmpty) {
+        parentTableRow[relationField] = _resolveRowDataHierarchy(
+          i,
+          i.table,
+          rawRow,
+          nonPrefixedRelationTableRow,
+          includePrefix,
+        );
       }
+    });
 
-      rawTableRow[relation.relationField] =
-          _resolveRowDataHierarchy(i, i.table, rawRow, rawRelationRow);
-    }
-
-    return rawTableRow;
+    return parentTableRow;
   }
 
-  String _createJoinFromIncludes(Include include, Table table) {
-    String query = '';
-    for (var i in include.includes.whereType<Include>()) {
-      var relation = table.getRelation(i.table);
-      if (relation == null) {
-        continue;
+  IncludeQueryStrings _createQueryFromIncludes(
+    Include include,
+    Table table,
+    String prefix,
+  ) {
+    String select = '';
+    String join = '';
+    include.includes.forEach((relationField, i) {
+      if (i == null) return;
+
+      var relation = table.getRelation(relationField);
+      if (relation == null) return;
+
+      var includePrefix = _createIncludePrefix(prefix, relationField);
+      for (var column in i.table.columns) {
+        select +=
+            ', $includePrefix.${column.toString()} AS "$includePrefix.${column.columnName}"';
       }
 
-      query +=
-          'LEFT JOIN ${i.table.tableName} ON ${table.tableName}.${relation.referencingColumn} = ${i.table.tableName}.${relation.referencedColumn} ';
-      query += _createJoinFromIncludes(i, i.table);
-    }
-    return query;
+      join +=
+          'LEFT JOIN ${i.table.tableName} AS $includePrefix ON $prefix.${relation.referencingColumn} = $includePrefix.${relation.referencedColumn} ';
+      var queryFromIncludes =
+          _createQueryFromIncludes(i, i.table, '${prefix}_$relationField');
+      join += queryFromIncludes.join;
+      select += queryFromIncludes.select;
+    });
+
+    return IncludeQueryStrings(select: select, join: join);
+  }
+
+  String _createIncludePrefix(String prefix, String relationField) {
+    return '${prefix}_$relationField';
   }
 
   /// For most cases use the corresponding method in [Database] instead.
@@ -775,6 +823,13 @@ Current type was $T''');
   }
 }
 
+class IncludeQueryStrings {
+  final String select;
+  final String join;
+
+  IncludeQueryStrings({required this.select, required this.join});
+}
+
 /// A function performing a transaction, passed to the transaction method.
 typedef TransactionFunction<R> = Future<R> Function(Transaction transaction);
 
@@ -806,7 +861,7 @@ class Transaction {
 }
 
 abstract class Include {
-  List<Include?> get includes;
+  Map<String, Include?> get includes;
 
   Table get table;
 }

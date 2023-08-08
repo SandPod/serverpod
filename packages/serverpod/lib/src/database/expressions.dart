@@ -361,12 +361,10 @@ class Constant extends Expression {
 class TableRelation {
   final Column referencedColumn;
   final Column referencingColumn;
-  final String relationField;
 
   TableRelation({
     required this.referencedColumn,
     required this.referencingColumn,
-    required this.relationField,
   });
 }
 
@@ -384,7 +382,7 @@ class Table {
     _columns = columns;
   }
 
-  TableRelation? getRelation(Table foreignTable) {
+  TableRelation? getRelation(String relationField) {
     return null;
   }
 
