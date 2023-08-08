@@ -358,6 +358,18 @@ class Constant extends Expression {
   }
 }
 
+class TableRelation {
+  final Column referencedColumn;
+  final Column referencingColumn;
+  final String relationField;
+
+  TableRelation({
+    required this.referencedColumn,
+    required this.referencingColumn,
+    required this.relationField,
+  });
+}
+
 /// Represents a database table.
 class Table {
   /// Name of the table as used in the database.
@@ -370,6 +382,10 @@ class Table {
   /// Creates a new [Table]. Typically, this is done only by generated code.
   Table({required this.tableName, List<Column>? columns}) {
     _columns = columns;
+  }
+
+  TableRelation? getRelation(Table foreignTable) {
+    return null;
   }
 
   @override
