@@ -318,6 +318,7 @@ class SerializableEntityLibraryGenerator {
                       'orderDescending': refer('orderDescending'),
                       'useCache': refer('useCache'),
                       'transaction': refer('transaction'),
+                      'include': refer('include'),
                     }, [
                       refer(className)
                     ])
@@ -397,6 +398,7 @@ class SerializableEntityLibraryGenerator {
                       'orderDescending': refer('orderDescending'),
                       'useCache': refer('useCache'),
                       'transaction': refer('transaction'),
+                      'include': refer('include'),
                     }, [
                       refer(className)
                     ])
@@ -429,7 +431,8 @@ class SerializableEntityLibraryGenerator {
                 ..body = refer('session')
                     .property('db')
                     .property('findById')
-                    .call([refer('id')], {}, [refer(className)])
+                    .call([refer('id')], {'include': refer('include')},
+                        [refer(className)])
                     .returned
                     .statement));
 
