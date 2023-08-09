@@ -261,7 +261,7 @@ Current type was $T''');
     return parentTableRow;
   }
 
-  IncludeQueryStrings _createQueryFromIncludes(
+  _IncludeQueryStrings _createQueryFromIncludes(
     Include include,
     Table table,
     String prefix,
@@ -288,7 +288,7 @@ Current type was $T''');
       select += queryFromIncludes.select;
     });
 
-    return IncludeQueryStrings(select: select, join: join);
+    return _IncludeQueryStrings(select: select, join: join);
   }
 
   String _createIncludePrefix(String prefix, String relationField) {
@@ -823,11 +823,11 @@ Current type was $T''');
   }
 }
 
-class IncludeQueryStrings {
+class _IncludeQueryStrings {
   final String select;
   final String join;
 
-  IncludeQueryStrings({required this.select, required this.join});
+  _IncludeQueryStrings({required this.select, required this.join});
 }
 
 /// A function performing a transaction, passed to the transaction method.
@@ -860,8 +860,12 @@ class Transaction {
   Transaction._(this.postgresContext);
 }
 
+/// Defines what tables to join when querying a table.
 abstract class Include {
+  /// Map containing the relation field name as key and the [Include] object
+  /// for the foreign table as value.
   Map<String, Include?> get includes;
 
+  /// Accessor for the [Table] this include is for.
   Table get table;
 }

@@ -358,10 +358,16 @@ class Constant extends Expression {
   }
 }
 
+/// A relation between two tables.
 class TableRelation {
+  /// Column in the referencing table.
   final Column referencedColumn;
+
+  /// Column in the foreign referenced table.
   final Column referencingColumn;
 
+  /// Creates a new [TableRelation]. Typically, this is done only by generated
+  /// code.
   TableRelation({
     required this.referencedColumn,
     required this.referencingColumn,
@@ -382,6 +388,8 @@ class Table {
     _columns = columns;
   }
 
+  /// Returns [TableRelation] for the given [relationField]. If no relation
+  /// exists, returns null.
   TableRelation? getRelation(String relationField) {
     return null;
   }
