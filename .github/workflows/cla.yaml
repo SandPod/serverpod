@@ -7,6 +7,8 @@ on:
 
 jobs:
   CLAssistant:
+    if: false
+    # if: github.repository == 'serverpod/serverpod' && github.event.repository.full_name == 'serverpod/serverpod'
     runs-on: ubuntu-latest
     steps:
       - name: "Serverpod CLA Assistant"
