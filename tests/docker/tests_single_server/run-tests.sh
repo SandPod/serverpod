@@ -10,7 +10,7 @@ echo "### Wait for test server"
 echo ""
 
 # We are all set to start the server
-echo "### Running integration tests"
+echo "### Running server integration tests"
 cd tests/serverpod_test_server
 dart pub get
 dart test test/authentication_test.dart
@@ -26,6 +26,8 @@ dart test test/websocket_test.dart
 dart test test/types_test.dart
 dart test test/migrations_test.dart
 dart test test/exception_test.dart
+env PGPASSWORD="password" psql -h postgres -U postgres -d serverpod_test -f /app/tests/docker/tests_single_server/relation_db.pgsql
+dart test test/relation_test.dart
 
 #echo "### Running unit tests"
 #cd ../../packages/serverpod

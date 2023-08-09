@@ -1,6 +1,9 @@
 # Specify the Dart SDK base image version
 FROM dart:2.19 AS build
 
+# Install psql client.
+RUN apt-get update && apt-get install -y postgresql-client
+
 # Set the working directory
 WORKDIR /app
 
