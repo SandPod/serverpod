@@ -153,6 +153,63 @@ ALTER TABLE ONLY "simple_data"
 
 
 --
+-- Class Town as table town
+--
+
+CREATE TABLE "town" (
+  "id" serial,
+  "name" text NOT NULL
+);
+
+ALTER TABLE ONLY "town"
+  ADD CONSTRAINT town_pkey PRIMARY KEY (id);
+
+
+--
+-- Class Company as table company
+--
+
+CREATE TABLE "company" (
+  "id" serial,
+  "name" text NOT NULL,
+  "townId" integer NOT NULL
+);
+
+ALTER TABLE ONLY "company"
+  ADD CONSTRAINT company_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY "company"
+  ADD CONSTRAINT company_fk_0
+    FOREIGN KEY("townId")
+      REFERENCES town(id)
+        ON DELETE CASCADE;
+
+--
+-- Class Citizen as table citizen
+--
+
+CREATE TABLE "citizen" (
+  "id" serial,
+  "name" text NOT NULL,
+  "companyId" integer NOT NULL,
+  "oldCompanyId" integer
+);
+
+ALTER TABLE ONLY "citizen"
+  ADD CONSTRAINT citizen_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY "citizen"
+  ADD CONSTRAINT citizen_fk_0
+    FOREIGN KEY("companyId")
+      REFERENCES company(id)
+        ON DELETE CASCADE;
+ALTER TABLE ONLY "citizen"
+  ADD CONSTRAINT citizen_fk_1
+    FOREIGN KEY("oldCompanyId")
+      REFERENCES company(id)
+        ON DELETE CASCADE;
+
+--
 -- Class Types as table types
 --
 
