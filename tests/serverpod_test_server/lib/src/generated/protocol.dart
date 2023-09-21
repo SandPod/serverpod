@@ -185,6 +185,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isNullable: true,
           dartType: 'int?',
         ),
+        _i2.ColumnDefinition(
+          name: '_company_employees_companyId',
+          columnType: _i2.ColumnType.integer,
+          isNullable: true,
+          dartType: 'int?',
+        ),
       ],
       foreignKeys: [
         _i2.ForeignKeyDefinition(
@@ -200,6 +206,16 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ForeignKeyDefinition(
           constraintName: 'citizen_fk_1',
           columns: ['oldCompanyId'],
+          referenceTable: 'company',
+          referenceTableSchema: 'public',
+          referenceColumns: ['id'],
+          onUpdate: _i2.ForeignKeyAction.noAction,
+          onDelete: _i2.ForeignKeyAction.cascade,
+          matchType: null,
+        ),
+        _i2.ForeignKeyDefinition(
+          constraintName: 'citizen_fk_2',
+          columns: ['_company_employees_companyId'],
           referenceTable: 'company',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
@@ -1223,6 +1239,11 @@ class Protocol extends _i1.SerializationManagerServer {
     }
     if (t == _i1.getType<_i34.Types?>()) {
       return (data != null ? _i34.Types.fromJson(data, this) : null) as T;
+    }
+    if (t == _i1.getType<List<_i35.Citizen>?>()) {
+      return (data != null
+          ? (data as List).map((e) => deserialize<_i35.Citizen>(e)).toList()
+          : null) as dynamic;
     }
     if (t == List<String>) {
       return (data as List).map((e) => deserialize<String>(e)).toList()

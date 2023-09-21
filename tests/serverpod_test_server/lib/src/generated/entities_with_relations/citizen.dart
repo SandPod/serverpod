@@ -67,6 +67,8 @@ abstract class Citizen extends _i1.TableRow {
 
   _i2.Company? oldCompany;
 
+  int? __company_employees_companyId;
+
   @override
   _i1.Table get table => t;
   Citizen copyWith({
@@ -99,6 +101,7 @@ abstract class Citizen extends _i1.TableRow {
       'name': name,
       'companyId': companyId,
       'oldCompanyId': oldCompanyId,
+      '_company_employees_companyId': __company_employees_companyId,
     };
   }
 
@@ -112,6 +115,7 @@ abstract class Citizen extends _i1.TableRow {
       'company': company,
       'oldCompanyId': oldCompanyId,
       'oldCompany': oldCompany,
+      '_company_employees_companyId': __company_employees_companyId,
     };
   }
 
@@ -132,6 +136,9 @@ abstract class Citizen extends _i1.TableRow {
         return;
       case 'oldCompanyId':
         oldCompanyId = value;
+        return;
+      case '_company_employees_companyId':
+        __company_employees_companyId = value;
         return;
       default:
         throw UnimplementedError();
@@ -333,6 +340,11 @@ class CitizenTable extends _i1.Table {
       queryPrefix: super.queryPrefix,
       tableRelations: super.tableRelations,
     );
+    _company_employees_companyId = _i1.ColumnInt(
+      '_company_employees_companyId',
+      queryPrefix: super.queryPrefix,
+      tableRelations: super.tableRelations,
+    );
   }
 
   late final _i1.ColumnString name;
@@ -346,6 +358,8 @@ class CitizenTable extends _i1.Table {
   late final _i1.ColumnInt oldCompanyId;
 
   _i2.CompanyTable? _oldCompany;
+
+  late final _i1.ColumnInt _company_employees_companyId;
 
   _i2.AddressTable get address {
     if (_address != null) return _address!;
@@ -422,6 +436,7 @@ class CitizenTable extends _i1.Table {
         name,
         companyId,
         oldCompanyId,
+        _company_employees_companyId,
       ];
   @override
   _i1.Table? getRelationTable(String relationField) {
