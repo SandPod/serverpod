@@ -13,4 +13,4 @@ echo ""
 echo "### Running integration tests"
 cd tests/serverpod_test_server
 dart pub get
-dart test test_e2e --concurrency=1
+dart test -p "chrome,vm" test_e2e --concurrency=1
