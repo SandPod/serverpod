@@ -91,6 +91,30 @@ void main() async {
 
       var startProjectExitCode = await startProcess.exitCode;
       expect(startProjectExitCode, 0);
+
+      var buildDockerServer = await Process.start(
+        'docker',
+        ['build', '.', '-t', 'server'],
+        workingDirectory: commandRoot,
+      );
+
+      buildDockerServer.stdout.transform(Utf8Decoder()).listen(print);
+      buildDockerServer.stderr.transform(Utf8Decoder()).listen(print);
+
+      var buildDockerServerExitCode = await buildDockerServer.exitCode;
+      expect(buildDockerServerExitCode, 0);
+
+      var startDockerServer = await Process.start(
+        'docker',
+        ['run', '-it', 'server' '--role', 'maintenance'],
+        workingDirectory: commandRoot,
+      );
+
+      startDockerServer.stdout.transform(Utf8Decoder()).listen(print);
+      startDockerServer.stderr.transform(Utf8Decoder()).listen(print);
+
+      var startDockerServerExitCode = await startDockerServer.exitCode;
+      expect(startDockerServerExitCode, 0);
     });
   });
   group('Given a clean state', () {
