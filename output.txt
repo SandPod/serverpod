@@ -1,0 +1,38 @@
+Dependencies match.
+Checking latest pub versions.
+connectivity_plus
+local: ^5.0.0
+pub:   ^6.0.3
+found in:
+ • serverpod_flutter
+web_socket_channel
+local: ^2.4.0
+pub:   ^3.0.0
+found in:
+ • serverpod_client
+material_design_icons_flutter
+local: >=6.0.0 <7.0.0
+pub:   ^7.0.7296
+found in:
+ • serverpod_auth_firebase_flutter
+ • serverpod_auth_apple_flutter
+googleapis
+local: ^11.0.0
+pub:   ^13.1.0
+found in:
+ • serverpod_auth_server
+googleapis_auth
+local: >=1.4.0 <1.5.0
+pub:   ^1.6.0
+found in:
+ • serverpod_auth_server
+sign_in_with_apple
+local: ^5.0.0
+pub:   ^6.1.0
+found in:
+ • serverpod_auth_apple_flutter
+image_cropper
+local: ^5.0.0
+pub:   ^6.0.0
+found in:
+ • serverpod_auth_shared_flutter

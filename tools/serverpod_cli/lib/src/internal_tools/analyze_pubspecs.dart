@@ -39,20 +39,22 @@ Future<bool> pubspecDependenciesMatch(bool checkLatestVersion) async {
   log.info('Dependencies match.');
 
   if (checkLatestVersion) {
-    await _checkLatestVersion(dependencies);
+    await _checkLatestVersion(dependencies, true, true);
   }
 
   return true;
 }
 
 Future<void> _checkLatestVersion(
-    Map<String, List<_ServerpodDependency>> dependencies) async {
+  Map<String, List<_ServerpodDependency>> dependencies,
+  bool onlyMajorUpdate,
+  bool ignoreServerpodPackages,
+) async {
   log.info('Checking latest pub versions.');
   try {
     var pub = PubApiClient();
     for (var depName in dependencies.keys) {
       var deps = dependencies[depName]!;
-      var depVersion = deps.first.version;
       Version? latestPubVersion;
       try {
         latestPubVersion = await pub.tryFetchLatestStableVersion(depName);
@@ -62,8 +64,22 @@ Future<void> _checkLatestVersion(
         log.error(e.message);
       }
 
-      if (latestPubVersion != null &&
-          depVersion != '^${latestPubVersion.toString()}') {
+      if (ignoreServerpodPackages && depName.startsWith('serverpod')) {
+        continue;
+      }
+
+      var depVersion = VersionConstraint.parse(deps.first.version);
+
+      if (latestPubVersion == null) {
+        continue;
+      }
+
+      var differentVersion = switch (onlyMajorUpdate) {
+        true => !depVersion.allows(latestPubVersion),
+        false => depVersion != latestPubVersion,
+      };
+
+      if (differentVersion) {
         log.info(depName);
         log.info('local: $depVersion');
         log.info('pub:   ^$latestPubVersion');
