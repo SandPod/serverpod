@@ -155,6 +155,12 @@ moduleSerialization:
 namedParameters:
   - namedParametersMethod:
   - namedParametersMethodEqualInts:
+newStreaming:
+  - inStream:
+  - inStreamWithReturn:
+  - inOutStream:
+  - inOutStreamWithParams:
+  - multipleInStreams:
 optionalParameters:
   - returnOptionalInt:
 redis:

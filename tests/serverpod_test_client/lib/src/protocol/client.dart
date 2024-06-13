@@ -1268,6 +1268,64 @@ class EndpointNamedParameters extends _i1.EndpointRef {
 }
 
 /// {@category Endpoint}
+class EndpointNewStreaming extends _i1.EndpointRef {
+  EndpointNewStreaming(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'newStreaming';
+
+  _i2.Future<void> inStream(_i2.Stream<_i10.SimpleData> stream) =>
+      caller.callStreamingEndpoint<void>(
+        'newStreaming',
+        'inStream',
+        {},
+        {'stream': stream},
+      );
+
+  _i2.Future<_i10.SimpleData> inStreamWithReturn(
+          _i2.Stream<_i10.SimpleData> stream) =>
+      caller.callStreamingEndpoint<_i10.SimpleData>(
+        'newStreaming',
+        'inStreamWithReturn',
+        {},
+        {'stream': stream},
+      );
+
+  _i2.Stream<_i10.SimpleData> inOutStream(_i2.Stream<_i10.SimpleData> stream) =>
+      caller.callAndListenToStreamingEndpoint<_i10.SimpleData>(
+        'newStreaming',
+        'inOutStream',
+        {},
+        {'stream': stream},
+      );
+
+  _i2.Stream<_i10.SimpleData> inOutStreamWithParams(
+    _i2.Stream<_i10.SimpleData> stream,
+    int value,
+  ) =>
+      caller.callAndListenToStreamingEndpoint<_i10.SimpleData>(
+        'newStreaming',
+        'inOutStreamWithParams',
+        {'value': value},
+        {'stream': stream},
+      );
+
+  _i2.Stream<_i10.SimpleData> multipleInStreams(
+    _i2.Stream<_i10.SimpleData> stream1,
+    _i2.Stream<_i10.SimpleData> stream2,
+  ) =>
+      caller.callAndListenToStreamingEndpoint<_i10.SimpleData>(
+        'newStreaming',
+        'multipleInStreams',
+        {},
+        {
+          'stream1': stream1,
+          'stream2': stream2,
+        },
+      );
+}
+
+/// {@category Endpoint}
 class EndpointOptionalParameters extends _i1.EndpointRef {
   EndpointOptionalParameters(_i1.EndpointCaller caller) : super(caller);
 
@@ -1547,6 +1605,7 @@ class Client extends _i1.ServerpodClient {
     mapParameters = EndpointMapParameters(this);
     moduleSerialization = EndpointModuleSerialization(this);
     namedParameters = EndpointNamedParameters(this);
+    newStreaming = EndpointNewStreaming(this);
     optionalParameters = EndpointOptionalParameters(this);
     redis = EndpointRedis(this);
     serverOnlyScopedFieldModel = EndpointServerOnlyScopedFieldModel(this);
@@ -1600,6 +1659,8 @@ class Client extends _i1.ServerpodClient {
 
   late final EndpointNamedParameters namedParameters;
 
+  late final EndpointNewStreaming newStreaming;
+
   late final EndpointOptionalParameters optionalParameters;
 
   late final EndpointRedis redis;
@@ -1644,6 +1705,7 @@ class Client extends _i1.ServerpodClient {
         'mapParameters': mapParameters,
         'moduleSerialization': moduleSerialization,
         'namedParameters': namedParameters,
+        'newStreaming': newStreaming,
         'optionalParameters': optionalParameters,
         'redis': redis,
         'serverOnlyScopedFieldModel': serverOnlyScopedFieldModel,
