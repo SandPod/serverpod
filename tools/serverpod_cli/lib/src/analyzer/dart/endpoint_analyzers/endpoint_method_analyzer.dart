@@ -23,6 +23,8 @@ abstract class EndpointMethodAnalyzer {
     MethodElement method,
     Parameters parameters,
   ) {
+    var isStream =
+        method.returnType.isDartAsyncStream || parameters.hasStream();
     var definition = MethodDefinition(
       name: method.name,
       documentationComment: method.documentationComment,
@@ -31,6 +33,7 @@ abstract class EndpointMethodAnalyzer {
       parametersNamed: parameters.named,
       parametersPositional: parameters.positional,
       returnType: TypeDefinition.fromDartType(method.returnType),
+      isStream: isStream,
     );
 
     return definition;
@@ -83,9 +86,9 @@ abstract class EndpointMethodAnalyzer {
     required DartType dartType,
     required Element dartElement,
   }) {
-    if (!dartType.isDartAsyncFuture) {
+    if (!(dartType.isDartAsyncFuture || dartType.isDartAsyncStream)) {
       return SourceSpanSeverityException(
-        'Return type must be a Future.',
+        'Return type must be a Future or a Stream.',
         dartElement.span,
       );
     }
@@ -100,7 +103,7 @@ abstract class EndpointMethodAnalyzer {
     var typeArguments = dartType.typeArguments;
     if (typeArguments.length != 1) {
       return SourceSpanSeverityException(
-        'Future must have a type defined. E.g. Future<String>.',
+        'Return generic must be type defined. E.g. Future<String>.',
         dartElement.span,
       );
     }
@@ -113,7 +116,7 @@ abstract class EndpointMethodAnalyzer {
 
     if (innerType is DynamicType) {
       return SourceSpanSeverityException(
-        'Future must have a type defined. E.g. Future<String>.',
+        'Return generic must have a type defined. E.g. Future<String>.',
         dartElement.span,
       );
     }

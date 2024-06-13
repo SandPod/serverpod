@@ -188,7 +188,7 @@ class ExampleEndpoint extends Endpoint {
     test('then validation error informs that return type must be future', () {
       expect(
         collector.errors.firstOrNull?.message,
-        'Return type must be a Future.',
+        'Return type must be a Future or a Stream.',
       );
     });
 
@@ -234,7 +234,7 @@ class ExampleEndpoint extends Endpoint {
     test('then validation error informs that return type must be future', () {
       expect(
         collector.errors.firstOrNull?.message,
-        'Future must have a type defined. E.g. Future<String>.',
+        'Return generic must have a type defined. E.g. Future<String>.',
       );
     });
 
@@ -319,7 +319,7 @@ class ExampleEndpoint extends Endpoint {
     test('then validation error informs that return type must be future', () {
       expect(
         collector.errors.firstOrNull?.message,
-        'Future must have a type defined. E.g. Future<String>.',
+        'Return generic must have a type defined. E.g. Future<String>.',
       );
     });
 
