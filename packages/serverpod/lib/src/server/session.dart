@@ -290,6 +290,23 @@ class MethodCallSession extends Session {
   }
 }
 
+/// When a call is made to an endpoint method that uses a stream [Server] a
+/// [StreamingMethodCallSession] object is created. It contains all data
+/// associated with the current connection and provides easy access to the
+/// database.
+class StreamingMethodCallSession extends Session {
+  /// Query parameters of the server call.
+  final Map<String, dynamic> queryParameters;
+
+  /// Creates a new [Session] for a method call to a streaming endpoint.
+  StreamingMethodCallSession({
+    required this.queryParameters,
+    required super.server,
+    required super.enableLogging,
+    super.authenticationKey,
+  });
+}
+
 /// When a web socket connection is opened to the [Server] a [StreamingSession]
 /// object is created. It contains all data associated with the current
 /// connection and provides easy access to the database.
