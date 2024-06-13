@@ -46,6 +46,10 @@ class MethodCallContext {
 /// It's overridden i two different versions depending on if the dart:io library
 /// is available.
 abstract class ServerpodClientShared extends EndpointCaller {
+  final Map<String, StreamController> _inboundStreams = {};
+
+  final Map<String, Stream> _outboundStreams = {};
+
   /// Full url to the Serverpod server. E.g. "https://example.com/"
   final String host;
 
@@ -181,9 +185,57 @@ abstract class ServerpodClientShared extends EndpointCaller {
       if (command == 'pong') {
         // Do nothing.
       }
+      if (command == 'close_stream') {
+        var args = data['args'];
+        var endpoint = args['endpoint'];
+        var method = args['method'];
+        var uuid = args['uuid'];
+        // print(
+        //     'Close stream command received Endpoint: $endpoint, method: $method, uuid: $uuid');
+
+        var streamKey = _buildStreamKey(uuid, endpoint, method);
+        var stream = _inboundStreams.remove(streamKey);
+        if (stream != null) {
+          stream.close();
+        }
+
+        _tryCloseStream();
+      }
       return;
     }
 
+    if (data['type'] == 'methodMessage') {
+      _handleMethodMessage(data);
+    } else {
+      _handleEndpointMessage(data);
+    }
+  }
+
+  void _handleMethodMessage(data) {
+    String endpoint = data['endpoint'];
+    String method = data['method'];
+    String uuid = data['uuid'];
+    String object = data['object'];
+
+    var streamKey = _buildStreamKey(uuid, endpoint, method);
+    var stream = _inboundStreams[streamKey];
+
+    if (stream == null) {
+      throw ServerpodClientException(
+        'Stream controller for $streamKey not found',
+        0,
+      );
+    }
+
+    var model = serializationManager.decodeWithType(object);
+    if (model == null) {
+      throw const ServerpodClientException('Failed to decode object', 0);
+    }
+
+    stream.add(model);
+  }
+
+  void _handleEndpointMessage(data) {
     String endpoint = data['endpoint'];
     Map<String, dynamic> objectData = data['object'];
     var model = serializationManager.deserializeByClassName(objectData);
@@ -232,6 +284,27 @@ abstract class ServerpodClientShared extends EndpointCaller {
 
   /// Closes all open connections to the server.
   void close() {
+    closeStreamingConnection();
+  }
+
+  void _tryCloseStream() {
+    if (_inboundStreams.isNotEmpty) {
+      // print(
+      //   'Not closing stream, ${_inboundStreams.length} input stream is still open',
+      // );
+      return;
+    }
+    if (_outboundStreams.isNotEmpty) {
+      // print(
+      //   'Not closing stream, ${_outboundStreams.length} output stream is still open',
+      // );
+      return;
+    }
+
+    // TODO: Safeguard against closing a stream if a streaming endpoint is open
+
+    // print('No method streams open, closing websocket connection');
+
     closeStreamingConnection();
   }
 
@@ -373,6 +446,196 @@ abstract class ServerpodClientShared extends EndpointCaller {
     }
     await _sendControlCommandToStream('auth', {'key': authKey});
   }
+
+  @override
+  Stream<T> callAndListenToStreamingEndpoint<T extends SerializableModel>(
+    String endpoint,
+    String method,
+    Map<String, dynamic> args,
+    Map<String, Stream> streams,
+  ) {
+    Future<void>? establishConnection;
+    if (streamingConnectionStatus == StreamingConnectionStatus.disconnected) {
+      establishConnection = openStreamingConnection(
+        disconnectOnLostInternetConnection: _disconnectOnLostInternetConnection,
+      );
+    }
+
+    var uuid = const Uuid().v4();
+    var streamKey = _buildStreamKey(uuid, endpoint, method);
+    var streamController = StreamController<T>();
+    _inboundStreams[streamKey] = streamController;
+
+    _openMethodStream(
+      endpoint,
+      method,
+      uuid,
+      args,
+      establishingConnection: establishConnection,
+    ).then((_) {
+      _buildOutboundStreams(streams, uuid, endpoint, method);
+    }).catchError((e) {
+      streamController.addError(e);
+      _inboundStreams.remove(streamKey);
+      streamController.close();
+    });
+
+    return streamController.stream;
+  }
+
+  @override
+  Future<T> callStreamingEndpoint<T>(
+    String endpoint,
+    String method,
+    Map<String, dynamic> args,
+    Map<String, Stream> streams,
+  ) async {
+    if (streamingConnectionStatus == StreamingConnectionStatus.disconnected) {
+      await openStreamingConnection(
+        disconnectOnLostInternetConnection: _disconnectOnLostInternetConnection,
+      );
+    }
+
+    var uuid = const Uuid().v4();
+
+    var result = _fetchSingleStreamValue<T>(uuid, endpoint, method);
+
+    await _openMethodStream(endpoint, method, uuid, args);
+
+    _buildOutboundStreams(streams, uuid, endpoint, method);
+
+    return result;
+  }
+
+  Future<void> _openMethodStream(
+    String endpoint,
+    String method,
+    String uuid,
+    Map<String, dynamic> args, {
+    Future<void>? establishingConnection,
+  }) async {
+    if (establishingConnection != null) {
+      await establishingConnection;
+    }
+
+    var auth = await authenticationKeyManager?.get();
+    // Open Stream
+    await _sendControlCommandToStream('open_stream', {
+      'endpoint': endpoint,
+      'method': method,
+      'uuid': uuid,
+      if (auth != null) 'auth': auth,
+      'params': SerializationManager.encode(args),
+    });
+  }
+
+  void _buildOutboundStreams(
+    Map<String, Stream<dynamic>> streams,
+    String uuid,
+    String endpoint,
+    String method,
+  ) {
+    for (var MapEntry(key: streamName, value: stream) in streams.entries) {
+      var streamKey = _buildStreamKey(
+        uuid,
+        endpoint,
+        method,
+        streamName: streamName,
+      );
+      _outboundStreams[streamKey] = stream;
+      // print('Opening stream $streamKey');
+      stream.listen((event) {
+        _sendEndpointStreamMessage(
+          endpoint: endpoint,
+          method: method,
+          uuid: uuid,
+          streamName: streamName,
+          model: event,
+        );
+      }).onDone(() {
+        // print('Stream $streamKey done');
+        _outboundStreams.remove(streamKey);
+        _closeOutputStream(endpoint, method, uuid, streamName);
+      });
+    }
+  }
+
+  Future<T> _fetchSingleStreamValue<T>(
+    String uuid,
+    String endpoint,
+    String method,
+  ) async {
+    if (T == getType<void>()) {
+      return Future<T>(() => _returnVoid() as T);
+    }
+
+    // Bind return value
+    var stream = StreamController<T>();
+    var streamKey = _buildStreamKey(uuid, endpoint, method);
+    _inboundStreams[streamKey] = stream;
+    var value = await stream.stream.first;
+
+    _inboundStreams.remove(streamKey);
+    await stream.close();
+    _tryCloseStream();
+
+    return value;
+  }
+
+  void _sendEndpointStreamMessage({
+    required String endpoint,
+    required String method,
+    required String uuid,
+    required String streamName,
+    required SerializableModel model,
+  }) {
+    var message = {
+      'type': 'methodMessage',
+      'endpoint': endpoint,
+      'method': method,
+      'stream': streamName,
+      'uuid': uuid,
+      'object': serializationManager.encodeWithType(model)
+    };
+
+    _webSocket?.sink.add(jsonEncode(message));
+  }
+
+  void _closeOutputStream(
+    String endpoint,
+    String method,
+    String uuid,
+    String streamName,
+  ) {
+    var closeCommand = {
+      'command': 'close_stream',
+      'args': {
+        'endpoint': endpoint,
+        'method': method,
+        'uuid': uuid,
+        'stream': streamName,
+      }
+    };
+
+    _webSocket?.sink.add(jsonEncode(closeCommand));
+    _tryCloseStream();
+  }
+
+  String _buildStreamKey(
+    String uuid,
+    String endpoint,
+    String method, {
+    String? streamName,
+  }) {
+    if (streamName != null) {
+      return '$uuid.$endpoint.$method.$streamName';
+    }
+
+    return '$uuid.$endpoint.$method';
+  }
+
+  /// A helper method, that just 'returns' void.
+  void _returnVoid() {}
 }
 
 /// This class is used to connect modules with the client. Overridden by
@@ -389,6 +652,31 @@ abstract class ModuleEndpointCaller extends EndpointCaller {
       String endpoint, String method, Map<String, dynamic> args) {
     return client.callServerEndpoint<T>(endpoint, method, args);
   }
+
+  @override
+  Future<T> callStreamingEndpoint<T>(
+    String endpoint,
+    String method,
+    Map<String, dynamic> args,
+    Map<String, Stream> streams,
+  ) {
+    return client.callStreamingEndpoint<T>(endpoint, method, args, streams);
+  }
+
+  @override
+  Stream<T> callAndListenToStreamingEndpoint<T extends SerializableModel>(
+    String endpoint,
+    String method,
+    Map<String, dynamic> args,
+    Map<String, Stream> streams,
+  ) {
+    return client.callAndListenToStreamingEndpoint<T>(
+      endpoint,
+      method,
+      args,
+      streams,
+    );
+  }
 }
 
 /// Super class for all classes that can call a server endpoint.
@@ -401,6 +689,30 @@ abstract class EndpointCaller {
   /// Typically, this method is called by generated code.
   Future<T> callServerEndpoint<T>(
       String endpoint, String method, Map<String, dynamic> args);
+
+  /// Calls a server endpoint method that supports streaming. The [streams]
+  /// parameter is a map of stream names to stream objects. The method will
+  /// listen to the streams and send the data to the server.
+  /// Typically, this method is called by generated code.
+  Future<T> callStreamingEndpoint<T>(
+    String endpoint,
+    String method,
+    Map<String, dynamic> args,
+    Map<String, Stream> streams,
+  );
+
+  /// Calls a server endpoint method that supports streaming. The [streams]
+  /// parameter is a map of stream names to stream objects. The method will
+  /// listen to the streams and send the data to the server.
+  /// The method returns a stream of [SerializableModel] objects sent from the
+  /// server.
+  /// Typically, this method is called by generated code.
+  Stream<T> callAndListenToStreamingEndpoint<T extends SerializableModel>(
+    String endpoint,
+    String method,
+    Map<String, dynamic> args,
+    Map<String, Stream> streams,
+  );
 }
 
 /// This class connects endpoints on the server with the client, it also
