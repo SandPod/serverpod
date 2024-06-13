@@ -405,24 +405,14 @@ class LibraryGenerator {
                         ..type =
                             parameterDef.type.reference(false, config: config))
                   ])
-                  ..body = refer('caller').property('callServerEndpoint').call([
-                    literalString('$modulePrefix${endpointDef.name}'),
-                    literalString(methodDef.name),
-                    literalMap({
-                      for (var parameterDef in requiredParams)
-                        literalString(parameterDef.name):
-                            refer(parameterDef.name),
-                      for (var parameterDef in optionalParams)
-                        literalString(parameterDef.name):
-                            refer(parameterDef.name),
-                      for (var parameterDef in namedParameters)
-                        literalString(parameterDef.name):
-                            refer(parameterDef.name),
-                    })
-                  ], {}, [
-                    methodDef.returnType.generics.first
-                        .reference(false, config: config)
-                  ]).code,
+                  ..body = _buildCallServerEndpointBody(
+                    modulePrefix,
+                    endpointDef,
+                    methodDef,
+                    requiredParams,
+                    optionalParams,
+                    namedParameters,
+                  ),
               ),
             );
           }
@@ -622,6 +612,64 @@ class LibraryGenerator {
     return library.build();
   }
 
+  Code _buildCallServerEndpointBody(
+    String modulePrefix,
+    EndpointDefinition endpointDef,
+    MethodDefinition methodDef,
+    List<ParameterDefinition> requiredParams,
+    List<ParameterDefinition> optionalParams,
+    List<ParameterDefinition> namedParameters,
+  ) {
+    var (params, streamingParams) = separateParamsFromStreams([
+      ...requiredParams,
+      ...optionalParams,
+      ...namedParameters,
+    ]);
+
+    if (!methodDef.isStream) {
+      return refer('caller').property('callServerEndpoint').call([
+        literalString('$modulePrefix${endpointDef.name}'),
+        literalString(methodDef.name),
+        literalMap({
+          for (var parameterDef in params)
+            literalString(parameterDef.name): refer(parameterDef.name),
+        })
+      ], {}, [
+        methodDef.returnType.generics.first.reference(false, config: config)
+      ]).code;
+    } else if (methodDef.returnType.dartType?.isDartAsyncStream ?? false) {
+      return refer('caller').property('callAndListenToStreamingEndpoint').call([
+        literalString('$modulePrefix${endpointDef.name}'),
+        literalString(methodDef.name),
+        literalMap({
+          for (var parameterDef in params)
+            literalString(parameterDef.name): refer(parameterDef.name),
+        }),
+        literalMap({
+          for (var parameterDef in streamingParams)
+            literalString(parameterDef.name): refer(parameterDef.name),
+        }),
+      ], {}, [
+        methodDef.returnType.generics.first.reference(false, config: config)
+      ]).code;
+    } else {
+      return refer('caller').property('callStreamingEndpoint').call([
+        literalString('$modulePrefix${endpointDef.name}'),
+        literalString(methodDef.name),
+        literalMap({
+          for (var parameterDef in params)
+            literalString(parameterDef.name): refer(parameterDef.name),
+        }),
+        literalMap({
+          for (var parameterDef in streamingParams)
+            literalString(parameterDef.name): refer(parameterDef.name),
+        }),
+      ], {}, [
+        methodDef.returnType.generics.first.reference(false, config: config)
+      ]).code;
+    }
+  }
+
   String _endpointPath(EndpointDefinition endpoint) {
     return p.posix.joinAll([
       '..',
@@ -660,64 +708,223 @@ class LibraryGenerator {
                   .index(literalString(endpoint.name))
                   .nullChecked,
               'methodConnectors': literalMap({
-                for (var method in endpoint.methods)
-                  literalString(method.name):
-                      refer('MethodConnector', serverpodUrl(true)).call([], {
-                    'name': literalString(method.name),
-                    'params': literalMap({
-                      for (var param in [
-                        ...method.parameters,
-                        ...method.parametersPositional,
-                        ...method.parametersNamed,
-                      ])
-                        literalString(param.name):
-                            refer('ParameterDescription', serverpodUrl(true))
-                                .call([], {
-                          'name': literalString(param.name),
-                          'type': refer('getType', serverpodUrl(true)).call([],
-                              {}, [param.type.reference(true, config: config)]),
-                          'nullable': literalBool(param.type.nullable),
-                        })
-                    }),
-                    'call': Method(
-                      (m) => m
-                        ..requiredParameters.addAll([
-                          Parameter((p) => p
-                            ..name = 'session'
-                            ..type = refer('Session', serverpodUrl(true))),
-                          Parameter((p) => p
-                            ..name = 'params'
-                            ..type = TypeReference((t) => t
-                              ..symbol = 'Map'
-                              ..types.addAll([
-                                refer('String'),
-                                refer('dynamic'),
-                              ])))
-                        ])
-                        ..modifier = MethodModifier.async
-                        ..body = refer('endpoints')
-                            .index(literalString(endpoint.name))
-                            .asA(refer(
-                                endpoint.className, _endpointPath(endpoint)))
-                            .property(method.name)
-                            .call([
-                          refer('session'),
-                          for (var param in [
-                            ...method.parameters,
-                            ...method.parametersPositional
-                          ])
-                            refer('params').index(literalString(param.name)),
-                        ], {
-                          for (var param in [...method.parametersNamed])
-                            param.name: refer('params')
-                                .index(literalString(param.name)),
-                        }).code,
-                    ).closure,
-                  }),
+                ..._buildMethodConnectors(
+                  endpoint,
+                  endpoint.methods.where((method) => !method.isStream),
+                ),
+                ..._buildStreamingMethodConnectors(
+                  endpoint,
+                  endpoint.methods.where((method) => method.isStream),
+                )
               })
             }))
             .statement
     ]);
+  }
+
+  Map<Object, Object> _buildMethodConnectors(
+    EndpointDefinition endpoint,
+    Iterable<MethodDefinition> methods,
+  ) {
+    var methodConnectors = <Object, Object>{};
+    for (var method in methods) {
+      methodConnectors[literalString(method.name)] =
+          refer('MethodConnector', serverpodUrl(true)).call([], {
+        'name': literalString(method.name),
+        'params': literalMap({
+          for (var param in [
+            ...method.parameters,
+            ...method.parametersPositional,
+            ...method.parametersNamed,
+          ])
+            literalString(param.name):
+                refer('ParameterDescription', serverpodUrl(true)).call([], {
+              'name': literalString(param.name),
+              'type': refer('getType', serverpodUrl(true))
+                  .call([], {}, [param.type.reference(true, config: config)]),
+              'nullable': literalBool(param.type.nullable),
+            })
+        }),
+        'call': Method(
+          (m) => m
+            ..requiredParameters.addAll([
+              Parameter((p) => p
+                ..name = 'session'
+                ..type = refer('Session', serverpodUrl(true))),
+              Parameter((p) => p
+                ..name = 'params'
+                ..type = TypeReference((t) => t
+                  ..symbol = 'Map'
+                  ..types.addAll([
+                    refer('String'),
+                    refer('dynamic'),
+                  ])))
+            ])
+            ..modifier = MethodModifier.async
+            ..body = refer('endpoints')
+                .index(literalString(endpoint.name))
+                .asA(refer(endpoint.className, _endpointPath(endpoint)))
+                .property(method.name)
+                .call([
+              refer('session'),
+              for (var param in [
+                ...method.parameters,
+                ...method.parametersPositional
+              ])
+                refer('params').index(literalString(param.name)),
+            ], {
+              for (var param in [...method.parametersNamed])
+                param.name: refer('params').index(literalString(param.name)),
+            }).code,
+        ).closure,
+      });
+    }
+    return methodConnectors;
+  }
+
+  Map<Object, Object> _buildStreamingMethodConnectors(
+    EndpointDefinition endpoint,
+    Iterable<MethodDefinition> methods,
+  ) {
+    var streamingMethodConnectors = <Object, Object>{};
+    for (var method in methods) {
+      var (params, streamingParams) = separateParamsFromStreams([
+        ...method.parameters,
+        ...method.parametersPositional,
+        ...method.parametersNamed,
+      ]);
+
+      streamingMethodConnectors[literalString(method.name)] =
+          refer('StreamingMethodConnector', serverpodUrl(true)).call([], {
+        'name': literalString(method.name),
+        'params': literalMap({
+          for (var param in params)
+            literalString(param.name):
+                refer('ParameterDescription', serverpodUrl(true)).call([], {
+              'name': literalString(param.name),
+              'type': refer('getType', serverpodUrl(true))
+                  .call([], {}, [param.type.reference(true, config: config)]),
+              'nullable': literalBool(param.type.nullable),
+            })
+        }),
+        'inputStreams': literalMap({
+          for (var param in streamingParams)
+            literalString(param.name):
+                refer('StreamDescription', serverpodUrl(true)).call([], {
+              'name': literalString(param.name),
+            }, [
+              param.type.generics.first.reference(true, config: config)
+            ])
+        }),
+        if (!method.returnType.generics.first.isVoidType)
+          'outputStream':
+              refer('StreamDescription', serverpodUrl(true)).call([], {
+            'name': literalString(method.name),
+          }, [
+            method.returnType.generics.first.reference(true, config: config),
+          ]),
+        'call': Method((m) => m
+          ..requiredParameters.addAll([
+            Parameter((p) => p
+              ..name = 'session'
+              ..type = refer('Session', serverpodUrl(true))),
+            Parameter((p) => p
+              ..name = 'params'
+              ..type = TypeReference((t) => t
+                ..symbol = 'Map'
+                ..types.addAll([
+                  refer('String'),
+                  refer('dynamic'),
+                ]))),
+            Parameter((p) => p
+              ..name = 'inputStreams'
+              ..type = TypeReference((t) => t
+                ..symbol = 'Map'
+                ..types.addAll([
+                  refer('String'),
+                  refer('dynamic'),
+                ]))),
+            Parameter((p) => p
+              ..name = 'outputStream'
+              ..type = TypeReference((t) => t
+                ..symbol = 'OutputStreamContext'
+                ..url = serverpodUrl(true)
+                ..isNullable = true)),
+          ])
+          ..modifier = MethodModifier.async
+          ..body = _buildStreamingMethodConnectorsBodyCall(
+            endpoint: endpoint,
+            method: method,
+            params: [
+              ...method.parameters,
+              ...method.parametersPositional,
+            ],
+            namedParams: method.parametersNamed,
+          )).closure
+      });
+    }
+
+    return streamingMethodConnectors;
+  }
+
+  Code _buildStreamingMethodConnectorsBodyCall({
+    required EndpointDefinition endpoint,
+    required MethodDefinition method,
+    required Iterable<ParameterDefinition> params,
+    required Iterable<ParameterDefinition> namedParams,
+  }) {
+    Expression referParam(ParameterDefinition param) {
+      if (param.type.dartType?.isDartAsyncStream ?? false) {
+        return refer('inputStreams').index(literalString(param.name)).property(
+              'stream',
+            );
+      } else {
+        return refer('params').index(literalString(param.name));
+      }
+    }
+
+    var endpointCall = refer('endpoints')
+        .index(literalString(endpoint.name))
+        .asA(refer(endpoint.className, _endpointPath(endpoint)))
+        .property(method.name)
+        .call([
+      refer('session'),
+      for (var param in params) referParam(param),
+    ], {
+      for (var param in namedParams) param.name: referParam(param),
+    });
+
+    var returnType = method.returnType;
+    if ((returnType.dartType?.isDartAsyncFuture ?? false) &&
+        !returnType.generics.first.isVoidType) {
+      return refer('outputStream')
+          .nullSafeProperty('addFuture')
+          .call([endpointCall]).code;
+    } else if (returnType.dartType?.isDartAsyncStream ?? false) {
+      return refer('outputStream')
+          .nullSafeProperty('addStream')
+          .call([endpointCall]).code;
+    }
+
+    return endpointCall.code;
+  }
+
+  (List<ParameterDefinition>, List<ParameterDefinition>)
+      separateParamsFromStreams(
+    Iterable<ParameterDefinition> params,
+  ) {
+    List<ParameterDefinition> streamingParams = [];
+    List<ParameterDefinition> nonStreamingParams = [];
+
+    for (var param in params) {
+      if (param.type.dartType?.isDartAsyncStream ?? false) {
+        streamingParams.add(param);
+      } else {
+        nonStreamingParams.add(param);
+      }
+    }
+
+    return (nonStreamingParams, streamingParams);
   }
 }
 
