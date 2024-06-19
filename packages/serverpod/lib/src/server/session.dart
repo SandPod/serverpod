@@ -150,6 +150,7 @@ abstract class Session {
     _closed = true;
 
     try {
+      server.messageCentral.closeStreamsForSession(this);
       server.messageCentral.removeListenersForSession(this);
       return await server.serverpod.logManager.finalizeSessionLog(
         this,
@@ -288,6 +289,23 @@ class MethodCallSession extends Session {
     // Get the the authentication key, if any
     _authenticationKey = authenticationKey ?? queryParameters['auth'];
   }
+}
+
+/// When a call is made to an endpoint method that uses a stream [Server] a
+/// [StreamingMethodCallSession] object is created. It contains all data
+/// associated with the current connection and provides easy access to the
+/// database.
+class StreamingMethodCallSession extends Session {
+  /// Query parameters of the server call.
+  final Map<String, dynamic> queryParameters;
+
+  /// Creates a new [Session] for a method call to a streaming endpoint.
+  StreamingMethodCallSession({
+    required this.queryParameters,
+    required super.server,
+    required super.enableLogging,
+    super.authenticationKey,
+  });
 }
 
 /// When a web socket connection is opened to the [Server] a [StreamingSession]
@@ -479,7 +497,9 @@ class MessageCentralAccess {
   MessageCentralAccess._(this._session);
 
   /// Adds a listener to a named channel. Whenever a message is posted using
-  /// [postMessage], the [listener] will be notified.
+  /// [postMessage], the [listener] will be notified. The listener is bound to
+  /// a [Session]. When the session is closed, the listener will automatically
+  /// be disposed.
   void addListener(
     String channelName,
     MessageCentralListenerCallback listener,
@@ -493,9 +513,19 @@ class MessageCentralAccess {
 
   /// Removes a listener from a named channel.
   void removeListener(
-      String channelName, MessageCentralListenerCallback listener) {
+    String channelName,
+    MessageCentralListenerCallback listener,
+  ) {
     _session.server.messageCentral
         .removeListener(_session, channelName, listener);
+  }
+
+  /// Retrieves a [Stream] from a named channel. Whenever a message is posted
+  /// using [postMessage], the message will be relayed to the stream. The
+  /// stream is bound to a [Session]. When the session is closed, the stream
+  /// will automatically be closed.
+  Stream<T> getStream<T extends SerializableModel>(String channelName) {
+    return _session.server.messageCentral.getStream<T>(_session, channelName);
   }
 
   /// Posts a [message] to a named channel. If [global] is set to true, the

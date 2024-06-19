@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -113,6 +114,12 @@ abstract class EndpointDispatch {
             'Method $methodName not found in call: $uri');
       }
 
+      if (method is! MethodConnector) {
+        await session.close();
+        return ResultInvalidParams(
+            'Method $methodName is not a valid method in call: $uri');
+      }
+
       // TODO: Check parameters and check null safety
 
       var paramMap = <String, dynamic>{};
@@ -194,22 +201,31 @@ class EndpointConnector {
   final Endpoint endpoint;
 
   /// All [MethodConnector]s associated with the [Endpoint].
-  final Map<String, MethodConnector> methodConnectors;
+  final Map<String, EndpointMethodConnector> methodConnectors;
 
   /// Creates a new [EndpointConnector].
-  EndpointConnector(
-      {required this.name,
-      required this.endpoint,
-      required this.methodConnectors});
+  EndpointConnector({
+    required this.name,
+    required this.endpoint,
+    required this.methodConnectors,
+  });
 }
 
 /// Calls a named method referenced in a [MethodConnector].
 typedef MethodCall = Future Function(
     Session session, Map<String, dynamic> params);
 
+/// Calls a named method referenced in a [StreamingMethodConnector].
+typedef StreamCall = dynamic Function(
+  Session session,
+  Map<String, dynamic> params,
+  Map<String, dynamic> streams,
+  OutputStreamContext? outStream,
+);
+
 /// The [MethodConnector] hooks up a method with its name and the actual call
 /// to the method.
-class MethodConnector {
+class MethodConnector extends EndpointMethodConnector {
   /// The name of the method.
   final String name;
 
@@ -220,9 +236,43 @@ class MethodConnector {
   final MethodCall call;
 
   /// Creates a new [MethodConnector].
-  MethodConnector(
-      {required this.name, required this.params, required this.call});
+  MethodConnector({
+    required this.name,
+    required this.params,
+    required this.call,
+  });
 }
+
+/// Method connector for streaming methods.
+class StreamingMethodConnector extends EndpointMethodConnector {
+  /// The name of the method.
+  final String name;
+
+  /// List of parameters used by the method.
+  final Map<String, ParameterDescription> params;
+
+  /// List of input streams used by the method.
+  final Map<String, StreamDescription> inputStreams;
+
+  /// The output stream of the method.
+  final StreamDescription? outputStream;
+
+  /// A function that performs a call to the named method.
+  final StreamCall call;
+
+  /// Creates a new [StreamingMethodConnector].
+  StreamingMethodConnector({
+    required this.name,
+    required this.params,
+    required this.inputStreams,
+    required this.call,
+    this.outputStream,
+  });
+}
+
+/// An abstract class for all method connectors.
+/// This is used to group all method connectors together.
+sealed class EndpointMethodConnector {}
 
 /// Defines a parameter in a [MethodConnector].
 class ParameterDescription {
@@ -238,6 +288,108 @@ class ParameterDescription {
   /// Creates a new [ParameterDescription].
   ParameterDescription(
       {required this.name, required this.type, required this.nullable});
+}
+
+/// Describes a stream.
+class MethodStreamContext<T extends SerializableModel> {
+  /// The stream.
+  Stream get stream => _controller.stream;
+
+  /// The controller for the stream.
+  late final StreamController<T> _controller;
+
+  /// The deserialization function.
+  final SerializableModel Function(String message) _deserialize;
+
+  /// Creates a new [MethodStreamContext] object.
+  MethodStreamContext({
+    required SerializableModel Function(String) deserialize,
+  }) : _deserialize = deserialize {
+    _controller = StreamController<T>();
+  }
+
+  /// Adds a message to the stream.
+  void addMessage(String message) {
+    _controller.add(_deserialize(message) as T);
+  }
+
+  /// Closes the stream.
+  Future<void> close() async {
+    await _controller.close();
+  }
+}
+
+/// Defines a stream in an [Endpoint] method.
+class StreamDescription<T extends SerializableModel> {
+  /// The name of the stream.
+  final String name;
+
+  /// Creates a new [MethodStreamContext] with the given deserialization
+  /// function.
+  MethodStreamContext<T> createStreamContext({
+    required SerializableModel Function(String) deserialize,
+  }) {
+    return MethodStreamContext<T>(deserialize: deserialize);
+  }
+
+  /// Creates a new [OutputStreamContext] with the given serialization function.
+  OutputStreamContext<T> createOutputStreamContext({
+    required String Function(T) serialization,
+    required void Function(String) onMessage,
+    required void Function() onDone,
+  }) {
+    return OutputStreamContext<T>(
+      serialization: serialization,
+      onMessage: onMessage,
+      onDone: onDone,
+    );
+  }
+
+  /// Creates a new [StreamDescription].
+  StreamDescription({
+    required this.name,
+  });
+}
+
+/// Documentation for an output stream.
+class OutputStreamContext<T extends SerializableModel> {
+  /// The controller for the stream.
+  late final StreamController<String> _controller;
+
+  /// The serialization function.
+  final String Function(T message) _serialization;
+
+  final void Function(String) _onMessage;
+  final void Function() _onDone;
+
+  /// Creates a new [OutputStreamContext] object.
+  OutputStreamContext({
+    required String Function(T) serialization,
+    required void Function(String) onMessage,
+    required void Function() onDone,
+  })  : _serialization = serialization,
+        _onMessage = onMessage,
+        _onDone = onDone {
+    _controller = StreamController<String>();
+    _controller.stream.listen((event) {
+      _onMessage(event);
+    }).onDone(() {
+      _onDone();
+    });
+  }
+
+  /// Adds a stream to the stream.
+  Future<void> addStream(Stream<T> stream) async {
+    await _controller.addStream(stream.map((event) => _serialization(event)));
+    await _controller.close();
+  }
+
+  /// Adds a a future to the stream that is sent once the future completes and
+  /// then and then closes it.
+  void addFuture(Future<T> message) async {
+    _controller.add(_serialization(await message));
+    await _controller.close();
+  }
 }
 
 /// The [Result] of an [Endpoint] method call.

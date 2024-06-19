@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:serverpod/serverpod.dart';
 
 // TODO: Support for server clusters.
@@ -15,6 +17,7 @@ class MessageCentral {
   final _sessionToChannelNamesLookup = <Session, Set<String>>{};
   final _sessionToCallbacksLookup =
       <Session, Set<MessageCentralListenerCallback>>{};
+  final _sessionToStreamControllerLookup = <Session, List<StreamController>>{};
 
   /// Posts a [message] to a named channel. Optionally a [destinationServerId]
   /// can be provided, in which case the message is sent only to that specific
@@ -62,7 +65,8 @@ class MessageCentral {
   }
 
   /// Adds a listener to a named channel. Whenever a message is posted using
-  /// [postMessage], the [listener] will be notified.
+  /// [postMessage], the [listener] will be notified. Typically, you want to
+  /// call the method on [Session.messages] instead.
   void addListener(
     Session session,
     String channelName,
@@ -104,7 +108,8 @@ class MessageCentral {
     postMessage(channelName, messageObj as SerializableModel, global: false);
   }
 
-  /// Removes a listener from a named channel.
+  /// Removes a listener from a named channel. Typically, you want to call the
+  /// method on [Session.messages] instead.
   void removeListener(Session session, String channelName,
       MessageCentralListenerCallback listener) {
     var channel = _channels[channelName];
@@ -152,6 +157,47 @@ class MessageCentral {
 
     _sessionToChannelNamesLookup.remove(session);
     _sessionToCallbacksLookup.remove(session);
+  }
+
+  /// Adds a stream for a named channel. Whenever a message is posted using
+  /// [postMessage], a message to the stream will be posted. Typically, you want
+  /// to call the method on [Session.messages] instead.
+  Stream<T> getStream<T extends SerializableModel>(
+    Session session,
+    String channelName,
+  ) {
+    // Create the stream.
+    var streamController = StreamController<T>();
+    addListener(session, channelName, (message) {
+      streamController.add(message as T);
+    });
+
+    // Add a stream controllers list entry if there isn't one already.
+    var streamControllers = _sessionToStreamControllerLookup[session];
+    if (streamControllers == null) {
+      streamControllers = [];
+      _sessionToStreamControllerLookup[session] = streamControllers;
+    }
+
+    // Associate the stream controller with the session.
+    streamControllers.add(streamController);
+
+    return streamController.stream;
+  }
+
+  // TODO: @sandpod make sure this is called if a streaming connection is lost.
+
+  /// Closes all streams associated with the specified [session]. This is
+  /// automatically called when a [Session] is closed. It is safe to call this
+  /// method multiple times.
+  void closeStreamsForSession(Session session) {
+    var streamControllers = _sessionToStreamControllerLookup[session];
+    if (streamControllers != null) {
+      for (var streamController in streamControllers) {
+        streamController.close();
+      }
+      _sessionToStreamControllerLookup.remove(session);
+    }
   }
 
   void _removeListener(

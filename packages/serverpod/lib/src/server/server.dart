@@ -400,113 +400,35 @@ class Server {
 
       dynamic error;
       StackTrace? stackTrace;
+      Map<String, MethodStreamContext> inputStreams = {};
 
       try {
         await for (String jsonData in webSocket) {
           var data = jsonDecode(jsonData) as Map;
 
-          // Handle control commands.
-          var command = data['command'] as String?;
-          if (command != null) {
-            var args = data['args'] as Map;
-
-            if (command == 'ping') {
-              webSocket.add(
-                SerializationManager.encodeForProtocol(
-                  {'command': 'pong'},
-                ),
+          switch (StreamMessageType.fromString(data)) {
+            case StreamMessageType.command:
+              await _processCommand(
+                webSocket: webSocket,
+                streamingSession: session,
+                data: data,
+                streams: inputStreams,
               );
-            } else if (command == 'auth') {
-              var authKey = args['key'] as String?;
-              session.updateAuthenticationKey(authKey);
-            }
-            continue;
-          }
-
-          // Handle messages passed to endpoints.
-          var endpointName = data['endpoint'] as String;
-          var serialization = data['object'] as Map<String, dynamic>;
-
-          var endpointConnector = endpoints.getConnectorByName(endpointName);
-          if (endpointConnector == null) {
-            throw Exception('Endpoint not found: $endpointName');
-          }
-
-          var endpoint = endpointConnector.endpoint;
-          var authFailed = await EndpointDispatch.canUserAccessEndpoint(
-            () => session.authenticated,
-            endpoint.requireLogin,
-            endpoint.requiredScopes,
-          );
-
-          if (authFailed == null) {
-            // Process the message.
-            var startTime = DateTime.now();
-            dynamic messageError;
-            StackTrace? messageStackTrace;
-
-            SerializableModel? message;
-            try {
-              session.sessionLogs.currentEndpoint = endpointName;
-
-              message =
-                  serializationManager.deserializeByClassName(serialization);
-
-              if (message == null) throw Exception('Streamed message was null');
-
-              await endpointConnector.endpoint
-                  .handleStreamMessage(session, message);
-            } catch (e, s) {
-              messageError = e;
-              messageStackTrace = s;
-              stderr.writeln('${DateTime.now().toUtc()} Internal server error. '
-                  'Uncaught exception in handleStreamMessage.');
-              stderr.writeln('$e');
-              stderr.writeln('$s');
-            }
-
-            var duration =
-                DateTime.now().difference(startTime).inMicroseconds / 1000000.0;
-            var logManager = session.serverpod.logManager;
-
-            var slow = duration >=
-                logManager
-                    .getLogSettingsForStreamingSession(
-                      endpoint: endpointName,
-                    )
-                    .slowSessionDuration;
-
-            var shouldLog = logManager.shouldLogMessage(
-              session: session,
-              endpoint: endpointName,
-              slow: slow,
-              failed: messageError != null,
-            );
-
-            if (shouldLog) {
-              var logEntry = MessageLogEntry(
-                sessionLogId: session.sessionLogs.temporarySessionId,
-                serverId: serverId,
-                messageId: session.currentMessageId,
-                endpoint: endpointName,
-                messageName: serialization['className'],
-                duration: duration,
-                order: session.sessionLogs.currentLogOrderId,
-                error: messageError?.toString(),
-                stackTrace: messageStackTrace?.toString(),
-                slow: slow,
-              );
-              unawaited(logManager.logMessage(session, logEntry));
-
-              session.sessionLogs.currentLogOrderId += 1;
-            }
-
-            session.currentMessageId += 1;
+              break;
+            case StreamMessageType.endpointMessage:
+              await _handleEndpointMessage(data, session);
+              break;
+            case StreamMessageType.methodMessage:
+              await _handleMethodMessage(data, inputStreams);
           }
         }
       } catch (e, s) {
         error = e;
         stackTrace = s;
+      } finally {
+        for (var inputStream in inputStreams.values) {
+          await inputStream.close();
+        }
       }
 
       // TODO: Possibly keep a list of open streams instead
@@ -523,6 +445,267 @@ class Server {
       stderr.writeln('$e');
       stderr.writeln('$stackTrace');
       return;
+    }
+  }
+
+  Future<void> _handleMethodMessage(
+    Map<dynamic, dynamic> data,
+    Map<String, MethodStreamContext> inputStreams,
+  ) async {
+    var endpointName = data['endpoint'] as String;
+    var methodName = data['method'] as String;
+    var streamName = data['stream'] as String;
+    var uuid = data['uuid'] as String;
+
+    var streamPrefix = _MethodStreamConnector.buildStreamPrefix(
+      endpointName: endpointName,
+      methodName: methodName,
+      uuid: uuid,
+    );
+
+    var streamId = _MethodStreamConnector.buildStreamName(
+      streamPrefix: streamPrefix,
+      streamName: streamName,
+    );
+
+    var stream = inputStreams[streamId];
+
+    if (stream == null) {
+      throw Exception('Stream not found: $streamId');
+    }
+
+    stream.addMessage(data['object'] as String);
+  }
+
+  Future<void> _handleEndpointMessage(
+    Map<dynamic, dynamic> data,
+    StreamingSession session,
+  ) async {
+    // Handle messages passed to endpoints.
+    var endpointName = data['endpoint'] as String;
+    var serialization = data['object'] as Map<String, dynamic>;
+
+    var endpointConnector = endpoints.getConnectorByName(endpointName);
+    if (endpointConnector == null) {
+      throw Exception('Endpoint not found: $endpointName');
+    }
+
+    var endpoint = endpointConnector.endpoint;
+    var authFailed = await EndpointDispatch.canUserAccessEndpoint(
+      () => session.authenticated,
+      endpoint.requireLogin,
+      endpoint.requiredScopes,
+    );
+
+    if (authFailed == null) {
+      // Process the message.
+      var startTime = DateTime.now();
+      dynamic messageError;
+      StackTrace? messageStackTrace;
+
+      SerializableModel? message;
+      try {
+        session.sessionLogs.currentEndpoint = endpointName;
+
+        message = serializationManager.deserializeByClassName(serialization);
+
+        if (message == null) throw Exception('Streamed message was null');
+
+        await endpointConnector.endpoint.handleStreamMessage(session, message);
+      } catch (e, s) {
+        messageError = e;
+        messageStackTrace = s;
+        stderr.writeln('${DateTime.now().toUtc()} Internal server error. '
+            'Uncaught exception in handleStreamMessage.');
+        stderr.writeln('$e');
+        stderr.writeln('$s');
+      }
+
+      var duration =
+          DateTime.now().difference(startTime).inMicroseconds / 1000000.0;
+      var logManager = session.serverpod.logManager;
+
+      var slow = duration >=
+          logManager
+              .getLogSettingsForStreamingSession(
+                endpoint: endpointName,
+              )
+              .slowSessionDuration;
+
+      var shouldLog = logManager.shouldLogMessage(
+        session: session,
+        endpoint: endpointName,
+        slow: slow,
+        failed: messageError != null,
+      );
+
+      if (shouldLog) {
+        var logEntry = MessageLogEntry(
+          sessionLogId: session.sessionLogs.temporarySessionId,
+          serverId: serverId,
+          messageId: session.currentMessageId,
+          endpoint: endpointName,
+          messageName: serialization['className'],
+          duration: duration,
+          order: session.sessionLogs.currentLogOrderId,
+          error: messageError?.toString(),
+          stackTrace: messageStackTrace?.toString(),
+          slow: slow,
+        );
+        unawaited(logManager.logMessage(session, logEntry));
+
+        session.sessionLogs.currentLogOrderId += 1;
+      }
+
+      session.currentMessageId += 1;
+    }
+  }
+
+  /// Throws an exception if endpoint is not found.
+  Future<void> _processCommand({
+    required WebSocket webSocket,
+    required StreamingSession streamingSession /* legacy session object */,
+    required Map data,
+    required Map<String, MethodStreamContext> streams,
+  }) async {
+    var command = data['command'] as String;
+
+    var args = data['args'] as Map;
+
+    if (command == 'ping') {
+      webSocket.add(
+        SerializationManager.encodeForProtocol(
+          {'command': 'pong'},
+        ),
+      );
+    } else if (command == 'auth') {
+      var authKey = args['key'] as String?;
+      streamingSession.updateAuthenticationKey(authKey);
+    } else if (command == 'open_stream') {
+      // Alex TODO: If we fail to find the endpoint or method, we should
+      // send a message back to the client to close the stream and give a
+      // reason why and warning.
+      var endpointName = args['endpoint'] as String;
+      var endpointConnector = endpoints.getConnectorByName(endpointName);
+      if (endpointConnector == null) {
+        throw Exception('Endpoint not found: $endpointName');
+      }
+
+      var methodName = args['method'] as String;
+      var methodConnector = endpointConnector.methodConnectors[methodName];
+      if (methodConnector == null) {
+        throw Exception('Method not found: $methodName');
+      }
+
+      if (methodConnector is! StreamingMethodConnector) {
+        throw Exception('Method is not a streaming method: $methodName');
+      }
+
+      var uuid = args['uuid'] as String;
+
+      // Pick out arguments.
+      var params = _CallParameters.parseParameters(
+        args['params'],
+        methodConnector.params,
+        serializationManager,
+      );
+
+      // Fetch auth
+      var auth = args['auth'] as String?;
+
+      var session = StreamingMethodCallSession(
+        queryParameters: params,
+        server: this,
+        enableLogging: endpointConnector.endpoint.logSessions,
+        authenticationKey: auth,
+      );
+
+      var authFailed = await EndpointDispatch.canUserAccessEndpoint(
+        () => session.authenticated,
+        endpointConnector.endpoint.requireLogin,
+        endpointConnector.endpoint.requiredScopes,
+      );
+
+      if (authFailed != null) {
+        throw Exception('Authentication failed');
+      }
+
+      // Build input streams.
+      var inputStreams = _MethodStreamConnector.buildInputStreams(
+        descriptions: methodConnector.inputStreams,
+        serializationManager: serializationManager,
+      );
+
+      var streamPrefix = _MethodStreamConnector.buildStreamPrefix(
+        endpointName: endpointName,
+        methodName: methodName,
+        uuid: uuid,
+      );
+
+      _MethodStreamConnector.registerInputStreams(
+        streams: streams,
+        inputStreams: inputStreams,
+        streamPrefix: streamPrefix,
+      );
+
+      var outputStream = methodConnector.outputStream
+          ?.createOutputStreamContext(
+              serialization: (object) =>
+                  serializationManager.encodeWithType(object),
+              onMessage: (message) {
+                var messageData = {
+                  'type': 'methodMessage',
+                  'endpoint': endpointName,
+                  'method': methodName,
+                  'uuid': uuid,
+                  'object': message,
+                };
+
+                webSocket.add(jsonEncode(messageData));
+              },
+              onDone: () {
+                // print('Sending message to close output stream $streamPrefix');
+                var closeStreamMessage = {
+                  'command': 'close_stream',
+                  'args': {
+                    'endpoint': endpointName,
+                    'method': methodName,
+                    'uuid': uuid,
+                  }
+                };
+
+                webSocket.add(jsonEncode(closeStreamMessage));
+              });
+
+      // print('Created a new stream: $streamPrefix');
+      // print('Streams: ${streams.keys}');
+
+      // Call the method.
+      methodConnector.call(session, params, inputStreams, outputStream);
+    } else if (command == 'close_stream') {
+      var endpointName = args['endpoint'] as String;
+      var methodName = args['method'] as String;
+      var uuid = args['uuid'] as String;
+      var streamName = args['stream'] as String;
+
+      var streamPrefix = _MethodStreamConnector.buildStreamPrefix(
+        endpointName: endpointName,
+        methodName: methodName,
+        uuid: uuid,
+      );
+      var streamKey = _MethodStreamConnector.buildStreamName(
+        streamPrefix: streamPrefix,
+        streamName: streamName,
+      );
+
+      // print('Received close stream command: $streamKey');
+
+      var stream = streams.remove(streamKey);
+      if (stream == null) {
+        throw Exception('Stream not found: $streamKey');
+      }
+
+      await stream.close();
     }
   }
 
@@ -562,5 +745,125 @@ class Server {
   void shutdown() {
     _httpServer.close();
     _running = false;
+  }
+}
+
+abstract class _CallParameters {
+  static Map<String, dynamic> parseParameters(
+    String? paramString,
+    Map<String, ParameterDescription> descriptions,
+    SerializationManager serializationManager, {
+    Map<String, dynamic> additionalParameters = const {},
+  }) {
+    if (descriptions.isNotEmpty && paramString == null) {
+      throw Exception('Missing query parameters');
+    }
+
+    if (descriptions.isEmpty || paramString == null) return {};
+
+    var decodedParams = jsonDecode(paramString) as Map<String, dynamic>;
+    decodedParams.addAll(additionalParameters);
+
+    var deserializedParams = <String, dynamic>{};
+    for (var MapEntry(key: name, value: serializedParam)
+        in decodedParams.entries) {
+      var type = descriptions[name]?.type;
+      if (type == null) continue;
+
+      deserializedParams[name] = serializationManager.deserialize(
+        serializedParam,
+        type,
+      );
+    }
+
+    return deserializedParams;
+  }
+}
+
+abstract class _MethodStreamConnector {
+  static Map<String, MethodStreamContext> buildInputStreams({
+    required Map<String, StreamDescription> descriptions,
+    required SerializationManager serializationManager,
+  }) {
+    var streams = <String, MethodStreamContext>{};
+    if (descriptions.isEmpty) return streams;
+
+    for (var MapEntry(key: name, value: description) in descriptions.entries) {
+      // Alex - Should be moved to registerInputStreams and should only use
+      // parameter name as key for the return of this method.
+
+      streams[name] = description.createStreamContext(
+        deserialize: (object) {
+          return serializationManager.decodeWithType(object)
+              as SerializableModel;
+        },
+      );
+    }
+
+    return streams;
+  }
+
+  static void registerInputStreams({
+    required Map<String, MethodStreamContext> streams,
+    required Map<String, MethodStreamContext> inputStreams,
+    required String streamPrefix,
+  }) {
+    if (inputStreams.isEmpty) return;
+
+    for (var MapEntry(key: name, value: context) in inputStreams.entries) {
+      var streamName = buildStreamName(
+        streamPrefix: streamPrefix,
+        streamName: name,
+      );
+
+      if (streams.containsKey(streamName)) continue;
+
+      streams[streamName] = context;
+    }
+  }
+
+  static String buildStreamPrefix({
+    required String endpointName,
+    required String methodName,
+    required String uuid,
+  }) {
+    return '$uuid.$endpointName.$methodName';
+  }
+
+  static String buildStreamName({
+    required String streamPrefix,
+    required String streamName,
+  }) {
+    return '$streamPrefix.$streamName';
+  }
+}
+
+/// Describes the message stream type sent to the server.
+enum StreamMessageType {
+  /// A method call message.
+  methodMessage,
+
+  /// An endpoint message.
+  endpointMessage,
+
+  /// A command message.
+  command;
+
+  /// Converts a string to a [StreamMessageType].
+  static StreamMessageType fromString(Map data) {
+    // Handle control commands.
+    var command = data['command'] as String?;
+    if (command != null) return StreamMessageType.command;
+
+    var value = data['type'] as String?;
+    switch (value) {
+      case 'methodMessage':
+        return StreamMessageType.methodMessage;
+      case 'endpointMessage':
+        return StreamMessageType.endpointMessage;
+      default:
+        // Legacy support, always default to endpointMessage
+        return StreamMessageType.endpointMessage;
+    }
   }
 }

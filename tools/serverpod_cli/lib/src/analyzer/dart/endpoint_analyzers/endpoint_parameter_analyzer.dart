@@ -79,6 +79,13 @@ class Parameters {
   final List<ParameterDefinition> positional;
   final List<ParameterDefinition> named;
 
+  bool hasStream() =>
+      required.any(
+          (element) => element.type.dartType?.isDartAsyncStream ?? false) ||
+      positional.any(
+          (element) => element.type.dartType?.isDartAsyncStream ?? false) ||
+      named.any((element) => element.type.dartType?.isDartAsyncStream ?? false);
+
   Parameters({
     required this.required,
     required this.positional,
