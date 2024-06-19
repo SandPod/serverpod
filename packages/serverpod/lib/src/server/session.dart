@@ -150,6 +150,7 @@ abstract class Session {
     _closed = true;
 
     try {
+      server.messageCentral.closeStreamsForSession(this);
       server.messageCentral.removeListenersForSession(this);
       return await server.serverpod.logManager.finalizeSessionLog(
         this,
@@ -496,7 +497,9 @@ class MessageCentralAccess {
   MessageCentralAccess._(this._session);
 
   /// Adds a listener to a named channel. Whenever a message is posted using
-  /// [postMessage], the [listener] will be notified.
+  /// [postMessage], the [listener] will be notified. The listener is bound to
+  /// a [Session]. When the session is closed, the listener will automatically
+  /// be disposed.
   void addListener(
     String channelName,
     MessageCentralListenerCallback listener,
@@ -510,9 +513,19 @@ class MessageCentralAccess {
 
   /// Removes a listener from a named channel.
   void removeListener(
-      String channelName, MessageCentralListenerCallback listener) {
+    String channelName,
+    MessageCentralListenerCallback listener,
+  ) {
     _session.server.messageCentral
         .removeListener(_session, channelName, listener);
+  }
+
+  /// Retrieves a [Stream] from a named channel. Whenever a message is posted
+  /// using [postMessage], the message will be relayed to the stream. The
+  /// stream is bound to a [Session]. When the session is closed, the stream
+  /// will automatically be closed.
+  Stream<T> getStream<T extends SerializableModel>(String channelName) {
+    return _session.server.messageCentral.getStream<T>(_session, channelName);
   }
 
   /// Posts a [message] to a named channel. If [global] is set to true, the
