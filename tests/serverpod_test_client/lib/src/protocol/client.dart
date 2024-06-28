@@ -1208,6 +1208,12 @@ class EndpointMethodStreaming extends _i1.EndpointRef {
   @override
   String get name => 'methodStreaming';
 
+  _i2.Future<void> methodCallEndpoint() => caller.callServerEndpoint<void>(
+        'methodStreaming',
+        'methodCallEndpoint',
+        {},
+      );
+
   _i2.Future<void> simpleEndpoint() => caller.callServerEndpoint<void>(
         'methodStreaming',
         'simpleEndpoint',
