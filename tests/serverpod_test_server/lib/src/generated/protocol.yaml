@@ -150,6 +150,7 @@ mapParameters:
   - returnDurationMapNullableDurations:
 methodStreaming:
   - simpleStream:
+  - simpleInputReturnStream:
   - simpleStreamWithParameter:
   - simpleDataStream:
   - simpleEndpoint:
