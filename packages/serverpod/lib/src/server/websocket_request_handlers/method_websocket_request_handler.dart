@@ -340,7 +340,12 @@ class _MethodStreamManager {
     OpenMethodStreamCommand message,
     Server server,
   ) {
-    methodConnector.call(session, args).listen(
+    if (methodConnector.returnType != MethodStreamReturnType.streamType) {
+      throw UnimplementedError(
+        'MethodStreamConnector return type must be a stream.',
+      );
+    }
+    methodConnector.call(session, args, {}).listen(
       (value) {
         _postMessage(
           endpoint: message.endpoint,
