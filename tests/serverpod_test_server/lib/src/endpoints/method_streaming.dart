@@ -13,6 +13,13 @@ class MethodStreaming extends Endpoint {
     }
   }
 
+  Future<int> simpleInputReturnStream(
+    Session session,
+    Stream<int> stream,
+  ) async {
+    return stream.first;
+  }
+
   Stream<int> simpleStreamWithParameter(Session session, int value) async* {
     for (var i in List.generate(value, (index) => index)) {
       yield i;
