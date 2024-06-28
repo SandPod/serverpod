@@ -40,11 +40,13 @@ class MethodWebsocketRequestHandler {
           case OpenMethodStreamResponse():
             break;
           case MethodStreamMessage():
+            _methodStreamManager.dispatchMessage(message);
             break;
           case CloseMethodStreamCommand():
             await _methodStreamManager.closeStream(
               endpoint: message.endpoint,
               method: message.method,
+              parameter: message.parameter,
               connectionId: message.connectionId,
             );
           case MethodStreamSerializableException():
@@ -173,7 +175,7 @@ class MethodWebsocketRequestHandler {
 }
 
 class _MethodStreamManager {
-  final Map<String, StreamController<String>> _streamControllers = {};
+  final Map<String, StreamController<dynamic>> _streamControllers = {};
 
   Future<void> closeAllStreams() async {
     var controllers = _streamControllers.values.toList();
@@ -190,11 +192,13 @@ class _MethodStreamManager {
   Future<void> closeStream({
     required String endpoint,
     required String method,
+    String? parameter,
     required UuidValue connectionId,
   }) async {
     var controller = _streamControllers.remove(_buildStreamKey(
       endpoint: endpoint,
       method: method,
+      parameter: parameter,
       connectionId: connectionId,
     ));
     if (controller == null) return;
@@ -212,12 +216,17 @@ class _MethodStreamManager {
   }) {
     var controller = StreamController<String>();
     if (endpointMethodConnector is MethodStreamConnector) {
+      var inputStreams = _buildInputStreams(endpointMethodConnector);
+      _registerInputStreams(inputStreams, message);
       _handleMethodStreamEndpoint(
-        endpointMethodConnector,
-        session,
-        args,
-        message,
-        server,
+        methodConnector: endpointMethodConnector,
+        session: session,
+        args: args,
+        streamParams: inputStreams.map(
+          (key, value) => MapEntry(key, value.stream),
+        ),
+        message: message,
+        server: server,
       );
     } else if (endpointMethodConnector is MethodConnector) {
       _handleMethodCallEndpoint(
@@ -244,12 +253,26 @@ class _MethodStreamManager {
     )] = controller;
   }
 
+  Map<String, StreamController> _buildInputStreams(
+    MethodStreamConnector methodStreamConnector,
+  ) {
+    var streamParamDescriptions = methodStreamConnector.streamParams.values;
+    var inputStreams = <String, StreamController>{};
+
+    for (var streamParam in streamParamDescriptions) {
+      inputStreams[streamParam.name] = StreamController();
+    }
+
+    return inputStreams;
+  }
+
   String _buildStreamKey({
     required String endpoint,
     required String method,
+    String? parameter,
     required UuidValue connectionId,
   }) =>
-      '$connectionId:$endpoint:$method';
+      '$connectionId:$endpoint:$method${parameter != null ? ':$parameter' : ''}';
 
   Future<void> _handleMethodCallEndpoint(
     MethodConnector methodConnector,
@@ -333,19 +356,20 @@ class _MethodStreamManager {
     );
   }
 
-  void _handleMethodStreamEndpoint(
-    MethodStreamConnector methodConnector,
-    Session session,
-    Map<String, dynamic> args,
-    OpenMethodStreamCommand message,
-    Server server,
-  ) {
+  void _handleMethodStreamEndpoint({
+    required MethodStreamConnector methodConnector,
+    required Session session,
+    required Map<String, dynamic> args,
+    required Map<String, Stream<dynamic>> streamParams,
+    required OpenMethodStreamCommand message,
+    required Server server,
+  }) {
     if (methodConnector.returnType != MethodStreamReturnType.streamType) {
       throw UnimplementedError(
         'MethodStreamConnector return type must be a stream.',
       );
     }
-    methodConnector.call(session, args, {}).listen(
+    methodConnector.call(session, args, streamParams).listen(
       (value) {
         _postMessage(
           endpoint: message.endpoint,
@@ -420,6 +444,20 @@ class _MethodStreamManager {
     );
   }
 
+  /// Dispatches a message to the correct stream controller.
+  void dispatchMessage(
+    MethodStreamMessage message,
+  ) {
+    var controller = _streamControllers[_buildStreamKey(
+      endpoint: message.endpoint,
+      method: message.method,
+      parameter: message.parameter,
+      connectionId: message.connectionId,
+    )];
+
+    controller?.add(message);
+  }
+
   void _postMessage({
     required String endpoint,
     required String method,
@@ -433,5 +471,19 @@ class _MethodStreamManager {
     )];
 
     controller?.add(message);
+  }
+
+  void _registerInputStreams(
+    Map<String, StreamController> inputStreams,
+    OpenMethodStreamCommand message,
+  ) {
+    for (var entry in inputStreams.entries) {
+      _streamControllers[_buildStreamKey(
+        endpoint: message.endpoint,
+        method: message.method,
+        parameter: entry.key,
+        connectionId: message.connectionId,
+      )] = entry.value;
+    }
   }
 }
