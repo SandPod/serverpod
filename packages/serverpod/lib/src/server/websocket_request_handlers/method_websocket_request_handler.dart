@@ -224,7 +224,9 @@ class _MethodStreamManager {
       connectionId: connectionId,
     ));
 
-    return controller?.close();
+    if (controller?.isClosed != null) {
+      await controller?.close();
+    }
   }
 
   void createStream({
@@ -303,6 +305,7 @@ class _MethodStreamManager {
     required String method,
     required UuidValue connectionId,
     required CloseReason reason,
+    required Iterable<StreamParameterDescription> streamDescriptions,
   }) async {
     var message = CloseMethodStreamCommand.buildMessage(
       endpoint: endpoint,
@@ -316,9 +319,27 @@ class _MethodStreamManager {
       method: method,
       connectionId: connectionId,
     ));
-
     controller?.add(message);
-    return controller?.close();
+
+    var futures = <Future?>[];
+    if (controller?.isClosed != true) {
+      futures.add(controller?.close());
+    }
+
+    for (var streamParam in streamDescriptions) {
+      controller = _streamControllers.remove(_buildStreamKey(
+        endpoint: endpoint,
+        method: method,
+        parameter: streamParam.name,
+        connectionId: connectionId,
+      ));
+
+      if (controller?.isClosed != true) {
+        futures.add(controller?.close());
+      }
+    }
+
+    await Future.wait(futures.whereType<Future>());
   }
 
   Future<void> _closeParameterStream({
@@ -336,7 +357,9 @@ class _MethodStreamManager {
       connectionId: connectionId,
     ));
 
-    await controller?.close();
+    if (controller?.isClosed != null) {
+      await controller?.close();
+    }
     if (webSocket.closeCode != null) return;
 
     var message = CloseMethodStreamCommand.buildMessage(
@@ -420,6 +443,7 @@ class _MethodStreamManager {
         method: message.method,
         connectionId: message.connectionId,
         reason: CloseReason.error,
+        streamDescriptions: methodConnector.streamParams.values,
       );
       return;
     }
@@ -448,6 +472,7 @@ class _MethodStreamManager {
       method: message.method,
       connectionId: message.connectionId,
       reason: CloseReason.done,
+      streamDescriptions: methodConnector.streamParams.values,
     );
   }
 
@@ -480,6 +505,7 @@ class _MethodStreamManager {
           method: message.method,
           connectionId: message.connectionId,
           reason: CloseReason.done,
+          streamDescriptions: methodConnector.streamParams.values,
         );
       },
       onError: (e, stackTrace) async {
@@ -503,6 +529,7 @@ class _MethodStreamManager {
           method: message.method,
           connectionId: message.connectionId,
           reason: CloseReason.error,
+          streamDescriptions: methodConnector.streamParams.values,
         );
       },
       // Cancel on error prevents the stream from continuing after an exception
