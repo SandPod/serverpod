@@ -290,6 +290,65 @@ class _MethodStreamManager {
     return true;
   }
 
+  String _buildStreamKey({
+    required String endpoint,
+    required String method,
+    String? parameter,
+    required UuidValue connectionId,
+  }) =>
+      '$connectionId:$endpoint:$method${parameter != null ? ':$parameter' : ''}';
+
+  Future<void> _closeMethodStream({
+    required String endpoint,
+    required String method,
+    required UuidValue connectionId,
+    required CloseReason reason,
+  }) async {
+    var message = CloseMethodStreamCommand.buildMessage(
+      endpoint: endpoint,
+      connectionId: connectionId,
+      method: method,
+      reason: reason,
+    );
+
+    var controller = _streamControllers.remove(_buildStreamKey(
+      endpoint: endpoint,
+      method: method,
+      connectionId: connectionId,
+    ));
+
+    controller?.add(message);
+    return controller?.close();
+  }
+
+  Future<void> _closeParameterStream({
+    required String endpoint,
+    required String method,
+    required String parameter,
+    required UuidValue connectionId,
+    required CloseReason reason,
+    required WebSocket webSocket,
+  }) async {
+    var controller = _streamControllers.remove(_buildStreamKey(
+      endpoint: endpoint,
+      method: method,
+      parameter: parameter,
+      connectionId: connectionId,
+    ));
+
+    await controller?.close();
+    if (webSocket.closeCode != null) return;
+
+    var message = CloseMethodStreamCommand.buildMessage(
+      endpoint: endpoint,
+      method: method,
+      parameter: parameter,
+      connectionId: connectionId,
+      reason: reason,
+    );
+    webSocket.add(message);
+  }
+
   Map<String, StreamController> _createInputStreams(
     MethodStreamConnector methodStreamConnector,
     WebSocket webSocket,
@@ -303,22 +362,14 @@ class _MethodStreamManager {
       var controller = StreamController(onCancel: () async {
         if (webSocket.closeCode != null) return;
 
-        await closeStream(
-          endpoint: message.endpoint,
-          method: message.method,
-          parameter: parameterName,
-          connectionId: message.connectionId,
-        );
-
-        var event = CloseMethodStreamCommand.buildMessage(
+        await _closeParameterStream(
           endpoint: message.endpoint,
           method: message.method,
           parameter: parameterName,
           connectionId: message.connectionId,
           reason: CloseReason.done,
+          webSocket: webSocket,
         );
-
-        webSocket.add(event);
 
         if (_streamControllers.isEmpty) {
           await webSocket.close();
@@ -336,14 +387,6 @@ class _MethodStreamManager {
 
     return inputStreams;
   }
-
-  String _buildStreamKey({
-    required String endpoint,
-    required String method,
-    String? parameter,
-    required UuidValue connectionId,
-  }) =>
-      '$connectionId:$endpoint:$method${parameter != null ? ':$parameter' : ''}';
 
   Future<void> _handleMethodCallEndpoint(
     MethodConnector methodConnector,
@@ -370,23 +413,12 @@ class _MethodStreamManager {
         );
       }
 
-      _postMessage(
-        endpoint: message.endpoint,
-        method: message.method,
-        connectionId: message.connectionId,
-        message: CloseMethodStreamCommand.buildMessage(
-          endpoint: message.endpoint,
-          connectionId: message.connectionId,
-          method: message.method,
-          reason: CloseReason.error,
-        ),
-      );
-
       await session.close(error: e, stackTrace: stackTrace);
-      await closeStream(
+      await _closeMethodStream(
         endpoint: message.endpoint,
         method: message.method,
         connectionId: message.connectionId,
+        reason: CloseReason.error,
       );
       return;
     }
@@ -408,22 +440,12 @@ class _MethodStreamManager {
       );
     }
 
-    _postMessage(
-      endpoint: message.endpoint,
-      method: message.method,
-      connectionId: message.connectionId,
-      message: CloseMethodStreamCommand.buildMessage(
-        endpoint: message.endpoint,
-        connectionId: message.connectionId,
-        method: message.method,
-        reason: CloseReason.done,
-      ),
-    );
     await session.close();
-    await closeStream(
+    await _closeMethodStream(
       endpoint: message.endpoint,
       method: message.method,
       connectionId: message.connectionId,
+      reason: CloseReason.done,
     );
   }
 
@@ -453,23 +475,12 @@ class _MethodStreamManager {
         );
       }
 
-      _postMessage(
-        endpoint: message.endpoint,
-        method: message.method,
-        connectionId: message.connectionId,
-        message: CloseMethodStreamCommand.buildMessage(
-          endpoint: message.endpoint,
-          connectionId: message.connectionId,
-          method: message.method,
-          reason: CloseReason.error,
-        ),
-      );
-
       await session.close(error: e, stackTrace: stackTrace);
-      await closeStream(
+      await _closeMethodStream(
         endpoint: message.endpoint,
         method: message.method,
         connectionId: message.connectionId,
+        reason: CloseReason.error,
       );
       return;
     }
@@ -492,22 +503,12 @@ class _MethodStreamManager {
       );
     }
 
-    _postMessage(
-      endpoint: message.endpoint,
-      method: message.method,
-      connectionId: message.connectionId,
-      message: CloseMethodStreamCommand.buildMessage(
-        endpoint: message.endpoint,
-        connectionId: message.connectionId,
-        method: message.method,
-        reason: CloseReason.done,
-      ),
-    );
     await session.close();
-    await closeStream(
+    await _closeMethodStream(
       endpoint: message.endpoint,
       method: message.method,
       connectionId: message.connectionId,
+      reason: CloseReason.done,
     );
   }
 
@@ -534,22 +535,12 @@ class _MethodStreamManager {
         );
       },
       onDone: () async {
-        _postMessage(
-          endpoint: message.endpoint,
-          method: message.method,
-          connectionId: message.connectionId,
-          message: CloseMethodStreamCommand.buildMessage(
-            endpoint: message.endpoint,
-            connectionId: message.connectionId,
-            method: message.method,
-            reason: CloseReason.done,
-          ),
-        );
         await session.close();
-        await closeStream(
+        await _closeMethodStream(
           endpoint: message.endpoint,
           method: message.method,
           connectionId: message.connectionId,
+          reason: CloseReason.done,
         );
       },
       onError: (e, stackTrace) async {
@@ -567,23 +558,12 @@ class _MethodStreamManager {
           );
         }
 
-        _postMessage(
-          endpoint: message.endpoint,
-          method: message.method,
-          connectionId: message.connectionId,
-          message: CloseMethodStreamCommand.buildMessage(
-            endpoint: message.endpoint,
-            connectionId: message.connectionId,
-            method: message.method,
-            reason: CloseReason.error,
-          ),
-        );
-
         await session.close(error: e, stackTrace: stackTrace);
-        await closeStream(
+        await _closeMethodStream(
           endpoint: message.endpoint,
           method: message.method,
           connectionId: message.connectionId,
+          reason: CloseReason.error,
         );
       },
       // Cancel on error prevents the stream from continuing after an exception
