@@ -188,4 +188,167 @@ void main() {
       });
     });
   });
+
+  group(
+      'Given a single method stream connection to an endpoint that has delayed stream response',
+      () {
+    var server = IntegrationTestServer.create();
+    late WebSocketChannel webSocket;
+    var endpoint = 'methodStreaming';
+    var method = 'delayedStreamResponse';
+    var connectionId = const Uuid().v4obj();
+
+    setUp(() async {
+      await server.start();
+      webSocket = WebSocketChannel.connect(
+        Uri.parse(serverMethodWebsocketUrl),
+      );
+      await webSocket.ready;
+
+      webSocket.sink.add(OpenMethodStreamCommand.buildMessage(
+        endpoint: endpoint,
+        method: method,
+        args: {'delay': 20},
+        connectionId: connectionId,
+      ));
+    });
+
+    tearDown(() async {
+      await webSocket.sink.close();
+      await server.shutdown(exitProcess: false);
+    });
+
+    test(
+        'when a CloseMethodStreamCommand is sent then websocket connection is closed',
+        () async {
+      var websocketCompleter = Completer<void>();
+      webSocket.stream.listen((event) {
+        // Listen to the to keep it open.
+      }, onDone: () {
+        websocketCompleter.complete();
+      });
+
+      webSocket.sink.add(CloseMethodStreamCommand.buildMessage(
+        endpoint: endpoint,
+        method: method,
+        connectionId: connectionId,
+        reason: CloseReason.done,
+      ));
+
+      await expectLater(
+          websocketCompleter.future.timeout(Duration(seconds: 10)).catchError(
+              (error) => fail('Websocket connection was never closed.')),
+          completes);
+      expect(webSocket.closeCode, isNotNull);
+    });
+  });
+
+  group(
+      'Given a single method stream connection to an endpoint that has an input stream that is never listened to',
+      () {
+    var server = IntegrationTestServer.create();
+    late WebSocketChannel webSocket;
+    var endpoint = 'methodStreaming';
+    var method = 'delayedNeverListenedInputStream';
+    var connectionId = const Uuid().v4obj();
+
+    setUp(() async {
+      await server.start();
+      webSocket = WebSocketChannel.connect(
+        Uri.parse(serverMethodWebsocketUrl),
+      );
+      await webSocket.ready;
+
+      webSocket.sink.add(OpenMethodStreamCommand.buildMessage(
+        endpoint: endpoint,
+        method: method,
+        args: {'delay': 20},
+        connectionId: connectionId,
+      ));
+    });
+
+    tearDown(() async {
+      await webSocket.sink.close();
+      await server.shutdown(exitProcess: false);
+    });
+
+    test(
+        'when a CloseMethodStreamCommand is sent then websocket connection is closed',
+        () async {
+      var websocketCompleter = Completer<void>();
+      webSocket.stream.listen((event) {
+        // Listen to the to keep it open.
+      }, onDone: () {
+        websocketCompleter.complete();
+      });
+
+      webSocket.sink.add(CloseMethodStreamCommand.buildMessage(
+        endpoint: endpoint,
+        method: method,
+        connectionId: connectionId,
+        reason: CloseReason.done,
+      ));
+
+      await expectLater(
+          websocketCompleter.future.timeout(Duration(seconds: 10)).catchError(
+              (error) => fail('Websocket connection was never closed.')),
+          completes);
+      expect(webSocket.closeCode, isNotNull);
+    });
+  });
+
+  group(
+      'Given a single method stream connection to an endpoint that has an input stream that is paused',
+      () {
+    var server = IntegrationTestServer.create();
+    late WebSocketChannel webSocket;
+    var endpoint = 'methodStreaming';
+    var method = 'delayedPausedInputStream';
+    var connectionId = const Uuid().v4obj();
+
+    setUp(() async {
+      await server.start();
+      webSocket = WebSocketChannel.connect(
+        Uri.parse(serverMethodWebsocketUrl),
+      );
+      await webSocket.ready;
+
+      webSocket.sink.add(OpenMethodStreamCommand.buildMessage(
+        endpoint: endpoint,
+        method: method,
+        args: {'delay': 20},
+        connectionId: connectionId,
+      ));
+    });
+
+    tearDown(() async {
+      await webSocket.sink.close();
+      await server.shutdown(exitProcess: false);
+    });
+
+    test(
+        'when a CloseMethodStreamCommand is sent then websocket connection is closed',
+        () async {
+      var websocketCompleter = Completer<void>();
+      webSocket.stream.listen((event) {
+        print(event);
+        // Listen to the to keep it open.
+      }, onDone: () {
+        websocketCompleter.complete();
+      });
+
+      webSocket.sink.add(CloseMethodStreamCommand.buildMessage(
+        endpoint: endpoint,
+        method: method,
+        connectionId: connectionId,
+        reason: CloseReason.done,
+      ));
+
+      await expectLater(
+          websocketCompleter.future.timeout(Duration(seconds: 10)).catchError(
+              (error) => fail('Websocket connection was never closed.')),
+          completes);
+      expect(webSocket.closeCode, isNotNull);
+    });
+  });
 }
