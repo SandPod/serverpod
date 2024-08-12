@@ -182,6 +182,7 @@ abstract class Session {
       messageId = (this as StreamingSession).currentMessageId;
     }
 
+    // Alex - this logging business should be shared between all logging places.
     var entry = LogEntry(
       sessionLogId: sessionLogs.temporarySessionId,
       serverId: server.serverId,
@@ -257,7 +258,11 @@ class MethodCallSession extends Session {
   }) {
     // Read query parameters
     var queryParameters = <String, dynamic>{};
+    // Alex(Concern) - Why are we checking 'null' here? Do we expect null to be
+    // encoded as a string?
     if (body != '' && body != 'null') {
+      // Alex(Concern) - The query parameters are encoded straight in the body making it possible
+      // to overwrite Framework keywords with query parameters getting unexpected results.
       queryParameters = jsonDecode(body).cast<String, dynamic>();
     }
 
@@ -265,6 +270,9 @@ class MethodCallSession extends Session {
     queryParameters.addAll(uri.queryParameters);
     this.queryParameters = queryParameters;
 
+    // Alex(Concern) - By the time we reach this point, we have split the path
+    // multiple times and combined it again.
+    // This is a bit confusing. I'm not sure that any dots are preserved.
     if (path.contains('/')) {
       // Using the new path format (for OpenAPI)
       var pathComponents = path.split('/');

@@ -191,6 +191,14 @@ abstract class ServerpodClientShared extends EndpointCaller {
       throw const ServerpodClientException('serializable model is null', 0);
     }
 
+    /// Alex - This is where we dispatch incoming messages to the correct
+    /// listener. Here we will need to find the active stream and send the
+    /// responses there.
+    /// This could be done by checking if the data contains "method" and
+    /// "parameter"
+    /// Complexity - How do we handle the case when we send a first message
+    /// (with ordinary parameters) to a stream (This will be part of the
+    /// connection attempt)
     var endpointRef = _consolidatedEndpointRefLookup[endpoint];
     if (endpointRef == null) {
       throw ServerpodClientException('Endpoint $endpoint was not found', 0);
@@ -209,6 +217,10 @@ abstract class ServerpodClientShared extends EndpointCaller {
 
   Future<void> _sendSerializableObjectToStream(
       String endpoint, SerializableModel message) async {
+    // Alex - This is where send messages to the stream.
+    // this is where we would need to add more information to the message to
+    // identify if we are passing information to a method parameter or the whole
+    // endpoint.
     var data = {
       'endpoint': endpoint,
       'object': {
@@ -241,6 +253,8 @@ abstract class ServerpodClientShared extends EndpointCaller {
   }
 
   /// Open a streaming connection to the server.
+  /// Alex - This is where we open a websocket connection to the server.
+  /// We should use this to open the ones required for our calls as well.
   Future<void> openStreamingConnection({
     bool disconnectOnLostInternetConnection = true,
   }) async {
@@ -401,6 +415,9 @@ abstract class EndpointCaller {
   /// Typically, this method is called by generated code.
   Future<T> callServerEndpoint<T>(
       String endpoint, String method, Map<String, dynamic> args);
+
+  // Alex - We should probably have another method here that allows us to call
+  // a streaming method on the Server.
 }
 
 /// This class connects endpoints on the server with the client, it also

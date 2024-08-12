@@ -33,6 +33,9 @@ class EndpointChat extends _i1.EndpointRef {
           );
 
   /// Verifies that an attachment has been uploaded.
+  // Alex - Here we probably need a new type of method that returns a stream
+  // instead of a future. We should also analyze the parameters so that we
+  // start listening to the stream if any parameter is a stream.
   _i2.Future<_i4.ChatMessageAttachment?> verifyAttachmentUpload(
     String fileName,
     String filePath,

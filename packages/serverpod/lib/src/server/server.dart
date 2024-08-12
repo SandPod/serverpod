@@ -277,6 +277,8 @@ class Server {
 //    }
 
     String? body;
+    // Alex - The body of the request might need to be read when calling an
+    // endpoint with the new streaming interface.
     if (readBody) {
       try {
         body = await _readBody(request);
@@ -293,8 +295,12 @@ class Server {
       body = '';
     }
 
+    // Alex(Concern) - Dangerous deref of the body that is a possible return
+    // from _readBody if the request is too large.
     var result = await _handleUriCall(uri, body!, request);
 
+    // Alex - This should be a switch with sealed classes so that we handle all
+    // response types.
     if (result is ResultInvalidParams) {
       if (serverpod.runtimeSettings.logMalformedCalls) {
         // TODO: Log to database?
@@ -363,6 +369,9 @@ class Server {
     var data = <int>[];
     await for (var segment in request) {
       len += segment.length;
+      // Alex(Concern) - This should throw if the request is too large.
+      // Now we do a dangerous deref on the outside of this method disregarding
+      // if the return was null.
       if (len > serverpod.config.maxRequestSize) return null;
       data += segment;
     }
@@ -387,10 +396,15 @@ class Server {
         webSocket: webSocket,
       );
 
+      // Alex(Concern) - This calls stream opened on all endpoints for all modules.
+      // Is that really correct? Shouldn't it only be called on the endpoint
+      // that the client is connecting to?
+      // This might modify the session object multiple times.
       for (var endpointConnector in endpoints.connectors.values) {
         session.sessionLogs.currentEndpoint = endpointConnector.endpoint.name;
         await _callStreamOpened(session, endpointConnector.endpoint);
       }
+
       for (var module in endpoints.modules.values) {
         for (var endpointConnector in module.connectors.values) {
           session.sessionLogs.currentEndpoint = endpointConnector.endpoint.name;
@@ -401,6 +415,7 @@ class Server {
       dynamic error;
       StackTrace? stackTrace;
 
+      // Alex - This is the main loop for handling incoming messages from the client.
       try {
         await for (String jsonData in webSocket) {
           var data = jsonDecode(jsonData) as Map;
@@ -408,6 +423,9 @@ class Server {
           // Handle control commands.
           var command = data['command'] as String?;
           if (command != null) {
+            // Alex - Process a command that creates a new session for a specific
+            // endpoint if it does not already exist. Maybe return false if
+            // the session already exists?
             var args = data['args'] as Map;
 
             if (command == 'ping') {
@@ -429,6 +447,7 @@ class Server {
 
           var endpointConnector = endpoints.getConnectorByName(endpointName);
           if (endpointConnector == null) {
+            // Alex - Should add a test for this to see what happens.
             throw Exception('Endpoint not found: $endpointName');
           }
 
@@ -439,6 +458,7 @@ class Server {
             endpoint.requiredScopes,
           );
 
+          // Alex - Should reverse this to an early return.
           if (authFailed == null) {
             // Process the message.
             var startTime = DateTime.now();
@@ -454,6 +474,10 @@ class Server {
 
               if (message == null) throw Exception('Streamed message was null');
 
+              // Alex - This is where we pass the message to the endpoint.
+              // If we have the new streaming interface, then this should call
+              // a specific method on the endpoint instead of the general method.
+              // With the correct arguments.
               await endpointConnector.endpoint
                   .handleStreamMessage(session, message);
             } catch (e, s) {
@@ -469,6 +493,7 @@ class Server {
                 DateTime.now().difference(startTime).inMicroseconds / 1000000.0;
             var logManager = session.serverpod.logManager;
 
+            // Alex - This log message logic should be moved to the logger.
             var slow = duration >=
                 logManager
                     .getLogSettingsForStreamingSession(
@@ -510,6 +535,8 @@ class Server {
       }
 
       // TODO: Possibly keep a list of open streams instead
+      // Alex(Concern) - Here we don't set the session logger to the endpoint name.
+      // Is that really correct?
       for (var endpointConnector in endpoints.connectors.values) {
         await _callStreamClosed(session, endpointConnector.endpoint);
       }

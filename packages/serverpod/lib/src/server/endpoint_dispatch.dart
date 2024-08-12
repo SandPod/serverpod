@@ -67,6 +67,9 @@ abstract class EndpointDispatch {
     HttpRequest request,
   ) async {
     var endpointComponents = path.split('.');
+    // Alex - We do this work again in getConnectorByName, Maybe we can remove
+    // this check here so that we don't do the same work twice and only return
+    // the second message.
     if (endpointComponents.isEmpty || endpointComponents.length > 2) {
       return ResultInvalidParams('Endpoint $path is not a valid endpoint name');
     }
@@ -108,6 +111,8 @@ abstract class EndpointDispatch {
 
       var method = connector.methodConnectors[methodName];
       if (method == null) {
+        // Alex(Concern) - Closing the session should be centralized, don't we
+        // do this on the outside as well?
         await session.close();
         return ResultInvalidParams(
             'Method $methodName not found in call: $uri');

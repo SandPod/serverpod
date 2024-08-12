@@ -369,6 +369,7 @@ class DatabaseConnection {
     var timeout =
         timeoutInSeconds != null ? Duration(seconds: timeoutInSeconds) : null;
 
+    // Alex - This logging logic should be moved to the logger
     var startTime = DateTime.now();
     try {
       var context =
