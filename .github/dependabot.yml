@@ -1,0 +1,19 @@
+version: 2
+updates:
+  # Pub dependencies
+  - package-ecosystem: "pub"
+    directories:
+      - packages/**/*
+      - modules/**/*
+      - integrations/**/*
+      - templates/serverpod_templates
+      - tools/serverpod_cli
+    schedule:
+      interval: "daily"
+    versioning-strategy: "widen"
+    open-pull-requests-limit: 5
+  - package-ecosystem: "npm"
+    directory: "tools/serverpod_vs_code_extension"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
