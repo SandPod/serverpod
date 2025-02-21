@@ -58,22 +58,32 @@ class ModelParser {
         documentContents.nodes[Keyword.managedMigration]?.value;
     var manageMigration = _parseBool(migrationValue) ?? true;
 
-    return ClassDefinition(
-      className: className,
-      isSealed: isSealed,
-      extendsClass: extendsClass,
-      sourceFileName: protocolSource.yamlSourceUri.path,
-      tableName: tableName,
-      manageMigration: manageMigration,
-      fileName: outFileName,
-      fields: fields,
-      indexes: indexes,
-      subDirParts: protocolSource.subDirPathParts,
-      documentation: classDocumentation,
-      isException: documentTypeName == Keyword.exceptionType,
-      serverOnly: serverOnly,
-      type: classType,
-    );
+    return documentTypeName == Keyword.exceptionType
+        ? ExceptionDefinition(
+            className: className,
+            sourceFileName: protocolSource.yamlSourceUri.path,
+            fileName: outFileName,
+            fields: fields,
+            subDirParts: protocolSource.subDirPathParts,
+            documentation: classDocumentation,
+            serverOnly: serverOnly,
+            type: classType,
+          )
+        : ClassDefinition(
+            className: className,
+            isSealed: isSealed,
+            extendsClass: extendsClass,
+            sourceFileName: protocolSource.yamlSourceUri.path,
+            tableName: tableName,
+            manageMigration: manageMigration,
+            fileName: outFileName,
+            fields: fields,
+            indexes: indexes,
+            subDirParts: protocolSource.subDirPathParts,
+            documentation: classDocumentation,
+            serverOnly: serverOnly,
+            type: classType,
+          );
   }
 
   static SerializableModelDefinition? serializeEnumFile(

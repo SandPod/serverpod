@@ -14,7 +14,6 @@ class ClassDefinitionBuilder {
   String _className;
   List<String> _subDirParts;
   bool _serverOnly;
-  bool _isException;
   String? _tableName;
   bool _managedMigration;
   List<_FieldBuilder> _fields;
@@ -32,7 +31,6 @@ class ClassDefinitionBuilder {
         _subDirParts = [],
         _managedMigration = true,
         _serverOnly = false,
-        _isException = false,
         _indexes = [],
         _childClasses = [],
         _isSealed = false;
@@ -57,7 +55,6 @@ class ClassDefinitionBuilder {
       fields: _fields.map((f) => f()).toList(),
       subDirParts: _subDirParts,
       serverOnly: _serverOnly,
-      isException: _isException,
       tableName: _tableName,
       manageMigration: _managedMigration,
       indexes: _indexes,
@@ -315,11 +312,6 @@ class ClassDefinitionBuilder {
 
   ClassDefinitionBuilder withDocumentation(List<String>? documentation) {
     _documentation = documentation;
-    return this;
-  }
-
-  ClassDefinitionBuilder withIsException(bool isException) {
-    _isException = isException;
     return this;
   }
 

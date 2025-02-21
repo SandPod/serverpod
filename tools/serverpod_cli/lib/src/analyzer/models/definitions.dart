@@ -53,9 +53,6 @@ class ClassDefinition extends SerializableModelDefinition {
 
   final bool manageMigration;
 
-  /// `true` if this is an exception and not a class.
-  final bool isException;
-
   /// If set to true the class is sealed.
   final bool isSealed;
 
@@ -75,7 +72,6 @@ class ClassDefinition extends SerializableModelDefinition {
     required this.fields,
     required super.serverOnly,
     required this.manageMigration,
-    required this.isException,
     required super.type,
     required this.isSealed,
     List<InheritanceDefinition>? childClasses,
@@ -186,7 +182,6 @@ class ExceptionDefinition extends SerializableModelDefinition {
     required this.fields,
     required super.serverOnly,
     required super.type,
-    List<InheritanceDefinition>? childClasses,
     super.subDirParts,
     this.documentation,
   });

@@ -3,6 +3,7 @@ import 'package:path/path.dart' as path;
 import 'package:serverpod_cli/analyzer.dart';
 import 'package:serverpod_cli/src/generator/dart/server_code_generator.dart';
 import 'package:serverpod_cli/src/test_util/builders/class_definition_builder.dart';
+import 'package:serverpod_cli/src/test_util/builders/exception_definition_builder.dart';
 import 'package:serverpod_cli/src/test_util/builders/generator_config_builder.dart';
 import 'package:serverpod_cli/src/test_util/builders/serializable_entity_field_definition_builder.dart';
 import 'package:serverpod_cli/src/test_util/compilation_unit_helpers.dart';
@@ -459,10 +460,9 @@ void main() {
 
   group('Given exception class when generating code', () {
     var models = [
-      ClassDefinitionBuilder()
+      ExceptionDefinitionBuilder()
           .withClassName(testClassName)
           .withFileName(testClassFileName)
-          .withIsException(true)
           .build()
     ];
 
