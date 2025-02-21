@@ -171,6 +171,31 @@ class ClassDefinition extends SerializableModelDefinition {
   }
 }
 
+class ExceptionDefinition extends SerializableModelDefinition {
+  /// The fields of this class / exception.
+  List<SerializableModelFieldDefinition> fields;
+
+  /// The documentation of this class, line by line.
+  final List<String>? documentation;
+
+  /// Create a new [ClassDefinition].
+  ExceptionDefinition({
+    required super.fileName,
+    required super.sourceFileName,
+    required super.className,
+    required this.fields,
+    required super.serverOnly,
+    required super.type,
+    List<InheritanceDefinition>? childClasses,
+    super.subDirParts,
+    this.documentation,
+  });
+
+  SerializableModelFieldDefinition? findField(String name) {
+    return fields.where((element) => element.name == name).firstOrNull;
+  }
+}
+
 /// Describes a single field of a [ClassDefinition].
 class SerializableModelFieldDefinition {
   /// The name of the field.
