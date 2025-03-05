@@ -25,6 +25,9 @@ class Table<T_ID> {
   /// List of [Column] used by the table.
   List<Column> get columns => [id];
 
+  /// List of [Column] used in update queries.
+  List<Column> get updateColumns => columns;
+
   /// Query prefix for [Column]s of the table.
   String get queryPrefix {
     return tableRelation?.relationQueryAlias ?? tableName;

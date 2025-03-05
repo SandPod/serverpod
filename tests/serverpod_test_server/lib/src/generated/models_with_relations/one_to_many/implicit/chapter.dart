@@ -15,7 +15,7 @@ abstract class Chapter implements _i1.TableRow<int>, _i1.ProtocolSerialization {
   Chapter._({
     this.id,
     required this.title,
-  });
+  }) : _bookChaptersBookId = null;
 
   factory Chapter({
     int? id,
@@ -23,9 +23,12 @@ abstract class Chapter implements _i1.TableRow<int>, _i1.ProtocolSerialization {
   }) = _ChapterImpl;
 
   factory Chapter.fromJson(Map<String, dynamic> jsonSerialization) {
-    return Chapter(
+    /// Might need to call a private constructor when creating a `Chapter` object
+    /// to ensure that the implicit fields are also set.
+    return ChapterImplicit._(
       id: jsonSerialization['id'] as int?,
       title: jsonSerialization['title'] as String,
+      $_bookChaptersBookId: jsonSerialization['_bookChaptersBookId'] as int?,
     );
   }
 
@@ -38,7 +41,7 @@ abstract class Chapter implements _i1.TableRow<int>, _i1.ProtocolSerialization {
 
   String title;
 
-  int? _bookChaptersBookId;
+  final int? _bookChaptersBookId;
 
   @override
   _i1.Table<int> get table => t;
@@ -117,9 +120,10 @@ class _ChapterImpl extends Chapter {
     Object? id = _Undefined,
     String? title,
   }) {
-    return Chapter(
+    return ChapterImplicit._(
       id: id is int? ? id : this.id,
       title: title ?? this.title,
+      $_bookChaptersBookId: this._bookChaptersBookId,
     );
   }
 }
@@ -128,8 +132,9 @@ class ChapterImplicit extends _ChapterImpl {
   ChapterImplicit._({
     int? id,
     required String title,
-    this.$_bookChaptersBookId,
-  }) : super(
+    int? $_bookChaptersBookId,
+  })  : _bookChaptersBookId = $_bookChaptersBookId,
+        super(
           id: id,
           title: title,
         );
@@ -145,12 +150,13 @@ class ChapterImplicit extends _ChapterImpl {
     );
   }
 
-  int? $_bookChaptersBookId;
+  @override
+  int? _bookChaptersBookId;
 
   @override
   Map<String, dynamic> toJson() {
     var jsonMap = super.toJson();
-    jsonMap.addAll({'_bookChaptersBookId': $_bookChaptersBookId});
+    jsonMap.addAll({'_bookChaptersBookId': _bookChaptersBookId});
     return jsonMap;
   }
 }
@@ -171,11 +177,19 @@ class ChapterTable extends _i1.Table<int> {
 
   late final _i1.ColumnInt $_bookChaptersBookId;
 
+  // Should have a version that excludes the implicit
+  // fields so that update can only modify the public ones.
   @override
   List<_i1.Column> get columns => [
         id,
         title,
         $_bookChaptersBookId,
+      ];
+
+  @override
+  List<_i1.Column> get updateColumns => [
+        id,
+        title,
       ];
 }
 

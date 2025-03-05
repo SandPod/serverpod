@@ -508,6 +508,7 @@ class SerializableModelLibraryGenerator {
         ..fields.addAll(hiddenFields.map((field) {
           return Field((fieldBuilder) {
             fieldBuilder
+              ..annotations.add(refer('override'))
               ..name = createFieldName(serverCode, field)
               ..type = field.type.reference(
                 serverCode,

@@ -183,7 +183,7 @@ class DatabaseConnection {
 
     var table = rows.first.table;
 
-    var selectedColumns = columns ?? table.columns;
+    var selectedColumns = columns ?? table.updateColumns;
 
     if (columns != null) {
       _validateColumnsExists(columns, table);
