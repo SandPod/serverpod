@@ -44,6 +44,13 @@ void main() {
         isNot(containsClass('User').hasField('nonExistentField')),
       );
     });
+
+    test('when negate matching class and constructor then test passes', () {
+      expect(
+        compilationUnit,
+        isNot(containsClass('User').hasConstructor()),
+      );
+    });
   });
 
   group('Given compilation unit with class and field', () {
@@ -115,6 +122,75 @@ void main() {
       expect(
         compilationUnit,
         isNot(containsClass('User').hasField('name', isNullable: false)),
+      );
+    });
+  });
+
+  test(
+      'Given compilation unit with class and constructor '
+      'when matching class and constructor then test passes', () {
+    final compilationUnit = parseCode(
+      '''
+      class User {
+        User();
+      }
+    ''',
+    );
+
+    expect(
+      compilationUnit,
+      containsClass('User').hasConstructor(),
+    );
+  });
+
+  group('Given compilation unit with class and non-private constructor', () {
+    late final compilationUnit = parseCode(
+      '''
+      class User {
+        User();
+      }
+    ''',
+    );
+
+    test('when matching class and non-private constructor then test passes',
+        () {
+      expect(
+        compilationUnit,
+        containsClass('User').hasConstructor(isPrivate: false),
+      );
+    });
+
+    test('when negate matching class and private constructor then test passes',
+        () {
+      expect(
+        compilationUnit,
+        isNot(containsClass('User').hasConstructor(isPrivate: true)),
+      );
+    });
+  });
+
+  group('Given compilation unit with class and private constructor', () {
+    late final compilationUnit = parseCode(
+      '''
+      class User {
+        User._();
+      }
+    ''',
+    );
+
+    test('when matching class and private constructor then test passes', () {
+      expect(
+        compilationUnit,
+        containsClass('User').hasConstructor(isPrivate: true),
+      );
+    });
+
+    test(
+        'when negate matching class and non-private constructor then test passes',
+        () {
+      expect(
+        compilationUnit,
+        isNot(containsClass('User').hasConstructor(isPrivate: false)),
       );
     });
   });

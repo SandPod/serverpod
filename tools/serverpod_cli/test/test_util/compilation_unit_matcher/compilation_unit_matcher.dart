@@ -30,10 +30,20 @@ abstract interface class ClassMatcher {
   /// specific name.
   ///
   /// Use [isNullable] to match field nullability. If the value is not set, the
-  /// mather will ignore the nullability of the field.
+  /// matcher will ignore the nullability of the field.
   FieldMatcher hasField(String fieldName, {bool? isNullable});
+
+  /// Chains a [ConstructorMatcher] that checks if the class contains a constructor.
+  ///
+  /// Use [isPrivate] to match constructor privacy. If the value is not set, the
+  /// matcher will ignore the privacy of the constructor.
+  ConstructorMatcher hasConstructor({bool? isPrivate});
 }
 
 /// A matcher that can be chained to a [ClassMatcher] to check if the class
 /// contains a field that matches certain criteria.
 abstract interface class FieldMatcher {}
+
+/// A matcher that can be chained to a [ClassMatcher] to check if the class
+/// contains a constructor that matches certain criteria.
+abstract interface class ConstructorMatcher {}

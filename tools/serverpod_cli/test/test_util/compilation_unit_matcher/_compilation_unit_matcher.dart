@@ -49,6 +49,11 @@ class _ClassMatcherImpl extends CustomMatcher implements ClassMatcher {
   FieldMatcher hasField(String fieldName, {bool? isNullable}) {
     return _FieldMatcherImpl._(this, fieldName, isNullable: isNullable);
   }
+
+  @override
+  ConstructorMatcher hasConstructor({bool? isPrivate}) {
+    return _ConstructorMatcherImpl._(this, isPrivate: isPrivate);
+  }
 }
 
 class _FieldMatcherImpl extends CustomMatcher implements FieldMatcher {
@@ -130,6 +135,77 @@ class _FieldMatcherImpl extends CustomMatcher implements FieldMatcher {
   }
 }
 
+class _ConstructorMatcherImpl extends CustomMatcher
+    implements ConstructorMatcher {
+  final _ClassMatcherImpl parent;
+  final bool? isPrivate;
+  _ConstructorMatcherImpl._(this.parent, {this.isPrivate})
+      : super(
+          'a constructor',
+          'constructor',
+          null,
+        );
+
+  @override
+  dynamic featureValueOf(actual) {
+    var classDecl = parent.featureValueOf(actual);
+    if (classDecl == null) return null;
+    if (classDecl is! ClassDeclaration) return null;
+
+    return classDecl.members.whereType<ConstructorDeclaration>().firstOrNull;
+  }
+
+  @override
+  bool matches(item, Map matchState) {
+    var constructor = featureValueOf(item);
+    if (constructor is! ConstructorDeclaration) return false;
+
+    return constructor._hasMatchingPrivate(isPrivate);
+  }
+
+  @override
+  Description describeMismatch(
+    dynamic item,
+    Description mismatchDescription,
+    Map matchState,
+    bool verbose,
+  ) {
+    var classDecl = parent.featureValueOf(item);
+    if (classDecl == null) {
+      return parent.describeMismatch(
+        item,
+        mismatchDescription,
+        matchState,
+        verbose,
+      );
+    }
+
+    if (classDecl is! ClassDeclaration) {
+      return mismatchDescription.add('is not a ClassDeclaration');
+    }
+
+    var constructorDecl = featureValueOf(item);
+    if (constructorDecl is! ConstructorDeclaration) {
+      return mismatchDescription.add('does not contain a constructor');
+    }
+
+    return mismatchDescription.add(
+        'contains a constructor but it is ${isPrivate == true ? 'not private' : 'private'}');
+  }
+
+  @override
+  Description describe(Description description) {
+    var private = isPrivate != null
+        ? isPrivate == true
+            ? 'private '
+            : 'non-private '
+        : '';
+    return parent.describe(description).add(
+          ' with a ${private}constructor',
+        );
+  }
+}
+
 extension _ClassDeclarationExtensions on ClassDeclaration {
   bool _hasMatchingClass(String name) {
     return this.name.lexeme == name;
@@ -145,5 +221,14 @@ extension _FieldDeclarationExtensions on FieldDeclaration {
     if (isNullable == null) return true;
 
     return fields.type?.question == null ? !isNullable : isNullable;
+  }
+}
+
+extension _ConstructorDeclarationExtensions on ConstructorDeclaration {
+  bool _hasMatchingPrivate(bool? isPrivate) {
+    if (isPrivate == null) return true;
+
+    var privateConstructor = name?.lexeme.startsWith('_') ?? false;
+    return privateConstructor == isPrivate;
   }
 }
