@@ -1,12 +1,10 @@
 part of 'compilation_unit_matcher.dart';
 
-class _ClassMatcherImpl extends CustomMatcher implements ClassMatcher {
+class _ClassMatcherImpl extends Matcher implements ClassMatcher {
   final String className;
-  _ClassMatcherImpl._(this.className)
-      : super('a class named "$className"', 'class', className);
+  _ClassMatcherImpl._(this.className);
 
-  @override
-  dynamic featureValueOf(actual) {
+  ClassDeclaration? featureValueOf(actual) {
     if (actual is! CompilationUnit) return null;
 
     return actual.declarations
@@ -56,22 +54,15 @@ class _ClassMatcherImpl extends CustomMatcher implements ClassMatcher {
   }
 }
 
-class _FieldMatcherImpl extends CustomMatcher implements FieldMatcher {
+class _FieldMatcherImpl extends Matcher implements FieldMatcher {
   final _ClassMatcherImpl parent;
   final String fieldName;
   final bool? isNullable;
-  _FieldMatcherImpl._(this.parent, this.fieldName, {this.isNullable})
-      : super(
-          'a field named "$fieldName"',
-          'field',
-          fieldName,
-        );
+  _FieldMatcherImpl._(this.parent, this.fieldName, {this.isNullable});
 
-  @override
-  dynamic featureValueOf(actual) {
+  FieldDeclaration? featureValueOf(actual) {
     var classDecl = parent.featureValueOf(actual);
     if (classDecl == null) return null;
-    if (classDecl is! ClassDeclaration) return null;
 
     return classDecl.members
         .whereType<FieldDeclaration>()
@@ -104,10 +95,6 @@ class _FieldMatcherImpl extends CustomMatcher implements FieldMatcher {
       );
     }
 
-    if (classDecl is! ClassDeclaration) {
-      return mismatchDescription.add('is not a ClassDeclaration');
-    }
-
     var fieldDecl = featureValueOf(item);
     if (fieldDecl is! FieldDeclaration) {
       final fieldNames = classDecl.members
@@ -135,22 +122,14 @@ class _FieldMatcherImpl extends CustomMatcher implements FieldMatcher {
   }
 }
 
-class _ConstructorMatcherImpl extends CustomMatcher
-    implements ConstructorMatcher {
+class _ConstructorMatcherImpl extends Matcher implements ConstructorMatcher {
   final _ClassMatcherImpl parent;
   final bool? isPrivate;
-  _ConstructorMatcherImpl._(this.parent, {this.isPrivate})
-      : super(
-          'a constructor',
-          'constructor',
-          null,
-        );
+  _ConstructorMatcherImpl._(this.parent, {this.isPrivate});
 
-  @override
-  dynamic featureValueOf(actual) {
+  ConstructorDeclaration? featureValueOf(actual) {
     var classDecl = parent.featureValueOf(actual);
     if (classDecl == null) return null;
-    if (classDecl is! ClassDeclaration) return null;
 
     return classDecl.members.whereType<ConstructorDeclaration>().firstOrNull;
   }
@@ -178,10 +157,6 @@ class _ConstructorMatcherImpl extends CustomMatcher
         matchState,
         verbose,
       );
-    }
-
-    if (classDecl is! ClassDeclaration) {
-      return mismatchDescription.add('is not a ClassDeclaration');
     }
 
     var constructorDecl = featureValueOf(item);
