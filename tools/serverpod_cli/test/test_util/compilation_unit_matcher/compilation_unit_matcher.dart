@@ -44,6 +44,42 @@ abstract interface class ClassMatcher {
 /// contains a field that matches certain criteria.
 abstract interface class FieldMatcher {}
 
+enum Initializer { this_, super_ }
+
 /// A matcher that can be chained to a [ClassMatcher] to check if the class
 /// contains a constructor that matches certain criteria.
-abstract interface class ConstructorMatcher {}
+abstract interface class ConstructorMatcher {
+  /// Chains a [ParameterMatcher] that checks if the constructor contains a parameter
+  /// with a specific name.
+  ///
+  /// Use [isRequired] to match required parameters. If the value is not set, the
+  /// matcher will ignore the requirement of the parameter.
+  ///
+  /// Use [type] to match the type of the parameter. If the value is not set, the
+  /// matcher will ignore the type of the parameter.
+  ///
+  /// Use [initializer] to match parameters that use "this" or "super". If the value is not set, the
+  /// matcher will ignore the usage of "this" or "super".
+  ParameterMatcher hasParameter(
+    String parameterName, {
+    bool? isRequired,
+    String? type,
+    Initializer? initializer,
+  });
+
+  ParameterMatcher hasTypedParameter(
+    String parameterName, {
+    String? type,
+    bool? isRequired,
+  });
+
+  ParameterMatcher withInitializerParameter(
+    String parameterName, {
+    Initializer? initializer,
+    bool? isRequired,
+  });
+}
+
+/// A matcher that can be chained to a [ConstructorMatcher] to check if the constructor
+/// contains a parameter that matches certain criteria.
+abstract interface class ParameterMatcher {}

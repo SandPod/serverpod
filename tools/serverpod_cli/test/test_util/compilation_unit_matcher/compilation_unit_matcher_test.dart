@@ -194,4 +194,100 @@ void main() {
       );
     });
   });
+
+  group(
+      'Given compilation unit with class and constructor with named parameters',
+      () {
+    late final compilationUnit = parseCode(
+      '''
+      class User {
+        User(this.name, {required this.age, String? address});
+        final String name;
+        final int age;
+        final String? address;
+      }
+    ''',
+    );
+
+    test(
+        'when matching class and constructor with required parameter then test passes',
+        () {
+      expect(
+        compilationUnit,
+        containsClass('User')
+            .hasConstructor()
+            .hasParameter('name', isRequired: true),
+      );
+    });
+
+    test(
+        'when matching class and constructor with required parameter then test passes',
+        () {
+      expect(
+        compilationUnit,
+        containsClass('User')
+            .hasConstructor()
+            .hasParameter('age', isRequired: true),
+      );
+    });
+
+    test(
+        'when matching class and constructor with optional parameter then test passes',
+        () {
+      expect(
+        compilationUnit,
+        containsClass('User')
+            .hasConstructor()
+            .hasParameter('address', isRequired: false),
+      );
+    });
+
+    test(
+        'when matching class and constructor with parameter type then test passes',
+        () {
+      expect(
+        compilationUnit,
+        containsClass('User')
+            .hasConstructor()
+            .hasParameter('address', type: 'String?'),
+      );
+    });
+  });
+
+  group(
+      'Given compilation unit with class and constructor with initializer parameters',
+      () {
+    late final compilationUnit = parseCode(
+      '''
+      class User {
+        User(this.name, {required this.age, String? address});
+        final String name;
+        final int age;
+        final String? address;
+      }
+    ''',
+    );
+
+    test(
+        'when matching class and constructor with "this" parameter then test passes',
+        () {
+      expect(
+        compilationUnit,
+        containsClass('User')
+            .hasConstructor()
+            .hasParameter('name', initializer: Initializer.this_),
+      );
+    });
+
+    test(
+        'when negate matching class and constructor with "super" parameter then test passes',
+        () {
+      expect(
+        compilationUnit,
+        isNot(containsClass('User')
+            .hasConstructor()
+            .hasParameter('name', initializer: Initializer.super_)),
+      );
+    });
+  });
 }

@@ -179,6 +179,98 @@ class _ConstructorMatcherImpl extends Matcher implements ConstructorMatcher {
           ' with a ${private}constructor',
         );
   }
+
+  @override
+  ParameterMatcher hasParameter(
+    String parameterName, {
+    bool? isRequired,
+    String? type,
+    Initializer? initializer,
+  }) {
+    return _ParameterMatcherImpl._(this, parameterName,
+        isRequired: isRequired, type: type, initializer: initializer);
+  }
+}
+
+class _ParameterMatcherImpl extends Matcher implements ParameterMatcher {
+  final _ConstructorMatcherImpl parent;
+  final String parameterName;
+  final bool? isRequired;
+  final String? type;
+  final Initializer? initializer;
+  _ParameterMatcherImpl._(this.parent, this.parameterName,
+      {this.isRequired, this.type, this.initializer});
+
+  FormalParameter? featureValueOf(actual) {
+    var constructorDecl = parent.featureValueOf(actual);
+    if (constructorDecl == null) return null;
+
+    return constructorDecl.parameters.parameters
+        .where((p) => p.name?.lexeme == parameterName)
+        .firstOrNull;
+  }
+
+  @override
+  bool matches(item, Map matchState) {
+    var parameter = featureValueOf(item);
+    if (parameter is! FormalParameter) return false;
+
+    if (!parameter._hasMatchingInitializerParameter(initializer)) return false;
+    if (!parameter._hasMatchingRequired(isRequired)) return false;
+    if (!parameter._hasMatchingType(type)) return false;
+
+    return true;
+  }
+
+  @override
+  Description describeMismatch(
+    dynamic item,
+    Description mismatchDescription,
+    Map matchState,
+    bool verbose,
+  ) {
+    var constructorDecl = parent.featureValueOf(item);
+    if (constructorDecl == null) {
+      return parent.describeMismatch(
+        item,
+        mismatchDescription,
+        matchState,
+        verbose,
+      );
+    }
+
+    var parameterDecl = featureValueOf(item);
+    if (parameterDecl is! FormalParameter) {
+      final parameterNames = constructorDecl.parameters.parameters
+          .map((p) => p.name?.lexeme)
+          .where((e) => e != null)
+          .join(', ');
+
+      return mismatchDescription.add(
+          'does not contain parameter "$parameterName". Found parameters: [$parameterNames]');
+    }
+
+    return mismatchDescription.add(
+        'contains parameter "$parameterName" but it does not match the specified criteria');
+  }
+
+  @override
+  Description describe(Description description) {
+    var required = isRequired != null
+        ? isRequired == true
+            ? 'required '
+            : 'optional '
+        : '';
+    var paramType = type != null ? '$type ' : '';
+    var initializerStr = initializer != null
+        ? initializer == Initializer.this_
+            ? 'this.'
+            : 'super.'
+        : '';
+    return parent.describe(description).add(
+          ' with a ${required}${paramType}${initializerStr}parameter "$parameterName"',
+        );
+  }
 }
 
 extension _ClassDeclarationExtensions on ClassDeclaration {
@@ -205,5 +297,37 @@ extension _ConstructorDeclarationExtensions on ConstructorDeclaration {
 
     var privateConstructor = name?.lexeme.startsWith('_') ?? false;
     return privateConstructor == isPrivate;
+  }
+}
+
+extension _FormalParameterExtensions on FormalParameter {
+  bool _hasMatchingRequired(bool? isRequired) {
+    if (isRequired == null) return true;
+
+    return this.isRequired == (isRequired == true);
+  }
+
+  bool _hasMatchingType(String? type) {
+    if (type == null) return true;
+
+    var resolvedThis = this;
+    if (resolvedThis is DefaultFormalParameter) {
+      return resolvedThis.parameter._hasMatchingType(type);
+    }
+
+    if (resolvedThis is! SimpleFormalParameter) return false;
+
+    return resolvedThis.type.toString() == type;
+  }
+
+  bool _hasMatchingInitializerParameter(Initializer? initializer) {
+    if (initializer == null) return true;
+
+    var parameterInitializer = beginToken.lexeme;
+
+    return switch (initializer) {
+      Initializer.this_ => parameterInitializer == 'this',
+      Initializer.super_ => parameterInitializer == 'super',
+    };
   }
 }
