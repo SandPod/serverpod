@@ -8,6 +8,7 @@ import '../../../test_util/builders/generator_config_builder.dart';
 import '../../../test_util/builders/model_class_definition_builder.dart';
 import '../../../test_util/builders/serializable_entity_field_definition_builder.dart';
 import '../../../test_util/compilation_unit_helpers.dart';
+import '../../../test_util/compilation_unit_matcher.dart';
 
 const projectName = 'example_project';
 final config = GeneratorConfigBuilder().withName(projectName).build();
@@ -27,92 +28,79 @@ void main() {
           .build()
     ];
 
-    var codeMap = generator.generateSerializableModelsCode(
+    late final codeMap = generator.generateSerializableModelsCode(
       models: models,
       config: config,
     );
 
-    var compilationUnit = parseString(content: codeMap[expectedFilePath]!).unit;
+    late final compilationUnit = parseCode(codeMap[expectedFilePath]!);
 
-    var maybeClassNamedExampleTable =
-        CompilationUnitHelpers.tryFindClassDeclaration(
-      compilationUnit,
-      name: '${testClassName}Table',
-    );
-
-    test('then a class named ${testClassName}Table is generated.', () {
+    test('then a class named ${testClassName}Table is generated', () {
       expect(
-        maybeClassNamedExampleTable,
-        isNotNull,
-        reason: 'Missing definition for class named ${testClassName}Table',
+        compilationUnit,
+        containsClass('${testClassName}Table'),
       );
     });
-    group('then the class named ${testClassName}Table', () {
-      test('inherits from Table.', () {
-        expect(
-            CompilationUnitHelpers.hasExtendsClause(
-              maybeClassNamedExampleTable!,
-              name: 'Table',
-            ),
-            isTrue,
-            reason: 'Missing extends clause for Table.');
-      });
 
-      test('has Table extends generic to the default id type int.', () {
-        expect(
-            maybeClassNamedExampleTable!
-                .extendsClause?.superclass.typeArguments?.arguments.first
-                .toString(),
-            'int',
-            reason: 'Missing generic to default id type int.');
-      });
+    test('then the class ${testClassName}Table extends Table with int generic.',
+        () {
+      expect(
+        compilationUnit,
+        containsClass('${testClassName}Table')
+            .thatExtends('Table')
+            .withGeneric('int'),
+      );
+    });
 
-      test(
-          'has constructor taking table relation and passes table name to super.',
-          () {
-        expect(
-            CompilationUnitHelpers.hasConstructorDeclaration(
-              maybeClassNamedExampleTable!,
-              name: null,
-              parameters: ['super.tableRelation'],
-              superArguments: ['tableName: \'$tableName\''],
-            ),
-            isTrue,
-            reason:
-                'Missing declaration for $testClassName constructor with nullable id field passed to super.');
-      });
+    test(
+        'then the class ${testClassName}Table has constructor a taking table relation.',
+        () {
+      expect(
+        compilationUnit,
+        containsClass('${testClassName}Table')
+            .withUnnamedConstructor()
+            .withInitializerParameter('tableRelation', Initializer.super_),
+      );
+    });
 
-      test('has a columns method.', () {
-        expect(
-            CompilationUnitHelpers.hasMethodDeclaration(
-              maybeClassNamedExampleTable!,
-              name: 'columns',
-            ),
-            isTrue,
-            reason: 'Missing declaration for columns getter.');
-      });
+    test(
+        'then the class ${testClassName}Table has constructor that passes table name to super.',
+        () {
+      expect(
+        compilationUnit,
+        containsClass('${testClassName}Table')
+            .withUnnamedConstructor()
+            .withSuperInitializer()
+            .withNamedArgument("'$tableName'", 'tableName'),
+      );
+    });
 
-      test('does NOT have getRelationTable method.', () {
-        expect(
-            CompilationUnitHelpers.hasMethodDeclaration(
-              maybeClassNamedExampleTable!,
-              name: 'getRelationTable',
-            ),
-            isFalse,
-            reason:
-                'Declaration for getRelationTable method should not be generated.');
-      });
+    test('then the class ${testClassName}Table has columns method.', () {
+      expect(
+        compilationUnit,
+        containsClass('${testClassName}Table').withMethod('columns'),
+      );
+    });
 
-      test('does NOT have id field.', () {
-        expect(
-            CompilationUnitHelpers.hasFieldDeclaration(
-              maybeClassNamedExampleTable!,
-              name: 'id',
-            ),
-            isFalse,
-            reason: 'Declaration for id field should not be generated.');
-      });
-    }, skip: maybeClassNamedExampleTable == null);
+    test(
+        'then the class ${testClassName}Table does NOT have getRelationTable method.',
+        () {
+      expect(
+        compilationUnit,
+        isNot(
+          containsClass('${testClassName}Table').withMethod('getRelationTable'),
+        ),
+      );
+    });
+
+    test('then the class ${testClassName}Table does NOT have id field.', () {
+      expect(
+        compilationUnit,
+        isNot(
+          containsClass('${testClassName}Table').withField('id'),
+        ),
+      );
+    });
   });
 
   group(
@@ -134,18 +122,21 @@ void main() {
           .build()
     ];
 
-    var codeMap = generator.generateSerializableModelsCode(
+    late final codeMap = generator.generateSerializableModelsCode(
       models: models,
       config: config,
     );
 
-    var compilationUnit = parseString(content: codeMap[expectedFilePath]!).unit;
-    var maybeClassNamedExampleTable =
-        CompilationUnitHelpers.tryFindClassDeclaration(
-      compilationUnit,
-      name: '${testClassName}Table',
-    );
+    late final compilationUnit = parseCode(codeMap[expectedFilePath]!);
 
+    test(
+        'then the class named ${testClassName}Table has class variable for field.',
+        () {
+      expect(
+        compilationUnit,
+        containsClass('${testClassName}Table').withField('title'),
+      );
+    });
     group('then the class named ${testClassName}Table', () {
       test('has class variable for field.', () {
         expect(
