@@ -335,8 +335,14 @@ class GeneratorConfig implements ModelLoadConfig {
       }
     }
 
-    var modules = loadModuleConfigs(
+    var moduleDependencies = listModuleDependencies(
+      projectPubspec: pubspec,
       packageConfig: packageConfig,
+    );
+
+    var modules = await loadModuleConfigs(
+      packageConfig: packageConfig,
+      modules: moduleDependencies,
       nickNameOverrides: manualModules,
     );
 

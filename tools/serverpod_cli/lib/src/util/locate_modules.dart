@@ -2,25 +2,88 @@ import 'dart:io';
 
 import 'package:package_config/package_config.dart';
 import 'package:path/path.dart' as path;
+import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:serverpod_cli/src/config/config.dart';
+import 'package:serverpod_cli/src/util/pubspec_helpers.dart';
 import 'package:serverpod_shared/serverpod_shared.dart';
 import 'package:yaml/yaml.dart';
 
 const _serverSuffix = '_server';
 
-List<ModuleConfig> loadModuleConfigs({
+bool _isServerpodModule(String packageName) {
+  return packageName.endsWith(_serverSuffix) || packageName == 'serverpod';
+}
+
+Set<String> listModuleDependencies({
+  required Pubspec projectPubspec,
   required PackageConfig packageConfig,
-  Map<String, String?> nickNameOverrides = const {},
 }) {
-  var modules = <ModuleConfig>[];
+  var projectModuleDependencies = <String>{};
+  var visitedModules = <String>{};
 
-  for (var packageInfo in packageConfig.packages) {
+  void collectModuleDependencies(String modulePath, String packageName) {
+    if (visitedModules.contains(modulePath)) {
+      return;
+    }
+
+    visitedModules.add(modulePath);
+    projectModuleDependencies.add(packageName);
+
+    var modulePubspecFile = File(path.join(modulePath, 'pubspec.yaml'));
+    if (!modulePubspecFile.existsSync()) {
+      return;
+    }
+
+    Pubspec modulePubspec;
     try {
-      var packageName = packageInfo.name;
+      modulePubspec = parsePubspec(modulePubspecFile);
+    } catch (_) {
+      return;
+    }
 
-      if (!packageName.endsWith(_serverSuffix) && packageName != 'serverpod') {
+    for (var dependency in modulePubspec.dependencies.keys) {
+      if (!_isServerpodModule(dependency)) {
         continue;
       }
+
+      var modulePath = packageConfig.packages
+          .where((pkg) => pkg.name == dependency)
+          .firstOrNull
+          ?.packageUriRoot
+          .toFilePath();
+
+      if (modulePath == null) {
+        continue;
+      }
+
+      collectModuleDependencies(modulePath, dependency);
+    }
+  }
+
+  for (var packageInfo in packageConfig.packages) {
+    if (!_isServerpodModule(packageInfo.name)) {
+      continue;
+    }
+
+    var modulePath = packageInfo.packageUriRoot.toFilePath();
+    collectModuleDependencies(modulePath, packageInfo.name);
+  }
+
+  return projectModuleDependencies;
+}
+
+Future<List<ModuleConfig>> loadModuleConfigs({
+  required PackageConfig packageConfig,
+  required Set<String> modules,
+  Map<String, String?> nickNameOverrides = const {},
+}) async {
+  var moduleConfigs = <ModuleConfig>[];
+
+  var dependencyPackageConfigs =
+      packageConfig.packages.where((pkg) => modules.contains(pkg.name));
+  for (var packageInfo in dependencyPackageConfigs) {
+    try {
+      var packageName = packageInfo.name;
 
       var packageSrcRoot = packageInfo.packageUriRoot;
       var moduleProjectRoot = List<String>.from(packageSrcRoot.pathSegments)
@@ -35,7 +98,7 @@ List<ModuleConfig> loadModuleConfigs({
       );
 
       var generatorConfigFile = File.fromUri(generatorConfigUri);
-      if (!generatorConfigFile.existsSync()) {
+      if (!await generatorConfigFile.exists()) {
         continue;
       }
 
@@ -53,7 +116,7 @@ List<ModuleConfig> loadModuleConfigs({
       var manualNickname = nickNameOverrides[moduleName];
       var nickname = manualNickname ?? moduleInfo['nickname'] ?? moduleName;
 
-      modules.add(
+      moduleConfigs.add(
         ModuleConfig(
           type: GeneratorConfig.getPackageType(moduleInfo),
           name: moduleName,
@@ -67,7 +130,7 @@ List<ModuleConfig> loadModuleConfigs({
     }
   }
 
-  return modules;
+  return moduleConfigs;
 }
 
 Map<dynamic, dynamic> loadConfigFile(File file) {
