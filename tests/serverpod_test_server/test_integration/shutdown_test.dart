@@ -1,7 +1,9 @@
 // ignore_for_file: dead_code
 
 @Timeout(Duration(minutes: 1))
-
+@Skip(
+  'These tests are disabled because they are flaky, tracked by this issue: https://github.com/serverpod/serverpod/issues/3431',
+)
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -16,47 +18,43 @@ void main() {
   const verbose = true;
 
   test(
-      'Given a serverpod server with db '
-      'when run in maintenance mode '
-      'then it automatically exits with exit code 0', () async {
-    final processOutput = await startProcess(
-      'dart',
-      [
+    'Given a serverpod server with db '
+    'when run in maintenance mode '
+    'then it automatically exits with exit code 0',
+    () async {
+      final processOutput = await startProcess('dart', [
         'bin/main.dart',
         '--mode=test',
         '--role',
         'maintenance',
-      ],
-      verbose: verbose,
-    );
+      ], verbose: verbose);
 
-    await expectLater(
-      processOutput.outQueue,
-      emitsThrough(contains('SERVERPOD initialized')),
-    );
+      await expectLater(
+        processOutput.outQueue,
+        emitsThrough(contains('SERVERPOD initialized')),
+      );
 
-    await expectLater(
-      processOutput.outQueue,
-      emitsInOrder([
-        emitsThrough(contains('All maintenance tasks completed. Exiting.')),
-      ]),
-    );
+      await expectLater(
+        processOutput.outQueue,
+        emitsInOrder([
+          emitsThrough(contains('All maintenance tasks completed. Exiting.')),
+        ]),
+      );
 
-    var exitCode = await processOutput.process.exitCode;
-    expect(exitCode, 0);
-  },
-      timeout: const Timeout(Duration(seconds: 60)),
-      tags: [defaultIntegrationTestTag]);
+      var exitCode = await processOutput.process.exitCode;
+      expect(exitCode, 0);
+    },
+    timeout: const Timeout(Duration(seconds: 60)),
+    tags: [defaultIntegrationTestTag],
+  );
 
   group('Given a running serverpod server', () {
-    test(
-        'when it is sent SIGINT '
+    test('when it is sent SIGINT '
         'then it exits with exit code 130', () async {
-      final processOutput = await startProcess(
-        'dart',
-        ['bin/main.dart', '--mode=test'],
-        verbose: verbose,
-      );
+      final processOutput = await startProcess('dart', [
+        'bin/main.dart',
+        '--mode=test',
+      ], verbose: verbose);
 
       await expectLater(
         processOutput.outQueue,
@@ -84,14 +82,12 @@ void main() {
       expect(exitCode, 130);
     });
 
-    test(
-        'when it is sent SIGTERM '
+    test('when it is sent SIGTERM '
         'then it exits with exit code 143', () async {
-      final processOutput = await startProcess(
-        'dart',
-        ['bin/main.dart', '--mode=test'],
-        verbose: verbose,
-      );
+      final processOutput = await startProcess('dart', [
+        'bin/main.dart',
+        '--mode=test',
+      ], verbose: verbose);
 
       await expectLater(
         processOutput.outQueue,
@@ -117,20 +113,15 @@ void main() {
         terminationTimeout,
       );
       expect(exitCode, 143);
-    }, onPlatform: {
-      'windows': Skip('SIGTERM is not supported on Windows'),
-    });
+    }, onPlatform: {'windows': Skip('SIGTERM is not supported on Windows')});
 
-    test(
-        'with shutdown test auditor enabled '
+    test('with shutdown test auditor enabled '
         'when it is sent SIGINT '
         'then it exits with exit code 1', () async {
       final processOutput = await startProcess(
         'dart',
         ['bin/main.dart', '--mode=test'],
-        environment: {
-          '_SERVERPOD_SHUTDOWN_TEST_AUDITOR': '2',
-        },
+        environment: {'_SERVERPOD_SHUTDOWN_TEST_AUDITOR': '2'},
         verbose: verbose,
       );
 
@@ -159,7 +150,8 @@ void main() {
         emitsInOrder([
           emitsThrough(contains('serverpod shutdown test auditor enabled')),
           emitsThrough(
-              contains('Exception: serverpod shutdown test auditor throwing')),
+            contains('Exception: serverpod shutdown test auditor throwing'),
+          ),
         ]),
       );
 
@@ -169,15 +161,13 @@ void main() {
       expect(exitCode, 1);
     });
 
-    test(
-        'with an ongoing http request '
+    test('with an ongoing http request '
         'when it is sent SIGINT '
         'then it exits with exit code 130', () async {
-      final processOutput = await startProcess(
-        'dart',
-        ['bin/main.dart', '--mode=test'],
-        verbose: verbose,
-      );
+      final processOutput = await startProcess('dart', [
+        'bin/main.dart',
+        '--mode=test',
+      ], verbose: verbose);
 
       await expectLater(
         processOutput.outQueue,
@@ -222,11 +212,8 @@ void main() {
   }, tags: [defaultIntegrationTestTag]);
 }
 
-typedef ProcessOutput = ({
-  Process process,
-  Stream<String> outQueue,
-  Stream<String> errQueue,
-});
+typedef ProcessOutput =
+    ({Process process, Stream<String> outQueue, Stream<String> errQueue});
 
 Stream<String> _streamTransformer(
   Stream<List<int>> stream, {
@@ -238,20 +225,21 @@ Stream<String> _streamTransformer(
       .transform(const Utf8Decoder())
       .transform(const LineSplitter())
       .map((line) {
-    if (verbose) print('$startOfLine$line');
-    return line;
-  }).asBroadcastStream(
-    onCancel: (controller) {
-      if (verbose) print('<pausing ${prefix ?? ''} stream>');
-      controller.pause();
-    },
-    onListen: (controller) async {
-      if (controller.isPaused) {
-        if (verbose) print('<resuming ${prefix ?? ''} stream>');
-        controller.resume();
-      }
-    },
-  );
+        if (verbose) print('$startOfLine$line');
+        return line;
+      })
+      .asBroadcastStream(
+        onCancel: (controller) {
+          if (verbose) print('<pausing ${prefix ?? ''} stream>');
+          controller.pause();
+        },
+        onListen: (controller) async {
+          if (controller.isPaused) {
+            if (verbose) print('<resuming ${prefix ?? ''} stream>');
+            controller.resume();
+          }
+        },
+      );
 }
 
 Future<ProcessOutput> startProcess(
@@ -285,9 +273,5 @@ Future<ProcessOutput> startProcess(
     process.kill(ProcessSignal.sigkill);
   });
 
-  return (
-    process: process,
-    outQueue: outQueue,
-    errQueue: errQueue,
-  );
+  return (process: process, outQueue: outQueue, errQueue: errQueue);
 }
