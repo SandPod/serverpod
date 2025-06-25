@@ -8,7 +8,7 @@ import 'package:serverpod/serverpod.dart';
 final _contentTypeMapping = <String, ContentType>{
   '.js': ContentType('text', 'javascript'),
   '.json': ContentType('application', 'json'),
-  '.wsam': ContentType('application', 'wasm'),
+  '.wasm': ContentType('application', 'wasm'),
   '.css': ContentType('text', 'css'),
   '.png': ContentType('image', 'png'),
   '.jpg': ContentType('image', 'jpeg'),
