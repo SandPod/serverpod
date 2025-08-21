@@ -12,33 +12,12 @@ import 'config.dart';
 /// Apple account management functions.
 abstract final class AppleAccounts {
   /// Administrative methods for working with Apple-backed accounts.
-  static late AppleAccountsAdmin admin;
+  static AppleAccountsAdmin get admin => AppleAccountConfig.instance.admin;
 
-  static late AppleAccountConfig _config;
-  static late SignInWithApple _siwa;
-
-  /// Sets the configuration and configured the underlying utilities.
-  ///
-  /// This must be set before any methods on this class are invoked.
-  set config(final AppleAccountConfig config) {
-    _config = config;
-
-    _siwa = SignInWithApple(
-      config: SignInWithAppleConfiguration(
-        serviceIdentifier: config.serviceIdentifier,
-        bundleIdentifier: config.bundleIdentifier,
-        redirectUri: config.redirectUri,
-        teamId: config.teamId,
-        keyId: config.keyId,
-        key: config.key,
-      ),
-    );
-
-    admin = AppleAccountsAdmin(_siwa);
-  }
+  static SignInWithApple get siwa => AppleAccountConfig.instance.siwa;
 
   /// Returns the current configuration.
-  AppleAccountConfig get config => _config;
+  AppleAccountConfig get config => AppleAccountConfig.instance;
 
   /// Authenticates a user using an [identityToken] and [authorizationCode].
   ///
@@ -57,7 +36,7 @@ abstract final class AppleAccounts {
     final String? lastName,
     final Transaction? transaction,
   }) async {
-    final verifiedIdentityToken = await _siwa.verifyIdentityToken(
+    final verifiedIdentityToken = await siwa.verifyIdentityToken(
       identityToken,
       useBundleIdentifier: isNativeApplePlatformSignIn,
       nonce: null,
@@ -77,7 +56,7 @@ abstract final class AppleAccounts {
     final authUserNewlyCreated = appleAccount == null;
 
     if (appleAccount == null) {
-      final refreshToken = await _siwa.exchangeAuthorizationCode(
+      final refreshToken = await siwa.exchangeAuthorizationCode(
         authorizationCode,
         useBundleIdentifier: isNativeApplePlatformSignIn,
       );
@@ -151,7 +130,7 @@ abstract final class AppleAccounts {
 
       final payload = (jsonDecode(body) as Map)['payload'] as String;
 
-      final notification = await _siwa.decodeAppleServerNotification(
+      final notification = await siwa.decodeAppleServerNotification(
         payload,
       );
 

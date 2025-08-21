@@ -1,5 +1,8 @@
 import 'package:serverpod/serverpod.dart';
+import 'package:serverpod_auth_core_server/session.dart';
 import 'package:serverpod_auth_idp_server/core.dart' show AuthSessions;
+import 'package:serverpod_auth_idp_server/providers/apple.dart';
+import 'package:serverpod_auth_idp_server/providers/email.dart';
 import 'package:serverpod_new_auth_test_server/src/web/routes/root.dart';
 
 import 'src/generated/endpoints.dart';
@@ -16,6 +19,21 @@ void run(final List<String> args) async {
     Protocol(),
     Endpoints(),
     authenticationHandler: AuthSessions.authenticationHandler,
+  );
+
+  AuthenticationConfiguration(
+    providers: [
+      EmailAccountConfig(),
+      AppleAccountConfig(
+        serviceIdentifier: 'test',
+        bundleIdentifier: 'test',
+        redirectUri: 'test',
+        teamId: 'test',
+        keyId: 'test',
+        key: 'test',
+      )
+    ],
+    tokenIssuer: AuthSessionConfig(),
   );
 
   // Setup a default page at the web root.

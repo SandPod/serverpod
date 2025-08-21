@@ -1,4 +1,5 @@
 import 'package:serverpod/serverpod.dart';
+import 'package:serverpod_auth_idp_server/core.dart';
 
 import '../util/registration_password_policy.dart';
 import '../util/verification_code_generator.dart';
@@ -31,7 +32,15 @@ typedef SendPasswordResetVerificationCodeFunction = void Function(
 });
 
 /// Configuration options for the email account module.
-class EmailAccountConfig {
+class EmailAccountConfig implements ProviderConfiguration {
+  static late EmailAccountConfig _config;
+
+  /// The singleton instance of the email account configuration used
+  /// throughout the provider.
+  static EmailAccountConfig get instance => _config;
+
+  static IssueTokenFunction? _issueToken;
+
   /// The time for the registration email verification code to be valid.
   ///
   ///  Default is 15 minutes.
@@ -122,6 +131,43 @@ class EmailAccountConfig {
     ),
     this.passwordHashSaltLength = 16,
   });
+
+  /// ALEX: This should probably take a token issuer configuration directly
+  /// so that it can be initialized without the [CommonLogic] class.
+  @override
+  void initialize(CommonLogic conf) {
+    _config = this;
+    _issueToken = conf.tokenIssuer;
+  }
+}
+
+extension HiddenEmailAccountConfigExtension on EmailAccountConfig {
+  /// Issues a token for the given user.
+  static Future<AuthSuccess> issueToken({
+    required Session session,
+    required UuidValue authUserId,
+    required String method,
+    required Set<Scope>? scopes,
+    required Transaction? transaction,
+  }) async {
+    var tokenIssuer = EmailAccountConfig._issueToken;
+    if (tokenIssuer == null) {
+      throw StateError('EmailAccountConfig is not initialized');
+    }
+
+    return tokenIssuer(
+      session: session,
+      authUserId: authUserId,
+      method: method,
+      scopes: scopes,
+      transaction: transaction,
+    );
+  }
+
+  /// Set the current email account configuration.
+  static set config(EmailAccountConfig newConfig) {
+    EmailAccountConfig._config = newConfig;
+  }
 }
 
 /// A rolling rate limit which allows [maxAttempts] in the most recent [timeframe].

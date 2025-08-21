@@ -15,7 +15,12 @@ part 'email_accounts_admin.dart';
 /// Email account management functions.
 abstract final class EmailAccounts {
   /// The currently active email accounts configuration.
-  static EmailAccountConfig config = EmailAccountConfig();
+  static EmailAccountConfig get config => EmailAccountConfig.instance;
+
+  /// ALEX: This should probably be removed since it is only used in tests.
+  static set config(EmailAccountConfig newConfig) {
+    HiddenEmailAccountConfigExtension.config = newConfig;
+  }
 
   /// Collection of admin-related functions.
   static final admin = EmailAccountsAdmin._();

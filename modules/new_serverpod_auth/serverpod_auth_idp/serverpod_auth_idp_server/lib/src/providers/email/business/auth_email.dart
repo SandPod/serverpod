@@ -2,6 +2,7 @@ import 'package:serverpod/serverpod.dart';
 import 'package:serverpod_auth_core_server/profile.dart';
 import 'package:serverpod_auth_core_server/session.dart';
 
+import 'email_account_config.dart';
 import 'email_accounts.dart';
 
 part 'auth_email_admin.dart';
@@ -34,7 +35,7 @@ abstract class AuthEmail {
           transaction: transaction,
         );
 
-        return admin.createSession(
+        return admin.issueToken(
           session,
           authUserId,
           transaction: transaction,
@@ -108,7 +109,7 @@ abstract class AuthEmail {
           transaction: transaction,
         );
 
-        return admin.createSession(
+        return admin.issueToken(
           session,
           authUserId,
           transaction: transaction,
@@ -165,7 +166,7 @@ abstract class AuthEmail {
           transaction: transaction,
         );
 
-        return admin.createSession(
+        return admin.issueToken(
           session,
           authUserId,
           transaction: transaction,

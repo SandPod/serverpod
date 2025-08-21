@@ -19,7 +19,7 @@ import 'session_key.dart';
 /// This should be used instead of [AuthSession.db].
 abstract final class AuthSessions {
   /// The current session module configuration.
-  static AuthSessionConfig config = AuthSessionConfig();
+  static AuthSessionConfig get config => AuthSessionConfig.instance;
 
   /// Admin-related functions for managing session.
   static final admin = AuthSessionsAdmin();

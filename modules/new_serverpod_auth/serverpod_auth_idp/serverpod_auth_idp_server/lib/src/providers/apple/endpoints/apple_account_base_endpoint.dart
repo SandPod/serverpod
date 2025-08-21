@@ -74,10 +74,11 @@ abstract class AppleAccountBaseEndpoint extends Endpoint {
     final UuidValue authUserId, {
     final Transaction? transaction,
   }) async {
-    return AuthSessions.createSession(
-      session,
+    return HiddenAppleAccountConfigExtension.issueToken(
+      session: session,
       authUserId: authUserId,
       method: _method,
+      scopes: null,
       transaction: transaction,
     );
   }

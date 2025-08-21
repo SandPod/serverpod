@@ -57,15 +57,16 @@ final class AuthEmailAdmin {
   /// Create a session for the given auth user.
   ///
   /// The session is marked as originating from the `email` provider.
-  Future<AuthSuccess> createSession(
+  Future<AuthSuccess> issueToken(
     final Session session,
     final UuidValue authUserId, {
     required final Transaction? transaction,
   }) async {
-    return AuthSessions.createSession(
-      session,
+    return await HiddenEmailAccountConfigExtension.issueToken(
+      session: session,
       authUserId: authUserId,
       method: _method,
+      scopes: null,
       transaction: transaction,
     );
   }
