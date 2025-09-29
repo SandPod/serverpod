@@ -1,0 +1,23 @@
+database:
+  - roundtripSmall:
+  - roundtripLarge:
+  - insertSmall:
+  - insertLarge:
+  - getSmall:
+  - getLarge:
+  - getWithRelationsSmall:
+  - getWithRelationLarge:
+endpointRequests:
+  - echoSmall:
+  - echoLarge:
+  - inputSmall:
+  - inputLarge:
+  - fetchSmall:
+  - fetchLarge:
+streams:
+  - echoSmall:
+  - echoLarge:
+  - continuousInSmall:
+  - continuousInLarge:
+  - continuousOutSmall:
+  - continuousOutLarge:

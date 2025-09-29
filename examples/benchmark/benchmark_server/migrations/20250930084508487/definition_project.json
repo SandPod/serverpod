@@ -1,0 +1,1755 @@
+{
+  "moduleName": "benchmark",
+  "tables": [
+    {
+      "name": "large_message",
+      "dartName": "LargeMessage",
+      "module": "benchmark",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "id",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "nextval('large_message_id_seq'::regclass)",
+          "dartType": "int?"
+        },
+        {
+          "name": "nextId",
+          "columnType": 6,
+          "isNullable": true,
+          "dartType": "int?"
+        },
+        {
+          "name": "uuidDefaultRandom",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomV7",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid_v7()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomNull",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uuidDefaultStr",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "'550e8400-e29b-41d4-a716-446655440000'::uuid",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultStrNull",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "'3f2504e0-4f89-11d3-9a0c-0305e82c3301'::uuid",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uriDefault",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri"
+        },
+        {
+          "name": "uriDefaultNull",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri?"
+        },
+        {
+          "name": "stringDefault",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'This is a default value'::text",
+          "dartType": "String"
+        },
+        {
+          "name": "stringDefaultNull",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'This is a default null value'::text",
+          "dartType": "String?"
+        },
+        {
+          "name": "intDefault",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "10",
+          "dartType": "int"
+        },
+        {
+          "name": "intDefaultNull",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "20",
+          "dartType": "int?"
+        },
+        {
+          "name": "durationDefault",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "94230100",
+          "dartType": "Duration"
+        },
+        {
+          "name": "durationDefaultNull",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "177640100",
+          "dartType": "Duration?"
+        },
+        {
+          "name": "doubleDefault",
+          "columnType": 3,
+          "isNullable": false,
+          "columnDefault": "10.5",
+          "dartType": "double"
+        },
+        {
+          "name": "doubleDefaultNull",
+          "columnType": 3,
+          "isNullable": true,
+          "columnDefault": "20.5",
+          "dartType": "double?"
+        },
+        {
+          "name": "dateTimeDefaultNow",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "CURRENT_TIMESTAMP",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStr",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStrNull",
+          "columnType": 4,
+          "isNullable": true,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime?"
+        },
+        {
+          "name": "boolDefaultTrue",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "true",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultFalse",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "false",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultNullFalse",
+          "columnType": 1,
+          "isNullable": true,
+          "columnDefault": "false",
+          "dartType": "bool?"
+        },
+        {
+          "name": "bigintDefaultStr",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'-1234567890123456789099999999'::text",
+          "dartType": "BigInt"
+        },
+        {
+          "name": "bigintDefaultStrNull",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'1234567890123456789099999999'::text",
+          "dartType": "BigInt?"
+        },
+        {
+          "name": "uuidDefaultRandom2",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomV72",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid_v7()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomNull2",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uuidDefaultStr2",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "'550e8400-e29b-41d4-a716-446655440000'::uuid",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultStrNull2",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "'3f2504e0-4f89-11d3-9a0c-0305e82c3301'::uuid",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uriDefault2",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri"
+        },
+        {
+          "name": "uriDefaultNull2",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri?"
+        },
+        {
+          "name": "stringDefault2",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'This is a default value'::text",
+          "dartType": "String"
+        },
+        {
+          "name": "stringDefaultNull2",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'This is a default null value'::text",
+          "dartType": "String?"
+        },
+        {
+          "name": "intDefault2",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "10",
+          "dartType": "int"
+        },
+        {
+          "name": "intDefaultNull2",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "20",
+          "dartType": "int?"
+        },
+        {
+          "name": "durationDefault2",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "94230100",
+          "dartType": "Duration"
+        },
+        {
+          "name": "durationDefaultNull2",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "177640100",
+          "dartType": "Duration?"
+        },
+        {
+          "name": "doubleDefault2",
+          "columnType": 3,
+          "isNullable": false,
+          "columnDefault": "10.5",
+          "dartType": "double"
+        },
+        {
+          "name": "doubleDefaultNull2",
+          "columnType": 3,
+          "isNullable": true,
+          "columnDefault": "20.5",
+          "dartType": "double?"
+        },
+        {
+          "name": "dateTimeDefaultNow2",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "CURRENT_TIMESTAMP",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStr2",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStrNull2",
+          "columnType": 4,
+          "isNullable": true,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime?"
+        },
+        {
+          "name": "boolDefaultTrue2",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "true",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultFalse2",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "false",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultNullFalse2",
+          "columnType": 1,
+          "isNullable": true,
+          "columnDefault": "false",
+          "dartType": "bool?"
+        },
+        {
+          "name": "bigintDefaultStr2",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'-1234567890123456789099999999'::text",
+          "dartType": "BigInt"
+        },
+        {
+          "name": "bigintDefaultStrNull2",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'1234567890123456789099999999'::text",
+          "dartType": "BigInt?"
+        },
+        {
+          "name": "uuidDefaultRandom3",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomV73",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid_v7()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomNull3",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uuidDefaultStr3",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "'550e8400-e29b-41d4-a716-446655440000'::uuid",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultStrNull3",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "'3f2504e0-4f89-11d3-9a0c-0305e82c3301'::uuid",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uriDefault3",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri"
+        },
+        {
+          "name": "uriDefaultNull3",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri?"
+        },
+        {
+          "name": "stringDefault3",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'This is a default value'::text",
+          "dartType": "String"
+        },
+        {
+          "name": "stringDefaultNull3",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'This is a default null value'::text",
+          "dartType": "String?"
+        },
+        {
+          "name": "intDefault3",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "10",
+          "dartType": "int"
+        },
+        {
+          "name": "intDefaultNull3",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "20",
+          "dartType": "int?"
+        },
+        {
+          "name": "durationDefault3",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "94230100",
+          "dartType": "Duration"
+        },
+        {
+          "name": "durationDefaultNull3",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "177640100",
+          "dartType": "Duration?"
+        },
+        {
+          "name": "doubleDefault3",
+          "columnType": 3,
+          "isNullable": false,
+          "columnDefault": "10.5",
+          "dartType": "double"
+        },
+        {
+          "name": "doubleDefaultNull3",
+          "columnType": 3,
+          "isNullable": true,
+          "columnDefault": "20.5",
+          "dartType": "double?"
+        },
+        {
+          "name": "dateTimeDefaultNow3",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "CURRENT_TIMESTAMP",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStr3",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStrNull3",
+          "columnType": 4,
+          "isNullable": true,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime?"
+        },
+        {
+          "name": "boolDefaultTrue3",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "true",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultFalse3",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "false",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultNullFalse3",
+          "columnType": 1,
+          "isNullable": true,
+          "columnDefault": "false",
+          "dartType": "bool?"
+        },
+        {
+          "name": "bigintDefaultStr3",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'-1234567890123456789099999999'::text",
+          "dartType": "BigInt"
+        },
+        {
+          "name": "bigintDefaultStrNull3",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'1234567890123456789099999999'::text",
+          "dartType": "BigInt?"
+        },
+        {
+          "name": "uuidDefaultRandom4",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomV74",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid_v7()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomNull4",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uuidDefaultStr4",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "'550e8400-e29b-41d4-a716-446655440000'::uuid",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultStrNull4",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "'3f2504e0-4f89-11d3-9a0c-0305e82c3301'::uuid",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uriDefault4",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri"
+        },
+        {
+          "name": "uriDefaultNull4",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri?"
+        },
+        {
+          "name": "stringDefault4",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'This is a default value'::text",
+          "dartType": "String"
+        },
+        {
+          "name": "stringDefaultNull4",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'This is a default null value'::text",
+          "dartType": "String?"
+        },
+        {
+          "name": "intDefault4",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "10",
+          "dartType": "int"
+        },
+        {
+          "name": "intDefaultNull4",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "20",
+          "dartType": "int?"
+        },
+        {
+          "name": "durationDefault4",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "94230100",
+          "dartType": "Duration"
+        },
+        {
+          "name": "durationDefaultNull4",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "177640100",
+          "dartType": "Duration?"
+        },
+        {
+          "name": "doubleDefault4",
+          "columnType": 3,
+          "isNullable": false,
+          "columnDefault": "10.5",
+          "dartType": "double"
+        },
+        {
+          "name": "doubleDefaultNull4",
+          "columnType": 3,
+          "isNullable": true,
+          "columnDefault": "20.5",
+          "dartType": "double?"
+        },
+        {
+          "name": "dateTimeDefaultNow4",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "CURRENT_TIMESTAMP",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStr4",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStrNull4",
+          "columnType": 4,
+          "isNullable": true,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime?"
+        },
+        {
+          "name": "boolDefaultTrue4",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "true",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultFalse4",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "false",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultNullFalse4",
+          "columnType": 1,
+          "isNullable": true,
+          "columnDefault": "false",
+          "dartType": "bool?"
+        },
+        {
+          "name": "bigintDefaultStr4",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'-1234567890123456789099999999'::text",
+          "dartType": "BigInt"
+        },
+        {
+          "name": "bigintDefaultStrNull4",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'1234567890123456789099999999'::text",
+          "dartType": "BigInt?"
+        },
+        {
+          "name": "uuidDefaultRandom5",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomV75",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid_v7()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomNull5",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uuidDefaultStr5",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "'550e8400-e29b-41d4-a716-446655440000'::uuid",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultStrNull5",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "'3f2504e0-4f89-11d3-9a0c-0305e82c3301'::uuid",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uriDefault5",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri"
+        },
+        {
+          "name": "uriDefaultNull5",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri?"
+        },
+        {
+          "name": "stringDefault5",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'This is a default value'::text",
+          "dartType": "String"
+        },
+        {
+          "name": "stringDefaultNull5",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'This is a default null value'::text",
+          "dartType": "String?"
+        },
+        {
+          "name": "intDefault5",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "10",
+          "dartType": "int"
+        },
+        {
+          "name": "intDefaultNull5",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "20",
+          "dartType": "int?"
+        },
+        {
+          "name": "durationDefault5",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "94230100",
+          "dartType": "Duration"
+        },
+        {
+          "name": "durationDefaultNull5",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "177640100",
+          "dartType": "Duration?"
+        },
+        {
+          "name": "doubleDefault5",
+          "columnType": 3,
+          "isNullable": false,
+          "columnDefault": "10.5",
+          "dartType": "double"
+        },
+        {
+          "name": "doubleDefaultNull5",
+          "columnType": 3,
+          "isNullable": true,
+          "columnDefault": "20.5",
+          "dartType": "double?"
+        },
+        {
+          "name": "dateTimeDefaultNow5",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "CURRENT_TIMESTAMP",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStr5",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStrNull5",
+          "columnType": 4,
+          "isNullable": true,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime?"
+        },
+        {
+          "name": "boolDefaultTrue5",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "true",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultFalse5",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "false",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultNullFalse5",
+          "columnType": 1,
+          "isNullable": true,
+          "columnDefault": "false",
+          "dartType": "bool?"
+        },
+        {
+          "name": "bigintDefaultStr5",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'-1234567890123456789099999999'::text",
+          "dartType": "BigInt"
+        },
+        {
+          "name": "bigintDefaultStrNull5",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'1234567890123456789099999999'::text",
+          "dartType": "BigInt?"
+        },
+        {
+          "name": "uuidDefaultRandom6",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomV76",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid_v7()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomNull6",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uuidDefaultStr6",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "'550e8400-e29b-41d4-a716-446655440000'::uuid",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultStrNull6",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "'3f2504e0-4f89-11d3-9a0c-0305e82c3301'::uuid",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uriDefault6",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri"
+        },
+        {
+          "name": "uriDefaultNull6",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri?"
+        },
+        {
+          "name": "stringDefault6",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'This is a default value'::text",
+          "dartType": "String"
+        },
+        {
+          "name": "stringDefaultNull6",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'This is a default null value'::text",
+          "dartType": "String?"
+        },
+        {
+          "name": "intDefault6",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "10",
+          "dartType": "int"
+        },
+        {
+          "name": "intDefaultNull6",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "20",
+          "dartType": "int?"
+        },
+        {
+          "name": "durationDefault6",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "94230100",
+          "dartType": "Duration"
+        },
+        {
+          "name": "durationDefaultNull6",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "177640100",
+          "dartType": "Duration?"
+        },
+        {
+          "name": "doubleDefault6",
+          "columnType": 3,
+          "isNullable": false,
+          "columnDefault": "10.5",
+          "dartType": "double"
+        },
+        {
+          "name": "doubleDefaultNull6",
+          "columnType": 3,
+          "isNullable": true,
+          "columnDefault": "20.5",
+          "dartType": "double?"
+        },
+        {
+          "name": "dateTimeDefaultNow6",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "CURRENT_TIMESTAMP",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStr6",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStrNull6",
+          "columnType": 4,
+          "isNullable": true,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime?"
+        },
+        {
+          "name": "boolDefaultTrue6",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "true",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultFalse6",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "false",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultNullFalse6",
+          "columnType": 1,
+          "isNullable": true,
+          "columnDefault": "false",
+          "dartType": "bool?"
+        },
+        {
+          "name": "bigintDefaultStr6",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'-1234567890123456789099999999'::text",
+          "dartType": "BigInt"
+        },
+        {
+          "name": "bigintDefaultStrNull6",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'1234567890123456789099999999'::text",
+          "dartType": "BigInt?"
+        },
+        {
+          "name": "uuidDefaultRandom7",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomV77",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid_v7()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomNull7",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uuidDefaultStr7",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "'550e8400-e29b-41d4-a716-446655440000'::uuid",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultStrNull7",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "'3f2504e0-4f89-11d3-9a0c-0305e82c3301'::uuid",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uriDefault7",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri"
+        },
+        {
+          "name": "uriDefaultNull7",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri?"
+        },
+        {
+          "name": "stringDefault7",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'This is a default value'::text",
+          "dartType": "String"
+        },
+        {
+          "name": "stringDefaultNull7",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'This is a default null value'::text",
+          "dartType": "String?"
+        },
+        {
+          "name": "intDefault7",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "10",
+          "dartType": "int"
+        },
+        {
+          "name": "intDefaultNull7",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "20",
+          "dartType": "int?"
+        },
+        {
+          "name": "durationDefault7",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "94230100",
+          "dartType": "Duration"
+        },
+        {
+          "name": "durationDefaultNull7",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "177640100",
+          "dartType": "Duration?"
+        },
+        {
+          "name": "doubleDefault7",
+          "columnType": 3,
+          "isNullable": false,
+          "columnDefault": "10.5",
+          "dartType": "double"
+        },
+        {
+          "name": "doubleDefaultNull7",
+          "columnType": 3,
+          "isNullable": true,
+          "columnDefault": "20.5",
+          "dartType": "double?"
+        },
+        {
+          "name": "dateTimeDefaultNow7",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "CURRENT_TIMESTAMP",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStr7",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStrNull7",
+          "columnType": 4,
+          "isNullable": true,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime?"
+        },
+        {
+          "name": "boolDefaultTrue7",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "true",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultFalse7",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "false",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultNullFalse7",
+          "columnType": 1,
+          "isNullable": true,
+          "columnDefault": "false",
+          "dartType": "bool?"
+        },
+        {
+          "name": "bigintDefaultStr7",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'-1234567890123456789099999999'::text",
+          "dartType": "BigInt"
+        },
+        {
+          "name": "bigintDefaultStrNull7",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'1234567890123456789099999999'::text",
+          "dartType": "BigInt?"
+        },
+        {
+          "name": "uuidDefaultRandom8",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomV78",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid_v7()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomNull8",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uuidDefaultStr8",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "'550e8400-e29b-41d4-a716-446655440000'::uuid",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultStrNull8",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "'3f2504e0-4f89-11d3-9a0c-0305e82c3301'::uuid",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uriDefault8",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri"
+        },
+        {
+          "name": "uriDefaultNull8",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri?"
+        },
+        {
+          "name": "stringDefault8",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'This is a default value'::text",
+          "dartType": "String"
+        },
+        {
+          "name": "stringDefaultNull8",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'This is a default null value'::text",
+          "dartType": "String?"
+        },
+        {
+          "name": "intDefault8",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "10",
+          "dartType": "int"
+        },
+        {
+          "name": "intDefaultNull8",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "20",
+          "dartType": "int?"
+        },
+        {
+          "name": "durationDefault8",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "94230100",
+          "dartType": "Duration"
+        },
+        {
+          "name": "durationDefaultNull8",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "177640100",
+          "dartType": "Duration?"
+        },
+        {
+          "name": "doubleDefault8",
+          "columnType": 3,
+          "isNullable": false,
+          "columnDefault": "10.5",
+          "dartType": "double"
+        },
+        {
+          "name": "doubleDefaultNull8",
+          "columnType": 3,
+          "isNullable": true,
+          "columnDefault": "20.5",
+          "dartType": "double?"
+        },
+        {
+          "name": "dateTimeDefaultNow8",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "CURRENT_TIMESTAMP",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStr8",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStrNull8",
+          "columnType": 4,
+          "isNullable": true,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime?"
+        },
+        {
+          "name": "boolDefaultTrue8",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "true",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultFalse8",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "false",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultNullFalse8",
+          "columnType": 1,
+          "isNullable": true,
+          "columnDefault": "false",
+          "dartType": "bool?"
+        },
+        {
+          "name": "bigintDefaultStr8",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'-1234567890123456789099999999'::text",
+          "dartType": "BigInt"
+        },
+        {
+          "name": "bigintDefaultStrNull8",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'1234567890123456789099999999'::text",
+          "dartType": "BigInt?"
+        },
+        {
+          "name": "uuidDefaultRandom9",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomV79",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid_v7()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomNull9",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uuidDefaultStr9",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "'550e8400-e29b-41d4-a716-446655440000'::uuid",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultStrNull9",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "'3f2504e0-4f89-11d3-9a0c-0305e82c3301'::uuid",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uriDefault9",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri"
+        },
+        {
+          "name": "uriDefaultNull9",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri?"
+        },
+        {
+          "name": "stringDefault9",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'This is a default value'::text",
+          "dartType": "String"
+        },
+        {
+          "name": "stringDefaultNull9",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'This is a default null value'::text",
+          "dartType": "String?"
+        },
+        {
+          "name": "intDefault9",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "10",
+          "dartType": "int"
+        },
+        {
+          "name": "intDefaultNull9",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "20",
+          "dartType": "int?"
+        },
+        {
+          "name": "durationDefault9",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "94230100",
+          "dartType": "Duration"
+        },
+        {
+          "name": "durationDefaultNull9",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "177640100",
+          "dartType": "Duration?"
+        },
+        {
+          "name": "doubleDefault9",
+          "columnType": 3,
+          "isNullable": false,
+          "columnDefault": "10.5",
+          "dartType": "double"
+        },
+        {
+          "name": "doubleDefaultNull9",
+          "columnType": 3,
+          "isNullable": true,
+          "columnDefault": "20.5",
+          "dartType": "double?"
+        },
+        {
+          "name": "dateTimeDefaultNow9",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "CURRENT_TIMESTAMP",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStr9",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStrNull9",
+          "columnType": 4,
+          "isNullable": true,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime?"
+        },
+        {
+          "name": "boolDefaultTrue9",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "true",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultFalse9",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "false",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultNullFalse9",
+          "columnType": 1,
+          "isNullable": true,
+          "columnDefault": "false",
+          "dartType": "bool?"
+        },
+        {
+          "name": "bigintDefaultStr9",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'-1234567890123456789099999999'::text",
+          "dartType": "BigInt"
+        },
+        {
+          "name": "bigintDefaultStrNull9",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'1234567890123456789099999999'::text",
+          "dartType": "BigInt?"
+        },
+        {
+          "name": "uuidDefaultRandom10",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomV710",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "gen_random_uuid_v7()",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultRandomNull10",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "gen_random_uuid()",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uuidDefaultStr10",
+          "columnType": 7,
+          "isNullable": false,
+          "columnDefault": "'550e8400-e29b-41d4-a716-446655440000'::uuid",
+          "dartType": "UuidValue"
+        },
+        {
+          "name": "uuidDefaultStrNull10",
+          "columnType": 7,
+          "isNullable": true,
+          "columnDefault": "'3f2504e0-4f89-11d3-9a0c-0305e82c3301'::uuid",
+          "dartType": "UuidValue?"
+        },
+        {
+          "name": "uriDefault10",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri"
+        },
+        {
+          "name": "uriDefaultNull10",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'https://serverpod.dev/default'::text",
+          "dartType": "Uri?"
+        },
+        {
+          "name": "stringDefault10",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'This is a default value'::text",
+          "dartType": "String"
+        },
+        {
+          "name": "stringDefaultNull10",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'This is a default null value'::text",
+          "dartType": "String?"
+        },
+        {
+          "name": "intDefault10",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "10",
+          "dartType": "int"
+        },
+        {
+          "name": "intDefaultNull10",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "20",
+          "dartType": "int?"
+        },
+        {
+          "name": "durationDefault10",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "94230100",
+          "dartType": "Duration"
+        },
+        {
+          "name": "durationDefaultNull10",
+          "columnType": 6,
+          "isNullable": true,
+          "columnDefault": "177640100",
+          "dartType": "Duration?"
+        },
+        {
+          "name": "doubleDefault10",
+          "columnType": 3,
+          "isNullable": false,
+          "columnDefault": "10.5",
+          "dartType": "double"
+        },
+        {
+          "name": "doubleDefaultNull10",
+          "columnType": 3,
+          "isNullable": true,
+          "columnDefault": "20.5",
+          "dartType": "double?"
+        },
+        {
+          "name": "dateTimeDefaultNow10",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "CURRENT_TIMESTAMP",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStr10",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime"
+        },
+        {
+          "name": "dateTimeDefaultStrNull10",
+          "columnType": 4,
+          "isNullable": true,
+          "columnDefault": "'2024-05-24 22:00:00'::timestamp without time zone",
+          "dartType": "DateTime?"
+        },
+        {
+          "name": "boolDefaultTrue10",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "true",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultFalse10",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "false",
+          "dartType": "bool"
+        },
+        {
+          "name": "boolDefaultNullFalse10",
+          "columnType": 1,
+          "isNullable": true,
+          "columnDefault": "false",
+          "dartType": "bool?"
+        },
+        {
+          "name": "bigintDefaultStr10",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'-1234567890123456789099999999'::text",
+          "dartType": "BigInt"
+        },
+        {
+          "name": "bigintDefaultStrNull10",
+          "columnType": 0,
+          "isNullable": true,
+          "columnDefault": "'1234567890123456789099999999'::text",
+          "dartType": "BigInt?"
+        }
+      ],
+      "foreignKeys": [
+        {
+          "constraintName": "large_message_fk_0",
+          "columns": [
+            "nextId"
+          ],
+          "referenceTable": "large_message",
+          "referenceTableSchema": "public",
+          "referenceColumns": [
+            "id"
+          ],
+          "onUpdate": 3,
+          "onDelete": 0
+        }
+      ],
+      "indexes": [
+        {
+          "indexName": "large_message_pkey",
+          "elements": [
+            {
+              "type": 0,
+              "definition": "id"
+            }
+          ],
+          "type": "btree",
+          "isUnique": true,
+          "isPrimary": true
+        },
+        {
+          "indexName": "large_next_unique_idx",
+          "elements": [
+            {
+              "type": 0,
+              "definition": "nextId"
+            }
+          ],
+          "type": "btree",
+          "isUnique": true,
+          "isPrimary": false
+        }
+      ],
+      "managed": true
+    },
+    {
+      "name": "small_message",
+      "dartName": "SmallMessage",
+      "module": "benchmark",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "id",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "nextval('small_message_id_seq'::regclass)",
+          "dartType": "int?"
+        },
+        {
+          "name": "message",
+          "columnType": 0,
+          "isNullable": false,
+          "columnDefault": "'This is the default message value'::text",
+          "dartType": "String"
+        },
+        {
+          "name": "nextId",
+          "columnType": 6,
+          "isNullable": true,
+          "dartType": "int?"
+        }
+      ],
+      "foreignKeys": [
+        {
+          "constraintName": "small_message_fk_0",
+          "columns": [
+            "nextId"
+          ],
+          "referenceTable": "small_message",
+          "referenceTableSchema": "public",
+          "referenceColumns": [
+            "id"
+          ],
+          "onUpdate": 3,
+          "onDelete": 0
+        }
+      ],
+      "indexes": [
+        {
+          "indexName": "small_message_pkey",
+          "elements": [
+            {
+              "type": 0,
+              "definition": "id"
+            }
+          ],
+          "type": "btree",
+          "isUnique": true,
+          "isPrimary": true
+        },
+        {
+          "indexName": "small_next_unique_idx",
+          "elements": [
+            {
+              "type": 0,
+              "definition": "nextId"
+            }
+          ],
+          "type": "btree",
+          "isUnique": true,
+          "isPrimary": false
+        }
+      ],
+      "managed": true
+    }
+  ],
+  "installedModules": [
+    {
+      "module": "serverpod",
+      "version": "20250825102336032-v3-0-0"
+    }
+  ],
+  "migrationApiVersion": 1
+}

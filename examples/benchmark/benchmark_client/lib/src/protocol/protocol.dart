@@ -11,6 +11,10 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
+import 'large_message.dart' as _i2;
+import 'small_message.dart' as _i3;
+export 'large_message.dart';
+export 'small_message.dart';
 export 'client.dart';
 
 class Protocol extends _i1.SerializationManager {
@@ -26,6 +30,18 @@ class Protocol extends _i1.SerializationManager {
     Type? t,
   ]) {
     t ??= T;
+    if (t == _i2.LargeMessage) {
+      return _i2.LargeMessage.fromJson(data) as T;
+    }
+    if (t == _i3.SmallMessage) {
+      return _i3.SmallMessage.fromJson(data) as T;
+    }
+    if (t == _i1.getType<_i2.LargeMessage?>()) {
+      return (data != null ? _i2.LargeMessage.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i3.SmallMessage?>()) {
+      return (data != null ? _i3.SmallMessage.fromJson(data) : null) as T;
+    }
     return super.deserialize<T>(data, t);
   }
 
@@ -33,6 +49,12 @@ class Protocol extends _i1.SerializationManager {
   String? getClassNameForObject(Object? data) {
     String? className = super.getClassNameForObject(data);
     if (className != null) return className;
+    switch (data) {
+      case _i2.LargeMessage():
+        return 'LargeMessage';
+      case _i3.SmallMessage():
+        return 'SmallMessage';
+    }
     return null;
   }
 
@@ -41,6 +63,12 @@ class Protocol extends _i1.SerializationManager {
     var dataClassName = data['className'];
     if (dataClassName is! String) {
       return super.deserializeByClassName(data);
+    }
+    if (dataClassName == 'LargeMessage') {
+      return deserialize<_i2.LargeMessage>(data['data']);
+    }
+    if (dataClassName == 'SmallMessage') {
+      return deserialize<_i3.SmallMessage>(data['data']);
     }
     return super.deserializeByClassName(data);
   }
