@@ -7,8 +7,8 @@ environment:
 dependencies:
   serverpod_client: 3.0.0-alpha.1
 
-dependency_overrides: 
-  serverpod_client: 
-    path: /Users/alex/repos/serverpod/main/packages/serverpod_client 
-  serverpod_serialization: 
-    path: /Users/alex/repos/serverpod/main/packages/serverpod_serialization 
+# dependency_overrides: 
+#   serverpod_client: 
+#     path: /Users/alex/repos/serverpod/main/packages/serverpod_client 
+#   serverpod_serialization: 
+#     path: /Users/alex/repos/serverpod/main/packages/serverpod_serialization 

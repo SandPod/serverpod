@@ -174,23 +174,8 @@ class _SmallMessageImpl extends SmallMessage {
   }
 }
 
-class SmallMessageUpdateTable extends _i1.UpdateTable<SmallMessageTable> {
-  SmallMessageUpdateTable(super.table);
-
-  _i1.ColumnValue<String, String> message(String value) => _i1.ColumnValue(
-        table.message,
-        value,
-      );
-
-  _i1.ColumnValue<int, int> nextId(int? value) => _i1.ColumnValue(
-        table.nextId,
-        value,
-      );
-}
-
 class SmallMessageTable extends _i1.Table<int?> {
   SmallMessageTable({super.tableRelation}) : super(tableName: 'small_message') {
-    updateTable = SmallMessageUpdateTable(this);
     message = _i1.ColumnString(
       'message',
       this,
@@ -201,8 +186,6 @@ class SmallMessageTable extends _i1.Table<int?> {
       this,
     );
   }
-
-  late final SmallMessageUpdateTable updateTable;
 
   late final _i1.ColumnString message;
 
@@ -465,46 +448,6 @@ class SmallMessageRepository {
     return session.db.updateRow<SmallMessage>(
       row,
       columns: columns?.call(SmallMessage.t),
-      transaction: transaction,
-    );
-  }
-
-  /// Updates a single [SmallMessage] by its [id] with the specified [columnValues].
-  /// Returns the updated row or null if no row with the given id exists.
-  Future<SmallMessage?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<SmallMessageUpdateTable> columnValues,
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.updateById<SmallMessage>(
-      id,
-      columnValues: columnValues(SmallMessage.t.updateTable),
-      transaction: transaction,
-    );
-  }
-
-  /// Updates all [SmallMessage]s matching the [where] expression with the specified [columnValues].
-  /// Returns the list of updated rows.
-  Future<List<SmallMessage>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<SmallMessageUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<SmallMessageTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<SmallMessageTable>? orderBy,
-    _i1.OrderByListBuilder<SmallMessageTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.updateWhere<SmallMessage>(
-      columnValues: columnValues(SmallMessage.t.updateTable),
-      where: where(SmallMessage.t),
-      limit: limit,
-      offset: offset,
-      orderBy: orderBy?.call(SmallMessage.t),
-      orderByList: orderByList?.call(SmallMessage.t),
-      orderDescending: orderDescending,
       transaction: transaction,
     );
   }
