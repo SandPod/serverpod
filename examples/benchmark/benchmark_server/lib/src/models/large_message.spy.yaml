@@ -1,0 +1,256 @@
+# This model emulates a large message by using many fields with default values.
+# It is used in the benchmark example to test serialization and deserialization.
+#
+# The object has a self relation so that multiple objects can be nested.
+
+class: LargeMessage
+table: large_message
+fields:
+  previous: LargeMessage?, relation(name=self_relation)
+  nextId: int?
+  next: LargeMessage?, relation(name=self_relation, field=nextId, onDelete=SetNull)
+
+  uuidDefaultRandom: UuidValue, default=random
+  uuidDefaultRandomV7: UuidValue, default=random_v7
+  uuidDefaultRandomNull: UuidValue?, default=random
+  uuidDefaultStr: UuidValue, default='550e8400-e29b-41d4-a716-446655440000'
+  uuidDefaultStrNull: UuidValue?, default='3f2504e0-4f89-11d3-9a0c-0305e82c3301'
+  uriDefault: Uri, default='https://serverpod.dev/default'
+  uriDefaultNull: Uri?, default='https://serverpod.dev/default'
+  stringDefault: String, default='This is a default value'
+  stringDefaultNull: String?, default='This is a default null value'
+  intDefault: int, default=10
+  intDefaultNull: int?, default=20
+  durationDefault: Duration, default=1d 2h 10min 30s 100ms
+  durationDefaultNull: Duration?, default=2d 1h 20min 40s 100ms
+  doubleDefault: double, default=10.5
+  doubleDefaultNull: double?, default=20.5
+  dateTimeDefaultNow: DateTime, default=now
+  dateTimeDefaultStr: DateTime, default=2024-05-24T22:00:00.000Z
+  dateTimeDefaultStrNull: DateTime?, default=2024-05-24T22:00:00.000Z
+  boolDefaultTrue: bool, default=true
+  boolDefaultFalse: bool, default=false
+  boolDefaultNullFalse: bool?, default=false
+  bigintDefaultStr: BigInt, default=-1234567890123456789099999999
+  bigintDefaultStrNull: BigInt?, default=1234567890123456789099999999
+
+  uuidDefaultRandom2: UuidValue, default=random
+  uuidDefaultRandomV72: UuidValue, default=random_v7
+  uuidDefaultRandomNull2: UuidValue?, default=random
+  uuidDefaultStr2: UuidValue, default='550e8400-e29b-41d4-a716-446655440000'
+  uuidDefaultStrNull2: UuidValue?, default='3f2504e0-4f89-11d3-9a0c-0305e82c3301'
+  uriDefault2: Uri, default='https://serverpod.dev/default'
+  uriDefaultNull2: Uri?, default='https://serverpod.dev/default'
+  stringDefault2: String, default='This is a default value'
+  stringDefaultNull2: String?, default='This is a default null value'
+  intDefault2: int, default=10
+  intDefaultNull2: int?, default=20
+  durationDefault2: Duration, default=1d 2h 10min 30s 100ms
+  durationDefaultNull2: Duration?, default=2d 1h 20min 40s 100ms
+  doubleDefault2: double, default=10.5
+  doubleDefaultNull2: double?, default=20.5
+  dateTimeDefaultNow2: DateTime, default=now
+  dateTimeDefaultStr2: DateTime, default=2024-05-24T22:00:00.000Z
+  dateTimeDefaultStrNull2: DateTime?, default=2024-05-24T22:00:00.000Z
+  boolDefaultTrue2: bool, default=true
+  boolDefaultFalse2: bool, default=false
+  boolDefaultNullFalse2: bool?, default=false
+  bigintDefaultStr2: BigInt, default=-1234567890123456789099999999
+  bigintDefaultStrNull2: BigInt?, default=1234567890123456789099999999
+
+  uuidDefaultRandom3: UuidValue, default=random
+  uuidDefaultRandomV73: UuidValue, default=random_v7
+  uuidDefaultRandomNull3: UuidValue?, default=random
+  uuidDefaultStr3: UuidValue, default='550e8400-e29b-41d4-a716-446655440000'
+  uuidDefaultStrNull3: UuidValue?, default='3f2504e0-4f89-11d3-9a0c-0305e82c3301'
+  uriDefault3: Uri, default='https://serverpod.dev/default'
+  uriDefaultNull3: Uri?, default='https://serverpod.dev/default'
+  stringDefault3: String, default='This is a default value'
+  stringDefaultNull3: String?, default='This is a default null value'
+  intDefault3: int, default=10
+  intDefaultNull3: int?, default=20
+  durationDefault3: Duration, default=1d 2h 10min 30s 100ms
+  durationDefaultNull3: Duration?, default=2d 1h 20min 40s 100ms
+  doubleDefault3: double, default=10.5
+  doubleDefaultNull3: double?, default=20.5
+  dateTimeDefaultNow3: DateTime, default=now
+  dateTimeDefaultStr3: DateTime, default=2024-05-24T22:00:00.000Z
+  dateTimeDefaultStrNull3: DateTime?, default=2024-05-24T22:00:00.000Z
+  boolDefaultTrue3: bool, default=true
+  boolDefaultFalse3: bool, default=false
+  boolDefaultNullFalse3: bool?, default=false
+  bigintDefaultStr3: BigInt, default=-1234567890123456789099999999
+  bigintDefaultStrNull3: BigInt?, default=1234567890123456789099999999
+
+  uuidDefaultRandom4: UuidValue, default=random
+  uuidDefaultRandomV74: UuidValue, default=random_v7
+  uuidDefaultRandomNull4: UuidValue?, default=random
+  uuidDefaultStr4: UuidValue, default='550e8400-e29b-41d4-a716-446655440000'
+  uuidDefaultStrNull4: UuidValue?, default='3f2504e0-4f89-11d3-9a0c-0305e82c3301'
+  uriDefault4: Uri, default='https://serverpod.dev/default'
+  uriDefaultNull4: Uri?, default='https://serverpod.dev/default'
+  stringDefault4: String, default='This is a default value'
+  stringDefaultNull4: String?, default='This is a default null value'
+  intDefault4: int, default=10
+  intDefaultNull4: int?, default=20
+  durationDefault4: Duration, default=1d 2h 10min 30s 100ms
+  durationDefaultNull4: Duration?, default=2d 1h 20min 40s 100ms
+  doubleDefault4: double, default=10.5
+  doubleDefaultNull4: double?, default=20.5
+  dateTimeDefaultNow4: DateTime, default=now
+  dateTimeDefaultStr4: DateTime, default=2024-05-24T22:00:00.000Z
+  dateTimeDefaultStrNull4: DateTime?, default=2024-05-24T22:00:00.000Z
+  boolDefaultTrue4: bool, default=true
+  boolDefaultFalse4: bool, default=false
+  boolDefaultNullFalse4: bool?, default=false
+  bigintDefaultStr4: BigInt, default=-1234567890123456789099999999
+  bigintDefaultStrNull4: BigInt?, default=1234567890123456789099999999
+
+  uuidDefaultRandom5: UuidValue, default=random
+  uuidDefaultRandomV75: UuidValue, default=random_v7
+  uuidDefaultRandomNull5: UuidValue?, default=random
+  uuidDefaultStr5: UuidValue, default='550e8400-e29b-41d4-a716-446655440000'
+  uuidDefaultStrNull5: UuidValue?, default='3f2504e0-4f89-11d3-9a0c-0305e82c3301'
+  uriDefault5: Uri, default='https://serverpod.dev/default'
+  uriDefaultNull5: Uri?, default='https://serverpod.dev/default'
+  stringDefault5: String, default='This is a default value'
+  stringDefaultNull5: String?, default='This is a default null value'
+  intDefault5: int, default=10
+  intDefaultNull5: int?, default=20
+  durationDefault5: Duration, default=1d 2h 10min 30s 100ms
+  durationDefaultNull5: Duration?, default=2d 1h 20min 40s 100ms
+  doubleDefault5: double, default=10.5
+  doubleDefaultNull5: double?, default=20.5
+  dateTimeDefaultNow5: DateTime, default=now
+  dateTimeDefaultStr5: DateTime, default=2024-05-24T22:00:00.000Z
+  dateTimeDefaultStrNull5: DateTime?, default=2024-05-24T22:00:00.000Z
+  boolDefaultTrue5: bool, default=true
+  boolDefaultFalse5: bool, default=false
+  boolDefaultNullFalse5: bool?, default=false
+  bigintDefaultStr5: BigInt, default=-1234567890123456789099999999
+  bigintDefaultStrNull5: BigInt?, default=1234567890123456789099999999
+
+  uuidDefaultRandom6: UuidValue, default=random
+  uuidDefaultRandomV76: UuidValue, default=random_v7
+  uuidDefaultRandomNull6: UuidValue?, default=random
+  uuidDefaultStr6: UuidValue, default='550e8400-e29b-41d4-a716-446655440000'
+  uuidDefaultStrNull6: UuidValue?, default='3f2504e0-4f89-11d3-9a0c-0305e82c3301'
+  uriDefault6: Uri, default='https://serverpod.dev/default'
+  uriDefaultNull6: Uri?, default='https://serverpod.dev/default'
+  stringDefault6: String, default='This is a default value'
+  stringDefaultNull6: String?, default='This is a default null value'
+  intDefault6: int, default=10
+  intDefaultNull6: int?, default=20
+  durationDefault6: Duration, default=1d 2h 10min 30s 100ms
+  durationDefaultNull6: Duration?, default=2d 1h 20min 40s 100ms
+  doubleDefault6: double, default=10.5
+  doubleDefaultNull6: double?, default=20.5
+  dateTimeDefaultNow6: DateTime, default=now
+  dateTimeDefaultStr6: DateTime, default=2024-05-24T22:00:00.000Z
+  dateTimeDefaultStrNull6: DateTime?, default=2024-05-24T22:00:00.000Z
+  boolDefaultTrue6: bool, default=true
+  boolDefaultFalse6: bool, default=false
+  boolDefaultNullFalse6: bool?, default=false
+  bigintDefaultStr6: BigInt, default=-1234567890123456789099999999
+  bigintDefaultStrNull6: BigInt?, default=1234567890123456789099999999
+
+  uuidDefaultRandom7: UuidValue, default=random
+  uuidDefaultRandomV77: UuidValue, default=random_v7
+  uuidDefaultRandomNull7: UuidValue?, default=random
+  uuidDefaultStr7: UuidValue, default='550e8400-e29b-41d4-a716-446655440000'
+  uuidDefaultStrNull7: UuidValue?, default='3f2504e0-4f89-11d3-9a0c-0305e82c3301'
+  uriDefault7: Uri, default='https://serverpod.dev/default'
+  uriDefaultNull7: Uri?, default='https://serverpod.dev/default'
+  stringDefault7: String, default='This is a default value'
+  stringDefaultNull7: String?, default='This is a default null value'
+  intDefault7: int, default=10
+  intDefaultNull7: int?, default=20
+  durationDefault7: Duration, default=1d 2h 10min 30s 100ms
+  durationDefaultNull7: Duration?, default=2d 1h 20min 40s 100ms
+  doubleDefault7: double, default=10.5
+  doubleDefaultNull7: double?, default=20.5
+  dateTimeDefaultNow7: DateTime, default=now
+  dateTimeDefaultStr7: DateTime, default=2024-05-24T22:00:00.000Z
+  dateTimeDefaultStrNull7: DateTime?, default=2024-05-24T22:00:00.000Z
+  boolDefaultTrue7: bool, default=true
+  boolDefaultFalse7: bool, default=false
+  boolDefaultNullFalse7: bool?, default=false
+  bigintDefaultStr7: BigInt, default=-1234567890123456789099999999
+  bigintDefaultStrNull7: BigInt?, default=1234567890123456789099999999
+
+  uuidDefaultRandom8: UuidValue, default=random
+  uuidDefaultRandomV78: UuidValue, default=random_v7
+  uuidDefaultRandomNull8: UuidValue?, default=random
+  uuidDefaultStr8: UuidValue, default='550e8400-e29b-41d4-a716-446655440000'
+  uuidDefaultStrNull8: UuidValue?, default='3f2504e0-4f89-11d3-9a0c-0305e82c3301'
+  uriDefault8: Uri, default='https://serverpod.dev/default'
+  uriDefaultNull8: Uri?, default='https://serverpod.dev/default'
+  stringDefault8: String, default='This is a default value'
+  stringDefaultNull8: String?, default='This is a default null value'
+  intDefault8: int, default=10
+  intDefaultNull8: int?, default=20
+  durationDefault8: Duration, default=1d 2h 10min 30s 100ms
+  durationDefaultNull8: Duration?, default=2d 1h 20min 40s 100ms
+  doubleDefault8: double, default=10.5
+  doubleDefaultNull8: double?, default=20.5
+  dateTimeDefaultNow8: DateTime, default=now
+  dateTimeDefaultStr8: DateTime, default=2024-05-24T22:00:00.000Z
+  dateTimeDefaultStrNull8: DateTime?, default=2024-05-24T22:00:00.000Z
+  boolDefaultTrue8: bool, default=true
+  boolDefaultFalse8: bool, default=false
+  boolDefaultNullFalse8: bool?, default=false
+  bigintDefaultStr8: BigInt, default=-1234567890123456789099999999
+  bigintDefaultStrNull8: BigInt?, default=1234567890123456789099999999
+
+  uuidDefaultRandom9: UuidValue, default=random
+  uuidDefaultRandomV79: UuidValue, default=random_v7
+  uuidDefaultRandomNull9: UuidValue?, default=random
+  uuidDefaultStr9: UuidValue, default='550e8400-e29b-41d4-a716-446655440000'
+  uuidDefaultStrNull9: UuidValue?, default='3f2504e0-4f89-11d3-9a0c-0305e82c3301'
+  uriDefault9: Uri, default='https://serverpod.dev/default'
+  uriDefaultNull9: Uri?, default='https://serverpod.dev/default'
+  stringDefault9: String, default='This is a default value'
+  stringDefaultNull9: String?, default='This is a default null value'
+  intDefault9: int, default=10
+  intDefaultNull9: int?, default=20
+  durationDefault9: Duration, default=1d 2h 10min 30s 100ms
+  durationDefaultNull9: Duration?, default=2d 1h 20min 40s 100ms
+  doubleDefault9: double, default=10.5
+  doubleDefaultNull9: double?, default=20.5
+  dateTimeDefaultNow9: DateTime, default=now
+  dateTimeDefaultStr9: DateTime, default=2024-05-24T22:00:00.000Z
+  dateTimeDefaultStrNull9: DateTime?, default=2024-05-24T22:00:00.000Z
+  boolDefaultTrue9: bool, default=true
+  boolDefaultFalse9: bool, default=false
+  boolDefaultNullFalse9: bool?, default=false
+  bigintDefaultStr9: BigInt, default=-1234567890123456789099999999
+  bigintDefaultStrNull9: BigInt?, default=1234567890123456789099999999
+
+  uuidDefaultRandom10: UuidValue, default=random
+  uuidDefaultRandomV710: UuidValue, default=random_v7
+  uuidDefaultRandomNull10: UuidValue?, default=random
+  uuidDefaultStr10: UuidValue, default='550e8400-e29b-41d4-a716-446655440000'
+  uuidDefaultStrNull10: UuidValue?, default='3f2504e0-4f89-11d3-9a0c-0305e82c3301'
+  uriDefault10: Uri, default='https://serverpod.dev/default'
+  uriDefaultNull10: Uri?, default='https://serverpod.dev/default'
+  stringDefault10: String, default='This is a default value'
+  stringDefaultNull10: String?, default='This is a default null value'
+  intDefault10: int, default=10
+  intDefaultNull10: int?, default=20
+  durationDefault10: Duration, default=1d 2h 10min 30s 100ms
+  durationDefaultNull10: Duration?, default=2d 1h 20min 40s 100ms
+  doubleDefault10: double, default=10.5
+  doubleDefaultNull10: double?, default=20.5
+  dateTimeDefaultNow10: DateTime, default=now
+  dateTimeDefaultStr10: DateTime, default=2024-05-24T22:00:00.000Z
+  dateTimeDefaultStrNull10: DateTime?, default=2024-05-24T22:00:00.000Z
+  boolDefaultTrue10: bool, default=true
+  boolDefaultFalse10: bool, default=false
+  boolDefaultNullFalse10: bool?, default=false
+  bigintDefaultStr10: BigInt, default=-1234567890123456789099999999
+  bigintDefaultStrNull10: BigInt?, default=1234567890123456789099999999
+
+indexes:
+  large_next_unique_idx:
+    fields: nextId
+    unique: true

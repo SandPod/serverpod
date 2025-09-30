@@ -1,0 +1,16 @@
+# This model simulates a small message by using only a few fields.
+#
+# The object has a self relation so that multiple objects can be nested.
+
+class: SmallMessage
+table: small_message
+fields:
+  message: String, default='This is the default message value'
+  previous: SmallMessage?, relation(name=self_relation)
+  nextId: int?
+  next: SmallMessage?, relation(name=self_relation, field=nextId, onDelete=SetNull)
+
+indexes:
+  small_next_unique_idx:
+    fields: nextId
+    unique: true
