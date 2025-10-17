@@ -4,6 +4,7 @@ import 'package:serverpod_auth_core_server/session.dart';
 
 import '../../../generated/protocol.dart';
 import 'email_idp_admin.dart';
+import 'email_idp_config.dart';
 import 'email_idp_server_exceptions.dart';
 import 'email_idp_utils.dart';
 
@@ -15,12 +16,17 @@ import 'email_idp_utils.dart';
 ///
 /// If you would like to modify the authentication flow, consider creating
 /// custom implementations of the relevant methods.
-abstract class EmailIDP {
+final class EmailIDP {
+  /// Creates a new instance of [EmailIDP].
+  EmailIDP({required final EmailIDPConfig config}) {
+    // Currently no config options are used.
+  }
+
   /// Collection of admin-related functions.
   static final EmailIDPAdmin admin = EmailIDPAdmin();
 
   /// {@macro email_account_base_endpoint.login}
-  static Future<AuthSuccess> login(
+  Future<AuthSuccess> login(
     final Session session, {
     required final String email,
     required final String password,
@@ -47,7 +53,7 @@ abstract class EmailIDP {
   }
 
   /// {@macro email_account_base_endpoint.start_registration}
-  static Future<UuidValue> startRegistration(
+  Future<UuidValue> startRegistration(
     final Session session, {
     required final String email,
     required final String password,
@@ -80,7 +86,7 @@ abstract class EmailIDP {
   }
 
   /// {@macro email_account_base_endpoint.finish_registration}
-  static Future<AuthSuccess> finishRegistration(
+  Future<AuthSuccess> finishRegistration(
     final Session session, {
     required final UuidValue accountRequestId,
     required final String verificationCode,
@@ -129,7 +135,7 @@ abstract class EmailIDP {
   }
 
   /// {@macro email_account_base_endpoint.start_password_reset}
-  static Future<UuidValue> startPasswordReset(
+  Future<UuidValue> startPasswordReset(
     final Session session, {
     required final String email,
     final Transaction? transaction,
@@ -159,7 +165,7 @@ abstract class EmailIDP {
   }
 
   /// {@macro email_account_base_endpoint.finish_password_reset}
-  static Future<AuthSuccess> finishPasswordReset(
+  Future<AuthSuccess> finishPasswordReset(
     final Session session, {
     required final UuidValue passwordResetRequestId,
     required final String verificationCode,
