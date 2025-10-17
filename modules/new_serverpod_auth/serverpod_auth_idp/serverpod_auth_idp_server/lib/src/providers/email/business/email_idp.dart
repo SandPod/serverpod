@@ -3,20 +3,21 @@ import 'package:serverpod_auth_core_server/profile.dart';
 import 'package:serverpod_auth_core_server/session.dart';
 
 import '../../../generated/protocol.dart';
-import 'email_account_server_exceptions.dart';
-import 'email_accounts.dart';
+import 'email_idp_admin.dart';
+import 'email_idp_server_exceptions.dart';
+import 'email_idp_utils.dart';
 
-part 'auth_email_admin.dart';
-
-/// The default implementation for the email account endpoint methods.
+/// Main class for the email identity provider.
+/// The methods defined here are intended to be called from an endpoint.
 ///
-/// All public methods in here can be safely exposed to end-user clients.
+/// The `admin` property provides access to [EmailIDPAdmin], which contains
+/// admin-related methods for managing email-backed accounts.
 ///
-/// Uses `serverpod_auth_session` for session management and
-/// `serverpod_auth_profile` for user profiles.
-abstract class AuthEmail {
+/// If you would like to modify the authentication flow, consider creating
+/// custom implementations of the relevant methods.
+abstract class EmailIDP {
   /// Collection of admin-related functions.
-  static final AuthEmailAdmin admin = AuthEmailAdmin._();
+  static final EmailIDPAdmin admin = EmailIDPAdmin();
 
   /// {@macro email_account_base_endpoint.login}
   static Future<AuthSuccess> login(
@@ -29,7 +30,7 @@ abstract class AuthEmail {
       session.db,
       transaction,
       (final transaction) => _withReplacedServerEmailException(() async {
-        final authUserId = await EmailAccounts.authenticate(
+        final authUserId = await EmailIDPUtils.authenticate(
           session,
           email: email,
           password: password,
@@ -53,7 +54,7 @@ abstract class AuthEmail {
     final Transaction? transaction,
   }) async {
     return await _withReplacedServerEmailException(() async {
-      final result = await EmailAccounts.startAccountCreation(
+      final result = await EmailIDPUtils.startAccountCreation(
         session,
         email: email,
         password: password,
@@ -89,7 +90,7 @@ abstract class AuthEmail {
       session.db,
       transaction,
       (final transaction) => _withReplacedServerEmailException(() async {
-        final accountRequest = await EmailAccounts.verifyAccountCreation(
+        final accountRequest = await EmailIDPUtils.verifyAccountCreation(
           session,
           accountRequestId: accountRequestId,
           verificationCode: verificationCode,
@@ -111,7 +112,7 @@ abstract class AuthEmail {
           transaction: transaction,
         );
 
-        await EmailAccounts.completeAccountCreation(
+        await EmailIDPUtils.completeAccountCreation(
           session,
           accountRequestId: accountRequestId,
           authUserId: authUserId,
@@ -134,7 +135,7 @@ abstract class AuthEmail {
     final Transaction? transaction,
   }) async {
     return await _withReplacedServerEmailException(() async {
-      final result = await EmailAccounts.startPasswordReset(
+      final result = await EmailIDPUtils.startPasswordReset(
         session,
         email: email,
         transaction: transaction,
@@ -169,7 +170,7 @@ abstract class AuthEmail {
       session.db,
       transaction,
       (final transaction) => _withReplacedServerEmailException(() async {
-        final authUserId = await EmailAccounts.completePasswordReset(
+        final authUserId = await EmailIDPUtils.completePasswordReset(
           session,
           passwordResetRequestId: passwordResetRequestId,
           verificationCode: verificationCode,

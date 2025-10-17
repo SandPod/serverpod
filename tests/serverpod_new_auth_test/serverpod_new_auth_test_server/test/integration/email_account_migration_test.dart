@@ -39,7 +39,7 @@ void main() {
         );
 
         // Configure EmailAccounts for password reset verification
-        EmailAccounts.config = EmailAccountConfig(
+        EmailIDPUtils.config = EmailIDPConfig(
           sendPasswordResetVerificationCode: (
             final session, {
             required final email,
@@ -53,7 +53,7 @@ void main() {
       });
 
       tearDown(() async {
-        EmailAccounts.config = EmailAccountConfig();
+        EmailIDPUtils.config = EmailIDPConfig();
         await _cleanUpDatabase(sessionBuilder.build());
       });
 
@@ -145,7 +145,7 @@ void main() {
         newAuthUserId = newAuthUserIdResult!;
 
         // Configure EmailAccounts for password reset verification
-        EmailAccounts.config = EmailAccountConfig(
+        EmailIDPUtils.config = EmailIDPConfig(
           sendPasswordResetVerificationCode: (
             final session, {
             required final email,
@@ -162,7 +162,7 @@ void main() {
       });
 
       tearDown(() async {
-        EmailAccounts.config = EmailAccountConfig();
+        EmailIDPUtils.config = EmailIDPConfig();
         await _cleanUpDatabase(sessionBuilder.build());
       });
 

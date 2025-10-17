@@ -19,7 +19,7 @@ Future<
 }) async {
   late UuidValue pendingAccountRequestId;
   late String pendingAccountVerificationCode;
-  EmailAccounts.config = EmailAccountConfig(
+  EmailIDPUtils.config = EmailIDPConfig(
     sendRegistrationVerificationCode: (
       final session, {
       required final email,
@@ -32,25 +32,25 @@ Future<
     },
   );
 
-  await EmailAccounts.startAccountCreation(
+  await EmailIDPUtils.startAccountCreation(
     session,
     email: email,
     password: password,
   );
 
-  await EmailAccounts.verifyAccountCreation(
+  await EmailIDPUtils.verifyAccountCreation(
     session,
     accountRequestId: pendingAccountRequestId,
     verificationCode: pendingAccountVerificationCode,
   );
 
-  final creationResult = await EmailAccounts.completeAccountCreation(
+  final creationResult = await EmailIDPUtils.completeAccountCreation(
     session,
     authUserId: authUserId,
     accountRequestId: pendingAccountRequestId,
   );
 
-  EmailAccounts.config = EmailAccountConfig();
+  EmailIDPUtils.config = EmailIDPConfig();
 
   return (
     accountRequestId: pendingAccountRequestId,
@@ -66,7 +66,7 @@ Future<(UuidValue paswordResetRequestId, String verificationCode)>
 }) async {
   late UuidValue pendingPasswordResetRequestId;
   late String pendingPasswordResetVerificationCode;
-  EmailAccounts.config = EmailAccountConfig(
+  EmailIDPUtils.config = EmailIDPConfig(
     sendPasswordResetVerificationCode: (
       final session, {
       required final email,
@@ -79,12 +79,12 @@ Future<(UuidValue paswordResetRequestId, String verificationCode)>
     },
   );
 
-  await EmailAccounts.startPasswordReset(
+  await EmailIDPUtils.startPasswordReset(
     session,
     email: email,
   );
 
-  EmailAccounts.config = EmailAccountConfig();
+  EmailIDPUtils.config = EmailIDPConfig();
 
   return (pendingPasswordResetRequestId, pendingPasswordResetVerificationCode);
 }
@@ -96,7 +96,7 @@ Future<void> resetPassword(
 }) async {
   late UuidValue pendingPasswordResetRequestId;
   late String pendingPasswordResetVerificationCode;
-  EmailAccounts.config = EmailAccountConfig(
+  EmailIDPUtils.config = EmailIDPConfig(
     sendPasswordResetVerificationCode: (
       final session, {
       required final email,
@@ -109,14 +109,14 @@ Future<void> resetPassword(
     },
   );
 
-  await EmailAccounts.startPasswordReset(
+  await EmailIDPUtils.startPasswordReset(
     session,
     email: email,
   );
 
-  EmailAccounts.config = EmailAccountConfig();
+  EmailIDPUtils.config = EmailIDPConfig();
 
-  await EmailAccounts.completePasswordReset(
+  await EmailIDPUtils.completePasswordReset(
     session,
     passwordResetRequestId: pendingPasswordResetRequestId,
     verificationCode: pendingPasswordResetVerificationCode,

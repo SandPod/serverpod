@@ -215,7 +215,7 @@ void main() {
           password: password,
         );
 
-        authUserId = (await new_auth_email.EmailAccounts.admin.findAccount(
+        authUserId = (await new_auth_email.EmailIDPUtils.admin.findAccount(
           session,
           email: email,
         ))!
@@ -256,7 +256,7 @@ void main() {
         'when attempting to authenticate against the new system with the credentials, then that succeeds.',
         () async {
           expect(
-            await new_auth_email.EmailAccounts.authenticate(
+            await new_auth_email.EmailIDPUtils.authenticate(
               session,
               email: email,
               password: password,
@@ -303,7 +303,7 @@ void main() {
 
         AuthMigrations.config = AuthMigrationConfig();
 
-        authUserId = (await new_auth_email.EmailAccounts.admin.findAccount(
+        authUserId = (await new_auth_email.EmailIDPUtils.admin.findAccount(
           session,
           email: email,
         ))!
@@ -358,7 +358,7 @@ void main() {
           },
         );
 
-        authUserId = (await new_auth_email.EmailAccounts.admin.findAccount(
+        authUserId = (await new_auth_email.EmailIDPUtils.admin.findAccount(
           session,
           email: email,
         ))!
@@ -428,7 +428,7 @@ void main() {
           );
 
           expect(
-            await new_auth_email.EmailAccounts.authenticate(
+            await new_auth_email.EmailIDPUtils.authenticate(
               session,
               email: email,
               password: password,
@@ -451,7 +451,7 @@ void main() {
           );
 
           await expectLater(
-            () => new_auth_email.EmailAccounts.authenticate(
+            () => new_auth_email.EmailIDPUtils.authenticate(
               session,
               email: email,
               password: wrongPassword,
@@ -468,7 +468,7 @@ void main() {
         'when attempting to authenticate against the new system with the credentials, then that fails (because the password has not been set).',
         () async {
           await expectLater(
-            () => new_auth_email.EmailAccounts.authenticate(
+            () => new_auth_email.EmailIDPUtils.authenticate(
               session,
               email: email,
               // This is the user's password in the legacy system, but since it has not been set during the import,

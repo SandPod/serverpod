@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('Given the default `EmailAccountConfig`,', () {
-    final config = EmailAccountConfig();
+    final config = EmailIDPConfig();
 
     test(
         'when a password surrounded by whitespace is validated, then is it not accepted.',

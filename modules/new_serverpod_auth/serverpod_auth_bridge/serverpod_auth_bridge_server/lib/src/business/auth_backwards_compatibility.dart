@@ -69,7 +69,7 @@ abstract final class AuthBackwardsCompatibility {
     await DatabaseUtil.runInTransactionOrSavepoint(session.db, transaction, (
       final transaction,
     ) async {
-      final emailAccountInfo = await EmailAccounts.admin.findAccount(
+      final emailAccountInfo = await EmailIDPUtils.admin.findAccount(
         session,
         email: email,
         transaction: transaction,
@@ -101,7 +101,7 @@ abstract final class AuthBackwardsCompatibility {
 
       // The account was already migrated without a password, and now we need to
       // set the password to the correct one from the old system.
-      await EmailAccounts.admin.setPassword(
+      await EmailIDPUtils.admin.setPassword(
         session,
         email: email,
         password: password,

@@ -18,7 +18,7 @@ void main() {
       setUp(() async {
         session = sessionBuilder.build();
 
-        authUserId = await AuthEmail.admin.createUser(
+        authUserId = await EmailIDP.admin.createUser(
           session,
           email: email,
           password: password,
@@ -42,7 +42,7 @@ void main() {
       test(
         'when using the credentials, then they work.',
         () async {
-          final authenticatedUserId = await EmailAccounts.authenticate(
+          final authenticatedUserId = await EmailIDPUtils.authenticate(
             session,
             email: email,
             password: password,

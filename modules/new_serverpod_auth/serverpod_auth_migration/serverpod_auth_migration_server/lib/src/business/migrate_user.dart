@@ -94,7 +94,7 @@ Future<void> _importEmailAccounts(
   );
   for (final emailAuth in emailAuths) {
     final newEmailAccountId =
-        await auth_next.EmailAccounts.admin.createEmailAuthentication(
+        await auth_next.EmailIDPUtils.admin.createEmailAuthentication(
       session,
       authUserId: newAuthUserId,
       email: emailAuth.email,

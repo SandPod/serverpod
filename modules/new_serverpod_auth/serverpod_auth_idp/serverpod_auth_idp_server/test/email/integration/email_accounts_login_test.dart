@@ -30,7 +30,7 @@ void main() {
       });
 
       tearDown(() async {
-        EmailAccounts.config = EmailAccountConfig();
+        EmailIDPUtils.config = EmailIDPConfig();
 
         await cleanUpEmailAccountDatabaseEntities(session);
       });
@@ -38,7 +38,7 @@ void main() {
       test(
           'when authenticating with the original credentials, then it succeeds.',
           () async {
-        final loggedInUser = await EmailAccounts.authenticate(
+        final loggedInUser = await EmailIDPUtils.authenticate(
           session,
           email: email,
           password: password,
@@ -50,7 +50,7 @@ void main() {
       test(
           'when authenticating with the lower-case email variant of the credentials, then it succeeds.',
           () async {
-        final loggedInUser = await EmailAccounts.authenticate(
+        final loggedInUser = await EmailIDPUtils.authenticate(
           session,
           email: email.toLowerCase(),
           password: password,
@@ -63,7 +63,7 @@ void main() {
           'when trying to authenticate with an invalid password, '
           'then it throws a "invalid credentials" exception initially and then blocks further attempts with "too many attempts" exception.',
           () async {
-        EmailAccounts.config = EmailAccountConfig(
+        EmailIDPUtils.config = EmailIDPConfig(
           failedLoginRateLimit: (
             maxAttempts: 1,
             timeframe: const Duration(hours: 1),
@@ -71,7 +71,7 @@ void main() {
         );
 
         await expectLater(
-          () => EmailAccounts.authenticate(
+          () => EmailIDPUtils.authenticate(
             session,
             email: email,
             password: 'some other password',
@@ -80,7 +80,7 @@ void main() {
         );
 
         await expectLater(
-          () => EmailAccounts.authenticate(
+          () => EmailIDPUtils.authenticate(
             session,
             email: email,
             password: 'some other password',
@@ -95,7 +95,7 @@ void main() {
           () async {
         const unknownEmail = '404@serverpod.dev';
 
-        EmailAccounts.config = EmailAccountConfig(
+        EmailIDPUtils.config = EmailIDPConfig(
           failedLoginRateLimit: (
             maxAttempts: 1,
             timeframe: const Duration(hours: 1),
@@ -103,7 +103,7 @@ void main() {
         );
 
         await expectLater(
-          () => EmailAccounts.authenticate(
+          () => EmailIDPUtils.authenticate(
             session,
             email: unknownEmail,
             password: 'some other password',
@@ -112,7 +112,7 @@ void main() {
         );
 
         await expectLater(
-          () => EmailAccounts.authenticate(
+          () => EmailIDPUtils.authenticate(
             session,
             email: unknownEmail,
             password: 'some other password',

@@ -12,7 +12,7 @@ void main() {
     'Given no users,',
     (final sessionBuilder, final endpoints) {
       tearDown(() async {
-        EmailAccounts.config = EmailAccountConfig();
+        EmailIDPUtils.config = EmailIDPConfig();
 
         await _cleanUpDatabase(sessionBuilder.build());
       });
@@ -23,7 +23,7 @@ void main() {
         String? receivedVerificationCode;
 
         setUp(() async {
-          EmailAccounts.config = EmailAccountConfig(
+          EmailIDPUtils.config = EmailIDPConfig(
             sendRegistrationVerificationCode: (
               final session, {
               required final accountRequestId,
@@ -97,7 +97,7 @@ void main() {
         String? receivedVerificationCode;
 
         setUp(() async {
-          EmailAccounts.config = EmailAccountConfig(
+          EmailIDPUtils.config = EmailIDPConfig(
             maxPasswordResetAttempts: (
               timeframe: const Duration(seconds: 1),
               maxAttempts: 100,
@@ -174,7 +174,7 @@ void main() {
       late String receivedVerificationCode;
 
       setUp(() async {
-        EmailAccounts.config = EmailAccountConfig(
+        EmailIDPUtils.config = EmailIDPConfig(
           sendRegistrationVerificationCode: (
             final session, {
             required final accountRequestId,
@@ -195,7 +195,7 @@ void main() {
       });
 
       tearDown(() {
-        EmailAccounts.config = EmailAccountConfig();
+        EmailIDPUtils.config = EmailIDPConfig();
       });
 
       test(
@@ -222,7 +222,7 @@ void main() {
         await expectLater(
           () => withClock(
             Clock.fixed(DateTime.now().add(
-                EmailAccounts.config.registrationVerificationCodeLifetime)),
+                EmailIDPUtils.config.registrationVerificationCodeLifetime)),
             () => endpoints.emailAccount.finishRegistration(
               sessionBuilder,
               accountRequestId: receivedAccountRequestId,
@@ -261,7 +261,7 @@ void main() {
         await expectLater(
           () => withClock(
             Clock.fixed(DateTime.now().add(
-                EmailAccounts.config.registrationVerificationCodeLifetime)),
+                EmailIDPUtils.config.registrationVerificationCodeLifetime)),
             () => endpoints.emailAccount.finishRegistration(
               sessionBuilder,
               accountRequestId: receivedAccountRequestId,
@@ -316,7 +316,7 @@ void main() {
       });
 
       tearDown(() async {
-        EmailAccounts.config = EmailAccountConfig();
+        EmailIDPUtils.config = EmailIDPConfig();
 
         await _cleanUpDatabase(sessionBuilder.build());
       });
@@ -364,7 +364,7 @@ void main() {
         String? receivedVerificationCode;
 
         setUp(() async {
-          EmailAccounts.config = EmailAccountConfig(
+          EmailIDPUtils.config = EmailIDPConfig(
             sendRegistrationVerificationCode: (
               final session, {
               required final accountRequestId,
@@ -426,7 +426,7 @@ void main() {
           () async {
         String? receivedVerificationCode;
 
-        EmailAccounts.config = EmailAccountConfig(
+        EmailIDPUtils.config = EmailIDPConfig(
           sendPasswordResetVerificationCode: (
             final session, {
             required final email,
@@ -471,7 +471,7 @@ void main() {
       });
 
       tearDown(() {
-        EmailAccounts.config = EmailAccountConfig();
+        EmailIDPUtils.config = EmailIDPConfig();
       });
 
       test(
@@ -515,7 +515,7 @@ void main() {
       });
 
       tearDown(() async {
-        EmailAccounts.config = EmailAccountConfig();
+        EmailIDPUtils.config = EmailIDPConfig();
 
         await _cleanUpDatabase(sessionBuilder.build());
       });
@@ -546,7 +546,7 @@ void main() {
         await expectLater(
           () => withClock(
             Clock.fixed(DateTime.now().add(
-                EmailAccounts.config.registrationVerificationCodeLifetime)),
+                EmailIDPUtils.config.registrationVerificationCodeLifetime)),
             () => endpoints.emailAccount.finishPasswordReset(
               sessionBuilder,
               passwordResetRequestId: passwordResetRequestId,
@@ -610,7 +610,7 @@ void main() {
         await expectLater(
           () => withClock(
             Clock.fixed(DateTime.now().add(
-                EmailAccounts.config.registrationVerificationCodeLifetime)),
+                EmailIDPUtils.config.registrationVerificationCodeLifetime)),
             () => endpoints.emailAccount.finishPasswordReset(
               sessionBuilder,
               passwordResetRequestId: passwordResetRequestId,
@@ -701,7 +701,7 @@ void main() {
       });
 
       tearDown(() async {
-        EmailAccounts.config = EmailAccountConfig();
+        EmailIDPUtils.config = EmailIDPConfig();
 
         await _cleanUpDatabase(sessionBuilder.build());
       });
@@ -782,7 +782,7 @@ extension on TestEndpoints {
   }) async {
     late UuidValue receivedAccountRequestId;
     late String receivedVerificationCode;
-    EmailAccounts.config = EmailAccountConfig(
+    EmailIDPUtils.config = EmailIDPConfig(
       maxPasswordResetAttempts: (
         timeframe: const Duration(seconds: 1),
         maxAttempts: 100,
@@ -829,7 +829,7 @@ extension on TestEndpoints {
   }) async {
     late UuidValue receivedPasswordResetRequestId;
     late String receivedVerificationCode;
-    EmailAccounts.config = EmailAccountConfig(
+    EmailIDPUtils.config = EmailIDPConfig(
       sendPasswordResetVerificationCode: (
         final session, {
         required final email,
