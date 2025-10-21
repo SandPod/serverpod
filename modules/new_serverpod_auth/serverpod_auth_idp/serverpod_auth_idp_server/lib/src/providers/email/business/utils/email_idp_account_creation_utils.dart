@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:clock/clock.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:serverpod/serverpod.dart';
@@ -12,6 +10,34 @@ import '../../util/uint8list_extension.dart';
 import '../email_idp_config.dart';
 import '../email_idp_server_exceptions.dart';
 import 'email_idp_password_hash_util.dart';
+
+/// Gets a verified email account request by its ID.
+///
+/// Throws an [EmailAccountRequestNotFoundException] if the request does not
+/// exist.
+/// Throws an [EmailAccountRequestNotVerifiedException] if the request has not
+/// been verified.
+Future<EmailAccountRequest> getVerifiedEmailAccountRequest(
+  final Session session, {
+  required final UuidValue accountRequestId,
+  required final Transaction? transaction,
+}) async {
+  final request = await EmailAccountRequest.db.findById(
+    session,
+    accountRequestId,
+    transaction: transaction,
+  );
+
+  if (request == null) {
+    throw EmailAccountRequestNotFoundException();
+  }
+
+  if (request.verifiedAt == null) {
+    throw EmailAccountRequestNotVerifiedException();
+  }
+
+  return request;
+}
 
 /// This describes the detailed status of the account creation operation.
 ///
@@ -114,48 +140,58 @@ class EmailIDPAccountCreationUtils {
   })  : _config = config,
         _passwordHashUtils = passwordHashUtils;
 
-  /// Finalize the account request by creating a new email account and linking
-  /// it to the authentication user.
+  /// Completes the account creation process by creating a new authentication
+  /// user and linking the account request to it.
   ///
-  /// This assumes that the account request has already been verified via
-  /// [verifyAccountRequest].
+  /// Returns the result of the operation with the ID of the new authentication
+  /// user and the email address used during registration.
   ///
-  /// Returns the `ID` of the new email authentication, and the email address
-  /// used during registration.
-  Future<EmailIDPFinalizeAccountRequestResult> finalizeAccountRequest(
+  /// Internally this will first verify the verification code via
+  /// [verifyAccountRequest], then create a new [AuthUser] and finally link the
+  /// email account to it via [finalizeAccountRequest].
+  ///
+  /// Can throw the following [EmailAccountRequestServerException] subclasses:
+  /// - [EmailAccountRequestNotFoundException] if the request does not exist or
+  ///   has already been completed.
+  /// - [EmailAccountRequestVerificationExpiredException] if the request is
+  ///   completed with the correct verification code, but has already expired.
+  /// - [EmailAccountRequestVerificationTooManyAttemptsException] in case the
+  ///   user has made too many attempts to verify the account.
+  /// - [EmailAccountRequestInvalidVerificationCodeException] if the provided
+  ///   verification code is not valid.
+  ///
+  /// In case of an invalid [verificationCode], the failed attempt will be
+  /// logged to the database outside of the [transaction] and can not be rolled
+  /// back.
+  Future<EmailIDPCompleteAccountCreationResult> completeAccountCreation(
     final Session session, {
-    required final EmailAccountRequest accountRequest,
-
-    /// Authentication user ID this account should be linked up with
-    required final UuidValue authUserId,
+    required final UuidValue accountRequestId,
+    required final String verificationCode,
     required final Transaction? transaction,
   }) async {
-    return DatabaseUtil.runInTransactionOrSavepoint(
-      session.db,
-      transaction,
-      (final transaction) async {
-        await EmailAccountRequest.db.deleteRow(
-          session,
-          accountRequest,
-          transaction: transaction,
-        );
+    final verifiedAccountRequest = await verifyAccountRequest(
+      session,
+      accountRequestId: accountRequestId,
+      verificationCode: verificationCode,
+      transaction: transaction,
+    );
 
-        final account = await EmailAccount.db.insertRow(
-          session,
-          EmailAccount(
-            authUserId: authUserId,
-            email: accountRequest.email,
-            passwordHash: accountRequest.passwordHash,
-            passwordSalt: accountRequest.passwordSalt,
-          ),
-          transaction: transaction,
-        );
+    final newUser = await AuthUsers.create(
+      session,
+      transaction: transaction,
+    );
+    final authUserId = newUser.id;
 
-        return EmailIDPFinalizeAccountRequestResult._(
-          accountId: account.id!,
-          email: accountRequest.email,
-        );
-      },
+    await finalizeAccountRequest(
+      session,
+      accountRequest: verifiedAccountRequest,
+      authUserId: authUserId,
+      transaction: transaction,
+    );
+
+    return EmailIDPCompleteAccountCreationResult._(
+      authUserId: authUserId,
+      email: verifiedAccountRequest.email,
     );
   }
 
@@ -184,7 +220,7 @@ class EmailIDPAccountCreationUtils {
         ? await _passwordHashUtils.createHash(
             value: password,
           )
-        : (hash: Uint8List.fromList([]), salt: Uint8List.fromList([]));
+        : PasswordHash.empty();
 
     final account = await EmailAccount.db.insertRow(
       session,
@@ -233,8 +269,57 @@ class EmailIDPAccountCreationUtils {
     );
   }
 
+  /// Finalize the account request by creating a new email account and linking
+  /// it to the authentication user.
+  ///
+  /// This assumes that the account request has already been verified via
+  /// [verifyAccountRequest].
+  ///
+  /// Returns the `ID` of the new email authentication, and the email address
+  /// used during registration.
+  Future<EmailIDPFinalizeAccountRequestResult> finalizeAccountRequest(
+    final Session session, {
+    required final EmailAccountRequest accountRequest,
+
+    /// Authentication user ID this account should be linked up with
+    required final UuidValue authUserId,
+    required final Transaction? transaction,
+  }) async {
+    return DatabaseUtil.runInTransactionOrSavepoint(
+      session.db,
+      transaction,
+      (final transaction) async {
+        await EmailAccountRequest.db.deleteRow(
+          session,
+          accountRequest,
+          transaction: transaction,
+        );
+
+        final account = await EmailAccount.db.insertRow(
+          session,
+          EmailAccount(
+            authUserId: authUserId,
+            email: accountRequest.email,
+            passwordHash: accountRequest.passwordHash,
+            passwordSalt: accountRequest.passwordSalt,
+          ),
+          transaction: transaction,
+        );
+
+        return EmailIDPFinalizeAccountRequestResult._(
+          accountId: account.id!,
+          email: accountRequest.email,
+        );
+      },
+    );
+  }
+
   /// {@template email_idp_account_creation_utils.find_active_email_account_request}
-  /// Finds an active email account request by its ID.
+  /// Checks whether an email account request is still pending, and if so
+  /// returns the associated request.
+  ///
+  /// In case the registration has been completed or the request is expired this
+  /// returns `null`.
   /// {@endtemplate}
   Future<EmailAccountRequest?> findActiveEmailAccountRequest(
     final Session session, {
@@ -364,61 +449,6 @@ class EmailIDPAccountCreationUtils {
           emailAccountRequest.id!,
         );
       },
-    );
-  }
-
-  /// Completes the account creation process by creating a new authentication
-  /// user and linking the account request to it.
-  ///
-  /// Returns the result of the operation with the ID of the new authentication
-  /// user and the email address used during registration.
-  ///
-  /// Internally this will first verify the verification code via
-  /// [verifyAccountRequest], then create a new [AuthUser] and finally link the
-  /// email account to it via [finalizeAccountRequest].
-  ///
-  /// Can throw the following [EmailAccountRequestServerException] subclasses:
-  /// - [EmailAccountRequestNotFoundException] if the request does not exist or
-  ///   has already been completed.
-  /// - [EmailAccountRequestVerificationExpiredException] if the request is
-  ///   completed with the correct verification code, but has already expired.
-  /// - [EmailAccountRequestVerificationTooManyAttemptsException] in case the
-  ///   user has made too many attempts to verify the account.
-  /// - [EmailAccountRequestInvalidVerificationCodeException] if the provided
-  ///   verification code is not valid.
-  ///
-  /// In case of an invalid [verificationCode], the failed attempt will be
-  /// logged to the database outside of the [transaction] and can not be rolled
-  /// back.
-  Future<EmailIDPCompleteAccountCreationResult> completeAccountCreation(
-    final Session session, {
-    required final UuidValue accountRequestId,
-    required final String verificationCode,
-    required final Transaction? transaction,
-  }) async {
-    final verifiedAccountRequest = await verifyAccountRequest(
-      session,
-      accountRequestId: accountRequestId,
-      verificationCode: verificationCode,
-      transaction: transaction,
-    );
-
-    final newUser = await AuthUsers.create(
-      session,
-      transaction: transaction,
-    );
-    final authUserId = newUser.id;
-
-    await finalizeAccountRequest(
-      session,
-      accountRequest: verifiedAccountRequest,
-      authUserId: authUserId,
-      transaction: transaction,
-    );
-
-    return EmailIDPCompleteAccountCreationResult._(
-      authUserId: authUserId,
-      email: verifiedAccountRequest.email,
     );
   }
 
@@ -573,32 +603,18 @@ class EmailIDPAccountCreationUtilsConfig {
   }
 }
 
-/// Gets a verified email account request by its ID.
-///
-/// Throws an [EmailAccountRequestNotFoundException] if the request does not
-/// exist.
-/// Throws an [EmailAccountRequestNotVerifiedException] if the request has not
-/// been verified.
-Future<EmailAccountRequest> getVerifiedEmailAccountRequest(
-  final Session session, {
-  required final UuidValue accountRequestId,
-  required final Transaction? transaction,
-}) async {
-  final request = await EmailAccountRequest.db.findById(
-    session,
-    accountRequestId,
-    transaction: transaction,
-  );
+/// The result of the [EmailIDPAccountCreationUtils.completeAccountCreation] operation.
+class EmailIDPCompleteAccountCreationResult {
+  /// The ID of the new authentication user.
+  final UuidValue authUserId;
 
-  if (request == null) {
-    throw EmailAccountRequestNotFoundException();
-  }
+  /// The email address used during registration.
+  final String email;
 
-  if (request.verifiedAt == null) {
-    throw EmailAccountRequestNotVerifiedException();
-  }
-
-  return request;
+  EmailIDPCompleteAccountCreationResult._({
+    required this.authUserId,
+    required this.email,
+  });
 }
 
 /// The result of the [EmailIDPAccountCreationUtils.finalizeAccountRequest] operation.
@@ -629,18 +645,4 @@ extension on EmailAccountRequest {
 
     return requestExpiresAt.isBefore(clock.now());
   }
-}
-
-/// The result of the [EmailIDPAccountCreationUtils.completeAccountCreation] operation.
-class EmailIDPCompleteAccountCreationResult {
-  /// The ID of the new authentication user.
-  final UuidValue authUserId;
-
-  /// The email address used during registration.
-  final String email;
-
-  EmailIDPCompleteAccountCreationResult._({
-    required this.authUserId,
-    required this.email,
-  });
 }

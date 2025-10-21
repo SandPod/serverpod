@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:clock/clock.dart';
 import 'package:serverpod/serverpod.dart';
 
@@ -117,16 +115,10 @@ class EmailIDPPasswordResetUtils {
           transaction: transaction,
         ))!;
 
-        final newPasswordHash = await _passwordHashUtils.createHash(
-          value: newPassword,
-        );
-
-        await EmailAccount.db.updateRow(
+        await setPassword(
           session,
-          account.copyWith(
-            passwordHash: ByteData.sublistView(newPasswordHash.hash),
-            passwordSalt: ByteData.sublistView(newPasswordHash.salt),
-          ),
+          emailAccount: account,
+          password: newPassword,
           transaction: transaction,
         );
 
@@ -178,6 +170,31 @@ class EmailIDPPasswordResetUtils {
     await EmailAccountPasswordResetAttempt.db.deleteWhere(
       session,
       where: (final t) => t.attemptedAt < removeBefore,
+      transaction: transaction,
+    );
+  }
+
+  /// Sets the password for the authentication belonging to the given email
+  /// account.
+  ///
+  /// The [password] argument is not checked against the configured password
+  /// policy.
+  Future<void> setPassword(
+    final Session session, {
+    required final EmailAccount emailAccount,
+    required final String password,
+    final Transaction? transaction,
+  }) async {
+    final passwordHash = await _passwordHashUtils.createHash(
+      value: password,
+    );
+
+    await EmailAccount.db.updateRow(
+      session,
+      emailAccount.copyWith(
+        passwordHash: passwordHash.hash.asByteData,
+        passwordSalt: passwordHash.salt.asByteData,
+      ),
       transaction: transaction,
     );
   }

@@ -1,8 +1,6 @@
 import 'package:serverpod/serverpod.dart';
-import 'package:serverpod_auth_core_server/profile.dart';
 
 import '../../../generated/protocol.dart';
-import '../util/uint8list_extension.dart';
 import 'email_idp_server_exceptions.dart';
 import 'email_idp_utils.dart';
 
@@ -11,7 +9,9 @@ final class EmailIDPAdmin {
   final EmailIDPUtils _utils;
 
   /// Creates a new instance of [EmailIDPAdmin].
-  EmailIDPAdmin({required final EmailIDPUtils utils}) : _utils = utils;
+  EmailIDPAdmin({
+    required final EmailIDPUtils utils,
+  }) : _utils = utils;
 
   /// {@macro email_idp_account_creation_utils.create_email_authentication}
   Future<UuidValue> createEmailAuthentication(
@@ -21,58 +21,12 @@ final class EmailIDPAdmin {
     required final String? password,
     final Transaction? transaction,
   }) async {
-    return _utils.accountCreationUtils.createEmailAuthentication(
+    return _utils.accountCreation.createEmailAuthentication(
       session,
       authUserId: authUserId,
       email: email,
       password: password,
       transaction: transaction,
-    );
-  }
-
-  /// Creates a user with an email-based authentication and the associated
-  /// profile.
-  ///
-  /// The end result is identical to the combination of
-  /// [EmailIDP.startRegistration] and [EmailIDP.finishRegistration].
-  /// The [email] is considered verified by default.
-  ///
-  /// Returns the newly created [AuthUser]'s id.
-  Future<UuidValue> createUser(
-    final Session session, {
-    required final String email,
-    required final String password,
-    final Transaction? transaction,
-  }) async {
-    return DatabaseUtil.runInTransactionOrSavepoint(
-      session.db,
-      transaction,
-      (final transaction) async {
-        final newUser = await AuthUsers.create(
-          session,
-          transaction: transaction,
-        );
-        final authUserId = newUser.id;
-
-        await UserProfiles.createUserProfile(
-          session,
-          authUserId,
-          UserProfileData(
-            email: email,
-          ),
-          transaction: transaction,
-        );
-
-        await createEmailAuthentication(
-          session,
-          authUserId: authUserId,
-          email: email,
-          password: password,
-          transaction: transaction,
-        );
-
-        return authUserId;
-      },
     );
   }
 
@@ -82,7 +36,7 @@ final class EmailIDPAdmin {
     final UuidValue accountRequestId, {
     final Transaction? transaction,
   }) async {
-    return _utils.accountCreationUtils.deleteEmailAccountRequestById(
+    return _utils.accountCreation.deleteEmailAccountRequestById(
       session,
       accountRequestId,
       transaction: transaction,
@@ -94,7 +48,7 @@ final class EmailIDPAdmin {
     final Session session, {
     final Transaction? transaction,
   }) async {
-    return _utils.accountCreationUtils.deleteExpiredAccountCreations(
+    return _utils.accountCreation.deleteExpiredAccountCreations(
       session,
       transaction: transaction,
     );
@@ -105,23 +59,19 @@ final class EmailIDPAdmin {
     final Session session, {
     final Transaction? transaction,
   }) async {
-    return _utils.passwordResetUtils.deleteExpiredPasswordResetRequests(
+    return _utils.passwordReset.deleteExpiredPasswordResetRequests(
       session,
       transaction: transaction,
     );
   }
 
-  /// Cleans up the log of failed login attempts older than [olderThan].
-  ///
-  /// If [olderThan] is `null`, this will remove all attempts outside the time
-  /// window that is checked upon login, as configured in
-  /// [EmailIDPConfig.emailSignInFailureResetTime].
+  /// {@macro email_idp_authentication_utils.delete_failed_login_attempts}
   Future<void> deleteFailedLoginAttempts(
     final Session session, {
     final Duration? olderThan,
     final Transaction? transaction,
   }) async {
-    return _utils.deleteFailedLoginAttempts(
+    return _utils.authentication.deleteFailedLoginAttempts(
       session,
       olderThan: olderThan,
       transaction: transaction,
@@ -134,7 +84,7 @@ final class EmailIDPAdmin {
     final Duration? olderThan,
     final Transaction? transaction,
   }) async {
-    return _utils.passwordResetUtils.deletePasswordResetAttempts(
+    return _utils.passwordReset.deletePasswordResetAttempts(
       session,
       olderThan: olderThan,
       transaction: transaction,
@@ -171,32 +121,16 @@ final class EmailIDPAdmin {
     );
   }
 
-  /// Checks whether an email account request is still pending, and if so
-  /// returns the associated email and verification status.
-  ///
-  /// In case the registration has been completed or the request is expired this
-  /// returns `null`.
-  Future<
-      ({
-        String email,
-        bool isVerified,
-      })?> findEmailAccountRequest(
+  /// {@macro email_idp_account_creation_utils.find_active_email_account_request}
+  Future<EmailAccountRequest?> findActiveEmailAccountRequest(
     final Session session, {
     required final UuidValue accountRequestId,
     final Transaction? transaction,
   }) async {
-    final request =
-        await _utils.accountCreationUtils.findActiveEmailAccountRequest(
+    return _utils.accountCreation.findActiveEmailAccountRequest(
       session,
       accountRequestId: accountRequestId,
       transaction: transaction,
-    );
-
-    if (request == null) return null;
-
-    return (
-      email: request.email,
-      isVerified: request.verifiedAt != null,
     );
   }
 
@@ -215,7 +149,7 @@ final class EmailIDPAdmin {
   }) async {
     email = email.toLowerCase();
 
-    var account = (await EmailAccount.db.find(
+    final account = (await EmailAccount.db.find(
       session,
       where: (final t) => t.email.equals(email),
       transaction: transaction,
@@ -226,17 +160,17 @@ final class EmailIDPAdmin {
       throw EmailAccountNotFoundException();
     }
 
-    final passwordHash = await _utils.passwordHashUtils.createHash(
-      value: password,
-    );
-
-    account = await EmailAccount.db.updateRow(
+    return _utils.passwordReset.setPassword(
       session,
-      account.copyWith(
-        passwordHash: passwordHash.hash.asByteData,
-        passwordSalt: passwordHash.salt.asByteData,
-      ),
+      emailAccount: account,
+      password: password,
       transaction: transaction,
     );
   }
+}
+
+/// Extension methods for [EmailAccountRequest].
+extension EmailAccountRequestExtension on EmailAccountRequest {
+  /// Checks whether the account request has been verified.
+  bool get isVerified => verifiedAt != null;
 }

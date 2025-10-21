@@ -257,7 +257,7 @@ void main() {
         'when attempting to authenticate against the new system with the credentials, then that succeeds.',
         () async {
           expect(
-            await newEmailIDP.utils.authenticate(
+            await newEmailIDP.utils.authentication.authenticate(
               session,
               email: email,
               password: password,
@@ -434,7 +434,7 @@ void main() {
           );
 
           expect(
-            await newEmailIDP.utils.authenticate(
+            await newEmailIDP.utils.authentication.authenticate(
               session,
               email: email,
               password: password,
@@ -457,7 +457,7 @@ void main() {
           );
 
           await expectLater(
-            () => newEmailIDP.utils.authenticate(
+            () => newEmailIDP.utils.authentication.authenticate(
               session,
               email: email,
               password: wrongPassword,
@@ -473,7 +473,7 @@ void main() {
         'when attempting to authenticate against the new system with the credentials, then that fails (because the password has not been set).',
         () async {
           await expectLater(
-            () => newEmailIDP.utils.authenticate(
+            () => newEmailIDP.utils.authentication.authenticate(
               session,
               email: email,
               // This is the user's password in the legacy system, but since it has not been set during the import,

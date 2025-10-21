@@ -56,7 +56,7 @@ void main() {
         'when calling `EmailAccounts.authenticate`, then it fails due to no password being set.',
         () async {
           await expectLater(
-            newEmailIDP.utils.authenticate(
+            newEmailIDP.utils.authentication.authenticate(
               session,
               email: email,
               password: password,
@@ -79,7 +79,7 @@ void main() {
           );
 
           expect(
-            await newEmailIDP.utils.authenticate(
+            await newEmailIDP.utils.authentication.authenticate(
               session,
               email: email,
               password: password,

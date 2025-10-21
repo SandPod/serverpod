@@ -38,11 +38,12 @@ final class EmailIDP {
     admin = EmailIDPAdmin(utils: utils);
   }
 
-  /// {@macro email_account_base_endpoint.login}
-  Future<AuthSuccess> login(
+  /// {@macro email_account_base_endpoint.finish_password_reset}
+  Future<AuthSuccess> finishPasswordReset(
     final Session session, {
-    required final String email,
-    required final String password,
+    required final UuidValue passwordResetRequestId,
+    required final String verificationCode,
+    required final String newPassword,
     final Transaction? transaction,
   }) async {
     return DatabaseUtil.runInTransactionOrSavepoint(
@@ -50,14 +51,21 @@ final class EmailIDP {
       transaction,
       (final transaction) =>
           EmailIDPUtils.withReplacedServerEmailException(() async {
-        final authUserId = await utils.authenticate(
+        final authUserId = await utils.passwordReset.completePasswordReset(
           session,
-          email: email,
-          password: password,
+          passwordResetRequestId: passwordResetRequestId,
+          verificationCode: verificationCode,
+          newPassword: newPassword,
           transaction: transaction,
         );
 
-        return utils.createSession(
+        await _destroyAllSessions(
+          session,
+          authUserId,
+          transaction: transaction,
+        );
+
+        return _createSession(
           session,
           authUserId,
           transaction: transaction,
@@ -65,39 +73,6 @@ final class EmailIDP {
         );
       }),
     );
-  }
-
-  /// {@macro email_account_base_endpoint.start_registration}
-  Future<UuidValue> startRegistration(
-    final Session session, {
-    required final String email,
-    required final String password,
-    final Transaction? transaction,
-  }) async {
-    return await EmailIDPUtils.withReplacedServerEmailException(() async {
-      final result = await utils.accountCreationUtils.startAccountCreation(
-        session,
-        email: email,
-        password: password,
-        transaction: transaction,
-      );
-
-      // The details of the operation are intentionally not given to the caller, in order to not leak the existence of accounts.
-      // Clients should always show something like "check your email to proceed with the account creation".
-      // One might want to send a "password reset" in case of a "email already exists" status, to help the user log in.
-      if (result.result != EmailAccountRequestResult.accountRequestCreated) {
-        session.log(
-          'Failed to start account registration for $email, reason: ${result.result}',
-          level: LogLevel.debug,
-        );
-      }
-
-      // NOTE: It is necessary to keep the version of the uuid in sync with the
-      // one used by the [EmailAccountRequest] model to prevent attackers from
-      // using the difference on the version bit of the uuid to determine whether
-      // an email is registered or not.
-      return result.accountRequestId ?? const Uuid().v4obj();
-    });
   }
 
   /// {@macro email_account_base_endpoint.finish_registration}
@@ -112,7 +87,7 @@ final class EmailIDP {
       transaction,
       (final transaction) =>
           EmailIDPUtils.withReplacedServerEmailException(() async {
-        final result = await utils.accountCreationUtils.completeAccountCreation(
+        final result = await utils.accountCreation.completeAccountCreation(
           session,
           accountRequestId: accountRequestId,
           verificationCode: verificationCode,
@@ -128,9 +103,38 @@ final class EmailIDP {
           transaction: transaction,
         );
 
-        return utils.createSession(
+        return _createSession(
           session,
           result.authUserId,
+          transaction: transaction,
+          method: _method,
+        );
+      }),
+    );
+  }
+
+  /// {@macro email_account_base_endpoint.login}
+  Future<AuthSuccess> login(
+    final Session session, {
+    required final String email,
+    required final String password,
+    final Transaction? transaction,
+  }) async {
+    return DatabaseUtil.runInTransactionOrSavepoint(
+      session.db,
+      transaction,
+      (final transaction) =>
+          EmailIDPUtils.withReplacedServerEmailException(() async {
+        final authUserId = await utils.authentication.authenticate(
+          session,
+          email: email,
+          password: password,
+          transaction: transaction,
+        );
+
+        return _createSession(
+          session,
+          authUserId,
           transaction: transaction,
           method: _method,
         );
@@ -145,7 +149,7 @@ final class EmailIDP {
     final Transaction? transaction,
   }) async {
     return await EmailIDPUtils.withReplacedServerEmailException(() async {
-      final result = await utils.passwordResetUtils.startPasswordReset(
+      final result = await utils.passwordReset.startPasswordReset(
         session,
         email: email,
         transaction: transaction,
@@ -171,40 +175,76 @@ final class EmailIDP {
     });
   }
 
-  /// {@macro email_account_base_endpoint.finish_password_reset}
-  Future<AuthSuccess> finishPasswordReset(
+  /// {@macro email_account_base_endpoint.start_registration}
+  Future<UuidValue> startRegistration(
     final Session session, {
-    required final UuidValue passwordResetRequestId,
-    required final String verificationCode,
-    required final String newPassword,
+    required final String email,
+    required final String password,
     final Transaction? transaction,
   }) async {
-    return DatabaseUtil.runInTransactionOrSavepoint(
-      session.db,
-      transaction,
-      (final transaction) =>
-          EmailIDPUtils.withReplacedServerEmailException(() async {
-        final authUserId = await utils.passwordResetUtils.completePasswordReset(
-          session,
-          passwordResetRequestId: passwordResetRequestId,
-          verificationCode: verificationCode,
-          newPassword: newPassword,
-          transaction: transaction,
-        );
+    return await EmailIDPUtils.withReplacedServerEmailException(() async {
+      final result = await utils.accountCreation.startAccountCreation(
+        session,
+        email: email,
+        password: password,
+        transaction: transaction,
+      );
 
-        await utils.destroyAllSessions(
-          session,
-          authUserId,
-          transaction: transaction,
+      // The details of the operation are intentionally not given to the caller, in order to not leak the existence of accounts.
+      // Clients should always show something like "check your email to proceed with the account creation".
+      // One might want to send a "password reset" in case of a "email already exists" status, to help the user log in.
+      if (result.result != EmailAccountRequestResult.accountRequestCreated) {
+        session.log(
+          'Failed to start account registration for $email, reason: ${result.result}',
+          level: LogLevel.debug,
         );
+      }
 
-        return utils.createSession(
-          session,
-          authUserId,
-          transaction: transaction,
-          method: _method,
-        );
-      }),
+      // NOTE: It is necessary to keep the version of the uuid in sync with the
+      // one used by the [EmailAccountRequest] model to prevent attackers from
+      // using the difference on the version bit of the uuid to determine whether
+      // an email is registered or not.
+      return result.accountRequestId ?? const Uuid().v4obj();
+    });
+  }
+
+  Future<AuthSuccess> _createSession(
+    final Session session,
+    final UuidValue authUserId, {
+    required final Transaction? transaction,
+    required final String method,
+  }) async {
+    final authUser = await AuthUsers.get(
+      session,
+      authUserId: authUserId,
+      transaction: transaction,
+    );
+
+    if (authUser.blocked) {
+      throw AuthUserBlockedException();
+    }
+
+    final sessionKey = await AuthSessions.createSession(
+      session,
+      authUserId: authUserId,
+      method: method,
+      scopes: authUser.scopes,
+      transaction: transaction,
+    );
+
+    return sessionKey;
+  }
+
+  Future<void> _destroyAllSessions(
+    final Session session,
+    final UuidValue authUserId, {
+    required final Transaction? transaction,
+  }) async {
+    /// TODO: Move to shared auth config and filter on method and auth user id.
+    await AuthSessions.destroyAllSessions(
+      session,
+      authUserId: authUserId,
+      transaction: transaction,
     );
   }
 }

@@ -28,7 +28,7 @@ final class EmailIDPPasswordHashUtil {
   ///
   /// Applies a random salt, which must be stored with the hash to validate it
   /// later.
-  Future<({Uint8List hash, Uint8List salt})> createHash({
+  Future<PasswordHash> createHash({
     required final String value,
     Uint8List? salt,
   }) {
@@ -62,7 +62,7 @@ final class EmailIDPPasswordHashUtil {
     );
   }
 
-  Future<({Uint8List hash, Uint8List salt})> _createHash({
+  Future<PasswordHash> _createHash({
     required final String secret,
     required final Uint8List salt,
     required final Uint8List pepper,
@@ -79,7 +79,30 @@ final class EmailIDPPasswordHashUtil {
 
       final hashBytes = generator.process(utf8.encode(secret));
 
-      return (hash: hashBytes, salt: salt);
+      return PasswordHash(hash: hashBytes, salt: salt);
     });
+  }
+}
+
+/// A class for representing a password hash and its salt.
+class PasswordHash {
+  /// The hash of the password.
+  final Uint8List hash;
+
+  /// The salt of the password.
+  final Uint8List salt;
+
+  /// Creates a new [PasswordHash].
+  PasswordHash({
+    required this.hash,
+    required this.salt,
+  });
+
+  /// Creates an empty [PasswordHash].
+  factory PasswordHash.empty() {
+    return PasswordHash(
+      hash: Uint8List.fromList([]),
+      salt: Uint8List.fromList([]),
+    );
   }
 }

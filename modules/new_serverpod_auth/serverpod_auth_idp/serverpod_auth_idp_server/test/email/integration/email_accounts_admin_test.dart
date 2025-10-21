@@ -41,7 +41,7 @@ void main() {
       session = sessionBuilder.build();
 
       accountCreationResult =
-          await emailIDP.utils.accountCreationUtils.startAccountCreation(
+          await emailIDP.utils.accountCreation.startAccountCreation(
         session,
         email: email,
         password: 'Yolo12345!',
@@ -156,7 +156,7 @@ void main() {
           );
 
           expect(
-            await emailIDP.utils.authenticate(
+            await emailIDP.utils.authentication.authenticate(
               session,
               email: email,
               password: newPassword,
@@ -214,7 +214,7 @@ void main() {
         'when calling `EmailAccounts.authenticate`, it works right away (without verification).',
         () async {
           expect(
-            await emailIDP.utils.authenticate(
+            await emailIDP.utils.authentication.authenticate(
               session,
               email: email,
               password: password,
@@ -246,7 +246,7 @@ void main() {
           password: 'Yolo1234!',
         );
 
-        await emailIDP.utils.passwordResetUtils
+        await emailIDP.utils.passwordReset
             .startPasswordReset(session, email: email, transaction: null);
       });
 
@@ -304,7 +304,7 @@ void main() {
         final resetRequest = await requestPasswordReset(session, email: email);
 
         try {
-          await emailIDP.utils.passwordResetUtils.completePasswordReset(
+          await emailIDP.utils.passwordReset.completePasswordReset(
             session,
             passwordResetRequestId: resetRequest.$1,
             verificationCode: '----------',
@@ -359,7 +359,7 @@ void main() {
         session = sessionBuilder.build();
 
         try {
-          await emailIDP.utils.authenticate(
+          await emailIDP.utils.authentication.authenticate(
             session,
             email: '404@serverpod.dev',
             password: 'Asdf123ll!',

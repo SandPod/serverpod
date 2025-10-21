@@ -26,8 +26,7 @@ void main() {
       test(
           'when requesting a reset for a non-existent email, it returns "email does not exist" status (for internal use).',
           () async {
-        final result =
-            await emailIDP.utils.passwordResetUtils.startPasswordReset(
+        final result = await emailIDP.utils.passwordReset.startPasswordReset(
           session,
           email: '404@serverpod.dev',
           transaction: null,
@@ -85,7 +84,7 @@ void main() {
     test(
         'when requesting a password reset for the account, then the process ID and verification code are given to the configured callback.',
         () async {
-      final result = await emailIDP.utils.passwordResetUtils.startPasswordReset(
+      final result = await emailIDP.utils.passwordReset.startPasswordReset(
         session,
         email: email.toUpperCase(),
         transaction: null,
@@ -130,14 +129,14 @@ void main() {
       test(
           'when requesting too many password resets, '
           'then it throws a "too many attempts" exception.', () async {
-        await emailIDP.utils.passwordResetUtils.startPasswordReset(
+        await emailIDP.utils.passwordReset.startPasswordReset(
           session,
           email: email,
           transaction: null,
         );
 
         await expectLater(
-          () => emailIDP.utils.passwordResetUtils.startPasswordReset(
+          () => emailIDP.utils.passwordReset.startPasswordReset(
             session,
             email: email.toUpperCase(),
             transaction: null,
@@ -194,8 +193,7 @@ void main() {
       test(
           'when changing the password with the correct verification code, then it returns the auth user ID.',
           () async {
-        final result =
-            await emailIDP.utils.passwordResetUtils.completePasswordReset(
+        final result = await emailIDP.utils.passwordReset.completePasswordReset(
           session,
           passwordResetRequestId: passwordResetRequestId,
           verificationCode: verificationCode,
@@ -222,7 +220,7 @@ void main() {
         }
 
         await expectLater(
-          () => emailIDP.utils.passwordResetUtils.completePasswordReset(
+          () => emailIDP.utils.passwordReset.completePasswordReset(
             session,
             passwordResetRequestId: passwordResetRequestId,
             verificationCode: verificationCode,
@@ -238,7 +236,7 @@ void main() {
           'then it throws a "password policy violation" exception regardless of the verification code.',
           () async {
         await expectLater(
-          () => emailIDP.utils.passwordResetUtils.completePasswordReset(
+          () => emailIDP.utils.passwordReset.completePasswordReset(
             session,
             passwordResetRequestId: passwordResetRequestId,
             verificationCode: 'wrong',
@@ -256,7 +254,7 @@ void main() {
           () => withClock(
             Clock.fixed(DateTime.now()
                 .add(testConfig.passwordResetVerificationCodeLifetime)),
-            () => emailIDP.utils.passwordResetUtils.completePasswordReset(
+            () => emailIDP.utils.passwordReset.completePasswordReset(
               session,
               passwordResetRequestId: passwordResetRequestId,
               verificationCode: verificationCode,
@@ -276,7 +274,7 @@ void main() {
           () => withClock(
             Clock.fixed(DateTime.now()
                 .add(testConfig.passwordResetVerificationCodeLifetime)),
-            () => emailIDP.utils.passwordResetUtils.completePasswordReset(
+            () => emailIDP.utils.passwordReset.completePasswordReset(
               session,
               passwordResetRequestId: passwordResetRequestId,
               verificationCode: 'wrong',
@@ -293,7 +291,7 @@ void main() {
           'then it throws a "too many attempts" on the second attempt and "not found" on the next ones. ',
           () async {
         await expectLater(
-          () => emailIDP.utils.passwordResetUtils.completePasswordReset(
+          () => emailIDP.utils.passwordReset.completePasswordReset(
             session,
             passwordResetRequestId: passwordResetRequestId,
             verificationCode: 'wrong',
@@ -304,7 +302,7 @@ void main() {
         );
 
         await expectLater(
-          () => emailIDP.utils.passwordResetUtils.completePasswordReset(
+          () => emailIDP.utils.passwordReset.completePasswordReset(
             session,
             passwordResetRequestId: passwordResetRequestId,
             verificationCode: 'wrong',
@@ -316,7 +314,7 @@ void main() {
         );
 
         await expectLater(
-          () => emailIDP.utils.passwordResetUtils.completePasswordReset(
+          () => emailIDP.utils.passwordReset.completePasswordReset(
             session,
             passwordResetRequestId: passwordResetRequestId,
             verificationCode: 'wrong',
@@ -371,7 +369,7 @@ void main() {
       test(
           'when using the new credentials for an authentication, then it succeeds.',
           () async {
-        final userId = await emailIDP.utils.authenticate(
+        final userId = await emailIDP.utils.authentication.authenticate(
           session,
           email: email,
           password: newPassword,
@@ -385,7 +383,7 @@ void main() {
           'when using the old credentials for the login, '
           'then it throws an "invalid credentials" exception.', () async {
         await expectLater(
-          () => emailIDP.utils.authenticate(
+          () => emailIDP.utils.authentication.authenticate(
             session,
             email: email,
             password: oldPassword,
