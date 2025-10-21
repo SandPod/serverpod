@@ -13,10 +13,32 @@ import 'utils/email_idp_password_reset_utils.dart';
 
 /// Email account management functions.
 ///
-/// These functions can be used to compose custom authentication and
-/// administration flows if needed.
+/// This class provides atomic building blocks for composing custom authentication
+/// and administration flows. Apart from the methods in this class, the main
+/// building blocks are:
 ///
-/// But for most cases, the methods exposed by [EmailIDP] and
+/// - [passwordHashUtils] - Password and verification code hashing utilities
+/// - [accountCreationUtils] - Account registration and verification utilities
+/// - [passwordResetUtils] - Password reset and recovery utilities
+///
+/// These utilities can be used to implement custom authentication flows beyond
+/// what's provided by [EmailIDP] and [EmailIDPAdmin]. For example:
+///
+/// ```dart
+/// // Access building blocks for custom flows
+/// final utils = EmailIDPUtils(config: config);
+///
+/// // Use account creation utilities
+/// final result = await utils.accountCreationUtils.startAccountCreation(...);
+///
+/// // Use password reset utilities
+/// final resetResult = await utils.passwordResetUtils.startPasswordReset(...);
+///
+/// // Use password hashing utilities
+/// final hash = await utils.passwordHashUtils.createHash(value: password);
+/// ```
+///
+/// For most standard use cases, the methods exposed by [EmailIDP] and
 /// [EmailIDPAdmin] should be sufficient.
 class EmailIDPUtils {
   /// {@macro email_idp_config}
