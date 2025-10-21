@@ -158,12 +158,14 @@ class EmailIDPPasswordResetUtils {
     );
   }
 
+  /// {@template email_idp_password_reset_utils.delete_password_reset_attempts}
   /// Cleans up the log of failed password reset attempts older than
   /// [olderThan].
   ///
   /// If [olderThan] is `null`, this will remove all attempts outside the time
   /// window that is checked upon password reset requests, as configured in
   /// [EmailIDPConfig.maxPasswordResetAttempts].
+  /// {@endtemplate}
   Future<void> deletePasswordResetAttempts(
     final Session session, {
     Duration? olderThan,

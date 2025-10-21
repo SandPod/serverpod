@@ -13,18 +13,7 @@ final class EmailIDPAdmin {
   /// Creates a new instance of [EmailIDPAdmin].
   EmailIDPAdmin({required final EmailIDPUtils utils}) : _utils = utils;
 
-  /// Creates an email authentication for the auth user with the given email and
-  /// password.
-  ///
-  /// The [email] will be treated as validated right away, so the caller must
-  /// ensure that it comes from a trusted source.
-  /// The [password] argument is not checked against the configured password
-  /// policy.
-  /// A `null` [password] can be passed to create an account without a password.
-  /// In that case either the user has to complete a password reset or
-  /// [setPassword] needs to be called before the user can log in.
-  ///
-  /// Returns the email account ID for the newly created authentication method.
+  /// {@macro email_idp_account_creation_utils.create_email_authentication}
   Future<UuidValue> createEmailAuthentication(
     final Session session, {
     required final UuidValue authUserId,
@@ -32,7 +21,7 @@ final class EmailIDPAdmin {
     required final String? password,
     final Transaction? transaction,
   }) async {
-    return _utils.createEmailAuthentication(
+    return _utils.accountCreationUtils.createEmailAuthentication(
       session,
       authUserId: authUserId,
       email: email,
@@ -41,7 +30,7 @@ final class EmailIDPAdmin {
     );
   }
 
-  /// Deletes an account request by its ID.
+  /// {@macro email_idp_account_creation_utils.delete_email_account_request_by_id}
   Future<void> deleteEmailAccountRequestById(
     final Session session,
     final UuidValue accountRequestId, {
@@ -54,7 +43,7 @@ final class EmailIDPAdmin {
     );
   }
 
-  /// Cleans up expired account creation requests.
+  /// {@macro email_idp_account_creation_utils.delete_expired_account_creations}
   Future<void> deleteExpiredAccountCreations(
     final Session session, {
     final Transaction? transaction,
@@ -65,7 +54,7 @@ final class EmailIDPAdmin {
     );
   }
 
-  /// Cleans up expired password reset attempts.
+  /// {@macro email_idp_password_reset_utils.delete_expired_password_reset_requests}
   Future<void> deleteExpiredPasswordResetRequests(
     final Session session, {
     final Transaction? transaction,
@@ -93,12 +82,7 @@ final class EmailIDPAdmin {
     );
   }
 
-  /// Cleans up the log of failed password reset attempts older than
-  /// [olderThan].
-  ///
-  /// If [olderThan] is `null`, this will remove all attempts outside the time
-  /// window that is checked upon password reset requests, as configured in
-  /// [EmailIDPConfig.maxPasswordResetAttempts].
+  /// {@macro email_idp_password_reset_utils.delete_password_reset_attempts}
   Future<void> deletePasswordResetAttempts(
     final Session session, {
     final Duration? olderThan,

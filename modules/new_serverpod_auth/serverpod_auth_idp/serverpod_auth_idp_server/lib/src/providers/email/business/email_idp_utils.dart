@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:clock/clock.dart';
 import 'package:serverpod/serverpod.dart';
 import 'package:serverpod_auth_core_server/session.dart';
@@ -7,7 +5,6 @@ import 'package:serverpod_auth_core_server/session.dart';
 import '../../../generated/protocol.dart';
 import '../util/byte_data_extension.dart';
 import '../util/session_extension.dart';
-import '../util/uint8list_extension.dart';
 import 'email_idp_config.dart';
 import 'email_idp_server_exceptions.dart';
 import 'utils/email_idp_account_creation_utils.dart';
@@ -102,45 +99,6 @@ class EmailIDPUtils {
         return account.authUserId;
       },
     );
-  }
-
-  /// Creates an email authentication for the auth user with the given email and
-  /// password.
-  ///
-  /// The [email] will be treated as validated right away, so the caller must
-  /// ensure that it comes from a trusted source.
-  /// The [password] argument is not checked against the configured password
-  /// policy.
-  /// A `null` [password] can be passed to create an account without a password.
-  /// In that case either the user has to complete a password reset or
-  /// [setPassword] needs to be called before the user can log in.
-  ///
-  /// Returns the email account ID for the newly created authentication method.
-  Future<UuidValue> createEmailAuthentication(
-    final Session session, {
-    required final UuidValue authUserId,
-    required final String email,
-    required final String? password,
-    required final Transaction? transaction,
-  }) async {
-    final passwordHash = password != null
-        ? await passwordHashUtils.createHash(
-            value: password,
-          )
-        : (hash: Uint8List.fromList([]), salt: Uint8List.fromList([]));
-
-    final account = await EmailAccount.db.insertRow(
-      session,
-      EmailAccount(
-        authUserId: authUserId,
-        email: email.toLowerCase(),
-        passwordHash: passwordHash.hash.asByteData,
-        passwordSalt: passwordHash.salt.asByteData,
-      ),
-      transaction: transaction,
-    );
-
-    return account.id!;
   }
 
   /// Creates a new authentication session for the given [authUserId].
