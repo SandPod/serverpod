@@ -14,16 +14,24 @@ import 'email_idp_utils.dart';
 /// The `admin` property provides access to [EmailIDPAdmin], which contains
 /// admin-related methods for managing email-backed accounts.
 ///
+/// The `utils` property provides access to [EmailIDPUtils], which contains
+/// utility methods for working with email-backed accounts. These can be used
+/// to implement custom authentication flows if needed.
+///
 /// If you would like to modify the authentication flow, consider creating
 /// custom implementations of the relevant methods.
 final class EmailIDP {
+  /// Admin operations to work with email-backed accounts.
+  late final EmailIDPAdmin admin;
+
+  /// Utility functions for the email identity provider.
+  late final EmailIDPUtils utils;
+
   /// Creates a new instance of [EmailIDP].
   EmailIDP({required final EmailIDPConfig config}) {
-    // Currently no config options are used.
+    utils = EmailIDPUtils(config: config);
+    admin = EmailIDPAdmin(utils: utils);
   }
-
-  /// Collection of admin-related functions.
-  static final EmailIDPAdmin admin = EmailIDPAdmin();
 
   /// {@macro email_account_base_endpoint.login}
   Future<AuthSuccess> login(
@@ -36,7 +44,7 @@ final class EmailIDP {
       session.db,
       transaction,
       (final transaction) => _withReplacedServerEmailException(() async {
-        final authUserId = await EmailIDPUtils.authenticate(
+        final authUserId = await utils.authenticate(
           session,
           email: email,
           password: password,
@@ -60,7 +68,7 @@ final class EmailIDP {
     final Transaction? transaction,
   }) async {
     return await _withReplacedServerEmailException(() async {
-      final result = await EmailIDPUtils.startAccountCreation(
+      final result = await utils.startAccountCreation(
         session,
         email: email,
         password: password,
@@ -96,7 +104,7 @@ final class EmailIDP {
       session.db,
       transaction,
       (final transaction) => _withReplacedServerEmailException(() async {
-        final accountRequest = await EmailIDPUtils.verifyAccountCreation(
+        final accountRequest = await utils.verifyAccountCreation(
           session,
           accountRequestId: accountRequestId,
           verificationCode: verificationCode,
@@ -118,7 +126,7 @@ final class EmailIDP {
           transaction: transaction,
         );
 
-        await EmailIDPUtils.completeAccountCreation(
+        await utils.completeAccountCreation(
           session,
           accountRequestId: accountRequestId,
           authUserId: authUserId,
@@ -141,7 +149,7 @@ final class EmailIDP {
     final Transaction? transaction,
   }) async {
     return await _withReplacedServerEmailException(() async {
-      final result = await EmailIDPUtils.startPasswordReset(
+      final result = await utils.startPasswordReset(
         session,
         email: email,
         transaction: transaction,
@@ -176,7 +184,7 @@ final class EmailIDP {
       session.db,
       transaction,
       (final transaction) => _withReplacedServerEmailException(() async {
-        final authUserId = await EmailIDPUtils.completePasswordReset(
+        final authUserId = await utils.completePasswordReset(
           session,
           passwordResetRequestId: passwordResetRequestId,
           verificationCode: verificationCode,

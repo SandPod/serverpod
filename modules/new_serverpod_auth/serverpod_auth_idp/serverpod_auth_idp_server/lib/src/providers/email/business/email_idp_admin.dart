@@ -2,20 +2,22 @@ import 'dart:typed_data';
 
 import 'package:clock/clock.dart';
 import 'package:serverpod/serverpod.dart';
-import 'package:serverpod_auth_idp_server/core.dart';
+import 'package:serverpod_auth_core_server/profile.dart';
+import 'package:serverpod_auth_core_server/session.dart';
 
 import '../../../generated/protocol.dart';
 import '../util/uint8list_extension.dart';
 import 'email_idp_server_exceptions.dart';
 import 'email_idp_utils.dart';
 
-/// Administrative email account management functions.
-///
-/// These should generally not be exposed to clients, but might be useful for
-/// internal tasks or an admin dashboard.
-///
-/// An instance of this class is available at [EmailIDPUtils.admin].
-final class EmailAccountsAdmin {
+/// Collection of email-account admin methods.
+final class EmailIDPAdmin {
+  static const String _method = 'email';
+  final EmailIDPUtils _utils;
+
+  /// Creates a new instance of [EmailIDPAdmin].
+  EmailIDPAdmin({required final EmailIDPUtils utils}) : _utils = utils;
+
   /// Creates an email authentication for the auth user with the given email and
   /// password.
   ///
@@ -38,7 +40,10 @@ final class EmailAccountsAdmin {
     email = email.toLowerCase();
 
     final passwordHash = password != null
-        ? await EmailAccountSecretHash.createHash(value: password)
+        ? await EmailAccountSecretHash.createHash(
+            value: password,
+            passwordHashSaltLength: _utils.config.passwordHashSaltLength,
+          )
         : (hash: Uint8List.fromList([]), salt: Uint8List.fromList([]));
 
     final account = await EmailAccount.db.insertRow(
@@ -74,7 +79,7 @@ final class EmailAccountsAdmin {
     final Transaction? transaction,
   }) async {
     final lastValidDateTime = clock.now().subtract(
-          EmailIDPUtils.config.registrationVerificationCodeLifetime,
+          _utils.config.registrationVerificationCodeLifetime,
         );
 
     await EmailAccountRequest.db.deleteWhere(
@@ -90,7 +95,7 @@ final class EmailAccountsAdmin {
     final Transaction? transaction,
   }) async {
     final lastValidDateTime = clock.now().subtract(
-          EmailIDPUtils.config.passwordResetVerificationCodeLifetime,
+          _utils.config.passwordResetVerificationCodeLifetime,
         );
 
     await EmailAccountPasswordResetRequest.db.deleteWhere(
@@ -110,7 +115,7 @@ final class EmailAccountsAdmin {
     Duration? olderThan,
     final Transaction? transaction,
   }) async {
-    olderThan ??= EmailIDPUtils.config.failedLoginRateLimit.timeframe;
+    olderThan ??= _utils.config.failedLoginRateLimit.timeframe;
 
     final removeBefore = clock.now().subtract(olderThan);
 
@@ -132,7 +137,7 @@ final class EmailAccountsAdmin {
     Duration? olderThan,
     final Transaction? transaction,
   }) async {
-    olderThan ??= EmailIDPUtils.config.maxPasswordResetAttempts.timeframe;
+    olderThan ??= _utils.config.maxPasswordResetAttempts.timeframe;
 
     final removeBefore = clock.now().subtract(olderThan);
 
@@ -193,7 +198,7 @@ final class EmailAccountsAdmin {
       transaction: transaction,
     );
 
-    if (request == null || request.isExpired) {
+    if (request == null || request.isExpired(_utils.config)) {
       return null;
     }
 
@@ -231,6 +236,7 @@ final class EmailAccountsAdmin {
 
     final passwordHash = await EmailAccountSecretHash.createHash(
       value: password,
+      passwordHashSaltLength: _utils.config.passwordHashSaltLength,
     );
 
     account = await EmailAccount.db.updateRow(
@@ -242,13 +248,6 @@ final class EmailAccountsAdmin {
       transaction: transaction,
     );
   }
-}
-
-/// Admin operations complementing the end-user [EmailIDP] functionality.
-///
-/// An instance of this class is available at [EmailIDP.admin].
-final class EmailIDPAdmin {
-  static const String _method = 'email';
 
   /// Create a session for the given auth user.
   ///
@@ -258,11 +257,11 @@ final class EmailIDPAdmin {
     final UuidValue authUserId, {
     required final Transaction? transaction,
   }) async {
-    return AuthSessions.createSession(
+    return _utils.createSession(
       session,
-      authUserId: authUserId,
-      method: _method,
+      authUserId,
       transaction: transaction,
+      method: _method,
     );
   }
 
@@ -299,7 +298,7 @@ final class EmailIDPAdmin {
           transaction: transaction,
         );
 
-        await EmailIDPUtils.admin.createEmailAuthentication(
+        await _utils.admin.createEmailAuthentication(
           session,
           authUserId: authUserId,
           email: email,
@@ -310,15 +309,5 @@ final class EmailIDPAdmin {
         return authUserId;
       },
     );
-  }
-}
-
-extension on EmailAccountRequest {
-  bool get isExpired {
-    final requestExpiresAt = createdAt.add(
-      EmailIDPUtils.config.registrationVerificationCodeLifetime,
-    );
-
-    return requestExpiresAt.isBefore(clock.now());
   }
 }
