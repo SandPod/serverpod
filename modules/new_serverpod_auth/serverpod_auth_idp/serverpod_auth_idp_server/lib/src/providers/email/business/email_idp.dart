@@ -112,40 +112,25 @@ final class EmailIDP {
       transaction,
       (final transaction) =>
           EmailIDPUtils.withReplacedServerEmailException(() async {
-        /// TODO: Combine the internals to a single call into `utils`.
-        final accountRequest =
-            await utils.accountCreationUtils.verifyAccountCreation(
+        final result = await utils.accountCreationUtils.completeAccountCreation(
           session,
           accountRequestId: accountRequestId,
           verificationCode: verificationCode,
           transaction: transaction,
         );
 
-        final newUser = await AuthUsers.create(
-          session,
-          transaction: transaction,
-        );
-        final authUserId = newUser.id;
-
         await UserProfiles.createUserProfile(
           session,
-          authUserId,
+          result.authUserId,
           UserProfileData(
-            email: accountRequest.email,
+            email: result.email,
           ),
-          transaction: transaction,
-        );
-
-        await utils.accountCreationUtils.completeAccountCreation(
-          session,
-          accountRequestId: accountRequestId,
-          authUserId: authUserId,
           transaction: transaction,
         );
 
         return utils.createSession(
           session,
-          authUserId,
+          result.authUserId,
           transaction: transaction,
           method: _method,
         );
@@ -207,9 +192,9 @@ final class EmailIDP {
           transaction: transaction,
         );
 
-        await AuthSessions.destroyAllSessions(
+        await utils.destroyAllSessions(
           session,
-          authUserId: authUserId,
+          authUserId,
           transaction: transaction,
         );
 

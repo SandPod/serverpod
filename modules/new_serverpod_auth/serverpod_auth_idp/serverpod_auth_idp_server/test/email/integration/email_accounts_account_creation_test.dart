@@ -164,14 +164,14 @@ void main() {
           'when verifying the account request with the correct code, then it passes and returns the associated email.',
           () async {
         final result =
-            await emailIDP.utils.accountCreationUtils.verifyAccountCreation(
+            await emailIDP.utils.accountCreationUtils.verifyAccountRequest(
           session,
           accountRequestId: pendingAccountRequestId,
           verificationCode: pendingAccountVerificationCode,
           transaction: null,
         );
 
-        expect(result.requestId, pendingAccountRequestId);
+        expect(result.id, pendingAccountRequestId);
         expect(result.email, email.toLowerCase());
       });
 
@@ -179,7 +179,7 @@ void main() {
           'when verifying the account request with an incorrect code, '
           'then it throws an "invalid verification code" exception.', () async {
         await expectLater(
-          () => emailIDP.utils.accountCreationUtils.verifyAccountCreation(
+          () => emailIDP.utils.accountCreationUtils.verifyAccountRequest(
             session,
             accountRequestId: pendingAccountRequestId,
             verificationCode: 'some invalid code',
@@ -195,7 +195,7 @@ void main() {
         await expectLater(
           () => withClock(
             Clock.fixed(DateTime.now().add(verificationCodeLifetime)),
-            () => emailIDP.utils.accountCreationUtils.verifyAccountCreation(
+            () => emailIDP.utils.accountCreationUtils.verifyAccountRequest(
               session,
               accountRequestId: pendingAccountRequestId,
               verificationCode: pendingAccountVerificationCode,
@@ -213,7 +213,7 @@ void main() {
         await expectLater(
           () => withClock(
             Clock.fixed(DateTime.now().add(verificationCodeLifetime)),
-            () => emailIDP.utils.accountCreationUtils.verifyAccountCreation(
+            () => emailIDP.utils.accountCreationUtils.verifyAccountRequest(
               session,
               accountRequestId: pendingAccountRequestId,
               verificationCode: 'wrong',
@@ -261,7 +261,7 @@ void main() {
           'then it throws an "invalid verification code" exception on the second attempt and "request not found" on the next ones. ',
           () async {
         await expectLater(
-          () => emailIDP.utils.accountCreationUtils.verifyAccountCreation(
+          () => emailIDP.utils.accountCreationUtils.verifyAccountRequest(
             session,
             accountRequestId: pendingAccountRequestId,
             verificationCode: 'wrong code',
@@ -271,7 +271,7 @@ void main() {
         );
 
         await expectLater(
-          () => emailIDP.utils.accountCreationUtils.verifyAccountCreation(
+          () => emailIDP.utils.accountCreationUtils.verifyAccountRequest(
             session,
             accountRequestId: pendingAccountRequestId,
             verificationCode: 'wrong code',
@@ -282,7 +282,7 @@ void main() {
         );
 
         await expectLater(
-          () => emailIDP.utils.accountCreationUtils.verifyAccountCreation(
+          () => emailIDP.utils.accountCreationUtils.verifyAccountRequest(
             session,
             accountRequestId: pendingAccountRequestId,
             verificationCode: 'wrong code',
@@ -297,12 +297,22 @@ void main() {
           'then it throws an "account request not verified" exception.',
           () async {
         final authUser = await createAuthUser(session);
+        final EmailAccountRequest? unverifiedAccountRequest =
+            await EmailAccountRequest.db.findFirstRow(
+          session,
+          where: (final t) => t.id.equals(pendingAccountRequestId),
+        );
 
+        expect(
+          unverifiedAccountRequest,
+          isNotNull,
+          reason: 'Unverified account request should exist',
+        );
         await expectLater(
-          () => emailIDP.utils.accountCreationUtils.completeAccountCreation(
+          () => emailIDP.utils.accountCreationUtils.finalizeAccountRequest(
             session,
             authUserId: authUser.id,
-            accountRequestId: pendingAccountRequestId,
+            accountRequest: unverifiedAccountRequest!,
             transaction: null,
           ),
           throwsA(isA<EmailAccountRequestNotVerifiedException>()),
@@ -362,6 +372,7 @@ void main() {
       late EmailIDP emailIDP;
       late Session session;
       late UuidValue pendingAccountRequestId;
+      late EmailAccountRequest verifiedAccountRequest;
 
       setUp(() async {
         session = sessionBuilder.build();
@@ -390,7 +401,8 @@ void main() {
           transaction: null,
         );
 
-        await emailIDP.utils.accountCreationUtils.verifyAccountCreation(
+        verifiedAccountRequest =
+            await emailIDP.utils.accountCreationUtils.verifyAccountRequest(
           session,
           accountRequestId: pendingAccountRequestId,
           verificationCode: pendingAccountVerificationCode,
@@ -408,11 +420,11 @@ void main() {
         final authUser = await createAuthUser(session);
 
         final result =
-            await emailIDP.utils.accountCreationUtils.completeAccountCreation(
+            await emailIDP.utils.accountCreationUtils.finalizeAccountRequest(
           session,
           authUserId: authUser.id,
-          accountRequestId: pendingAccountRequestId,
           transaction: null,
+          accountRequest: verifiedAccountRequest,
         );
 
         expect(result.email, email.toLowerCase());
@@ -492,7 +504,7 @@ void main() {
           'when attempting to create the account again with same account request data, '
           'then it throws an "account request not found" exception.', () async {
         await expectLater(
-          () => emailIDP.utils.accountCreationUtils.verifyAccountCreation(
+          () => emailIDP.utils.accountCreationUtils.verifyAccountRequest(
             session,
             accountRequestId: accountCreationParameters.accountRequestId,
             verificationCode: accountCreationParameters.verificationCode,

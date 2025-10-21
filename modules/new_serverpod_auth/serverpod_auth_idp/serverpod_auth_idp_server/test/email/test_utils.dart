@@ -41,7 +41,8 @@ Future<
     transaction: null,
   );
 
-  await utils.accountCreationUtils.verifyAccountCreation(
+  final verifiedAccountRequest =
+      await utils.accountCreationUtils.verifyAccountRequest(
     session,
     accountRequestId: pendingAccountRequestId,
     verificationCode: pendingAccountVerificationCode,
@@ -49,10 +50,10 @@ Future<
   );
 
   final creationResult =
-      await utils.accountCreationUtils.completeAccountCreation(
+      await utils.accountCreationUtils.finalizeAccountRequest(
     session,
     authUserId: authUserId,
-    accountRequestId: pendingAccountRequestId,
+    accountRequest: verifiedAccountRequest,
     transaction: null,
   );
 

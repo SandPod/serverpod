@@ -30,6 +30,52 @@ final class EmailIDPAdmin {
     );
   }
 
+  /// Creates a user with an email-based authentication and the associated
+  /// profile.
+  ///
+  /// The end result is identical to the combination of
+  /// [EmailIDP.startRegistration] and [EmailIDP.finishRegistration].
+  /// The [email] is considered verified by default.
+  ///
+  /// Returns the newly created [AuthUser]'s id.
+  Future<UuidValue> createUser(
+    final Session session, {
+    required final String email,
+    required final String password,
+    final Transaction? transaction,
+  }) async {
+    return DatabaseUtil.runInTransactionOrSavepoint(
+      session.db,
+      transaction,
+      (final transaction) async {
+        final newUser = await AuthUsers.create(
+          session,
+          transaction: transaction,
+        );
+        final authUserId = newUser.id;
+
+        await UserProfiles.createUserProfile(
+          session,
+          authUserId,
+          UserProfileData(
+            email: email,
+          ),
+          transaction: transaction,
+        );
+
+        await createEmailAuthentication(
+          session,
+          authUserId: authUserId,
+          email: email,
+          password: password,
+          transaction: transaction,
+        );
+
+        return authUserId;
+      },
+    );
+  }
+
   /// {@macro email_idp_account_creation_utils.delete_email_account_request_by_id}
   Future<void> deleteEmailAccountRequestById(
     final Session session,
@@ -191,52 +237,6 @@ final class EmailIDPAdmin {
         passwordSalt: passwordHash.salt.asByteData,
       ),
       transaction: transaction,
-    );
-  }
-
-  /// Creates a user with an email-based authentication and the associated
-  /// profile.
-  ///
-  /// The end result is identical to the combination of
-  /// [EmailIDP.startRegistration] and [EmailIDP.finishRegistration].
-  /// The [email] is considered verified by default.
-  ///
-  /// Returns the newly created [AuthUser]'s id.
-  Future<UuidValue> createUser(
-    final Session session, {
-    required final String email,
-    required final String password,
-    final Transaction? transaction,
-  }) async {
-    return DatabaseUtil.runInTransactionOrSavepoint(
-      session.db,
-      transaction,
-      (final transaction) async {
-        final newUser = await AuthUsers.create(
-          session,
-          transaction: transaction,
-        );
-        final authUserId = newUser.id;
-
-        await UserProfiles.createUserProfile(
-          session,
-          authUserId,
-          UserProfileData(
-            email: email,
-          ),
-          transaction: transaction,
-        );
-
-        await createEmailAuthentication(
-          session,
-          authUserId: authUserId,
-          email: email,
-          password: password,
-          transaction: transaction,
-        );
-
-        return authUserId;
-      },
     );
   }
 }

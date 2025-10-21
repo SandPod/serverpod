@@ -155,6 +155,19 @@ class EmailIDPUtils {
     return sessionKey;
   }
 
+  /// Destroys all sessions for the given [authUserId].
+  Future<void> destroyAllSessions(
+    final Session session,
+    final UuidValue authUserId, {
+    required final Transaction? transaction,
+  }) async {
+    await AuthSessions.destroyAllSessions(
+      session,
+      authUserId: authUserId,
+      transaction: transaction,
+    );
+  }
+
   /// Cleans up the log of failed login attempts older than [olderThan].
   ///
   /// If [olderThan] is `null`, this will remove all attempts outside the time
