@@ -1,0 +1,548 @@
+import 'package:clock/clock.dart';
+import 'package:email_validator/email_validator.dart';
+import 'package:serverpod/serverpod.dart';
+
+import '../../../../generated/protocol.dart';
+import '../../util/byte_data_extension.dart';
+import '../../util/session_extension.dart';
+import '../../util/uint8list_extension.dart';
+import '../email_idp_config.dart';
+import '../email_idp_server_exceptions.dart';
+import 'email_idp_password_hash_util.dart';
+
+/// The result of the [EmailIDPUtils.completeAccountCreation] operation.
+///
+/// This describes the detailed status of the operation to the caller.
+///
+/// In the general case the caller should take care not to leak this to clients,
+/// such that outside clients can not use this result to determine whether a
+/// specific account is registered on the server.
+enum EmailAccountRequestResult {
+  /// An account request has been created.
+  accountRequestCreated,
+
+  /// There is a pending account request for this email already.
+  ///
+  /// No account request has been created.
+  emailAlreadyRequested,
+
+  /// There an account for this email already.
+  ///
+  /// No account request has been created.
+  emailAlreadyRegistered,
+
+  /// The given email does not seem valid.
+  ///
+  /// No account request has been created.
+  emailInvalid,
+}
+
+/// The result of the [EmailIDPAccountCreationUtils.startAccountCreation] operation.
+///
+/// This describes the detailed status of the operation to the caller.
+///
+/// In the general case the caller should take care not to leak this to clients,
+/// such that outside clients can not use this result to determine whether a
+/// specific account is registered on the server.
+class EmailIDPAccountCreationResult {
+  /// The result of the operation.
+  final EmailAccountRequestResult result;
+
+  /// The account request ID if the operation was successful.
+  final UuidValue? accountRequestId;
+
+  /// Creates a new [EmailIDPAccountCreationResult] with the result [EmailAccountRequestResult.accountRequestCreated].
+  factory EmailIDPAccountCreationResult.accountRequestCreated(
+    final UuidValue accountRequestId,
+  ) {
+    return EmailIDPAccountCreationResult._(
+      result: EmailAccountRequestResult.accountRequestCreated,
+      accountRequestId: accountRequestId,
+    );
+  }
+
+  /// Creates a new [EmailIDPAccountCreationResult] with the result [EmailAccountRequestResult.emailAlreadyRegistered].
+  factory EmailIDPAccountCreationResult.emailAlreadyRegistered() {
+    return EmailIDPAccountCreationResult._(
+      result: EmailAccountRequestResult.emailAlreadyRegistered,
+      accountRequestId: null,
+    );
+  }
+
+  /// Creates a new [EmailIDPAccountCreationResult] with the result [EmailAccountRequestResult.emailAlreadyRequested].
+  factory EmailIDPAccountCreationResult.emailAlreadyRequested() {
+    return EmailIDPAccountCreationResult._(
+      result: EmailAccountRequestResult.emailAlreadyRequested,
+      accountRequestId: null,
+    );
+  }
+
+  /// Creates a new [EmailIDPAccountCreationResult] with the result [EmailAccountRequestResult.emailInvalid].
+  factory EmailIDPAccountCreationResult.emailInvalid() {
+    return EmailIDPAccountCreationResult._(
+      result: EmailAccountRequestResult.emailInvalid,
+      accountRequestId: null,
+    );
+  }
+
+  EmailIDPAccountCreationResult._({
+    required this.result,
+    required this.accountRequestId,
+  });
+}
+
+/// {@template email_idp_account_creation_utils}
+/// This class contains utility functions for the email identity provider
+/// account creation.
+///
+/// The main entry point is the [startAccountCreation] method, which returns a
+/// [EmailIDPAccountCreationResult] with the result of the operation.
+///
+/// This class also contains utility functions for administration tasks, such as
+/// deleting expired account creations and verifying account creations.
+///
+/// {@endtemplate}
+class EmailIDPAccountCreationUtils {
+  final EmailIDPPasswordHashUtil _passwordHashUtils;
+  final EmailIDPAccountCreationUtilsConfig _config;
+
+  /// Creates a new [EmailIDPAccountCreationUtils] instance.
+  EmailIDPAccountCreationUtils({
+    required final EmailIDPAccountCreationUtilsConfig config,
+    required final EmailIDPPasswordHashUtil passwordHashUtils,
+  })  : _config = config,
+        _passwordHashUtils = passwordHashUtils;
+
+  /// {@template email_idp_account_creation_utils.complete_account_creation}
+  /// Finalize the email authentication creation.
+  ///
+  /// Returns the `ID` of the new email authentication, and the email address
+  /// used during registration.
+  ///
+  /// Can throw the following [EmailAccountRequestServerException] subclasses:
+  /// - [EmailAccountRequestNotFoundException] if the request does not exist
+  ///   or has already been completed and cleaned up.
+  /// - [EmailAccountRequestNotVerifiedException] if the request has not been
+  ///   previously verified via [verifyAccountCreation].
+  /// {@endtemplate}
+  Future<EmailIDPCompleteAccountCreationResult> completeAccountCreation(
+    final Session session, {
+    required final UuidValue accountRequestId,
+
+    /// Authentication user ID this account should be linked up with
+    required final UuidValue authUserId,
+    required final Transaction? transaction,
+  }) async {
+    return DatabaseUtil.runInTransactionOrSavepoint(
+      session.db,
+      transaction,
+      (final transaction) async {
+        final request = await EmailAccountRequest.db.findById(
+          session,
+          accountRequestId,
+          transaction: transaction,
+        );
+
+        if (request == null) {
+          throw EmailAccountRequestNotFoundException();
+        }
+
+        if (request.verifiedAt == null) {
+          throw EmailAccountRequestNotVerifiedException();
+        }
+
+        await EmailAccountRequest.db.deleteRow(
+          session,
+          request,
+          transaction: transaction,
+        );
+
+        final account = await EmailAccount.db.insertRow(
+          session,
+          EmailAccount(
+            authUserId: authUserId,
+            email: request.email,
+            passwordHash: request.passwordHash,
+            passwordSalt: request.passwordSalt,
+          ),
+          transaction: transaction,
+        );
+
+        return EmailIDPCompleteAccountCreationResult._(
+          accountId: account.id!,
+          email: request.email,
+        );
+      },
+    );
+  }
+
+  /// {@template email_idp_account_creation_utils.delete_email_account_request_by_id}
+  /// Deletes an account request by its ID.
+  /// {@endtemplate}
+  Future<void> deleteEmailAccountRequestById(
+    final Session session,
+    final UuidValue accountRequestId, {
+    required final Transaction? transaction,
+  }) async {
+    await EmailAccountRequest.db.deleteWhere(
+      session,
+      where: (final t) => t.id.equals(accountRequestId),
+      transaction: transaction,
+    );
+  }
+
+  /// {@template email_idp_account_creation_utils.delete_expired_account_creations}
+  /// Cleans up expired account creation requests.
+  /// {@endtemplate}
+  Future<void> deleteExpiredAccountCreations(
+    final Session session, {
+    required final Transaction? transaction,
+  }) async {
+    final lastValidDateTime = clock.now().subtract(
+          _config.registrationVerificationCodeLifetime,
+        );
+
+    await EmailAccountRequest.db.deleteWhere(
+      session,
+      where: (final t) => t.createdAt < lastValidDateTime,
+      transaction: transaction,
+    );
+  }
+
+  /// {@template email_idp_account_creation_utils.find_active_email_account_request}
+  /// Finds an active email account request by its ID.
+  /// {@endtemplate}
+  Future<EmailAccountRequest?> findActiveEmailAccountRequest(
+    final Session session, {
+    required final UuidValue accountRequestId,
+    required final Transaction? transaction,
+  }) async {
+    final request = await EmailAccountRequest.db.findById(
+      session,
+      accountRequestId,
+      transaction: transaction,
+    );
+
+    if (request == null) return null;
+
+    if (request.isExpired(_config.registrationVerificationCodeLifetime)) {
+      return null;
+    }
+
+    return request;
+  }
+
+  /// {@template email_idp_account_creation_utils.start_account_creation}
+  /// Returns the result of the operation and a process ID for the account
+  /// request.
+  ///
+  /// If the `result` is [EmailAccountRequestResult.accountRequestCreated], an
+  /// account request has been created and a verification email has been sent.
+  /// In all other cases, `accountRequestId` will be `null`.
+  ///
+  /// The caller should ensure that the actual result does not leak to the
+  /// outside client. Instead clients generally should always see a message like
+  /// "If this email was not registered already, a new account has been created
+  /// and a verification email has been sent". This prevents the endpoint from
+  /// being misused to scan for registered/valid email addresses.
+  ///
+  /// The caller might decide to initiate a password reset (via email, not in
+  /// the client response), to help users which try to register but already have
+  /// an account.
+  ///
+  /// Can throw an [EmailPasswordPolicyViolationException] if the password does
+  /// not meet the password policy.
+  ///
+  /// In the success case of [EmailAccountRequestResult.accountRequestCreated],
+  /// the caller may store additional information attached to the
+  /// `accountRequestId`, which will be returned from [verifyAccountCreation]
+  /// later on.
+  /// {@endtemplate}
+  Future<EmailIDPAccountCreationResult> startAccountCreation(
+    final Session session, {
+    required String email,
+    required final String password,
+    required final Transaction? transaction,
+  }) async {
+    if (!_config.passwordValidationFunction(password)) {
+      throw EmailPasswordPolicyViolationException();
+    }
+
+    return DatabaseUtil.runInTransactionOrSavepoint(
+      session.db,
+      transaction,
+      (final transaction) async {
+        email = email.trim().toLowerCase();
+
+        if (!EmailValidator.validate(email)) {
+          return EmailIDPAccountCreationResult.emailInvalid();
+        }
+
+        final existingAccountCount = await EmailAccountRequest.db.count(
+          session,
+          where: (final t) => t.email.equals(email),
+          transaction: transaction,
+        );
+        if (existingAccountCount > 0) {
+          return EmailIDPAccountCreationResult.emailAlreadyRegistered();
+        }
+
+        final verificationCode =
+            _config.registrationVerificationCodeGenerator();
+
+        final pendingAccountRequest = await EmailAccountRequest.db.findFirstRow(
+          session,
+          where: (final t) => t.email.equals(email),
+          transaction: transaction,
+        );
+        if (pendingAccountRequest != null) {
+          if (pendingAccountRequest.createdAt.isBefore(clock.now().subtract(
+                _config.registrationVerificationCodeLifetime,
+              ))) {
+            await EmailAccountRequest.db.deleteRow(
+              session,
+              pendingAccountRequest,
+              transaction: transaction,
+            );
+          } else {
+            return EmailIDPAccountCreationResult.emailAlreadyRequested();
+          }
+        }
+
+        final passwordHash = await _passwordHashUtils.createHash(
+          value: password,
+        );
+        final verificationCodeHash = await _passwordHashUtils.createHash(
+          value: verificationCode,
+        );
+
+        final emailAccountRequest = await EmailAccountRequest.db.insertRow(
+          session,
+          EmailAccountRequest(
+            email: email,
+            passwordHash: passwordHash.hash.asByteData,
+            passwordSalt: passwordHash.salt.asByteData,
+            verificationCodeHash: verificationCodeHash.hash.asByteData,
+            verificationCodeSalt: verificationCodeHash.salt.asByteData,
+          ),
+          transaction: transaction,
+        );
+
+        _config.sendRegistrationVerificationCode?.call(
+          session,
+          email: email,
+          accountRequestId: emailAccountRequest.id!,
+          verificationCode: verificationCode,
+          transaction: transaction,
+        );
+
+        return EmailIDPAccountCreationResult.accountRequestCreated(
+          emailAccountRequest.id!,
+        );
+      },
+    );
+  }
+
+  /// {@template email_idp_account_creation_utils.verify_account_creation}
+  /// Checks whether the verification code matches the pending account creation
+  /// request.
+  ///
+  /// If this returns successfully, this means [completeAccountCreation] can be
+  /// called.
+  ///
+  /// Can throw the following [EmailAccountRequestServerException] subclasses:
+  /// - [EmailAccountRequestNotFoundException] if the request does not exist or
+  ///   has already been completed.
+  /// - [EmailAccountRequestVerificationExpiredException] if the request is
+  ///   completed with the correct verification code, but has already expired.
+  ///   but has not been cleaned up yet.
+  /// - [EmailAccountRequestVerificationTooManyAttemptsException] in case the
+  ///   user has made too many attempts to verify the account.
+  /// - [EmailAccountRequestInvalidVerificationCodeException] if the provided
+  ///   verification code is not valid.
+  ///
+  /// In case of an invalid [verificationCode], the failed attempt will be
+  /// logged to the database outside of the [transaction] and can not be rolled
+  /// back.
+  /// {@endtemplate}
+  Future<EmailIDPVerifyAccountCreationResult> verifyAccountCreation(
+    final Session session, {
+    required final UuidValue accountRequestId,
+    required final String verificationCode,
+    required final Transaction? transaction,
+  }) async {
+    final request = await EmailAccountRequest.db.findById(
+      session,
+      accountRequestId,
+      transaction: transaction,
+    );
+
+    if (request == null) {
+      throw EmailAccountRequestNotFoundException();
+    }
+
+    if (await _hasTooManyEmailAccountCompletionAttempts(
+      session,
+      emailAccountRequestId: request.id!,
+    )) {
+      await EmailAccountRequest.db.deleteRow(
+        session,
+        request,
+        // passing no transaction, so this will not be rolled back
+      );
+
+      throw EmailAccountRequestVerificationTooManyAttemptsException();
+    }
+
+    if (!await _passwordHashUtils.validateHash(
+      value: verificationCode,
+      hash: request.verificationCodeHash.asUint8List,
+      salt: request.verificationCodeSalt.asUint8List,
+    )) {
+      throw EmailAccountRequestInvalidVerificationCodeException();
+    }
+
+    if (request.isExpired(_config.registrationVerificationCodeLifetime)) {
+      await EmailAccountRequest.db.deleteRow(
+        session,
+        request,
+        // passing no transaction, so this will not be rolled back
+      );
+      throw EmailAccountRequestVerificationExpiredException();
+    }
+
+    await EmailAccountRequest.db.updateRow(
+      session,
+      request.copyWith(verifiedAt: clock.now()),
+      transaction: transaction,
+    );
+
+    return EmailIDPVerifyAccountCreationResult._(
+      requestId: request.id!,
+      email: request.email,
+    );
+  }
+
+  Future<bool> _hasTooManyEmailAccountCompletionAttempts(
+    final Session session, {
+    required final UuidValue emailAccountRequestId,
+  }) async {
+    // NOTE: The attempt counting runs in a separate transaction, so that it is
+    // never rolled back with the parent transaction.
+    return session.db.transaction((final transaction) async {
+      await EmailAccountRequestCompletionAttempt.db.insertRow(
+        session,
+        EmailAccountRequestCompletionAttempt(
+          ipAddress: session.remoteIpAddress,
+          emailAccountRequestId: emailAccountRequestId,
+        ),
+        transaction: transaction,
+      );
+
+      final recentRequests =
+          await EmailAccountRequestCompletionAttempt.db.count(
+        session,
+        where: (final t) =>
+            t.emailAccountRequestId.equals(emailAccountRequestId),
+        transaction: transaction,
+      );
+
+      return recentRequests >
+          _config.registrationVerificationCodeAllowedAttempts;
+    });
+  }
+}
+
+/// Configuration for the [EmailIDPAccountCreationUtils] class.
+class EmailIDPAccountCreationUtilsConfig {
+  /// Function for validating the password.
+  final PasswordValidationFunction passwordValidationFunction;
+
+  /// Function for generating the registration verification code.
+  final String Function() registrationVerificationCodeGenerator;
+
+  /// The lifetime of the registration verification code.
+  final Duration registrationVerificationCodeLifetime;
+
+  /// The number of allowed attempts to verify the registration code.
+  final int registrationVerificationCodeAllowedAttempts;
+
+  /// Function for sending the registration verification code.
+  final SendRegistrationVerificationCodeFunction?
+      sendRegistrationVerificationCode;
+
+  /// Creates a new [EmailIDPAccountCreationUtilsConfig] instance.
+  EmailIDPAccountCreationUtilsConfig({
+    required this.passwordValidationFunction,
+    required this.registrationVerificationCodeGenerator,
+    required this.registrationVerificationCodeLifetime,
+    required this.registrationVerificationCodeAllowedAttempts,
+    required this.sendRegistrationVerificationCode,
+  });
+
+  /// Creates a new [EmailIDPAccountCreationUtilsConfig] instance from an
+  /// [EmailIDPConfig] instance.
+  factory EmailIDPAccountCreationUtilsConfig.fromEmailIDPConfig(
+      final EmailIDPConfig config) {
+    return EmailIDPAccountCreationUtilsConfig(
+      passwordValidationFunction: config.passwordValidationFunction,
+      registrationVerificationCodeGenerator:
+          config.registrationVerificationCodeGenerator,
+      registrationVerificationCodeLifetime:
+          config.registrationVerificationCodeLifetime,
+      registrationVerificationCodeAllowedAttempts:
+          config.registrationVerificationCodeAllowedAttempts,
+      sendRegistrationVerificationCode: config.sendRegistrationVerificationCode,
+    );
+  }
+}
+
+/// The result of the [EmailIDPAccountCreationUtils.completeAccountCreation] operation.
+///
+/// This describes the detailed status of the operation to the caller.
+///
+/// In the general case the caller should take care not to leak this to clients,
+/// such that outside clients can not use this result to determine whether a
+/// specific account is registered on the server.
+class EmailIDPCompleteAccountCreationResult {
+  /// The ID of the new email authentication.
+  final UuidValue accountId;
+
+  /// The email address used during registration.
+  final String email;
+
+  EmailIDPCompleteAccountCreationResult._({
+    required this.accountId,
+    required this.email,
+  });
+}
+
+/// The result of the [EmailIDPAccountCreationUtils.verifyAccountCreation] operation.
+///
+/// This describes the detailed status of the operation to the caller.
+///
+/// In the general case the caller should take care not to leak this to clients,
+/// such that outside clients can not use this result to determine whether a
+/// specific account is registered on the server.
+class EmailIDPVerifyAccountCreationResult {
+  /// The ID of the account request.
+  final UuidValue? requestId;
+
+  /// The email address used during registration.
+  final String email;
+
+  EmailIDPVerifyAccountCreationResult._({
+    required this.requestId,
+    required this.email,
+  });
+}
+
+extension on EmailAccountRequest {
+  bool isExpired(final Duration registrationVerificationCodeLifetime) {
+    final requestExpiresAt = createdAt.add(
+      registrationVerificationCodeLifetime,
+    );
+
+    return requestExpiresAt.isBefore(clock.now());
+  }
+}

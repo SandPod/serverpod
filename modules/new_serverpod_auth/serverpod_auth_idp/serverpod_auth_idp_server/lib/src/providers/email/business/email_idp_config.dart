@@ -40,33 +40,13 @@ typedef SendRegistrationVerificationCodeFunction = void Function(
   required Transaction transaction,
 });
 
-/// Secrets used for email authentication.
-abstract class EmailAccountSecrets {
-  /// The configuration key for the password hash pepper.
-  static const String passwordHashPepperConfigurationKey =
-      'serverpod_auth_idp_email_passwordHashPepper';
-
-  /// The pepper used for hashing passwords and verification codes.
-  ///
-  /// This influences the stored password, so it must not be changed for a given
-  /// deployment, as otherwise all passwords become invalid.
-  static String get passwordHashPepper {
-    final pepper =
-        Serverpod.instance.getPassword(passwordHashPepperConfigurationKey);
-
-    if (pepper == null || pepper.isEmpty) {
-      throw ArgumentError(
-        'No valid pepper has been set in the passwords',
-        EmailAccountSecrets.passwordHashPepperConfigurationKey,
-      );
-    }
-
-    return pepper;
-  }
-}
-
+/// {@template email_idp_config}
 /// Configuration options for the email account module.
+/// {@endtemplate}
 class EmailIDPConfig {
+  /// The pepper used for hashing passwords and verification codes.
+  final String passwordHashPepper;
+
   /// The time for the registration email verification code to be valid.
   ///
   ///  Default is 15 minutes.
@@ -141,6 +121,7 @@ class EmailIDPConfig {
   ///
   /// Set [current] to apply this configuration.
   EmailIDPConfig({
+    required this.passwordHashPepper,
     this.registrationVerificationCodeLifetime = const Duration(minutes: 15),
     this.registrationVerificationCodeAllowedAttempts = 3,
     this.registrationVerificationCodeGenerator =

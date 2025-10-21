@@ -39,7 +39,9 @@ void main() {
         );
 
         // Configure EmailAccounts for password reset verification
-        EmailIDPUtils.config = EmailIDPConfig(
+        AuthServices.initialize(
+            emailIDPConfig: EmailIDPConfig(
+          passwordHashPepper: 'test',
           sendPasswordResetVerificationCode: (
             final session, {
             required final email,
@@ -49,11 +51,11 @@ void main() {
           }) {
             receivedVerificationCode = verificationCode;
           },
-        );
+        ));
       });
 
       tearDown(() async {
-        EmailIDPUtils.config = EmailIDPConfig();
+        AuthServices.initialize();
         await _cleanUpDatabase(sessionBuilder.build());
       });
 
@@ -145,7 +147,9 @@ void main() {
         newAuthUserId = newAuthUserIdResult!;
 
         // Configure EmailAccounts for password reset verification
-        EmailIDPUtils.config = EmailIDPConfig(
+        AuthServices.initialize(
+            emailIDPConfig: EmailIDPConfig(
+          passwordHashPepper: 'test',
           sendPasswordResetVerificationCode: (
             final session, {
             required final email,
@@ -158,11 +162,11 @@ void main() {
           },
           onPasswordResetCompleted:
               AuthBackwardsCompatibility.clearLegacyPassword,
-        );
+        ));
       });
 
       tearDown(() async {
-        EmailIDPUtils.config = EmailIDPConfig();
+        AuthServices.initialize();
         await _cleanUpDatabase(sessionBuilder.build());
       });
 

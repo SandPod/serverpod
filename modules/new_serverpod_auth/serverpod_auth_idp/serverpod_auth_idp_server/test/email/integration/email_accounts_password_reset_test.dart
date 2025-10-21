@@ -12,23 +12,24 @@ void main() {
     'Given no auth users,',
     (final sessionBuilder, final endpoints) {
       late Session session;
+      final testConfig = EmailIDPConfig(passwordHashPepper: 'test');
+      final emailIDP = EmailIDP(config: testConfig);
 
       setUp(() async {
         session = sessionBuilder.build();
       });
 
       tearDown(() async {
-        EmailIDPUtils.config = EmailIDPConfig();
-
         await cleanUpEmailAccountDatabaseEntities(session);
       });
 
       test(
           'when requesting a reset for a non-existent email, it returns "email does not exist" status (for internal use).',
           () async {
-        final result = await EmailIDPUtils.startPasswordReset(
+        final result = await emailIDP.utils.startPasswordReset(
           session,
           email: '404@serverpod.dev',
+          transaction: null,
         );
 
         expect(result.result, PasswordResetResult.emailDoesNotExist);
@@ -39,83 +40,102 @@ void main() {
     testGroupTagsOverride: TestTags.concurrencyOneTestTags,
   );
 
+  withServerpod('Given a registered email account,',
+      (final sessionBuilder, final endpoints) {
+    const email = 'Test1@serverpod.dev';
+    const password = 'asdf1234';
+    late Session session;
+    late UuidValue authUserId;
+    late UuidValue receivedPasswordResetRequestId;
+    late String receivedVerificationCode;
+    late EmailIDP emailIDP;
+
+    setUp(() async {
+      session = sessionBuilder.build();
+      final config = EmailIDPConfig(
+        passwordHashPepper: 'test',
+        sendPasswordResetVerificationCode: (
+          final session, {
+          required final email,
+          required final passwordResetRequestId,
+          required final verificationCode,
+          required final transaction,
+        }) {
+          receivedPasswordResetRequestId = passwordResetRequestId;
+          receivedVerificationCode = verificationCode;
+        },
+      );
+      emailIDP = EmailIDP(config: config);
+
+      final authUser = await createAuthUser(session);
+      authUserId = authUser.id;
+
+      await createVerifiedEmailAccount(
+        session,
+        authUserId: authUserId,
+        email: email,
+        password: password,
+      );
+    });
+
+    tearDown(() async {
+      await cleanUpEmailAccountDatabaseEntities(session);
+    });
+
+    test(
+        'when requesting a password reset for the account, then the process ID and verification code are given to the configured callback.',
+        () async {
+      final result = await emailIDP.utils.startPasswordReset(
+        session,
+        email: email.toUpperCase(),
+        transaction: null,
+      );
+
+      expect(receivedPasswordResetRequestId, isNotNull);
+      expect(receivedVerificationCode, isNotNull);
+
+      expect(result.result, PasswordResetResult.passwordResetSent);
+      expect(result.passwordResetRequestId, receivedPasswordResetRequestId);
+    });
+  });
+
   withServerpod(
-    'Given a registered email account,',
+    'Given a configuration with a limited number of password reset attempts,',
     (final sessionBuilder, final endpoints) {
-      const email = 'Test1@serverpod.dev';
-      const password = 'asdf1234';
       late Session session;
-      late UuidValue authUserId;
+      late EmailIDP emailIDP;
+      const email = 'Test1@serverpod.dev';
 
       setUp(() async {
         session = sessionBuilder.build();
-
-        final authUser = await createAuthUser(session);
-        authUserId = authUser.id;
-
-        await createVerifiedEmailAccount(
-          session,
-          authUserId: authUserId,
-          email: email,
-          password: password,
-        );
-      });
-
-      tearDown(() async {
-        EmailIDPUtils.config = EmailIDPConfig();
-
-        await cleanUpEmailAccountDatabaseEntities(session);
-      });
-
-      test(
-          'when requesting a password reset for the account, then the process ID and verification code are given to the configured callback.',
-          () async {
-        UuidValue? receivedPasswordResetRequestId;
-        String? receivedVerificationCode;
-        EmailIDPUtils.config = EmailIDPConfig(
-          sendPasswordResetVerificationCode: (
-            final session, {
-            required final email,
-            required final passwordResetRequestId,
-            required final verificationCode,
-            required final transaction,
-          }) {
-            receivedPasswordResetRequestId = passwordResetRequestId;
-            receivedVerificationCode = verificationCode;
-          },
-        );
-
-        final result = await EmailIDPUtils.startPasswordReset(
-          session,
-          email: email.toUpperCase(),
-        );
-
-        expect(receivedPasswordResetRequestId, isNotNull);
-        expect(receivedVerificationCode, isNotNull);
-
-        expect(result.result, PasswordResetResult.passwordResetSent);
-        expect(result.passwordResetRequestId, receivedPasswordResetRequestId);
-      });
-
-      test(
-          'when requesting too many password resets, '
-          'then it throws a "too many attempts" exception.', () async {
-        EmailIDPUtils.config = EmailIDPConfig(
+        final config = EmailIDPConfig(
+          passwordHashPepper: 'test',
           maxPasswordResetAttempts: (
             maxAttempts: 1,
             timeframe: const Duration(hours: 1)
           ),
         );
+        emailIDP = EmailIDP(config: config);
+      });
 
-        await EmailIDPUtils.startPasswordReset(
+      tearDown(() async {
+        await cleanUpEmailAccountDatabaseEntities(session);
+      });
+
+      test(
+          'when requesting too many password resets, '
+          'then it throws a "too many attempts" exception.', () async {
+        await emailIDP.utils.startPasswordReset(
           session,
           email: email,
+          transaction: null,
         );
 
         await expectLater(
-          () => EmailIDPUtils.startPasswordReset(
+          () => emailIDP.utils.startPasswordReset(
             session,
             email: email.toUpperCase(),
+            transaction: null,
           ),
           throwsA(isA<EmailPasswordResetTooManyAttemptsException>()),
         );
@@ -134,9 +154,17 @@ void main() {
       late UuidValue authUserId;
       late UuidValue passwordResetRequestId;
       late String verificationCode;
+      late EmailIDP emailIDP;
+      late EmailIDPConfig testConfig;
 
       setUp(() async {
         session = sessionBuilder.build();
+        testConfig = EmailIDPConfig(
+          passwordResetVerificationCodeLifetime: const Duration(minutes: 1),
+          passwordHashPepper: 'test',
+          passwordResetVerificationCodeAllowedAttempts: 1,
+        );
+        emailIDP = EmailIDP(config: testConfig);
 
         final authUser = await createAuthUser(session);
         authUserId = authUser.id;
@@ -161,11 +189,12 @@ void main() {
       test(
           'when changing the password with the correct verification code, then it returns the auth user ID.',
           () async {
-        final result = await EmailIDPUtils.completePasswordReset(
+        final result = await emailIDP.utils.completePasswordReset(
           session,
           passwordResetRequestId: passwordResetRequestId,
           verificationCode: verificationCode,
           newPassword: '1234asdf!!!',
+          transaction: null,
         );
 
         expect(result, authUserId);
@@ -187,11 +216,12 @@ void main() {
         }
 
         await expectLater(
-          () => EmailIDPUtils.completePasswordReset(
+          () => emailIDP.utils.completePasswordReset(
             session,
             passwordResetRequestId: passwordResetRequestId,
             verificationCode: verificationCode,
             newPassword: '1234asdf!!!',
+            transaction: null,
           ),
           throwsA(isA<EmailPasswordResetRequestNotFoundException>()),
         );
@@ -202,11 +232,12 @@ void main() {
           'then it throws a "password policy violation" exception regardless of the verification code.',
           () async {
         await expectLater(
-          () => EmailIDPUtils.completePasswordReset(
+          () => emailIDP.utils.completePasswordReset(
             session,
             passwordResetRequestId: passwordResetRequestId,
             verificationCode: 'wrong',
             newPassword: 'short',
+            transaction: null,
           ),
           throwsA(isA<EmailPasswordResetPasswordPolicyViolationException>()),
         );
@@ -217,13 +248,14 @@ void main() {
           'then it throws an "expired" exception.', () async {
         await expectLater(
           () => withClock(
-            Clock.fixed(DateTime.now().add(
-                EmailIDPUtils.config.passwordResetVerificationCodeLifetime)),
-            () => EmailIDPUtils.completePasswordReset(
+            Clock.fixed(DateTime.now()
+                .add(testConfig.passwordResetVerificationCodeLifetime)),
+            () => emailIDP.utils.completePasswordReset(
               session,
               passwordResetRequestId: passwordResetRequestId,
               verificationCode: verificationCode,
               newPassword: '1234asdf!!!',
+              transaction: null,
             ),
           ),
           throwsA(isA<EmailPasswordResetRequestExpiredException>()),
@@ -236,13 +268,14 @@ void main() {
           () async {
         await expectLater(
           () => withClock(
-            Clock.fixed(DateTime.now().add(
-                EmailIDPUtils.config.passwordResetVerificationCodeLifetime)),
-            () => EmailIDPUtils.completePasswordReset(
+            Clock.fixed(DateTime.now()
+                .add(testConfig.passwordResetVerificationCodeLifetime)),
+            () => emailIDP.utils.completePasswordReset(
               session,
               passwordResetRequestId: passwordResetRequestId,
               verificationCode: 'wrong',
               newPassword: '1234asdf!!!',
+              transaction: null,
             ),
           ),
           throwsA(isA<EmailPasswordResetInvalidVerificationCodeException>()),
@@ -253,37 +286,36 @@ void main() {
           'when changing the password with an incorrect verification code, '
           'then it throws a "too many attempts" on the second attempt and "not found" on the next ones. ',
           () async {
-        EmailIDPUtils.config = EmailIDPConfig(
-          passwordResetVerificationCodeAllowedAttempts: 1,
-        );
-
         await expectLater(
-          () => EmailIDPUtils.completePasswordReset(
+          () => emailIDP.utils.completePasswordReset(
             session,
             passwordResetRequestId: passwordResetRequestId,
             verificationCode: 'wrong',
             newPassword: '1234asdf!!!',
+            transaction: null,
           ),
           throwsA(isA<EmailPasswordResetInvalidVerificationCodeException>()),
         );
 
         await expectLater(
-          () => EmailIDPUtils.completePasswordReset(
+          () => emailIDP.utils.completePasswordReset(
             session,
             passwordResetRequestId: passwordResetRequestId,
             verificationCode: 'wrong',
             newPassword: '1234asdf!!!',
+            transaction: null,
           ),
           throwsA(
               isA<EmailPasswordResetTooManyVerificationAttemptsException>()),
         );
 
         await expectLater(
-          () => EmailIDPUtils.completePasswordReset(
+          () => emailIDP.utils.completePasswordReset(
             session,
             passwordResetRequestId: passwordResetRequestId,
             verificationCode: 'wrong',
             newPassword: '1234asdf!!!',
+            transaction: null,
           ),
           throwsA(isA<EmailPasswordResetRequestNotFoundException>()),
         );
@@ -301,9 +333,13 @@ void main() {
       const newPassword = 'new1234!';
       late Session session;
       late UuidValue authUserId;
-
+      late EmailIDP emailIDP;
       setUp(() async {
         session = sessionBuilder.build();
+        final testConfig = EmailIDPConfig(
+          passwordHashPepper: 'test',
+        );
+        emailIDP = EmailIDP(config: testConfig);
 
         final authUser = await createAuthUser(session);
         authUserId = authUser.id;
@@ -329,10 +365,11 @@ void main() {
       test(
           'when using the new credentials for an authentication, then it succeeds.',
           () async {
-        final userId = await EmailIDPUtils.authenticate(
+        final userId = await emailIDP.utils.authenticate(
           session,
           email: email,
           password: newPassword,
+          transaction: null,
         );
 
         expect(userId, authUserId);
@@ -342,10 +379,11 @@ void main() {
           'when using the old credentials for the login, '
           'then it throws an "invalid credentials" exception.', () async {
         await expectLater(
-          () => EmailIDPUtils.authenticate(
+          () => emailIDP.utils.authenticate(
             session,
             email: email,
             password: oldPassword,
+            transaction: null,
           ),
           throwsA(isA<EmailAuthenticationInvalidCredentialsException>()),
         );

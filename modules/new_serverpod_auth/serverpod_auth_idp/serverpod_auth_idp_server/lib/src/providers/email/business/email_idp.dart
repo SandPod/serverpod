@@ -2,11 +2,10 @@ import 'package:serverpod/serverpod.dart';
 import 'package:serverpod_auth_core_server/profile.dart';
 import 'package:serverpod_auth_core_server/session.dart';
 
-import '../../../generated/protocol.dart';
 import 'email_idp_admin.dart';
 import 'email_idp_config.dart';
-import 'email_idp_server_exceptions.dart';
 import 'email_idp_utils.dart';
+import 'utils/email_idp_account_creation_utils.dart';
 
 /// Main class for the email identity provider.
 /// The methods defined here are intended to be called from an endpoint.
@@ -21,14 +20,19 @@ import 'email_idp_utils.dart';
 /// If you would like to modify the authentication flow, consider creating
 /// custom implementations of the relevant methods.
 final class EmailIDP {
+  static const String _method = 'email';
+
   /// Admin operations to work with email-backed accounts.
   late final EmailIDPAdmin admin;
 
   /// Utility functions for the email identity provider.
   late final EmailIDPUtils utils;
 
+  /// The configuration for the email identity provider.
+  final EmailIDPConfig config;
+
   /// Creates a new instance of [EmailIDP].
-  EmailIDP({required final EmailIDPConfig config}) {
+  EmailIDP({required this.config}) {
     utils = EmailIDPUtils(config: config);
     admin = EmailIDPAdmin(utils: utils);
   }
@@ -43,7 +47,8 @@ final class EmailIDP {
     return DatabaseUtil.runInTransactionOrSavepoint(
       session.db,
       transaction,
-      (final transaction) => _withReplacedServerEmailException(() async {
+      (final transaction) =>
+          EmailIDPUtils.withReplacedServerEmailException(() async {
         final authUserId = await utils.authenticate(
           session,
           email: email,
@@ -51,10 +56,11 @@ final class EmailIDP {
           transaction: transaction,
         );
 
-        return admin.createSession(
+        return utils.createSession(
           session,
           authUserId,
           transaction: transaction,
+          method: _method,
         );
       }),
     );
@@ -67,8 +73,8 @@ final class EmailIDP {
     required final String password,
     final Transaction? transaction,
   }) async {
-    return await _withReplacedServerEmailException(() async {
-      final result = await utils.startAccountCreation(
+    return await EmailIDPUtils.withReplacedServerEmailException(() async {
+      final result = await utils.accountCreationUtils.startAccountCreation(
         session,
         email: email,
         password: password,
@@ -103,7 +109,9 @@ final class EmailIDP {
     return DatabaseUtil.runInTransactionOrSavepoint(
       session.db,
       transaction,
-      (final transaction) => _withReplacedServerEmailException(() async {
+      (final transaction) =>
+          EmailIDPUtils.withReplacedServerEmailException(() async {
+        /// TODO: Combine the internals to a single call into `utils`.
         final accountRequest = await utils.verifyAccountCreation(
           session,
           accountRequestId: accountRequestId,
@@ -126,17 +134,18 @@ final class EmailIDP {
           transaction: transaction,
         );
 
-        await utils.completeAccountCreation(
+        await utils.accountCreationUtils.completeAccountCreation(
           session,
           accountRequestId: accountRequestId,
           authUserId: authUserId,
           transaction: transaction,
         );
 
-        return admin.createSession(
+        return utils.createSession(
           session,
           authUserId,
           transaction: transaction,
+          method: _method,
         );
       }),
     );
@@ -148,7 +157,7 @@ final class EmailIDP {
     required final String email,
     final Transaction? transaction,
   }) async {
-    return await _withReplacedServerEmailException(() async {
+    return await EmailIDPUtils.withReplacedServerEmailException(() async {
       final result = await utils.startPasswordReset(
         session,
         email: email,
@@ -183,7 +192,8 @@ final class EmailIDP {
     return DatabaseUtil.runInTransactionOrSavepoint(
       session.db,
       transaction,
-      (final transaction) => _withReplacedServerEmailException(() async {
+      (final transaction) =>
+          EmailIDPUtils.withReplacedServerEmailException(() async {
         final authUserId = await utils.completePasswordReset(
           session,
           passwordResetRequestId: passwordResetRequestId,
@@ -198,75 +208,13 @@ final class EmailIDP {
           transaction: transaction,
         );
 
-        return admin.createSession(
+        return utils.createSession(
           session,
           authUserId,
           transaction: transaction,
+          method: _method,
         );
       }),
     );
-  }
-}
-
-/// Replaces server-side exceptions by client-side exceptions, hiding details
-/// that could leak account information.
-Future<T> _withReplacedServerEmailException<T>(
-    final Future<T> Function() fn) async {
-  try {
-    return await fn();
-  } on EmailServerException catch (e) {
-    switch (e) {
-      case EmailLoginServerException():
-        throw EmailAccountLoginException(reason: e.reason);
-      case EmailAccountRequestServerException():
-        throw EmailAccountRequestException(reason: e.reason);
-      case EmailPasswordResetServerException():
-        throw EmailAccountPasswordResetException(reason: e.reason);
-    }
-  }
-}
-
-extension on EmailLoginServerException {
-  EmailAccountLoginExceptionReason get reason {
-    switch (this) {
-      case EmailAccountNotFoundException():
-      case EmailAuthenticationInvalidCredentialsException():
-        return EmailAccountLoginExceptionReason.invalidCredentials;
-      case EmailAuthenticationTooManyAttemptsException():
-        return EmailAccountLoginExceptionReason.tooManyAttempts;
-    }
-  }
-}
-
-extension on EmailAccountRequestServerException {
-  EmailAccountRequestExceptionReason get reason {
-    switch (this) {
-      case EmailAccountRequestInvalidVerificationCodeException():
-      case EmailAccountRequestNotFoundException():
-      case EmailAccountRequestNotVerifiedException():
-      case EmailAccountRequestVerificationTooManyAttemptsException():
-        return EmailAccountRequestExceptionReason.invalid;
-      case EmailPasswordPolicyViolationException():
-        return EmailAccountRequestExceptionReason.policyViolation;
-      case EmailAccountRequestVerificationExpiredException():
-        return EmailAccountRequestExceptionReason.expired;
-    }
-  }
-}
-
-extension on EmailPasswordResetServerException {
-  EmailAccountPasswordResetExceptionReason get reason {
-    switch (this) {
-      case EmailPasswordResetAccountNotFoundException():
-      case EmailPasswordResetInvalidVerificationCodeException():
-      case EmailPasswordResetRequestNotFoundException():
-      case EmailPasswordResetTooManyAttemptsException():
-      case EmailPasswordResetTooManyVerificationAttemptsException():
-        return EmailAccountPasswordResetExceptionReason.invalid;
-      case EmailPasswordResetPasswordPolicyViolationException():
-        return EmailAccountPasswordResetExceptionReason.policyViolation;
-      case EmailPasswordResetRequestExpiredException():
-        return EmailAccountPasswordResetExceptionReason.expired;
-    }
   }
 }

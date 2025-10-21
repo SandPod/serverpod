@@ -6,8 +6,11 @@ import 'package:test/test.dart';
 import '../../test_tools/serverpod_test_tools.dart';
 
 void main() {
+  final config = EmailIDPConfig(passwordHashPepper: 'test');
+  final emailIDP = EmailIDP(config: config);
+
   withServerpod(
-    'Given a user created through `AuthEmail.admin.create`,',
+    'Given a user created through `EmailIDP.admin.createUser`,',
     (final sessionBuilder, final endpoints) {
       const email = 'test@serverpod.dev';
       const password = 'Abcdef123!!!';
@@ -18,7 +21,7 @@ void main() {
       setUp(() async {
         session = sessionBuilder.build();
 
-        authUserId = await EmailIDP.admin.createUser(
+        authUserId = await emailIDP.admin.createUser(
           session,
           email: email,
           password: password,
@@ -40,12 +43,13 @@ void main() {
       });
 
       test(
-        'when using the credentials, then they work.',
+        'when authenticating with the credentials, then it succeeds.',
         () async {
-          final authenticatedUserId = await EmailIDPUtils.authenticate(
+          final authenticatedUserId = await emailIDP.utils.authenticate(
             session,
             email: email,
             password: password,
+            transaction: null,
           );
 
           expect(

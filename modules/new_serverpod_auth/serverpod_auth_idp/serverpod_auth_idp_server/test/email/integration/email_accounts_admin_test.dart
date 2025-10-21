@@ -8,29 +8,51 @@ import '../../test_tools/serverpod_test_tools.dart';
 import '../test_utils.dart';
 
 void main() {
+  final EmailIDPConfig testConfig;
+  {
+    const verificationCodeLifetime = Duration(minutes: 15);
+    const passwordResetVerificationCodeLifetime = Duration(minutes: 15);
+    const failedLoginRateLimit = (
+      timeframe: Duration(minutes: 5),
+      maxAttempts: 5,
+    );
+    const maxPasswordResetAttempts = (
+      timeframe: Duration(hours: 1),
+      maxAttempts: 3,
+    );
+    testConfig = EmailIDPConfig(
+      passwordHashPepper: 'test',
+      registrationVerificationCodeLifetime: verificationCodeLifetime,
+      passwordResetVerificationCodeLifetime:
+          passwordResetVerificationCodeLifetime,
+      maxPasswordResetAttempts: maxPasswordResetAttempts,
+      failedLoginRateLimit: failedLoginRateLimit,
+    );
+  }
+  final emailIDP = EmailIDP(config: testConfig);
+
   withServerpod('Given a pending account request,',
       (final sessionBuilder, final endpoints) {
     const email = 'test@serverpod.dev';
     late Session session;
-    late ({
-      EmailAccountRequestResult result,
-      UuidValue? accountRequestId,
-    }) accountCreationResult;
+    late EmailIDPAccountCreationResult accountCreationResult;
 
     setUp(() async {
       session = sessionBuilder.build();
 
-      accountCreationResult = await EmailIDPUtils.startAccountCreation(
+      accountCreationResult =
+          await emailIDP.utils.accountCreationUtils.startAccountCreation(
         session,
         email: email,
         password: 'Yolo12345!',
+        transaction: null,
       );
     });
 
     test(
         'when `deleteExpiredAccountCreations` is called before the verification period has elapsed, '
         'then the account request is preserved.', () async {
-      await EmailIDPUtils.admin.deleteExpiredAccountCreations(session);
+      await emailIDP.admin.deleteExpiredAccountCreations(session);
 
       expect(
         await EmailAccountRequest.db.count(session),
@@ -41,7 +63,7 @@ void main() {
     test(
         'when `deleteEmailAccountRequestById` is called, '
         'then the account request is removed.', () async {
-      await EmailIDPUtils.admin.deleteEmailAccountRequestById(
+      await emailIDP.admin.deleteEmailAccountRequestById(
         session,
         accountCreationResult.accountRequestId!,
       );
@@ -54,8 +76,8 @@ void main() {
         'then the account request is deleted.', () async {
       await withClock(
         Clock.fixed(DateTime.now()
-            .add(EmailIDPUtils.config.registrationVerificationCodeLifetime)),
-        () => EmailIDPUtils.admin.deleteExpiredAccountCreations(session),
+            .add(testConfig.registrationVerificationCodeLifetime)),
+        () => emailIDP.admin.deleteExpiredAccountCreations(session),
       );
 
       expect(
@@ -68,7 +90,7 @@ void main() {
       'when calling `findAccount`, it does not return an account.',
       () async {
         expect(
-          await EmailIDPUtils.admin.findAccount(session, email: email),
+          await emailIDP.admin.findAccount(session, email: email),
           isNull,
         );
       },
@@ -78,7 +100,7 @@ void main() {
       'when calling `setPassword`, it fails as it only works on fully created accounts.',
       () async {
         await expectLater(
-          () => EmailIDPUtils.admin.setPassword(
+          () => emailIDP.admin.setPassword(
             session,
             email: email,
             password: 'Asdf123456!',
@@ -117,7 +139,7 @@ void main() {
         'when calling `findAccount`, it does return the account.',
         () async {
           expect(
-            await EmailIDPUtils.admin.findAccount(session, email: email),
+            await emailIDP.admin.findAccount(session, email: email),
             isNotNull,
           );
         },
@@ -127,17 +149,18 @@ void main() {
         'when calling `setPassword`, it succeeds.',
         () async {
           const newPassword = 'short1';
-          await EmailIDPUtils.admin.setPassword(
+          await emailIDP.admin.setPassword(
             session,
             email: email,
             password: newPassword,
           );
 
           expect(
-            await EmailIDPUtils.authenticate(
+            await emailIDP.utils.authenticate(
               session,
               email: email,
               password: newPassword,
+              transaction: null,
             ),
             authUserId,
           );
@@ -163,7 +186,7 @@ void main() {
         final authUser = await createAuthUser(session);
         authUserId = authUser.id;
 
-        await EmailIDPUtils.admin.createEmailAuthentication(
+        await emailIDP.admin.createEmailAuthentication(
           session,
           authUserId: authUser.id,
           email: email,
@@ -178,7 +201,7 @@ void main() {
       test(
         'when calling `findAccount`, it does return the account.',
         () async {
-          final account = await EmailIDPUtils.admin.findAccount(
+          final account = await emailIDP.admin.findAccount(
             session,
             email: email,
           );
@@ -191,10 +214,11 @@ void main() {
         'when calling `EmailAccounts.authenticate`, it works right away (without verification).',
         () async {
           expect(
-            await EmailIDPUtils.authenticate(
+            await emailIDP.utils.authenticate(
               session,
               email: email,
               password: password,
+              transaction: null,
             ),
             authUserId,
           );
@@ -222,7 +246,8 @@ void main() {
           password: 'Yolo1234!',
         );
 
-        await EmailIDPUtils.startPasswordReset(session, email: email);
+        await emailIDP.utils
+            .startPasswordReset(session, email: email, transaction: null);
       });
 
       tearDown(() async {
@@ -232,7 +257,7 @@ void main() {
       test(
           'when `deleteExpiredPasswordResetRequests` is called before the verification period has elapsed, then the password reset is kept.',
           () async {
-        await EmailIDPUtils.admin.deleteExpiredPasswordResetRequests(session);
+        await emailIDP.admin.deleteExpiredPasswordResetRequests(session);
 
         expect(
           await EmailAccountPasswordResetRequest.db.count(session),
@@ -245,8 +270,8 @@ void main() {
           () async {
         await withClock(
           Clock.fixed(DateTime.now()
-              .add(EmailIDPUtils.config.passwordResetVerificationCodeLifetime)),
-          () => EmailIDPUtils.admin.deleteExpiredPasswordResetRequests(session),
+              .add(testConfig.passwordResetVerificationCodeLifetime)),
+          () => emailIDP.admin.deleteExpiredPasswordResetRequests(session),
         );
 
         expect(
@@ -279,11 +304,12 @@ void main() {
         final resetRequest = await requestPasswordReset(session, email: email);
 
         try {
-          await EmailIDPUtils.completePasswordReset(
+          await emailIDP.utils.completePasswordReset(
             session,
             passwordResetRequestId: resetRequest.$1,
             verificationCode: '----------',
             newPassword: 'Asdf987654!',
+            transaction: null,
           );
         } catch (_) {
           // error expect due to invalid verification code
@@ -297,7 +323,7 @@ void main() {
       test(
           'when `deletePasswordResetAttempts` is called before the verification period has elapsed, then the password reset attempt is kept.',
           () async {
-        await EmailIDPUtils.admin.deletePasswordResetAttempts(session);
+        await emailIDP.admin.deletePasswordResetAttempts(session);
 
         expect(
           await EmailAccountPasswordResetAttempt.db.count(session),
@@ -310,8 +336,8 @@ void main() {
           () async {
         await withClock(
           Clock.fixed(DateTime.now()
-              .add(EmailIDPUtils.config.maxPasswordResetAttempts.timeframe)),
-          () => EmailIDPUtils.admin.deletePasswordResetAttempts(session),
+              .add(testConfig.maxPasswordResetAttempts.timeframe)),
+          () => emailIDP.admin.deletePasswordResetAttempts(session),
         );
 
         expect(
@@ -333,10 +359,11 @@ void main() {
         session = sessionBuilder.build();
 
         try {
-          await EmailIDPUtils.authenticate(
+          await emailIDP.utils.authenticate(
             session,
             email: '404@serverpod.dev',
             password: 'Asdf123ll!',
+            transaction: null,
           );
         } catch (_) {
           // error expect due to invalid credentials
@@ -350,7 +377,7 @@ void main() {
       test(
           'when `deleteFailedLoginAttempts` is called before throttling period has elapsed, then the failed login attempt attempt is kept.',
           () async {
-        await EmailIDPUtils.admin.deleteFailedLoginAttempts(session);
+        await emailIDP.admin.deleteFailedLoginAttempts(session);
 
         expect(
           await EmailAccountFailedLoginAttempt.db.count(session),
@@ -362,9 +389,9 @@ void main() {
           'when `deleteFailedLoginAttempts` is called after the throttling period has elapsed, then the failed login attempt is deleted.',
           () async {
         await withClock(
-          Clock.fixed(DateTime.now()
-              .add(EmailIDPUtils.config.failedLoginRateLimit.timeframe)),
-          () => EmailIDPUtils.admin.deleteFailedLoginAttempts(session),
+          Clock.fixed(
+              DateTime.now().add(testConfig.failedLoginRateLimit.timeframe)),
+          () => emailIDP.admin.deleteFailedLoginAttempts(session),
         );
 
         expect(

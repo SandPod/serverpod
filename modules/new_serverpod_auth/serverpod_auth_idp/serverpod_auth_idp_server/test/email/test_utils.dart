@@ -19,7 +19,9 @@ Future<
 }) async {
   late UuidValue pendingAccountRequestId;
   late String pendingAccountVerificationCode;
-  EmailIDPUtils.config = EmailIDPConfig(
+  final utils = EmailIDPUtils(
+      config: EmailIDPConfig(
+    passwordHashPepper: 'test',
     sendRegistrationVerificationCode: (
       final session, {
       required final email,
@@ -30,43 +32,47 @@ Future<
       pendingAccountRequestId = accountRequestId;
       pendingAccountVerificationCode = verificationCode;
     },
-  );
+  ));
 
-  await EmailIDPUtils.startAccountCreation(
+  await utils.accountCreationUtils.startAccountCreation(
     session,
     email: email,
     password: password,
+    transaction: null,
   );
 
-  await EmailIDPUtils.verifyAccountCreation(
+  await utils.verifyAccountCreation(
     session,
     accountRequestId: pendingAccountRequestId,
     verificationCode: pendingAccountVerificationCode,
+    transaction: null,
   );
 
-  final creationResult = await EmailIDPUtils.completeAccountCreation(
+  final creationResult =
+      await utils.accountCreationUtils.completeAccountCreation(
     session,
     authUserId: authUserId,
     accountRequestId: pendingAccountRequestId,
+    transaction: null,
   );
-
-  EmailIDPUtils.config = EmailIDPConfig();
 
   return (
     accountRequestId: pendingAccountRequestId,
     verificationCode: pendingAccountVerificationCode,
-    emailAccountId: creationResult.emailAccountId,
+    emailAccountId: creationResult.accountId,
   );
 }
 
-Future<(UuidValue paswordResetRequestId, String verificationCode)>
+Future<(UuidValue passwordResetRequestId, String verificationCode)>
     requestPasswordReset(
   final Session session, {
   required final String email,
 }) async {
   late UuidValue pendingPasswordResetRequestId;
   late String pendingPasswordResetVerificationCode;
-  EmailIDPUtils.config = EmailIDPConfig(
+  final utils = EmailIDPUtils(
+      config: EmailIDPConfig(
+    passwordHashPepper: 'test',
     sendPasswordResetVerificationCode: (
       final session, {
       required final email,
@@ -77,14 +83,13 @@ Future<(UuidValue paswordResetRequestId, String verificationCode)>
       pendingPasswordResetRequestId = passwordResetRequestId;
       pendingPasswordResetVerificationCode = verificationCode;
     },
-  );
+  ));
 
-  await EmailIDPUtils.startPasswordReset(
+  await utils.startPasswordReset(
     session,
     email: email,
+    transaction: null,
   );
-
-  EmailIDPUtils.config = EmailIDPConfig();
 
   return (pendingPasswordResetRequestId, pendingPasswordResetVerificationCode);
 }
@@ -96,7 +101,9 @@ Future<void> resetPassword(
 }) async {
   late UuidValue pendingPasswordResetRequestId;
   late String pendingPasswordResetVerificationCode;
-  EmailIDPUtils.config = EmailIDPConfig(
+  final utils = EmailIDPUtils(
+      config: EmailIDPConfig(
+    passwordHashPepper: 'test',
     sendPasswordResetVerificationCode: (
       final session, {
       required final email,
@@ -107,20 +114,20 @@ Future<void> resetPassword(
       pendingPasswordResetRequestId = passwordResetRequestId;
       pendingPasswordResetVerificationCode = verificationCode;
     },
-  );
+  ));
 
-  await EmailIDPUtils.startPasswordReset(
+  await utils.startPasswordReset(
     session,
     email: email,
+    transaction: null,
   );
 
-  EmailIDPUtils.config = EmailIDPConfig();
-
-  await EmailIDPUtils.completePasswordReset(
+  await utils.completePasswordReset(
     session,
     passwordResetRequestId: pendingPasswordResetRequestId,
     verificationCode: pendingPasswordResetVerificationCode,
     newPassword: newPassword,
+    transaction: null,
   );
 }
 

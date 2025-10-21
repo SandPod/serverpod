@@ -1,124 +1,47 @@
-import 'dart:convert';
-import 'dart:isolate';
 import 'dart:typed_data';
 
 import 'package:clock/clock.dart';
-import 'package:email_validator/email_validator.dart';
-import 'package:meta/meta.dart';
-import 'package:pointycastle/key_derivators/api.dart';
-import 'package:pointycastle/key_derivators/argon2.dart';
 import 'package:serverpod/serverpod.dart';
-import 'package:serverpod_auth_idp_server/src/providers/email/business/email_idp_admin.dart';
-import 'package:serverpod_shared/serverpod_shared.dart';
+import 'package:serverpod_auth_core_server/session.dart';
 
 import '../../../generated/protocol.dart';
 import '../util/byte_data_extension.dart';
+import '../util/session_extension.dart';
 import '../util/uint8list_extension.dart';
 import 'email_idp_config.dart';
 import 'email_idp_server_exceptions.dart';
-
-/// The result of the [EmailIDPUtils.completeAccountCreation] operation.
-///
-/// This describes the detailed status of the operation to the caller.
-///
-/// In the general case the caller should take care not to leak this to clients,
-/// such that outside clients can not use this result to determine whether a
-/// specific account is registered on the server.
-enum EmailAccountRequestResult {
-  /// An account request has been created.
-  accountRequestCreated,
-
-  /// There is a pending account request for this email already.
-  ///
-  /// No account request has been created.
-  emailAlreadyRequested,
-
-  /// There an account for this email already.
-  ///
-  /// No account request has been created.
-  emailAlreadyRegistered,
-
-  /// The given email does not seem valid.
-  ///
-  /// No account request has been created.
-  emailInvalid,
-}
-
-/// Class for handling password and verification code hashing in the email
-/// account module.
-///
-/// Uses the Argon2id algorithm.
-/// See: https://en.wikipedia.org/wiki/Argon2
-abstract final class EmailAccountSecretHash {
-  /// Create the hash for the given [value].
-  ///
-  /// Applies a random salt, which must be stored with the hash to validate it
-  /// later.
-  static Future<({Uint8List hash, Uint8List salt})> createHash({
-    required final String value,
-    @protected Uint8List? salt,
-  }) {
-    salt ??= generateRandomBytes(
-      EmailIDPUtils.config.passwordHashSaltLength,
-    );
-
-    final pepper = utf8.encode(EmailAccountSecrets.passwordHashPepper);
-
-    return _createHash(
-      secret: value,
-      salt: salt,
-      pepper: pepper,
-    );
-  }
-
-  /// Verify whether the [hash] / [salt] pair is valid for the given [value].
-  static Future<bool> validateHash({
-    required final String value,
-    required final Uint8List hash,
-    required final Uint8List salt,
-  }) async {
-    if (hash.isEmpty) {
-      // Empty hashes are stored in the database when no password has been set.
-      // In this case we can just skip the computation below, as it would never
-      // match the fixed-length output of `createHash`.
-      return false;
-    }
-
-    return uint8ListAreEqual(
-      hash,
-      (await createHash(value: value, salt: salt)).hash,
-    );
-  }
-
-  static Future<({Uint8List hash, Uint8List salt})> _createHash({
-    required final String secret,
-    required final Uint8List salt,
-    required final Uint8List pepper,
-  }) {
-    return Isolate.run(() {
-      final parameters = Argon2Parameters(
-        Argon2Parameters.ARGON2_id,
-        salt,
-        desiredKeyLength: 256,
-        secret: pepper,
-      );
-
-      final generator = Argon2BytesGenerator()..init(parameters);
-
-      final hashBytes = generator.process(utf8.encode(secret));
-
-      return (hash: hashBytes, salt: salt);
-    });
-  }
-}
+import 'utils/email_idp_account_creation_utils.dart';
+import 'utils/email_idp_password_hash_util.dart';
 
 /// Email account management functions.
-abstract final class EmailIDPUtils {
-  /// The currently active email accounts configuration.
-  static EmailIDPConfig config = EmailIDPConfig();
+///
+/// These functions can be used to compose custom authentication and
+/// administration flows if needed.
+///
+/// But for most cases, the methods exposed by [EmailIDP] and
+/// [EmailIDPAdmin] should be sufficient.
+class EmailIDPUtils {
+  /// {@macro email_idp_config}
+  final EmailIDPConfig _config;
 
-  /// Collection of admin-related functions.
-  static final admin = EmailAccountsAdmin();
+  /// {@macro email_idp_password_hash_util}
+  final EmailIDPPasswordHashUtil passwordHashUtils;
+
+  /// {@macro email_idp_account_creation_utils}
+  late final EmailIDPAccountCreationUtils accountCreationUtils;
+
+  /// Creates a new instance of [EmailIDPUtils].
+  EmailIDPUtils({required final EmailIDPConfig config})
+      : _config = config,
+        passwordHashUtils = EmailAccountSecretHashUtil(
+          passwordHashPepper: config.passwordHashPepper,
+          passwordHashSaltLength: config.passwordHashSaltLength,
+        ) {
+    accountCreationUtils = EmailIDPAccountCreationUtils(
+      config: EmailIDPAccountCreationUtilsConfig.fromEmailIDPConfig(config),
+      passwordHashUtils: passwordHashUtils,
+    );
+  }
 
   /// Returns the [AuthUser]'s ID upon successful email/password verification.
   ///
@@ -132,11 +55,11 @@ abstract final class EmailIDPUtils {
   ///
   /// In case of invalid credentials, the failed attempt will be logged to
   /// the database outside of the [transaction] and can not be rolled back.
-  static Future<UuidValue> authenticate(
+  Future<UuidValue> authenticate(
     final Session session, {
     required String email,
     required final String password,
-    final Transaction? transaction,
+    required final Transaction? transaction,
   }) async {
     return DatabaseUtil.runInTransactionOrSavepoint(
       session.db,
@@ -163,7 +86,7 @@ abstract final class EmailIDPUtils {
           throw EmailAccountNotFoundException();
         }
 
-        if (!await EmailAccountSecretHash.validateHash(
+        if (!await passwordHashUtils.validateHash(
           value: password,
           hash: account.passwordHash.asUint8List,
           salt: account.passwordSalt.asUint8List,
@@ -173,66 +96,6 @@ abstract final class EmailIDPUtils {
         }
 
         return account.authUserId;
-      },
-    );
-  }
-
-  /// Finalize the email authentication creation.
-  ///
-  /// Returns the `ID` of the new email authentication, and the email address
-  /// used during registration.
-  ///
-  /// Can throw the following [EmailAccountRequestServerException] subclasses:
-  /// - [EmailAccountRequestNotFoundException] if the request does not exist
-  ///   or has already been completed and cleaned up.
-  /// - [EmailAccountRequestNotVerifiedException] if the request has not been
-  ///   previously verified via [verifyAccountCreation].
-  ///
-  static Future<({UuidValue emailAccountId, String email})>
-      completeAccountCreation(
-    final Session session, {
-    required final UuidValue accountRequestId,
-
-    /// Authentication user ID this account should be linked up with
-    required final UuidValue authUserId,
-    final Transaction? transaction,
-  }) async {
-    return DatabaseUtil.runInTransactionOrSavepoint(
-      session.db,
-      transaction,
-      (final transaction) async {
-        final request = await EmailAccountRequest.db.findById(
-          session,
-          accountRequestId,
-          transaction: transaction,
-        );
-
-        if (request == null) {
-          throw EmailAccountRequestNotFoundException();
-        }
-
-        if (request.verifiedAt == null) {
-          throw EmailAccountRequestNotVerifiedException();
-        }
-
-        await EmailAccountRequest.db.deleteRow(
-          session,
-          request,
-          transaction: transaction,
-        );
-
-        final account = await EmailAccount.db.insertRow(
-          session,
-          EmailAccount(
-            authUserId: authUserId,
-            email: request.email,
-            passwordHash: request.passwordHash,
-            passwordSalt: request.passwordSalt,
-          ),
-          transaction: transaction,
-        );
-
-        return (emailAccountId: account.id!, email: request.email);
       },
     );
   }
@@ -254,14 +117,14 @@ abstract final class EmailIDPUtils {
   /// In case of an invalid [verificationCode] or [passwordResetRequestId], the
   /// failed password reset completion will be logged to the database outside
   /// of the [transaction] and can not be rolled back.
-  static Future<UuidValue> completePasswordReset(
+  Future<UuidValue> completePasswordReset(
     final Session session, {
     required final UuidValue passwordResetRequestId,
     required final String verificationCode,
     required final String newPassword,
-    final Transaction? transaction,
+    required final Transaction? transaction,
   }) async {
-    if (!EmailIDPUtils.config.passwordValidationFunction(newPassword)) {
+    if (!_config.passwordValidationFunction(newPassword)) {
       throw EmailPasswordResetPasswordPolicyViolationException();
     }
 
@@ -292,7 +155,7 @@ abstract final class EmailIDPUtils {
           throw EmailPasswordResetTooManyVerificationAttemptsException();
         }
 
-        if (!await EmailAccountSecretHash.validateHash(
+        if (!await passwordHashUtils.validateHash(
           value: verificationCode,
           hash: resetRequest.verificationCodeHash.asUint8List,
           salt: resetRequest.verificationCodeSalt.asUint8List,
@@ -300,7 +163,7 @@ abstract final class EmailIDPUtils {
           throw EmailPasswordResetInvalidVerificationCodeException();
         }
 
-        if (resetRequest.isExpired) {
+        if (resetRequest.isExpired(_config)) {
           await EmailAccountPasswordResetRequest.db.deleteRow(
             session,
             resetRequest,
@@ -322,7 +185,7 @@ abstract final class EmailIDPUtils {
           transaction: transaction,
         ))!;
 
-        final newPasswordHash = await EmailAccountSecretHash.createHash(
+        final newPasswordHash = await passwordHashUtils.createHash(
           value: newPassword,
         );
 
@@ -336,7 +199,7 @@ abstract final class EmailIDPUtils {
         );
 
         // Call the password reset completion callback
-        EmailIDPUtils.config.onPasswordResetCompleted?.call(
+        _config.onPasswordResetCompleted?.call(
           session,
           emailAccountId: account.id!,
           transaction: transaction,
@@ -347,126 +210,129 @@ abstract final class EmailIDPUtils {
     );
   }
 
-  /// Returns the result of the operation and a process ID for the account
-  /// request.
+  /// Creates an email authentication for the auth user with the given email and
+  /// password.
   ///
-  /// If the `result` is [EmailAccountRequestResult.accountRequestCreated], an
-  /// account request has been created and a verification email has been sent.
-  /// In all other cases, `accountRequestId` will be `null`.
+  /// The [email] will be treated as validated right away, so the caller must
+  /// ensure that it comes from a trusted source.
+  /// The [password] argument is not checked against the configured password
+  /// policy.
+  /// A `null` [password] can be passed to create an account without a password.
+  /// In that case either the user has to complete a password reset or
+  /// [setPassword] needs to be called before the user can log in.
   ///
-  /// The caller should ensure that the actual result does not leak to the
-  /// outside client. Instead clients generally should always see a message like
-  /// "If this email was not registered already, a new account has been created
-  /// and a verification email has been sent". This prevents the endpoint from
-  /// being misused to scan for registered/valid email addresses.
-  ///
-  /// The caller might decide to initiate a password reset (via email, not in
-  /// the client response), to help users which try to register but already have
-  /// an account.
-  ///
-  /// Can throw an [EmailPasswordPolicyViolationException] if the password does
-  /// not meet the password policy.
-  ///
-  /// In the success case of [EmailAccountRequestResult.accountRequestCreated],
-  /// the caller may store additional information attached to the
-  /// `accountRequestId`, which will be returned from [verifyAccountCreation]
-  /// later on.
-  static Future<
-      ({
-        EmailAccountRequestResult result,
-        UuidValue? accountRequestId,
-      })> startAccountCreation(
+  /// Returns the email account ID for the newly created authentication method.
+  Future<UuidValue> createEmailAuthentication(
     final Session session, {
-    required String email,
-    required final String password,
-    final Transaction? transaction,
+    required final UuidValue authUserId,
+    required final String email,
+    required final String? password,
+    required final Transaction? transaction,
   }) async {
-    if (!EmailIDPUtils.config.passwordValidationFunction(password)) {
-      throw EmailPasswordPolicyViolationException();
+    final passwordHash = password != null
+        ? await passwordHashUtils.createHash(
+            value: password,
+          )
+        : (hash: Uint8List.fromList([]), salt: Uint8List.fromList([]));
+
+    final account = await EmailAccount.db.insertRow(
+      session,
+      EmailAccount(
+        authUserId: authUserId,
+        email: email.toLowerCase(),
+        passwordHash: passwordHash.hash.asByteData,
+        passwordSalt: passwordHash.salt.asByteData,
+      ),
+      transaction: transaction,
+    );
+
+    return account.id!;
+  }
+
+  /// Creates a new authentication session for the given [authUserId].
+  Future<AuthSuccess> createSession(
+    final Session session,
+    final UuidValue authUserId, {
+    required final Transaction? transaction,
+    required final String method,
+  }) async {
+    final authUser = await AuthUsers.get(
+      session,
+      authUserId: authUserId,
+      transaction: transaction,
+    );
+
+    if (authUser.blocked) {
+      throw AuthUserBlockedException();
     }
 
-    return DatabaseUtil.runInTransactionOrSavepoint(
-      session.db,
-      transaction,
-      (final transaction) async {
-        email = email.trim().toLowerCase();
+    final sessionKey = await AuthSessions.createSession(
+      session,
+      authUserId: authUserId,
+      method: method,
+      scopes: authUser.scopes,
+      transaction: transaction,
+    );
 
-        if (!EmailValidator.validate(email)) {
-          return (
-            result: EmailAccountRequestResult.emailInvalid,
-            accountRequestId: null,
-          );
-        }
+    return sessionKey;
+  }
 
-        final existingAccountCount = await EmailAccount.db.count(
-          session,
-          where: (final t) => t.email.equals(email),
-          transaction: transaction,
-        );
-        if (existingAccountCount > 0) {
-          return (
-            result: EmailAccountRequestResult.emailAlreadyRegistered,
-            accountRequestId: null,
-          );
-        }
-
-        final verificationCode =
-            EmailIDPUtils.config.registrationVerificationCodeGenerator();
-
-        final pendingAccountRequest = await EmailAccountRequest.db.findFirstRow(
-          session,
-          where: (final t) => t.email.equals(email),
-          transaction: transaction,
-        );
-        if (pendingAccountRequest != null) {
-          if (pendingAccountRequest.createdAt.isBefore(clock.now().subtract(
-                EmailIDPUtils.config.registrationVerificationCodeLifetime,
-              ))) {
-            await EmailAccountRequest.db.deleteRow(
-              session,
-              pendingAccountRequest,
-              transaction: transaction,
-            );
-          } else {
-            return (
-              result: EmailAccountRequestResult.emailAlreadyRequested,
-              accountRequestId: null,
-            );
-          }
-        }
-
-        final passwordHash = await EmailAccountSecretHash.createHash(
-          value: password,
-        );
-        final verificationCodeHash = await EmailAccountSecretHash.createHash(
-          value: verificationCode,
+  /// Cleans up expired password reset attempts.
+  Future<void> deleteExpiredPasswordResetRequests(
+    final Session session, {
+    required final Transaction? transaction,
+  }) async {
+    final lastValidDateTime = clock.now().subtract(
+          _config.passwordResetVerificationCodeLifetime,
         );
 
-        final emailAccountRequest = await EmailAccountRequest.db.insertRow(
-          session,
-          EmailAccountRequest(
-            email: email,
-            passwordHash: passwordHash.hash.asByteData,
-            passwordSalt: passwordHash.salt.asByteData,
-            verificationCodeHash: verificationCodeHash.hash.asByteData,
-            verificationCodeSalt: verificationCodeHash.salt.asByteData,
-          ),
-          transaction: transaction,
-        );
+    await EmailAccountPasswordResetRequest.db.deleteWhere(
+      session,
+      where: (final t) => t.createdAt < lastValidDateTime,
+      transaction: transaction,
+    );
+  }
 
-        EmailIDPUtils.config.sendRegistrationVerificationCode?.call(
-          session,
-          email: email,
-          accountRequestId: emailAccountRequest.id!,
-          verificationCode: verificationCode,
-          transaction: transaction,
-        );
+  /// Cleans up the log of failed login attempts older than [olderThan].
+  ///
+  /// If [olderThan] is `null`, this will remove all attempts outside the time
+  /// window that is checked upon login, as configured in
+  /// [EmailIDPConfig.emailSignInFailureResetTime].
+  Future<void> deleteFailedLoginAttempts(
+    final Session session, {
+    Duration? olderThan,
+    required final Transaction? transaction,
+  }) async {
+    olderThan ??= _config.failedLoginRateLimit.timeframe;
 
-        return (
-          result: EmailAccountRequestResult.accountRequestCreated,
-          accountRequestId: emailAccountRequest.id!,
-        );
-      },
+    final removeBefore = clock.now().subtract(olderThan);
+
+    await EmailAccountFailedLoginAttempt.db.deleteWhere(
+      session,
+      where: (final t) => t.attemptedAt < removeBefore,
+      transaction: transaction,
+    );
+  }
+
+  /// Cleans up the log of failed password reset attempts older than
+  /// [olderThan].
+  ///
+  /// If [olderThan] is `null`, this will remove all attempts outside the time
+  /// window that is checked upon password reset requests, as configured in
+  /// [EmailIDPConfig.maxPasswordResetAttempts].
+  Future<void> deletePasswordResetAttempts(
+    final Session session, {
+    Duration? olderThan,
+    required final Transaction? transaction,
+  }) async {
+    olderThan ??= _config.maxPasswordResetAttempts.timeframe;
+
+    final removeBefore = clock.now().subtract(olderThan);
+
+    await EmailAccountPasswordResetAttempt.db.deleteWhere(
+      session,
+      where: (final t) => t.attemptedAt < removeBefore,
+      transaction: transaction,
     );
   }
 
@@ -484,14 +350,14 @@ abstract final class EmailIDPUtils {
   ///
   /// Can throw [EmailPasswordResetTooManyAttemptsException] if the account
   /// email does not exist in the database.
-  static Future<
+  Future<
       ({
         PasswordResetResult result,
         UuidValue? passwordResetRequestId,
       })> startPasswordReset(
     final Session session, {
     required String email,
-    final Transaction? transaction,
+    required final Transaction? transaction,
   }) async {
     return DatabaseUtil.runInTransactionOrSavepoint(
       session.db,
@@ -520,9 +386,9 @@ abstract final class EmailIDPUtils {
         }
 
         final verificationCode =
-            EmailIDPUtils.config.passwordResetVerificationCodeGenerator();
+            _config.passwordResetVerificationCodeGenerator();
 
-        final verificationCodeHash = await EmailAccountSecretHash.createHash(
+        final verificationCodeHash = await passwordHashUtils.createHash(
           value: verificationCode,
         );
 
@@ -537,7 +403,7 @@ abstract final class EmailIDPUtils {
           transaction: transaction,
         );
 
-        EmailIDPUtils.config.sendPasswordResetVerificationCode?.call(
+        _config.sendPasswordResetVerificationCode?.call(
           session,
           email: email,
           passwordResetRequestId: resetRequest.id!,
@@ -553,119 +419,13 @@ abstract final class EmailIDPUtils {
     );
   }
 
-  /// Checks whether the verification code matches the pending account creation
-  /// request.
-  ///
-  /// If this returns successfully, this means [completeAccountCreation] can be
-  /// called.
-  ///
-  /// Can throw the following [EmailAccountRequestServerException] subclasses:
-  /// - [EmailAccountRequestNotFoundException] if the request does not exist or
-  ///   has already been completed.
-  /// - [EmailAccountRequestVerificationExpiredException] if the request is
-  ///   completed with the correct verification code, but has already expired.
-  ///   but has not been cleaned up yet.
-  /// - [EmailAccountRequestVerificationTooManyAttemptsException] in case the
-  ///   user has made too many attempts to verify the account.
-  /// - [EmailAccountRequestInvalidVerificationCodeException] if the provided
-  ///   verification code is not valid.
-  ///
-  /// In case of an invalid [verificationCode], the failed attempt will be
-  /// logged to the database outside of the [transaction] and can not be rolled
-  /// back.
-  static Future<({UuidValue emailAccountRequestId, String email})>
-      verifyAccountCreation(
-    final Session session, {
-    required final UuidValue accountRequestId,
-    required final String verificationCode,
-    final Transaction? transaction,
-  }) async {
-    final request = await EmailAccountRequest.db.findById(
-      session,
-      accountRequestId,
-      transaction: transaction,
-    );
-
-    if (request == null) {
-      throw EmailAccountRequestNotFoundException();
-    }
-
-    if (await _hasTooManyEmailAccountCompletionAttempts(
-      session,
-      emailAccountRequestId: request.id!,
-    )) {
-      await EmailAccountRequest.db.deleteRow(
-        session,
-        request,
-        // passing no transaction, so this will not be rolled back
-      );
-
-      throw EmailAccountRequestVerificationTooManyAttemptsException();
-    }
-
-    if (!await EmailAccountSecretHash.validateHash(
-      value: verificationCode,
-      hash: request.verificationCodeHash.asUint8List,
-      salt: request.verificationCodeSalt.asUint8List,
-    )) {
-      throw EmailAccountRequestInvalidVerificationCodeException();
-    }
-
-    if (request.isExpired) {
-      await EmailAccountRequest.db.deleteRow(
-        session,
-        request,
-        // passing no transaction, so this will not be rolled back
-      );
-      throw EmailAccountRequestVerificationExpiredException();
-    }
-
-    await EmailAccountRequest.db.updateRow(
-      session,
-      request.copyWith(verifiedAt: clock.now()),
-      transaction: transaction,
-    );
-
-    return (emailAccountRequestId: request.id!, email: request.email);
-  }
-
-  static Future<bool> _hasTooManyEmailAccountCompletionAttempts(
-    final Session session, {
-    required final UuidValue emailAccountRequestId,
-  }) async {
-    // NOTE: The attempt counting runs in a separate transaction, so that it is
-    // never rolled back with the parent transaction.
-    return session.db.transaction((final transaction) async {
-      await EmailAccountRequestCompletionAttempt.db.insertRow(
-        session,
-        EmailAccountRequestCompletionAttempt(
-          ipAddress: session.remoteIpAddress,
-          emailAccountRequestId: emailAccountRequestId,
-        ),
-        transaction: transaction,
-      );
-
-      final recentRequests =
-          await EmailAccountRequestCompletionAttempt.db.count(
-        session,
-        where: (final t) =>
-            t.emailAccountRequestId.equals(emailAccountRequestId),
-        transaction: transaction,
-      );
-
-      return recentRequests >
-          EmailIDPUtils.config.registrationVerificationCodeAllowedAttempts;
-    });
-  }
-
-  static Future<bool> _hasTooManyFailedSignIns(
+  Future<bool> _hasTooManyFailedSignIns(
     final Session session,
     final String email, {
-    final Transaction? transaction,
+    required final Transaction? transaction,
   }) async {
-    final oldestRelevantAttempt = clock
-        .now()
-        .subtract(EmailIDPUtils.config.failedLoginRateLimit.timeframe);
+    final oldestRelevantAttempt =
+        clock.now().subtract(_config.failedLoginRateLimit.timeframe);
 
     final failedLoginAttemptCount =
         await EmailAccountFailedLoginAttempt.db.count(
@@ -677,11 +437,10 @@ abstract final class EmailIDPUtils {
       transaction: transaction,
     );
 
-    return failedLoginAttemptCount >=
-        EmailIDPUtils.config.failedLoginRateLimit.maxAttempts;
+    return failedLoginAttemptCount >= _config.failedLoginRateLimit.maxAttempts;
   }
 
-  static Future<bool> _hasTooManyPasswordResetAttempts(
+  Future<bool> _hasTooManyPasswordResetAttempts(
     final Session session, {
     required final UuidValue passwordResetRequestId,
   }) async {
@@ -705,12 +464,12 @@ abstract final class EmailIDPUtils {
         );
 
         return recentAttempts >
-            EmailIDPUtils.config.passwordResetVerificationCodeAllowedAttempts;
+            _config.passwordResetVerificationCodeAllowedAttempts;
       },
     );
   }
 
-  static Future<bool> _hasTooManyPasswordResetRequestAttempts(
+  Future<bool> _hasTooManyPasswordResetRequestAttempts(
     final Session session, {
     required final String email,
   }) async {
@@ -727,7 +486,7 @@ abstract final class EmailIDPUtils {
       );
 
       final oldestRelevantAttemptTimestamp = clock.now().subtract(
-            EmailIDPUtils.config.maxPasswordResetAttempts.timeframe,
+            _config.maxPasswordResetAttempts.timeframe,
           );
 
       final recentRequests =
@@ -740,12 +499,11 @@ abstract final class EmailIDPUtils {
         transaction: transaction,
       );
 
-      return recentRequests >
-          EmailIDPUtils.config.maxPasswordResetAttempts.maxAttempts;
+      return recentRequests > _config.maxPasswordResetAttempts.maxAttempts;
     });
   }
 
-  static Future<void> _logFailedSignIn(
+  Future<void> _logFailedSignIn(
     final Session session,
     final String email,
   ) async {
@@ -762,6 +520,24 @@ abstract final class EmailIDPUtils {
       );
     });
   }
+
+  /// Replaces server-side exceptions by client-side exceptions, hiding details
+  /// that could leak account information.
+  static Future<T> withReplacedServerEmailException<T>(
+      final Future<T> Function() fn) async {
+    try {
+      return await fn();
+    } on EmailServerException catch (e) {
+      switch (e) {
+        case EmailLoginServerException():
+          throw EmailAccountLoginException(reason: e.reason);
+        case EmailAccountRequestServerException():
+          throw EmailAccountRequestException(reason: e.reason);
+        case EmailPasswordResetServerException():
+          throw EmailAccountPasswordResetException(reason: e.reason);
+      }
+    }
+  }
 }
 
 /// Describes the result of a password reset operation.
@@ -773,30 +549,56 @@ enum PasswordResetResult {
   emailDoesNotExist,
 }
 
-extension on Session {
-  /// Returns the client's IP address, or empty string in case it could not be
-  /// determined.
-  String get remoteIpAddress {
-    final session = this;
-
-    return session is MethodCallSession ? session.request.remoteInfo : '';
+extension on EmailLoginServerException {
+  EmailAccountLoginExceptionReason get reason {
+    switch (this) {
+      case EmailAccountNotFoundException():
+      case EmailAuthenticationInvalidCredentialsException():
+        return EmailAccountLoginExceptionReason.invalidCredentials;
+      case EmailAuthenticationTooManyAttemptsException():
+        return EmailAccountLoginExceptionReason.tooManyAttempts;
+    }
   }
 }
 
-extension on EmailAccountRequest {
-  bool get isExpired {
-    final requestExpiresAt = createdAt.add(
-      EmailIDPUtils.config.registrationVerificationCodeLifetime,
-    );
-
-    return requestExpiresAt.isBefore(clock.now());
+extension on EmailAccountRequestServerException {
+  EmailAccountRequestExceptionReason get reason {
+    switch (this) {
+      case EmailAccountRequestInvalidVerificationCodeException():
+      case EmailAccountRequestNotFoundException():
+      case EmailAccountRequestNotVerifiedException():
+      case EmailAccountRequestVerificationTooManyAttemptsException():
+        return EmailAccountRequestExceptionReason.invalid;
+      case EmailPasswordPolicyViolationException():
+        return EmailAccountRequestExceptionReason.policyViolation;
+      case EmailAccountRequestVerificationExpiredException():
+        return EmailAccountRequestExceptionReason.expired;
+    }
   }
 }
 
-extension on EmailAccountPasswordResetRequest {
-  bool get isExpired {
+extension on EmailPasswordResetServerException {
+  EmailAccountPasswordResetExceptionReason get reason {
+    switch (this) {
+      case EmailPasswordResetAccountNotFoundException():
+      case EmailPasswordResetInvalidVerificationCodeException():
+      case EmailPasswordResetRequestNotFoundException():
+      case EmailPasswordResetTooManyAttemptsException():
+      case EmailPasswordResetTooManyVerificationAttemptsException():
+        return EmailAccountPasswordResetExceptionReason.invalid;
+      case EmailPasswordResetPasswordPolicyViolationException():
+        return EmailAccountPasswordResetExceptionReason.policyViolation;
+      case EmailPasswordResetRequestExpiredException():
+        return EmailAccountPasswordResetExceptionReason.expired;
+    }
+  }
+}
+
+extension EmailAccountPasswordResetRequestExtension
+    on EmailAccountPasswordResetRequest {
+  bool isExpired(EmailIDPConfig config) {
     final resetExpiresAt = createdAt.add(
-      EmailIDPUtils.config.passwordResetVerificationCodeLifetime,
+      config.passwordResetVerificationCodeLifetime,
     );
 
     return resetExpiresAt.isBefore(clock.now());

@@ -1,9 +1,5 @@
-import 'dart:typed_data';
-
-import 'package:clock/clock.dart';
 import 'package:serverpod/serverpod.dart';
 import 'package:serverpod_auth_core_server/profile.dart';
-import 'package:serverpod_auth_core_server/session.dart';
 
 import '../../../generated/protocol.dart';
 import '../util/uint8list_extension.dart';
@@ -12,7 +8,6 @@ import 'email_idp_utils.dart';
 
 /// Collection of email-account admin methods.
 final class EmailIDPAdmin {
-  static const String _method = 'email';
   final EmailIDPUtils _utils;
 
   /// Creates a new instance of [EmailIDPAdmin].
@@ -33,31 +28,17 @@ final class EmailIDPAdmin {
   Future<UuidValue> createEmailAuthentication(
     final Session session, {
     required final UuidValue authUserId,
-    required String email,
+    required final String email,
     required final String? password,
     final Transaction? transaction,
   }) async {
-    email = email.toLowerCase();
-
-    final passwordHash = password != null
-        ? await EmailAccountSecretHash.createHash(
-            value: password,
-            passwordHashSaltLength: _utils.config.passwordHashSaltLength,
-          )
-        : (hash: Uint8List.fromList([]), salt: Uint8List.fromList([]));
-
-    final account = await EmailAccount.db.insertRow(
+    return _utils.createEmailAuthentication(
       session,
-      EmailAccount(
-        authUserId: authUserId,
-        email: email,
-        passwordHash: passwordHash.hash.asByteData,
-        passwordSalt: passwordHash.salt.asByteData,
-      ),
+      authUserId: authUserId,
+      email: email,
+      password: password,
       transaction: transaction,
     );
-
-    return account.id!;
   }
 
   /// Deletes an account request by its ID.
@@ -66,9 +47,9 @@ final class EmailIDPAdmin {
     final UuidValue accountRequestId, {
     final Transaction? transaction,
   }) async {
-    await EmailAccountRequest.db.deleteWhere(
+    return _utils.accountCreationUtils.deleteEmailAccountRequestById(
       session,
-      where: (final t) => t.id.equals(accountRequestId),
+      accountRequestId,
       transaction: transaction,
     );
   }
@@ -78,13 +59,8 @@ final class EmailIDPAdmin {
     final Session session, {
     final Transaction? transaction,
   }) async {
-    final lastValidDateTime = clock.now().subtract(
-          _utils.config.registrationVerificationCodeLifetime,
-        );
-
-    await EmailAccountRequest.db.deleteWhere(
+    return _utils.accountCreationUtils.deleteExpiredAccountCreations(
       session,
-      where: (final t) => t.createdAt < lastValidDateTime,
       transaction: transaction,
     );
   }
@@ -94,13 +70,8 @@ final class EmailIDPAdmin {
     final Session session, {
     final Transaction? transaction,
   }) async {
-    final lastValidDateTime = clock.now().subtract(
-          _utils.config.passwordResetVerificationCodeLifetime,
-        );
-
-    await EmailAccountPasswordResetRequest.db.deleteWhere(
+    return _utils.deleteExpiredPasswordResetRequests(
       session,
-      where: (final t) => t.createdAt < lastValidDateTime,
       transaction: transaction,
     );
   }
@@ -112,16 +83,12 @@ final class EmailIDPAdmin {
   /// [EmailIDPConfig.emailSignInFailureResetTime].
   Future<void> deleteFailedLoginAttempts(
     final Session session, {
-    Duration? olderThan,
+    final Duration? olderThan,
     final Transaction? transaction,
   }) async {
-    olderThan ??= _utils.config.failedLoginRateLimit.timeframe;
-
-    final removeBefore = clock.now().subtract(olderThan);
-
-    await EmailAccountFailedLoginAttempt.db.deleteWhere(
+    return _utils.deleteFailedLoginAttempts(
       session,
-      where: (final t) => t.attemptedAt < removeBefore,
+      olderThan: olderThan,
       transaction: transaction,
     );
   }
@@ -134,16 +101,12 @@ final class EmailIDPAdmin {
   /// [EmailIDPConfig.maxPasswordResetAttempts].
   Future<void> deletePasswordResetAttempts(
     final Session session, {
-    Duration? olderThan,
+    final Duration? olderThan,
     final Transaction? transaction,
   }) async {
-    olderThan ??= _utils.config.maxPasswordResetAttempts.timeframe;
-
-    final removeBefore = clock.now().subtract(olderThan);
-
-    await EmailAccountPasswordResetAttempt.db.deleteWhere(
+    return _utils.deletePasswordResetAttempts(
       session,
-      where: (final t) => t.attemptedAt < removeBefore,
+      olderThan: olderThan,
       transaction: transaction,
     );
   }
@@ -192,15 +155,14 @@ final class EmailIDPAdmin {
     required final UuidValue accountRequestId,
     final Transaction? transaction,
   }) async {
-    final request = await EmailAccountRequest.db.findById(
+    final request =
+        await _utils.accountCreationUtils.findActiveEmailAccountRequest(
       session,
-      accountRequestId,
+      accountRequestId: accountRequestId,
       transaction: transaction,
     );
 
-    if (request == null || request.isExpired(_utils.config)) {
-      return null;
-    }
+    if (request == null) return null;
 
     return (
       email: request.email,
@@ -234,9 +196,8 @@ final class EmailIDPAdmin {
       throw EmailAccountNotFoundException();
     }
 
-    final passwordHash = await EmailAccountSecretHash.createHash(
+    final passwordHash = await _utils.passwordHashUtils.createHash(
       value: password,
-      passwordHashSaltLength: _utils.config.passwordHashSaltLength,
     );
 
     account = await EmailAccount.db.updateRow(
@@ -246,22 +207,6 @@ final class EmailIDPAdmin {
         passwordSalt: passwordHash.salt.asByteData,
       ),
       transaction: transaction,
-    );
-  }
-
-  /// Create a session for the given auth user.
-  ///
-  /// The session is marked as originating from the `email` provider.
-  Future<AuthSuccess> createSession(
-    final Session session,
-    final UuidValue authUserId, {
-    required final Transaction? transaction,
-  }) async {
-    return _utils.createSession(
-      session,
-      authUserId,
-      transaction: transaction,
-      method: _method,
     );
   }
 
@@ -298,7 +243,7 @@ final class EmailIDPAdmin {
           transaction: transaction,
         );
 
-        await _utils.admin.createEmailAuthentication(
+        await createEmailAuthentication(
           session,
           authUserId: authUserId,
           email: email,

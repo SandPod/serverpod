@@ -19,6 +19,6 @@ export 'business/email_idp.dart' show EmailIDP;
 export 'business/email_idp_admin.dart';
 export 'business/email_idp_config.dart';
 export 'business/email_idp_server_exceptions.dart';
-export 'business/email_idp_utils.dart'
-    show EmailIDPUtils, EmailAccountRequestResult, PasswordResetResult;
+export 'business/email_idp_utils.dart';
+export 'business/utils/email_idp_account_creation_utils.dart';
 export 'endpoints/email_idp_base_endpoint.dart' show EmailIDPBaseEndpoint;
