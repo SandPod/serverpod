@@ -42,6 +42,10 @@ class EmailIDPUtils {
       config: EmailIDPAccountCreationUtilsConfig.fromEmailIDPConfig(config),
       passwordHashUtils: passwordHashUtils,
     );
+    passwordResetUtils = EmailIDPPasswordResetUtils(
+      config: EmailIDPPasswordResetUtilsConfig.fromEmailIDPConfig(config),
+      passwordHashUtils: passwordHashUtils,
+    );
   }
 
   /// Returns the [AuthUser]'s ID upon successful email/password verification.
