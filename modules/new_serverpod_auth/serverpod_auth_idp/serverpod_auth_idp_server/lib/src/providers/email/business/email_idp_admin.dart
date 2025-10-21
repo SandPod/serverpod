@@ -70,7 +70,7 @@ final class EmailIDPAdmin {
     final Session session, {
     final Transaction? transaction,
   }) async {
-    return _utils.deleteExpiredPasswordResetRequests(
+    return _utils.passwordResetUtils.deleteExpiredPasswordResetRequests(
       session,
       transaction: transaction,
     );
@@ -104,7 +104,7 @@ final class EmailIDPAdmin {
     final Duration? olderThan,
     final Transaction? transaction,
   }) async {
-    return _utils.deletePasswordResetAttempts(
+    return _utils.passwordResetUtils.deletePasswordResetAttempts(
       session,
       olderThan: olderThan,
       transaction: transaction,

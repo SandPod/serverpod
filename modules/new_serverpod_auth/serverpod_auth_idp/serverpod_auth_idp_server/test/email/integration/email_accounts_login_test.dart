@@ -70,9 +70,9 @@ void main() {
         session = sessionBuilder.build();
         final testConfig = EmailIDPConfig(
           passwordHashPepper: 'test',
-          failedLoginRateLimit: (
+          failedLoginRateLimit: const RateLimit(
             maxAttempts: 1,
-            timeframe: const Duration(hours: 1),
+            timeframe: Duration(hours: 1),
           ),
         );
         emailIDP = EmailIDP(config: testConfig);

@@ -6,6 +6,7 @@ import 'email_idp_admin.dart';
 import 'email_idp_config.dart';
 import 'email_idp_utils.dart';
 import 'utils/email_idp_account_creation_utils.dart';
+import 'utils/email_idp_password_reset_utils.dart';
 
 /// Main class for the email identity provider.
 /// The methods defined here are intended to be called from an endpoint.
@@ -112,7 +113,8 @@ final class EmailIDP {
       (final transaction) =>
           EmailIDPUtils.withReplacedServerEmailException(() async {
         /// TODO: Combine the internals to a single call into `utils`.
-        final accountRequest = await utils.verifyAccountCreation(
+        final accountRequest =
+            await utils.accountCreationUtils.verifyAccountCreation(
           session,
           accountRequestId: accountRequestId,
           verificationCode: verificationCode,
@@ -158,26 +160,29 @@ final class EmailIDP {
     final Transaction? transaction,
   }) async {
     return await EmailIDPUtils.withReplacedServerEmailException(() async {
-      final result = await utils.startPasswordReset(
+      final result = await utils.passwordResetUtils.startPasswordReset(
         session,
         email: email,
         transaction: transaction,
       );
 
-      // The details of the operation are intentionally not given to the caller, in order to not leak the existence of accounts.
-      // Clients should always show something like "check your email to proceed with the password reset".
-      if (result.result != PasswordResetResult.passwordResetSent) {
-        session.log(
-          'Failed to start password reset for $email, reason: ${result.result}',
-          level: LogLevel.debug,
-        );
-      }
+      switch (result) {
+        case PasswordResetSentResult():
+          return result.passwordResetRequestId;
+        case PasswordResetEmailDoesNotExistResult():
+          // The details of the operation are intentionally not given to the caller, in order to not leak the existence of accounts.
+          // Clients should always show something like "check your email to proceed with the password reset".
+          session.log(
+            'Failed to start password reset for $email, reason: email does not exist',
+            level: LogLevel.debug,
+          );
 
-      // NOTE: It is necessary to keep the version of the uuid in sync with the
-      // one used by the [EmailAccountPasswordResetRequestAttempt] model to
-      // prevent attackers from using the difference on the version bit of the
-      // uuid to determine whether an email is registered or not.
-      return result.passwordResetRequestId ?? const Uuid().v4obj();
+          // NOTE: It is necessary to keep the version of the uuid in sync with the
+          // one used by the [EmailAccountPasswordResetRequestAttempt] model to
+          // prevent attackers from using the difference on the version bit of the
+          // uuid to determine whether an email is registered or not.
+          return const Uuid().v4obj();
+      }
     });
   }
 
@@ -194,7 +199,7 @@ final class EmailIDP {
       transaction,
       (final transaction) =>
           EmailIDPUtils.withReplacedServerEmailException(() async {
-        final authUserId = await utils.completePasswordReset(
+        final authUserId = await utils.passwordResetUtils.completePasswordReset(
           session,
           passwordResetRequestId: passwordResetRequestId,
           verificationCode: verificationCode,

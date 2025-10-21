@@ -16,7 +16,16 @@ typedef PasswordValidationFunction = bool Function(
 );
 
 /// A rolling rate limit which allows [maxAttempts] in the most recent [timeframe].
-typedef RateLimit = ({int maxAttempts, Duration timeframe});
+class RateLimit {
+  /// The maximum number of attempts allowed within the timeframe.
+  final int maxAttempts;
+
+  /// The timeframe within which the attempts are allowed.
+  final Duration timeframe;
+
+  /// Creates a new [RateLimit] instance.
+  const RateLimit({required this.maxAttempts, required this.timeframe});
+}
 
 /// Function for sending out the verification codes for password reset requests.
 typedef SendPasswordResetVerificationCodeFunction = void Function(
@@ -133,14 +142,14 @@ class EmailIDPConfig {
     this.sendRegistrationVerificationCode,
     this.sendPasswordResetVerificationCode,
     this.onPasswordResetCompleted,
-    this.failedLoginRateLimit = (
+    this.failedLoginRateLimit = const RateLimit(
       maxAttempts: 5,
-      timeframe: const Duration(minutes: 5),
+      timeframe: Duration(minutes: 5),
     ),
     this.passwordValidationFunction =
         defaultRegistrationPasswordValidationFunction,
-    this.maxPasswordResetAttempts = (
-      timeframe: const Duration(hours: 1),
+    this.maxPasswordResetAttempts = const RateLimit(
+      timeframe: Duration(hours: 1),
       maxAttempts: 3,
     ),
     this.passwordHashSaltLength = 16,

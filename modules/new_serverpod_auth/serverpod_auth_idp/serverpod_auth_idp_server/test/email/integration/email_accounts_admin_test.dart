@@ -12,11 +12,11 @@ void main() {
   {
     const verificationCodeLifetime = Duration(minutes: 15);
     const passwordResetVerificationCodeLifetime = Duration(minutes: 15);
-    const failedLoginRateLimit = (
+    const failedLoginRateLimit = RateLimit(
       timeframe: Duration(minutes: 5),
       maxAttempts: 5,
     );
-    const maxPasswordResetAttempts = (
+    const maxPasswordResetAttempts = RateLimit(
       timeframe: Duration(hours: 1),
       maxAttempts: 3,
     );
@@ -246,7 +246,7 @@ void main() {
           password: 'Yolo1234!',
         );
 
-        await emailIDP.utils
+        await emailIDP.utils.passwordResetUtils
             .startPasswordReset(session, email: email, transaction: null);
       });
 
@@ -304,7 +304,7 @@ void main() {
         final resetRequest = await requestPasswordReset(session, email: email);
 
         try {
-          await emailIDP.utils.completePasswordReset(
+          await emailIDP.utils.passwordResetUtils.completePasswordReset(
             session,
             passwordResetRequestId: resetRequest.$1,
             verificationCode: '----------',

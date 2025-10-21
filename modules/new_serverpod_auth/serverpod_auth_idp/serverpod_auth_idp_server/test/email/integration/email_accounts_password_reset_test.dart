@@ -26,14 +26,14 @@ void main() {
       test(
           'when requesting a reset for a non-existent email, it returns "email does not exist" status (for internal use).',
           () async {
-        final result = await emailIDP.utils.startPasswordReset(
+        final result =
+            await emailIDP.utils.passwordResetUtils.startPasswordReset(
           session,
           email: '404@serverpod.dev',
           transaction: null,
         );
 
-        expect(result.result, PasswordResetResult.emailDoesNotExist);
-        expect(result.passwordResetRequestId, isNull);
+        expect(result, isA<PasswordResetEmailDoesNotExistResult>());
       });
     },
     rollbackDatabase: RollbackDatabase.disabled,
@@ -85,7 +85,7 @@ void main() {
     test(
         'when requesting a password reset for the account, then the process ID and verification code are given to the configured callback.',
         () async {
-      final result = await emailIDP.utils.startPasswordReset(
+      final result = await emailIDP.utils.passwordResetUtils.startPasswordReset(
         session,
         email: email.toUpperCase(),
         transaction: null,
@@ -94,8 +94,13 @@ void main() {
       expect(receivedPasswordResetRequestId, isNotNull);
       expect(receivedVerificationCode, isNotNull);
 
-      expect(result.result, PasswordResetResult.passwordResetSent);
-      expect(result.passwordResetRequestId, receivedPasswordResetRequestId);
+      expect(
+          result,
+          isA<PasswordResetSentResult>().having(
+            (final result) => result.passwordResetRequestId,
+            'passwordResetRequestId',
+            receivedPasswordResetRequestId,
+          ));
     });
   });
 
@@ -110,9 +115,9 @@ void main() {
         session = sessionBuilder.build();
         final config = EmailIDPConfig(
           passwordHashPepper: 'test',
-          maxPasswordResetAttempts: (
+          maxPasswordResetAttempts: const RateLimit(
             maxAttempts: 1,
-            timeframe: const Duration(hours: 1)
+            timeframe: Duration(hours: 1),
           ),
         );
         emailIDP = EmailIDP(config: config);
@@ -125,14 +130,14 @@ void main() {
       test(
           'when requesting too many password resets, '
           'then it throws a "too many attempts" exception.', () async {
-        await emailIDP.utils.startPasswordReset(
+        await emailIDP.utils.passwordResetUtils.startPasswordReset(
           session,
           email: email,
           transaction: null,
         );
 
         await expectLater(
-          () => emailIDP.utils.startPasswordReset(
+          () => emailIDP.utils.passwordResetUtils.startPasswordReset(
             session,
             email: email.toUpperCase(),
             transaction: null,
@@ -189,7 +194,8 @@ void main() {
       test(
           'when changing the password with the correct verification code, then it returns the auth user ID.',
           () async {
-        final result = await emailIDP.utils.completePasswordReset(
+        final result =
+            await emailIDP.utils.passwordResetUtils.completePasswordReset(
           session,
           passwordResetRequestId: passwordResetRequestId,
           verificationCode: verificationCode,
@@ -216,7 +222,7 @@ void main() {
         }
 
         await expectLater(
-          () => emailIDP.utils.completePasswordReset(
+          () => emailIDP.utils.passwordResetUtils.completePasswordReset(
             session,
             passwordResetRequestId: passwordResetRequestId,
             verificationCode: verificationCode,
@@ -232,7 +238,7 @@ void main() {
           'then it throws a "password policy violation" exception regardless of the verification code.',
           () async {
         await expectLater(
-          () => emailIDP.utils.completePasswordReset(
+          () => emailIDP.utils.passwordResetUtils.completePasswordReset(
             session,
             passwordResetRequestId: passwordResetRequestId,
             verificationCode: 'wrong',
@@ -250,7 +256,7 @@ void main() {
           () => withClock(
             Clock.fixed(DateTime.now()
                 .add(testConfig.passwordResetVerificationCodeLifetime)),
-            () => emailIDP.utils.completePasswordReset(
+            () => emailIDP.utils.passwordResetUtils.completePasswordReset(
               session,
               passwordResetRequestId: passwordResetRequestId,
               verificationCode: verificationCode,
@@ -270,7 +276,7 @@ void main() {
           () => withClock(
             Clock.fixed(DateTime.now()
                 .add(testConfig.passwordResetVerificationCodeLifetime)),
-            () => emailIDP.utils.completePasswordReset(
+            () => emailIDP.utils.passwordResetUtils.completePasswordReset(
               session,
               passwordResetRequestId: passwordResetRequestId,
               verificationCode: 'wrong',
@@ -287,7 +293,7 @@ void main() {
           'then it throws a "too many attempts" on the second attempt and "not found" on the next ones. ',
           () async {
         await expectLater(
-          () => emailIDP.utils.completePasswordReset(
+          () => emailIDP.utils.passwordResetUtils.completePasswordReset(
             session,
             passwordResetRequestId: passwordResetRequestId,
             verificationCode: 'wrong',
@@ -298,7 +304,7 @@ void main() {
         );
 
         await expectLater(
-          () => emailIDP.utils.completePasswordReset(
+          () => emailIDP.utils.passwordResetUtils.completePasswordReset(
             session,
             passwordResetRequestId: passwordResetRequestId,
             verificationCode: 'wrong',
@@ -310,7 +316,7 @@ void main() {
         );
 
         await expectLater(
-          () => emailIDP.utils.completePasswordReset(
+          () => emailIDP.utils.passwordResetUtils.completePasswordReset(
             session,
             passwordResetRequestId: passwordResetRequestId,
             verificationCode: 'wrong',

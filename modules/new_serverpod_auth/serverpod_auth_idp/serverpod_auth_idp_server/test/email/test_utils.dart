@@ -41,7 +41,7 @@ Future<
     transaction: null,
   );
 
-  await utils.verifyAccountCreation(
+  await utils.accountCreationUtils.verifyAccountCreation(
     session,
     accountRequestId: pendingAccountRequestId,
     verificationCode: pendingAccountVerificationCode,
@@ -85,7 +85,7 @@ Future<(UuidValue passwordResetRequestId, String verificationCode)>
     },
   ));
 
-  await utils.startPasswordReset(
+  await utils.passwordResetUtils.startPasswordReset(
     session,
     email: email,
     transaction: null,
@@ -116,13 +116,13 @@ Future<void> resetPassword(
     },
   ));
 
-  await utils.startPasswordReset(
+  await utils.passwordResetUtils.startPasswordReset(
     session,
     email: email,
     transaction: null,
   );
 
-  await utils.completePasswordReset(
+  await utils.passwordResetUtils.completePasswordReset(
     session,
     passwordResetRequestId: pendingPasswordResetRequestId,
     verificationCode: pendingPasswordResetVerificationCode,

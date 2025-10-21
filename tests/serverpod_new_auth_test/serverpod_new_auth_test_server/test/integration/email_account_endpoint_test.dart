@@ -101,8 +101,8 @@ void main() {
           AuthServices.initialize(
               emailIDPConfig: EmailIDPConfig(
             passwordHashPepper: 'test',
-            maxPasswordResetAttempts: (
-              timeframe: const Duration(seconds: 1),
+            maxPasswordResetAttempts: const RateLimit(
+              timeframe: Duration(seconds: 1),
               maxAttempts: 100,
             ),
             sendPasswordResetVerificationCode: (
@@ -785,8 +785,8 @@ extension on TestEndpoints {
     AuthServices.initialize(
         emailIDPConfig: EmailIDPConfig(
       passwordHashPepper: 'test',
-      maxPasswordResetAttempts: (
-        timeframe: const Duration(seconds: 1),
+      maxPasswordResetAttempts: const RateLimit(
+        timeframe: Duration(seconds: 1),
         maxAttempts: 100,
       ),
       sendRegistrationVerificationCode: (
