@@ -24,18 +24,18 @@ abstract class UserNoteCollection
   });
 
   factory UserNoteCollection({
-    int? id,
-    required String name,
-    List<_i2.UserNote>? userNotesPropertyName,
+    final int? id,
+    required final String name,
+    final List<_i2.UserNote>? userNotesPropertyName,
   }) = _UserNoteCollectionImpl;
 
-  factory UserNoteCollection.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory UserNoteCollection.fromJson(final Map<String, dynamic> jsonSerialization) {
     return UserNoteCollection(
       id: jsonSerialization['id'] as int?,
       name: jsonSerialization['name'] as String,
       userNotesPropertyName:
           (jsonSerialization['userNotesPropertyName'] as List?)
-              ?.map((e) => _i2.UserNote.fromJson((e as Map<String, dynamic>)))
+              ?.map((final e) => _i2.UserNote.fromJson((e as Map<String, dynamic>)))
               .toList(),
     );
   }
@@ -58,9 +58,9 @@ abstract class UserNoteCollection
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   UserNoteCollection copyWith({
-    int? id,
-    String? name,
-    List<_i2.UserNote>? userNotesPropertyName,
+    final int? id,
+    final String? name,
+    final List<_i2.UserNote>? userNotesPropertyName,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -69,7 +69,7 @@ abstract class UserNoteCollection
       'name': name,
       if (userNotesPropertyName != null)
         'userNotesPropertyName': userNotesPropertyName?.toJson(
-          valueToJson: (v) => v.toJson(),
+          valueToJson: (final v) => v.toJson(),
         ),
     };
   }
@@ -81,13 +81,13 @@ abstract class UserNoteCollection
       'name': name,
       if (userNotesPropertyName != null)
         'userNotesPropertyName': userNotesPropertyName?.toJson(
-          valueToJson: (v) => v.toJsonForProtocol(),
+          valueToJson: (final v) => v.toJsonForProtocol(),
         ),
     };
   }
 
   static UserNoteCollectionInclude include({
-    _i2.UserNoteIncludeList? userNotesPropertyName,
+    final _i2.UserNoteIncludeList? userNotesPropertyName,
   }) {
     return UserNoteCollectionInclude._(
       userNotesPropertyName: userNotesPropertyName,
@@ -95,13 +95,13 @@ abstract class UserNoteCollection
   }
 
   static UserNoteCollectionIncludeList includeList({
-    _i1.WhereExpressionBuilder<UserNoteCollectionTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<UserNoteCollectionTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UserNoteCollectionTable>? orderByList,
-    UserNoteCollectionInclude? include,
+    final _i1.WhereExpressionBuilder<UserNoteCollectionTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<UserNoteCollectionTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<UserNoteCollectionTable>? orderByList,
+    final UserNoteCollectionInclude? include,
   }) {
     return UserNoteCollectionIncludeList._(
       where: where,
@@ -124,9 +124,9 @@ class _Undefined {}
 
 class _UserNoteCollectionImpl extends UserNoteCollection {
   _UserNoteCollectionImpl({
-    int? id,
-    required String name,
-    List<_i2.UserNote>? userNotesPropertyName,
+    final int? id,
+    required final String name,
+    final List<_i2.UserNote>? userNotesPropertyName,
   }) : super._(
          id: id,
          name: name,
@@ -138,16 +138,16 @@ class _UserNoteCollectionImpl extends UserNoteCollection {
   @_i1.useResult
   @override
   UserNoteCollection copyWith({
-    Object? id = _Undefined,
-    String? name,
-    Object? userNotesPropertyName = _Undefined,
+    final Object? id = _Undefined,
+    final String? name,
+    final Object? userNotesPropertyName = _Undefined,
   }) {
     return UserNoteCollection(
       id: id is int? ? id : this.id,
       name: name ?? this.name,
       userNotesPropertyName: userNotesPropertyName is List<_i2.UserNote>?
           ? userNotesPropertyName
-          : this.userNotesPropertyName?.map((e0) => e0.copyWith()).toList(),
+          : this.userNotesPropertyName?.map((final e0) => e0.copyWith()).toList(),
     );
   }
 }
@@ -156,7 +156,7 @@ class UserNoteCollectionUpdateTable
     extends _i1.UpdateTable<UserNoteCollectionTable> {
   UserNoteCollectionUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> name(String value) => _i1.ColumnValue(
+  _i1.ColumnValue<String, String> name(final String value) => _i1.ColumnValue(
     table.name,
     value,
   );
@@ -190,7 +190,7 @@ class UserNoteCollectionTable extends _i1.Table<int?> {
           .t
           .$_userNoteCollectionsUsernotespropertynameUserNoteCollectionsId,
       tableRelation: tableRelation,
-      createTable: (foreignTableRelation) =>
+      createTable: (final foreignTableRelation) =>
           _i2.UserNoteTable(tableRelation: foreignTableRelation),
     );
     return ___userNotesPropertyName!;
@@ -198,7 +198,7 @@ class UserNoteCollectionTable extends _i1.Table<int?> {
 
   _i1.ManyRelation<_i2.UserNoteTable> get userNotesPropertyName {
     if (_userNotesPropertyName != null) return _userNotesPropertyName!;
-    var relationTable = _i1.createRelationTable(
+    final relationTable = _i1.createRelationTable(
       relationFieldName: 'userNotesPropertyName',
       field: UserNoteCollection.t.id,
       foreignField: _i2
@@ -206,7 +206,7 @@ class UserNoteCollectionTable extends _i1.Table<int?> {
           .t
           .$_userNoteCollectionsUsernotespropertynameUserNoteCollectionsId,
       tableRelation: tableRelation,
-      createTable: (foreignTableRelation) =>
+      createTable: (final foreignTableRelation) =>
           _i2.UserNoteTable(tableRelation: foreignTableRelation),
     );
     _userNotesPropertyName = _i1.ManyRelation<_i2.UserNoteTable>(
@@ -225,7 +225,7 @@ class UserNoteCollectionTable extends _i1.Table<int?> {
   ];
 
   @override
-  _i1.Table? getRelationTable(String relationField) {
+  _i1.Table? getRelationTable(final String relationField) {
     if (relationField == 'userNotesPropertyName') {
       return __userNotesPropertyName;
     }
@@ -235,7 +235,7 @@ class UserNoteCollectionTable extends _i1.Table<int?> {
 
 class UserNoteCollectionInclude extends _i1.IncludeObject {
   UserNoteCollectionInclude._({
-    _i2.UserNoteIncludeList? userNotesPropertyName,
+    final _i2.UserNoteIncludeList? userNotesPropertyName,
   }) {
     _userNotesPropertyName = userNotesPropertyName;
   }
@@ -253,7 +253,7 @@ class UserNoteCollectionInclude extends _i1.IncludeObject {
 
 class UserNoteCollectionIncludeList extends _i1.IncludeList {
   UserNoteCollectionIncludeList._({
-    _i1.WhereExpressionBuilder<UserNoteCollectionTable>? where,
+    final _i1.WhereExpressionBuilder<UserNoteCollectionTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -305,15 +305,15 @@ class UserNoteCollectionRepository {
   /// );
   /// ```
   Future<List<UserNoteCollection>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<UserNoteCollectionTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<UserNoteCollectionTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UserNoteCollectionTable>? orderByList,
-    _i1.Transaction? transaction,
-    UserNoteCollectionInclude? include,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<UserNoteCollectionTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<UserNoteCollectionTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<UserNoteCollectionTable>? orderByList,
+    final _i1.Transaction? transaction,
+    final UserNoteCollectionInclude? include,
   }) async {
     return session.db.find<UserNoteCollection>(
       where: where?.call(UserNoteCollection.t),
@@ -345,14 +345,14 @@ class UserNoteCollectionRepository {
   /// );
   /// ```
   Future<UserNoteCollection?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<UserNoteCollectionTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<UserNoteCollectionTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UserNoteCollectionTable>? orderByList,
-    _i1.Transaction? transaction,
-    UserNoteCollectionInclude? include,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<UserNoteCollectionTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<UserNoteCollectionTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<UserNoteCollectionTable>? orderByList,
+    final _i1.Transaction? transaction,
+    final UserNoteCollectionInclude? include,
   }) async {
     return session.db.findFirstRow<UserNoteCollection>(
       where: where?.call(UserNoteCollection.t),
@@ -367,10 +367,10 @@ class UserNoteCollectionRepository {
 
   /// Finds a single [UserNoteCollection] by its [id] or null if no such row exists.
   Future<UserNoteCollection?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
-    UserNoteCollectionInclude? include,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
+    final UserNoteCollectionInclude? include,
   }) async {
     return session.db.findById<UserNoteCollection>(
       id,
@@ -386,9 +386,9 @@ class UserNoteCollectionRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<UserNoteCollection>> insert(
-    _i1.Session session,
-    List<UserNoteCollection> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<UserNoteCollection> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<UserNoteCollection>(
       rows,
@@ -400,9 +400,9 @@ class UserNoteCollectionRepository {
   ///
   /// The returned [UserNoteCollection] will have its `id` field set.
   Future<UserNoteCollection> insertRow(
-    _i1.Session session,
-    UserNoteCollection row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final UserNoteCollection row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<UserNoteCollection>(
       row,
@@ -416,10 +416,10 @@ class UserNoteCollectionRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<UserNoteCollection>> update(
-    _i1.Session session,
-    List<UserNoteCollection> rows, {
-    _i1.ColumnSelections<UserNoteCollectionTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<UserNoteCollection> rows, {
+    final _i1.ColumnSelections<UserNoteCollectionTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<UserNoteCollection>(
       rows,
@@ -432,10 +432,10 @@ class UserNoteCollectionRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<UserNoteCollection> updateRow(
-    _i1.Session session,
-    UserNoteCollection row, {
-    _i1.ColumnSelections<UserNoteCollectionTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final UserNoteCollection row, {
+    final _i1.ColumnSelections<UserNoteCollectionTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<UserNoteCollection>(
       row,
@@ -447,11 +447,11 @@ class UserNoteCollectionRepository {
   /// Updates a single [UserNoteCollection] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<UserNoteCollection?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<UserNoteCollectionUpdateTable>
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<UserNoteCollectionUpdateTable>
     columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<UserNoteCollection>(
       id,
@@ -463,16 +463,16 @@ class UserNoteCollectionRepository {
   /// Updates all [UserNoteCollection]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<UserNoteCollection>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<UserNoteCollectionUpdateTable>
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<UserNoteCollectionUpdateTable>
     columnValues,
-    required _i1.WhereExpressionBuilder<UserNoteCollectionTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<UserNoteCollectionTable>? orderBy,
-    _i1.OrderByListBuilder<UserNoteCollectionTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    required final _i1.WhereExpressionBuilder<UserNoteCollectionTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<UserNoteCollectionTable>? orderBy,
+    final _i1.OrderByListBuilder<UserNoteCollectionTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<UserNoteCollection>(
       columnValues: columnValues(UserNoteCollection.t.updateTable),
@@ -490,9 +490,9 @@ class UserNoteCollectionRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<UserNoteCollection>> delete(
-    _i1.Session session,
-    List<UserNoteCollection> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<UserNoteCollection> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<UserNoteCollection>(
       rows,
@@ -502,9 +502,9 @@ class UserNoteCollectionRepository {
 
   /// Deletes a single [UserNoteCollection].
   Future<UserNoteCollection> deleteRow(
-    _i1.Session session,
-    UserNoteCollection row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final UserNoteCollection row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<UserNoteCollection>(
       row,
@@ -514,9 +514,9 @@ class UserNoteCollectionRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<UserNoteCollection>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<UserNoteCollectionTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<UserNoteCollectionTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<UserNoteCollection>(
       where: where(UserNoteCollection.t),
@@ -527,10 +527,10 @@ class UserNoteCollectionRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<UserNoteCollectionTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<UserNoteCollectionTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<UserNoteCollection>(
       where: where?.call(UserNoteCollection.t),
@@ -546,21 +546,21 @@ class UserNoteCollectionAttachRepository {
   /// Creates a relation between this [UserNoteCollection] and the given [UserNote]s
   /// by setting each [UserNote]'s foreign key `_userNoteCollectionsUsernotespropertynameUserNoteCollectionsId` to refer to this [UserNoteCollection].
   Future<void> userNotesPropertyName(
-    _i1.Session session,
-    UserNoteCollection userNoteCollection,
-    List<_i2.UserNote> userNote, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final UserNoteCollection userNoteCollection,
+    final List<_i2.UserNote> userNote, {
+    final _i1.Transaction? transaction,
   }) async {
-    if (userNote.any((e) => e.id == null)) {
+    if (userNote.any((final e) => e.id == null)) {
       throw ArgumentError.notNull('userNote.id');
     }
     if (userNoteCollection.id == null) {
       throw ArgumentError.notNull('userNoteCollection.id');
     }
 
-    var $userNote = userNote
+    final $userNote = userNote
         .map(
-          (e) => _i2.UserNoteImplicit(
+          (final e) => _i2.UserNoteImplicit(
             e,
             $_userNoteCollectionsUsernotespropertynameUserNoteCollectionsId:
                 userNoteCollection.id,
@@ -586,10 +586,10 @@ class UserNoteCollectionAttachRowRepository {
   /// Creates a relation between this [UserNoteCollection] and the given [UserNote]
   /// by setting the [UserNote]'s foreign key `_userNoteCollectionsUsernotespropertynameUserNoteCollectionsId` to refer to this [UserNoteCollection].
   Future<void> userNotesPropertyName(
-    _i1.Session session,
-    UserNoteCollection userNoteCollection,
-    _i2.UserNote userNote, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final UserNoteCollection userNoteCollection,
+    final _i2.UserNote userNote, {
+    final _i1.Transaction? transaction,
   }) async {
     if (userNote.id == null) {
       throw ArgumentError.notNull('userNote.id');
@@ -598,7 +598,7 @@ class UserNoteCollectionAttachRowRepository {
       throw ArgumentError.notNull('userNoteCollection.id');
     }
 
-    var $userNote = _i2.UserNoteImplicit(
+    final $userNote = _i2.UserNoteImplicit(
       userNote,
       $_userNoteCollectionsUsernotespropertynameUserNoteCollectionsId:
           userNoteCollection.id,
@@ -625,17 +625,17 @@ class UserNoteCollectionDetachRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> userNotesPropertyName(
-    _i1.Session session,
-    List<_i2.UserNote> userNote, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<_i2.UserNote> userNote, {
+    final _i1.Transaction? transaction,
   }) async {
-    if (userNote.any((e) => e.id == null)) {
+    if (userNote.any((final e) => e.id == null)) {
       throw ArgumentError.notNull('userNote.id');
     }
 
-    var $userNote = userNote
+    final $userNote = userNote
         .map(
-          (e) => _i2.UserNoteImplicit(
+          (final e) => _i2.UserNoteImplicit(
             e,
             $_userNoteCollectionsUsernotespropertynameUserNoteCollectionsId:
                 null,
@@ -664,15 +664,15 @@ class UserNoteCollectionDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> userNotesPropertyName(
-    _i1.Session session,
-    _i2.UserNote userNote, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final _i2.UserNote userNote, {
+    final _i1.Transaction? transaction,
   }) async {
     if (userNote.id == null) {
       throw ArgumentError.notNull('userNote.id');
     }
 
-    var $userNote = _i2.UserNoteImplicit(
+    final $userNote = _i2.UserNoteImplicit(
       userNote,
       $_userNoteCollectionsUsernotespropertynameUserNoteCollectionsId: null,
     );

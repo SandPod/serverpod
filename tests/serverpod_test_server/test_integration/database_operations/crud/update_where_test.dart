@@ -9,8 +9,8 @@ import '../../test_tools/serverpod_test_tools.dart';
 void main() {
   withServerpod(
     'Given database entries with basic matching criteria',
-    (sessionBuilder, endpoints) {
-      var session = sessionBuilder.build();
+    (final sessionBuilder, final endpoints) {
+      final session = sessionBuilder.build();
 
       setUp(() async {
         await Types.db.insert(
@@ -29,17 +29,17 @@ void main() {
           expect(
             () => Types.db.updateWhere(
               session,
-              columnValues: (t) => [],
-              where: (t) => t.anInt.equals(1),
+              columnValues: (final t) => [],
+              where: (final t) => t.anInt.equals(1),
             ),
             throwsA(isA<ArgumentError>()),
           );
         });
 
         test('then the rows remain unchanged in the database', () async {
-          var dbRow = await Types.db.findFirstRow(
+          final dbRow = await Types.db.findFirstRow(
             session,
-            where: (t) => t.anInt.equals(1),
+            where: (final t) => t.anInt.equals(1),
           );
           expect(dbRow, isNotNull);
           expect(dbRow!.anInt, 1);
@@ -56,29 +56,29 @@ void main() {
           setUp(() async {
             updated = await Types.db.updateWhere(
               session,
-              columnValues: (t) => [t.anInt(updatedNumber)],
-              where: (t) => t.anInt.equals(1),
+              columnValues: (final t) => [t.anInt(updatedNumber)],
+              where: (final t) => t.anInt.equals(1),
             );
           });
 
           test('then the updated result returns all matching updated rows', () {
             expect(updated, hasLength(2));
-            var numbers = updated.map((row) => row.anInt);
+            final numbers = updated.map((final row) => row.anInt);
             expect(numbers, everyElement(updatedNumber));
           });
 
           test('then all matching rows are updated in the database', () async {
-            var dbRows = await Types.db.find(
+            final dbRows = await Types.db.find(
               session,
-              where: (t) => t.anInt.equals(updatedNumber),
+              where: (final t) => t.anInt.equals(updatedNumber),
             );
             expect(dbRows, hasLength(2));
-            var dbNumbers = dbRows.map((row) => row.anInt);
+            final dbNumbers = dbRows.map((final row) => row.anInt);
             expect(dbNumbers, everyElement(updatedNumber));
           });
 
           test('then non-selected columns remain unchanged', () {
-            var emails = updated.map((e) => e.aString);
+            final emails = updated.map((final e) => e.aString);
             expect(
               emails,
               containsAll(['first', 'duplicate']),
@@ -96,24 +96,24 @@ void main() {
           setUp(() async {
             updated = await Types.db.updateWhere(
               session,
-              columnValues: (t) => [t.anInt(updatedComplexNumber)],
-              where: (t) => t.anInt.equals(2) | t.anInt.equals(3),
+              columnValues: (final t) => [t.anInt(updatedComplexNumber)],
+              where: (final t) => t.anInt.equals(2) | t.anInt.equals(3),
             );
           });
 
           test('then the updated result returns only matching rows', () {
             expect(updated, hasLength(2));
-            var numbers = updated.map((row) => row.anInt);
+            final numbers = updated.map((final row) => row.anInt);
             expect(numbers, everyElement(updatedComplexNumber));
           });
 
           test('then only matching rows are updated in the database', () async {
-            var dbRows = await Types.db.find(
+            final dbRows = await Types.db.find(
               session,
-              where: (t) => t.anInt.equals(updatedComplexNumber),
+              where: (final t) => t.anInt.equals(updatedComplexNumber),
             );
             expect(dbRows, hasLength(2));
-            var emails = dbRows.map((e) => e.aString);
+            final emails = dbRows.map((final e) => e.aString);
             expect(
               emails,
               containsAll(['second', 'third']),
@@ -121,7 +121,7 @@ void main() {
           });
 
           test('then non-selected columns remain unchanged', () {
-            var emails = updated.map((e) => e.aString);
+            final emails = updated.map((final e) => e.aString);
             expect(
               emails,
               containsAll(['second', 'third']),
@@ -138,11 +138,11 @@ void main() {
         setUp(() async {
           updated = await Types.db.updateWhere(
             session,
-            columnValues: (t) => [
+            columnValues: (final t) => [
               t.anInt(updatedInt),
               t.aString(updatedString),
             ],
-            where: (t) => t.anInt.equals(1),
+            where: (final t) => t.anInt.equals(1),
           );
         });
 
@@ -150,9 +150,9 @@ void main() {
           'then the updated result returns updated rows with new values',
           () {
             expect(updated, hasLength(2));
-            var updatedNumbers = updated.map((row) => row.anInt);
+            final updatedNumbers = updated.map((final row) => row.anInt);
             expect(updatedNumbers, everyElement(updatedInt));
-            var updatedStrings = updated.map((row) => row.aString);
+            final updatedStrings = updated.map((final row) => row.aString);
             expect(updatedStrings, everyElement(updatedString));
           },
         );
@@ -160,22 +160,22 @@ void main() {
         test(
           'then only selected columns are updated in the database',
           () async {
-            var dbUpdatedRows = await Types.db.find(
+            final dbUpdatedRows = await Types.db.find(
               session,
-              where: (t) => t.anInt.equals(updatedInt),
+              where: (final t) => t.anInt.equals(updatedInt),
             );
             expect(dbUpdatedRows, hasLength(2));
-            var dbUpdatedNumbers = dbUpdatedRows.map((row) => row.anInt);
+            final dbUpdatedNumbers = dbUpdatedRows.map((final row) => row.anInt);
             expect(dbUpdatedNumbers, everyElement(updatedInt));
-            var dbUpdatedStrings = dbUpdatedRows.map((row) => row.aString);
+            final dbUpdatedStrings = dbUpdatedRows.map((final row) => row.aString);
             expect(dbUpdatedStrings, everyElement(updatedString));
           },
         );
 
         test('then non-matching rows remain unchanged', () async {
-          var nonMatching = await Types.db.findFirstRow(
+          final nonMatching = await Types.db.findFirstRow(
             session,
-            where: (t) => t.anInt.equals(2),
+            where: (final t) => t.anInt.equals(2),
           );
           expect(nonMatching!.aString, 'second');
         });
@@ -185,8 +185,8 @@ void main() {
 
   withServerpod(
     'Given database entries for transaction testing',
-    (sessionBuilder, endpoints) {
-      var session = sessionBuilder.build();
+    (final sessionBuilder, final endpoints) {
+      final session = sessionBuilder.build();
 
       setUp(() async {
         await Types.db.insert(
@@ -203,19 +203,19 @@ void main() {
         const transactionUpdatedInt = 999;
 
         setUp(() async {
-          await session.db.transaction((transaction) async {
-            var savepoint = await transaction.createSavepoint();
+          await session.db.transaction((final transaction) async {
+            final savepoint = await transaction.createSavepoint();
 
-            var updated = await Types.db.updateWhere(
+            final updated = await Types.db.updateWhere(
               session,
-              columnValues: (t) => [t.anInt(transactionUpdatedInt)],
-              where: (t) => t.anInt.equals(1),
+              columnValues: (final t) => [t.anInt(transactionUpdatedInt)],
+              where: (final t) => t.anInt.equals(1),
               transaction: transaction,
             );
 
             expect(updated, hasLength(2));
             expect(
-              updated.every((row) => row.anInt == transactionUpdatedInt),
+              updated.every((final row) => row.anInt == transactionUpdatedInt),
               isTrue,
             );
 
@@ -224,12 +224,12 @@ void main() {
         });
 
         test('then update is reverted as part of transaction', () async {
-          var results = await Types.db.find(
+          final results = await Types.db.find(
             session,
-            where: (t) => t.anInt.equals(1),
+            where: (final t) => t.anInt.equals(1),
           );
           expect(results, hasLength(2));
-          expect(results.every((row) => row.anInt == 1), isTrue);
+          expect(results.every((final row) => row.anInt == 1), isTrue);
         });
       });
     },
@@ -237,8 +237,8 @@ void main() {
 
   withServerpod(
     'Given no matching database entries',
-    (sessionBuilder, endpoints) {
-      var session = sessionBuilder.build();
+    (final sessionBuilder, final endpoints) {
+      final session = sessionBuilder.build();
 
       setUp(() async {
         await Types.db.insert(
@@ -252,10 +252,10 @@ void main() {
       test(
         'when updating where no rows match then empty list is returned',
         () async {
-          var updated = await Types.db.updateWhere(
+          final updated = await Types.db.updateWhere(
             session,
-            columnValues: (t) => [t.anInt(999)],
-            where: (t) => t.anInt.equals(999),
+            columnValues: (final t) => [t.anInt(999)],
+            where: (final t) => t.anInt.equals(999),
           );
 
           expect(updated, isEmpty);
@@ -266,8 +266,8 @@ void main() {
 
   withServerpod(
     'Given database entries with null values',
-    (sessionBuilder, endpoints) {
-      var session = sessionBuilder.build();
+    (final sessionBuilder, final endpoints) {
+      final session = sessionBuilder.build();
 
       setUp(() async {
         await Types.db.insertRow(
@@ -290,11 +290,11 @@ void main() {
         setUp(() async {
           updated = await Types.db.updateWhere(
             session,
-            columnValues: (t) => [
+            columnValues: (final t) => [
               t.anInt(updatedIntFromNull),
               t.aString(updatedStringFromNull),
             ],
-            where: (t) => t.anInt.equals(null),
+            where: (final t) => t.anInt.equals(null),
           );
         });
 
@@ -305,9 +305,9 @@ void main() {
         });
 
         test('then null entries are updated in the database', () async {
-          var dbRow = await Types.db.findFirstRow(
+          final dbRow = await Types.db.findFirstRow(
             session,
-            where: (t) => t.anInt.equals(updatedIntFromNull),
+            where: (final t) => t.anInt.equals(updatedIntFromNull),
           );
           expect(dbRow, isNotNull);
           expect(dbRow!.anInt, updatedIntFromNull);
@@ -319,8 +319,8 @@ void main() {
 
   withServerpod(
     'Given database entries with non-null values',
-    (sessionBuilder, endpoints) {
-      var session = sessionBuilder.build();
+    (final sessionBuilder, final endpoints) {
+      final session = sessionBuilder.build();
 
       const originalInt = 1;
       const originalString = 'value';
@@ -346,8 +346,8 @@ void main() {
         setUp(() async {
           updated = await Types.db.updateWhere(
             session,
-            columnValues: (t) => [t.anInt(null), t.aString(null)],
-            where: (t) => t.anInt.equals(originalInt),
+            columnValues: (final t) => [t.anInt(null), t.aString(null)],
+            where: (final t) => t.anInt.equals(originalInt),
           );
         });
 
@@ -358,9 +358,9 @@ void main() {
         });
 
         test('then selected columns are set to null in the database', () async {
-          var dbRow = await Types.db.findFirstRow(
+          final dbRow = await Types.db.findFirstRow(
             session,
-            where: (t) => t.aBool.equals(originalBool),
+            where: (final t) => t.aBool.equals(originalBool),
           );
           expect(dbRow, isNotNull);
           expect(dbRow!.anInt, isNull);
@@ -373,9 +373,9 @@ void main() {
         });
 
         test('then other columns remain unchanged in the database', () async {
-          var dbRow = await Types.db.findFirstRow(
+          final dbRow = await Types.db.findFirstRow(
             session,
-            where: (t) => t.aBool.equals(originalBool),
+            where: (final t) => t.aBool.equals(originalBool),
           );
           expect(dbRow, isNotNull);
           expect(dbRow!.aBool, originalBool);
@@ -387,8 +387,8 @@ void main() {
 
   withServerpod(
     'Given database entries for pagination operations',
-    (sessionBuilder, endpoints) {
-      var session = sessionBuilder.build();
+    (final sessionBuilder, final endpoints) {
+      final session = sessionBuilder.build();
 
       const matchingInt = 100;
 
@@ -443,39 +443,39 @@ void main() {
         setUp(() async {
           updated = await Types.db.updateWhere(
             session,
-            columnValues: (t) => [t.aString(limitedUpdateString)],
-            where: (t) => t.anInt.equals(matchingInt),
-            orderBy: (t) => t.aDouble,
+            columnValues: (final t) => [t.aString(limitedUpdateString)],
+            where: (final t) => t.anInt.equals(matchingInt),
+            orderBy: (final t) => t.aDouble,
             limit: limit,
           );
         });
 
         test('then limited number of rows are updated', () {
           expect(updated, hasLength(limit));
-          var updatedStrings = updated.map((r) => r.aString);
+          final updatedStrings = updated.map((final r) => r.aString);
           expect(updatedStrings, everyElement(limitedUpdateString));
         });
 
         test('then remaining rows are unaffected', () async {
-          var allRows = await Types.db.find(
+          final allRows = await Types.db.find(
             session,
-            where: (t) => t.anInt.equals(matchingInt),
+            where: (final t) => t.anInt.equals(matchingInt),
           );
-          var unchangedRows = allRows
-              .where((r) => r.aString != limitedUpdateString)
+          final unchangedRows = allRows
+              .where((final r) => r.aString != limitedUpdateString)
               .toList();
           expect(unchangedRows, hasLength(2));
           expect(
-            unchangedRows.map((r) => r.aString).toSet(),
+            unchangedRows.map((final r) => r.aString).toSet(),
             containsAll(['entry4', 'entry5']),
           );
         });
 
         test('then limit 0 updates no rows', () async {
-          var updated = await Types.db.updateWhere(
+          final updated = await Types.db.updateWhere(
             session,
-            columnValues: (t) => [t.aString('zero_limit_update')],
-            where: (t) => t.anInt.equals(matchingInt),
+            columnValues: (final t) => [t.aString('zero_limit_update')],
+            where: (final t) => t.anInt.equals(matchingInt),
             limit: 0,
           );
 
@@ -489,9 +489,9 @@ void main() {
         setUp(() async {
           updated = await Types.db.updateWhere(
             session,
-            columnValues: (t) => [t.aString('ordered_update')],
-            where: (t) => t.anInt.equals(matchingInt),
-            orderBy: (t) => t.aDouble,
+            columnValues: (final t) => [t.aString('ordered_update')],
+            where: (final t) => t.anInt.equals(matchingInt),
+            orderBy: (final t) => t.aDouble,
             orderDescending: true,
             limit: 2,
           );
@@ -510,23 +510,23 @@ void main() {
         setUp(() async {
           updated = await Types.db.updateWhere(
             session,
-            columnValues: (t) => [t.aString('offset_update')],
-            where: (t) => t.anInt.equals(matchingInt),
-            orderBy: (t) => t.aDouble,
+            columnValues: (final t) => [t.aString('offset_update')],
+            where: (final t) => t.anInt.equals(matchingInt),
+            orderBy: (final t) => t.aDouble,
             offset: 2,
           );
         });
 
         test('then first offset rows are skipped', () {
           expect(updated, hasLength(3));
-          expect(updated.map((r) => r.aDouble).toSet(), {3.0, 4.0, 5.0});
+          expect(updated.map((final r) => r.aDouble).toSet(), {3.0, 4.0, 5.0});
         });
 
         test('then skipped rows remain unchanged', () async {
-          var allRows = await Types.db.find(
+          final allRows = await Types.db.find(
             session,
-            where: (t) => t.anInt.equals(matchingInt),
-            orderBy: (t) => t.aDouble,
+            where: (final t) => t.anInt.equals(matchingInt),
+            orderBy: (final t) => t.aDouble,
           );
 
           expect(allRows[0].aString, 'entry1');
@@ -534,18 +534,18 @@ void main() {
         });
 
         test('then large offset beyond result set updates no rows', () async {
-          var updated = await Types.db.updateWhere(
+          final updated = await Types.db.updateWhere(
             session,
-            columnValues: (t) => [t.aString('should_not_update')],
-            where: (t) => t.anInt.equals(matchingInt),
+            columnValues: (final t) => [t.aString('should_not_update')],
+            where: (final t) => t.anInt.equals(matchingInt),
             offset: 1000,
           );
 
           expect(updated, isEmpty);
 
-          var allRows = await Types.db.find(
+          final allRows = await Types.db.find(
             session,
-            where: (t) => t.aString.equals('should_not_update'),
+            where: (final t) => t.aString.equals('should_not_update'),
           );
           expect(allRows, isEmpty);
         });
@@ -557,9 +557,9 @@ void main() {
         setUp(() async {
           updated = await Types.db.updateWhere(
             session,
-            columnValues: (t) => [t.aString('window_update')],
-            where: (t) => t.anInt.equals(matchingInt),
-            orderBy: (t) => t.aDouble,
+            columnValues: (final t) => [t.aString('window_update')],
+            where: (final t) => t.anInt.equals(matchingInt),
+            orderBy: (final t) => t.aDouble,
             limit: 2,
             offset: 1,
           );
@@ -567,7 +567,7 @@ void main() {
 
         test('then windowed rows are updated', () {
           expect(updated, hasLength(2));
-          expect(updated.map((r) => r.aDouble).toSet(), {2.0, 3.0});
+          expect(updated.map((final r) => r.aDouble).toSet(), {2.0, 3.0});
         });
       });
     },
@@ -575,8 +575,8 @@ void main() {
 
   withServerpod(
     'Given database entries with all supported data types',
-    (sessionBuilder, endpoints) {
-      var session = sessionBuilder.build();
+    (final sessionBuilder, final endpoints) {
+      final session = sessionBuilder.build();
 
       setUp(() async {
         await Types.db.insert(
@@ -589,14 +589,14 @@ void main() {
               aDateTime: DateTime(2024, 1, 1),
               aString: 'first',
               aByteData: ByteData.view(Uint8List.fromList([1, 2, 3]).buffer),
-              aDuration: Duration(seconds: 30),
+              aDuration: const Duration(seconds: 30),
               aUuid: UuidValue.fromString(
                 '550e8400-e29b-41d4-a716-446655440000',
               ),
               aUri: Uri.parse('https://serverpod.dev'),
               aBigInt: BigInt.from(123456789),
-              aVector: Vector([1.0, 2.0, 3.0]),
-              aHalfVector: HalfVector([1.0, 2.0, 3.0]),
+              aVector: const Vector([1.0, 2.0, 3.0]),
+              aHalfVector: const HalfVector([1.0, 2.0, 3.0]),
               aSparseVector: SparseVector([1.0, 2.0, 3.0]),
               aBit: Bit([true, false, true]),
               anEnum: TestEnum.one,
@@ -616,14 +616,14 @@ void main() {
               aDateTime: DateTime(2024, 2, 1),
               aString: 'second',
               aByteData: ByteData.view(Uint8List.fromList([7, 8, 9]).buffer),
-              aDuration: Duration(minutes: 1),
+              aDuration: const Duration(minutes: 1),
               aUuid: UuidValue.fromString(
                 '456e7890-e12b-34c5-a678-901234567890',
               ),
               aUri: Uri.parse('https://example.com'),
               aBigInt: BigInt.from(987654321),
-              aVector: Vector([7.0, 8.0, 9.0]),
-              aHalfVector: HalfVector([7.0, 8.0, 9.0]),
+              aVector: const Vector([7.0, 8.0, 9.0]),
+              aHalfVector: const HalfVector([7.0, 8.0, 9.0]),
               aSparseVector: SparseVector([7.0, 8.0, 9.0]),
               aBit: Bit([false, true, false]),
               anEnum: TestEnum.two,
@@ -643,21 +643,21 @@ void main() {
         setUp(() async {
           updated = await Types.db.updateWhere(
             session,
-            columnValues: (t) => [
+            columnValues: (final t) => [
               t.anInt(42),
               t.aBool(false),
               t.aDouble(3.14),
               t.aDateTime(DateTime.utc(2024, 12, 31)),
               t.aString('updated'),
               t.aByteData(ByteData.view(Uint8List.fromList([4, 5, 6]).buffer)),
-              t.aDuration(Duration(minutes: 5)),
+              t.aDuration(const Duration(minutes: 5)),
               t.aUuid(
                 UuidValue.fromString('123e4567-e89b-12d3-a456-426614174000'),
               ),
               t.aUri(Uri.parse('https://updated.com')),
               t.aBigInt(BigInt.from(555666777)),
-              t.aVector(Vector([4.0, 5.0, 6.0])),
-              t.aHalfVector(HalfVector([4.0, 5.0, 6.0])),
+              t.aVector(const Vector([4.0, 5.0, 6.0])),
+              t.aHalfVector(const HalfVector([4.0, 5.0, 6.0])),
               t.aSparseVector(SparseVector([4.0, 5.0, 6.0])),
               t.aBit(Bit([false, true, false])),
               t.anEnum(TestEnum.three),
@@ -669,7 +669,7 @@ void main() {
                 ('updated', optionalUri: Uri.parse('https://updated.com')),
               ),
             ],
-            where: (t) => t.anInt.equals(1),
+            where: (final t) => t.anInt.equals(1),
           );
         });
 
@@ -688,15 +688,15 @@ void main() {
             ).toList(),
             [4, 5, 6],
           );
-          expect(updated.first.aDuration, Duration(minutes: 5));
+          expect(updated.first.aDuration, const Duration(minutes: 5));
           expect(
             updated.first.aUuid,
             UuidValue.fromString('123e4567-e89b-12d3-a456-426614174000'),
           );
           expect(updated.first.aUri, Uri.parse('https://updated.com'));
           expect(updated.first.aBigInt, BigInt.from(555666777));
-          expect(updated.first.aVector, Vector([4.0, 5.0, 6.0]));
-          expect(updated.first.aHalfVector, HalfVector([4.0, 5.0, 6.0]));
+          expect(updated.first.aVector, const Vector([4.0, 5.0, 6.0]));
+          expect(updated.first.aHalfVector, const HalfVector([4.0, 5.0, 6.0]));
           expect(updated.first.aSparseVector, SparseVector([4.0, 5.0, 6.0]));
           expect(updated.first.aBit, Bit([false, true, false]));
           expect(updated.first.anEnum, TestEnum.three);
@@ -711,9 +711,9 @@ void main() {
         });
 
         test('then all data types are updated in the database', () async {
-          var dbRow = await Types.db.findFirstRow(
+          final dbRow = await Types.db.findFirstRow(
             session,
-            where: (t) => t.anInt.equals(42),
+            where: (final t) => t.anInt.equals(42),
           );
           expect(dbRow, isNotNull);
           expect(dbRow!.anInt, 42);
@@ -729,15 +729,15 @@ void main() {
             ).toList(),
             [4, 5, 6],
           );
-          expect(dbRow.aDuration, Duration(minutes: 5));
+          expect(dbRow.aDuration, const Duration(minutes: 5));
           expect(
             dbRow.aUuid,
             UuidValue.fromString('123e4567-e89b-12d3-a456-426614174000'),
           );
           expect(dbRow.aUri, Uri.parse('https://updated.com'));
           expect(dbRow.aBigInt, BigInt.from(555666777));
-          expect(dbRow.aVector, Vector([4.0, 5.0, 6.0]));
-          expect(dbRow.aHalfVector, HalfVector([4.0, 5.0, 6.0]));
+          expect(dbRow.aVector, const Vector([4.0, 5.0, 6.0]));
+          expect(dbRow.aHalfVector, const HalfVector([4.0, 5.0, 6.0]));
           expect(dbRow.aSparseVector, SparseVector([4.0, 5.0, 6.0]));
           expect(dbRow.aBit, Bit([false, true, false]));
           expect(dbRow.anEnum, TestEnum.three);
@@ -752,9 +752,9 @@ void main() {
         });
 
         test('then non-matching rows remain unchanged', () async {
-          var unchangedRow = await Types.db.findFirstRow(
+          final unchangedRow = await Types.db.findFirstRow(
             session,
-            where: (t) => t.anInt.equals(2),
+            where: (final t) => t.anInt.equals(2),
           );
           expect(unchangedRow, isNotNull);
           expect(unchangedRow!.aString, 'second');

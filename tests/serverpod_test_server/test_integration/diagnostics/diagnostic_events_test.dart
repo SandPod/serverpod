@@ -2,19 +2,17 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:test/test.dart';
-
 import 'package:serverpod/serverpod.dart';
-
 import 'package:serverpod_test_client/serverpod_test_client.dart';
 import 'package:serverpod_test_server/src/futureCalls/test_exception_call.dart';
 import 'package:serverpod_test_server/test_util/test_serverpod.dart';
+import 'package:test/test.dart';
 
 import 'test_exception_handler.dart';
 
 class ExceptionRoute extends WidgetRoute {
   @override
-  Future<TemplateWidget> build(Session session, Request request) async {
+  Future<TemplateWidget> build(final Session session, final Request request) async {
     throw UnimplementedError('ExceptionRoute not implemented');
   }
 }
@@ -107,7 +105,7 @@ void main() {
   group(
     'Given a serverpod server with future calls and a diagnostic event handler',
     () {
-      var client = Client('http://localhost:8080/');
+      final client = Client('http://localhost:8080/');
       var exceptionHandler = TestExceptionHandler();
       late Serverpod pod;
 
@@ -147,7 +145,7 @@ void main() {
   );
 
   group('Given a serverpod server with a diagnostic event handler', () {
-    var client = Client('http://localhost:8080/');
+    final client = Client('http://localhost:8080/');
     var exceptionHandler = TestExceptionHandler();
     late Serverpod pod;
 
@@ -210,7 +208,7 @@ void main() {
       'when a client calls streaming method outStreamThrowsSerializableException '
       'then the diagnostic event handler gets called',
       () async {
-        var stream = client.methodStreaming
+        final stream = client.methodStreaming
             .outStreamThrowsSerializableException();
         await expectLater(stream, emitsError(isA<ExceptionWithData>()));
 
@@ -225,7 +223,7 @@ void main() {
       'when a client calls streaming method exceptionThrownBeforeStreamReturn '
       'then the diagnostic event handler gets called',
       () async {
-        var stream = client.methodStreaming.exceptionThrownBeforeStreamReturn();
+        final stream = client.methodStreaming.exceptionThrownBeforeStreamReturn();
         await expectLater(stream, emitsError(isA<ConnectionClosedException>()));
 
         final record = await exceptionHandler.events.first.timeout(timeout);
@@ -237,7 +235,7 @@ void main() {
 
     test('when a client calls streaming method exceptionThrownInStreamReturn '
         'then the diagnostic event handler gets called', () async {
-      var stream = client.methodStreaming.exceptionThrownInStreamReturn();
+      final stream = client.methodStreaming.exceptionThrownInStreamReturn();
       await expectLater(stream, emitsError(isA<ConnectionClosedException>()));
 
       final record = await exceptionHandler.events.first.timeout(timeout);
@@ -248,7 +246,7 @@ void main() {
 
     test('when a client calls method url with malformed json '
         'then the diagnostic event handler gets called', () async {
-      var response = http.post(
+      final response = http.post(
         Uri.parse('http://localhost:8080/simple/hello'),
         body: '{"name": [42]}',
       );
@@ -284,7 +282,7 @@ void main() {
 
       test('when a client calls web url with malformed json '
           'then the diagnostic event handler gets called', () async {
-        var response = http.get(
+        final response = http.get(
           Uri.parse('http://localhost:8082/exception'),
         );
         await response;

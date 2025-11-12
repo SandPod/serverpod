@@ -22,13 +22,13 @@ abstract class EmailReset implements _i1.SerializableModel {
   });
 
   factory EmailReset({
-    int? id,
-    required int userId,
-    required String verificationCode,
-    required DateTime expiration,
+    final int? id,
+    required final int userId,
+    required final String verificationCode,
+    required final DateTime expiration,
   }) = _EmailResetImpl;
 
-  factory EmailReset.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory EmailReset.fromJson(final Map<String, dynamic> jsonSerialization) {
     return EmailReset(
       id: jsonSerialization['id'] as int?,
       userId: jsonSerialization['userId'] as int,
@@ -57,10 +57,10 @@ abstract class EmailReset implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   EmailReset copyWith({
-    int? id,
-    int? userId,
-    String? verificationCode,
-    DateTime? expiration,
+    final int? id,
+    final int? userId,
+    final String? verificationCode,
+    final DateTime? expiration,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -82,10 +82,10 @@ class _Undefined {}
 
 class _EmailResetImpl extends EmailReset {
   _EmailResetImpl({
-    int? id,
-    required int userId,
-    required String verificationCode,
-    required DateTime expiration,
+    final int? id,
+    required final int userId,
+    required final String verificationCode,
+    required final DateTime expiration,
   }) : super._(
          id: id,
          userId: userId,
@@ -98,10 +98,10 @@ class _EmailResetImpl extends EmailReset {
   @_i1.useResult
   @override
   EmailReset copyWith({
-    Object? id = _Undefined,
-    int? userId,
-    String? verificationCode,
-    DateTime? expiration,
+    final Object? id = _Undefined,
+    final int? userId,
+    final String? verificationCode,
+    final DateTime? expiration,
   }) {
     return EmailReset(
       id: id is int? ? id : this.id,

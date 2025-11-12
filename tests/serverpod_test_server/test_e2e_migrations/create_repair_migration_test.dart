@@ -6,7 +6,7 @@ import 'package:serverpod_test_server/test_util/test_service_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var serviceClient = Client(
+  final serviceClient = Client(
     serviceServerUrl,
     authenticationKeyManager: TestServiceKeyManager(
       '0',
@@ -23,7 +23,7 @@ void main() {
     });
 
     setUpAll(() async {
-      var firstMigrationProtocols = {
+      final firstMigrationProtocols = {
         'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -46,14 +46,14 @@ fields:
     test(
       'when creating repair migration then no migration is created.',
       () async {
-        var exitCode = await MigrationTestUtils.runCreateRepairMigration();
+        final exitCode = await MigrationTestUtils.runCreateRepairMigration();
         expect(
           exitCode,
           isNot(0),
           reason: 'Should fail to create repair migration.',
         );
 
-        var maybeRepairMigration =
+        final maybeRepairMigration =
             MigrationTestUtils.tryLoadRepairMigrationFile();
         expect(
           maybeRepairMigration,
@@ -66,7 +66,7 @@ fields:
     test(
       'when creating repair migration with --force then a migration is created.',
       () async {
-        var exitCode = await MigrationTestUtils.runCreateRepairMigration(
+        final exitCode = await MigrationTestUtils.runCreateRepairMigration(
           force: true,
         );
         expect(
@@ -75,7 +75,7 @@ fields:
           reason: 'Should create a repair migration.',
         );
 
-        var maybeRepairMigration =
+        final maybeRepairMigration =
             MigrationTestUtils.tryLoadRepairMigrationFile();
         expect(
           maybeRepairMigration,
@@ -95,7 +95,7 @@ fields:
     });
 
     setUpAll(() async {
-      var firstMigrationProtocols = {
+      final firstMigrationProtocols = {
         'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -104,7 +104,7 @@ fields:
 ''',
       };
 
-      var secondMigrationProtocols = {
+      final secondMigrationProtocols = {
         'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -129,12 +129,12 @@ fields:
     test(
       'when creating repair migration towards older migration then a migration is not created.',
       () async {
-        var migrationRegistry = MigrationTestUtils.loadMigrationRegistry();
-        var previousMigrationIndex = migrationRegistry.versions.length - 2;
-        var previousMigrationName =
+        final migrationRegistry = MigrationTestUtils.loadMigrationRegistry();
+        final previousMigrationIndex = migrationRegistry.versions.length - 2;
+        final previousMigrationName =
             migrationRegistry.versions[previousMigrationIndex];
 
-        var exitCode = await MigrationTestUtils.runCreateRepairMigration(
+        final exitCode = await MigrationTestUtils.runCreateRepairMigration(
           targetVersion: previousMigrationName,
         );
 
@@ -149,12 +149,12 @@ fields:
     test(
       'when creating repair migration towards older migration with --force then migration is created.',
       () async {
-        var migrationRegistry = MigrationTestUtils.loadMigrationRegistry();
-        var previousMigrationIndex = migrationRegistry.versions.length - 2;
-        var previousMigrationName =
+        final migrationRegistry = MigrationTestUtils.loadMigrationRegistry();
+        final previousMigrationIndex = migrationRegistry.versions.length - 2;
+        final previousMigrationName =
             migrationRegistry.versions[previousMigrationIndex];
 
-        var exitCode = await MigrationTestUtils.runCreateRepairMigration(
+        final exitCode = await MigrationTestUtils.runCreateRepairMigration(
           targetVersion: previousMigrationName,
           force: true,
         );
@@ -164,7 +164,7 @@ fields:
           reason: 'Should create a repair migration.',
         );
 
-        var maybeRepairMigration =
+        final maybeRepairMigration =
             MigrationTestUtils.tryLoadRepairMigrationFile();
         expect(
           maybeRepairMigration,
@@ -186,7 +186,7 @@ fields:
       });
 
       setUp(() async {
-        var firstMigrationProtocols = {
+        final firstMigrationProtocols = {
           'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -195,7 +195,7 @@ fields:
 ''',
         };
 
-        var secondMigrationProtocols = {
+        final secondMigrationProtocols = {
           'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -218,12 +218,12 @@ indexes:
       test(
         'when creating repair migration towards older migration then a migration is created.',
         () async {
-          var migrationRegistry = MigrationTestUtils.loadMigrationRegistry();
-          var previousMigrationIndex = migrationRegistry.versions.length - 2;
-          var previousMigrationName =
+          final migrationRegistry = MigrationTestUtils.loadMigrationRegistry();
+          final previousMigrationIndex = migrationRegistry.versions.length - 2;
+          final previousMigrationName =
               migrationRegistry.versions[previousMigrationIndex];
 
-          var exitCode = await MigrationTestUtils.runCreateRepairMigration(
+          final exitCode = await MigrationTestUtils.runCreateRepairMigration(
             targetVersion: previousMigrationName,
           );
           expect(
@@ -232,7 +232,7 @@ indexes:
             reason: 'Should create a repair migration.',
           );
 
-          var maybeRepairMigration =
+          final maybeRepairMigration =
               MigrationTestUtils.tryLoadRepairMigrationFile();
           expect(
             maybeRepairMigration,
@@ -255,7 +255,7 @@ indexes:
       });
 
       setUp(() async {
-        var firstMigrationProtocols = {
+        final firstMigrationProtocols = {
           'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -271,21 +271,21 @@ fields:
         );
 
         await serviceClient.insights.executeSql(
-          'DELETE FROM serverpod_migrations WHERE module=\'serverpod_test\';',
+          "DELETE FROM serverpod_migrations WHERE module='serverpod_test';",
         );
       });
 
       test(
         'when creating repair migration then a migration is created.',
         () async {
-          var exitCode = await MigrationTestUtils.runCreateRepairMigration();
+          final exitCode = await MigrationTestUtils.runCreateRepairMigration();
           expect(
             exitCode,
             0,
             reason: 'Should create a repair migration.',
           );
 
-          var maybeRepairMigration =
+          final maybeRepairMigration =
               MigrationTestUtils.tryLoadRepairMigrationFile();
           expect(
             maybeRepairMigration,
@@ -306,7 +306,7 @@ fields:
     });
 
     setUpAll(() async {
-      var firstMigrationProtocols = {
+      final firstMigrationProtocols = {
         'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -321,7 +321,7 @@ fields:
         ],
       );
 
-      var unappliedMigrationProtocols = {
+      final unappliedMigrationProtocols = {
         'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -345,14 +345,14 @@ fields:
     test(
       'when creating repair migration then repair migration is created.',
       () async {
-        var exitCode = await MigrationTestUtils.runCreateRepairMigration();
+        final exitCode = await MigrationTestUtils.runCreateRepairMigration();
         expect(
           exitCode,
           0,
           reason: 'Should create a repair migration.',
         );
 
-        var maybeRepairMigration =
+        final maybeRepairMigration =
             MigrationTestUtils.tryLoadRepairMigrationFile();
         expect(
           maybeRepairMigration,

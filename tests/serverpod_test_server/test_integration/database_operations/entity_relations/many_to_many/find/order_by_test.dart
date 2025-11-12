@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with many to many relation', () {
     tearDown(() async {
@@ -19,13 +19,13 @@ void main() async {
     test(
       'when fetching models ordered on count of many relation then result is as expected',
       () async {
-        var students = await Student.db.insert(session, [
+        final students = await Student.db.insert(session, [
           Student(name: 'Alex'),
           Student(name: 'Viktor'),
           Student(name: 'Isak'),
           Student(name: 'Lisa'),
         ]);
-        var courses = await Course.db.insert(session, [
+        final courses = await Course.db.insert(session, [
           Course(name: 'Math'),
           Course(name: 'English'),
           Course(name: 'History'),
@@ -42,14 +42,14 @@ void main() async {
           Enrollment(studentId: students[2].id!, courseId: courses[1].id!),
         ]);
 
-        var studentsFetched = await Student.db.find(
+        final studentsFetched = await Student.db.find(
           session,
           // Fetch all students ordered by number of courses they are enrolled to.
-          orderBy: (t) => t.enrollments.count(),
+          orderBy: (final t) => t.enrollments.count(),
           orderDescending: true,
         );
 
-        var studentNames = studentsFetched.map((e) => e.name);
+        final studentNames = studentsFetched.map((final e) => e.name);
         expect(studentNames, ['Viktor', 'Alex', 'Isak', 'Lisa']);
       },
     );
@@ -57,13 +57,13 @@ void main() async {
     test(
       'when fetching models ordered on filtered count of many relation then result is as expected',
       () async {
-        var students = await Student.db.insert(session, [
+        final students = await Student.db.insert(session, [
           Student(name: 'Alex'),
           Student(name: 'Viktor'),
           Student(name: 'Isak'),
           Student(name: 'Lisa'),
         ]);
-        var courses = await Course.db.insert(session, [
+        final courses = await Course.db.insert(session, [
           Course(name: 'Level 1: Math'),
           Course(name: 'Level 1: English'),
           Course(name: 'Level 1: History'),
@@ -87,15 +87,15 @@ void main() async {
           Enrollment(studentId: students[3].id!, courseId: courses[5].id!),
         ]);
 
-        var studentsFetched = await Student.db.find(
+        final studentsFetched = await Student.db.find(
           session,
           // Fetch all students ordered by the number of level 2 courses they are enrolled to.
-          orderBy: (t) =>
-              t.enrollments.count((e) => e.course.name.ilike('level 2:%')),
+          orderBy: (final t) =>
+              t.enrollments.count((final e) => e.course.name.ilike('level 2:%')),
           orderDescending: true,
         );
 
-        var studentNames = studentsFetched.map((e) => e.name);
+        final studentNames = studentsFetched.map((final e) => e.name);
         expect(studentNames, ['Lisa', 'Viktor', 'Alex', 'Isak']);
       },
     );

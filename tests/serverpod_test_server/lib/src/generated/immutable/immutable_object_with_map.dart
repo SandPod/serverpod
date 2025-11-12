@@ -18,15 +18,15 @@ abstract class ImmutableObjectWithMap
   const ImmutableObjectWithMap._({required this.mapVariable});
 
   const factory ImmutableObjectWithMap({
-    required Map<String, String> mapVariable,
+    required final Map<String, String> mapVariable,
   }) = _ImmutableObjectWithMapImpl;
 
   factory ImmutableObjectWithMap.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return ImmutableObjectWithMap(
       mapVariable: (jsonSerialization['mapVariable'] as Map).map(
-        (k, v) => MapEntry(
+        (final k, final v) => MapEntry(
           k as String,
           v as String,
         ),
@@ -39,9 +39,9 @@ abstract class ImmutableObjectWithMap
   /// Returns a shallow copy of this [ImmutableObjectWithMap]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  ImmutableObjectWithMap copyWith({Map<String, String>? mapVariable});
+  ImmutableObjectWithMap copyWith({final Map<String, String>? mapVariable});
   @override
-  bool operator ==(Object other) {
+  bool operator ==(final Object other) {
     return identical(
           other,
           this,
@@ -79,21 +79,21 @@ abstract class ImmutableObjectWithMap
 }
 
 class _ImmutableObjectWithMapImpl extends ImmutableObjectWithMap {
-  const _ImmutableObjectWithMapImpl({required Map<String, String> mapVariable})
+  const _ImmutableObjectWithMapImpl({required final Map<String, String> mapVariable})
     : super._(mapVariable: mapVariable);
 
   /// Returns a shallow copy of this [ImmutableObjectWithMap]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  ImmutableObjectWithMap copyWith({Map<String, String>? mapVariable}) {
+  ImmutableObjectWithMap copyWith({final Map<String, String>? mapVariable}) {
     return ImmutableObjectWithMap(
       mapVariable:
           mapVariable ??
           this.mapVariable.map(
             (
-              key0,
-              value0,
+              final key0,
+              final value0,
             ) => MapEntry(
               key0,
               value0,

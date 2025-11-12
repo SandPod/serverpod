@@ -153,7 +153,7 @@ void main() async {
         'then the write is not observable outside.',
         () async {
           try {
-            await session.db.transaction((transaction) async {
+            await session.db.transaction((final transaction) async {
               await DatabaseUtil.runInTransactionOrSavepoint(
                 session.db,
                 transaction,

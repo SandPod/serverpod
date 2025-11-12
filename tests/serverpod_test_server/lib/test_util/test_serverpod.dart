@@ -13,8 +13,8 @@ var _integrationTestFlags = ['-m', _integrationTestMode];
 
 class IntegrationTestServer extends TestServerpod {
   IntegrationTestServer({
-    ServerpodConfig? config,
-    RuntimeParametersListBuilder? runtimeParametersBuilder,
+    final ServerpodConfig? config,
+    final RuntimeParametersListBuilder? runtimeParametersBuilder,
   }) : super(
          _integrationTestFlags,
          Protocol(),
@@ -24,11 +24,11 @@ class IntegrationTestServer extends TestServerpod {
        );
 
   static Serverpod create({
-    ServerpodConfig? config,
-    AuthenticationHandler? authenticationHandler,
-    SecurityContextConfig? securityContextConfig,
-    ExperimentalFeatures? experimentalFeatures,
-    RuntimeParametersListBuilder? runtimeParametersBuilder,
+    final ServerpodConfig? config,
+    final AuthenticationHandler? authenticationHandler,
+    final SecurityContextConfig? securityContextConfig,
+    final ExperimentalFeatures? experimentalFeatures,
+    final RuntimeParametersListBuilder? runtimeParametersBuilder,
   }) {
     return Serverpod(
       _integrationTestFlags,
@@ -46,7 +46,7 @@ class IntegrationTestServer extends TestServerpod {
 
 class TestServerpod {
   static final Finalizer<Session> _sessionFinalizer = Finalizer(
-    (session) async => await session.close(),
+    (final session) async => await session.close(),
   );
 
   late final Serverpod _serverpod;
@@ -54,11 +54,11 @@ class TestServerpod {
   late final Session _session;
 
   TestServerpod(
-    List<String> args,
-    SerializationManagerServer serializationManager,
-    EndpointDispatch endpoints, {
-    ServerpodConfig? config,
-    RuntimeParametersListBuilder? runtimeParametersBuilder,
+    final List<String> args,
+    final SerializationManagerServer serializationManager,
+    final EndpointDispatch endpoints, {
+    final ServerpodConfig? config,
+    final RuntimeParametersListBuilder? runtimeParametersBuilder,
   }) {
     _serverpod = Serverpod(
       args,
@@ -70,7 +70,7 @@ class TestServerpod {
     );
   }
 
-  Future<void> updateRuntimeSettings(serverpod.RuntimeSettings settings) async {
+  Future<void> updateRuntimeSettings(final serverpod.RuntimeSettings settings) async {
     await _serverpod.updateRuntimeSettings(settings);
   }
 

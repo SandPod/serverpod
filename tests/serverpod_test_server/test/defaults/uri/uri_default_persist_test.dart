@@ -8,7 +8,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "uriDefaultPersist" field should be null',
         () {
-          var object = UriDefaultPersist();
+          final object = UriDefaultPersist();
           expect(object.uriDefaultPersist, isNull);
         },
       );
@@ -16,8 +16,8 @@ void main() async {
       test(
         'when an object of the class is created with a specific value for "uriDefaultPersist", then the field value should match the provided value',
         () {
-          var uri = Uri.parse('https://serverpod.dev/overrideValue');
-          var object = UriDefaultPersist(uriDefaultPersist: uri);
+          final uri = Uri.parse('https://serverpod.dev/overrideValue');
+          final object = UriDefaultPersist(uriDefaultPersist: uri);
           expect(object.uriDefaultPersist, equals(uri));
         },
       );

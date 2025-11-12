@@ -16,20 +16,20 @@ abstract class BigIntDefault
     implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   BigIntDefault._({
     this.id,
-    BigInt? bigintDefaultStr,
-    BigInt? bigintDefaultStrNull,
+    final BigInt? bigintDefaultStr,
+    final BigInt? bigintDefaultStrNull,
   }) : bigintDefaultStr =
            bigintDefaultStr ?? BigInt.parse('-1234567890123456789099999999'),
        bigintDefaultStrNull =
            bigintDefaultStrNull ?? BigInt.parse('1234567890123456789099999999');
 
   factory BigIntDefault({
-    int? id,
-    BigInt? bigintDefaultStr,
-    BigInt? bigintDefaultStrNull,
+    final int? id,
+    final BigInt? bigintDefaultStr,
+    final BigInt? bigintDefaultStrNull,
   }) = _BigIntDefaultImpl;
 
-  factory BigIntDefault.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory BigIntDefault.fromJson(final Map<String, dynamic> jsonSerialization) {
     return BigIntDefault(
       id: jsonSerialization['id'] as int?,
       bigintDefaultStr: _i1.BigIntJsonExtension.fromJson(
@@ -61,9 +61,9 @@ abstract class BigIntDefault
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   BigIntDefault copyWith({
-    int? id,
-    BigInt? bigintDefaultStr,
-    BigInt? bigintDefaultStrNull,
+    final int? id,
+    final BigInt? bigintDefaultStr,
+    final BigInt? bigintDefaultStrNull,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -90,13 +90,13 @@ abstract class BigIntDefault
   }
 
   static BigIntDefaultIncludeList includeList({
-    _i1.WhereExpressionBuilder<BigIntDefaultTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<BigIntDefaultTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<BigIntDefaultTable>? orderByList,
-    BigIntDefaultInclude? include,
+    final _i1.WhereExpressionBuilder<BigIntDefaultTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<BigIntDefaultTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<BigIntDefaultTable>? orderByList,
+    final BigIntDefaultInclude? include,
   }) {
     return BigIntDefaultIncludeList._(
       where: where,
@@ -119,9 +119,9 @@ class _Undefined {}
 
 class _BigIntDefaultImpl extends BigIntDefault {
   _BigIntDefaultImpl({
-    int? id,
-    BigInt? bigintDefaultStr,
-    BigInt? bigintDefaultStrNull,
+    final int? id,
+    final BigInt? bigintDefaultStr,
+    final BigInt? bigintDefaultStrNull,
   }) : super._(
          id: id,
          bigintDefaultStr: bigintDefaultStr,
@@ -133,9 +133,9 @@ class _BigIntDefaultImpl extends BigIntDefault {
   @_i1.useResult
   @override
   BigIntDefault copyWith({
-    Object? id = _Undefined,
-    BigInt? bigintDefaultStr,
-    Object? bigintDefaultStrNull = _Undefined,
+    final Object? id = _Undefined,
+    final BigInt? bigintDefaultStr,
+    final Object? bigintDefaultStrNull = _Undefined,
   }) {
     return BigIntDefault(
       id: id is int? ? id : this.id,
@@ -150,13 +150,13 @@ class _BigIntDefaultImpl extends BigIntDefault {
 class BigIntDefaultUpdateTable extends _i1.UpdateTable<BigIntDefaultTable> {
   BigIntDefaultUpdateTable(super.table);
 
-  _i1.ColumnValue<BigInt, BigInt> bigintDefaultStr(BigInt value) =>
+  _i1.ColumnValue<BigInt, BigInt> bigintDefaultStr(final BigInt value) =>
       _i1.ColumnValue(
         table.bigintDefaultStr,
         value,
       );
 
-  _i1.ColumnValue<BigInt, BigInt> bigintDefaultStrNull(BigInt? value) =>
+  _i1.ColumnValue<BigInt, BigInt> bigintDefaultStrNull(final BigInt? value) =>
       _i1.ColumnValue(
         table.bigintDefaultStrNull,
         value,
@@ -205,7 +205,7 @@ class BigIntDefaultInclude extends _i1.IncludeObject {
 
 class BigIntDefaultIncludeList extends _i1.IncludeList {
   BigIntDefaultIncludeList._({
-    _i1.WhereExpressionBuilder<BigIntDefaultTable>? where,
+    final _i1.WhereExpressionBuilder<BigIntDefaultTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -249,14 +249,14 @@ class BigIntDefaultRepository {
   /// );
   /// ```
   Future<List<BigIntDefault>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<BigIntDefaultTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<BigIntDefaultTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<BigIntDefaultTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<BigIntDefaultTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<BigIntDefaultTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<BigIntDefaultTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<BigIntDefault>(
       where: where?.call(BigIntDefault.t),
@@ -287,13 +287,13 @@ class BigIntDefaultRepository {
   /// );
   /// ```
   Future<BigIntDefault?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<BigIntDefaultTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<BigIntDefaultTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<BigIntDefaultTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<BigIntDefaultTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<BigIntDefaultTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<BigIntDefaultTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<BigIntDefault>(
       where: where?.call(BigIntDefault.t),
@@ -307,9 +307,9 @@ class BigIntDefaultRepository {
 
   /// Finds a single [BigIntDefault] by its [id] or null if no such row exists.
   Future<BigIntDefault?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<BigIntDefault>(
       id,
@@ -324,9 +324,9 @@ class BigIntDefaultRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<BigIntDefault>> insert(
-    _i1.Session session,
-    List<BigIntDefault> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<BigIntDefault> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<BigIntDefault>(
       rows,
@@ -338,9 +338,9 @@ class BigIntDefaultRepository {
   ///
   /// The returned [BigIntDefault] will have its `id` field set.
   Future<BigIntDefault> insertRow(
-    _i1.Session session,
-    BigIntDefault row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final BigIntDefault row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<BigIntDefault>(
       row,
@@ -354,10 +354,10 @@ class BigIntDefaultRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<BigIntDefault>> update(
-    _i1.Session session,
-    List<BigIntDefault> rows, {
-    _i1.ColumnSelections<BigIntDefaultTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<BigIntDefault> rows, {
+    final _i1.ColumnSelections<BigIntDefaultTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<BigIntDefault>(
       rows,
@@ -370,10 +370,10 @@ class BigIntDefaultRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<BigIntDefault> updateRow(
-    _i1.Session session,
-    BigIntDefault row, {
-    _i1.ColumnSelections<BigIntDefaultTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final BigIntDefault row, {
+    final _i1.ColumnSelections<BigIntDefaultTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<BigIntDefault>(
       row,
@@ -385,10 +385,10 @@ class BigIntDefaultRepository {
   /// Updates a single [BigIntDefault] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<BigIntDefault?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<BigIntDefaultUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<BigIntDefaultUpdateTable> columnValues,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<BigIntDefault>(
       id,
@@ -400,15 +400,15 @@ class BigIntDefaultRepository {
   /// Updates all [BigIntDefault]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<BigIntDefault>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<BigIntDefaultUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<BigIntDefaultTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<BigIntDefaultTable>? orderBy,
-    _i1.OrderByListBuilder<BigIntDefaultTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<BigIntDefaultUpdateTable> columnValues,
+    required final _i1.WhereExpressionBuilder<BigIntDefaultTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<BigIntDefaultTable>? orderBy,
+    final _i1.OrderByListBuilder<BigIntDefaultTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<BigIntDefault>(
       columnValues: columnValues(BigIntDefault.t.updateTable),
@@ -426,9 +426,9 @@ class BigIntDefaultRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<BigIntDefault>> delete(
-    _i1.Session session,
-    List<BigIntDefault> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<BigIntDefault> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<BigIntDefault>(
       rows,
@@ -438,9 +438,9 @@ class BigIntDefaultRepository {
 
   /// Deletes a single [BigIntDefault].
   Future<BigIntDefault> deleteRow(
-    _i1.Session session,
-    BigIntDefault row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final BigIntDefault row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<BigIntDefault>(
       row,
@@ -450,9 +450,9 @@ class BigIntDefaultRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<BigIntDefault>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<BigIntDefaultTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<BigIntDefaultTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<BigIntDefault>(
       where: where(BigIntDefault.t),
@@ -463,10 +463,10 @@ class BigIntDefaultRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<BigIntDefaultTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<BigIntDefaultTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<BigIntDefault>(
       where: where?.call(BigIntDefault.t),

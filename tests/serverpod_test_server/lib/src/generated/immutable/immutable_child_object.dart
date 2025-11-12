@@ -22,12 +22,12 @@ abstract class ImmutableChildObject extends _i2.ImmutableObject
   });
 
   const factory ImmutableChildObject({
-    required String variable,
-    required String childVariable,
+    required final String variable,
+    required final String childVariable,
   }) = _ImmutableChildObjectImpl;
 
   factory ImmutableChildObject.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return ImmutableChildObject(
       variable: jsonSerialization['variable'] as String,
@@ -42,11 +42,11 @@ abstract class ImmutableChildObject extends _i2.ImmutableObject
   @override
   @_i1.useResult
   ImmutableChildObject copyWith({
-    String? variable,
-    String? childVariable,
+    final String? variable,
+    final String? childVariable,
   });
   @override
-  bool operator ==(Object other) {
+  bool operator ==(final Object other) {
     return identical(
           other,
           this,
@@ -98,8 +98,8 @@ abstract class ImmutableChildObject extends _i2.ImmutableObject
 
 class _ImmutableChildObjectImpl extends ImmutableChildObject {
   const _ImmutableChildObjectImpl({
-    required String variable,
-    required String childVariable,
+    required final String variable,
+    required final String childVariable,
   }) : super._(
          variable: variable,
          childVariable: childVariable,
@@ -110,8 +110,8 @@ class _ImmutableChildObjectImpl extends ImmutableChildObject {
   @_i1.useResult
   @override
   ImmutableChildObject copyWith({
-    String? variable,
-    String? childVariable,
+    final String? variable,
+    final String? childVariable,
   }) {
     return ImmutableChildObject(
       variable: variable ?? this.variable,

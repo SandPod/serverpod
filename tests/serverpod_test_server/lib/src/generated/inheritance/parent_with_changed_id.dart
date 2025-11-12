@@ -14,9 +14,9 @@ import 'package:serverpod/serverpod.dart' as _i1;
 
 class ParentWithChangedId
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
-  ParentWithChangedId({_i1.UuidValue? id}) : id = id ?? _i1.Uuid().v7obj();
+  ParentWithChangedId({final _i1.UuidValue? id}) : id = id ?? const _i1.Uuid().v7obj();
 
-  factory ParentWithChangedId.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory ParentWithChangedId.fromJson(final Map<String, dynamic> jsonSerialization) {
     return ParentWithChangedId(
       id: _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
     );
@@ -27,7 +27,7 @@ class ParentWithChangedId
   /// Returns a shallow copy of this [ParentWithChangedId]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  ParentWithChangedId copyWith({_i1.UuidValue? id}) {
+  ParentWithChangedId copyWith({final _i1.UuidValue? id}) {
     return ParentWithChangedId(id: id ?? this.id);
   }
 

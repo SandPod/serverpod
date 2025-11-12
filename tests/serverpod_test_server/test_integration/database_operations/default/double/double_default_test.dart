@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with "default" fields,', () {
     tearDownAll(
@@ -17,8 +17,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "default=10.5" field value should be 10.5',
       () async {
-        var object = DoubleDefault();
-        var databaseObject = await DoubleDefault.db.insertRow(
+        final object = DoubleDefault();
+        final databaseObject = await DoubleDefault.db.insertRow(
           session,
           object,
         );
@@ -32,8 +32,8 @@ void main() async {
     test(
       'when creating a record in the database, then the nullable "default=20.5" field value should be 20.5',
       () async {
-        var object = DoubleDefault();
-        var databaseObject = await DoubleDefault.db.insertRow(
+        final object = DoubleDefault();
+        final databaseObject = await DoubleDefault.db.insertRow(
           session,
           object,
         );
@@ -47,10 +47,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "doubleDefault" field value should match the provided value',
       () async {
-        var specificObject = DoubleDefault(
+        final specificObject = DoubleDefault(
           doubleDefault: 30.5,
         );
-        var specificDatabaseObject = await DoubleDefault.db.insertRow(
+        final specificDatabaseObject = await DoubleDefault.db.insertRow(
           session,
           specificObject,
         );
@@ -64,10 +64,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "doubleDefaultNull" field value should match the provided value',
       () async {
-        var specificObject = DoubleDefault(
+        final specificObject = DoubleDefault(
           doubleDefaultNull: 40.5,
         );
-        var specificDatabaseObject = await DoubleDefault.db.insertRow(
+        final specificDatabaseObject = await DoubleDefault.db.insertRow(
           session,
           specificObject,
         );

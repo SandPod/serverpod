@@ -1,19 +1,20 @@
 import 'dart:async';
 
+import 'package:serverpod/serverpod.dart';
 import 'package:serverpod_test_server/test_util/config.dart';
 import 'package:serverpod_test_server/test_util/test_completer_timeout.dart';
 import 'package:serverpod_test_server/test_util/test_serverpod.dart';
-import 'package:serverpod/serverpod.dart';
 import 'package:test/test.dart';
 import 'package:web_socket/web_socket.dart';
+
 import '../websocket_extensions.dart';
 
 void main() {
   group('Given multiple method stream connections when one returns', () {
-    var endpoint = 'methodStreaming';
-    var keepAliveMethod = 'intEchoStream';
-    var closeMethod = 'intStreamFromValue';
-    var keepAliveConnectionId = const Uuid().v4obj();
+    const endpoint = 'methodStreaming';
+    const keepAliveMethod = 'intEchoStream';
+    const closeMethod = 'intStreamFromValue';
+    final keepAliveConnectionId = const Uuid().v4obj();
 
     late Serverpod server;
     late WebSocket webSocket;
@@ -21,7 +22,7 @@ void main() {
     late Completer<CloseMethodStreamCommand> closeMethodStreamCommand;
     late Completer<void> webSocketCompleter;
     late Completer<void> keepAliveMessageReceived;
-    TestCompleterTimeout testCompleterTimeout = TestCompleterTimeout();
+    final TestCompleterTimeout testCompleterTimeout = TestCompleterTimeout();
 
     late bool testInProgress;
 
@@ -36,7 +37,7 @@ void main() {
       closeMethodStreamCommand = Completer<CloseMethodStreamCommand>();
       webSocketCompleter = Completer<void>();
       keepAliveMessageReceived = Completer<void>();
-      var streamOpened = Completer<void>();
+      final streamOpened = Completer<void>();
 
       testCompleterTimeout.start({
         'closeMethodStreamCommand': closeMethodStreamCommand,
@@ -45,12 +46,11 @@ void main() {
       });
 
       webSocket.textEvents.listen(
-        (event) {
-          var message = WebSocketMessage.fromJsonString(
+        (final event) {
+          final message = WebSocketMessage.fromJsonString(
             event,
             server.serializationManager,
           );
-          ;
           if (message is OpenMethodStreamResponse &&
               message.connectionId == keepAliveConnectionId) {
             streamOpened.complete();
@@ -120,7 +120,7 @@ void main() {
         ),
       );
 
-      keepAliveMessageReceived.future.catchError((error) {
+      keepAliveMessageReceived.future.catchError((final error) {
         fail('Failed to receive keep alive message.');
       });
       await expectLater(keepAliveMessageReceived.future, completes);
@@ -130,10 +130,10 @@ void main() {
   group(
     'Given multiple method stream connections when one throws then webSocket connection is not closed.',
     () {
-      var endpoint = 'methodStreaming';
-      var keepAliveMethod = 'intEchoStream';
-      var throwMethod = 'outStreamThrowsException';
-      var keepAliveConnectionId = const Uuid().v4obj();
+      const endpoint = 'methodStreaming';
+      const keepAliveMethod = 'intEchoStream';
+      const throwMethod = 'outStreamThrowsException';
+      final keepAliveConnectionId = const Uuid().v4obj();
 
       late Serverpod server;
       late WebSocket webSocket;
@@ -141,7 +141,7 @@ void main() {
       late Completer<CloseMethodStreamCommand> closeMethodStreamCommand;
       late Completer<void> webSocketCompleter;
       late Completer<void> keepAliveMessageReceived;
-      TestCompleterTimeout testCompleterTimeout = TestCompleterTimeout();
+      final TestCompleterTimeout testCompleterTimeout = TestCompleterTimeout();
 
       late bool testInProgress;
 
@@ -156,7 +156,7 @@ void main() {
         closeMethodStreamCommand = Completer<CloseMethodStreamCommand>();
         webSocketCompleter = Completer<void>();
         keepAliveMessageReceived = Completer<void>();
-        var streamOpened = Completer<void>();
+        final streamOpened = Completer<void>();
 
         testCompleterTimeout.start({
           'closeMethodStreamCommand': closeMethodStreamCommand,
@@ -165,12 +165,11 @@ void main() {
         });
 
         webSocket.textEvents.listen(
-          (event) {
-            var message = WebSocketMessage.fromJsonString(
+          (final event) {
+            final message = WebSocketMessage.fromJsonString(
               event,
               server.serializationManager,
             );
-            ;
             if (message is OpenMethodStreamResponse &&
                 message.connectionId == keepAliveConnectionId) {
               streamOpened.complete();
@@ -240,7 +239,7 @@ void main() {
           ),
         );
 
-        keepAliveMessageReceived.future.catchError((error) {
+        keepAliveMessageReceived.future.catchError((final error) {
           fail('Failed to receive keep alive message.');
         });
         await expectLater(keepAliveMessageReceived.future, completes);
@@ -251,10 +250,10 @@ void main() {
   group(
     'Given multiple method stream connections when one throws serializable exception then webSocket connection is not closed.',
     () {
-      var endpoint = 'methodStreaming';
-      var keepAliveMethod = 'intEchoStream';
-      var throwMethod = 'outStreamThrowsSerializableException';
-      var keepAliveConnectionId = const Uuid().v4obj();
+      const endpoint = 'methodStreaming';
+      const keepAliveMethod = 'intEchoStream';
+      const throwMethod = 'outStreamThrowsSerializableException';
+      final keepAliveConnectionId = const Uuid().v4obj();
 
       late Serverpod server;
       late WebSocket webSocket;
@@ -262,7 +261,7 @@ void main() {
       late Completer<CloseMethodStreamCommand> closeMethodStreamCommand;
       late Completer<void> webSocketCompleter;
       late Completer<void> keepAliveMessageReceived;
-      TestCompleterTimeout testCompleterTimeout = TestCompleterTimeout();
+      final TestCompleterTimeout testCompleterTimeout = TestCompleterTimeout();
 
       late bool testInProgress;
 
@@ -277,7 +276,7 @@ void main() {
         closeMethodStreamCommand = Completer<CloseMethodStreamCommand>();
         webSocketCompleter = Completer<void>();
         keepAliveMessageReceived = Completer<void>();
-        var streamOpened = Completer<void>();
+        final streamOpened = Completer<void>();
 
         testCompleterTimeout.start({
           'closeMethodStreamCommand': closeMethodStreamCommand,
@@ -286,12 +285,11 @@ void main() {
         });
 
         webSocket.textEvents.listen(
-          (event) {
-            var message = WebSocketMessage.fromJsonString(
+          (final event) {
+            final message = WebSocketMessage.fromJsonString(
               event,
               server.serializationManager,
             );
-            ;
             if (message is OpenMethodStreamResponse &&
                 message.connectionId == keepAliveConnectionId) {
               streamOpened.complete();
@@ -361,7 +359,7 @@ void main() {
           ),
         );
 
-        keepAliveMessageReceived.future.catchError((error) {
+        keepAliveMessageReceived.future.catchError((final error) {
           fail('Failed to receive keep alive message.');
         });
         await expectLater(keepAliveMessageReceived.future, completes);

@@ -21,32 +21,32 @@ class RedisConfigBuilder {
     );
   }
 
-  RedisConfigBuilder withEnabled(bool enabled) {
+  RedisConfigBuilder withEnabled(final bool enabled) {
     _enabled = enabled;
     return this;
   }
 
-  RedisConfigBuilder withHost(String host) {
+  RedisConfigBuilder withHost(final String host) {
     _host = host;
     return this;
   }
 
-  RedisConfigBuilder withPort(int port) {
+  RedisConfigBuilder withPort(final int port) {
     _port = port;
     return this;
   }
 
-  RedisConfigBuilder withUser(String? user) {
+  RedisConfigBuilder withUser(final String? user) {
     _user = user;
     return this;
   }
 
-  RedisConfigBuilder withPassword(String? password) {
+  RedisConfigBuilder withPassword(final String? password) {
     _password = password;
     return this;
   }
 
-  RedisConfigBuilder withRequireSsl(bool requireSsl) {
+  RedisConfigBuilder withRequireSsl(final bool requireSsl) {
     _requireSsl = requireSsl;
     return this;
   }

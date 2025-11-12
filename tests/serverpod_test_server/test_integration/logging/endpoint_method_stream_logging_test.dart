@@ -8,16 +8,16 @@ import 'package:serverpod_test_server/test_util/logging_utils.dart';
 import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
-Future<T> awaitFirstWithoutClosingStream<T>(Stream<T> stream) async {
-  var completer = Completer<T>();
-  stream.listen((event) {
+Future<T> awaitFirstWithoutClosingStream<T>(final Stream<T> stream) async {
+  final completer = Completer<T>();
+  stream.listen((final event) {
     completer.complete(event);
   });
   return completer.future;
 }
 
 void main() async {
-  var client = Client('http://localhost:8080/');
+  final client = Client('http://localhost:8080/');
   late Serverpod server;
   late Session session;
 
@@ -38,7 +38,7 @@ void main() async {
 
   group('Given that continuous logging is turned on', () {
     setUp(() async {
-      var settings = RuntimeSettingsBuilder()
+      final settings = RuntimeSettingsBuilder()
           .withLogSettings(
             LogSettingsBuilder()
                 .withLogStreamingSessionsContinuously(true)
@@ -51,16 +51,16 @@ void main() async {
     test(
       'when sending a stream message without closing the connection then the log is created.',
       () async {
-        var controller = StreamController<int>();
-        var outputStream = client.logging.streamEmpty(controller.stream);
+        final controller = StreamController<int>();
+        final outputStream = client.logging.streamEmpty(controller.stream);
 
         controller.add(1);
         await awaitFirstWithoutClosingStream(outputStream);
 
         // Wait for the log to be written
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
         expect(logs.first.sessionLogEntry.isOpen, isTrue);
@@ -70,16 +70,16 @@ void main() async {
     test(
       'when sending a stream message and closing the connection then the log is created.',
       () async {
-        var controller = StreamController<int>();
-        var outputStream = client.logging.streamEmpty(controller.stream);
+        final controller = StreamController<int>();
+        final outputStream = client.logging.streamEmpty(controller.stream);
 
         controller.add(1);
         await outputStream.first;
 
         // Wait for the log to be written
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
         expect(logs.first.sessionLogEntry.isOpen, isFalse);
@@ -89,8 +89,8 @@ void main() async {
     test(
       'when sending a stream message and writing a log without closing then the log is attached to the log session.',
       () async {
-        var controller = StreamController<int>();
-        var outputStream = await client.logging.streamLogging(
+        final controller = StreamController<int>();
+        final outputStream = client.logging.streamLogging(
           controller.stream,
         );
 
@@ -98,9 +98,9 @@ void main() async {
         await awaitFirstWithoutClosingStream(outputStream);
 
         // Wait for the log to be written
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
         expect(logs.first.logs, hasLength(1));
@@ -110,16 +110,16 @@ void main() async {
     test(
       'when sending a stream message triggering a query without closing the stream then a query log is written.',
       () async {
-        var controller = StreamController<int>();
-        var outputStream = client.logging.streamQueryLogging(controller.stream);
+        final controller = StreamController<int>();
+        final outputStream = client.logging.streamQueryLogging(controller.stream);
 
         controller.add(1);
         await awaitFirstWithoutClosingStream(outputStream);
 
         // Wait for the log to be written
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
         expect(logs.first.queries, hasLength(1));
@@ -129,7 +129,7 @@ void main() async {
     test(
       'but logging all sessions is turned off when sending a stream message without closing the connection no log entries are created.',
       () async {
-        var settings = RuntimeSettingsBuilder()
+        final settings = RuntimeSettingsBuilder()
             .withLogSettings(
               LogSettingsBuilder()
                   .withLogAllSessions(false)
@@ -139,16 +139,16 @@ void main() async {
             .build();
         await server.updateRuntimeSettings(settings);
 
-        var controller = StreamController<int>();
-        var outputStream = client.logging.streamEmpty(controller.stream);
+        final controller = StreamController<int>();
+        final outputStream = client.logging.streamEmpty(controller.stream);
 
         controller.add(1);
         await awaitFirstWithoutClosingStream(outputStream);
 
         // Wait for the log to be written
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, isEmpty);
       },
@@ -157,7 +157,7 @@ void main() async {
     test(
       'when connecting to a stream method that throws an exception then session logs error.',
       () async {
-        var stream = client.logging.streamException();
+        final stream = client.logging.streamException();
 
         await expectLater(
           stream,
@@ -165,11 +165,11 @@ void main() async {
         );
 
         // Wait for the log to be written
-        await Future.delayed(Duration(milliseconds: 100));
-        var logs = await LoggingUtil.findAllLogs(session);
+        await Future.delayed(const Duration(milliseconds: 100));
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
-        var log = logs.firstOrNull;
+        final log = logs.firstOrNull;
         expect(log?.sessionLogEntry.error, isNotNull);
       },
     );
@@ -177,7 +177,7 @@ void main() async {
 
   group('Given that continuous logging is turned off', () {
     setUp(() async {
-      var settings = RuntimeSettingsBuilder()
+      final settings = RuntimeSettingsBuilder()
           .withLogSettings(
             LogSettingsBuilder()
                 .withLogStreamingSessionsContinuously(false)
@@ -190,16 +190,16 @@ void main() async {
     test(
       'when sending a stream message without closing the connection no log entries are created.',
       () async {
-        var controller = StreamController<int>();
-        var outputStream = client.logging.streamEmpty(controller.stream);
+        final controller = StreamController<int>();
+        final outputStream = client.logging.streamEmpty(controller.stream);
 
         controller.add(1);
         await awaitFirstWithoutClosingStream(outputStream);
 
         // Wait for the log to be written
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, isEmpty);
       },
@@ -208,7 +208,7 @@ void main() async {
     test(
       'when sending a stream message and then closing the connection a log entry is created.',
       () async {
-        var settings = RuntimeSettingsBuilder()
+        final settings = RuntimeSettingsBuilder()
             .withLogSettings(
               LogSettingsBuilder()
                   .withLogStreamingSessionsContinuously(false)
@@ -218,16 +218,16 @@ void main() async {
 
         await server.updateRuntimeSettings(settings);
 
-        var controller = StreamController<int>();
-        var outputStream = client.logging.streamEmpty(controller.stream);
+        final controller = StreamController<int>();
+        final outputStream = client.logging.streamEmpty(controller.stream);
 
         controller.add(1);
         await outputStream.first;
 
         // Wait for the log to be written
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
         expect(logs.first.sessionLogEntry.isOpen, isFalse);
@@ -237,7 +237,7 @@ void main() async {
     test(
       'and logging all sessions is turned off when sending a stream message and closing the connection no log entries are created.',
       () async {
-        var settings = RuntimeSettingsBuilder()
+        final settings = RuntimeSettingsBuilder()
             .withLogSettings(
               LogSettingsBuilder()
                   .withLogAllSessions(false)
@@ -247,16 +247,16 @@ void main() async {
             .build();
         await server.updateRuntimeSettings(settings);
 
-        var controller = StreamController<int>();
-        var outputStream = client.logging.streamEmpty(controller.stream);
+        final controller = StreamController<int>();
+        final outputStream = client.logging.streamEmpty(controller.stream);
 
         controller.add(1);
         await outputStream.first;
 
         // Wait for the log to be written
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, isEmpty);
       },
@@ -266,22 +266,22 @@ void main() async {
   test(
     'Given that all logging is turned down when sending a stream message and then closing the connection no logs are written.',
     () async {
-      var settings = RuntimeSettingsBuilder()
+      final settings = RuntimeSettingsBuilder()
           .withLogSettings(LogSettingsBuilder().withLoggingTurnedDown().build())
           .build();
 
       await server.updateRuntimeSettings(settings);
 
-      var controller = StreamController<int>();
-      var outputStream = client.logging.streamEmpty(controller.stream);
+      final controller = StreamController<int>();
+      final outputStream = client.logging.streamEmpty(controller.stream);
 
       controller.add(1);
       await outputStream.first;
 
       // Wait for the log to potentially be written
-      await Future.delayed(Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 100));
 
-      var logs = await LoggingUtil.findAllLogs(session);
+      final logs = await LoggingUtil.findAllLogs(session);
 
       expect(logs, isEmpty);
     },
@@ -290,7 +290,7 @@ void main() async {
   test(
     'Given that all logging is turned down but an override for the endpoint when sending a stream message to that endpoint and then closing the connection the logs are written.',
     () async {
-      var settings = RuntimeSettingsBuilder()
+      final settings = RuntimeSettingsBuilder()
           .withLogSettings(LogSettingsBuilder().withLoggingTurnedDown().build())
           .withLogSettingsOverride(
             endpoint: 'logging',
@@ -300,16 +300,16 @@ void main() async {
 
       await server.updateRuntimeSettings(settings);
 
-      var controller = StreamController<int>();
-      var outputStream = client.logging.streamEmpty(controller.stream);
+      final controller = StreamController<int>();
+      final outputStream = client.logging.streamEmpty(controller.stream);
 
       controller.add(1);
       await outputStream.first;
 
       // Wait for the log to be written
-      await Future.delayed(Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 100));
 
-      var logs = await LoggingUtil.findAllLogs(session);
+      final logs = await LoggingUtil.findAllLogs(session);
 
       expect(logs, hasLength(1));
       expect(logs.first.sessionLogEntry.isOpen, isFalse);
@@ -319,7 +319,7 @@ void main() async {
   test(
     'Given that all logging is turned down but an override for the endpoint when sending a stream message to another endpoint and then closing the connection no logs are written.',
     () async {
-      var settings = RuntimeSettingsBuilder()
+      final settings = RuntimeSettingsBuilder()
           .withLogSettings(LogSettingsBuilder().withLoggingTurnedDown().build())
           .withLogSettingsOverride(
             endpoint: 'authentication',
@@ -329,16 +329,16 @@ void main() async {
 
       await server.updateRuntimeSettings(settings);
 
-      var controller = StreamController<int>();
-      var outputStream = client.logging.streamEmpty(controller.stream);
+      final controller = StreamController<int>();
+      final outputStream = client.logging.streamEmpty(controller.stream);
 
       controller.add(1);
       await outputStream.first;
 
       // Wait for the log to be written
-      await Future.delayed(Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 100));
 
-      var logs = await LoggingUtil.findAllLogs(session);
+      final logs = await LoggingUtil.findAllLogs(session);
 
       expect(logs, isEmpty);
     },
@@ -347,7 +347,7 @@ void main() async {
   test(
     'Given that all logging is turned down but an override for the endpoint and method is present when sending a stream message to that endpoint and method and then closing the connection the logs are written.',
     () async {
-      var settings = RuntimeSettingsBuilder()
+      final settings = RuntimeSettingsBuilder()
           .withLogSettings(LogSettingsBuilder().withLoggingTurnedDown().build())
           .withLogSettingsOverride(
             endpoint: 'logging',
@@ -358,16 +358,16 @@ void main() async {
 
       await server.updateRuntimeSettings(settings);
 
-      var controller = StreamController<int>();
-      var outputStream = client.logging.streamEmpty(controller.stream);
+      final controller = StreamController<int>();
+      final outputStream = client.logging.streamEmpty(controller.stream);
 
       controller.add(1);
       await outputStream.first;
 
       // Wait for the log to be written
-      await Future.delayed(Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 100));
 
-      var logs = await LoggingUtil.findAllLogs(session);
+      final logs = await LoggingUtil.findAllLogs(session);
 
       expect(logs, hasLength(1));
       expect(logs.first.sessionLogEntry.isOpen, isFalse);
@@ -377,7 +377,7 @@ void main() async {
   test(
     'Given that all logging is turned down but an override for another method is present when sending a stream message and then closing the connection no logs are written.',
     () async {
-      var settings = RuntimeSettingsBuilder()
+      final settings = RuntimeSettingsBuilder()
           .withLogSettings(LogSettingsBuilder().withLoggingTurnedDown().build())
           .withLogSettingsOverride(
             endpoint: 'logging',
@@ -388,16 +388,16 @@ void main() async {
 
       await server.updateRuntimeSettings(settings);
 
-      var controller = StreamController<int>();
-      var outputStream = client.logging.streamEmpty(controller.stream);
+      final controller = StreamController<int>();
+      final outputStream = client.logging.streamEmpty(controller.stream);
 
       controller.add(1);
       await outputStream.first;
 
       // Wait for the log to be written
-      await Future.delayed(Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 100));
 
-      var logs = await LoggingUtil.findAllLogs(session);
+      final logs = await LoggingUtil.findAllLogs(session);
 
       expect(logs, isEmpty);
     },

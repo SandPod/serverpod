@@ -17,13 +17,13 @@ abstract class SimpleDataList
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
   SimpleDataList._({required this.rows});
 
-  factory SimpleDataList({required List<_i2.SimpleData> rows}) =
+  factory SimpleDataList({required final List<_i2.SimpleData> rows}) =
       _SimpleDataListImpl;
 
-  factory SimpleDataList.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory SimpleDataList.fromJson(final Map<String, dynamic> jsonSerialization) {
     return SimpleDataList(
       rows: (jsonSerialization['rows'] as List)
-          .map((e) => _i2.SimpleData.fromJson((e as Map<String, dynamic>)))
+          .map((final e) => _i2.SimpleData.fromJson((e as Map<String, dynamic>)))
           .toList(),
     );
   }
@@ -33,15 +33,15 @@ abstract class SimpleDataList
   /// Returns a shallow copy of this [SimpleDataList]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  SimpleDataList copyWith({List<_i2.SimpleData>? rows});
+  SimpleDataList copyWith({final List<_i2.SimpleData>? rows});
   @override
   Map<String, dynamic> toJson() {
-    return {'rows': rows.toJson(valueToJson: (v) => v.toJson())};
+    return {'rows': rows.toJson(valueToJson: (final v) => v.toJson())};
   }
 
   @override
   Map<String, dynamic> toJsonForProtocol() {
-    return {'rows': rows.toJson(valueToJson: (v) => v.toJsonForProtocol())};
+    return {'rows': rows.toJson(valueToJson: (final v) => v.toJsonForProtocol())};
   }
 
   @override
@@ -51,16 +51,16 @@ abstract class SimpleDataList
 }
 
 class _SimpleDataListImpl extends SimpleDataList {
-  _SimpleDataListImpl({required List<_i2.SimpleData> rows})
+  _SimpleDataListImpl({required final List<_i2.SimpleData> rows})
     : super._(rows: rows);
 
   /// Returns a shallow copy of this [SimpleDataList]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  SimpleDataList copyWith({List<_i2.SimpleData>? rows}) {
+  SimpleDataList copyWith({final List<_i2.SimpleData>? rows}) {
     return SimpleDataList(
-      rows: rows ?? this.rows.map((e0) => e0.copyWith()).toList(),
+      rows: rows ?? this.rows.map((final e0) => e0.copyWith()).toList(),
     );
   }
 }

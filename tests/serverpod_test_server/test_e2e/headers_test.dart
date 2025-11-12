@@ -7,10 +7,10 @@ import 'package:test/test.dart';
 
 void main() {
   group('Calling the endpoint should return the expected default headers', () {
-    var uri = Uri.parse('${serverUrl}simple/hello');
+    final uri = Uri.parse('${serverUrl}simple/hello');
 
     test('When http method is POST', () async {
-      var result = await http.post(
+      final result = await http.post(
         uri,
         headers: {
           'content-type': 'application/json',
@@ -34,7 +34,7 @@ void main() {
 
     test('When http method is OPTIONS', () async {
       final client = http.Client();
-      final method = 'OPTIONS';
+      const method = 'OPTIONS';
 
       final request = http.Request(method, uri);
       request.headers.addAll({

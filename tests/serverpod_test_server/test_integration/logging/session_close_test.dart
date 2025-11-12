@@ -18,7 +18,7 @@ void main() {
     'Given an existing session with session logging disabled',
     enableSessionLogging: false,
     serverpodLoggingMode: ServerpodLoggingMode.verbose,
-    (sessionBuilder, endpoints) {
+    (final sessionBuilder, final endpoints) {
       late MockStdout record;
 
       setUp(() async {

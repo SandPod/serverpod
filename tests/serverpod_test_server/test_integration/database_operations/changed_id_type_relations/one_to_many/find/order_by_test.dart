@@ -1,10 +1,10 @@
+import 'package:serverpod/database.dart' as db;
 import 'package:serverpod_test_server/src/generated/protocol.dart';
 import 'package:serverpod_test_server/test_util/test_serverpod.dart';
-import 'package:serverpod/database.dart' as db;
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with one to many relation', () {
     tearDown(() async {
@@ -21,7 +21,7 @@ void main() async {
     test(
       'when fetching models ordered on count of many relation then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -37,14 +37,14 @@ void main() async {
           OrderUuid(description: 'OrderUuid 5', customerId: customers[2].id!),
         ]);
 
-        var fetchedCustomers = await CustomerInt.db.find(
+        final fetchedCustomers = await CustomerInt.db.find(
           session,
           // OrderUuid by number of orders in descending order
-          orderBy: (t) => t.orders.count(),
+          orderBy: (final t) => t.orders.count(),
           orderDescending: true,
         );
 
-        var customerNames = fetchedCustomers.map((e) => e.name);
+        final customerNames = fetchedCustomers.map((final e) => e.name);
         expect(customerNames, ['Alex', 'Viktor', 'Isak']);
       },
     );
@@ -52,7 +52,7 @@ void main() async {
     test(
       'when fetching models ordered on count of filtered many relation then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -77,14 +77,14 @@ void main() async {
           ),
         ]);
 
-        var fetchedCustomers = await CustomerInt.db.find(
+        final fetchedCustomers = await CustomerInt.db.find(
           session,
           // OrderUuid by number of Prem orders in descending order
-          orderBy: (t) => t.orders.count((o) => o.description.ilike('prem%')),
+          orderBy: (final t) => t.orders.count((final o) => o.description.ilike('prem%')),
           orderDescending: true,
         );
 
-        var customerNames = fetchedCustomers.map((e) => e.name);
+        final customerNames = fetchedCustomers.map((final e) => e.name);
         expect(customerNames, ['Viktor', 'Alex', 'Isak']);
       },
     );
@@ -105,13 +105,13 @@ void main() async {
     test(
       'when fetching models ordered on multiple separate one to many relations then result order is as expected.',
       () async {
-        var cities = await City.db.insert(session, [
+        final cities = await City.db.insert(session, [
           City(name: 'Stockholm'),
           City(name: 'San Francisco'),
           City(name: 'London'),
         ]);
 
-        var people = await Person.db.insert(session, [
+        final people = await Person.db.insert(session, [
           Person(name: 'Tom'),
           Person(name: 'John'),
           Person(name: 'Jane'),
@@ -124,7 +124,7 @@ void main() async {
         // Attach Viktor, Isak and Alex to Stockholm
         await City.db.attach.citizens(session, cities[0], people.sublist(3, 6));
 
-        var organizations = await Organization.db.insert(session, [
+        final organizations = await Organization.db.insert(session, [
           Organization(name: 'Apple'),
           Organization(name: 'Google'),
           Organization(name: 'Serverpod'),
@@ -151,10 +151,10 @@ void main() async {
           organizations.sublist(3, 5),
         );
 
-        var citiesFetched = await City.db.find(
+        final citiesFetched = await City.db.find(
           session,
           // OrderUuid cities by number of citizens and then the number of organizations
-          orderByList: (t) => [
+          orderByList: (final t) => [
             db.Order(
               column: t.citizens.count(),
               orderDescending: true,
@@ -166,7 +166,7 @@ void main() async {
           ],
         );
 
-        var cityNames = citiesFetched.map((e) => e.name);
+        final cityNames = citiesFetched.map((final e) => e.name);
         expect(cityNames, ['San Francisco', 'Stockholm', 'London']);
       },
     );

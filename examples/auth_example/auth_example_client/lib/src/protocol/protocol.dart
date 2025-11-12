@@ -9,12 +9,14 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i3;
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
+
 import 'example.dart' as _i2;
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i3;
-export 'example.dart';
+
 export 'client.dart';
+export 'example.dart';
 
 class Protocol extends _i1.SerializationManager {
   Protocol._();
@@ -25,7 +27,7 @@ class Protocol extends _i1.SerializationManager {
 
   @override
   T deserialize<T>(
-    dynamic data, [
+    final dynamic data, [
     Type? t,
   ]) {
     t ??= T;
@@ -42,7 +44,7 @@ class Protocol extends _i1.SerializationManager {
   }
 
   @override
-  String? getClassNameForObject(Object? data) {
+  String? getClassNameForObject(final Object? data) {
     String? className = super.getClassNameForObject(data);
     if (className != null) return className;
     switch (data) {
@@ -57,8 +59,8 @@ class Protocol extends _i1.SerializationManager {
   }
 
   @override
-  dynamic deserializeByClassName(Map<String, dynamic> data) {
-    var dataClassName = data['className'];
+  dynamic deserializeByClassName(final Map<String, dynamic> data) {
+    final dataClassName = data['className'];
     if (dataClassName is! String) {
       return super.deserializeByClassName(data);
     }

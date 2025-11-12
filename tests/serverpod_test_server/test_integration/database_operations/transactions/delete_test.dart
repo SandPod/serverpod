@@ -13,7 +13,7 @@ class MockTransaction implements Transaction {
   }
 
   @override
-  Future<void> setRuntimeParameters(RuntimeParametersListBuilder builder) {
+  Future<void> setRuntimeParameters(final RuntimeParametersListBuilder builder) {
     throw UnimplementedError();
   }
 
@@ -22,7 +22,7 @@ class MockTransaction implements Transaction {
 }
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   tearDown(() async {
     await UniqueData.db.deleteWhere(session, where: (_) => Constant.bool(true));
@@ -31,10 +31,10 @@ void main() async {
   group(
     'Given a transaction that does not match required database transaction',
     () {
-      var invalidTransactionType = MockTransaction();
+      final invalidTransactionType = MockTransaction();
       test('when calling `deleteWhere` then an error is thrown.', () async {
         expect(
-          session.db.transaction<void>((transaction) async {
+          session.db.transaction<void>((final transaction) async {
             await UniqueData.db.deleteWhere(
               session,
               where: (_) => Constant.bool(true),
@@ -47,7 +47,7 @@ void main() async {
 
       test('when calling `delete` then an error is thrown.', () async {
         expect(
-          session.db.transaction<void>((transaction) async {
+          session.db.transaction<void>((final transaction) async {
             await UniqueData.db.delete(
               session,
               [UniqueData(number: 1, email: '')],
@@ -60,7 +60,7 @@ void main() async {
 
       test('when calling `deleteRow` then an error is thrown.', () async {
         expect(
-          session.db.transaction<void>((transaction) async {
+          session.db.transaction<void>((final transaction) async {
             await UniqueData.db.deleteRow(
               session,
               UniqueData(number: 1, email: ''),
@@ -83,7 +83,7 @@ void main() async {
     });
 
     test('when calling `delete` then does delete the object.', () async {
-      await session.db.transaction((transaction) async {
+      await session.db.transaction((final transaction) async {
         await UniqueData.db.delete(
           session,
           [insertedData],
@@ -95,7 +95,7 @@ void main() async {
     });
 
     test('when calling `deleteWhere` then does delete the object.', () async {
-      await session.db.transaction((transaction) async {
+      await session.db.transaction((final transaction) async {
         await UniqueData.db.deleteWhere(
           session,
           where: (_) => Constant.bool(true),
@@ -107,7 +107,7 @@ void main() async {
     });
 
     test('when calling `deleteRow` then does delete the object.', () async {
-      await session.db.transaction((transaction) async {
+      await session.db.transaction((final transaction) async {
         await UniqueData.db.deleteRow(
           session,
           insertedData,
@@ -122,7 +122,7 @@ void main() async {
   group('Given inserting object and starting transaction that is cancelled', () {
     late UniqueData insertedData;
     setUp(() async {
-      var data = UniqueData(number: 111, email: 'test@serverpod.dev');
+      final data = UniqueData(number: 111, email: 'test@serverpod.dev');
 
       insertedData = await UniqueData.db.insertRow(
         session,
@@ -134,7 +134,7 @@ void main() async {
       'when calling `delete` before cancelling then does not delete the object.',
       () async {
         await session.db.transaction(
-          (transaction) async {
+          (final transaction) async {
             await UniqueData.db.delete(
               session,
               [insertedData],
@@ -145,7 +145,7 @@ void main() async {
           },
         );
 
-        var fetchedData = await UniqueData.db.find(session);
+        final fetchedData = await UniqueData.db.find(session);
         expect(fetchedData, hasLength(1));
         expect(fetchedData.first.number, 111);
       },
@@ -155,7 +155,7 @@ void main() async {
       'when calling `deleteWhere` before cancelling then does not delete the object.',
       () async {
         await session.db.transaction(
-          (transaction) async {
+          (final transaction) async {
             await UniqueData.db.deleteWhere(
               session,
               where: (_) => Constant.bool(true),
@@ -166,7 +166,7 @@ void main() async {
           },
         );
 
-        var fetchedData = await UniqueData.db.find(session);
+        final fetchedData = await UniqueData.db.find(session);
         expect(fetchedData, hasLength(1));
         expect(fetchedData.first.number, 111);
       },
@@ -176,7 +176,7 @@ void main() async {
       'when calling `deleteRow` before cancelling then does not delete the object.',
       () async {
         await session.db.transaction(
-          (transaction) async {
+          (final transaction) async {
             await UniqueData.db.deleteRow(
               session,
               insertedData,
@@ -187,7 +187,7 @@ void main() async {
           },
         );
 
-        var fetchedData = await UniqueData.db.find(session);
+        final fetchedData = await UniqueData.db.find(session);
         expect(fetchedData, hasLength(1));
         expect(fetchedData.first.number, 111);
       },

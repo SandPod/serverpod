@@ -59,7 +59,7 @@ void main() async {
   });
 }
 
-Future<ProcessResult> runTest(TestTag includeTag, String tag, String testFile) {
+Future<ProcessResult> runTest(final TestTag includeTag, final String tag, final String testFile) {
   return Process.run(
     'dart',
     [

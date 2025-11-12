@@ -8,7 +8,7 @@ import 'serverpod_test_tools.dart';
 void main() {
   withServerpod(
     'Given AuthenticatedTestToolsEndpoint',
-    (sessionBuilder, endpoints) {
+    (sessionBuilder, final endpoints) {
       test(
         'when not authenticated and calling returnsString then throws ServerpodUnauthenticatedException',
         () async {
@@ -18,7 +18,7 @@ void main() {
 
           final result = endpoints.authenticatedTestTools.returnsString(
             sessionBuilder,
-            "Hello",
+            'Hello',
           );
           await expectLater(
             result,
@@ -39,7 +39,7 @@ void main() {
 
           final result = endpoints.authenticatedTestTools.returnsString(
             sessionBuilder,
-            "Hello",
+            'Hello',
           );
           await expectLater(
             result,
@@ -54,15 +54,15 @@ void main() {
           sessionBuilder = sessionBuilder.copyWith(
             authentication: AuthenticationOverride.authenticationInfo(
               '1234',
-              {Scope('user')},
+              {const Scope('user')},
             ),
           );
 
           final result = await endpoints.authenticatedTestTools.returnsString(
             sessionBuilder,
-            "Hello",
+            'Hello',
           );
-          expect(result, "Hello");
+          expect(result, 'Hello');
         },
       );
 
@@ -109,7 +109,7 @@ void main() {
           sessionBuilder = sessionBuilder.copyWith(
             authentication: AuthenticationOverride.authenticationInfo(
               '1234',
-              {Scope('user')},
+              {const Scope('user')},
             ),
           );
 
@@ -125,11 +125,11 @@ void main() {
         late Completer<int> valueReceivedCompleter;
         late StreamController<int> inStream;
 
-        var authenticatedUserId = '1';
-        var authenticatedSessionBuilder = sessionBuilder.copyWith(
+        const authenticatedUserId = '1';
+        final authenticatedSessionBuilder = sessionBuilder.copyWith(
           authentication: AuthenticationOverride.authenticationInfo(
             authenticatedUserId,
-            {Scope('user')},
+            {const Scope('user')},
           ),
         );
 
@@ -147,13 +147,13 @@ void main() {
 
           valueReceivedCompleter = Completer<int>();
           outStream.listen(
-            (event) {
+            (final event) {
               if (valueReceivedCompleter.isCompleted) {
                 return;
               }
               valueReceivedCompleter.complete(event);
             },
-            onError: (e) {
+            onError: (final e) {
               streamClosedCompleter.complete(e);
             },
           );
@@ -181,11 +181,11 @@ void main() {
 
             await expectLater(
               streamClosedCompleter.future.timeout(
-                Duration(seconds: 5),
+                const Duration(seconds: 5),
               ),
               completes,
             );
-            var exception = await streamClosedCompleter.future;
+            final exception = await streamClosedCompleter.future;
             expect(exception, isA<ConnectionClosedException>());
             expect(() => inStream.stream.first, throwsA(isA<StateError>()));
           },
@@ -204,11 +204,11 @@ void main() {
 
             await expectLater(
               streamClosedCompleter.future.timeout(
-                Duration(seconds: 5),
+                const Duration(seconds: 5),
               ),
               completes,
             );
-            var exception = await streamClosedCompleter.future;
+            final exception = await streamClosedCompleter.future;
             expect(exception, isA<ConnectionClosedException>());
           },
         );
@@ -223,11 +223,11 @@ void main() {
         late Completer<int> valueReceivedCompleter2;
         late StreamController<int> inStream2;
 
-        var authenticatedUserId = '1';
-        var authenticatedSessionBuilder = sessionBuilder.copyWith(
+        const authenticatedUserId = '1';
+        final authenticatedSessionBuilder = sessionBuilder.copyWith(
           authentication: AuthenticationOverride.authenticationInfo(
             authenticatedUserId,
-            {Scope('user')},
+            {const Scope('user')},
           ),
         );
 
@@ -239,10 +239,10 @@ void main() {
           inStream1 = StreamController<int>();
           Stream<int> outStream;
 
-          var authenticatedSession = sessionBuilder.copyWith(
+          final authenticatedSession = sessionBuilder.copyWith(
             authentication: AuthenticationOverride.authenticationInfo(
               authenticatedUserId,
-              {Scope('user')},
+              {const Scope('user')},
             ),
           );
 
@@ -252,20 +252,20 @@ void main() {
           );
           valueReceivedCompleter1 = Completer<int>();
           outStream.listen(
-            (event) {
+            (final event) {
               if (valueReceivedCompleter1.isCompleted) {
                 return;
               }
               valueReceivedCompleter1.complete(event);
             },
-            onError: (e) {
+            onError: (final e) {
               streamClosedCompleter1.complete(e);
             },
           );
 
           inStream1.add(1);
           // Validate that the stream works
-          await valueReceivedCompleter1.future.timeout(Duration(seconds: 5));
+          await valueReceivedCompleter1.future.timeout(const Duration(seconds: 5));
           assert(valueReceivedCompleter1.isCompleted);
 
           streamClosedCompleter2 = Completer<dynamic>();
@@ -278,20 +278,20 @@ void main() {
           );
           valueReceivedCompleter2 = Completer<int>();
           outStream2.listen(
-            (event) {
+            (final event) {
               if (valueReceivedCompleter2.isCompleted) {
                 return;
               }
               valueReceivedCompleter2.complete(event);
             },
-            onError: (e) {
+            onError: (final e) {
               streamClosedCompleter2.complete(e);
             },
           );
 
           inStream2.add(1);
           // Validate that the stream works
-          await valueReceivedCompleter2.future.timeout(Duration(seconds: 5));
+          await valueReceivedCompleter2.future.timeout(const Duration(seconds: 5));
           assert(valueReceivedCompleter2.isCompleted);
         });
 
@@ -311,14 +311,14 @@ void main() {
             );
 
             await expectLater(
-              streamClosedCompleter1.future.timeout(Duration(seconds: 5)),
+              streamClosedCompleter1.future.timeout(const Duration(seconds: 5)),
               completes,
             );
             var exception = await streamClosedCompleter1.future;
             expect(exception, isA<ConnectionClosedException>());
 
             await expectLater(
-              streamClosedCompleter2.future.timeout(Duration(seconds: 5)),
+              streamClosedCompleter2.future.timeout(const Duration(seconds: 5)),
               completes,
             );
             exception = await streamClosedCompleter2.future;

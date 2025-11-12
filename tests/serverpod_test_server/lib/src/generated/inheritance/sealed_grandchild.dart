@@ -21,13 +21,13 @@ abstract class SealedGrandChild extends _i1.SealedChild
   });
 
   factory SealedGrandChild({
-    required int sealedInt,
-    required String sealedString,
-    int? nullableInt,
-    required String sealedGrandchildField,
+    required final int sealedInt,
+    required final String sealedString,
+    final int? nullableInt,
+    required final String sealedGrandchildField,
   }) = _SealedGrandChildImpl;
 
-  factory SealedGrandChild.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory SealedGrandChild.fromJson(final Map<String, dynamic> jsonSerialization) {
     return SealedGrandChild(
       sealedInt: jsonSerialization['sealedInt'] as int,
       sealedString: jsonSerialization['sealedString'] as String,
@@ -44,10 +44,10 @@ abstract class SealedGrandChild extends _i1.SealedChild
   @override
   @_i2.useResult
   SealedGrandChild copyWith({
-    int? sealedInt,
-    String? sealedString,
-    Object? nullableInt,
-    String? sealedGrandchildField,
+    final int? sealedInt,
+    final String? sealedString,
+    final Object? nullableInt,
+    final String? sealedGrandchildField,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -77,10 +77,10 @@ abstract class SealedGrandChild extends _i1.SealedChild
 
 class _SealedGrandChildImpl extends SealedGrandChild {
   _SealedGrandChildImpl({
-    required int sealedInt,
-    required String sealedString,
-    int? nullableInt,
-    required String sealedGrandchildField,
+    required final int sealedInt,
+    required final String sealedString,
+    final int? nullableInt,
+    required final String sealedGrandchildField,
   }) : super._(
          sealedInt: sealedInt,
          sealedString: sealedString,
@@ -93,10 +93,10 @@ class _SealedGrandChildImpl extends SealedGrandChild {
   @_i2.useResult
   @override
   SealedGrandChild copyWith({
-    int? sealedInt,
-    String? sealedString,
-    Object? nullableInt = _Undefined,
-    String? sealedGrandchildField,
+    final int? sealedInt,
+    final String? sealedString,
+    final Object? nullableInt = _Undefined,
+    final String? sealedGrandchildField,
   }) {
     return SealedGrandChild(
       sealedInt: sealedInt ?? this.sealedInt,

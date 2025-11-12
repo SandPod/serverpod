@@ -4,7 +4,7 @@ class LoggingDisabledEndpoint extends Endpoint {
   @override
   bool get logSessions => false;
 
-  Future<void> logInfo(Session session, String message) async {
+  Future<void> logInfo(final Session session, final String message) async {
     session.log(message);
   }
 }

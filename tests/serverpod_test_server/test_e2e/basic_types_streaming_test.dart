@@ -5,12 +5,12 @@ import 'package:test/test.dart';
 import '../test/serialization_legacy_test.dart' show createByteData;
 
 void main() {
-  var client = Client(serverUrl);
+  final client = Client(serverUrl);
 
   test(
     'Given the test server, when an int stream is sent to the server, then it is returned verbatim',
     () async {
-      var result = await client.basicTypesStreaming
+      final result = await client.basicTypesStreaming
           .testInt(Stream.fromIterable([0, null, 1]))
           .toList();
 
@@ -21,7 +21,7 @@ void main() {
   test(
     'Given the test server, when a double stream is sent to the server, then it is returned verbatim',
     () async {
-      var result = await client.basicTypesStreaming
+      final result = await client.basicTypesStreaming
           .testDouble(Stream.fromIterable([1.2, null, 3.4]))
           .toList();
 
@@ -32,7 +32,7 @@ void main() {
   test(
     'Given the test server, when a boolean stream is sent to the server, then it is returned verbatim',
     () async {
-      var result = await client.basicTypesStreaming
+      final result = await client.basicTypesStreaming
           .testBool(Stream.fromIterable([true, null, false]))
           .toList();
 
@@ -43,7 +43,7 @@ void main() {
   test(
     'Given the test server, when a string stream is sent to the server, then it is returned verbatim',
     () async {
-      var result = await client.basicTypesStreaming
+      final result = await client.basicTypesStreaming
           .testString(Stream.fromIterable(['first', 'null', null, 'last']))
           .toList();
 
@@ -54,9 +54,9 @@ void main() {
   test(
     'Given the test server, when a `DateTime` stream is sent to the server, then it is returned verbatim',
     () async {
-      var dateTime = DateTime.utc(1976, 9, 10, 2, 10);
+      final dateTime = DateTime.utc(1976, 9, 10, 2, 10);
 
-      var result = await client.basicTypesStreaming
+      final result = await client.basicTypesStreaming
           .testDateTime(Stream.fromIterable([dateTime, null]))
           .toList();
 
@@ -70,7 +70,7 @@ void main() {
       final byteData1 = createByteData();
       final byteData2 = createByteData();
 
-      var result = await client.basicTypesStreaming
+      final result = await client.basicTypesStreaming
           .testByteData(Stream.fromIterable([byteData1, null, byteData2]))
           .toList();
 
@@ -84,9 +84,9 @@ void main() {
   test(
     'Given the test server, when a `Duration` stream is sent to the server, then it is returned verbatim',
     () async {
-      var duration = const Duration(seconds: 1);
+      const duration = Duration(seconds: 1);
 
-      var result = await client.basicTypesStreaming
+      final result = await client.basicTypesStreaming
           .testDuration(Stream.fromIterable([duration, null]))
           .toList();
 
@@ -97,9 +97,9 @@ void main() {
   test(
     'Given the test server, when a UUID stream is sent to the server, then it is returned verbatim',
     () async {
-      var uuid = UuidValue.fromString('a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11');
+      final uuid = UuidValue.fromString('a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11');
 
-      var result = await client.basicTypesStreaming
+      final result = await client.basicTypesStreaming
           .testUuid(Stream.fromIterable([uuid, null]))
           .toList();
 
@@ -110,11 +110,11 @@ void main() {
   test(
     'Given the test server, when a `Uri` stream is sent to the server, then it is returned verbatim',
     () async {
-      var uri = Uri.parse(
+      final uri = Uri.parse(
         'https://docs.serverpod.dev/contribute#working-on-serverpod',
       );
 
-      var result = await client.basicTypesStreaming
+      final result = await client.basicTypesStreaming
           .testUri(Stream.fromIterable([uri, null]))
           .toList();
 
@@ -125,10 +125,10 @@ void main() {
   test(
     'Given the test server, when a `BigInt` stream is sent to the server, then it is returned verbatim',
     () async {
-      var bigInt = BigInt.parse('-12345678901234567890');
-      var bigInt2 = BigInt.parse('12345678901234567890');
+      final bigInt = BigInt.parse('-12345678901234567890');
+      final bigInt2 = BigInt.parse('12345678901234567890');
 
-      var result = await client.basicTypesStreaming
+      final result = await client.basicTypesStreaming
           .testBigInt(Stream.fromIterable([bigInt, null, bigInt2]))
           .toList();
 

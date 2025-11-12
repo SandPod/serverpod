@@ -7,15 +7,15 @@ import 'package:serverpod_test_module_server/serverpod_test_module_server.dart'
 import '../generated/module_datatype.dart';
 
 class ModuleSerializationEndpoint extends Endpoint {
-  Future<bool> serializeModuleObject(Session session) async {
-    var moduleClass = module.ModuleClass(
+  Future<bool> serializeModuleObject(final Session session) async {
+    final moduleClass = module.ModuleClass(
       data: 42,
       name: 'foo',
     );
 
     try {
-      var s = SerializationManager.encode(moduleClass);
-      var unpacked = pod.serializationManager.decode<module.ModuleClass>(s);
+      final s = SerializationManager.encode(moduleClass);
+      final unpacked = pod.serializationManager.decode<module.ModuleClass>(s);
       return (unpacked.data == 42 && unpacked.name == 'foo');
     } catch (e, stackTrace) {
       stdout.writeln(
@@ -28,15 +28,15 @@ class ModuleSerializationEndpoint extends Endpoint {
   }
 
   Future<module.ModuleClass> modifyModuleObject(
-    Session session,
-    module.ModuleClass object,
+    final Session session,
+    final module.ModuleClass object,
   ) async {
     object.data = 42;
     return object;
   }
 
-  Future<ModuleDatatype> serializeNestedModuleObject(Session session) async {
-    var internalModuleClass = module.ModuleClass(
+  Future<ModuleDatatype> serializeNestedModuleObject(final Session session) async {
+    final internalModuleClass = module.ModuleClass(
       data: 42,
       name: 'foo',
     );

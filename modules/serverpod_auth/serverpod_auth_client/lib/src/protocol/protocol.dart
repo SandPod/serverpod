@@ -11,6 +11,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
+
 import 'apple_auth_info.dart' as _i2;
 import 'auth_key.dart' as _i3;
 import 'authentication_fail_reason.dart' as _i4;
@@ -25,10 +26,12 @@ import 'user_image.dart' as _i12;
 import 'user_info.dart' as _i13;
 import 'user_info_public.dart' as _i14;
 import 'user_settings_config.dart' as _i15;
+
 export 'apple_auth_info.dart';
 export 'auth_key.dart';
 export 'authentication_fail_reason.dart';
 export 'authentication_response.dart';
+export 'client.dart';
 export 'email_auth.dart';
 export 'email_create_account_request.dart';
 export 'email_failed_sign_in.dart';
@@ -39,7 +42,6 @@ export 'user_image.dart';
 export 'user_info.dart';
 export 'user_info_public.dart';
 export 'user_settings_config.dart';
-export 'client.dart';
 
 class Protocol extends _i1.SerializationManager {
   Protocol._();
@@ -50,7 +52,7 @@ class Protocol extends _i1.SerializationManager {
 
   @override
   T deserialize<T>(
-    dynamic data, [
+    final dynamic data, [
     Type? t,
   ]) {
     t ??= T;
@@ -146,14 +148,14 @@ class Protocol extends _i1.SerializationManager {
           as T;
     }
     if (t == List<String>) {
-      return (data as List).map((e) => deserialize<String>(e)).toList() as T;
+      return (data as List).map((final e) => deserialize<String>(e)).toList() as T;
     }
     return super.deserialize<T>(data, t);
   }
 
   @override
-  String? getClassNameForObject(Object? data) {
-    String? className = super.getClassNameForObject(data);
+  String? getClassNameForObject(final Object? data) {
+    final String? className = super.getClassNameForObject(data);
     if (className != null) return className;
     switch (data) {
       case _i2.AppleAuthInfo():
@@ -189,8 +191,8 @@ class Protocol extends _i1.SerializationManager {
   }
 
   @override
-  dynamic deserializeByClassName(Map<String, dynamic> data) {
-    var dataClassName = data['className'];
+  dynamic deserializeByClassName(final Map<String, dynamic> data) {
+    final dataClassName = data['className'];
     if (dataClassName is! String) {
       return super.deserializeByClassName(data);
     }

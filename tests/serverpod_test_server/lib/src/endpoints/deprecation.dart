@@ -6,13 +6,13 @@ double globalDouble = 0;
 class DeprecationEndpoint extends Endpoint {
   /// A method with a simple "@deprecated" annotation.
   @deprecated
-  Future<void> setGlobalDouble(Session session, double? value) async {
+  Future<void> setGlobalDouble(final Session session, final double? value) async {
     globalDouble = value!;
   }
 
   /// A method with a "@Deprecated(..)" annotation.
   @Deprecated('Marking endpoint method as deprecated')
-  Future<double> getGlobalDouble(Session session) async {
+  Future<double> getGlobalDouble(final Session session) async {
     return globalDouble;
   }
 }

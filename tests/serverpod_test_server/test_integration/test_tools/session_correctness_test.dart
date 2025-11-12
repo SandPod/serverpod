@@ -11,7 +11,7 @@ import 'serverpod_test_tools.dart';
 void main() {
   withServerpod(
     'Given calling endpoint returning Future',
-    (sessionBuilder, endpoints) {
+    (final sessionBuilder, final endpoints) {
       group('when using the same session between two calls', () {
         late UuidValue sessionId1;
         late UuidValue sessionId2;
@@ -33,7 +33,7 @@ void main() {
       test(
         "when method is returning the session's `endpoint` and `method` properties then the correct name and method is returned",
         () async {
-          var [endpoint, method] = await endpoints.testTools
+          final [endpoint, method] = await endpoints.testTools
               .returnsSessionEndpointAndMethod(sessionBuilder);
           expect(endpoint, 'testTools');
           expect(method, 'returnsSessionEndpointAndMethod');
@@ -43,7 +43,7 @@ void main() {
       test(
         'when method logs to session then can be observered in stdout',
         () async {
-          var stdout = MockStdout();
+          final stdout = MockStdout();
           await IOOverrides.runZoned(
             () async {
               await endpoints.testTools.logMessageWithSession(
@@ -98,21 +98,21 @@ void main() {
 
   withServerpod(
     'Given calling endpoint returning Stream',
-    (sessionBuilder, endpoints) {
+    (final sessionBuilder, final endpoints) {
       group('when using the same session between two calls', () {
         late Stream<UuidValue> sessionId1Stream;
         late Stream<UuidValue> sessionId2Stream;
 
         setUp(() async {
-          sessionId1Stream = await endpoints.testTools
+          sessionId1Stream = endpoints.testTools
               .returnsSessionIdFromStream(sessionBuilder);
-          sessionId2Stream = await endpoints.testTools
+          sessionId2Stream = endpoints.testTools
               .returnsSessionIdFromStream(sessionBuilder);
         });
 
         test('then session id is unique in each endpoint call', () async {
-          var sessionId1 = await sessionId1Stream.first;
-          var sessionId2 = await sessionId2Stream.first;
+          final sessionId1 = await sessionId1Stream.first;
+          final sessionId2 = await sessionId2Stream.first;
           expect(sessionId1, isNot(sessionId2));
         });
       });
@@ -120,7 +120,7 @@ void main() {
       test(
         "when method is returning the session's `endpoint` and `method` properties then the correct name and method is returned",
         () async {
-          var [endpoint, method] = await endpoints.testTools
+          final [endpoint, method] = await endpoints.testTools
               .returnsSessionEndpointAndMethodFromStream(sessionBuilder)
               .take(2)
               .toList();
@@ -151,7 +151,7 @@ void main() {
           'then the session is closed so that the `willCloseListener` is called',
           () async {
             try {
-              await stream.take(1);
+              stream.take(1);
             } catch (_) {}
             await flushEventQueue();
 

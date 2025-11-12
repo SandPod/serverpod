@@ -19,11 +19,11 @@ abstract class Example implements _i1.SerializableModel {
   });
 
   factory Example({
-    required String name,
-    required int data,
+    required final String name,
+    required final int data,
   }) = _ExampleImpl;
 
-  factory Example.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory Example.fromJson(final Map<String, dynamic> jsonSerialization) {
     return Example(
       name: jsonSerialization['name'] as String,
       data: jsonSerialization['data'] as int,
@@ -38,8 +38,8 @@ abstract class Example implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   Example copyWith({
-    String? name,
-    int? data,
+    final String? name,
+    final int? data,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -57,8 +57,8 @@ abstract class Example implements _i1.SerializableModel {
 
 class _ExampleImpl extends Example {
   _ExampleImpl({
-    required String name,
-    required int data,
+    required final String name,
+    required final int data,
   }) : super._(
          name: name,
          data: data,
@@ -69,8 +69,8 @@ class _ExampleImpl extends Example {
   @_i1.useResult
   @override
   Example copyWith({
-    String? name,
-    int? data,
+    final String? name,
+    final int? data,
   }) {
     return Example(
       name: name ?? this.name,

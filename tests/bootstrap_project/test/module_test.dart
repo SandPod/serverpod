@@ -1,10 +1,10 @@
 @Timeout(Duration(minutes: 12))
 import 'dart:io';
 
+import 'package:bootstrap_project/src/util.dart';
 import 'package:path/path.dart' as path;
 import 'package:test/test.dart';
 
-import '../lib/src/util.dart';
 import '../../serverpod_test_server/lib/test_util/custom_matcher.dart';
 
 const tempDirName = 'temp';
@@ -44,14 +44,14 @@ void main() {
   });
 
   group('Given a clean state', () {
-    var (commandRoot: _, :projectName) = createRandomProjectName(tempPath);
+    final (commandRoot: _, :projectName) = createRandomProjectName(tempPath);
     final (:serverDir, flutterDir: _, :clientDir) = createProjectFolderPaths(
       projectName,
     );
 
     group('when creating a new project', () {
       setUpAll(() async {
-        var process = await startProcess(
+        final process = await startProcess(
           'serverpod',
           [
             'create',
@@ -67,7 +67,7 @@ void main() {
           },
         );
 
-        var exitCode = await process.exitCode;
+        final exitCode = await process.exitCode;
         assert(exitCode == 0);
       });
 
@@ -78,7 +78,7 @@ void main() {
           workingDirectory: tempPath,
         );
 
-        var exitCode = await process.exitCode;
+        final exitCode = await process.exitCode;
         expect(exitCode, 0, reason: 'Linting errors in new project.');
       });
 
@@ -349,19 +349,20 @@ void main() {
           skipBatExtentionOnWindows: true,
         );
 
-        while (!await isNetworkPortAvailable(8090)) ;
+        while (!await isNetworkPortAvailable(8090)) {
+        }
       });
 
       test(
         'when running tests then example unit and integration tests passes',
         () async {
-          var testProcess = await startProcess(
+          final testProcess = await startProcess(
             'dart',
             ['test'],
             workingDirectory: path.join(
               tempPath,
               projectName,
-              "${projectName}_server",
+              '${projectName}_server',
             ),
           );
 

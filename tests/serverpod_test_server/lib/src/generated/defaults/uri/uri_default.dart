@@ -16,19 +16,19 @@ abstract class UriDefault
     implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   UriDefault._({
     this.id,
-    Uri? uriDefault,
-    Uri? uriDefaultNull,
+    final Uri? uriDefault,
+    final Uri? uriDefaultNull,
   }) : uriDefault = uriDefault ?? Uri.parse('https://serverpod.dev/default'),
        uriDefaultNull =
            uriDefaultNull ?? Uri.parse('https://serverpod.dev/default');
 
   factory UriDefault({
-    int? id,
-    Uri? uriDefault,
-    Uri? uriDefaultNull,
+    final int? id,
+    final Uri? uriDefault,
+    final Uri? uriDefaultNull,
   }) = _UriDefaultImpl;
 
-  factory UriDefault.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory UriDefault.fromJson(final Map<String, dynamic> jsonSerialization) {
     return UriDefault(
       id: jsonSerialization['id'] as int?,
       uriDefault: _i1.UriJsonExtension.fromJson(
@@ -58,9 +58,9 @@ abstract class UriDefault
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   UriDefault copyWith({
-    int? id,
-    Uri? uriDefault,
-    Uri? uriDefaultNull,
+    final int? id,
+    final Uri? uriDefault,
+    final Uri? uriDefaultNull,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -85,13 +85,13 @@ abstract class UriDefault
   }
 
   static UriDefaultIncludeList includeList({
-    _i1.WhereExpressionBuilder<UriDefaultTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<UriDefaultTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UriDefaultTable>? orderByList,
-    UriDefaultInclude? include,
+    final _i1.WhereExpressionBuilder<UriDefaultTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<UriDefaultTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<UriDefaultTable>? orderByList,
+    final UriDefaultInclude? include,
   }) {
     return UriDefaultIncludeList._(
       where: where,
@@ -114,9 +114,9 @@ class _Undefined {}
 
 class _UriDefaultImpl extends UriDefault {
   _UriDefaultImpl({
-    int? id,
-    Uri? uriDefault,
-    Uri? uriDefaultNull,
+    final int? id,
+    final Uri? uriDefault,
+    final Uri? uriDefaultNull,
   }) : super._(
          id: id,
          uriDefault: uriDefault,
@@ -128,9 +128,9 @@ class _UriDefaultImpl extends UriDefault {
   @_i1.useResult
   @override
   UriDefault copyWith({
-    Object? id = _Undefined,
-    Uri? uriDefault,
-    Object? uriDefaultNull = _Undefined,
+    final Object? id = _Undefined,
+    final Uri? uriDefault,
+    final Object? uriDefaultNull = _Undefined,
   }) {
     return UriDefault(
       id: id is int? ? id : this.id,
@@ -145,12 +145,12 @@ class _UriDefaultImpl extends UriDefault {
 class UriDefaultUpdateTable extends _i1.UpdateTable<UriDefaultTable> {
   UriDefaultUpdateTable(super.table);
 
-  _i1.ColumnValue<Uri, Uri> uriDefault(Uri value) => _i1.ColumnValue(
+  _i1.ColumnValue<Uri, Uri> uriDefault(final Uri value) => _i1.ColumnValue(
     table.uriDefault,
     value,
   );
 
-  _i1.ColumnValue<Uri, Uri> uriDefaultNull(Uri? value) => _i1.ColumnValue(
+  _i1.ColumnValue<Uri, Uri> uriDefaultNull(final Uri? value) => _i1.ColumnValue(
     table.uriDefaultNull,
     value,
   );
@@ -197,7 +197,7 @@ class UriDefaultInclude extends _i1.IncludeObject {
 
 class UriDefaultIncludeList extends _i1.IncludeList {
   UriDefaultIncludeList._({
-    _i1.WhereExpressionBuilder<UriDefaultTable>? where,
+    final _i1.WhereExpressionBuilder<UriDefaultTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -241,14 +241,14 @@ class UriDefaultRepository {
   /// );
   /// ```
   Future<List<UriDefault>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<UriDefaultTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<UriDefaultTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UriDefaultTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<UriDefaultTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<UriDefaultTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<UriDefaultTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<UriDefault>(
       where: where?.call(UriDefault.t),
@@ -279,13 +279,13 @@ class UriDefaultRepository {
   /// );
   /// ```
   Future<UriDefault?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<UriDefaultTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<UriDefaultTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UriDefaultTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<UriDefaultTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<UriDefaultTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<UriDefaultTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<UriDefault>(
       where: where?.call(UriDefault.t),
@@ -299,9 +299,9 @@ class UriDefaultRepository {
 
   /// Finds a single [UriDefault] by its [id] or null if no such row exists.
   Future<UriDefault?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<UriDefault>(
       id,
@@ -316,9 +316,9 @@ class UriDefaultRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<UriDefault>> insert(
-    _i1.Session session,
-    List<UriDefault> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<UriDefault> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<UriDefault>(
       rows,
@@ -330,9 +330,9 @@ class UriDefaultRepository {
   ///
   /// The returned [UriDefault] will have its `id` field set.
   Future<UriDefault> insertRow(
-    _i1.Session session,
-    UriDefault row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final UriDefault row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<UriDefault>(
       row,
@@ -346,10 +346,10 @@ class UriDefaultRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<UriDefault>> update(
-    _i1.Session session,
-    List<UriDefault> rows, {
-    _i1.ColumnSelections<UriDefaultTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<UriDefault> rows, {
+    final _i1.ColumnSelections<UriDefaultTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<UriDefault>(
       rows,
@@ -362,10 +362,10 @@ class UriDefaultRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<UriDefault> updateRow(
-    _i1.Session session,
-    UriDefault row, {
-    _i1.ColumnSelections<UriDefaultTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final UriDefault row, {
+    final _i1.ColumnSelections<UriDefaultTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<UriDefault>(
       row,
@@ -377,10 +377,10 @@ class UriDefaultRepository {
   /// Updates a single [UriDefault] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<UriDefault?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<UriDefaultUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<UriDefaultUpdateTable> columnValues,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<UriDefault>(
       id,
@@ -392,15 +392,15 @@ class UriDefaultRepository {
   /// Updates all [UriDefault]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<UriDefault>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<UriDefaultUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<UriDefaultTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<UriDefaultTable>? orderBy,
-    _i1.OrderByListBuilder<UriDefaultTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<UriDefaultUpdateTable> columnValues,
+    required final _i1.WhereExpressionBuilder<UriDefaultTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<UriDefaultTable>? orderBy,
+    final _i1.OrderByListBuilder<UriDefaultTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<UriDefault>(
       columnValues: columnValues(UriDefault.t.updateTable),
@@ -418,9 +418,9 @@ class UriDefaultRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<UriDefault>> delete(
-    _i1.Session session,
-    List<UriDefault> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<UriDefault> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<UriDefault>(
       rows,
@@ -430,9 +430,9 @@ class UriDefaultRepository {
 
   /// Deletes a single [UriDefault].
   Future<UriDefault> deleteRow(
-    _i1.Session session,
-    UriDefault row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final UriDefault row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<UriDefault>(
       row,
@@ -442,9 +442,9 @@ class UriDefaultRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<UriDefault>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<UriDefaultTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<UriDefaultTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<UriDefault>(
       where: where(UriDefault.t),
@@ -455,10 +455,10 @@ class UriDefaultRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<UriDefaultTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<UriDefaultTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<UriDefault>(
       where: where?.call(UriDefault.t),

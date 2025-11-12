@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/src/generated/protocol.dart';
 import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
-Future<void> _createTestDatabase(Session session) async {
+Future<void> _createTestDatabase(final Session session) async {
   // Towns
   var stockholm = TownInt(name: 'Stockholm');
   var skinnskatteberg = TownInt(name: 'Skinnskatteberg');
@@ -38,8 +38,8 @@ Future<void> _createTestDatabase(Session session) async {
   haris = await CitizenInt.db.insertRow(session, haris);
 
   // Addresses
-  var alexAddress = AddressUuid(street: 'Götgatan 3', inhabitantId: alex.id!);
-  var isakAddress = AddressUuid(street: 'Kungsgatan 4', inhabitantId: isak.id!);
+  final alexAddress = AddressUuid(street: 'Götgatan 3', inhabitantId: alex.id!);
+  final isakAddress = AddressUuid(street: 'Kungsgatan 4', inhabitantId: isak.id!);
 
   await AddressUuid.db.insertRow(session, alexAddress);
   await AddressUuid.db.insertRow(session, isakAddress);
@@ -52,25 +52,25 @@ Future<void> _createTestDatabase(Session session) async {
   post1 = await Post.db.insertRow(session, post1);
 }
 
-Future<int> deleteAll(Session session) async {
-  var addressDeletions = await AddressUuid.db.deleteWhere(
+Future<int> deleteAll(final Session session) async {
+  final addressDeletions = await AddressUuid.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
-  var citizenDeletions = await CitizenInt.db.deleteWhere(
+  final citizenDeletions = await CitizenInt.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
-  var companyDeletions = await CompanyUuid.db.deleteWhere(
+  final companyDeletions = await CompanyUuid.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
-  var townDeletions = await TownInt.db.deleteWhere(
+  final townDeletions = await TownInt.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
 
-  var postDeletions = await Post.db.deleteWhere(
+  final postDeletions = await Post.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
@@ -83,7 +83,7 @@ Future<int> deleteAll(Session session) async {
 }
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with one to one relation', () {
     tearDown(() async {
@@ -100,7 +100,7 @@ void main() async {
     test(
       'when fetching models including relation then result includes relation data.',
       () async {
-        var towns = await TownInt.db.insert(session, [
+        final towns = await TownInt.db.insert(session, [
           TownInt(name: 'Stockholm'),
           TownInt(name: 'San Francisco'),
         ]);
@@ -109,15 +109,15 @@ void main() async {
           CompanyUuid(name: 'Apple', townId: towns[1].id!),
         ]);
 
-        var companiesFetched = await CompanyUuid.db.find(
+        final companiesFetched = await CompanyUuid.db.find(
           session,
           include: CompanyUuid.include(town: TownInt.include()),
-          orderBy: (t) => t.name,
+          orderBy: (final t) => t.name,
         );
 
-        var companyNames = companiesFetched.map((c) => c.name);
+        final companyNames = companiesFetched.map((final c) => c.name);
         expect(companyNames, containsAll(['Serverpod', 'Apple']));
-        var companyTownNames = companiesFetched.map((c) => c.town?.name);
+        final companyTownNames = companiesFetched.map((final c) => c.town?.name);
         expect(companyTownNames, containsAll(['Stockholm', 'San Francisco']));
       },
     );
@@ -142,11 +142,11 @@ void main() async {
     test(
       'when fetching models including nested relation then result includes nested relation data.',
       () async {
-        var towns = await TownInt.db.insert(session, [
+        final towns = await TownInt.db.insert(session, [
           TownInt(name: 'Stockholm'),
           TownInt(name: 'San Francisco'),
         ]);
-        var companies = await CompanyUuid.db.insert(session, [
+        final companies = await CompanyUuid.db.insert(session, [
           CompanyUuid(name: 'Serverpod', townId: towns[0].id!),
           CompanyUuid(name: 'Apple', townId: towns[1].id!),
         ]);
@@ -155,20 +155,20 @@ void main() async {
           CitizenInt(name: 'Lina', companyId: companies[1].id!),
         ]);
 
-        var citizensFetched = await CitizenInt.db.find(
+        final citizensFetched = await CitizenInt.db.find(
           session,
           include: CitizenInt.include(
             company: CompanyUuid.include(town: TownInt.include()),
           ),
-          orderBy: (t) => t.name,
+          orderBy: (final t) => t.name,
         );
 
-        var citizenNames = citizensFetched.map((c) => c.name);
+        final citizenNames = citizensFetched.map((final c) => c.name);
         expect(citizenNames, ['Alex', 'Lina']);
-        var citizenCompanyNames = citizensFetched.map((c) => c.company?.name);
+        final citizenCompanyNames = citizensFetched.map((final c) => c.company?.name);
         expect(citizenCompanyNames, ['Serverpod', 'Apple']);
-        var citizenCompanyTownNames = citizensFetched.map(
-          (c) => c.company?.town?.name,
+        final citizenCompanyTownNames = citizensFetched.map(
+          (final c) => c.company?.town?.name,
         );
         expect(citizenCompanyTownNames, ['Stockholm', 'San Francisco']);
       },
@@ -183,7 +183,7 @@ void main() async {
         await _createTestDatabase(session);
         citizensWithDeepIncludes = await CitizenInt.db.find(
           session,
-          orderBy: (t) => t.id,
+          orderBy: (final t) => t.id,
           include: CitizenInt.include(
             company: CompanyUuid.include(town: TownInt.include()),
             oldCompany: CompanyUuid.include(town: TownInt.include()),
@@ -250,7 +250,7 @@ void main() async {
         await _createTestDatabase(session);
         citizensWithoutIncludes = await CitizenInt.db.find(
           session,
-          orderBy: (t) => t.id,
+          orderBy: (final t) => t.id,
         );
       });
 
@@ -298,7 +298,7 @@ void main() async {
         await _createTestDatabase(session);
         citizensWithShallowIncludes = await CitizenInt.db.find(
           session,
-          orderBy: (t) => t.id,
+          orderBy: (final t) => t.id,
           include: CitizenInt.include(
             company: CompanyUuid.include(),
             oldCompany: CompanyUuid.include(),
@@ -358,16 +358,16 @@ void main() async {
     late List<CitizenInt>? allCitizens;
     setUpAll(() async {
       await _createTestDatabase(session);
-      allCitizens = await CitizenInt.db.find(session, orderBy: (t) => t.id);
+      allCitizens = await CitizenInt.db.find(session, orderBy: (final t) => t.id);
     });
 
     tearDownAll(() async => await deleteAll(session));
 
     test('then retrieved citizen is same as expected.', () async {
       assert(allCitizens != null && allCitizens!.length > 1);
-      var secondCitizen = allCitizens![1];
+      final secondCitizen = allCitizens![1];
 
-      var citizenById = await CitizenInt.db.findById(
+      final citizenById = await CitizenInt.db.findById(
         session,
         secondCitizen.id!,
         include: CitizenInt.include(company: CompanyUuid.include()),
@@ -388,7 +388,7 @@ void main() async {
         await _createTestDatabase(session);
         citizensIncludingAddress = await CitizenInt.db.find(
           session,
-          orderBy: (t) => t.id,
+          orderBy: (final t) => t.id,
           include: CitizenInt.include(
             address: AddressUuid.include(),
           ),
@@ -423,7 +423,7 @@ void main() async {
         await _createTestDatabase(session);
         addresses = await AddressUuid.db.find(
           session,
-          orderBy: (t) => t.id,
+          orderBy: (final t) => t.id,
           include: AddressUuid.include(
             inhabitant: CitizenInt.include(),
           ),
@@ -437,7 +437,7 @@ void main() async {
       });
 
       test('then the addresses contains alex and isak', () async {
-        var inhabitantsNames = addresses.map((e) => e.inhabitant?.name);
+        final inhabitantsNames = addresses.map((final e) => e.inhabitant?.name);
         expect(inhabitantsNames, contains('Alex'));
         expect(inhabitantsNames, contains('Isak'));
       });
@@ -464,32 +464,32 @@ void main() async {
     });
 
     test('then the first post has a reference to the next post', () {
-      var firstPost = posts[2];
+      final firstPost = posts[2];
       expect(firstPost.next?.content, posts[1].content);
     });
 
     test('then the first post has a null reference to the previous post', () {
-      var firstPost = posts[2];
+      final firstPost = posts[2];
       expect(firstPost.previous, isNull);
     });
 
     test('then the second post has a reference to the next post', () {
-      var secondPost = posts[1];
+      final secondPost = posts[1];
       expect(secondPost.next?.content, posts[0].content);
     });
 
     test('then the second post has a reference to the previous post', () {
-      var secondPost = posts[1];
+      final secondPost = posts[1];
       expect(secondPost.previous?.content, posts[2].content);
     });
 
     test('then the third post has a null reference to the next post', () {
-      var thirdPost = posts[0];
+      final thirdPost = posts[0];
       expect(thirdPost.next, isNull);
     });
 
     test('then the third post has a reference to the previous post', () {
-      var thirdPost = posts[0];
+      final thirdPost = posts[0];
       expect(thirdPost.previous?.content, posts[1].content);
     });
   });

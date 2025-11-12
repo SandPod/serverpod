@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with one to many relation', () {
     tearDown(() async {
@@ -21,7 +21,7 @@ void main() async {
     test(
       'when deleting models filtered by none many relation then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -36,10 +36,10 @@ void main() async {
           OrderUuid(description: 'OrderUuid 5', customerId: customers[2].id!),
         ]);
 
-        var deletedCustomers = await CustomerInt.db.deleteWhere(
+        final deletedCustomers = await CustomerInt.db.deleteWhere(
           session,
           // All customers with no order.
-          where: (c) => c.orders.none(),
+          where: (final c) => c.orders.none(),
         );
 
         expect(deletedCustomers, hasLength(1));
@@ -53,7 +53,7 @@ void main() async {
     test(
       'when deleting models filtered by filtered none many relation then result is as expected',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -74,14 +74,14 @@ void main() async {
           ),
         ]);
 
-        var deletedCustomers = await CustomerInt.db.deleteWhere(
+        final deletedCustomers = await CustomerInt.db.deleteWhere(
           session,
           // All customers with no orders with a description starting with 'prem'.
-          where: (c) => c.orders.none((o) => o.description.ilike('prem%')),
+          where: (final c) => c.orders.none((final o) => o.description.ilike('prem%')),
         );
 
         expect(deletedCustomers, hasLength(2));
-        var deletedCustomerIds = deletedCustomers.map((c) => c.id).toList();
+        final deletedCustomerIds = deletedCustomers.map((final c) => c.id).toList();
         expect(
           deletedCustomerIds,
           containsAll([
@@ -95,7 +95,7 @@ void main() async {
     test(
       'when deleting models filtered on none many relation in combination with other filter then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -110,14 +110,14 @@ void main() async {
           OrderUuid(description: 'OrderUuid 5', customerId: customers[2].id!),
         ]);
 
-        var deletedCustomers = await CustomerInt.db.deleteWhere(
+        final deletedCustomers = await CustomerInt.db.deleteWhere(
           session,
           // All customers with no orders or name 'Viktor'
-          where: (c) => c.orders.none() | c.name.equals('Viktor'),
+          where: (final c) => c.orders.none() | c.name.equals('Viktor'),
         );
 
         expect(deletedCustomers, hasLength(2));
-        var deletedCustomerIds = deletedCustomers.map((c) => c.id).toList();
+        final deletedCustomerIds = deletedCustomers.map((final c) => c.id).toList();
         expect(
           deletedCustomerIds,
           containsAll([
@@ -131,7 +131,7 @@ void main() async {
     test(
       'when deleting models filtered on OR filtered none many relation then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -152,12 +152,12 @@ void main() async {
           OrderUuid(description: 'OrderUuid 5', customerId: customers[2].id!),
         ]);
 
-        var deletedCustomers = await CustomerInt.db.deleteWhere(
+        final deletedCustomers = await CustomerInt.db.deleteWhere(
           session,
           // All customers with no orders with a description starting with 'prem'
           // or 'basic'.
-          where: (c) => c.orders.none(
-            (o) => o.description.ilike('prem%') | o.description.ilike('basic%'),
+          where: (final c) => c.orders.none(
+            (final o) => o.description.ilike('prem%') | o.description.ilike('basic%'),
           ),
         );
 
@@ -172,7 +172,7 @@ void main() async {
     test(
       'when deleting models filtered on multiple filtered none many relation then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -206,17 +206,17 @@ void main() async {
           ),
         ]);
 
-        var deletedCustomers = await CustomerInt.db.deleteWhere(
+        final deletedCustomers = await CustomerInt.db.deleteWhere(
           session,
           // All customers with no orders with a description starting with 'prem'
           // or no orders with a description starting with 'basic'.
-          where: (c) =>
-              c.orders.none((o) => o.description.ilike('prem%')) |
-              c.orders.none((o) => o.description.ilike('basic%')),
+          where: (final c) =>
+              c.orders.none((final o) => o.description.ilike('prem%')) |
+              c.orders.none((final o) => o.description.ilike('basic%')),
         );
 
         expect(deletedCustomers, hasLength(2));
-        var deletedCustomerIds = deletedCustomers.map((c) => c.id).toList();
+        final deletedCustomerIds = deletedCustomers.map((final c) => c.id).toList();
         expect(
           deletedCustomerIds,
           containsAll([
@@ -247,12 +247,12 @@ void main() async {
     test(
       'when filtering on nested none many relation then result is as expected',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
         ]);
-        var orders = await OrderUuid.db.insert(session, [
+        final orders = await OrderUuid.db.insert(session, [
           // Alex orders
           OrderUuid(description: 'OrderUuid 1', customerId: customers[0].id!),
           OrderUuid(description: 'OrderUuid 2', customerId: customers[0].id!),
@@ -274,14 +274,14 @@ void main() async {
           CommentInt(description: 'CommentInt 11', orderId: orders[3].id),
         ]);
 
-        var deletedCustomers = await CustomerInt.db.deleteWhere(
+        final deletedCustomers = await CustomerInt.db.deleteWhere(
           session,
           // All customers without orders that have no comments.
-          where: (c) => c.orders.none((o) => o.comments.none()),
+          where: (final c) => c.orders.none((final o) => o.comments.none()),
         );
 
         expect(deletedCustomers, hasLength(2));
-        var deletedCustomerIds = deletedCustomers.map((c) => c.id).toList();
+        final deletedCustomerIds = deletedCustomers.map((final c) => c.id).toList();
         expect(
           deletedCustomerIds,
           containsAll([
@@ -295,12 +295,12 @@ void main() async {
     test(
       'when deleting models filtered on filtered nested none many relation then result is as expected',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
         ]);
-        var orders = await OrderUuid.db.insert(session, [
+        final orders = await OrderUuid.db.insert(session, [
           // Alex orders
           OrderUuid(description: 'OrderUuid 1', customerId: customers[0].id!),
           OrderUuid(description: 'OrderUuid 2', customerId: customers[0].id!),
@@ -326,16 +326,16 @@ void main() async {
           CommentInt(description: 'CommentInt 11', orderId: orders[3].id),
         ]);
 
-        var deletedCustomers = await CustomerInt.db.deleteWhere(
+        final deletedCustomers = await CustomerInt.db.deleteWhere(
           session,
-          where: (c) => c.orders.none(
+          where: (final c) => c.orders.none(
             /// All customers without orders that have no comments with a description starting with 'del'.
-            (o) => o.comments.none((c) => c.description.ilike('del%')),
+            (final o) => o.comments.none((final c) => c.description.ilike('del%')),
           ),
         );
 
         expect(deletedCustomers, hasLength(2));
-        var deletedCustomerIds = deletedCustomers.map((c) => c.id).toList();
+        final deletedCustomerIds = deletedCustomers.map((final c) => c.id).toList();
         expect(
           deletedCustomerIds,
           containsAll([

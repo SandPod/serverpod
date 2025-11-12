@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with many to many relation', () {
     tearDown(() async {
@@ -19,13 +19,13 @@ void main() async {
     test(
       'when fetching models filtered by every many relation then result is as expected',
       () async {
-        var students = await Student.db.insert(session, [
+        final students = await Student.db.insert(session, [
           Student(name: 'Alex'),
           Student(name: 'Viktor'),
           Student(name: 'Isak'),
           Student(name: 'Lisa'),
         ]);
-        var courses = await Course.db.insert(session, [
+        final courses = await Course.db.insert(session, [
           Course(name: 'Level 1: Math'),
           Course(name: 'Level 1: English'),
           Course(name: 'Level 1: History'),
@@ -46,14 +46,14 @@ void main() async {
           Enrollment(studentId: students[3].id!, courseId: courses[5].id!),
         ]);
 
-        var studentsFetched = await Student.db.find(
+        final studentsFetched = await Student.db.find(
           session,
           // Fetch all students enrolled to only level 2 courses.
-          where: (s) =>
-              s.enrollments.every((e) => e.course.name.ilike('level 2:%')),
+          where: (final s) =>
+              s.enrollments.every((final e) => e.course.name.ilike('level 2:%')),
         );
 
-        var studentNames = studentsFetched.map((e) => e.name);
+        final studentNames = studentsFetched.map((final e) => e.name);
         expect(studentNames, ['Lisa']);
       },
     );
@@ -61,13 +61,13 @@ void main() async {
     test(
       'when fetching models filtered by every many relation in combination with other filter then result is as expected',
       () async {
-        var students = await Student.db.insert(session, [
+        final students = await Student.db.insert(session, [
           Student(name: 'Alex'),
           Student(name: 'Viktor'),
           Student(name: 'Isak'),
           Student(name: 'Lisa'),
         ]);
-        var courses = await Course.db.insert(session, [
+        final courses = await Course.db.insert(session, [
           Course(name: 'Level 1: Math'),
           Course(name: 'Level 1: English'),
           Course(name: 'Level 1: History'),
@@ -86,15 +86,15 @@ void main() async {
           Enrollment(studentId: students[3].id!, courseId: courses[3].id!),
         ]);
 
-        var studentsFetched = await Student.db.find(
+        final studentsFetched = await Student.db.find(
           session,
           // Fetch all students enrolled to only math courses or is named Alex.
-          where: (s) =>
-              (s.enrollments.every((e) => e.course.name.ilike('%math%'))) |
+          where: (final s) =>
+              (s.enrollments.every((final e) => e.course.name.ilike('%math%'))) |
               s.name.equals('Alex'),
         );
 
-        var studentNames = studentsFetched.map((e) => e.name);
+        final studentNames = studentsFetched.map((final e) => e.name);
         expect(studentNames, hasLength(2));
         expect(studentNames, containsAll(['Alex', 'Lisa']));
       },
@@ -103,14 +103,14 @@ void main() async {
     test(
       'when fetching models filtered by multiple every many relation then result is as expected',
       () async {
-        var students = await Student.db.insert(session, [
+        final students = await Student.db.insert(session, [
           Student(name: 'Alex'),
           Student(name: 'Viktor'),
           Student(name: 'Isak'),
           Student(name: 'Lisa'),
           Student(name: 'Anna'),
         ]);
-        var courses = await Course.db.insert(session, [
+        final courses = await Course.db.insert(session, [
           Course(name: 'Level 1: Math'),
           Course(name: 'Level 1: English'),
           Course(name: 'Level 1: History'),
@@ -130,15 +130,15 @@ void main() async {
           Enrollment(studentId: students[3].id!, courseId: courses[5].id!),
         ]);
 
-        var studentsFetched = await Student.db.find(
+        final studentsFetched = await Student.db.find(
           session,
           // Fetch all students enrolled to only level 2 courses or only math courses.
-          where: (s) =>
-              (s.enrollments.every((e) => e.course.name.ilike('level 2:%'))) |
-              (s.enrollments.every((e) => e.course.name.ilike('%math%'))),
+          where: (final s) =>
+              (s.enrollments.every((final e) => e.course.name.ilike('level 2:%'))) |
+              (s.enrollments.every((final e) => e.course.name.ilike('%math%'))),
         );
 
-        var studentNames = studentsFetched.map((e) => e.name);
+        final studentNames = studentsFetched.map((final e) => e.name);
         expect(studentNames, hasLength(2));
         expect(studentNames, containsAll(['Isak', 'Lisa']));
       },

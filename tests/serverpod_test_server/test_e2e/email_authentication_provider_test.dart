@@ -6,7 +6,7 @@ import 'package:serverpod_test_server/test_util/test_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client(
+  final client = Client(
     serverUrl,
     authenticationKeyManager: TestAuthKeyManager(),
   );
@@ -19,7 +19,7 @@ void main() {
   test(
     'Given no user exists when creating user then user is created and can be authenticated',
     () async {
-      var createAccountRequest = await client.modules.auth.email
+      final createAccountRequest = await client.modules.auth.email
           .createAccountRequest(
             userName,
             email,
@@ -31,7 +31,7 @@ void main() {
         reason: 'Failed to submit create account request',
       );
 
-      var verificationCode = await client.emailAuthTestMethods
+      final verificationCode = await client.emailAuthTestMethods
           .findVerificationCode(userName, email);
       expect(
         verificationCode,
@@ -39,7 +39,7 @@ void main() {
         reason: 'Failed to find verification code',
       );
 
-      var response = await client.modules.auth.email.createAccount(
+      final response = await client.modules.auth.email.createAccount(
         email,
         verificationCode!,
       );
@@ -50,7 +50,7 @@ void main() {
         reason: 'Failed to create account using verification code',
       );
 
-      var authResponse = await client.modules.auth.email.authenticate(
+      final authResponse = await client.modules.auth.email.authenticate(
         email,
         password,
       );
@@ -65,14 +65,14 @@ void main() {
   group('Given existing user', () {
     setUp(
       () async {
-        var createUserRequest = await client.emailAuthTestMethods.createUser(
+        final createUserRequest = await client.emailAuthTestMethods.createUser(
           userName,
           email,
           password,
         );
         assert(createUserRequest, 'Failed to create user');
 
-        var authResponse = await client.modules.auth.email.authenticate(
+        final authResponse = await client.modules.auth.email.authenticate(
           email,
           password,
         );
@@ -83,7 +83,7 @@ void main() {
     test(
       'when changing password using password reset then user can authenticate using new password',
       () async {
-        var initiatePasswordResetResponse = await client.modules.auth.email
+        final initiatePasswordResetResponse = await client.modules.auth.email
             .initiatePasswordReset(email);
         expect(
           initiatePasswordResetResponse,
@@ -91,15 +91,15 @@ void main() {
           reason: 'Failed to initiate password reset',
         );
 
-        var resetCode = await client.emailAuthTestMethods.findResetCode(email);
+        final resetCode = await client.emailAuthTestMethods.findResetCode(email);
         expect(
           resetCode,
           isNotNull,
           reason: 'Failed to find password reset code',
         );
 
-        var newPassword = '$password-with-addition';
-        var resetPasswordResponse = await client.modules.auth.email
+        const newPassword = '$password-with-addition';
+        final resetPasswordResponse = await client.modules.auth.email
             .resetPassword(
               resetCode!,
               newPassword,
@@ -110,7 +110,7 @@ void main() {
           reason: 'Failed to reset password',
         );
 
-        var authResponse = await client.modules.auth.email.authenticate(
+        final authResponse = await client.modules.auth.email.authenticate(
           email,
           newPassword,
         );
@@ -125,8 +125,8 @@ void main() {
     test(
       'when authenticating with wrong password then authentication fails',
       () async {
-        var wrongPassword = '$password-wrong';
-        var authResponse = await client.modules.auth.email.authenticate(
+        const wrongPassword = '$password-wrong';
+        final authResponse = await client.modules.auth.email.authenticate(
           email,
           wrongPassword,
         );
@@ -143,14 +143,14 @@ void main() {
   group('Given existing and authenticated user', () {
     setUp(
       () async {
-        var createUserRequest = await client.emailAuthTestMethods.createUser(
+        final createUserRequest = await client.emailAuthTestMethods.createUser(
           userName,
           email,
           password,
         );
         assert(createUserRequest, 'Failed to create user');
 
-        var authResponse = await client.modules.auth.email.authenticate(
+        final authResponse = await client.modules.auth.email.authenticate(
           email,
           password,
         );
@@ -172,8 +172,8 @@ void main() {
     test(
       'when changing password then user can authenticate with new password',
       () async {
-        var newPassword = '$password-with-addition';
-        var changePasswordResponse = await client.modules.auth.email
+        const newPassword = '$password-with-addition';
+        final changePasswordResponse = await client.modules.auth.email
             .changePassword(
               password,
               newPassword,
@@ -185,7 +185,7 @@ void main() {
           reason: 'Password change request failed.',
         );
 
-        var authResponse = await client.modules.auth.email.authenticate(
+        final authResponse = await client.modules.auth.email.authenticate(
           email,
           newPassword,
         );

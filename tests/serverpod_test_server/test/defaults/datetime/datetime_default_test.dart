@@ -8,7 +8,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "default=now" field should not be in UTC',
         () {
-          var object = DateTimeDefault();
+          final object = DateTimeDefault();
           expect(object.dateTimeDefaultNow.isUtc, isFalse);
         },
       );
@@ -16,7 +16,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "default" field with UTC string should be in UTC',
         () {
-          var object = DateTimeDefault();
+          final object = DateTimeDefault();
           expect(object.dateTimeDefaultStr.isUtc, isTrue);
         },
       );
@@ -24,7 +24,7 @@ void main() async {
       test(
         'when an object of the class is created, then the nullable "default" field with UTC string should be in UTC',
         () {
-          var object = DateTimeDefault();
+          final object = DateTimeDefault();
           expect(object.dateTimeDefaultStrNull?.isUtc, isTrue);
         },
       );
@@ -32,7 +32,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "default=now" field value should match the current time',
         () {
-          var object = DateTimeDefault();
+          final object = DateTimeDefault();
           expect(
             object.dateTimeDefaultNow.difference(DateTime.now()).inSeconds,
             0,
@@ -43,7 +43,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "default" field value should match the default',
         () {
-          var object = DateTimeDefault();
+          final object = DateTimeDefault();
           expect(
             object.dateTimeDefaultStr,
             DateTime.parse('2024-05-24T22:00:00.000Z'),
@@ -54,7 +54,7 @@ void main() async {
       test(
         'when an object of the class is created, then the nullable "default" field value should match the default',
         () {
-          var object = DateTimeDefault();
+          final object = DateTimeDefault();
           expect(
             object.dateTimeDefaultStrNull,
             DateTime.parse('2024-05-24T22:00:00.000Z'),
@@ -65,8 +65,8 @@ void main() async {
       test(
         'when an object of the class is created with a value for "dateTimeDefaultNow", then the field value should match the provided value',
         () {
-          var date = DateTime.parse('2024-05-05T22:00:00.000Z');
-          var object = DateTimeDefault(
+          final date = DateTime.parse('2024-05-05T22:00:00.000Z');
+          final object = DateTimeDefault(
             dateTimeDefaultNow: date,
           );
           expect(
@@ -79,8 +79,8 @@ void main() async {
       test(
         'when an object of the class is created with a value for "dateTimeDefaultStr", then the field value should match the provided value',
         () {
-          var date = DateTime.parse('2024-05-05T22:00:00.000Z');
-          var object = DateTimeDefault(
+          final date = DateTime.parse('2024-05-05T22:00:00.000Z');
+          final object = DateTimeDefault(
             dateTimeDefaultStr: date,
           );
           expect(
@@ -93,8 +93,8 @@ void main() async {
       test(
         'when an object of the class is created with a value for "dateTimeDefaultStrNull", then the field value should match the provided value',
         () {
-          var date = DateTime.parse('2024-05-05T22:00:00.000Z');
-          var object = DateTimeDefault(
+          final date = DateTime.parse('2024-05-05T22:00:00.000Z');
+          final object = DateTimeDefault(
             dateTimeDefaultStrNull: date,
           );
           expect(

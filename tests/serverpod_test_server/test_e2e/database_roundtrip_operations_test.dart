@@ -2,13 +2,13 @@ import 'package:serverpod_test_client/serverpod_test_client.dart';
 import 'package:serverpod_test_server/test_util/config.dart';
 import 'package:test/test.dart';
 
-Future<void> _setupTestData(Client client) async {
+Future<void> _setupTestData(final Client client) async {
   await client.basicDatabase.deleteAllSimpleTestData();
   await client.basicDatabase.createSimpleTestData(100);
 }
 
 void main() {
-  var client = Client(serverUrl);
+  final client = Client(serverUrl);
 
   group('Given the database-roundtrip/echo server', () {
     test(
@@ -19,7 +19,7 @@ void main() {
 
         expect(types.id, isNotNull);
 
-        var storedId = await client.basicDatabase.getTypesRawQuery(types.id!);
+        final storedId = await client.basicDatabase.getTypesRawQuery(types.id!);
         expect(storedId, equals(types.id));
       },
     );
@@ -27,10 +27,10 @@ void main() {
     test(
       'When all "Type" objects are removed, then the count will be 0',
       () async {
-        var removedRows = await client.basicDatabase.deleteAllInTypes();
+        final removedRows = await client.basicDatabase.deleteAllInTypes();
         expect(removedRows, isNotEmpty);
 
-        var count = await client.basicDatabase.countTypesRows();
+        final count = await client.basicDatabase.countTypesRows();
         expect(count, equals(0));
       },
     );
@@ -69,18 +69,18 @@ void main() {
       () async {
         await _setupTestData(client);
 
-        var oldRow = await client.basicDatabase.findFirstRowSimpleData(0);
+        final oldRow = await client.basicDatabase.findFirstRowSimpleData(0);
         expect(oldRow, isNotNull);
 
-        var newRow = oldRow!.copyWith(num: 1000);
-        var result = await client.basicDatabase.updateRowSimpleData(newRow);
+        final newRow = oldRow!.copyWith(num: 1000);
+        final result = await client.basicDatabase.updateRowSimpleData(newRow);
         expect(result.id, isNotNull);
 
-        var count = await client.basicDatabase.countSimpleData();
+        final count = await client.basicDatabase.countSimpleData();
         expect(count, isNotNull);
         expect(count, equals(100));
 
-        var list = await client.basicDatabase.findSimpleDataRowsLessThan(
+        final list = await client.basicDatabase.findSimpleDataRowsLessThan(
           100,
           0,
           100,
@@ -98,7 +98,7 @@ void main() {
 
         await client.transactionsDatabase.removeRow(50);
 
-        var count = await client.basicDatabase.countSimpleData();
+        final count = await client.basicDatabase.countSimpleData();
         expect(count, isNotNull);
         expect(count, equals(99));
       },
@@ -109,7 +109,7 @@ void main() {
       () async {
         await _setupTestData(client);
 
-        bool? result = await client.transactionsDatabase.updateInsertDelete(
+        final bool result = await client.transactionsDatabase.updateInsertDelete(
           50,
           500,
           0,
@@ -117,7 +117,7 @@ void main() {
         expect(result, isNotNull);
         expect(result, equals(true));
 
-        var list = await client.basicDatabase.findSimpleDataRowsLessThan(
+        final list = await client.basicDatabase.findSimpleDataRowsLessThan(
           10000,
           0,
           200,

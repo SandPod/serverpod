@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with one to many relation', () {
     tearDown(() async {
@@ -14,8 +14,8 @@ void main() async {
     test(
       'when fetching models filtered by none many relation then result is as expected.',
       () async {
-        var zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
-        var smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
+        final zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
+        final smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
 
         await Cat.db.insert(session, [
           Cat(name: 'Kitten1', motherId: zelda.id),
@@ -23,12 +23,12 @@ void main() async {
           Cat(name: 'Kitten3', motherId: smulan.id),
         ]);
 
-        var fetchedCats = await Cat.db.find(
+        final fetchedCats = await Cat.db.find(
           session,
-          where: (t) => t.kittens.none(),
+          where: (final t) => t.kittens.none(),
         );
 
-        var catNames = fetchedCats.map((e) => e.name);
+        final catNames = fetchedCats.map((final e) => e.name);
         expect(catNames, hasLength(3));
         expect(catNames, containsAll(['Kitten1', 'Kitten2', 'Kitten3']));
       },
@@ -37,20 +37,20 @@ void main() async {
     test(
       'when fetching models filtered by filtered none many relation then result is as expected',
       () async {
-        var zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
-        var smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
+        final zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
+        final smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
 
         await Cat.db.insert(session, [
           Cat(name: 'Smulan III', motherId: zelda.id),
           Cat(name: 'Smulan II', motherId: smulan.id),
         ]);
 
-        var fetchedCats = await Cat.db.find(
+        final fetchedCats = await Cat.db.find(
           session,
-          where: (t) => t.kittens.none((t) => t.name.ilike('smul%')),
+          where: (final t) => t.kittens.none((final t) => t.name.ilike('smul%')),
         );
 
-        var catNames = fetchedCats.map((e) => e.name);
+        final catNames = fetchedCats.map((final e) => e.name);
         expect(catNames, hasLength(2));
         expect(catNames, containsAll(['Smulan III', 'Smulan II']));
       },
@@ -59,20 +59,20 @@ void main() async {
     test(
       'when fetching models filtered on none many relation in combination with other filter then result is as expected.',
       () async {
-        var zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
-        var smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
+        final zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
+        final smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
 
         await Cat.db.insert(session, [
           Cat(name: 'Kitten1', motherId: zelda.id),
           Cat(name: 'Kitten2', motherId: smulan.id),
         ]);
 
-        var fetchedCats = await Cat.db.find(
+        final fetchedCats = await Cat.db.find(
           session,
-          where: (t) => t.kittens.none() | t.name.equals('Zelda'),
+          where: (final t) => t.kittens.none() | t.name.equals('Zelda'),
         );
 
-        var catNames = fetchedCats.map((e) => e.name);
+        final catNames = fetchedCats.map((final e) => e.name);
         expect(catNames, hasLength(3));
         expect(catNames, containsAll(['Zelda', 'Kitten1', 'Kitten2']));
       },
@@ -81,22 +81,22 @@ void main() async {
     test(
       'when fetching models filtered on OR filtered none many relation then result is as expected.',
       () async {
-        var zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
-        var smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
+        final zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
+        final smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
 
         await Cat.db.insert(session, [
           Cat(name: 'Kitten1', motherId: zelda.id),
           Cat(name: 'Smulan II', motherId: smulan.id),
         ]);
 
-        var fetchedCats = await Cat.db.find(
+        final fetchedCats = await Cat.db.find(
           session,
-          where: (t) => t.kittens.none(
-            (o) => o.name.ilike('kitt%') | o.name.ilike('smul%'),
+          where: (final t) => t.kittens.none(
+            (final o) => o.name.ilike('kitt%') | o.name.ilike('smul%'),
           ),
         );
 
-        var catNames = fetchedCats.map((e) => e.name);
+        final catNames = fetchedCats.map((final e) => e.name);
         expect(catNames, hasLength(2));
         expect(catNames, containsAll(['Kitten1', 'Smulan II']));
       },
@@ -105,22 +105,22 @@ void main() async {
     test(
       'when fetching models filtered on multiple filtered none many relation then result is as expected.',
       () async {
-        var zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
-        var smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
+        final zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
+        final smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
 
         await Cat.db.insert(session, [
           Cat(name: 'Kitten1', motherId: zelda.id),
           Cat(name: 'Smulan II', motherId: smulan.id),
         ]);
 
-        var fetchedCats = await Cat.db.find(
+        final fetchedCats = await Cat.db.find(
           session,
-          where: (t) =>
-              t.kittens.none((o) => o.name.ilike('kitt%')) &
-              t.kittens.none((o) => o.name.ilike('smul%')),
+          where: (final t) =>
+              t.kittens.none((final o) => o.name.ilike('kitt%')) &
+              t.kittens.none((final o) => o.name.ilike('smul%')),
         );
 
-        var catNames = fetchedCats.map((e) => e.name);
+        final catNames = fetchedCats.map((final e) => e.name);
         expect(catNames, hasLength(2));
         expect(catNames, containsAll(['Kitten1', 'Smulan II']));
       },
@@ -135,10 +135,10 @@ void main() async {
     test(
       'when filtering on nested none many relation then result is as expected',
       () async {
-        var zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
-        var smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
+        final zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
+        final smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
 
-        var kittens = await Cat.db.insert(session, [
+        final kittens = await Cat.db.insert(session, [
           Cat(name: 'Kitten1', motherId: zelda.id),
           Cat(name: 'Smulan II', motherId: smulan.id),
         ]);
@@ -147,12 +147,12 @@ void main() async {
           Cat(name: 'Kitten2', motherId: kittens.first.id),
         ]);
 
-        var fetchedCats = await Cat.db.find(
+        final fetchedCats = await Cat.db.find(
           session,
-          where: (t) => t.kittens.none((o) => o.kittens.none()),
+          where: (final t) => t.kittens.none((final o) => o.kittens.none()),
         );
 
-        var catNames = fetchedCats.map((e) => e.name);
+        final catNames = fetchedCats.map((final e) => e.name);
         expect(catNames, hasLength(3));
         expect(catNames, containsAll(['Zelda', 'Smulan II', 'Kitten2']));
       },
@@ -161,10 +161,10 @@ void main() async {
     test(
       'when fetching models filtered on filtered nested none many relation then result is as expected',
       () async {
-        var zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
-        var smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
+        final zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
+        final smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
 
-        var kittens = await Cat.db.insert(session, [
+        final kittens = await Cat.db.insert(session, [
           Cat(name: 'Kitten1', motherId: zelda.id),
           Cat(name: 'Smulan II', motherId: smulan.id),
         ]);
@@ -173,14 +173,14 @@ void main() async {
           Cat(name: 'Kitten2', motherId: kittens.first.id),
         ]);
 
-        var fetchedCats = await Cat.db.find(
+        final fetchedCats = await Cat.db.find(
           session,
-          where: (t) => t.kittens.none(
-            (o) => o.kittens.none((o) => o.name.ilike('kitt%')),
+          where: (final t) => t.kittens.none(
+            (final o) => o.kittens.none((final o) => o.name.ilike('kitt%')),
           ),
         );
 
-        var catNames = fetchedCats.map((e) => e.name);
+        final catNames = fetchedCats.map((final e) => e.name);
         expect(catNames, hasLength(3));
         expect(catNames, containsAll(['Zelda', 'Smulan II', 'Kitten2']));
       },

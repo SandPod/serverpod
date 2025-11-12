@@ -2,19 +2,19 @@ import 'package:serverpod/serverpod.dart';
 
 class NamedParametersEndpoint extends Endpoint {
   Future<bool> namedParametersMethod(
-    Session session, {
-    required int namedInt,
-    int intWithDefaultValue = 42,
-    int? nullableInt,
-    int? nullableIntWithDefaultValue = 42,
+    final Session session, {
+    required final int namedInt,
+    final int intWithDefaultValue = 42,
+    final int? nullableInt,
+    final int? nullableIntWithDefaultValue = 42,
   }) async {
     return true;
   }
 
   Future<bool> namedParametersMethodEqualInts(
-    Session session, {
-    required int namedInt,
-    int? nullableInt,
+    final Session session, {
+    required final int namedInt,
+    final int? nullableInt,
   }) async {
     return namedInt == nullableInt;
   }

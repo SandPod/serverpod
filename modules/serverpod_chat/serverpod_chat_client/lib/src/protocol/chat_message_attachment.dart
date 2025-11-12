@@ -24,16 +24,16 @@ abstract class ChatMessageAttachment implements _i1.SerializableModel {
   });
 
   factory ChatMessageAttachment({
-    required String fileName,
-    required String url,
-    required String contentType,
-    String? previewImage,
-    int? previewWidth,
-    int? previewHeight,
+    required final String fileName,
+    required final String url,
+    required final String contentType,
+    final String? previewImage,
+    final int? previewWidth,
+    final int? previewHeight,
   }) = _ChatMessageAttachmentImpl;
 
   factory ChatMessageAttachment.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return ChatMessageAttachment(
       fileName: jsonSerialization['fileName'] as String,
@@ -67,12 +67,12 @@ abstract class ChatMessageAttachment implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ChatMessageAttachment copyWith({
-    String? fileName,
-    String? url,
-    String? contentType,
-    String? previewImage,
-    int? previewWidth,
-    int? previewHeight,
+    final String? fileName,
+    final String? url,
+    final String? contentType,
+    final String? previewImage,
+    final int? previewWidth,
+    final int? previewHeight,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -96,12 +96,12 @@ class _Undefined {}
 
 class _ChatMessageAttachmentImpl extends ChatMessageAttachment {
   _ChatMessageAttachmentImpl({
-    required String fileName,
-    required String url,
-    required String contentType,
-    String? previewImage,
-    int? previewWidth,
-    int? previewHeight,
+    required final String fileName,
+    required final String url,
+    required final String contentType,
+    final String? previewImage,
+    final int? previewWidth,
+    final int? previewHeight,
   }) : super._(
          fileName: fileName,
          url: url,
@@ -116,12 +116,12 @@ class _ChatMessageAttachmentImpl extends ChatMessageAttachment {
   @_i1.useResult
   @override
   ChatMessageAttachment copyWith({
-    String? fileName,
-    String? url,
-    String? contentType,
-    Object? previewImage = _Undefined,
-    Object? previewWidth = _Undefined,
-    Object? previewHeight = _Undefined,
+    final String? fileName,
+    final String? url,
+    final String? contentType,
+    final Object? previewImage = _Undefined,
+    final Object? previewWidth = _Undefined,
+    final Object? previewHeight = _Undefined,
   }) {
     return ChatMessageAttachment(
       fileName: fileName ?? this.fileName,

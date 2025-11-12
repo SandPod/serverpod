@@ -6,7 +6,7 @@ import 'package:test/test.dart';
 var _firstUri = Uri.parse('http://serverpod.dev');
 var _secondUri = Uri.parse('http://docs.serverpod.dev');
 
-Future<void> _createTestDatabase(Session session) async {
+Future<void> _createTestDatabase(final Session session) async {
   await Types.db.insert(session, [
     Types(aUri: _firstUri),
     Types(aUri: _secondUri),
@@ -14,19 +14,19 @@ Future<void> _createTestDatabase(Session session) async {
   ]);
 }
 
-Future<void> _deleteAll(Session session) async {
-  await Types.db.deleteWhere(session, where: (t) => Constant.bool(true));
+Future<void> _deleteAll(final Session session) async {
+  await Types.db.deleteWhere(session, where: (final t) => Constant.bool(true));
 }
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   setUpAll(() async => await _createTestDatabase(session));
   tearDownAll(() async => await _deleteAll(session));
 
   group('Given Uri column in database', () {
     test('when fetching all then all rows are returned.', () async {
-      var result = await Types.db.find(
+      final result = await Types.db.find(
         session,
         where: (_) => Constant.bool(true),
       );
@@ -37,9 +37,9 @@ void main() async {
     test(
       'when filtering using equals then matching row is returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aUri.equals(_firstUri),
+          where: (final t) => t.aUri.equals(_firstUri),
         );
 
         expect(result.first.aUri, _firstUri);
@@ -49,9 +49,9 @@ void main() async {
     test(
       'when filtering using equals with null then matching row is returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aUri.equals(null),
+          where: (final t) => t.aUri.equals(null),
         );
 
         expect(result.first.aUri, isNull);
@@ -61,9 +61,9 @@ void main() async {
     test(
       'when filtering using notEquals then matching rows are returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aUri.notEquals(_firstUri),
+          where: (final t) => t.aUri.notEquals(_firstUri),
         );
 
         expect(result.length, 2);
@@ -73,9 +73,9 @@ void main() async {
     test(
       'when filtering using notEquals with null then matching rows are returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aUri.notEquals(null),
+          where: (final t) => t.aUri.notEquals(null),
         );
 
         expect(result.length, 2);
@@ -85,9 +85,9 @@ void main() async {
     test(
       'when filtering using inSet then matching rows are returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aUri.inSet({_firstUri, _secondUri}),
+          where: (final t) => t.aUri.inSet({_firstUri, _secondUri}),
         );
 
         expect(result.length, 2);
@@ -97,9 +97,9 @@ void main() async {
     test(
       'when filtering using empty inSet then no rows are returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aUri.inSet({}),
+          where: (final t) => t.aUri.inSet({}),
         );
 
         expect(result, isEmpty);
@@ -109,9 +109,9 @@ void main() async {
     test(
       'when filtering using notInSet then matching row is returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aUri.notInSet({_firstUri}),
+          where: (final t) => t.aUri.notInSet({_firstUri}),
         );
 
         expect(result.length, 2);
@@ -121,9 +121,9 @@ void main() async {
     test(
       'when filtering using empty notInSet then no rows are returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aUri.notInSet({}),
+          where: (final t) => t.aUri.notInSet({}),
         );
 
         expect(result.length, 3);

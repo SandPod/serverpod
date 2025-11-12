@@ -5,16 +5,16 @@ import 'package:path/path.dart' as path;
 import 'package:uuid/uuid.dart';
 
 ({String projectName, String commandRoot}) createRandomProjectName(
-  String root,
+  final String root,
 ) {
-  final projectName = 'test_${Uuid().v4().replaceAll('-', '_').toLowerCase()}';
+  final projectName = 'test_${const Uuid().v4().replaceAll('-', '_').toLowerCase()}';
   final commandRoot = path.join(root, projectName, '${projectName}_server');
 
   return (projectName: projectName, commandRoot: commandRoot);
 }
 
 ({String serverDir, String flutterDir, String clientDir})
-createProjectFolderPaths(String projectName) {
+createProjectFolderPaths(final String projectName) {
   final serverDir = path.join(projectName, '${projectName}_server');
   final flutterDir = path.join(projectName, '${projectName}_flutter');
   final clientDir = path.join(projectName, '${projectName}_client');
@@ -22,13 +22,13 @@ createProjectFolderPaths(String projectName) {
   return (serverDir: serverDir, flutterDir: flutterDir, clientDir: clientDir);
 }
 
-String createServerFolderPath(String projectName) {
+String createServerFolderPath(final String projectName) {
   return path.join(projectName, '${projectName}_server');
 }
 
-Future<bool> isNetworkPortAvailable(int port) async {
+Future<bool> isNetworkPortAvailable(final int port) async {
   try {
-    var socket = await ServerSocket.bind(InternetAddress.anyIPv4, port);
+    final socket = await ServerSocket.bind(InternetAddress.anyIPv4, port);
     await socket.close();
     return true;
   } catch (e) {
@@ -37,13 +37,13 @@ Future<bool> isNetworkPortAvailable(int port) async {
 }
 
 Future<ProcessResult> runProcess(
-  String command,
-  List<String> arguments, {
-  String? workingDirectory,
-  Map<String, String>? environment,
-  bool skipBatExtentionOnWindows = false,
+  final String command,
+  final List<String> arguments, {
+  final String? workingDirectory,
+  final Map<String, String>? environment,
+  final bool skipBatExtentionOnWindows = false,
 }) async {
-  var process = await Process.run(
+  final process = await Process.run(
     _getCommandToRun(command, skipBatExtentionOnWindows),
     arguments,
     workingDirectory: workingDirectory,
@@ -57,13 +57,13 @@ Future<ProcessResult> runProcess(
 }
 
 Future<Process> startProcess(
-  String command,
-  List<String> arguments, {
-  String? workingDirectory,
-  Map<String, String>? environment,
-  bool ignorePlatform = false,
+  final String command,
+  final List<String> arguments, {
+  final String? workingDirectory,
+  final Map<String, String>? environment,
+  final bool ignorePlatform = false,
 }) async {
-  var process = await Process.start(
+  final process = await Process.start(
     _getCommandToRun(command, ignorePlatform),
     arguments,
     workingDirectory: workingDirectory,
@@ -72,15 +72,15 @@ Future<Process> startProcess(
 
   process.stderr
       .transform(utf8.decoder)
-      .listen((e) => print('COMMAND "$command" stderr: $e'));
+      .listen((final e) => print('COMMAND "$command" stderr: $e'));
   process.stdout
       .transform(utf8.decoder)
-      .listen((e) => print('COMMAND "$command" stdout: $e'));
+      .listen((final e) => print('COMMAND "$command" stdout: $e'));
 
   return process;
 }
 
-String _getCommandToRun(String command, bool ignorePlatform) {
+String _getCommandToRun(final String command, final bool ignorePlatform) {
   if (ignorePlatform) {
     return command;
   }

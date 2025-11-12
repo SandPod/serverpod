@@ -5,15 +5,15 @@ class StreamingLoggingEndpoint extends Endpoint {
   static int _logCount = 0;
 
   @override
-  Future<void> streamOpened(StreamingSession session) async {
+  Future<void> streamOpened(final StreamingSession session) async {
     _logCount = 0;
     session.log('streamOpened');
   }
 
   @override
   Future<void> handleStreamMessage(
-    StreamingSession session,
-    SerializableModel message,
+    final StreamingSession session,
+    final SerializableModel message,
   ) async {
     if (message is SimpleData) {
       session.log('handleStreamMessage $_logCount');

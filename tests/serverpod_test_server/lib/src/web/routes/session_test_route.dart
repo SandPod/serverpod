@@ -4,17 +4,17 @@ import 'package:serverpod/serverpod.dart';
 
 class SessionTestRoute extends Route {
   @override
-  FutureOr<Result> handleCall(Session session, Request request) async {
-    var auth = session.authenticated;
-    var body = jsonEncode({
+  FutureOr<Result> handleCall(final Session session, final Request request) async {
+    final auth = session.authenticated;
+    final body = jsonEncode({
       'isAuthenticated': auth != null,
       'userId': auth?.userIdentifier,
-      'scopes': auth?.scopes.map((s) => s.name).toList() ?? [],
+      'scopes': auth?.scopes.map((final s) => s.name).toList() ?? [],
       'authId': auth?.authId,
     });
     return Response.ok(
       body: Body.fromString(body),
-      headers: Headers.build((mh) {
+      headers: Headers.build((final mh) {
         mh['Content-Type'] = ['application/json'];
       }),
     );

@@ -22,16 +22,16 @@ abstract class ObjectWithCustomClass
   });
 
   factory ObjectWithCustomClass({
-    required _i2.CustomClassWithoutProtocolSerialization
+    required final _i2.CustomClassWithoutProtocolSerialization
     customClassWithoutProtocolSerialization,
-    required _i2.CustomClassWithProtocolSerialization
+    required final _i2.CustomClassWithProtocolSerialization
     customClassWithProtocolSerialization,
-    required _i2.CustomClassWithProtocolSerializationMethod
+    required final _i2.CustomClassWithProtocolSerializationMethod
     customClassWithProtocolSerializationMethod,
   }) = _ObjectWithCustomClassImpl;
 
   factory ObjectWithCustomClass.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return ObjectWithCustomClass(
       customClassWithoutProtocolSerialization:
@@ -61,11 +61,11 @@ abstract class ObjectWithCustomClass
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ObjectWithCustomClass copyWith({
-    _i2.CustomClassWithoutProtocolSerialization?
+    final _i2.CustomClassWithoutProtocolSerialization?
     customClassWithoutProtocolSerialization,
-    _i2.CustomClassWithProtocolSerialization?
+    final _i2.CustomClassWithProtocolSerialization?
     customClassWithProtocolSerialization,
-    _i2.CustomClassWithProtocolSerializationMethod?
+    final _i2.CustomClassWithProtocolSerializationMethod?
     customClassWithProtocolSerializationMethod,
   });
   @override
@@ -115,11 +115,11 @@ abstract class ObjectWithCustomClass
 
 class _ObjectWithCustomClassImpl extends ObjectWithCustomClass {
   _ObjectWithCustomClassImpl({
-    required _i2.CustomClassWithoutProtocolSerialization
+    required final _i2.CustomClassWithoutProtocolSerialization
     customClassWithoutProtocolSerialization,
-    required _i2.CustomClassWithProtocolSerialization
+    required final _i2.CustomClassWithProtocolSerialization
     customClassWithProtocolSerialization,
-    required _i2.CustomClassWithProtocolSerializationMethod
+    required final _i2.CustomClassWithProtocolSerializationMethod
     customClassWithProtocolSerializationMethod,
   }) : super._(
          customClassWithoutProtocolSerialization:
@@ -135,11 +135,11 @@ class _ObjectWithCustomClassImpl extends ObjectWithCustomClass {
   @_i1.useResult
   @override
   ObjectWithCustomClass copyWith({
-    _i2.CustomClassWithoutProtocolSerialization?
+    final _i2.CustomClassWithoutProtocolSerialization?
     customClassWithoutProtocolSerialization,
-    _i2.CustomClassWithProtocolSerialization?
+    final _i2.CustomClassWithProtocolSerialization?
     customClassWithProtocolSerialization,
-    _i2.CustomClassWithProtocolSerializationMethod?
+    final _i2.CustomClassWithProtocolSerializationMethod?
     customClassWithProtocolSerializationMethod,
   }) {
     return ObjectWithCustomClass(

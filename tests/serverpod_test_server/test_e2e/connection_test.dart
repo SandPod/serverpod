@@ -5,13 +5,13 @@ import 'package:serverpod_test_server/test_util/config.dart';
 import 'package:serverpod_test_shared/serverpod_test_shared.dart';
 import 'package:test/test.dart';
 
-Future<void> setupTestData(Client client) async {
+Future<void> setupTestData(final Client client) async {
   await client.basicDatabase.deleteAllSimpleTestData();
   await client.basicDatabase.createSimpleTestData(100);
 }
 
 ByteData createByteData() {
-  var ints = Uint8List(256);
+  final ints = Uint8List(256);
   for (var i = 0; i < 256; i++) {
     ints[i] = i;
   }
@@ -19,7 +19,7 @@ ByteData createByteData() {
 }
 
 void main() {
-  var client = Client(serverUrl);
+  final client = Client(serverUrl);
 
   group('Calls', () {
     test(
@@ -27,13 +27,13 @@ void main() {
       () async {
         await client.simple.setGlobalInt(10);
         await client.simple.addToGlobalInt();
-        var value = await client.simple.getGlobalInt();
+        final value = await client.simple.getGlobalInt();
         expect(value, equals(11));
       },
     );
 
     test('Named parameters basic call', () async {
-      var result = await client.namedParameters.namedParametersMethod(
+      final result = await client.namedParameters.namedParametersMethod(
         namedInt: 42,
         intWithDefaultValue: 42,
       );
@@ -41,7 +41,7 @@ void main() {
     });
 
     test('Named parameters equal', () async {
-      var result = await client.namedParameters.namedParametersMethodEqualInts(
+      final result = await client.namedParameters.namedParametersMethodEqualInts(
         namedInt: 42,
         nullableInt: 42,
       );
@@ -62,22 +62,22 @@ void main() {
     });
 
     test('Optional parameters ignored', () async {
-      var result = await client.optionalParameters.returnOptionalInt();
+      final result = await client.optionalParameters.returnOptionalInt();
       expect(result, isNull);
     });
 
     test('Optional parameters set to value', () async {
-      var result = await client.optionalParameters.returnOptionalInt(42);
+      final result = await client.optionalParameters.returnOptionalInt(42);
       expect(result, 42);
     });
 
     test('Optional parameters set to null', () async {
-      var result = await client.optionalParameters.returnOptionalInt(null);
+      final result = await client.optionalParameters.returnOptionalInt(null);
       expect(result, null);
     });
 
     test('List<int> parameter and return type', () async {
-      var result = await client.listParameters.returnIntList([0, 1, 2]);
+      final result = await client.listParameters.returnIntList([0, 1, 2]);
       expect(result.length, equals(3));
       expect(result[0], equals(0));
       expect(result[1], equals(1));
@@ -85,7 +85,7 @@ void main() {
     });
 
     test('List<List<int>> parameter and return type', () async {
-      var result = await client.listParameters.returnIntListList([
+      final result = await client.listParameters.returnIntListList([
         [0, 1, 2],
         [3, 4, 5],
       ]);
@@ -113,7 +113,7 @@ void main() {
     });
 
     test('List<List<int>?> parameter and return type', () async {
-      var result = await client.listParameters.returnIntListNullableList([
+      final result = await client.listParameters.returnIntListNullableList([
         [0, 1, 2],
         null,
       ]);
@@ -147,7 +147,7 @@ void main() {
     });
 
     test('List<int?> parameter and return type', () async {
-      var result = await client.listParameters.returnIntListNullableInts([
+      final result = await client.listParameters.returnIntListNullableInts([
         0,
         null,
         2,
@@ -175,7 +175,7 @@ void main() {
     });
 
     test('List<double> parameter and return type', () async {
-      var result = await client.listParameters.returnDoubleList([
+      final result = await client.listParameters.returnDoubleList([
         0.0,
         1.0,
         2.0,
@@ -187,7 +187,7 @@ void main() {
     });
 
     test('List<double?> parameter and return type', () async {
-      var result = await client.listParameters.returnDoubleListNullableDoubles(
+      final result = await client.listParameters.returnDoubleListNullableDoubles(
         [0.0, null, 2.0],
       );
       expect(result, isNotNull);
@@ -198,14 +198,14 @@ void main() {
     });
 
     test('List<bool> parameter and return type', () async {
-      var result = await client.listParameters.returnBoolList([false, true]);
+      final result = await client.listParameters.returnBoolList([false, true]);
       expect(result.length, equals(2));
       expect(result[0], equals(false));
       expect(result[1], equals(true));
     });
 
     test('List<bool?> parameter and return type', () async {
-      var result = await client.listParameters.returnBoolListNullableBools(
+      final result = await client.listParameters.returnBoolListNullableBools(
         [false, null, true],
       );
       expect(result, isNotNull);
@@ -216,7 +216,7 @@ void main() {
     });
 
     test('List<String> parameter and return type', () async {
-      var result = await client.listParameters.returnStringList(
+      final result = await client.listParameters.returnStringList(
         ['A', 'B', 'C'],
       );
       expect(result.length, equals(3));
@@ -226,7 +226,7 @@ void main() {
     });
 
     test('List<String?> parameter and return type', () async {
-      var result = await client.listParameters.returnStringListNullableStrings(
+      final result = await client.listParameters.returnStringListNullableStrings(
         ['A', null, 'C'],
       );
       expect(result, isNotNull);
@@ -237,7 +237,7 @@ void main() {
     });
 
     test('List<DateTime> parameter and return type', () async {
-      var result = await client.listParameters.returnDateTimeList([
+      final result = await client.listParameters.returnDateTimeList([
         DateTime.utc(2020),
         DateTime.utc(2021),
         DateTime.utc(2022),
@@ -249,7 +249,7 @@ void main() {
     });
 
     test('List<DateTime?> parameter and return type', () async {
-      var result = await client.listParameters
+      final result = await client.listParameters
           .returnDateTimeListNullableDateTimes([
             DateTime.utc(2020),
             null,
@@ -263,7 +263,7 @@ void main() {
     });
 
     test('List<ByteData> parameter and return type', () async {
-      var result = await client.listParameters.returnByteDataList([
+      final result = await client.listParameters.returnByteDataList([
         createByteData(),
         createByteData(),
         createByteData(),
@@ -275,7 +275,7 @@ void main() {
     });
 
     test('List<ByteData?> parameter and return type', () async {
-      var result = await client.listParameters
+      final result = await client.listParameters
           .returnByteDataListNullableByteDatas([
             createByteData(),
             null,
@@ -289,7 +289,7 @@ void main() {
     });
 
     test('List<SimpleData> parameter and return type', () async {
-      var result = await client.listParameters.returnSimpleDataList([
+      final result = await client.listParameters.returnSimpleDataList([
         SimpleData(num: 0),
         SimpleData(num: 1),
         SimpleData(num: 2),
@@ -301,7 +301,7 @@ void main() {
     });
 
     test('List<SimpleData?> parameter and return type', () async {
-      var result = await client.listParameters
+      final result = await client.listParameters
           .returnSimpleDataListNullableSimpleData([
             SimpleData(num: 0),
             null,
@@ -349,7 +349,7 @@ void main() {
     });
 
     test('Map<String, int> parameter and return type', () async {
-      var result = await client.mapParameters.returnIntMap({
+      final result = await client.mapParameters.returnIntMap({
         '0': 0,
         '1': 1,
         '2': 2,
@@ -361,7 +361,7 @@ void main() {
     });
 
     test('Map<String, Map<String, int>> parameter and return type', () async {
-      var result = await client.mapParameters.returnNestedIntMap({
+      final result = await client.mapParameters.returnNestedIntMap({
         'a': {
           '0': 0,
           '1': 1,
@@ -397,7 +397,7 @@ void main() {
     });
 
     test('Map<String, int?> parameter and return type', () async {
-      var result = await client.mapParameters.returnIntMapNullableInts({
+      final result = await client.mapParameters.returnIntMapNullableInts({
         '0': 0,
         '1': null,
         '2': 2,
@@ -428,7 +428,7 @@ void main() {
     });
 
     test('Empty nested Map<int, int> parameter and return type', () async {
-      var result = await client.mapParameters.returnNestedIntIntMap(
+      final result = await client.mapParameters.returnNestedIntIntMap(
         {
           'test': {},
         },
@@ -438,12 +438,12 @@ void main() {
     });
 
     test('Map<int, int> (empty) parameter and return type', () async {
-      var result = await client.mapParameters.returnIntIntMap({});
+      final result = await client.mapParameters.returnIntIntMap({});
       expect(result, isEmpty);
     });
 
     test('Map<int, int> parameter and return type', () async {
-      var result = await client.mapParameters.returnIntIntMap({
+      final result = await client.mapParameters.returnIntIntMap({
         0: 0,
         10: 1,
         20: 2,
@@ -455,13 +455,13 @@ void main() {
     });
 
     test('Map<TestEnum, int> (empty) parameter and return type', () async {
-      var result = await client.mapParameters.returnEnumIntMap({});
+      final result = await client.mapParameters.returnEnumIntMap({});
 
       expect(result, isEmpty);
     });
 
     test('Map<TestEnum, int> parameter and return type', () async {
-      var result = await client.mapParameters.returnEnumIntMap({
+      final result = await client.mapParameters.returnEnumIntMap({
         TestEnum.one: 1,
         TestEnum.two: 2,
         TestEnum.three: 3,
@@ -473,7 +473,7 @@ void main() {
     });
 
     test('Map<String, TestEnum> parameter and return type', () async {
-      var result = await client.mapParameters.returnEnumMap({
+      final result = await client.mapParameters.returnEnumMap({
         'one': TestEnum.one,
         'two': TestEnum.two,
         'three': TestEnum.three,
@@ -485,7 +485,7 @@ void main() {
     });
 
     test('Map<String, double> parameter and return type', () async {
-      var result = await client.mapParameters.returnDoubleMap({
+      final result = await client.mapParameters.returnDoubleMap({
         '0': 0.0,
         '1': 1.0,
         '2': 2.0,
@@ -497,7 +497,7 @@ void main() {
     });
 
     test('Map<String, double?> parameter and return type', () async {
-      var result = await client.mapParameters.returnDoubleMapNullableDoubles({
+      final result = await client.mapParameters.returnDoubleMapNullableDoubles({
         '0': 0.0,
         '1': null,
         '2': 2.0,
@@ -510,7 +510,7 @@ void main() {
     });
 
     test('Map<String, bool> parameter and return type', () async {
-      var result = await client.mapParameters.returnBoolMap({
+      final result = await client.mapParameters.returnBoolMap({
         '0': false,
         '1': false,
         '2': true,
@@ -522,7 +522,7 @@ void main() {
     });
 
     test('Map<String, bool?> parameter and return type', () async {
-      var result = await client.mapParameters.returnBoolMapNullableBools({
+      final result = await client.mapParameters.returnBoolMapNullableBools({
         '0': false,
         '1': null,
         '2': true,
@@ -535,7 +535,7 @@ void main() {
     });
 
     test('Map<String, String> parameter and return type', () async {
-      var result = await client.mapParameters.returnStringMap({
+      final result = await client.mapParameters.returnStringMap({
         '0': 'String 0',
         '1': 'String 1',
         '2': 'String 2',
@@ -547,7 +547,7 @@ void main() {
     });
 
     test('Map<String, String?> parameter and return type', () async {
-      var result = await client.mapParameters.returnStringMapNullableStrings({
+      final result = await client.mapParameters.returnStringMapNullableStrings({
         '0': 'String 0',
         '1': null,
         '2': 'null',
@@ -560,7 +560,7 @@ void main() {
     });
 
     test('Map<String, DateTime> parameter and return type', () async {
-      var result = await client.mapParameters.returnDateTimeMap({
+      final result = await client.mapParameters.returnDateTimeMap({
         '2020': DateTime.utc(2020),
         '2021': DateTime.utc(2021),
         '2022': DateTime.utc(2022),
@@ -572,7 +572,7 @@ void main() {
     });
 
     test('Map<String, DateTime?> parameter and return type', () async {
-      var result = await client.mapParameters
+      final result = await client.mapParameters
           .returnDateTimeMapNullableDateTimes({
             '2020': DateTime.utc(2020),
             '2021': null,
@@ -586,7 +586,7 @@ void main() {
     });
 
     test('Map<String, ByteData> parameter and return type', () async {
-      var result = await client.mapParameters.returnByteDataMap({
+      final result = await client.mapParameters.returnByteDataMap({
         '0': createByteData(),
         '1': createByteData(),
         '2': createByteData(),
@@ -598,7 +598,7 @@ void main() {
     });
 
     test('Map<String, ByteData?> parameter and return type', () async {
-      var result = await client.mapParameters
+      final result = await client.mapParameters
           .returnByteDataMapNullableByteDatas({
             '0': createByteData(),
             '1': null,
@@ -612,7 +612,7 @@ void main() {
     });
 
     test('Map<String, SimpleData> parameter and return type', () async {
-      var result = await client.mapParameters.returnSimpleDataMap({
+      final result = await client.mapParameters.returnSimpleDataMap({
         '0': SimpleData(num: 0),
         '1': SimpleData(num: 1),
         '2': SimpleData(num: 2),
@@ -640,7 +640,7 @@ void main() {
     });
 
     test('Map<String, SimpleData?> parameter and return type', () async {
-      var result = await client.mapParameters
+      final result = await client.mapParameters
           .returnSimpleDataMapNullableSimpleData({
             '0': SimpleData(num: 0),
             '1': null,
@@ -674,7 +674,7 @@ void main() {
     test(
       'Map<(Map<int, String>, String), String> parameter with empty outer map and return type',
       () async {
-        var result = await client.mapParameters
+        final result = await client.mapParameters
             .returnNestedNonStringKeyedMapInsideRecordInsideMap(
               {},
             );
@@ -686,7 +686,7 @@ void main() {
     test(
       'Map<(Map<int, String>, String), String> parameter with empty inner map and return type',
       () async {
-        var result = await client.mapParameters
+        final result = await client.mapParameters
             .returnNestedNonStringKeyedMapInsideRecordInsideMap(
               {
                 ({}, ''): '',
@@ -701,7 +701,7 @@ void main() {
     test(
       'Map<String, (Map<int, int>,)> parameter with empty inner map and return type',
       () async {
-        var result = await client.mapParameters
+        final result = await client.mapParameters
             .returnDeeplyNestedNonStringKeyedMapInsideRecordInsideMap(
               {
                 '': ({},),
@@ -714,7 +714,7 @@ void main() {
     );
 
     test('CustomClass parameter and return type', () async {
-      var result = await client.customTypes.returnCustomClass(
+      final result = await client.customTypes.returnCustomClass(
         CustomClass('customClassText'),
       );
 
@@ -736,7 +736,7 @@ void main() {
     });
 
     test('CustomClass2 parameter and return type', () async {
-      var result = await client.customTypes.returnCustomClass2(
+      final result = await client.customTypes.returnCustomClass2(
         const CustomClass2('text'),
       );
 
@@ -758,7 +758,7 @@ void main() {
     });
 
     test('ExternalCustomClass parameter and return type', () async {
-      var result = await client.customTypes.returnExternalCustomClass(
+      final result = await client.customTypes.returnExternalCustomClass(
         const ExternalCustomClass('text'),
       );
 
@@ -780,7 +780,7 @@ void main() {
     });
 
     test('FreezedCustomClass parameter and return type', () async {
-      var result = await client.customTypes.returnFreezedCustomClass(
+      final result = await client.customTypes.returnFreezedCustomClass(
         const FreezedCustomClass(
           firstName: 'First',
           lastName: 'Last',
@@ -853,7 +853,7 @@ void main() {
     });
 
     test('Exception in call from database being caught', () async {
-      var result = await client.failedCalls
+      final result = await client.failedCalls
           .failedDatabaseQueryCaughtException();
       expect(result, equals(true));
     });
@@ -865,11 +865,11 @@ void main() {
 
   group('Sub directories', () {
     test('Endpoint in sub directory', () async {
-      var result = await client.subDirTest.testMethod();
+      final result = await client.subDirTest.testMethod();
       expect(result, 'subDir');
     });
     test('Endpoint in nested sub directory', () async {
-      var result = await client.subSubDirTest.testMethod();
+      final result = await client.subSubDirTest.testMethod();
       expect(result, 'subSubDir');
     });
   });

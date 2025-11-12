@@ -41,7 +41,7 @@ void main() {
       ]),
     );
 
-    var exitCode = await processOutput.process.exitCode;
+    final exitCode = await processOutput.process.exitCode;
     expect(exitCode, 0);
   }, timeout: const Timeout(Duration(seconds: 120)));
 
@@ -74,7 +74,7 @@ void main() {
         ]),
       );
 
-      var exitCode = await processOutput.process.exitCode.timeout(
+      final exitCode = await processOutput.process.exitCode.timeout(
         terminationTimeout,
       );
       expect(exitCode, 130);
@@ -110,13 +110,13 @@ void main() {
           ]),
         );
 
-        var exitCode = await processOutput.process.exitCode.timeout(
+        final exitCode = await processOutput.process.exitCode.timeout(
           terminationTimeout,
         );
         expect(exitCode, 143);
       },
       onPlatform: {
-        'windows': Skip('SIGTERM is not supported on Windows'),
+        'windows': const Skip('SIGTERM is not supported on Windows'),
       },
     );
 
@@ -162,7 +162,7 @@ void main() {
         ]),
       );
 
-      var exitCode = await processOutput.process.exitCode.timeout(
+      final exitCode = await processOutput.process.exitCode.timeout(
         terminationTimeout,
       );
       expect(exitCode, 1);
@@ -182,7 +182,7 @@ void main() {
         emitsThrough(contains('SERVERPOD initialized')),
       );
 
-      await Future.delayed(Duration(seconds: 5));
+      await Future.delayed(const Duration(seconds: 5));
       print('server should be up');
 
       final httpClient = Client();
@@ -191,7 +191,7 @@ void main() {
         Uri.parse('http://localhost:8080/failedCalls/slowCall'),
       );
 
-      await Future.delayed(Duration(milliseconds: 1000));
+      await Future.delayed(const Duration(milliseconds: 1000));
 
       if (verbose) {
         print('sending process signal...');
@@ -212,7 +212,7 @@ void main() {
       print('response received with code ${response.statusCode}');
       expect(response.statusCode, 200);
 
-      var exitCode = await processOutput.process.exitCode.timeout(
+      final exitCode = await processOutput.process.exitCode.timeout(
         terminationTimeout,
       );
       expect(exitCode, 130);
@@ -227,24 +227,24 @@ typedef ProcessOutput = ({
 });
 
 Stream<String> _streamTransformer(
-  Stream<List<int>> stream, {
-  bool verbose = false,
-  String? prefix,
+  final Stream<List<int>> stream, {
+  final bool verbose = false,
+  final String? prefix,
 }) {
   final startOfLine = prefix != null ? '$prefix: ' : '';
   return stream
       .transform(const Utf8Decoder())
       .transform(const LineSplitter())
-      .map((line) {
+      .map((final line) {
         if (verbose) print('$startOfLine$line');
         return line;
       })
       .asBroadcastStream(
-        onCancel: (controller) {
+        onCancel: (final controller) {
           if (verbose) print('<pausing ${prefix ?? ''} stream>');
           controller.pause();
         },
-        onListen: (controller) async {
+        onListen: (final controller) async {
           if (controller.isPaused) {
             if (verbose) print('<resuming ${prefix ?? ''} stream>');
             controller.resume();
@@ -254,10 +254,10 @@ Stream<String> _streamTransformer(
 }
 
 Future<ProcessOutput> startProcess(
-  String executable,
-  List<String> arguments, {
-  Map<String, String>? environment,
-  bool verbose = false,
+  final String executable,
+  final List<String> arguments, {
+  final Map<String, String>? environment,
+  final bool verbose = false,
 }) async {
   final process = await Process.start(
     executable,
@@ -278,8 +278,8 @@ Future<ProcessOutput> startProcess(
   // ensure output is drained and process is killed when test is done
   addTearDown(() {
     if (verbose) print('<process teardown>');
-    outQueue.listen((s) {}, cancelOnError: true);
-    errQueue.listen((s) {}, cancelOnError: true);
+    outQueue.listen((final s) {}, cancelOnError: true);
+    errQueue.listen((final s) {}, cancelOnError: true);
 
     process.kill(ProcessSignal.sigkill);
   });

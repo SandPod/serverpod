@@ -6,8 +6,8 @@ import 'package:serverpod_test_server/test_util/test_service_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client(serverUrl);
-  var serviceClient = service.Client(
+  final client = Client(serverUrl);
+  final serviceClient = service.Client(
     serviceServerUrl,
     authenticationKeyManager: TestServiceKeyManager(
       '0',
@@ -18,7 +18,7 @@ void main() {
   group('Health metrics', () {
     test('Fetch health metrics', () async {
       // Fetch something far back, there should be no data.
-      var result = await serviceClient.insights.getHealthData(
+      final result = await serviceClient.insights.getHealthData(
         DateTime(1976, 09, 10),
         DateTime(1980, 04, 02),
       );
@@ -82,7 +82,7 @@ void main() {
     test('Log entry', () async {
       await client.logging.logInfo('test');
 
-      var logResult = await serviceClient.insights.getSessionLog(1, null);
+      final logResult = await serviceClient.insights.getSessionLog(1, null);
       expect(logResult.sessionLog.length, equals(1));
 
       expect(logResult.sessionLog[0].logs.length, equals(1));
@@ -96,10 +96,10 @@ void main() {
       // wait a second to make sure the log has been flushed to the database
       await Future.delayed(const Duration(seconds: 1));
 
-      var logResult = await serviceClient.insights.getSessionLog(1, null);
+      final logResult = await serviceClient.insights.getSessionLog(1, null);
       expect(logResult.sessionLog.length, equals(1));
 
-      logResult.sessionLog[0].logs.sort((a, b) => a.order - b.order);
+      logResult.sessionLog[0].logs.sort((final a, final b) => a.order - b.order);
 
       expect(logResult.sessionLog[0].logs.length, equals(3));
       expect(logResult.sessionLog[0].logs[0].message, equals('debug'));
@@ -115,7 +115,7 @@ void main() {
 
     test('Error log level', () async {
       // Set log level to error
-      var settings = service.RuntimeSettings(
+      final settings = service.RuntimeSettings(
         logSettings: service.LogSettings(
           logAllSessions: true,
           logSlowSessions: true,
@@ -140,7 +140,7 @@ void main() {
       // wait a second to make sure the log has been flushed to the database
       await Future.delayed(const Duration(seconds: 1));
 
-      var logResult = await serviceClient.insights.getSessionLog(1, null);
+      final logResult = await serviceClient.insights.getSessionLog(1, null);
       expect(logResult.sessionLog.length, equals(1));
 
       // Debug and info logs should be ignored
@@ -155,7 +155,7 @@ void main() {
       // wait a second to make sure the log has been flushed to the database
       await Future.delayed(const Duration(seconds: 1));
 
-      var logResult = await serviceClient.insights.getSessionLog(1, null);
+      final logResult = await serviceClient.insights.getSessionLog(1, null);
       expect(logResult.sessionLog.length, equals(1));
 
       expect(logResult.sessionLog[0].queries.length, equals(2));
@@ -167,7 +167,7 @@ void main() {
       await client.transactionsDatabase.updateInsertDelete(50, 500, 0);
       await Future.delayed(const Duration(seconds: 1));
 
-      var logResult = await serviceClient.insights.getSessionLog(1, null);
+      final logResult = await serviceClient.insights.getSessionLog(1, null);
       expect(logResult.sessionLog.length, equals(1));
 
       expect(logResult.sessionLog[0].queries.length, equals(4));
@@ -201,7 +201,7 @@ void main() {
 
     test('Future call logging', () async {
       // Set log level to info
-      var settings = service.RuntimeSettings(
+      final settings = service.RuntimeSettings(
         logSettings: service.LogSettings(
           logAllSessions: true,
           logSlowSessions: true,
@@ -227,7 +227,7 @@ void main() {
       // 1 s. Largest possible delay should be 6 s.
       await Future.delayed(const Duration(seconds: 6));
 
-      var logResult = await serviceClient.insights.getSessionLog(1, null);
+      final logResult = await serviceClient.insights.getSessionLog(1, null);
       expect(logResult.sessionLog.length, equals(1));
 
       expect(logResult.sessionLog[0].logs.length, equals(1));
@@ -241,7 +241,7 @@ void main() {
     test('Slow call logging', () async {
       await client.failedCalls.slowCall();
 
-      var logResult = await serviceClient.insights.getSessionLog(1, null);
+      final logResult = await serviceClient.insights.getSessionLog(1, null);
       expect(logResult.sessionLog.length, equals(1));
       expect(logResult.sessionLog[0].sessionLogEntry.slow, equals(true));
     });
@@ -250,9 +250,9 @@ void main() {
       await client.failedCalls.caughtException();
       await Future.delayed(const Duration(seconds: 1));
 
-      var logResult = await serviceClient.insights.getSessionLog(1, null);
+      final logResult = await serviceClient.insights.getSessionLog(1, null);
 
-      logResult.sessionLog[0].logs.sort((a, b) => a.order - b.order);
+      logResult.sessionLog[0].logs.sort((final a, final b) => a.order - b.order);
 
       expect(logResult.sessionLog.length, equals(1));
       expect(logResult.sessionLog[0].logs.length, equals(3));
@@ -264,7 +264,7 @@ void main() {
 
     test('Logging in stream', () async {
       // Set log level to info
-      var settings = service.RuntimeSettings(
+      final settings = service.RuntimeSettings(
         logSettings: service.LogSettings(
           logAllSessions: true,
           logSlowSessions: true,
@@ -303,7 +303,7 @@ void main() {
       // Ticket: https://github.com/serverpod/serverpod/issues/773
       await Future.delayed(const Duration(seconds: 5));
 
-      var logResult = await serviceClient.insights.getSessionLog(1, null);
+      final logResult = await serviceClient.insights.getSessionLog(1, null);
       expect(logResult.sessionLog.length, equals(1));
       expect(logResult.sessionLog[0].sessionLogEntry.isOpen, equals(true));
       // We should have logged one entry when opening the stream and 11 when
@@ -312,7 +312,7 @@ void main() {
 
       // Expect 11 messages to have been sent
       expect(logResult.sessionLog[0].messages.length, equals(11));
-      logResult.sessionLog[0].messages.sort((a, b) => a.order - b.order);
+      logResult.sessionLog[0].messages.sort((final a, final b) => a.order - b.order);
 
       // Expect us to find an exception in the 6th logged message
       expect(logResult.sessionLog[0].messages[5].error, isNotNull);
@@ -322,15 +322,15 @@ void main() {
   group('Database', () {
     group('target definition', () {
       test('sanity checks', () async {
-        var tableDefinitions = await serviceClient.insights
+        final tableDefinitions = await serviceClient.insights
             .getTargetTableDefinition();
 
         expect(
-          tableDefinitions.map((e) => e.name),
+          tableDefinitions.map((final e) => e.name),
           contains('object_field_scopes'),
         );
-        var table = tableDefinitions.firstWhere(
-          (e) => e.name == 'object_field_scopes',
+        final table = tableDefinitions.firstWhere(
+          (final e) => e.name == 'object_field_scopes',
         );
         expect(table.schema, 'public');
         expect(table.tableSpace, null);
@@ -341,10 +341,10 @@ void main() {
         expect(table.foreignKeys, hasLength(0));
         expect(table.indexes, hasLength(1));
 
-        expect(tableDefinitions.every((t) => t.indexes.isNotEmpty), true);
+        expect(tableDefinitions.every((final t) => t.indexes.isNotEmpty), true);
       });
       test('contains selected tables', () async {
-        var tableDefinitions = await serviceClient.insights
+        final tableDefinitions = await serviceClient.insights
             .getTargetTableDefinition();
 
         const expectedTables = [
@@ -357,32 +357,32 @@ void main() {
           'serverpod_future_call', // From serverpod
         ];
 
-        for (var expectedTable in expectedTables) {
+        for (final expectedTable in expectedTables) {
           expect(
-            tableDefinitions.where((table) => table.name == expectedTable),
+            tableDefinitions.where((final table) => table.name == expectedTable),
             hasLength(1),
           );
         }
       });
       test('columns only contains database fields', () async {
-        var tableDefinitions = await serviceClient.insights
+        final tableDefinitions = await serviceClient.insights
             .getTargetTableDefinition();
 
-        var columns = tableDefinitions
-            .firstWhere((table) => table.name == 'object_field_scopes')
+        final columns = tableDefinitions
+            .firstWhere((final table) => table.name == 'object_field_scopes')
             .columns
-            .map((c) => c.name)
+            .map((final c) => c.name)
             .toList();
         expect(columns, hasLength(3));
         expect(columns, containsAll(['id', 'normal', 'database']));
       });
 
       test('foreign keys', () async {
-        var tableDefinitions = await serviceClient.insights
+        final tableDefinitions = await serviceClient.insights
             .getTargetTableDefinition();
 
-        var table = tableDefinitions.firstWhere(
-          (table) => table.name == 'object_with_parent',
+        final table = tableDefinitions.firstWhere(
+          (final table) => table.name == 'object_with_parent',
         );
 
         expect(table.foreignKeys, hasLength(1));
@@ -407,11 +407,11 @@ void main() {
       });
 
       test('indexes', () async {
-        var tableDefinitions = await serviceClient.insights
+        final tableDefinitions = await serviceClient.insights
             .getTargetTableDefinition();
 
-        var table = tableDefinitions.firstWhere(
-          (table) => table.name == 'object_with_index',
+        final table = tableDefinitions.firstWhere(
+          (final table) => table.name == 'object_with_index',
         );
 
         expect(table.indexes, hasLength(2));
@@ -448,13 +448,13 @@ void main() {
       });
 
       test('validate dart types', () async {
-        var tableDefinitions = await serviceClient.insights
+        final tableDefinitions = await serviceClient.insights
             .getTargetTableDefinition();
 
-        var columns = tableDefinitions
-            .firstWhere((table) => table.name == 'object_with_object')
+        final columns = tableDefinitions
+            .firstWhere((final table) => table.name == 'object_with_object')
             .columns
-            .map((c) => c.dartType)
+            .map((final c) => c.dartType)
             .toList();
 
         expect(columns, hasLength(10));
@@ -474,10 +474,10 @@ void main() {
           ]),
         );
 
-        var columnsWithScopes = tableDefinitions
-            .firstWhere((table) => table.name == 'object_field_scopes')
+        final columnsWithScopes = tableDefinitions
+            .firstWhere((final table) => table.name == 'object_field_scopes')
             .columns
-            .map((c) => c.dartType)
+            .map((final c) => c.dartType)
             .toList();
 
         expect(columnsWithScopes, hasLength(3));
@@ -487,8 +487,8 @@ void main() {
 
     group('live definition', () {
       test('matches target', () async {
-        var target = await serviceClient.insights.getTargetTableDefinition();
-        var live = await serviceClient.insights.getLiveDatabaseDefinition();
+        final target = await serviceClient.insights.getTargetTableDefinition();
+        final live = await serviceClient.insights.getLiveDatabaseDefinition();
 
         live.matchesTarget(target);
       });
@@ -497,7 +497,7 @@ void main() {
 
   group('File retrieval', () {
     test('Fetch lib/src/generated/protocol.yaml file', () async {
-      var file = await serviceClient.insights.fetchFile(
+      final file = await serviceClient.insights.fetchFile(
         'lib/src/generated/protocol.yaml',
       );
       expect(file, isNotNull);
@@ -515,23 +515,23 @@ void main() {
 }
 
 extension on service.DatabaseDefinition {
-  void matchesTarget(List<service.TableDefinition> targetTables) {
+  void matchesTarget(final List<service.TableDefinition> targetTables) {
     expect(tables, hasLength(targetTables.length));
     expect(
-      tables.map((e) => e.name),
-      containsAll(targetTables.map((e) => e.name)),
+      tables.map((final e) => e.name),
+      containsAll(targetTables.map((final e) => e.name)),
     );
 
-    for (var table in tables) {
+    for (final table in tables) {
       table.matchesDefinition(
-        targetTables.firstWhere((e) => e.name == table.name),
+        targetTables.firstWhere((final e) => e.name == table.name),
       );
     }
   }
 }
 
 extension on service.TableDefinition {
-  void matchesDefinition(service.TableDefinition definition) {
+  void matchesDefinition(final service.TableDefinition definition) {
     expect(name, definition.name);
     expect(schema, definition.schema);
 
@@ -540,35 +540,35 @@ extension on service.TableDefinition {
 
       expect(columns, hasLength(definition.columns.length));
       expect(
-        columns.map((e) => e.name),
-        containsAll(definition.columns.map((e) => e.name)),
+        columns.map((final e) => e.name),
+        containsAll(definition.columns.map((final e) => e.name)),
       );
-      for (var column in columns) {
+      for (final column in columns) {
         column.matchesDefinition(
-          definition.columns.firstWhere((e) => e.name == column.name),
+          definition.columns.firstWhere((final e) => e.name == column.name),
         );
       }
 
       expect(columns, hasLength(definition.columns.length));
       expect(
-        columns.map((e) => e.name),
-        containsAll(definition.columns.map((e) => e.name)),
+        columns.map((final e) => e.name),
+        containsAll(definition.columns.map((final e) => e.name)),
       );
-      for (var column in columns) {
+      for (final column in columns) {
         column.matchesDefinition(
-          definition.columns.firstWhere((e) => e.name == column.name),
+          definition.columns.firstWhere((final e) => e.name == column.name),
         );
       }
 
       expect(foreignKeys, hasLength(definition.foreignKeys.length));
       expect(
-        foreignKeys.map((e) => e.constraintName),
-        containsAll(definition.foreignKeys.map((e) => e.constraintName)),
+        foreignKeys.map((final e) => e.constraintName),
+        containsAll(definition.foreignKeys.map((final e) => e.constraintName)),
       );
-      for (var foreignKey in foreignKeys) {
+      for (final foreignKey in foreignKeys) {
         foreignKey.matchesDefinition(
           definition.foreignKeys.firstWhere(
-            (e) => e.constraintName == foreignKey.constraintName,
+            (final e) => e.constraintName == foreignKey.constraintName,
           ),
         );
       }
@@ -576,14 +576,14 @@ extension on service.TableDefinition {
       expect(indexes, hasLength(definition.indexes.length));
       // Converting to lower case, since Serverpod does not quote index names in the generated SQL.
       expect(
-        indexes.map((e) => e.indexName.toLowerCase()),
-        containsAll(definition.indexes.map((e) => e.indexName.toLowerCase())),
+        indexes.map((final e) => e.indexName.toLowerCase()),
+        containsAll(definition.indexes.map((final e) => e.indexName.toLowerCase())),
       );
-      for (var index in indexes) {
+      for (final index in indexes) {
         // Converting to lower case, since Serverpod does not quote index names in the generated SQL.
         index.matchesDefinition(
           definition.indexes.firstWhere(
-            (e) => e.indexName.toLowerCase() == index.indexName.toLowerCase(),
+            (final e) => e.indexName.toLowerCase() == index.indexName.toLowerCase(),
           ),
         );
       }
@@ -592,7 +592,7 @@ extension on service.TableDefinition {
 }
 
 extension on service.ColumnDefinition {
-  void matchesDefinition(service.ColumnDefinition definition) {
+  void matchesDefinition(final service.ColumnDefinition definition) {
     expect(name, definition.name);
     expect(columnDefault, definition.columnDefault);
     expect(columnType, definition.columnType);
@@ -601,7 +601,7 @@ extension on service.ColumnDefinition {
 }
 
 extension on service.ForeignKeyDefinition {
-  void matchesDefinition(service.ForeignKeyDefinition definition) {
+  void matchesDefinition(final service.ForeignKeyDefinition definition) {
     expect(constraintName, definition.constraintName);
     expect(
       matchType,
@@ -619,7 +619,7 @@ extension on service.ForeignKeyDefinition {
 }
 
 extension on service.IndexDefinition {
-  void matchesDefinition(service.IndexDefinition definition) {
+  void matchesDefinition(final service.IndexDefinition definition) {
     // Converting to lower case, since Serverpod does not quote index names in the generated SQL.
     expect(indexName.toLowerCase(), definition.indexName.toLowerCase());
     expect(tableSpace, definition.tableSpace);
@@ -635,6 +635,6 @@ extension on service.IndexDefinition {
   }
 }
 
-List<List<bool>> performIteration(List<List<bool>> board) {
+List<List<bool>> performIteration(final List<List<bool>> board) {
   return [];
 }

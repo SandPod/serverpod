@@ -8,7 +8,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var runMode = 'production';
+  const runMode = 'production';
 
   group(
     'Given persistent logging is enabled and console logging is disabled',
@@ -55,19 +55,19 @@ void main() async {
       test(
         'logs should be stored in the database and not appear in stdout',
         () async {
-          var settings = RuntimeSettingsBuilder().build();
+          final settings = RuntimeSettingsBuilder().build();
           await server.updateRuntimeSettings(settings);
 
           await IOOverrides.runZoned(
             () async {
-              var testSession = await server.createSession(enableLogging: true);
+              final testSession = await server.createSession(enableLogging: true);
               testSession.log('Test message');
               await testSession.close();
             },
             stdout: () => record,
           );
 
-          var logs = await LoggingUtil.findAllLogs(session);
+          final logs = await LoggingUtil.findAllLogs(session);
           expect(logs, hasLength(1));
           expect(logs.first.logs.first.message, 'Test message');
           expect(record.output.contains('Test message'), isFalse);
@@ -77,12 +77,12 @@ void main() async {
       test(
         'when logging is disabled at runtime, no logs should be written',
         () async {
-          var settings = RuntimeSettingsBuilder().build();
+          final settings = RuntimeSettingsBuilder().build();
           await server.updateRuntimeSettings(settings);
 
           await IOOverrides.runZoned(
             () async {
-              var testSession = await server.createSession(
+              final testSession = await server.createSession(
                 enableLogging: false,
               );
               testSession.log('Test message');
@@ -91,7 +91,7 @@ void main() async {
             stdout: () => record,
           );
 
-          var logs = await LoggingUtil.findAllLogs(session);
+          final logs = await LoggingUtil.findAllLogs(session);
           expect(logs, isEmpty);
           expect(record.output.contains('Test message'), isFalse);
         },
@@ -144,19 +144,19 @@ void main() async {
       test(
         'logs should not be stored in the database but should appear in stdout',
         () async {
-          var settings = RuntimeSettingsBuilder().build();
+          final settings = RuntimeSettingsBuilder().build();
           await server.updateRuntimeSettings(settings);
 
           await IOOverrides.runZoned(
             () async {
-              var testSession = await server.createSession(enableLogging: true);
+              final testSession = await server.createSession(enableLogging: true);
               testSession.log('Test message for console');
               await testSession.close();
             },
             stdout: () => record,
           );
 
-          var logs = await LoggingUtil.findAllLogs(session);
+          final logs = await LoggingUtil.findAllLogs(session);
           expect(logs, isEmpty);
           expect(record.output.contains('Test message for console'), isTrue);
         },
@@ -205,19 +205,19 @@ void main() async {
     });
 
     test('no logs should be written to the database or stdout', () async {
-      var settings = RuntimeSettingsBuilder().build();
+      final settings = RuntimeSettingsBuilder().build();
       await server.updateRuntimeSettings(settings);
 
       await IOOverrides.runZoned(
         () async {
-          var testSession = await server.createSession(enableLogging: true);
+          final testSession = await server.createSession(enableLogging: true);
           testSession.log('Test message');
           await testSession.close();
         },
         stdout: () => record,
       );
 
-      var logs = await LoggingUtil.findAllLogs(session);
+      final logs = await LoggingUtil.findAllLogs(session);
       expect(logs, isEmpty);
       expect(record.output.contains('Test message'), isFalse);
     });
@@ -244,7 +244,7 @@ void main() async {
         ),
         throwsA(
           isA<StateError>().having(
-            (e) => e.message,
+            (final e) => e.message,
             'message',
             contains(
               'The `persistentEnabled` setting was enabled in the configuration, but this project was created without database support.',

@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with "default" fields,', () {
     tearDownAll(
@@ -17,8 +17,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "default=now" field should be in UTC',
       () async {
-        var object = DateTimeDefault();
-        var databaseObject = await DateTimeDefault.db.insertRow(
+        final object = DateTimeDefault();
+        final databaseObject = await DateTimeDefault.db.insertRow(
           session,
           object,
         );
@@ -29,8 +29,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "default" field with UTC string should be in UTC',
       () async {
-        var object = DateTimeDefault();
-        var databaseObject = await DateTimeDefault.db.insertRow(
+        final object = DateTimeDefault();
+        final databaseObject = await DateTimeDefault.db.insertRow(
           session,
           object,
         );
@@ -41,8 +41,8 @@ void main() async {
     test(
       'when creating a record in the database, then the nullable "default" field with UTC string should be in UTC',
       () async {
-        var object = DateTimeDefault();
-        var databaseObject = await DateTimeDefault.db.insertRow(
+        final object = DateTimeDefault();
+        final databaseObject = await DateTimeDefault.db.insertRow(
           session,
           object,
         );
@@ -53,8 +53,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "default=now" field value should match the current time',
       () async {
-        var object = DateTimeDefault();
-        var databaseObject = await DateTimeDefault.db.insertRow(
+        final object = DateTimeDefault();
+        final databaseObject = await DateTimeDefault.db.insertRow(
           session,
           object,
         );
@@ -70,8 +70,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "default" field value should match the default',
       () async {
-        var object = DateTimeDefault();
-        var databaseObject = await DateTimeDefault.db.insertRow(
+        final object = DateTimeDefault();
+        final databaseObject = await DateTimeDefault.db.insertRow(
           session,
           object,
         );
@@ -85,8 +85,8 @@ void main() async {
     test(
       'when creating a record in the database, then the nullable "default" field value should match the default',
       () async {
-        var object = DateTimeDefault();
-        var databaseObject = await DateTimeDefault.db.insertRow(
+        final object = DateTimeDefault();
+        final databaseObject = await DateTimeDefault.db.insertRow(
           session,
           object,
         );
@@ -100,11 +100,11 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "dateTimeDefaultNow" field value should match the provided value',
       () async {
-        var date = DateTime.parse('2024-05-01T22:00:00.000Z');
-        var specificObject = DateTimeDefault(
+        final date = DateTime.parse('2024-05-01T22:00:00.000Z');
+        final specificObject = DateTimeDefault(
           dateTimeDefaultNow: date,
         );
-        var specificDatabaseObject = await DateTimeDefault.db.insertRow(
+        final specificDatabaseObject = await DateTimeDefault.db.insertRow(
           session,
           specificObject,
         );
@@ -118,11 +118,11 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "dateTimeDefaultStr" field value should match the provided value',
       () async {
-        var date = DateTime.parse('2024-05-01T22:00:00.000Z');
-        var specificObject = DateTimeDefault(
+        final date = DateTime.parse('2024-05-01T22:00:00.000Z');
+        final specificObject = DateTimeDefault(
           dateTimeDefaultStr: date,
         );
-        var specificDatabaseObject = await DateTimeDefault.db.insertRow(
+        final specificDatabaseObject = await DateTimeDefault.db.insertRow(
           session,
           specificObject,
         );
@@ -136,11 +136,11 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "dateTimeDefaultStrNull" field value should match the provided value',
       () async {
-        var date = DateTime.parse('2024-05-01T22:00:00.000Z');
-        var specificObject = DateTimeDefault(
+        final date = DateTime.parse('2024-05-01T22:00:00.000Z');
+        final specificObject = DateTimeDefault(
           dateTimeDefaultStrNull: date,
         );
-        var specificDatabaseObject = await DateTimeDefault.db.insertRow(
+        final specificDatabaseObject = await DateTimeDefault.db.insertRow(
           session,
           specificObject,
         );

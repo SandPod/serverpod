@@ -17,22 +17,22 @@ class ServerConfigBuilder {
     );
   }
 
-  ServerConfigBuilder withPort(int port) {
+  ServerConfigBuilder withPort(final int port) {
     _port = port;
     return this;
   }
 
-  ServerConfigBuilder withPublicHost(String publicHost) {
+  ServerConfigBuilder withPublicHost(final String publicHost) {
     _publicHost = publicHost;
     return this;
   }
 
-  ServerConfigBuilder withPublicPort(int publicPort) {
+  ServerConfigBuilder withPublicPort(final int publicPort) {
     _publicPort = publicPort;
     return this;
   }
 
-  ServerConfigBuilder withPublicScheme(String publicScheme) {
+  ServerConfigBuilder withPublicScheme(final String publicScheme) {
     _publicScheme = publicScheme;
     return this;
   }

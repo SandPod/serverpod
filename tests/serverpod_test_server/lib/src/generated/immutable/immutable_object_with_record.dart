@@ -19,11 +19,11 @@ abstract class ImmutableObjectWithRecord
   const ImmutableObjectWithRecord._({required this.recordVariable});
 
   const factory ImmutableObjectWithRecord({
-    required (int, String) recordVariable,
+    required final (int, String) recordVariable,
   }) = _ImmutableObjectWithRecordImpl;
 
   factory ImmutableObjectWithRecord.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return ImmutableObjectWithRecord(
       recordVariable: _i2.Protocol().deserialize<(int, String)>(
@@ -37,9 +37,9 @@ abstract class ImmutableObjectWithRecord
   /// Returns a shallow copy of this [ImmutableObjectWithRecord]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  ImmutableObjectWithRecord copyWith({(int, String)? recordVariable});
+  ImmutableObjectWithRecord copyWith({final (int, String)? recordVariable});
   @override
-  bool operator ==(Object other) {
+  bool operator ==(final Object other) {
     return identical(
           other,
           this,
@@ -78,14 +78,14 @@ abstract class ImmutableObjectWithRecord
 }
 
 class _ImmutableObjectWithRecordImpl extends ImmutableObjectWithRecord {
-  const _ImmutableObjectWithRecordImpl({required (int, String) recordVariable})
+  const _ImmutableObjectWithRecordImpl({required final (int, String) recordVariable})
     : super._(recordVariable: recordVariable);
 
   /// Returns a shallow copy of this [ImmutableObjectWithRecord]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  ImmutableObjectWithRecord copyWith({(int, String)? recordVariable}) {
+  ImmutableObjectWithRecord copyWith({final (int, String)? recordVariable}) {
     return ImmutableObjectWithRecord(
       recordVariable:
           recordVariable ??

@@ -9,9 +9,10 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i2;
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i2;
+
 import 'chat_message_attachment.dart' as _i3;
 
 /// A chat message.
@@ -30,19 +31,19 @@ abstract class ChatMessage implements _i1.SerializableModel {
   });
 
   factory ChatMessage({
-    int? id,
-    required String channel,
-    required String message,
-    required DateTime time,
-    required int sender,
-    _i2.UserInfoPublic? senderInfo,
-    required bool removed,
-    int? clientMessageId,
-    bool? sent,
-    List<_i3.ChatMessageAttachment>? attachments,
+    final int? id,
+    required final String channel,
+    required final String message,
+    required final DateTime time,
+    required final int sender,
+    final _i2.UserInfoPublic? senderInfo,
+    required final bool removed,
+    final int? clientMessageId,
+    final bool? sent,
+    final List<_i3.ChatMessageAttachment>? attachments,
   }) = _ChatMessageImpl;
 
-  factory ChatMessage.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory ChatMessage.fromJson(final Map<String, dynamic> jsonSerialization) {
     return ChatMessage(
       id: jsonSerialization['id'] as int?,
       channel: jsonSerialization['channel'] as String,
@@ -59,7 +60,7 @@ abstract class ChatMessage implements _i1.SerializableModel {
       sent: jsonSerialization['sent'] as bool?,
       attachments: (jsonSerialization['attachments'] as List?)
           ?.map(
-            (e) =>
+            (final e) =>
                 _i3.ChatMessageAttachment.fromJson((e as Map<String, dynamic>)),
           )
           .toList(),
@@ -102,16 +103,16 @@ abstract class ChatMessage implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ChatMessage copyWith({
-    int? id,
-    String? channel,
-    String? message,
-    DateTime? time,
-    int? sender,
-    _i2.UserInfoPublic? senderInfo,
-    bool? removed,
-    int? clientMessageId,
-    bool? sent,
-    List<_i3.ChatMessageAttachment>? attachments,
+    final int? id,
+    final String? channel,
+    final String? message,
+    final DateTime? time,
+    final int? sender,
+    final _i2.UserInfoPublic? senderInfo,
+    final bool? removed,
+    final int? clientMessageId,
+    final bool? sent,
+    final List<_i3.ChatMessageAttachment>? attachments,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -126,7 +127,7 @@ abstract class ChatMessage implements _i1.SerializableModel {
       if (clientMessageId != null) 'clientMessageId': clientMessageId,
       if (sent != null) 'sent': sent,
       if (attachments != null)
-        'attachments': attachments?.toJson(valueToJson: (v) => v.toJson()),
+        'attachments': attachments?.toJson(valueToJson: (final v) => v.toJson()),
     };
   }
 
@@ -140,16 +141,16 @@ class _Undefined {}
 
 class _ChatMessageImpl extends ChatMessage {
   _ChatMessageImpl({
-    int? id,
-    required String channel,
-    required String message,
-    required DateTime time,
-    required int sender,
-    _i2.UserInfoPublic? senderInfo,
-    required bool removed,
-    int? clientMessageId,
-    bool? sent,
-    List<_i3.ChatMessageAttachment>? attachments,
+    final int? id,
+    required final String channel,
+    required final String message,
+    required final DateTime time,
+    required final int sender,
+    final _i2.UserInfoPublic? senderInfo,
+    required final bool removed,
+    final int? clientMessageId,
+    final bool? sent,
+    final List<_i3.ChatMessageAttachment>? attachments,
   }) : super._(
          id: id,
          channel: channel,
@@ -168,16 +169,16 @@ class _ChatMessageImpl extends ChatMessage {
   @_i1.useResult
   @override
   ChatMessage copyWith({
-    Object? id = _Undefined,
-    String? channel,
-    String? message,
-    DateTime? time,
-    int? sender,
-    Object? senderInfo = _Undefined,
-    bool? removed,
-    Object? clientMessageId = _Undefined,
-    Object? sent = _Undefined,
-    Object? attachments = _Undefined,
+    final Object? id = _Undefined,
+    final String? channel,
+    final String? message,
+    final DateTime? time,
+    final int? sender,
+    final Object? senderInfo = _Undefined,
+    final bool? removed,
+    final Object? clientMessageId = _Undefined,
+    final Object? sent = _Undefined,
+    final Object? attachments = _Undefined,
   }) {
     return ChatMessage(
       id: id is int? ? id : this.id,
@@ -195,7 +196,7 @@ class _ChatMessageImpl extends ChatMessage {
       sent: sent is bool? ? sent : this.sent,
       attachments: attachments is List<_i3.ChatMessageAttachment>?
           ? attachments
-          : this.attachments?.map((e0) => e0.copyWith()).toList(),
+          : this.attachments?.map((final e0) => e0.copyWith()).toList(),
     );
   }
 }

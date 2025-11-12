@@ -5,7 +5,7 @@ import 'package:serverpod_test_server/test_util/test_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client(
+  final client = Client(
     serverUrl,
     authenticationKeyManager: TestAuthKeyManager(),
   );
@@ -13,7 +13,7 @@ void main() {
   test(
     'Given a streaming method that returns a stream of integers, when calling the method, then the expected integers are received.',
     () async {
-      var stream = client.methodStreaming.simpleStream();
+      final stream = client.methodStreaming.simpleStream();
 
       await expectLater(
         stream,
@@ -25,8 +25,8 @@ void main() {
   test(
     'Given a streaming method that returns a stream of integers based on the parameter when calling the method, then the expected integers are received.',
     () async {
-      var value = 5;
-      var stream = client.methodStreaming.intStreamFromValue(value);
+      const value = 5;
+      final stream = client.methodStreaming.intStreamFromValue(value);
 
       await expectLater(
         stream,
@@ -38,7 +38,7 @@ void main() {
   test(
     'Given a streaming method that throws an exception when calling the method, then stream is closed with a ConnectionClosedException.',
     () async {
-      var stream = client.methodStreaming.outStreamThrowsException();
+      final stream = client.methodStreaming.outStreamThrowsException();
 
       await expectLater(
         stream,
@@ -50,7 +50,7 @@ void main() {
   test(
     'Given a streaming method that throws a serializable exception when calling the method, then stream is closed with the Serializable exception thrown',
     () async {
-      var stream = client.methodStreaming
+      final stream = client.methodStreaming
           .outStreamThrowsSerializableException();
 
       await expectLater(
@@ -63,7 +63,7 @@ void main() {
   test(
     'Given a streaming method that is not a generator that throws an exception before the stream is returned when calling the method, then stream is closed with ServerpodClientException.',
     () async {
-      var stream = client.methodStreaming.exceptionThrownBeforeStreamReturn();
+      final stream = client.methodStreaming.exceptionThrownBeforeStreamReturn();
 
       await expectLater(
         stream,
@@ -75,7 +75,7 @@ void main() {
   test(
     'Given a streaming method that is not a generator that throws an exception as its first message when calling method, then stream is closed with ServerpodClientException.',
     () async {
-      var stream = client.methodStreaming.exceptionThrownInStreamReturn();
+      final stream = client.methodStreaming.exceptionThrownInStreamReturn();
 
       await expectLater(
         stream,
@@ -87,7 +87,7 @@ void main() {
   test(
     'Given a streaming method that echoes a stream of lists of integers, when calling the method, then the input values are returned.',
     () async {
-      var response = client.methodStreaming.simpleListInOutIntStream(
+      final response = client.methodStreaming.simpleListInOutIntStream(
         Stream.fromIterable([
           [1, 2, 3],
           [4, 5, 6],
@@ -107,7 +107,7 @@ void main() {
   test(
     'Given a streaming method that echoes a stream of nullable lists of data objects, when calling the method, then the input values are returned.',
     () async {
-      var response = client.methodStreaming
+      final response = client.methodStreaming
           .simpleNullableListInOutNullableDataStream(
             Stream.fromIterable([
               [SimpleData(num: 1), SimpleData(num: 2)],
@@ -120,13 +120,13 @@ void main() {
         response,
         emitsInOrder([
           [
-            isA<SimpleData>().having((s) => s.num, 'num', 1),
-            isA<SimpleData>().having((s) => s.num, 'num', 2),
+            isA<SimpleData>().having((final s) => s.num, 'num', 1),
+            isA<SimpleData>().having((final s) => s.num, 'num', 2),
           ],
           isNull,
           [
-            isA<SimpleData>().having((s) => s.num, 'num', 3),
-            isA<SimpleData>().having((s) => s.num, 'num', 4),
+            isA<SimpleData>().having((final s) => s.num, 'num', 3),
+            isA<SimpleData>().having((final s) => s.num, 'num', 4),
           ],
         ]),
       );
@@ -136,7 +136,7 @@ void main() {
   test(
     'Given a streaming method that echoes a stream lists of nullable data objects, when calling the method, then the input values are returned.',
     () async {
-      var response = client.methodStreaming.simpleListInOutNullableDataStream(
+      final response = client.methodStreaming.simpleListInOutNullableDataStream(
         Stream.fromIterable([
           [SimpleData(num: 1), null, SimpleData(num: 2)],
           [null, SimpleData(num: 3), null, SimpleData(num: 4), null],
@@ -147,15 +147,15 @@ void main() {
         response,
         emitsInOrder([
           [
-            isA<SimpleData>().having((s) => s.num, 'num', 1),
+            isA<SimpleData>().having((final s) => s.num, 'num', 1),
             isNull,
-            isA<SimpleData>().having((s) => s.num, 'num', 2),
+            isA<SimpleData>().having((final s) => s.num, 'num', 2),
           ],
           [
             isNull,
-            isA<SimpleData>().having((s) => s.num, 'num', 3),
+            isA<SimpleData>().having((final s) => s.num, 'num', 3),
             isNull,
-            isA<SimpleData>().having((s) => s.num, 'num', 4),
+            isA<SimpleData>().having((final s) => s.num, 'num', 4),
             isNull,
           ],
         ]),
@@ -166,7 +166,7 @@ void main() {
   test(
     'Given a streaming method that echoes a stream lists of `UserInfo` objects (type from another module), when calling the method, then the input values are returned.',
     () async {
-      var response = client.methodStreaming
+      final response = client.methodStreaming
           .simpleListInOutOtherModuleTypeStream(
             Stream.fromIterable([
               [
@@ -185,7 +185,7 @@ void main() {
         emitsInOrder([
           [
             isA<UserInfo>().having(
-              (s) => s.userIdentifier,
+              (final s) => s.userIdentifier,
               'userIdentifier',
               'my_user',
             ),
@@ -198,7 +198,7 @@ void main() {
   test(
     'Given a streaming method that echoes a stream of lists of data objects, when calling the method, then the input values are returned.',
     () async {
-      var response = client.methodStreaming.simpleListInOutDataStream(
+      final response = client.methodStreaming.simpleListInOutDataStream(
         Stream.fromIterable([
           [SimpleData(num: 1), SimpleData(num: 2)],
           [SimpleData(num: 3), SimpleData(num: 4)],
@@ -209,12 +209,12 @@ void main() {
         response,
         emitsInOrder([
           [
-            isA<SimpleData>().having((s) => s.num, 'num', 1),
-            isA<SimpleData>().having((s) => s.num, 'num', 2),
+            isA<SimpleData>().having((final s) => s.num, 'num', 1),
+            isA<SimpleData>().having((final s) => s.num, 'num', 2),
           ],
           [
-            isA<SimpleData>().having((s) => s.num, 'num', 3),
-            isA<SimpleData>().having((s) => s.num, 'num', 4),
+            isA<SimpleData>().having((final s) => s.num, 'num', 3),
+            isA<SimpleData>().having((final s) => s.num, 'num', 4),
           ],
         ]),
       );
@@ -224,7 +224,7 @@ void main() {
   test(
     'Given a streaming method that echoes a stream of sets of integers, when calling the method, then the input values are returned.',
     () async {
-      var response = client.methodStreaming.simpleSetInOutIntStream(
+      final response = client.methodStreaming.simpleSetInOutIntStream(
         Stream.fromIterable([
           {1, 2, 3},
           {4, 5, 6},
@@ -244,7 +244,7 @@ void main() {
   test(
     'Given a streaming method that echoes a stream of sets of data objects, when calling the method, then the input values are returned.',
     () async {
-      var response = client.methodStreaming.simpleSetInOutDataStream(
+      final response = client.methodStreaming.simpleSetInOutDataStream(
         Stream.fromIterable([
           {SimpleData(num: 1), SimpleData(num: 2)},
           {SimpleData(num: 3), SimpleData(num: 4)},
@@ -255,12 +255,12 @@ void main() {
         response,
         emitsInOrder([
           {
-            isA<SimpleData>().having((s) => s.num, 'num', 1),
-            isA<SimpleData>().having((s) => s.num, 'num', 2),
+            isA<SimpleData>().having((final s) => s.num, 'num', 1),
+            isA<SimpleData>().having((final s) => s.num, 'num', 2),
           },
           {
-            isA<SimpleData>().having((s) => s.num, 'num', 3),
-            isA<SimpleData>().having((s) => s.num, 'num', 4),
+            isA<SimpleData>().having((final s) => s.num, 'num', 3),
+            isA<SimpleData>().having((final s) => s.num, 'num', 4),
           },
         ]),
       );
@@ -270,7 +270,7 @@ void main() {
   test(
     'Given a streaming method that echoes a flattened stream of sets of data objects, when calling the method, then the input values are returned.',
     () async {
-      var response = client.methodStreaming.nestedSetInListInOutDataStream(
+      final response = client.methodStreaming.nestedSetInListInOutDataStream(
         Stream.fromIterable([
           [
             {SimpleData(num: 1), SimpleData(num: 2)},
@@ -286,14 +286,14 @@ void main() {
         response,
         emitsInOrder([
           {
-            isA<SimpleData>().having((s) => s.num, 'num', 1),
-            isA<SimpleData>().having((s) => s.num, 'num', 2),
+            isA<SimpleData>().having((final s) => s.num, 'num', 1),
+            isA<SimpleData>().having((final s) => s.num, 'num', 2),
           },
           {
-            isA<SimpleData>().having((s) => s.num, 'num', 3),
+            isA<SimpleData>().having((final s) => s.num, 'num', 3),
           },
           {
-            isA<SimpleData>().having((s) => s.num, 'num', 4),
+            isA<SimpleData>().having((final s) => s.num, 'num', 4),
           },
         ]),
       );

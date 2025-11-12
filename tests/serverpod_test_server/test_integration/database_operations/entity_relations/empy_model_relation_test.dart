@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   tearDown(
     () async => await RelationEmptyModel.db.deleteWhere(
@@ -30,7 +30,7 @@ void main() async {
       });
 
       test('then the model can be fetched from the database', () async {
-        var fetchedData = await RelationEmptyModel.db.findFirstRow(
+        final fetchedData = await RelationEmptyModel.db.findFirstRow(
           session,
         );
 

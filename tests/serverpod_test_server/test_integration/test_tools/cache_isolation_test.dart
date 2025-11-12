@@ -6,7 +6,7 @@ import 'serverpod_test_tools.dart';
 void main() {
   withServerpod(
     'Given withServerpod with cache operations',
-    (sessionBuilder, endpoints) {
+    (final sessionBuilder, final endpoints) {
       group('when tests store data in local cache', () {
         test('then the value is retrieved.', () async {
           // First test stores data

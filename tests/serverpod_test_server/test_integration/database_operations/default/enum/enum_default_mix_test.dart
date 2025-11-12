@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with mixed default enum fields,', () {
     tearDownAll(
@@ -23,7 +23,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await EnumDefaultMix.db.findFirstRow(session);
+        final databaseObject = await EnumDefaultMix.db.findFirstRow(session);
         expect(
           databaseObject?.byNameEnumDefaultAndDefaultModel,
           equals(ByNameEnum.byName1),
@@ -40,7 +40,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await EnumDefaultMix.db.findFirstRow(session);
+        final databaseObject = await EnumDefaultMix.db.findFirstRow(session);
         expect(
           databaseObject?.byNameEnumDefaultAndDefaultPersist,
           equals(ByNameEnum.byName2),
@@ -57,7 +57,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await EnumDefaultMix.db.findFirstRow(session);
+        final databaseObject = await EnumDefaultMix.db.findFirstRow(session);
         expect(
           databaseObject?.byNameEnumDefaultModelAndDefaultPersist,
           equals(ByNameEnum.byName2),
@@ -68,10 +68,10 @@ void main() async {
     test(
       'when creating a record in the database with specific values, then the "byNameEnumDefaultAndDefaultModel" field value should match the provided value',
       () async {
-        var specificObject = EnumDefaultMix(
+        final specificObject = EnumDefaultMix(
           byNameEnumDefaultAndDefaultModel: ByNameEnum.byName2,
         );
-        var specificDatabaseObject = await EnumDefaultMix.db.insertRow(
+        final specificDatabaseObject = await EnumDefaultMix.db.insertRow(
           session,
           specificObject,
         );
@@ -85,10 +85,10 @@ void main() async {
     test(
       'when creating a record in the database with specific values, then the "byNameEnumDefaultAndDefaultPersist" field value should match the provided value',
       () async {
-        var specificObject = EnumDefaultMix(
+        final specificObject = EnumDefaultMix(
           byNameEnumDefaultAndDefaultPersist: ByNameEnum.byName1,
         );
-        var specificDatabaseObject = await EnumDefaultMix.db.insertRow(
+        final specificDatabaseObject = await EnumDefaultMix.db.insertRow(
           session,
           specificObject,
         );
@@ -102,10 +102,10 @@ void main() async {
     test(
       'when creating a record in the database with specific values, then the "byNameEnumDefaultModelAndDefaultPersist" field value should match the provided value',
       () async {
-        var specificObject = EnumDefaultMix(
+        final specificObject = EnumDefaultMix(
           byNameEnumDefaultModelAndDefaultPersist: ByNameEnum.byName1,
         );
-        var specificDatabaseObject = await EnumDefaultMix.db.insertRow(
+        final specificDatabaseObject = await EnumDefaultMix.db.insertRow(
           session,
           specificObject,
         );

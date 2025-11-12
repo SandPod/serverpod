@@ -5,7 +5,7 @@ import 'package:serverpod_test_server/test_util/config.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = test_client.Client(
+  final client = test_client.Client(
     serverUrl,
   );
 

@@ -7,14 +7,14 @@ import 'test_tools/serverpod_test_tools.dart';
 void main() {
   withServerpod(
     'Given a database storable immutable model when inserted into the database',
-    (sessionBuilder, _) {
+    (final sessionBuilder, _) {
       late Session session;
       late ImmutableObjectWithTable object;
       late Future<ImmutableObjectWithTable> insertFuture;
 
       setUp(() async {
-        session = await sessionBuilder.build();
-        object = ImmutableObjectWithTable(variable: 'initial value');
+        session = sessionBuilder.build();
+        object = const ImmutableObjectWithTable(variable: 'initial value');
         insertFuture = ImmutableObjectWithTable.db.insertRow(session, object);
       });
 
@@ -23,21 +23,21 @@ void main() {
       });
 
       test('then inserted object has expected values', () async {
-        var insertedObject = await insertFuture;
+        final insertedObject = await insertFuture;
         expect(insertedObject.id, isNotNull);
         expect(insertedObject.variable, object.variable);
       });
 
       test('then inserted object is not equal to constructed object', () async {
-        var insertedObject = await insertFuture;
+        final insertedObject = await insertFuture;
         expect(insertedObject, isNot(equals(object)));
       });
 
       test(
         'then inserted object is equal to database fetched object',
         () async {
-          var insertedObject = await insertFuture;
-          var fetchedObject = await ImmutableObjectWithTable.db.findById(
+          final insertedObject = await insertFuture;
+          final fetchedObject = await ImmutableObjectWithTable.db.findById(
             session,
             insertedObject.id!,
           );
@@ -49,26 +49,26 @@ void main() {
   );
 
   withServerpod('Given an immutable model stored in the database', (
-    sessionBuilder,
+    final sessionBuilder,
     _,
   ) {
     late Session session;
     late ImmutableObjectWithTable insertedObject;
 
     setUp(() async {
-      session = await sessionBuilder.build();
+      session = sessionBuilder.build();
       insertedObject = await ImmutableObjectWithTable.db.insertRow(
         session,
-        ImmutableObjectWithTable(variable: 'initial value'),
+        const ImmutableObjectWithTable(variable: 'initial value'),
       );
     });
 
     test('then two identical fetches return equal objects', () async {
-      var fetchedObject1 = await ImmutableObjectWithTable.db.findById(
+      final fetchedObject1 = await ImmutableObjectWithTable.db.findById(
         session,
         insertedObject.id!,
       );
-      var fetchedObject2 = await ImmutableObjectWithTable.db.findById(
+      final fetchedObject2 = await ImmutableObjectWithTable.db.findById(
         session,
         insertedObject.id!,
       );
@@ -94,7 +94,7 @@ void main() {
       });
 
       test('then updates object has expected values', () async {
-        var updatedObject = await updateFuture;
+        final updatedObject = await updateFuture;
         expect(updatedObject.variable, endsWith(updateHash));
       });
     });

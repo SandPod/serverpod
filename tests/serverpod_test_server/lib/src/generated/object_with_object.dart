@@ -29,19 +29,19 @@ abstract class ObjectWithObject
   });
 
   factory ObjectWithObject({
-    int? id,
-    required _i2.SimpleData data,
-    _i2.SimpleData? nullableData,
-    required List<_i2.SimpleData> dataList,
-    List<_i2.SimpleData>? nullableDataList,
-    required List<_i2.SimpleData?> listWithNullableData,
-    List<_i2.SimpleData?>? nullableListWithNullableData,
-    List<List<_i2.SimpleData>>? nestedDataList,
-    Map<String, List<List<Map<int, _i2.SimpleData>>?>>? nestedDataListInMap,
-    Map<String, Map<int, _i2.SimpleData>>? nestedDataMap,
+    final int? id,
+    required final _i2.SimpleData data,
+    final _i2.SimpleData? nullableData,
+    required final List<_i2.SimpleData> dataList,
+    final List<_i2.SimpleData>? nullableDataList,
+    required final List<_i2.SimpleData?> listWithNullableData,
+    final List<_i2.SimpleData?>? nullableListWithNullableData,
+    final List<List<_i2.SimpleData>>? nestedDataList,
+    final Map<String, List<List<Map<int, _i2.SimpleData>>?>>? nestedDataListInMap,
+    final Map<String, Map<int, _i2.SimpleData>>? nestedDataMap,
   }) = _ObjectWithObjectImpl;
 
-  factory ObjectWithObject.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory ObjectWithObject.fromJson(final Map<String, dynamic> jsonSerialization) {
     return ObjectWithObject(
       id: jsonSerialization['id'] as int?,
       data: _i2.SimpleData.fromJson(
@@ -53,14 +53,14 @@ abstract class ObjectWithObject
               (jsonSerialization['nullableData'] as Map<String, dynamic>),
             ),
       dataList: (jsonSerialization['dataList'] as List)
-          .map((e) => _i2.SimpleData.fromJson((e as Map<String, dynamic>)))
+          .map((final e) => _i2.SimpleData.fromJson((e as Map<String, dynamic>)))
           .toList(),
       nullableDataList: (jsonSerialization['nullableDataList'] as List?)
-          ?.map((e) => _i2.SimpleData.fromJson((e as Map<String, dynamic>)))
+          ?.map((final e) => _i2.SimpleData.fromJson((e as Map<String, dynamic>)))
           .toList(),
       listWithNullableData: (jsonSerialization['listWithNullableData'] as List)
           .map(
-            (e) => e == null
+            (final e) => e == null
                 ? null
                 : _i2.SimpleData.fromJson((e as Map<String, dynamic>)),
           )
@@ -68,31 +68,31 @@ abstract class ObjectWithObject
       nullableListWithNullableData:
           (jsonSerialization['nullableListWithNullableData'] as List?)
               ?.map(
-                (e) => e == null
+                (final e) => e == null
                     ? null
                     : _i2.SimpleData.fromJson((e as Map<String, dynamic>)),
               )
               .toList(),
       nestedDataList: (jsonSerialization['nestedDataList'] as List?)
           ?.map(
-            (e) => (e as List)
+            (final e) => (e as List)
                 .map(
-                  (e) => _i2.SimpleData.fromJson((e as Map<String, dynamic>)),
+                  (final e) => _i2.SimpleData.fromJson((e as Map<String, dynamic>)),
                 )
                 .toList(),
           )
           .toList(),
       nestedDataListInMap: (jsonSerialization['nestedDataListInMap'] as Map?)
           ?.map(
-            (k, v) => MapEntry(
+            (final k, final v) => MapEntry(
               k as String,
               (v as List)
                   .map(
-                    (e) => (e as List?)
+                    (final e) => (e as List?)
                         ?.map(
-                          (e) => (e as List).fold<Map<int, _i2.SimpleData>>(
+                          (final e) => (e as List).fold<Map<int, _i2.SimpleData>>(
                             {},
-                            (t, e) => {
+                            (final t, final e) => {
                               ...t,
                               e['k'] as int: _i2.SimpleData.fromJson(
                                 (e['v'] as Map<String, dynamic>),
@@ -106,11 +106,11 @@ abstract class ObjectWithObject
             ),
           ),
       nestedDataMap: (jsonSerialization['nestedDataMap'] as Map?)?.map(
-        (k, v) => MapEntry(
+        (final k, final v) => MapEntry(
           k as String,
           (v as List).fold<Map<int, _i2.SimpleData>>(
             {},
-            (t, e) => {
+            (final t, final e) => {
               ...t,
               e['k'] as int: _i2.SimpleData.fromJson(
                 (e['v'] as Map<String, dynamic>),
@@ -154,16 +154,16 @@ abstract class ObjectWithObject
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ObjectWithObject copyWith({
-    int? id,
-    _i2.SimpleData? data,
-    _i2.SimpleData? nullableData,
-    List<_i2.SimpleData>? dataList,
-    List<_i2.SimpleData>? nullableDataList,
-    List<_i2.SimpleData?>? listWithNullableData,
-    List<_i2.SimpleData?>? nullableListWithNullableData,
-    List<List<_i2.SimpleData>>? nestedDataList,
-    Map<String, List<List<Map<int, _i2.SimpleData>>?>>? nestedDataListInMap,
-    Map<String, Map<int, _i2.SimpleData>>? nestedDataMap,
+    final int? id,
+    final _i2.SimpleData? data,
+    final _i2.SimpleData? nullableData,
+    final List<_i2.SimpleData>? dataList,
+    final List<_i2.SimpleData>? nullableDataList,
+    final List<_i2.SimpleData?>? listWithNullableData,
+    final List<_i2.SimpleData?>? nullableListWithNullableData,
+    final List<List<_i2.SimpleData>>? nestedDataList,
+    final Map<String, List<List<Map<int, _i2.SimpleData>>?>>? nestedDataListInMap,
+    final Map<String, Map<int, _i2.SimpleData>>? nestedDataMap,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -171,33 +171,33 @@ abstract class ObjectWithObject
       if (id != null) 'id': id,
       'data': data.toJson(),
       if (nullableData != null) 'nullableData': nullableData?.toJson(),
-      'dataList': dataList.toJson(valueToJson: (v) => v.toJson()),
+      'dataList': dataList.toJson(valueToJson: (final v) => v.toJson()),
       if (nullableDataList != null)
         'nullableDataList': nullableDataList?.toJson(
-          valueToJson: (v) => v.toJson(),
+          valueToJson: (final v) => v.toJson(),
         ),
       'listWithNullableData': listWithNullableData.toJson(
-        valueToJson: (v) => v?.toJson(),
+        valueToJson: (final v) => v?.toJson(),
       ),
       if (nullableListWithNullableData != null)
         'nullableListWithNullableData': nullableListWithNullableData?.toJson(
-          valueToJson: (v) => v?.toJson(),
+          valueToJson: (final v) => v?.toJson(),
         ),
       if (nestedDataList != null)
         'nestedDataList': nestedDataList?.toJson(
-          valueToJson: (v) => v.toJson(valueToJson: (v) => v.toJson()),
+          valueToJson: (final v) => v.toJson(valueToJson: (final v) => v.toJson()),
         ),
       if (nestedDataListInMap != null)
         'nestedDataListInMap': nestedDataListInMap?.toJson(
-          valueToJson: (v) => v.toJson(
-            valueToJson: (v) => v?.toJson(
-              valueToJson: (v) => v.toJson(valueToJson: (v) => v.toJson()),
+          valueToJson: (final v) => v.toJson(
+            valueToJson: (final v) => v?.toJson(
+              valueToJson: (final v) => v.toJson(valueToJson: (final v) => v.toJson()),
             ),
           ),
         ),
       if (nestedDataMap != null)
         'nestedDataMap': nestedDataMap?.toJson(
-          valueToJson: (v) => v.toJson(valueToJson: (v) => v.toJson()),
+          valueToJson: (final v) => v.toJson(valueToJson: (final v) => v.toJson()),
         ),
     };
   }
@@ -209,36 +209,36 @@ abstract class ObjectWithObject
       'data': data.toJsonForProtocol(),
       if (nullableData != null)
         'nullableData': nullableData?.toJsonForProtocol(),
-      'dataList': dataList.toJson(valueToJson: (v) => v.toJsonForProtocol()),
+      'dataList': dataList.toJson(valueToJson: (final v) => v.toJsonForProtocol()),
       if (nullableDataList != null)
         'nullableDataList': nullableDataList?.toJson(
-          valueToJson: (v) => v.toJsonForProtocol(),
+          valueToJson: (final v) => v.toJsonForProtocol(),
         ),
       'listWithNullableData': listWithNullableData.toJson(
-        valueToJson: (v) => v?.toJsonForProtocol(),
+        valueToJson: (final v) => v?.toJsonForProtocol(),
       ),
       if (nullableListWithNullableData != null)
         'nullableListWithNullableData': nullableListWithNullableData?.toJson(
-          valueToJson: (v) => v?.toJsonForProtocol(),
+          valueToJson: (final v) => v?.toJsonForProtocol(),
         ),
       if (nestedDataList != null)
         'nestedDataList': nestedDataList?.toJson(
-          valueToJson: (v) =>
-              v.toJson(valueToJson: (v) => v.toJsonForProtocol()),
+          valueToJson: (final v) =>
+              v.toJson(valueToJson: (final v) => v.toJsonForProtocol()),
         ),
       if (nestedDataListInMap != null)
         'nestedDataListInMap': nestedDataListInMap?.toJson(
-          valueToJson: (v) => v.toJson(
-            valueToJson: (v) => v?.toJson(
-              valueToJson: (v) =>
-                  v.toJson(valueToJson: (v) => v.toJsonForProtocol()),
+          valueToJson: (final v) => v.toJson(
+            valueToJson: (final v) => v?.toJson(
+              valueToJson: (final v) =>
+                  v.toJson(valueToJson: (final v) => v.toJsonForProtocol()),
             ),
           ),
         ),
       if (nestedDataMap != null)
         'nestedDataMap': nestedDataMap?.toJson(
-          valueToJson: (v) =>
-              v.toJson(valueToJson: (v) => v.toJsonForProtocol()),
+          valueToJson: (final v) =>
+              v.toJson(valueToJson: (final v) => v.toJsonForProtocol()),
         ),
     };
   }
@@ -248,13 +248,13 @@ abstract class ObjectWithObject
   }
 
   static ObjectWithObjectIncludeList includeList({
-    _i1.WhereExpressionBuilder<ObjectWithObjectTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithObjectTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ObjectWithObjectTable>? orderByList,
-    ObjectWithObjectInclude? include,
+    final _i1.WhereExpressionBuilder<ObjectWithObjectTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithObjectTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ObjectWithObjectTable>? orderByList,
+    final ObjectWithObjectInclude? include,
   }) {
     return ObjectWithObjectIncludeList._(
       where: where,
@@ -277,16 +277,16 @@ class _Undefined {}
 
 class _ObjectWithObjectImpl extends ObjectWithObject {
   _ObjectWithObjectImpl({
-    int? id,
-    required _i2.SimpleData data,
-    _i2.SimpleData? nullableData,
-    required List<_i2.SimpleData> dataList,
-    List<_i2.SimpleData>? nullableDataList,
-    required List<_i2.SimpleData?> listWithNullableData,
-    List<_i2.SimpleData?>? nullableListWithNullableData,
-    List<List<_i2.SimpleData>>? nestedDataList,
-    Map<String, List<List<Map<int, _i2.SimpleData>>?>>? nestedDataListInMap,
-    Map<String, Map<int, _i2.SimpleData>>? nestedDataMap,
+    final int? id,
+    required final _i2.SimpleData data,
+    final _i2.SimpleData? nullableData,
+    required final List<_i2.SimpleData> dataList,
+    final List<_i2.SimpleData>? nullableDataList,
+    required final List<_i2.SimpleData?> listWithNullableData,
+    final List<_i2.SimpleData?>? nullableListWithNullableData,
+    final List<List<_i2.SimpleData>>? nestedDataList,
+    final Map<String, List<List<Map<int, _i2.SimpleData>>?>>? nestedDataListInMap,
+    final Map<String, Map<int, _i2.SimpleData>>? nestedDataMap,
   }) : super._(
          id: id,
          data: data,
@@ -305,16 +305,16 @@ class _ObjectWithObjectImpl extends ObjectWithObject {
   @_i1.useResult
   @override
   ObjectWithObject copyWith({
-    Object? id = _Undefined,
-    _i2.SimpleData? data,
-    Object? nullableData = _Undefined,
-    List<_i2.SimpleData>? dataList,
-    Object? nullableDataList = _Undefined,
-    List<_i2.SimpleData?>? listWithNullableData,
-    Object? nullableListWithNullableData = _Undefined,
-    Object? nestedDataList = _Undefined,
-    Object? nestedDataListInMap = _Undefined,
-    Object? nestedDataMap = _Undefined,
+    final Object? id = _Undefined,
+    final _i2.SimpleData? data,
+    final Object? nullableData = _Undefined,
+    final List<_i2.SimpleData>? dataList,
+    final Object? nullableDataList = _Undefined,
+    final List<_i2.SimpleData?>? listWithNullableData,
+    final Object? nullableListWithNullableData = _Undefined,
+    final Object? nestedDataList = _Undefined,
+    final Object? nestedDataListInMap = _Undefined,
+    final Object? nestedDataMap = _Undefined,
   }) {
     return ObjectWithObject(
       id: id is int? ? id : this.id,
@@ -322,23 +322,23 @@ class _ObjectWithObjectImpl extends ObjectWithObject {
       nullableData: nullableData is _i2.SimpleData?
           ? nullableData
           : this.nullableData?.copyWith(),
-      dataList: dataList ?? this.dataList.map((e0) => e0.copyWith()).toList(),
+      dataList: dataList ?? this.dataList.map((final e0) => e0.copyWith()).toList(),
       nullableDataList: nullableDataList is List<_i2.SimpleData>?
           ? nullableDataList
-          : this.nullableDataList?.map((e0) => e0.copyWith()).toList(),
+          : this.nullableDataList?.map((final e0) => e0.copyWith()).toList(),
       listWithNullableData:
           listWithNullableData ??
-          this.listWithNullableData.map((e0) => e0?.copyWith()).toList(),
+          this.listWithNullableData.map((final e0) => e0?.copyWith()).toList(),
       nullableListWithNullableData:
           nullableListWithNullableData is List<_i2.SimpleData?>?
           ? nullableListWithNullableData
           : this.nullableListWithNullableData
-                ?.map((e0) => e0?.copyWith())
+                ?.map((final e0) => e0?.copyWith())
                 .toList(),
       nestedDataList: nestedDataList is List<List<_i2.SimpleData>>?
           ? nestedDataList
           : this.nestedDataList
-                ?.map((e0) => e0.map((e1) => e1.copyWith()).toList())
+                ?.map((final e0) => e0.map((final e1) => e1.copyWith()).toList())
                 .toList(),
       nestedDataListInMap:
           nestedDataListInMap
@@ -346,18 +346,18 @@ class _ObjectWithObjectImpl extends ObjectWithObject {
           ? nestedDataListInMap
           : this.nestedDataListInMap?.map(
               (
-                key0,
-                value0,
+                final key0,
+                final value0,
               ) => MapEntry(
                 key0,
                 value0
                     .map(
-                      (e1) => e1
+                      (final e1) => e1
                           ?.map(
-                            (e2) => e2.map(
+                            (final e2) => e2.map(
                               (
-                                key3,
-                                value3,
+                                final key3,
+                                final value3,
                               ) => MapEntry(
                                 key3,
                                 value3.copyWith(),
@@ -373,14 +373,14 @@ class _ObjectWithObjectImpl extends ObjectWithObject {
           ? nestedDataMap
           : this.nestedDataMap?.map(
               (
-                key0,
-                value0,
+                final key0,
+                final value0,
               ) => MapEntry(
                 key0,
                 value0.map(
                   (
-                    key1,
-                    value1,
+                    final key1,
+                    final value1,
                   ) => MapEntry(
                     key1,
                     value1.copyWith(),
@@ -396,47 +396,47 @@ class ObjectWithObjectUpdateTable
     extends _i1.UpdateTable<ObjectWithObjectTable> {
   ObjectWithObjectUpdateTable(super.table);
 
-  _i1.ColumnValue<_i2.SimpleData, _i2.SimpleData> data(_i2.SimpleData value) =>
+  _i1.ColumnValue<_i2.SimpleData, _i2.SimpleData> data(final _i2.SimpleData value) =>
       _i1.ColumnValue(
         table.data,
         value,
       );
 
   _i1.ColumnValue<_i2.SimpleData, _i2.SimpleData> nullableData(
-    _i2.SimpleData? value,
+    final _i2.SimpleData? value,
   ) => _i1.ColumnValue(
     table.nullableData,
     value,
   );
 
   _i1.ColumnValue<List<_i2.SimpleData>, List<_i2.SimpleData>> dataList(
-    List<_i2.SimpleData> value,
+    final List<_i2.SimpleData> value,
   ) => _i1.ColumnValue(
     table.dataList,
     value,
   );
 
   _i1.ColumnValue<List<_i2.SimpleData>, List<_i2.SimpleData>> nullableDataList(
-    List<_i2.SimpleData>? value,
+    final List<_i2.SimpleData>? value,
   ) => _i1.ColumnValue(
     table.nullableDataList,
     value,
   );
 
   _i1.ColumnValue<List<_i2.SimpleData?>, List<_i2.SimpleData?>>
-  listWithNullableData(List<_i2.SimpleData?> value) => _i1.ColumnValue(
+  listWithNullableData(final List<_i2.SimpleData?> value) => _i1.ColumnValue(
     table.listWithNullableData,
     value,
   );
 
   _i1.ColumnValue<List<_i2.SimpleData?>, List<_i2.SimpleData?>>
-  nullableListWithNullableData(List<_i2.SimpleData?>? value) => _i1.ColumnValue(
+  nullableListWithNullableData(final List<_i2.SimpleData?>? value) => _i1.ColumnValue(
     table.nullableListWithNullableData,
     value,
   );
 
   _i1.ColumnValue<List<List<_i2.SimpleData>>, List<List<_i2.SimpleData>>>
-  nestedDataList(List<List<_i2.SimpleData>>? value) => _i1.ColumnValue(
+  nestedDataList(final List<List<_i2.SimpleData>>? value) => _i1.ColumnValue(
     table.nestedDataList,
     value,
   );
@@ -446,7 +446,7 @@ class ObjectWithObjectUpdateTable
     Map<String, List<List<Map<int, _i2.SimpleData>>?>>
   >
   nestedDataListInMap(
-    Map<String, List<List<Map<int, _i2.SimpleData>>?>>? value,
+    final Map<String, List<List<Map<int, _i2.SimpleData>>?>>? value,
   ) => _i1.ColumnValue(
     table.nestedDataListInMap,
     value,
@@ -456,7 +456,7 @@ class ObjectWithObjectUpdateTable
     Map<String, Map<int, _i2.SimpleData>>,
     Map<String, Map<int, _i2.SimpleData>>
   >
-  nestedDataMap(Map<String, Map<int, _i2.SimpleData>>? value) =>
+  nestedDataMap(final Map<String, Map<int, _i2.SimpleData>>? value) =>
       _i1.ColumnValue(
         table.nestedDataMap,
         value,
@@ -562,7 +562,7 @@ class ObjectWithObjectInclude extends _i1.IncludeObject {
 
 class ObjectWithObjectIncludeList extends _i1.IncludeList {
   ObjectWithObjectIncludeList._({
-    _i1.WhereExpressionBuilder<ObjectWithObjectTable>? where,
+    final _i1.WhereExpressionBuilder<ObjectWithObjectTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -606,14 +606,14 @@ class ObjectWithObjectRepository {
   /// );
   /// ```
   Future<List<ObjectWithObject>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ObjectWithObjectTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithObjectTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ObjectWithObjectTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ObjectWithObjectTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithObjectTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ObjectWithObjectTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<ObjectWithObject>(
       where: where?.call(ObjectWithObject.t),
@@ -644,13 +644,13 @@ class ObjectWithObjectRepository {
   /// );
   /// ```
   Future<ObjectWithObject?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ObjectWithObjectTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithObjectTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ObjectWithObjectTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ObjectWithObjectTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithObjectTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ObjectWithObjectTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<ObjectWithObject>(
       where: where?.call(ObjectWithObject.t),
@@ -664,9 +664,9 @@ class ObjectWithObjectRepository {
 
   /// Finds a single [ObjectWithObject] by its [id] or null if no such row exists.
   Future<ObjectWithObject?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<ObjectWithObject>(
       id,
@@ -681,9 +681,9 @@ class ObjectWithObjectRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<ObjectWithObject>> insert(
-    _i1.Session session,
-    List<ObjectWithObject> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<ObjectWithObject> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<ObjectWithObject>(
       rows,
@@ -695,9 +695,9 @@ class ObjectWithObjectRepository {
   ///
   /// The returned [ObjectWithObject] will have its `id` field set.
   Future<ObjectWithObject> insertRow(
-    _i1.Session session,
-    ObjectWithObject row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final ObjectWithObject row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<ObjectWithObject>(
       row,
@@ -711,10 +711,10 @@ class ObjectWithObjectRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<ObjectWithObject>> update(
-    _i1.Session session,
-    List<ObjectWithObject> rows, {
-    _i1.ColumnSelections<ObjectWithObjectTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<ObjectWithObject> rows, {
+    final _i1.ColumnSelections<ObjectWithObjectTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<ObjectWithObject>(
       rows,
@@ -727,10 +727,10 @@ class ObjectWithObjectRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<ObjectWithObject> updateRow(
-    _i1.Session session,
-    ObjectWithObject row, {
-    _i1.ColumnSelections<ObjectWithObjectTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final ObjectWithObject row, {
+    final _i1.ColumnSelections<ObjectWithObjectTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<ObjectWithObject>(
       row,
@@ -742,11 +742,11 @@ class ObjectWithObjectRepository {
   /// Updates a single [ObjectWithObject] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<ObjectWithObject?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<ObjectWithObjectUpdateTable>
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<ObjectWithObjectUpdateTable>
     columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<ObjectWithObject>(
       id,
@@ -758,16 +758,16 @@ class ObjectWithObjectRepository {
   /// Updates all [ObjectWithObject]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<ObjectWithObject>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<ObjectWithObjectUpdateTable>
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<ObjectWithObjectUpdateTable>
     columnValues,
-    required _i1.WhereExpressionBuilder<ObjectWithObjectTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithObjectTable>? orderBy,
-    _i1.OrderByListBuilder<ObjectWithObjectTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    required final _i1.WhereExpressionBuilder<ObjectWithObjectTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithObjectTable>? orderBy,
+    final _i1.OrderByListBuilder<ObjectWithObjectTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<ObjectWithObject>(
       columnValues: columnValues(ObjectWithObject.t.updateTable),
@@ -785,9 +785,9 @@ class ObjectWithObjectRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<ObjectWithObject>> delete(
-    _i1.Session session,
-    List<ObjectWithObject> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<ObjectWithObject> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<ObjectWithObject>(
       rows,
@@ -797,9 +797,9 @@ class ObjectWithObjectRepository {
 
   /// Deletes a single [ObjectWithObject].
   Future<ObjectWithObject> deleteRow(
-    _i1.Session session,
-    ObjectWithObject row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final ObjectWithObject row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<ObjectWithObject>(
       row,
@@ -809,9 +809,9 @@ class ObjectWithObjectRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<ObjectWithObject>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<ObjectWithObjectTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<ObjectWithObjectTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<ObjectWithObject>(
       where: where(ObjectWithObject.t),
@@ -822,10 +822,10 @@ class ObjectWithObjectRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ObjectWithObjectTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ObjectWithObjectTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<ObjectWithObject>(
       where: where?.call(ObjectWithObject.t),

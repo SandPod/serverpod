@@ -4,33 +4,33 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given an empty database', () {
     tearDown(() async {
       await RelatedUniqueData.db.deleteWhere(
         session,
-        where: (t) => Constant.bool(true),
+        where: (final t) => Constant.bool(true),
       );
-      await Types.db.deleteWhere(session, where: (t) => Constant.bool(true));
+      await Types.db.deleteWhere(session, where: (final t) => Constant.bool(true));
       await UniqueData.db.deleteWhere(
         session,
-        where: (t) => Constant.bool(true),
+        where: (final t) => Constant.bool(true),
       );
     });
     test(
       'when batch inserting then all the entries are created in the database.',
       () async {
-        var data = <UniqueData>[
+        final data = <UniqueData>[
           UniqueData(number: 1, email: 'info@serverpod.dev'),
           UniqueData(number: 2, email: 'dev@serverpod.dev'),
         ];
 
-        var inserted = await UniqueData.db.insert(session, data);
+        final inserted = await UniqueData.db.insert(session, data);
 
         expect(inserted, hasLength(2));
 
-        var simpleList = await UniqueData.db.find(session);
+        final simpleList = await UniqueData.db.find(session);
 
         expect(inserted.first.id, equals(simpleList.first.id));
         expect(inserted.last.id, equals(simpleList.last.id));
@@ -40,7 +40,7 @@ void main() async {
     test(
       'when batch inserting with one failing row then no entries are created in the database.',
       () async {
-        var data = <UniqueData>[
+        final data = <UniqueData>[
           UniqueData(number: 2, email: 'info@serverpod.dev'),
           UniqueData(number: 2, email: 'dev@serverpod.dev'),
           UniqueData(number: 2, email: 'dev@serverpod.dev'),
@@ -50,22 +50,22 @@ void main() async {
           UniqueData.db.insert(session, data),
           throwsA(
             isA<DatabaseQueryException>().having(
-              (e) => e.code,
+              (final e) => e.code,
               'code',
               PgErrorCode.uniqueViolation,
             ),
           ),
         );
 
-        var first = await UniqueData.db.findFirstRow(
+        final first = await UniqueData.db.findFirstRow(
           session,
-          where: (t) => t.email.equals('info@serverpod.dev'),
+          where: (final t) => t.email.equals('info@serverpod.dev'),
         );
         expect(first, isNull);
 
-        var second = await UniqueData.db.findFirstRow(
+        final second = await UniqueData.db.findFirstRow(
           session,
-          where: (t) => t.email.equals('dev@serverpod.dev'),
+          where: (final t) => t.email.equals('dev@serverpod.dev'),
         );
         expect(second, isNull);
       },
@@ -76,11 +76,11 @@ void main() async {
       () async {
         const int id = 999;
 
-        var data = <UniqueData>[
+        final data = <UniqueData>[
           UniqueData(id: id, number: 1, email: 'info@serverpod.dev'),
         ];
 
-        var inserted = await UniqueData.db.insert(session, data);
+        final inserted = await UniqueData.db.insert(session, data);
 
         expect(inserted.first.id, id);
       },
@@ -91,20 +91,20 @@ void main() async {
       () async {
         const int id = 1999;
 
-        var data = <UniqueData>[
+        final data = <UniqueData>[
           UniqueData(id: id, number: 10, email: 'info@serverpod.dev'),
           UniqueData(number: 20, email: 'dev@serverpod.dev'),
         ];
 
-        var inserted = await UniqueData.db.insert(session, data);
+        final inserted = await UniqueData.db.insert(session, data);
 
         expect(inserted, hasLength(2));
 
-        var first = inserted
-            .where((e) => e.email == 'info@serverpod.dev')
+        final first = inserted
+            .where((final e) => e.email == 'info@serverpod.dev')
             .single;
-        var second = inserted
-            .where((e) => e.email == 'dev@serverpod.dev')
+        final second = inserted
+            .where((final e) => e.email == 'dev@serverpod.dev')
             .single;
 
         expect(first.id, id);
@@ -118,7 +118,7 @@ void main() async {
   group('Given an object data without an id when calling insertRow', () {
     late SimpleData inserted;
     setUp(() async {
-      var simpleData = SimpleData(num: 1);
+      final simpleData = SimpleData(num: 1);
       inserted = await SimpleData.db.insertRow(
         session,
         simpleData,
@@ -127,7 +127,7 @@ void main() async {
     tearDown(() async {
       await SimpleData.db.deleteWhere(
         session,
-        where: (t) => Constant.bool(true),
+        where: (final t) => Constant.bool(true),
       );
     });
 
@@ -140,7 +140,7 @@ void main() async {
   group('Given a model without fields when inserting it', () {
     late EmptyModelWithTable inserted;
     setUp(() async {
-      var emptyModel = EmptyModelWithTable();
+      final emptyModel = EmptyModelWithTable();
       inserted = await EmptyModelWithTable.db.insertRow(
         session,
         emptyModel,
@@ -150,7 +150,7 @@ void main() async {
     tearDown(() async {
       await EmptyModelWithTable.db.deleteWhere(
         session,
-        where: (t) => Constant.bool(true),
+        where: (final t) => Constant.bool(true),
       );
     });
 
@@ -163,13 +163,13 @@ void main() async {
     tearDown(() async {
       await ModelWithRequiredField.db.deleteWhere(
         session,
-        where: (t) => Constant.bool(true),
+        where: (final t) => Constant.bool(true),
       );
     });
 
     test('when inserting then it is created', () async {
-      var model = ModelWithRequiredField(name: 'John', email: null);
-      var inserted = await ModelWithRequiredField.db.insertRow(session, model);
+      final model = ModelWithRequiredField(name: 'John', email: null);
+      final inserted = await ModelWithRequiredField.db.insertRow(session, model);
 
       expect(inserted.id, isNotNull);
     });

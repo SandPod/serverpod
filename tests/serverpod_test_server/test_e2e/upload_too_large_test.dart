@@ -5,7 +5,7 @@ import 'package:serverpod_test_server/test_util/config.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client(serverUrl);
+  final client = Client(serverUrl);
 
   test('Given the test server '
       'when request is too large '
@@ -14,9 +14,9 @@ void main() {
       client.upload.uploadByteData('path', ByteData(1 << 20)),
       throwsA(
         isA<ServerpodClientException>()
-            .having((e) => e.statusCode, 'statusCode', 413)
+            .having((final e) => e.statusCode, 'statusCode', 413)
             .having(
-              (e) => e.message,
+              (final e) => e.message,
               'message',
               'Unknown error, data: Request size exceeds the maximum allowed size of 524288 bytes.',
             ),

@@ -9,13 +9,15 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
+import 'package:chat_server/src/generated/channel.dart' as _i6;
+import 'package:serverpod/protocol.dart' as _i2;
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-import 'package:serverpod/protocol.dart' as _i2;
 import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i3;
 import 'package:serverpod_chat_server/serverpod_chat_server.dart' as _i4;
+
 import 'channel.dart' as _i5;
-import 'package:chat_server/src/generated/channel.dart' as _i6;
+
 export 'channel.dart';
 
 class Protocol extends _i1.SerializationManagerServer {
@@ -37,7 +39,7 @@ class Protocol extends _i1.SerializationManagerServer {
           columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'int?',
-          columnDefault: 'nextval(\'channel_id_seq\'::regclass)',
+          columnDefault: "nextval('channel_id_seq'::regclass)",
         ),
         _i2.ColumnDefinition(
           name: 'name',
@@ -77,7 +79,7 @@ class Protocol extends _i1.SerializationManagerServer {
 
   @override
   T deserialize<T>(
-    dynamic data, [
+    final dynamic data, [
     Type? t,
   ]) {
     t ??= T;
@@ -88,7 +90,7 @@ class Protocol extends _i1.SerializationManagerServer {
       return (data != null ? _i5.Channel.fromJson(data) : null) as T;
     }
     if (t == List<_i6.Channel>) {
-      return (data as List).map((e) => deserialize<_i6.Channel>(e)).toList()
+      return (data as List).map((final e) => deserialize<_i6.Channel>(e)).toList()
           as T;
     }
     try {
@@ -104,7 +106,7 @@ class Protocol extends _i1.SerializationManagerServer {
   }
 
   @override
-  String? getClassNameForObject(Object? data) {
+  String? getClassNameForObject(final Object? data) {
     String? className = super.getClassNameForObject(data);
     if (className != null) return className;
     switch (data) {
@@ -127,8 +129,8 @@ class Protocol extends _i1.SerializationManagerServer {
   }
 
   @override
-  dynamic deserializeByClassName(Map<String, dynamic> data) {
-    var dataClassName = data['className'];
+  dynamic deserializeByClassName(final Map<String, dynamic> data) {
+    final dataClassName = data['className'];
     if (dataClassName is! String) {
       return super.deserializeByClassName(data);
     }
@@ -151,21 +153,21 @@ class Protocol extends _i1.SerializationManagerServer {
   }
 
   @override
-  _i1.Table? getTableForType(Type t) {
+  _i1.Table? getTableForType(final Type t) {
     {
-      var table = _i3.Protocol().getTableForType(t);
+      final table = _i3.Protocol().getTableForType(t);
       if (table != null) {
         return table;
       }
     }
     {
-      var table = _i4.Protocol().getTableForType(t);
+      final table = _i4.Protocol().getTableForType(t);
       if (table != null) {
         return table;
       }
     }
     {
-      var table = _i2.Protocol().getTableForType(t);
+      final table = _i2.Protocol().getTableForType(t);
       if (table != null) {
         return table;
       }

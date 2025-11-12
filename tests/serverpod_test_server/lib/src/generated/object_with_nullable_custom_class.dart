@@ -23,17 +23,17 @@ abstract class ObjectWithNullableCustomClass
   });
 
   factory ObjectWithNullableCustomClass({
-    _i2.CustomClassWithoutProtocolSerialization?
+    final _i2.CustomClassWithoutProtocolSerialization?
     nullableCustomClassWithoutProtocolSerialization,
-    _i2.CustomClassWithProtocolSerialization?
+    final _i2.CustomClassWithProtocolSerialization?
     nullableCustomClassWithProtocolSerialization,
-    _i2.CustomClassWithProtocolSerializationMethod?
+    final _i2.CustomClassWithProtocolSerializationMethod?
     nullableCustomClassWithProtocolSerializationMethod,
-    required _i2.CustomClassWithProtocolSerialization nonNullableCustomClass,
+    required final _i2.CustomClassWithProtocolSerialization nonNullableCustomClass,
   }) = _ObjectWithNullableCustomClassImpl;
 
   factory ObjectWithNullableCustomClass.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return ObjectWithNullableCustomClass(
       nullableCustomClassWithoutProtocolSerialization:
@@ -78,13 +78,13 @@ abstract class ObjectWithNullableCustomClass
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ObjectWithNullableCustomClass copyWith({
-    _i2.CustomClassWithoutProtocolSerialization?
+    final _i2.CustomClassWithoutProtocolSerialization?
     nullableCustomClassWithoutProtocolSerialization,
-    _i2.CustomClassWithProtocolSerialization?
+    final _i2.CustomClassWithProtocolSerialization?
     nullableCustomClassWithProtocolSerialization,
-    _i2.CustomClassWithProtocolSerializationMethod?
+    final _i2.CustomClassWithProtocolSerializationMethod?
     nullableCustomClassWithProtocolSerializationMethod,
-    _i2.CustomClassWithProtocolSerialization? nonNullableCustomClass,
+    final _i2.CustomClassWithProtocolSerialization? nonNullableCustomClass,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -151,13 +151,13 @@ class _Undefined {}
 
 class _ObjectWithNullableCustomClassImpl extends ObjectWithNullableCustomClass {
   _ObjectWithNullableCustomClassImpl({
-    _i2.CustomClassWithoutProtocolSerialization?
+    final _i2.CustomClassWithoutProtocolSerialization?
     nullableCustomClassWithoutProtocolSerialization,
-    _i2.CustomClassWithProtocolSerialization?
+    final _i2.CustomClassWithProtocolSerialization?
     nullableCustomClassWithProtocolSerialization,
-    _i2.CustomClassWithProtocolSerializationMethod?
+    final _i2.CustomClassWithProtocolSerializationMethod?
     nullableCustomClassWithProtocolSerializationMethod,
-    required _i2.CustomClassWithProtocolSerialization nonNullableCustomClass,
+    required final _i2.CustomClassWithProtocolSerialization nonNullableCustomClass,
   }) : super._(
          nullableCustomClassWithoutProtocolSerialization:
              nullableCustomClassWithoutProtocolSerialization,
@@ -173,10 +173,10 @@ class _ObjectWithNullableCustomClassImpl extends ObjectWithNullableCustomClass {
   @_i1.useResult
   @override
   ObjectWithNullableCustomClass copyWith({
-    Object? nullableCustomClassWithoutProtocolSerialization = _Undefined,
-    Object? nullableCustomClassWithProtocolSerialization = _Undefined,
-    Object? nullableCustomClassWithProtocolSerializationMethod = _Undefined,
-    _i2.CustomClassWithProtocolSerialization? nonNullableCustomClass,
+    final Object? nullableCustomClassWithoutProtocolSerialization = _Undefined,
+    final Object? nullableCustomClassWithProtocolSerialization = _Undefined,
+    final Object? nullableCustomClassWithProtocolSerializationMethod = _Undefined,
+    final _i2.CustomClassWithProtocolSerialization? nonNullableCustomClass,
   }) {
     return ObjectWithNullableCustomClass(
       nullableCustomClassWithoutProtocolSerialization:

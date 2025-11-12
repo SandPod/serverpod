@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with many to many relation', () {
     tearDown(() async {
@@ -19,13 +19,13 @@ void main() async {
     test(
       'when deleting models filtered on many relation count then result is as expected',
       () async {
-        var students = await Student.db.insert(session, [
+        final students = await Student.db.insert(session, [
           Student(name: 'Alex'),
           Student(name: 'Viktor'),
           Student(name: 'Isak'),
           Student(name: 'Lisa'),
         ]);
-        var courses = await Course.db.insert(session, [
+        final courses = await Course.db.insert(session, [
           Course(name: 'Math'),
           Course(name: 'English'),
           Course(name: 'History'),
@@ -41,14 +41,14 @@ void main() async {
           Enrollment(studentId: students[2].id!, courseId: courses[1].id!),
         ]);
 
-        var deletedStudents = await Student.db.deleteWhere(
+        final deletedStudents = await Student.db.deleteWhere(
           session,
           // All students enrolled to more than one course.
-          where: (s) => s.enrollments.count() > 1,
+          where: (final s) => s.enrollments.count() > 1,
         );
 
         expect(deletedStudents, hasLength(2));
-        var deletedStudentIds = deletedStudents.map((c) => c.id).toList();
+        final deletedStudentIds = deletedStudents.map((final c) => c.id).toList();
         expect(
           deletedStudentIds,
           containsAll([
@@ -62,13 +62,13 @@ void main() async {
     test(
       'when deleting models filtered on filtered many relation count then result is as expected',
       () async {
-        var students = await Student.db.insert(session, [
+        final students = await Student.db.insert(session, [
           Student(name: 'Alex'),
           Student(name: 'Viktor'),
           Student(name: 'Isak'),
           Student(name: 'Lisa'),
         ]);
-        var courses = await Course.db.insert(session, [
+        final courses = await Course.db.insert(session, [
           Course(name: 'Level 1: Math'),
           Course(name: 'Level 1: English'),
           Course(name: 'Level 1: History'),
@@ -91,11 +91,11 @@ void main() async {
           Enrollment(studentId: students[3].id!, courseId: courses[5].id!),
         ]);
 
-        var deletedStudents = await Student.db.deleteWhere(
+        final deletedStudents = await Student.db.deleteWhere(
           session,
           // Fetch all students enrolled to more than one level 2 course.
-          where: (s) =>
-              s.enrollments.count((e) => e.course.name.ilike('level 2:%')) > 1,
+          where: (final s) =>
+              s.enrollments.count((final e) => e.course.name.ilike('level 2:%')) > 1,
         );
 
         expect(deletedStudents, hasLength(1));
@@ -109,13 +109,13 @@ void main() async {
     test(
       'when deleting models filtered on many relation count in combination with other filter then result is as expected',
       () async {
-        var students = await Student.db.insert(session, [
+        final students = await Student.db.insert(session, [
           Student(name: 'Alex'),
           Student(name: 'Viktor'),
           Student(name: 'Isak'),
           Student(name: 'Lisa'),
         ]);
-        var courses = await Course.db.insert(session, [
+        final courses = await Course.db.insert(session, [
           Course(name: 'Level 1: Math'),
           Course(name: 'Level 1: English'),
           Course(name: 'Level 1: History'),
@@ -138,14 +138,14 @@ void main() async {
           Enrollment(studentId: students[3].id!, courseId: courses[5].id!),
         ]);
 
-        var deletedStudents = await Student.db.deleteWhere(
+        final deletedStudents = await Student.db.deleteWhere(
           session,
           // All students enrolled to more than two courses or is named Alex.
-          where: (s) => (s.enrollments.count() > 2) | s.name.equals('Alex'),
+          where: (final s) => (s.enrollments.count() > 2) | s.name.equals('Alex'),
         );
 
         expect(deletedStudents, hasLength(2));
-        var deletedStudentIds = deletedStudents.map((c) => c.id).toList();
+        final deletedStudentIds = deletedStudents.map((final c) => c.id).toList();
         expect(
           deletedStudentIds,
           containsAll([
@@ -159,13 +159,13 @@ void main() async {
     test(
       'when deleting models filtered on multiple many relation count then result is as expected',
       () async {
-        var students = await Student.db.insert(session, [
+        final students = await Student.db.insert(session, [
           Student(name: 'Alex'),
           Student(name: 'Viktor'),
           Student(name: 'Isak'),
           Student(name: 'Lisa'),
         ]);
-        var courses = await Course.db.insert(session, [
+        final courses = await Course.db.insert(session, [
           Course(name: 'Math'),
           Course(name: 'English'),
           Course(name: 'History'),
@@ -185,15 +185,15 @@ void main() async {
           Enrollment(studentId: students[3].id!, courseId: courses[2].id!),
         ]);
 
-        var deletedStudents = await Student.db.deleteWhere(
+        final deletedStudents = await Student.db.deleteWhere(
           session,
           // All students enrolled to more than one course but less than three courses.
-          where: (s) =>
+          where: (final s) =>
               (s.enrollments.count() > 1) & (s.enrollments.count() < 3),
         );
 
         expect(deletedStudents, hasLength(2));
-        var deletedStudentIds = deletedStudents.map((c) => c.id).toList();
+        final deletedStudentIds = deletedStudents.map((final c) => c.id).toList();
         expect(
           deletedStudentIds,
           containsAll([
@@ -207,14 +207,14 @@ void main() async {
     test(
       'when deleting models filtered on multiple filtered many relation count then result is as expected',
       () async {
-        var students = await Student.db.insert(session, [
+        final students = await Student.db.insert(session, [
           Student(name: 'Alex'),
           Student(name: 'Viktor'),
           Student(name: 'Isak'),
           Student(name: 'Lisa'),
           Student(name: 'Anna'),
         ]);
-        var courses = await Course.db.insert(session, [
+        final courses = await Course.db.insert(session, [
           Course(name: 'Level 1: Math'),
           Course(name: 'Level 1: English'),
           Course(name: 'Level 1: History'),
@@ -240,18 +240,18 @@ void main() async {
           Enrollment(studentId: students[4].id!, courseId: courses[3].id!),
         ]);
 
-        var deletedStudents = await Student.db.deleteWhere(
+        final deletedStudents = await Student.db.deleteWhere(
           session,
           // All students enrolled to more than one level 2 course or more than two level 1 courses.
-          where: (s) =>
-              (s.enrollments.count((e) => e.course.name.ilike('level 2:%')) >
+          where: (final s) =>
+              (s.enrollments.count((final e) => e.course.name.ilike('level 2:%')) >
                   1) |
-              (s.enrollments.count((e) => e.course.name.ilike('level 1:%')) >
+              (s.enrollments.count((final e) => e.course.name.ilike('level 1:%')) >
                   2),
         );
 
         expect(deletedStudents, hasLength(2));
-        var deletedStudentIds = deletedStudents.map((c) => c.id).toList();
+        final deletedStudentIds = deletedStudents.map((final c) => c.id).toList();
         expect(
           deletedStudentIds,
           containsAll([

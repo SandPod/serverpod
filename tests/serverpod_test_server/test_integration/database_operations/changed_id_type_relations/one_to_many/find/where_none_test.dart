@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with one to many relation', () {
     tearDown(() async {
@@ -21,7 +21,7 @@ void main() async {
     test(
       'when fetching models filtered by none many relation then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -36,13 +36,13 @@ void main() async {
           OrderUuid(description: 'OrderUuid 5', customerId: customers[2].id!),
         ]);
 
-        var fetchedCustomers = await CustomerInt.db.find(
+        final fetchedCustomers = await CustomerInt.db.find(
           session,
           // All customers with no order.
-          where: (c) => c.orders.none(),
+          where: (final c) => c.orders.none(),
         );
 
-        var customerNames = fetchedCustomers.map((e) => e.name);
+        final customerNames = fetchedCustomers.map((final e) => e.name);
         expect(customerNames, ['Isak']);
       },
     );
@@ -50,7 +50,7 @@ void main() async {
     test(
       'when fetching models filtered by filtered none many relation then result is as expected',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -71,13 +71,13 @@ void main() async {
           ),
         ]);
 
-        var fetchedCustomers = await CustomerInt.db.find(
+        final fetchedCustomers = await CustomerInt.db.find(
           session,
           // All customers with no orders with a description starting with 'prem'.
-          where: (c) => c.orders.none((o) => o.description.ilike('prem%')),
+          where: (final c) => c.orders.none((final o) => o.description.ilike('prem%')),
         );
 
-        var customerNames = fetchedCustomers.map((e) => e.name);
+        final customerNames = fetchedCustomers.map((final e) => e.name);
         expect(customerNames, hasLength(2));
         expect(customerNames, containsAll(['Alex', 'Isak']));
       },
@@ -86,7 +86,7 @@ void main() async {
     test(
       'when fetching models filtered on none many relation in combination with other filter then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -101,13 +101,13 @@ void main() async {
           OrderUuid(description: 'OrderUuid 5', customerId: customers[2].id!),
         ]);
 
-        var fetchedCustomers = await CustomerInt.db.find(
+        final fetchedCustomers = await CustomerInt.db.find(
           session,
           // All customers with no orders or name 'Viktor'
-          where: (c) => c.orders.none() | c.name.equals('Viktor'),
+          where: (final c) => c.orders.none() | c.name.equals('Viktor'),
         );
 
-        var customerNames = fetchedCustomers.map((e) => e.name);
+        final customerNames = fetchedCustomers.map((final e) => e.name);
         expect(customerNames, hasLength(2));
         expect(customerNames, containsAll(['Isak', 'Viktor']));
       },
@@ -116,7 +116,7 @@ void main() async {
     test(
       'when fetching models filtered on OR filtered none many relation then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -137,16 +137,16 @@ void main() async {
           OrderUuid(description: 'OrderUuid 5', customerId: customers[2].id!),
         ]);
 
-        var fetchedCustomers = await CustomerInt.db.find(
+        final fetchedCustomers = await CustomerInt.db.find(
           session,
           // All customers with no orders with a description starting with 'prem'
           // or 'basic'.
-          where: (c) => c.orders.none(
-            (o) => o.description.ilike('prem%') | o.description.ilike('basic%'),
+          where: (final c) => c.orders.none(
+            (final o) => o.description.ilike('prem%') | o.description.ilike('basic%'),
           ),
         );
 
-        var customerNames = fetchedCustomers.map((e) => e.name);
+        final customerNames = fetchedCustomers.map((final e) => e.name);
         expect(customerNames, ['Isak']);
       },
     );
@@ -154,7 +154,7 @@ void main() async {
     test(
       'when fetching models filtered on multiple filtered none many relation then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -188,16 +188,16 @@ void main() async {
           ),
         ]);
 
-        var fetchedCustomers = await CustomerInt.db.find(
+        final fetchedCustomers = await CustomerInt.db.find(
           session,
           // All customers with no orders with a description starting with 'prem'
           // or no orders with a description starting with 'basic'.
-          where: (c) =>
-              c.orders.none((o) => o.description.ilike('prem%')) |
-              c.orders.none((o) => o.description.ilike('basic%')),
+          where: (final c) =>
+              c.orders.none((final o) => o.description.ilike('prem%')) |
+              c.orders.none((final o) => o.description.ilike('basic%')),
         );
 
-        var customerNames = fetchedCustomers.map((e) => e.name);
+        final customerNames = fetchedCustomers.map((final e) => e.name);
         expect(customerNames, hasLength(2));
         expect(customerNames, containsAll(['Isak', 'Alex']));
       },
@@ -223,12 +223,12 @@ void main() async {
     test(
       'when filtering on nested none many relation then result is as expected',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
         ]);
-        var orders = await OrderUuid.db.insert(session, [
+        final orders = await OrderUuid.db.insert(session, [
           // Alex orders
           OrderUuid(description: 'OrderUuid 1', customerId: customers[0].id!),
           OrderUuid(description: 'OrderUuid 2', customerId: customers[0].id!),
@@ -250,13 +250,13 @@ void main() async {
           CommentInt(description: 'CommentInt 11', orderId: orders[3].id),
         ]);
 
-        var fetchedCustomers = await CustomerInt.db.find(
+        final fetchedCustomers = await CustomerInt.db.find(
           session,
           // All customers without orders that have no comments.
-          where: (c) => c.orders.none((o) => o.comments.none()),
+          where: (final c) => c.orders.none((final o) => o.comments.none()),
         );
 
-        var customerNames = fetchedCustomers.map((e) => e.name);
+        final customerNames = fetchedCustomers.map((final e) => e.name);
         expect(customerNames, hasLength(2));
         expect(customerNames, containsAll(['Isak', 'Viktor']));
       },
@@ -265,12 +265,12 @@ void main() async {
     test(
       'when fetching models filtered on filtered nested none many relation then result is as expected',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
         ]);
-        var orders = await OrderUuid.db.insert(session, [
+        final orders = await OrderUuid.db.insert(session, [
           // Alex orders
           OrderUuid(description: 'OrderUuid 1', customerId: customers[0].id!),
           OrderUuid(description: 'OrderUuid 2', customerId: customers[0].id!),
@@ -296,15 +296,15 @@ void main() async {
           CommentInt(description: 'CommentInt 11', orderId: orders[3].id),
         ]);
 
-        var fetchedCustomers = await CustomerInt.db.find(
+        final fetchedCustomers = await CustomerInt.db.find(
           session,
-          where: (c) => c.orders.none(
+          where: (final c) => c.orders.none(
             /// All customers without orders that have no comments with a description starting with 'del'.
-            (o) => o.comments.none((c) => c.description.ilike('del%')),
+            (final o) => o.comments.none((final c) => c.description.ilike('del%')),
           ),
         );
 
-        var customerNames = fetchedCustomers.map((e) => e.name);
+        final customerNames = fetchedCustomers.map((final e) => e.name);
         expect(customerNames, hasLength(2));
         expect(customerNames, containsAll(['Isak', 'Viktor']));
       },

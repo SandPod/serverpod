@@ -28,7 +28,7 @@ void main() async {
     'when running the test '
     'then should timeout after the 30 seconds default timeout',
     () async {
-      var timer = Stopwatch()..start();
+      final timer = Stopwatch()..start();
       final result = await runTest('test_that_will_timeout_after_default.dart');
 
       expect(result.exitCode, 1);
@@ -43,7 +43,7 @@ void main() async {
         greaterThanOrEqualTo(30),
       );
     },
-    timeout: Timeout(Duration(seconds: 40)),
+    timeout: const Timeout(Duration(seconds: 40)),
     tags: [defaultIntegrationTestTag],
   );
 
@@ -66,7 +66,7 @@ void main() async {
   );
 }
 
-Future<ProcessResult> runTest(String testFile) {
+Future<ProcessResult> runTest(final String testFile) {
   return Process.run(
     'dart',
     [

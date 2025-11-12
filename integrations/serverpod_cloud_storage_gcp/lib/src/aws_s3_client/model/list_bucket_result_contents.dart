@@ -10,7 +10,7 @@ part 'list_bucket_result_contents.g.dart';
 abstract class Contents implements Built<Contents, ContentsBuilder> {
   Contents._();
 
-  factory Contents([Function(ContentsBuilder b)? updates]) = _$Contents;
+  factory Contents([final Function(ContentsBuilder b)? updates]) = _$Contents;
 
   @BuiltValueField(wireName: 'Key')
   String? get key;
@@ -31,7 +31,7 @@ abstract class Contents implements Built<Contents, ContentsBuilder> {
     return json.encode(serializers.serializeWith(Contents.serializer, this));
   }
 
-  static Contents fromJson(String jsonString) {
+  static Contents fromJson(final String jsonString) {
     return serializers.deserializeWith(
       Contents.serializer,
       json.decode(jsonString),

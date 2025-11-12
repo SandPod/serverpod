@@ -14,7 +14,7 @@ void main() {
 
     test('when calling an endpoint method with correct parameters '
         'then it should respond with 200 ok', () async {
-      var response = await http.post(
+      final response = await http.post(
         Uri.parse('${serverUrl}simple'),
         body: jsonEncode({
           'method': 'hello',
@@ -28,7 +28,7 @@ void main() {
 
     test('when calling an endpoint method with missing parameters '
         'then it should respond with 400 bad request', () async {
-      var response = await http.post(
+      final response = await http.post(
         Uri.parse('${serverUrl}simple'),
         body: jsonEncode({
           'method': 'hello',
@@ -42,8 +42,8 @@ void main() {
     test('when calling an endpoint method with non-existing endpoint path '
         'then it should respond with 404 not found', () async {
       final nonExistingPath =
-          'path_${Uuid().v4().replaceAll('-', '_').toLowerCase()}';
-      var response = await http.post(
+          'path_${const Uuid().v4().replaceAll('-', '_').toLowerCase()}';
+      final response = await http.post(
         Uri.parse('$serverUrl$nonExistingPath'),
         body: jsonEncode({
           'method': 'hello',
@@ -58,8 +58,8 @@ void main() {
     test('when calling an endpoint method with non-existing method name '
         'then it should respond with 400 bad request', () async {
       final nonExistingName =
-          'path_${Uuid().v4().replaceAll('-', '_').toLowerCase()}';
-      var response = await http.post(
+          'path_${const Uuid().v4().replaceAll('-', '_').toLowerCase()}';
+      final response = await http.post(
         Uri.parse('${serverUrl}simple'),
         body: jsonEncode({
           'method': nonExistingName,
@@ -73,7 +73,7 @@ void main() {
 
     test('when calling an endpoint method with missing method name attribute '
         'then it should respond with 400 bad request', () async {
-      var response = await http.post(
+      final response = await http.post(
         Uri.parse('${serverUrl}simple'),
         body: jsonEncode({
           'name': 'Starbase Alpha',

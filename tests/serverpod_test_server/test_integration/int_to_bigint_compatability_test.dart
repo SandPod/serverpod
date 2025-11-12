@@ -5,11 +5,11 @@ import 'package:uuid/v4.dart';
 void main() async {
   // Suite of regression tests to ensure that int and bigint types are
   // compatible with each other in the database.
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given table that uses an int column and has a row entry', () {
-    var tableName = UuidV4().generate().toString();
-    var initialValue = 1;
+    final tableName = const UuidV4().generate().toString();
+    const initialValue = 1;
 
     setUp(() async {
       await session.db.unsafeSimpleExecute('''
@@ -29,9 +29,9 @@ DROP TABLE "$tableName";
     });
 
     test('when doing updates using bigint type', () async {
-      var id = 1;
-      var newValue = 5;
-      var result = await session.db.unsafeQuery('''
+      const id = 1;
+      const newValue = 5;
+      final result = await session.db.unsafeQuery('''
 UPDATE "$tableName" SET anInt = $newValue WHERE id = $id::bigint RETURNING *;
 ''');
 
@@ -44,9 +44,9 @@ UPDATE "$tableName" SET anInt = $newValue WHERE id = $id::bigint RETURNING *;
     });
 
     test('when doing inserts using bigint type', () async {
-      var expectedId = 2;
-      var newValue = 5;
-      var result = await session.db.unsafeQuery('''
+      const expectedId = 2;
+      const newValue = 5;
+      final result = await session.db.unsafeQuery('''
 INSERT INTO "$tableName" (anInt) VALUES ($newValue::bigint) RETURNING *;
 ''');
 
@@ -59,7 +59,7 @@ INSERT INTO "$tableName" (anInt) VALUES ($newValue::bigint) RETURNING *;
     });
 
     test('when doing finds using bigint type', () async {
-      var result = await session.db.unsafeQuery('''
+      final result = await session.db.unsafeQuery('''
 SELECT * FROM "$tableName" WHERE anInt = $initialValue::bigint;
 ''');
 

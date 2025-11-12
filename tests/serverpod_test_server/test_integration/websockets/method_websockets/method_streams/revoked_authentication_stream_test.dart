@@ -13,15 +13,15 @@ void main() {
   late Session session;
   late c.Client client;
   late TestAuthKeyManager authKeyManager;
-  var authenticatedUserId = '1';
-  var tokenCounter = 0;
+  const authenticatedUserId = '1';
+  const tokenCounter = 0;
 
   setUp(() async {
     // This creates a server with an authentication handler that always returns
     // a user with Admin scope.
     var tokenCounter = 0;
     server = IntegrationTestServer.create(
-      authenticationHandler: (session, token) async => AuthenticationInfo(
+      authenticationHandler: (final session, final token) async => AuthenticationInfo(
         authenticatedUserId,
         {Scope.admin},
         authId: 'token-${tokenCounter++}',
@@ -65,13 +65,13 @@ void main() {
           );
           valueReceivedCompleter = Completer<int>();
           outStream.listen(
-            (event) {
+            (final event) {
               if (valueReceivedCompleter.isCompleted) {
                 return;
               }
               valueReceivedCompleter.complete(event);
             },
-            onError: (e) {
+            onError: (final e) {
               streamClosedCompleter.complete(e);
             },
           );
@@ -95,7 +95,7 @@ void main() {
           );
 
           await expectLater(streamClosedCompleter.future, completes);
-          var exception = await streamClosedCompleter.future;
+          final exception = await streamClosedCompleter.future;
           expect(exception, isA<ConnectionClosedException>());
         },
       );
@@ -112,7 +112,7 @@ void main() {
           );
 
           await expectLater(streamClosedCompleter.future, completes);
-          var exception = await streamClosedCompleter.future;
+          final exception = await streamClosedCompleter.future;
           expect(exception, isA<ConnectionClosedException>());
         },
       );
@@ -151,7 +151,7 @@ void main() {
           );
 
           await expectLater(streamClosedCompleter.future, completes);
-          var exception = await streamClosedCompleter.future;
+          final exception = await streamClosedCompleter.future;
           expect(exception, isA<c.ConnectionClosedException>());
         },
       );
@@ -196,13 +196,13 @@ void main() {
           );
           valueReceivedCompleter1 = Completer<int>();
           outStream.listen(
-            (event) {
+            (final event) {
               if (valueReceivedCompleter1.isCompleted) {
                 return;
               }
               valueReceivedCompleter1.complete(event);
             },
-            onError: (e) {
+            onError: (final e) {
               streamClosedCompleter1.complete(e);
             },
           );
@@ -222,13 +222,13 @@ void main() {
           );
           valueReceivedCompleter2 = Completer<int>();
           outStream2.listen(
-            (event) {
+            (final event) {
               if (valueReceivedCompleter2.isCompleted) {
                 return;
               }
               valueReceivedCompleter2.complete(event);
             },
-            onError: (e) {
+            onError: (final e) {
               streamClosedCompleter2.complete(e);
             },
           );
@@ -292,20 +292,20 @@ void main() {
 
         setUp(() async {
           authenticatedStreamClosedCompleter = Completer<dynamic>();
-          var authenticatedInStream = StreamController<int>();
+          final authenticatedInStream = StreamController<int>();
           Stream<int> authenticatedOutStream;
           {
             authenticatedOutStream = client.authenticatedMethodStreaming
                 .intEchoStream(authenticatedInStream.stream);
-            var valueReceivedCompleter = Completer<int>();
+            final valueReceivedCompleter = Completer<int>();
             authenticatedOutStream.listen(
-              (event) {
+              (final event) {
                 if (valueReceivedCompleter.isCompleted) {
                   return;
                 }
                 valueReceivedCompleter.complete(event);
               },
-              onError: (e) {
+              onError: (final e) {
                 authenticatedStreamClosedCompleter.complete(e);
               },
             );
@@ -323,7 +323,7 @@ void main() {
             unauthenticatedOutStream = client.methodStreaming.intEchoStream(
               unauthenticatedInStream.stream,
             );
-            unauthenticatedOutStream.listen((event) {
+            unauthenticatedOutStream.listen((final event) {
               if (unauthenticatedValueReceivedCompleter.isCompleted) {
                 return;
               }

@@ -1,7 +1,7 @@
 import 'package:serverpod/serverpod.dart';
 
 class OptionalParametersEndpoint extends Endpoint {
-  Future<int?> returnOptionalInt(Session session, [int? optionalInt]) async {
+  Future<int?> returnOptionalInt(final Session session, [final int? optionalInt]) async {
     return optionalInt;
   }
 }

@@ -22,13 +22,13 @@ abstract class EmailAuth implements _i1.SerializableModel {
   });
 
   factory EmailAuth({
-    int? id,
-    required int userId,
-    required String email,
-    required String hash,
+    final int? id,
+    required final int userId,
+    required final String email,
+    required final String hash,
   }) = _EmailAuthImpl;
 
-  factory EmailAuth.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory EmailAuth.fromJson(final Map<String, dynamic> jsonSerialization) {
     return EmailAuth(
       id: jsonSerialization['id'] as int?,
       userId: jsonSerialization['userId'] as int,
@@ -55,10 +55,10 @@ abstract class EmailAuth implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   EmailAuth copyWith({
-    int? id,
-    int? userId,
-    String? email,
-    String? hash,
+    final int? id,
+    final int? userId,
+    final String? email,
+    final String? hash,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -80,10 +80,10 @@ class _Undefined {}
 
 class _EmailAuthImpl extends EmailAuth {
   _EmailAuthImpl({
-    int? id,
-    required int userId,
-    required String email,
-    required String hash,
+    final int? id,
+    required final int userId,
+    required final String email,
+    required final String hash,
   }) : super._(
          id: id,
          userId: userId,
@@ -96,10 +96,10 @@ class _EmailAuthImpl extends EmailAuth {
   @_i1.useResult
   @override
   EmailAuth copyWith({
-    Object? id = _Undefined,
-    int? userId,
-    String? email,
-    String? hash,
+    final Object? id = _Undefined,
+    final int? userId,
+    final String? email,
+    final String? hash,
   }) {
     return EmailAuth(
       id: id is int? ? id : this.id,

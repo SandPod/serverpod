@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 import 'test_tools/serverpod_test_tools.dart';
 
 void main() {
-  withServerpod('Given Greeting endpoint', (sessionBuilder, endpoints) {
+  withServerpod('Given Greeting endpoint', (final sessionBuilder, final endpoints) {
     test(
       'when calling `hello` with name then returned greeting includes name',
       () async {

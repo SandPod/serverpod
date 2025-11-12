@@ -32,19 +32,19 @@ void main() {
       group('when serializing and deserializing', () {
         test('the value "type", '
             'then it should result in the same enum value', () {
-          var encoded = SerializationManager.encode(
+          final encoded = SerializationManager.encode(
             ByNameEnumWithNameValue.type,
           );
-          var decoded = Protocol().decode<ByNameEnumWithNameValue>(encoded);
+          final decoded = Protocol().decode<ByNameEnumWithNameValue>(encoded);
           expect(decoded, ByNameEnumWithNameValue.type);
         });
 
         test('the value "name", '
             'then it should result in the same enum value', () {
-          var encoded = SerializationManager.encode(
+          final encoded = SerializationManager.encode(
             ByNameEnumWithNameValue.name,
           );
-          var decoded = Protocol().decode<ByNameEnumWithNameValue>(encoded);
+          final decoded = Protocol().decode<ByNameEnumWithNameValue>(encoded);
           expect(decoded, ByNameEnumWithNameValue.name);
         });
       });
@@ -81,19 +81,19 @@ void main() {
       group('when serializing and deserializing', () {
         test('the value "type", '
             'then it should result in the same enum value', () {
-          var encoded = SerializationManager.encode(
+          final encoded = SerializationManager.encode(
             ByIndexEnumWithNameValue.type,
           );
-          var decoded = Protocol().decode<ByIndexEnumWithNameValue>(encoded);
+          final decoded = Protocol().decode<ByIndexEnumWithNameValue>(encoded);
           expect(decoded, ByIndexEnumWithNameValue.type);
         });
 
         test('the value "name", '
             'then it should result in the same enum value', () {
-          var encoded = SerializationManager.encode(
+          final encoded = SerializationManager.encode(
             ByIndexEnumWithNameValue.name,
           );
-          var decoded = Protocol().decode<ByIndexEnumWithNameValue>(encoded);
+          final decoded = Protocol().decode<ByIndexEnumWithNameValue>(encoded);
           expect(decoded, ByIndexEnumWithNameValue.name);
         });
       });

@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 import 'test_tools/serverpod_test_tools.dart';
 
 void main() {
-  withServerpod('Given ModuleEndpoint', (sessionBuilder, endpoints) {
+  withServerpod('Given ModuleEndpoint', (final sessionBuilder, final endpoints) {
     test('when calling hello with name then returns greeting', () async {
       final result = await endpoints.module.hello(sessionBuilder, 'name');
       expect(result, 'Hello name');

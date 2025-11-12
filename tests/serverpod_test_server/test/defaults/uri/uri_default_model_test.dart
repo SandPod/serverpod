@@ -8,8 +8,8 @@ void main() async {
       test(
         'when an object of the class is created, then the "uriDefaultModel" field should match the default value',
         () {
-          var object = UriDefaultModel();
-          var expectedUri = Uri.parse('https://serverpod.dev/defaultModel');
+          final object = UriDefaultModel();
+          final expectedUri = Uri.parse('https://serverpod.dev/defaultModel');
           expect(object.uriDefaultModel, equals(expectedUri));
         },
       );
@@ -17,8 +17,8 @@ void main() async {
       test(
         'when an object of the class is created, then the "uriDefaultModelNull" field should match the default value',
         () {
-          var object = UriDefaultModel();
-          var expected = Uri.parse('https://serverpod.dev/defaultModel');
+          final object = UriDefaultModel();
+          final expected = Uri.parse('https://serverpod.dev/defaultModel');
           expect(object.uriDefaultModelNull, equals(expected));
         },
       );
@@ -26,8 +26,8 @@ void main() async {
       test(
         'when an object of the class is created with a specific value for "uriDefaultModel", then the field value should match the provided value',
         () {
-          var uri = Uri.parse('https://serverpod.dev/overrideValue');
-          var object = UriDefaultModel(uriDefaultModel: uri);
+          final uri = Uri.parse('https://serverpod.dev/overrideValue');
+          final object = UriDefaultModel(uriDefaultModel: uri);
           expect(object.uriDefaultModel, equals(uri));
         },
       );
@@ -35,8 +35,8 @@ void main() async {
       test(
         'when an object of the class is created with a specific value for "uriDefaultModelNull", then the field value should match the provided value',
         () {
-          var uri = Uri.parse('https://serverpod.dev/overrideValue');
-          var object = UriDefaultModel(uriDefaultModelNull: uri);
+          final uri = Uri.parse('https://serverpod.dev/overrideValue');
+          final object = UriDefaultModel(uriDefaultModelNull: uri);
           expect(object.uriDefaultModelNull, equals(uri));
         },
       );

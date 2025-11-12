@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with "defaultPersist" enum fields,', () {
     tearDownAll(
@@ -17,8 +17,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "defaultPersist=byName1" field should be byName1',
       () async {
-        var object = EnumDefaultPersist();
-        var databaseObject = await EnumDefaultPersist.db.insertRow(
+        final object = EnumDefaultPersist();
+        final databaseObject = await EnumDefaultPersist.db.insertRow(
           session,
           object,
         );
@@ -38,7 +38,7 @@ void main() async {
         VALUES (DEFAULT);
         ''',
         );
-        var databaseObject = await EnumDefaultPersist.db.findFirstRow(session);
+        final databaseObject = await EnumDefaultPersist.db.findFirstRow(session);
         expect(
           databaseObject?.byNameEnumDefaultPersist,
           equals(ByNameEnum.byName1),
@@ -49,8 +49,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "defaultPersist=byIndex1" field should be byIndex1',
       () async {
-        var object = EnumDefaultPersist();
-        var databaseObject = await EnumDefaultPersist.db.insertRow(
+        final object = EnumDefaultPersist();
+        final databaseObject = await EnumDefaultPersist.db.insertRow(
           session,
           object,
         );
@@ -70,7 +70,7 @@ void main() async {
         VALUES (DEFAULT);
         ''',
         );
-        var databaseObject = await EnumDefaultPersist.db.findFirstRow(session);
+        final databaseObject = await EnumDefaultPersist.db.findFirstRow(session);
         expect(
           databaseObject?.byIndexEnumDefaultPersist,
           equals(ByIndexEnum.byIndex1),
@@ -81,10 +81,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "byNameEnumDefaultPersist" field value should match the provided value',
       () async {
-        var specificObject = EnumDefaultPersist(
+        final specificObject = EnumDefaultPersist(
           byNameEnumDefaultPersist: ByNameEnum.byName2,
         );
-        var specificDatabaseObject = await EnumDefaultPersist.db.insertRow(
+        final specificDatabaseObject = await EnumDefaultPersist.db.insertRow(
           session,
           specificObject,
         );
@@ -98,10 +98,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "byIndexEnumDefaultPersist" field value should match the provided value',
       () async {
-        var specificObject = EnumDefaultPersist(
+        final specificObject = EnumDefaultPersist(
           byIndexEnumDefaultPersist: ByIndexEnum.byIndex2,
         );
-        var specificDatabaseObject = await EnumDefaultPersist.db.insertRow(
+        final specificDatabaseObject = await EnumDefaultPersist.db.insertRow(
           session,
           specificObject,
         );

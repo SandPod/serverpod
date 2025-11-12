@@ -1,6 +1,6 @@
 import 'package:serverpod/serverpod.dart';
-import 'package:serverpod_test_server/src/generated/protocol.dart';
 import 'package:serverpod_test_server/src/generated/endpoints.dart';
+import 'package:serverpod_test_server/src/generated/protocol.dart';
 import 'package:serverpod_test_server/src/web/routes/root.dart';
 import 'package:test/test.dart';
 

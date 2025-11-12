@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with "default" UUID fields,', () {
     tearDownAll(
@@ -17,8 +17,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "default=random" UUID field should not be null and should generate a valid UUID',
       () async {
-        var object = UuidDefault();
-        var databaseObject = await UuidDefault.db.insertRow(
+        final object = UuidDefault();
+        final databaseObject = await UuidDefault.db.insertRow(
           session,
           object,
         );
@@ -35,8 +35,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "default=random_v7" UUID field should not be null and should generate a valid UUID',
       () async {
-        var object = UuidDefault();
-        var databaseObject = await UuidDefault.db.insertRow(
+        final object = UuidDefault();
+        final databaseObject = await UuidDefault.db.insertRow(
           session,
           object,
         );
@@ -53,8 +53,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "default" UUID field with a string should match the default',
       () async {
-        var object = UuidDefault();
-        var databaseObject = await UuidDefault.db.insertRow(
+        final object = UuidDefault();
+        final databaseObject = await UuidDefault.db.insertRow(
           session,
           object,
         );
@@ -68,8 +68,8 @@ void main() async {
     test(
       'when creating a record in the database, then the nullable "default" UUID field with a string should match the default',
       () async {
-        var object = UuidDefault();
-        var databaseObject = await UuidDefault.db.insertRow(
+        final object = UuidDefault();
+        final databaseObject = await UuidDefault.db.insertRow(
           session,
           object,
         );
@@ -83,11 +83,11 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "uuidDefaultRandom" field value should match the provided value',
       () async {
-        var uuid = UuidValue.fromString('3f2504e0-4f89-11d3-9a0c-0305e82c3301');
-        var specificObject = UuidDefault(
+        final uuid = UuidValue.fromString('3f2504e0-4f89-11d3-9a0c-0305e82c3301');
+        final specificObject = UuidDefault(
           uuidDefaultRandom: uuid,
         );
-        var specificDatabaseObject = await UuidDefault.db.insertRow(
+        final specificDatabaseObject = await UuidDefault.db.insertRow(
           session,
           specificObject,
         );
@@ -101,11 +101,11 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "uuidDefaultRandomV7" field value should match the provided value',
       () async {
-        var uuid = UuidValue.fromString('3f2504e0-4f89-11d3-9a0c-0305e82c3301');
-        var specificObject = UuidDefault(
+        final uuid = UuidValue.fromString('3f2504e0-4f89-11d3-9a0c-0305e82c3301');
+        final specificObject = UuidDefault(
           uuidDefaultRandomV7: uuid,
         );
-        var specificDatabaseObject = await UuidDefault.db.insertRow(
+        final specificDatabaseObject = await UuidDefault.db.insertRow(
           session,
           specificObject,
         );
@@ -119,11 +119,11 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "uuidDefaultStr" field value should match the provided value',
       () async {
-        var uuid = UuidValue.fromString('550e8400-e29b-41d4-a716-446655440000');
-        var specificObject = UuidDefault(
+        final uuid = UuidValue.fromString('550e8400-e29b-41d4-a716-446655440000');
+        final specificObject = UuidDefault(
           uuidDefaultStr: uuid,
         );
-        var specificDatabaseObject = await UuidDefault.db.insertRow(
+        final specificDatabaseObject = await UuidDefault.db.insertRow(
           session,
           specificObject,
         );
@@ -137,11 +137,11 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "uuidDefaultStrNull" field value should match the provided value',
       () async {
-        var uuid = UuidValue.fromString('550e8400-e29b-41d4-a716-446655440000');
-        var specificObject = UuidDefault(
+        final uuid = UuidValue.fromString('550e8400-e29b-41d4-a716-446655440000');
+        final specificObject = UuidDefault(
           uuidDefaultStrNull: uuid,
         );
-        var specificDatabaseObject = await UuidDefault.db.insertRow(
+        final specificDatabaseObject = await UuidDefault.db.insertRow(
           session,
           specificObject,
         );

@@ -30,9 +30,9 @@ void main() {
     test(
       'when a MethodStreamMessage is sent to the server without an open stream then response is a CloseMethodStreamCommand with error reason.',
       () async {
-        var closeMethodCommand = Completer<CloseMethodStreamCommand>();
-        webSocket.textEvents.listen((event) {
-          var message = WebSocketMessage.fromJsonString(
+        final closeMethodCommand = Completer<CloseMethodStreamCommand>();
+        webSocket.textEvents.listen((final event) {
+          final message = WebSocketMessage.fromJsonString(
             event,
             server.serializationManager,
           );
@@ -53,12 +53,12 @@ void main() {
         );
 
         await expectLater(
-          closeMethodCommand.future.timeout(Duration(seconds: 5)),
+          closeMethodCommand.future.timeout(const Duration(seconds: 5)),
           completes,
           reason: 'Failed to receive close method command message from server.',
         );
 
-        var closeMethodStreamCommand = await closeMethodCommand.future;
+        final closeMethodStreamCommand = await closeMethodCommand.future;
         expect(closeMethodStreamCommand.reason, CloseReason.error);
       },
     );
@@ -67,27 +67,26 @@ void main() {
       'when a stream is opened to an endpoint that returns a Future with a value',
       () {
         late Completer<MethodStreamMessage> endpointResponse;
-        TestCompleterTimeout testCompleterTimeout = TestCompleterTimeout();
+        final TestCompleterTimeout testCompleterTimeout = TestCompleterTimeout();
 
-        var endpoint = 'methodStreaming';
-        var method = 'directOneIntReturnWithStreamInput';
-        var connectionId = const Uuid().v4obj();
+        const endpoint = 'methodStreaming';
+        const method = 'directOneIntReturnWithStreamInput';
+        final connectionId = const Uuid().v4obj();
 
         setUp(() async {
           endpointResponse = Completer<MethodStreamMessage>();
-          var streamOpened = Completer<void>();
+          final streamOpened = Completer<void>();
 
           testCompleterTimeout.start({
             'endpointResponse': endpointResponse,
             'streamOpened': streamOpened,
           });
 
-          webSocket.textEvents.listen((event) {
-            var message = WebSocketMessage.fromJsonString(
+          webSocket.textEvents.listen((final event) {
+            final message = WebSocketMessage.fromJsonString(
               event,
               server.serializationManager,
             );
-            ;
             if (message is OpenMethodStreamResponse) {
               streamOpened.complete();
             } else if (message is MethodStreamMessage) {
@@ -116,10 +115,10 @@ void main() {
           'then MethodStreamMessage matching endpoint return is received.',
           () async {
             endpointResponse.future
-                .catchError((error) {
+                .catchError((final error) {
                   fail('Failed to receive MethodStreamMessage from server.');
                 })
-                .then((message) {
+                .then((final message) {
                   expect(message.endpoint, endpoint);
                   expect(message.method, method);
                   expect(message.connectionId, connectionId);
@@ -132,7 +131,7 @@ void main() {
                 });
 
             await expectLater(
-              endpointResponse.future.timeout(Duration(seconds: 5)),
+              endpointResponse.future.timeout(const Duration(seconds: 5)),
               completes,
               reason: 'Failed to receive MethodStreamMessage from server.',
             );
@@ -147,25 +146,24 @@ void main() {
         late List<int> endpointResponses;
         late Completer<CloseMethodStreamCommand> closeMethodStreamCommand;
         late Completer<void> webSocketCompleter;
-        var inputValue = 4;
+        const inputValue = 4;
 
-        var endpoint = 'methodStreaming';
-        var method = 'intStreamFromValue';
-        var connectionId = const Uuid().v4obj();
+        const endpoint = 'methodStreaming';
+        const method = 'intStreamFromValue';
+        final connectionId = const Uuid().v4obj();
 
         setUp(() async {
           endpointResponses = [];
           closeMethodStreamCommand = Completer<CloseMethodStreamCommand>();
           webSocketCompleter = Completer<void>();
-          var streamOpened = Completer<void>();
+          final streamOpened = Completer<void>();
 
           webSocket.textEvents.listen(
-            (event) {
-              var message = WebSocketMessage.fromJsonString(
+            (final event) {
+              final message = WebSocketMessage.fromJsonString(
                 event,
                 server.serializationManager,
               );
-              ;
               if (message is OpenMethodStreamResponse) {
                 streamOpened.complete();
               } else if (message is CloseMethodStreamCommand) {
@@ -190,7 +188,7 @@ void main() {
           );
 
           await streamOpened.future.timeout(
-            Duration(seconds: 5),
+            const Duration(seconds: 5),
             onTimeout: () => throw AssertionError(
               'Failed to open method stream with server.',
             ),
@@ -201,14 +199,14 @@ void main() {
           'then once method stream is closed the received MethodStreamMessages matches input specification.',
           () async {
             await expectLater(
-              closeMethodStreamCommand.future.timeout(Duration(seconds: 5)),
+              closeMethodStreamCommand.future.timeout(const Duration(seconds: 5)),
               completes,
               reason: 'Failed to receive CloseMethodStreamCommand from server.',
             );
 
             expect(
               endpointResponses,
-              List.generate(inputValue, (index) => index),
+              List.generate(inputValue, (final index) => index),
               reason: 'Failed to receive all responses from endpoint.',
             );
           },
@@ -217,8 +215,8 @@ void main() {
         test(
           'then CloseMethodStreamCommand matching the endpoint is received.',
           () async {
-            var message = closeMethodStreamCommand.future.timeout(
-              Duration(seconds: 5),
+            final message = closeMethodStreamCommand.future.timeout(
+              const Duration(seconds: 5),
             );
             expect(
               message,
@@ -226,7 +224,7 @@ void main() {
               reason: 'Failed to receive CloseMethodStreamCommand from server.',
             );
 
-            var closeMethodStreamCommandMessage = await message;
+            final closeMethodStreamCommandMessage = await message;
             expect(closeMethodStreamCommandMessage.endpoint, endpoint);
             expect(closeMethodStreamCommandMessage.method, method);
             expect(closeMethodStreamCommandMessage.connectionId, connectionId);
@@ -242,25 +240,24 @@ void main() {
         late List<SimpleData> endpointResponses;
         late Completer<CloseMethodStreamCommand> closeMethodStreamCommand;
         late Completer<void> webSocketCompleter;
-        var inputValue = 4;
+        const inputValue = 4;
 
-        var endpoint = 'methodStreaming';
-        var method = 'simpleDataStream';
-        var connectionId = const Uuid().v4obj();
+        const endpoint = 'methodStreaming';
+        const method = 'simpleDataStream';
+        final connectionId = const Uuid().v4obj();
 
         setUp(() async {
           endpointResponses = [];
           closeMethodStreamCommand = Completer<CloseMethodStreamCommand>();
           webSocketCompleter = Completer<void>();
-          var streamOpened = Completer<void>();
+          final streamOpened = Completer<void>();
 
           webSocket.textEvents.listen(
-            (event) {
-              var message = WebSocketMessage.fromJsonString(
+            (final event) {
+              final message = WebSocketMessage.fromJsonString(
                 event,
                 server.serializationManager,
               );
-              ;
               if (message is OpenMethodStreamResponse) {
                 streamOpened.complete();
               } else if (message is CloseMethodStreamCommand) {
@@ -285,7 +282,7 @@ void main() {
           );
 
           await streamOpened.future.timeout(
-            Duration(seconds: 5),
+            const Duration(seconds: 5),
             onTimeout: () => throw AssertionError(
               'Failed to open method stream with server.',
             ),
@@ -296,14 +293,14 @@ void main() {
           'then once method stream is closed the received MethodStreamMessages matches input specification.',
           () async {
             await expectLater(
-              closeMethodStreamCommand.future.timeout(Duration(seconds: 5)),
+              closeMethodStreamCommand.future.timeout(const Duration(seconds: 5)),
               completes,
               reason: 'Failed to receive CloseMethodStreamCommand from server.',
             );
 
             expect(
-              endpointResponses.map((simpleData) => simpleData.num).toList(),
-              List.generate(inputValue, (index) => index),
+              endpointResponses.map((final simpleData) => simpleData.num).toList(),
+              List.generate(inputValue, (final index) => index),
               reason: 'Failed to receive all responses from endpoint.',
             );
           },
@@ -312,8 +309,8 @@ void main() {
         test(
           'then CloseMethodStreamCommand matching the endpoint is received.',
           () async {
-            var message = closeMethodStreamCommand.future.timeout(
-              Duration(seconds: 5),
+            final message = closeMethodStreamCommand.future.timeout(
+              const Duration(seconds: 5),
             );
             expect(
               message,
@@ -321,7 +318,7 @@ void main() {
               reason: 'Failed to receive CloseMethodStreamCommand from server.',
             );
 
-            var closeMethodStreamCommandMessage = await message;
+            final closeMethodStreamCommandMessage = await message;
             expect(closeMethodStreamCommandMessage.endpoint, endpoint);
             expect(closeMethodStreamCommandMessage.method, method);
             expect(closeMethodStreamCommandMessage.connectionId, connectionId);
@@ -337,35 +334,36 @@ void main() {
         late Completer<void> returningStreamClosed;
         late Completer<void> webSocketCompleter;
         late Completer<void> delayedResponseClosed;
-        var endpoint = 'methodStreaming';
+        const endpoint = 'methodStreaming';
 
         setUp(() async {
-          var returningStreamOpen = Completer<void>();
-          var delayedResponseOpen = Completer<void>();
+          final returningStreamOpen = Completer<void>();
+          final delayedResponseOpen = Completer<void>();
           returningStreamClosed = Completer<void>();
           delayedResponseClosed = Completer<void>();
           webSocketCompleter = Completer<void>();
-          var returningStreamConnectionId = const Uuid().v4obj();
-          var delayedResponseConnectionId = const Uuid().v4obj();
+          final returningStreamConnectionId = const Uuid().v4obj();
+          final delayedResponseConnectionId = const Uuid().v4obj();
 
           webSocket.textEvents.listen(
-            (event) {
-              var message = WebSocketMessage.fromJsonString(
+            (final event) {
+              final message = WebSocketMessage.fromJsonString(
                 event,
                 server.serializationManager,
               );
-              ;
               if (message is OpenMethodStreamResponse) {
-                if (message.connectionId == returningStreamConnectionId)
+                if (message.connectionId == returningStreamConnectionId) {
                   returningStreamOpen.complete();
-                else if (message.connectionId == delayedResponseConnectionId)
+                } else if (message.connectionId == delayedResponseConnectionId)
                   delayedResponseOpen.complete();
               } else if (message is CloseMethodStreamCommand) {
                 if (message.connectionId == returningStreamConnectionId &&
-                    message.parameter == null)
+                    message.parameter == null) {
                   returningStreamClosed.complete();
-                if (message.connectionId == delayedResponseConnectionId)
+                }
+                if (message.connectionId == delayedResponseConnectionId) {
                   delayedResponseClosed.complete();
+                }
               }
             },
             onDone: () {
@@ -397,7 +395,7 @@ void main() {
             returningStreamOpen.future,
             delayedResponseOpen.future,
           ]).timeout(
-            Duration(seconds: 5),
+            const Duration(seconds: 5),
             onTimeout: () => throw AssertionError(
               'Failed to open all method stream with server.',
             ),
@@ -405,7 +403,7 @@ void main() {
         });
 
         tearDown(() async {
-          var tempSession = await server.createSession();
+          final tempSession = await server.createSession();
 
           /// Close any open delayed response streams.
           await (server.endpoints
@@ -418,11 +416,11 @@ void main() {
         });
 
         test('then websocket connection stays open.', () async {
-          await returningStreamClosed.future.timeout(Duration(seconds: 5));
+          await returningStreamClosed.future.timeout(const Duration(seconds: 5));
 
           // Monitor websocket connection for 1 second to make sure it stays open.
           expectLater(
-            webSocketCompleter.future.timeout(Duration(seconds: 1)),
+            webSocketCompleter.future.timeout(const Duration(seconds: 1)),
             throwsA(isA<TimeoutException>()),
           );
         });
@@ -435,34 +433,35 @@ void main() {
         late Completer<void> returningStreamClosed;
         late Completer<void> webSocketCompleter;
         late Completer<void> delayedResponseClosed;
-        var endpoint = 'methodStreaming';
+        const endpoint = 'methodStreaming';
 
         setUp(() async {
-          var returningStreamOpen = Completer<void>();
-          var delayedResponseOpen = Completer<void>();
+          final returningStreamOpen = Completer<void>();
+          final delayedResponseOpen = Completer<void>();
           returningStreamClosed = Completer<void>();
           delayedResponseClosed = Completer<void>();
           webSocketCompleter = Completer<void>();
-          var returningStreamConnectionId = const Uuid().v4obj();
-          var delayedResponseConnectionId = const Uuid().v4obj();
+          final returningStreamConnectionId = const Uuid().v4obj();
+          final delayedResponseConnectionId = const Uuid().v4obj();
 
           webSocket.textEvents.listen(
-            (event) {
-              var message = WebSocketMessage.fromJsonString(
+            (final event) {
+              final message = WebSocketMessage.fromJsonString(
                 event,
                 server.serializationManager,
               );
-              ;
               if (message is OpenMethodStreamResponse) {
-                if (message.connectionId == returningStreamConnectionId)
+                if (message.connectionId == returningStreamConnectionId) {
                   returningStreamOpen.complete();
-                else if (message.connectionId == delayedResponseConnectionId)
+                } else if (message.connectionId == delayedResponseConnectionId)
                   delayedResponseOpen.complete();
               } else if (message is CloseMethodStreamCommand) {
-                if (message.connectionId == returningStreamConnectionId)
+                if (message.connectionId == returningStreamConnectionId) {
                   returningStreamClosed.complete();
-                if (message.connectionId == delayedResponseConnectionId)
+                }
+                if (message.connectionId == delayedResponseConnectionId) {
                   delayedResponseClosed.complete();
+                }
               }
             },
             onDone: () {
@@ -494,7 +493,7 @@ void main() {
             returningStreamOpen.future,
             delayedResponseOpen.future,
           ]).timeout(
-            Duration(seconds: 5),
+            const Duration(seconds: 5),
             onTimeout: () => throw AssertionError(
               'Failed to open method stream with server.',
             ),
@@ -502,7 +501,7 @@ void main() {
         });
 
         tearDown(() async {
-          var tempSession = await server.createSession();
+          final tempSession = await server.createSession();
 
           /// Close any open delayed response streams.
           await (server.endpoints
@@ -515,11 +514,11 @@ void main() {
         });
 
         test('then websocket connection stays open.', () async {
-          await returningStreamClosed.future.timeout(Duration(seconds: 5));
+          await returningStreamClosed.future.timeout(const Duration(seconds: 5));
 
           // Monitor websocket connection for 1 second to make sure it stays open.
           expectLater(
-            webSocketCompleter.future.timeout(Duration(seconds: 1)),
+            webSocketCompleter.future.timeout(const Duration(seconds: 1)),
             throwsA(isA<TimeoutException>()),
           );
         });
@@ -530,8 +529,8 @@ void main() {
   group(
     'Given method stream connection to an endpoint with a stream return',
     () {
-      var endpoint = 'methodStreaming';
-      var method = 'intEchoStream';
+      const endpoint = 'methodStreaming';
+      const method = 'intEchoStream';
 
       late Serverpod server;
       late WebSocket webSocket;
@@ -554,14 +553,14 @@ void main() {
         () {
           late Completer<BadRequestMessage> badRequestMessage;
           late Completer<void> webSocketCompleter;
-          TestCompleterTimeout testCompleterTimeout = TestCompleterTimeout();
+          final TestCompleterTimeout testCompleterTimeout = TestCompleterTimeout();
 
-          var connectionId = const Uuid().v4obj();
+          final connectionId = const Uuid().v4obj();
 
           setUp(() async {
             badRequestMessage = Completer<BadRequestMessage>();
             webSocketCompleter = Completer<void>();
-            var streamOpened = Completer<void>();
+            final streamOpened = Completer<void>();
 
             testCompleterTimeout.start({
               'badRequestMessage': badRequestMessage,
@@ -570,12 +569,11 @@ void main() {
             });
 
             webSocket.textEvents.listen(
-              (event) {
-                var message = WebSocketMessage.fromJsonString(
+              (final event) {
+                final message = WebSocketMessage.fromJsonString(
                   event,
                   server.serializationManager,
                 );
-                ;
                 if (message is OpenMethodStreamResponse) {
                   streamOpened.complete();
                 } else if (message is BadRequestMessage) {
@@ -617,7 +615,7 @@ void main() {
           tearDown(() => testCompleterTimeout.cancel());
 
           test('then bad request is received.', () async {
-            badRequestMessage.future.catchError((error) {
+            badRequestMessage.future.catchError((final error) {
               fail('Failed to receive bad request message from server.');
             });
 
@@ -625,7 +623,7 @@ void main() {
           });
 
           test('then websocket connection is closed.', () async {
-            webSocketCompleter.future.catchError((error) {
+            webSocketCompleter.future.catchError((final error) {
               fail('Failed to close websocket.');
             });
 

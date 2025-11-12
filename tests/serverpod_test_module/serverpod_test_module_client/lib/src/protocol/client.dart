@@ -9,9 +9,10 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
+import 'dart:async' as _i2;
+
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'dart:async' as _i2;
 import 'package:serverpod_test_module_client/src/protocol/module_class.dart'
     as _i3;
 import 'package:serverpod_test_module_client/src/protocol/module_feature/models/my_feature_model.dart'
@@ -23,7 +24,7 @@ import 'package:serverpod_test_module_client/src/protocol/module_feature/models/
 /// enure classes are not being matched by name only.
 /// {@category Endpoint}
 abstract class EndpointAbstractBase extends _i1.EndpointRef {
-  EndpointAbstractBase(_i1.EndpointCaller caller) : super(caller);
+  EndpointAbstractBase(final _i1.EndpointCaller caller) : super(caller);
 
   /// This is a virtual method that must be overriden.
   _i2.Future<String> virtualMethod();
@@ -38,7 +39,7 @@ abstract class EndpointAbstractBase extends _i1.EndpointRef {
 /// enure classes are not being matched by name only.
 /// {@category Endpoint}
 class EndpointConcreteBase extends EndpointAbstractBase {
-  EndpointConcreteBase(_i1.EndpointCaller caller) : super(caller);
+  EndpointConcreteBase(final _i1.EndpointCaller caller) : super(caller);
 
   @override
   String get name => 'serverpod_test_module.concreteBase';
@@ -68,18 +69,18 @@ class EndpointConcreteBase extends EndpointAbstractBase {
 
 /// {@category Endpoint}
 class EndpointModule extends _i1.EndpointRef {
-  EndpointModule(_i1.EndpointCaller caller) : super(caller);
+  EndpointModule(final _i1.EndpointCaller caller) : super(caller);
 
   @override
   String get name => 'serverpod_test_module.module';
 
-  _i2.Future<String> hello(String name) => caller.callServerEndpoint<String>(
+  _i2.Future<String> hello(final String name) => caller.callServerEndpoint<String>(
     'serverpod_test_module.module',
     'hello',
     {'name': name},
   );
 
-  _i2.Future<_i3.ModuleClass> modifyModuleObject(_i3.ModuleClass object) =>
+  _i2.Future<_i3.ModuleClass> modifyModuleObject(final _i3.ModuleClass object) =>
       caller.callServerEndpoint<_i3.ModuleClass>(
         'serverpod_test_module.module',
         'modifyModuleObject',
@@ -89,7 +90,7 @@ class EndpointModule extends _i1.EndpointRef {
 
 /// {@category Endpoint}
 class EndpointStreaming extends _i1.EndpointRef {
-  EndpointStreaming(_i1.EndpointCaller caller) : super(caller);
+  EndpointStreaming(final _i1.EndpointCaller caller) : super(caller);
 
   @override
   String get name => 'serverpod_test_module.streaming';
@@ -106,7 +107,7 @@ class EndpointStreaming extends _i1.EndpointRef {
     {},
   );
 
-  _i2.Stream<int> intEchoStream(_i2.Stream<int> stream) =>
+  _i2.Stream<int> intEchoStream(final _i2.Stream<int> stream) =>
       caller.callStreamingServerEndpoint<_i2.Stream<int>, int>(
         'serverpod_test_module.streaming',
         'intEchoStream',
@@ -114,7 +115,7 @@ class EndpointStreaming extends _i1.EndpointRef {
         {'stream': stream},
       );
 
-  _i2.Future<int> simpleInputReturnStream(_i2.Stream<int> stream) =>
+  _i2.Future<int> simpleInputReturnStream(final _i2.Stream<int> stream) =>
       caller.callStreamingServerEndpoint<_i2.Future<int>, int>(
         'serverpod_test_module.streaming',
         'simpleInputReturnStream',
@@ -126,7 +127,7 @@ class EndpointStreaming extends _i1.EndpointRef {
 /// An endpoint class with all methods marked as unauthenticated.
 /// {@category Endpoint}
 class EndpointUnauthenticated extends _i1.EndpointRef {
-  EndpointUnauthenticated(_i1.EndpointCaller caller) : super(caller);
+  EndpointUnauthenticated(final _i1.EndpointCaller caller) : super(caller);
 
   @override
   String get name => 'serverpod_test_module.unauthenticated';
@@ -151,7 +152,7 @@ class EndpointUnauthenticated extends _i1.EndpointRef {
 /// An endpoint with only one method marked as unauthenticated.
 /// {@category Endpoint}
 class EndpointPartiallyUnauthenticated extends _i1.EndpointRef {
-  EndpointPartiallyUnauthenticated(_i1.EndpointCaller caller) : super(caller);
+  EndpointPartiallyUnauthenticated(final _i1.EndpointCaller caller) : super(caller);
 
   @override
   String get name => 'serverpod_test_module.partiallyUnauthenticated';
@@ -189,7 +190,7 @@ class EndpointPartiallyUnauthenticated extends _i1.EndpointRef {
 
 /// {@category Endpoint}
 class EndpointMyModuleFeature extends _i1.EndpointRef {
-  EndpointMyModuleFeature(_i1.EndpointCaller caller) : super(caller);
+  EndpointMyModuleFeature(final _i1.EndpointCaller caller) : super(caller);
 
   @override
   String get name => 'serverpod_test_module.myModuleFeature';
@@ -209,7 +210,7 @@ class EndpointMyModuleFeature extends _i1.EndpointRef {
 }
 
 class Caller extends _i1.ModuleEndpointCaller {
-  Caller(_i1.ServerpodClientShared client) : super(client) {
+  Caller(final _i1.ServerpodClientShared client) : super(client) {
     concreteBase = EndpointConcreteBase(this);
     module = EndpointModule(this);
     streaming = EndpointStreaming(this);

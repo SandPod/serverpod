@@ -13,7 +13,7 @@ class MockTransaction implements Transaction {
   }
 
   @override
-  Future<void> setRuntimeParameters(RuntimeParametersListBuilder builder) {
+  Future<void> setRuntimeParameters(final RuntimeParametersListBuilder builder) {
     throw UnimplementedError();
   }
 
@@ -22,7 +22,7 @@ class MockTransaction implements Transaction {
 }
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   tearDown(() async {
     await UniqueData.db.deleteWhere(session, where: (_) => Constant.bool(true));
@@ -31,10 +31,10 @@ void main() async {
   group(
     'Given a transaction that does not match required database transaction',
     () {
-      var invalidTransactionType = MockTransaction();
+      final invalidTransactionType = MockTransaction();
       test('when calling `count` then an error is thrown.', () async {
         expect(
-          session.db.transaction<void>((transaction) async {
+          session.db.transaction<void>((final transaction) async {
             await UniqueData.db.count(
               session,
               where: (_) => Constant.bool(true),
@@ -52,14 +52,14 @@ void main() async {
     'inside the transaction then should return 1 but outside the transaction should return 0.',
     () async {
       await session.db.transaction(
-        (transaction) async {
+        (final transaction) async {
           await UniqueData.db.insertRow(
             session,
             UniqueData(number: 111, email: 'test@serverpod.dev'),
             transaction: transaction,
           );
 
-          var count = await UniqueData.db.count(
+          final count = await UniqueData.db.count(
             session,
             where: (_) => Constant.bool(true),
             transaction: transaction,

@@ -33,7 +33,7 @@ void main() {
           // starts with success, the exception will happen here and be ignored.
         }
       },
-      timeout: Timeout(Duration(seconds: 10)),
+      timeout: const Timeout(Duration(seconds: 10)),
     );
 
     test(
@@ -43,7 +43,7 @@ void main() {
         await server.shutdown(exitProcess: false);
         await server.start();
       },
-      timeout: Timeout(Duration(seconds: 10)),
+      timeout: const Timeout(Duration(seconds: 10)),
     );
   });
 }

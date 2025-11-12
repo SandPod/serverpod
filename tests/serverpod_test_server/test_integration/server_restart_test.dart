@@ -35,7 +35,7 @@ void main() {
       await serverpod.shutdown(exitProcess: false);
       await serverpod.start();
 
-      var session = await serverpod.createSession();
+      final session = await serverpod.createSession();
       // ignore: invalid_use_of_internal_member
       await expectLater(session.db.testConnection(), completion(true));
     },
@@ -44,7 +44,7 @@ void main() {
   test(
     'Given a running Serverpod server when it is shutdown and started then no error is written to stderr.',
     () async {
-      var record = MockStdout();
+      final record = MockStdout();
       await IOOverrides.runZoned(() async {
         await serverpod.start();
 

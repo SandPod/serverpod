@@ -30,17 +30,17 @@ void main() {
       });
 
       test('then server can be accessed over https', () async {
-        HttpClientRequest request = await HttpClient(context: securityContext)
+        final HttpClientRequest request = await HttpClient(context: securityContext)
             .getUrl(
               Uri.https('localhost:${serverpod.server.port}'),
             );
-        var response = await request.close();
+        final response = await request.close();
 
         expect(response.statusCode, 200);
       });
 
       test('then server cannot be accessed over http', () async {
-        HttpClientRequest request = await HttpClient().getUrl(
+        final HttpClientRequest request = await HttpClient().getUrl(
           Uri.http('localhost:${serverpod.server.port}'),
         );
 
@@ -67,20 +67,20 @@ void main() {
       });
 
       test('then server can be accessed over http', () async {
-        HttpClientRequest request = await HttpClient().getUrl(
+        final HttpClientRequest request = await HttpClient().getUrl(
           Uri.http('localhost:${serverpod.server.port}'),
         );
 
-        var response = await request.close();
+        final response = await request.close();
 
         expect(response.statusCode, 200);
       });
 
       test('then server cannot be accessed over https', () async {
-        var client = HttpClient();
+        final client = HttpClient();
 
         expect(
-          () async => await await client.getUrl(
+          () async => await client.getUrl(
             Uri.https('localhost:${serverpod.server.port}'),
           ),
           throwsA(isA<HandshakeException>()),
@@ -110,17 +110,17 @@ void main() {
       });
 
       test('then server can be accessed over https', () async {
-        HttpClientRequest request = await HttpClient(context: securityContext)
+        final HttpClientRequest request = await HttpClient(context: securityContext)
             .getUrl(
               Uri.https('localhost:${serverpod.serviceServer.port}'),
             );
-        var response = await request.close();
+        final response = await request.close();
 
         expect(response.statusCode, 200);
       });
 
       test('then server cannot be accessed over http', () async {
-        HttpClientRequest request = await HttpClient().getUrl(
+        final HttpClientRequest request = await HttpClient().getUrl(
           Uri.http('localhost:${serverpod.serviceServer.port}'),
         );
 
@@ -147,11 +147,11 @@ void main() {
       });
 
       test('then server can be accessed over http', () async {
-        HttpClientRequest request = await HttpClient().getUrl(
+        final HttpClientRequest request = await HttpClient().getUrl(
           Uri.http('localhost:${serverpod.serviceServer.port}'),
         );
 
-        var response = await request.close();
+        final response = await request.close();
 
         expect(response.statusCode, 200);
       });
@@ -188,17 +188,17 @@ void main() {
       });
 
       test('then server can be accessed over https', () async {
-        HttpClientRequest request = await HttpClient(context: securityContext)
+        final HttpClientRequest request = await HttpClient(context: securityContext)
             .getUrl(
               Uri.https('localhost:${serverpod.webServer.port}'),
             );
-        var response = await request.close();
+        final response = await request.close();
 
         expect(response.statusCode, 200);
       });
 
       test('then server cannot be accessed over http', () async {
-        HttpClientRequest request = await HttpClient().getUrl(
+        final HttpClientRequest request = await HttpClient().getUrl(
           Uri.http('localhost:${serverpod.webServer.port}'),
         );
 
@@ -228,11 +228,11 @@ void main() {
       });
 
       test('then server can be accessed over http', () async {
-        HttpClientRequest request = await HttpClient().getUrl(
+        final HttpClientRequest request = await HttpClient().getUrl(
           Uri.http('localhost:${serverpod.webServer.port}'),
         );
 
-        var response = await request.close();
+        final response = await request.close();
 
         expect(response.statusCode, 200);
       });
@@ -250,7 +250,7 @@ void main() {
 }
 
 SecurityContext _createSecurityContext() {
-  SecurityContext context = SecurityContext(withTrustedRoots: false);
+  final SecurityContext context = SecurityContext(withTrustedRoots: false);
   context.setTrustedCertificatesBytes(Certificate.certChainBytes);
   context.useCertificateChainBytes(Certificate.certChainBytes);
   context.usePrivateKeyBytes(Certificate.certKeyBytes, password: 'dartdart');

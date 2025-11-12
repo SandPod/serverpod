@@ -24,15 +24,15 @@ abstract class EmailCreateAccountRequest implements _i1.SerializableModel {
   });
 
   factory EmailCreateAccountRequest({
-    int? id,
-    required String userName,
-    required String email,
-    required String hash,
-    required String verificationCode,
+    final int? id,
+    required final String userName,
+    required final String email,
+    required final String hash,
+    required final String verificationCode,
   }) = _EmailCreateAccountRequestImpl;
 
   factory EmailCreateAccountRequest.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return EmailCreateAccountRequest(
       id: jsonSerialization['id'] as int?,
@@ -64,11 +64,11 @@ abstract class EmailCreateAccountRequest implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   EmailCreateAccountRequest copyWith({
-    int? id,
-    String? userName,
-    String? email,
-    String? hash,
-    String? verificationCode,
+    final int? id,
+    final String? userName,
+    final String? email,
+    final String? hash,
+    final String? verificationCode,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -91,11 +91,11 @@ class _Undefined {}
 
 class _EmailCreateAccountRequestImpl extends EmailCreateAccountRequest {
   _EmailCreateAccountRequestImpl({
-    int? id,
-    required String userName,
-    required String email,
-    required String hash,
-    required String verificationCode,
+    final int? id,
+    required final String userName,
+    required final String email,
+    required final String hash,
+    required final String verificationCode,
   }) : super._(
          id: id,
          userName: userName,
@@ -109,11 +109,11 @@ class _EmailCreateAccountRequestImpl extends EmailCreateAccountRequest {
   @_i1.useResult
   @override
   EmailCreateAccountRequest copyWith({
-    Object? id = _Undefined,
-    String? userName,
-    String? email,
-    String? hash,
-    String? verificationCode,
+    final Object? id = _Undefined,
+    final String? userName,
+    final String? email,
+    final String? hash,
+    final String? verificationCode,
   }) {
     return EmailCreateAccountRequest(
       id: id is int? ? id : this.id,

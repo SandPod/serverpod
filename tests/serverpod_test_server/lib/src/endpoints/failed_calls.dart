@@ -1,18 +1,18 @@
 import 'package:serverpod/server.dart';
 
 class FailedCallsEndpoint extends Endpoint {
-  Future<void> failedCall(Session session) async {
+  Future<void> failedCall(final Session session) async {
     throw Exception('Test exception');
   }
 
-  Future<void> failedDatabaseQuery(Session session) async {
+  Future<void> failedDatabaseQuery(final Session session) async {
     // This call should fail and throw an exception
     await session.db.unsafeQuery(
       'SELECT * FROM non_existing_table LIMIT 1',
     );
   }
 
-  Future<bool> failedDatabaseQueryCaughtException(Session session) async {
+  Future<bool> failedDatabaseQueryCaughtException(final Session session) async {
     try {
       await session.db.unsafeQuery(
         'SELECT * FROM non_existing_table LIMIT 1',
@@ -23,11 +23,11 @@ class FailedCallsEndpoint extends Endpoint {
     return true;
   }
 
-  Future<void> slowCall(Session session) async {
+  Future<void> slowCall(final Session session) async {
     await Future.delayed(const Duration(seconds: 2));
   }
 
-  Future<void> caughtException(Session session) async {
+  Future<void> caughtException(final Session session) async {
     try {
       throw Exception('Test exception');
     } catch (e, stackTrace) {

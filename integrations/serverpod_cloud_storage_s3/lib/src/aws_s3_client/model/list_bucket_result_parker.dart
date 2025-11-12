@@ -12,11 +12,11 @@ abstract class ListBucketResultParker
     implements Built<ListBucketResultParker, ListBucketResultParkerBuilder> {
   ListBucketResultParker._();
 
-  @BuiltValueField(wireName: "ListBucketResult")
+  @BuiltValueField(wireName: 'ListBucketResult')
   ListBucketResult? get result;
 
   factory ListBucketResultParker([
-    Function(ListBucketResultParkerBuilder b)? updates,
+    final Function(ListBucketResultParkerBuilder b)? updates,
   ]) = _$ListBucketResultParker;
 
   String toJson() {
@@ -25,14 +25,14 @@ abstract class ListBucketResultParker
     );
   }
 
-  static ListBucketResultParker fromJson(String jsonString) {
+  static ListBucketResultParker fromJson(final String jsonString) {
     return serializers.deserializeWith(
       ListBucketResultParker.serializer,
       json.decode(jsonString),
     )!;
   }
 
-  static ListBucketResultParker fromJsonMap(Map<String, dynamic> jsonMap) {
+  static ListBucketResultParker fromJsonMap(final Map<String, dynamic> jsonMap) {
     return serializers.deserializeWith(
       ListBucketResultParker.serializer,
       jsonMap,

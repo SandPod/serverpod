@@ -9,13 +9,15 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
+import 'dart:typed_data' as _i2;
+
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-import 'dart:typed_data' as _i2;
+import 'package:serverpod_test_server/src/generated/protocol.dart' as _i6;
+
+import 'simple_data.dart' as _i5;
 import 'test_enum.dart' as _i3;
 import 'test_enum_stringified.dart' as _i4;
-import 'simple_data.dart' as _i5;
-import 'package:serverpod_test_server/src/generated/protocol.dart' as _i6;
 
 abstract class TypesRecord
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
@@ -43,33 +45,33 @@ abstract class TypesRecord
   });
 
   factory TypesRecord({
-    (int,)? anInt,
-    (bool,)? aBool,
-    (double,)? aDouble,
-    (DateTime,)? aDateTime,
-    (String,)? aString,
-    (_i2.ByteData,)? aByteData,
-    (Duration,)? aDuration,
-    (_i1.UuidValue,)? aUuid,
-    (Uri,)? aUri,
-    (BigInt,)? aBigInt,
-    (_i3.TestEnum,)? anEnum,
-    (_i4.TestEnumStringified,)? aStringifiedEnum,
-    (List<int>,)? aList,
-    (Map<int, int>,)? aMap,
-    (Set<int>,)? aSet,
-    (_i5.SimpleData,)? aSimpleData,
-    ({_i5.SimpleData namedModel})? aNamedModel,
-    (_i5.SimpleData, {_i5.SimpleData namedModel})? aPositionalAndNamedModel,
-    ((int, String), {(int, String) namedNestedRecord})? aNestedRecord,
-    (
+    final (int,)? anInt,
+    final (bool,)? aBool,
+    final (double,)? aDouble,
+    final (DateTime,)? aDateTime,
+    final (String,)? aString,
+    final (_i2.ByteData,)? aByteData,
+    final (Duration,)? aDuration,
+    final (_i1.UuidValue,)? aUuid,
+    final (Uri,)? aUri,
+    final (BigInt,)? aBigInt,
+    final (_i3.TestEnum,)? anEnum,
+    final (_i4.TestEnumStringified,)? aStringifiedEnum,
+    final (List<int>,)? aList,
+    final (Map<int, int>,)? aMap,
+    final (Set<int>,)? aSet,
+    final (_i5.SimpleData,)? aSimpleData,
+    final ({_i5.SimpleData namedModel})? aNamedModel,
+    final (_i5.SimpleData, {_i5.SimpleData namedModel})? aPositionalAndNamedModel,
+    final ((int, String), {(int, String) namedNestedRecord})? aNestedRecord,
+    final (
       (List<(_i5.SimpleData,)>,), {
       (_i5.SimpleData, Map<String, _i5.SimpleData>) namedNestedRecord,
     })?
     aNestedContainers,
   }) = _TypesRecordImpl;
 
-  factory TypesRecord.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory TypesRecord.fromJson(final Map<String, dynamic> jsonSerialization) {
     return TypesRecord(
       anInt: jsonSerialization['anInt'] == null
           ? null
@@ -228,26 +230,26 @@ abstract class TypesRecord
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   TypesRecord copyWith({
-    (int,)? anInt,
-    (bool,)? aBool,
-    (double,)? aDouble,
-    (DateTime,)? aDateTime,
-    (String,)? aString,
-    (_i2.ByteData,)? aByteData,
-    (Duration,)? aDuration,
-    (_i1.UuidValue,)? aUuid,
-    (Uri,)? aUri,
-    (BigInt,)? aBigInt,
-    (_i3.TestEnum,)? anEnum,
-    (_i4.TestEnumStringified,)? aStringifiedEnum,
-    (List<int>,)? aList,
-    (Map<int, int>,)? aMap,
-    (Set<int>,)? aSet,
-    (_i5.SimpleData,)? aSimpleData,
-    ({_i5.SimpleData namedModel})? aNamedModel,
-    (_i5.SimpleData, {_i5.SimpleData namedModel})? aPositionalAndNamedModel,
-    ((int, String), {(int, String) namedNestedRecord})? aNestedRecord,
-    (
+    final (int,)? anInt,
+    final (bool,)? aBool,
+    final (double,)? aDouble,
+    final (DateTime,)? aDateTime,
+    final (String,)? aString,
+    final (_i2.ByteData,)? aByteData,
+    final (Duration,)? aDuration,
+    final (_i1.UuidValue,)? aUuid,
+    final (Uri,)? aUri,
+    final (BigInt,)? aBigInt,
+    final (_i3.TestEnum,)? anEnum,
+    final (_i4.TestEnumStringified,)? aStringifiedEnum,
+    final (List<int>,)? aList,
+    final (Map<int, int>,)? aMap,
+    final (Set<int>,)? aSet,
+    final (_i5.SimpleData,)? aSimpleData,
+    final ({_i5.SimpleData namedModel})? aNamedModel,
+    final (_i5.SimpleData, {_i5.SimpleData namedModel})? aPositionalAndNamedModel,
+    final ((int, String), {(int, String) namedNestedRecord})? aNestedRecord,
+    final (
       (List<(_i5.SimpleData,)>,), {
       (_i5.SimpleData, Map<String, _i5.SimpleData>) namedNestedRecord,
     })?
@@ -327,26 +329,26 @@ class _Undefined {}
 
 class _TypesRecordImpl extends TypesRecord {
   _TypesRecordImpl({
-    (int,)? anInt,
-    (bool,)? aBool,
-    (double,)? aDouble,
-    (DateTime,)? aDateTime,
-    (String,)? aString,
-    (_i2.ByteData,)? aByteData,
-    (Duration,)? aDuration,
-    (_i1.UuidValue,)? aUuid,
-    (Uri,)? aUri,
-    (BigInt,)? aBigInt,
-    (_i3.TestEnum,)? anEnum,
-    (_i4.TestEnumStringified,)? aStringifiedEnum,
-    (List<int>,)? aList,
-    (Map<int, int>,)? aMap,
-    (Set<int>,)? aSet,
-    (_i5.SimpleData,)? aSimpleData,
-    ({_i5.SimpleData namedModel})? aNamedModel,
-    (_i5.SimpleData, {_i5.SimpleData namedModel})? aPositionalAndNamedModel,
-    ((int, String), {(int, String) namedNestedRecord})? aNestedRecord,
-    (
+    final (int,)? anInt,
+    final (bool,)? aBool,
+    final (double,)? aDouble,
+    final (DateTime,)? aDateTime,
+    final (String,)? aString,
+    final (_i2.ByteData,)? aByteData,
+    final (Duration,)? aDuration,
+    final (_i1.UuidValue,)? aUuid,
+    final (Uri,)? aUri,
+    final (BigInt,)? aBigInt,
+    final (_i3.TestEnum,)? anEnum,
+    final (_i4.TestEnumStringified,)? aStringifiedEnum,
+    final (List<int>,)? aList,
+    final (Map<int, int>,)? aMap,
+    final (Set<int>,)? aSet,
+    final (_i5.SimpleData,)? aSimpleData,
+    final ({_i5.SimpleData namedModel})? aNamedModel,
+    final (_i5.SimpleData, {_i5.SimpleData namedModel})? aPositionalAndNamedModel,
+    final ((int, String), {(int, String) namedNestedRecord})? aNestedRecord,
+    final (
       (List<(_i5.SimpleData,)>,), {
       (_i5.SimpleData, Map<String, _i5.SimpleData>) namedNestedRecord,
     })?
@@ -379,26 +381,26 @@ class _TypesRecordImpl extends TypesRecord {
   @_i1.useResult
   @override
   TypesRecord copyWith({
-    Object? anInt = _Undefined,
-    Object? aBool = _Undefined,
-    Object? aDouble = _Undefined,
-    Object? aDateTime = _Undefined,
-    Object? aString = _Undefined,
-    Object? aByteData = _Undefined,
-    Object? aDuration = _Undefined,
-    Object? aUuid = _Undefined,
-    Object? aUri = _Undefined,
-    Object? aBigInt = _Undefined,
-    Object? anEnum = _Undefined,
-    Object? aStringifiedEnum = _Undefined,
-    Object? aList = _Undefined,
-    Object? aMap = _Undefined,
-    Object? aSet = _Undefined,
-    Object? aSimpleData = _Undefined,
-    Object? aNamedModel = _Undefined,
-    Object? aPositionalAndNamedModel = _Undefined,
-    Object? aNestedRecord = _Undefined,
-    Object? aNestedContainers = _Undefined,
+    final Object? anInt = _Undefined,
+    final Object? aBool = _Undefined,
+    final Object? aDouble = _Undefined,
+    final Object? aDateTime = _Undefined,
+    final Object? aString = _Undefined,
+    final Object? aByteData = _Undefined,
+    final Object? aDuration = _Undefined,
+    final Object? aUuid = _Undefined,
+    final Object? aUri = _Undefined,
+    final Object? aBigInt = _Undefined,
+    final Object? anEnum = _Undefined,
+    final Object? aStringifiedEnum = _Undefined,
+    final Object? aList = _Undefined,
+    final Object? aMap = _Undefined,
+    final Object? aSet = _Undefined,
+    final Object? aSimpleData = _Undefined,
+    final Object? aNamedModel = _Undefined,
+    final Object? aPositionalAndNamedModel = _Undefined,
+    final Object? aNestedRecord = _Undefined,
+    final Object? aNestedContainers = _Undefined,
   }) {
     return TypesRecord(
       anInt: anInt is (int,)?
@@ -465,7 +467,7 @@ class _TypesRecordImpl extends TypesRecord {
           ? aList
           : this.aList == null
           ? null
-          : (this.aList!.$1.map((e1) => e1).toList(),),
+          : (this.aList!.$1.map((final e1) => e1).toList(),),
       aMap: aMap is (Map<int, int>,)?
           ? aMap
           : this.aMap == null
@@ -473,8 +475,8 @@ class _TypesRecordImpl extends TypesRecord {
           : (
               this.aMap!.$1.map(
                 (
-                  key1,
-                  value1,
+                  final key1,
+                  final value1,
                 ) => MapEntry(
                   key1,
                   value1,
@@ -485,7 +487,7 @@ class _TypesRecordImpl extends TypesRecord {
           ? aSet
           : this.aSet == null
           ? null
-          : (this.aSet!.$1.map((e1) => e1).toSet(),),
+          : (this.aSet!.$1.map((final e1) => e1).toSet(),),
       aSimpleData: aSimpleData is (_i5.SimpleData,)?
           ? aSimpleData
           : this.aSimpleData == null
@@ -535,15 +537,15 @@ class _TypesRecordImpl extends TypesRecord {
           : (
               (
                 this.aNestedContainers!.$1.$1
-                    .map((e2) => (e2.$1.copyWith(),))
+                    .map((final e2) => (e2.$1.copyWith(),))
                     .toList(),
               ),
               namedNestedRecord: (
                 this.aNestedContainers!.namedNestedRecord.$1.copyWith(),
                 this.aNestedContainers!.namedNestedRecord.$2.map(
                   (
-                    key2,
-                    value2,
+                    final key2,
+                    final value2,
                   ) => MapEntry(
                     key2,
                     value2.copyWith(),

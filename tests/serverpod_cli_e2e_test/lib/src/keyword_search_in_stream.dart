@@ -37,7 +37,7 @@ class KeywordSearchInStream {
     return value;
   }
 
-  void onData(String data) {
+  void onData(final String data) {
     print(data);
 
     if (!_searching) {

@@ -20,11 +20,11 @@ abstract class ObjectWithParent
   });
 
   factory ObjectWithParent({
-    int? id,
-    required int other,
+    final int? id,
+    required final int other,
   }) = _ObjectWithParentImpl;
 
-  factory ObjectWithParent.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory ObjectWithParent.fromJson(final Map<String, dynamic> jsonSerialization) {
     return ObjectWithParent(
       id: jsonSerialization['id'] as int?,
       other: jsonSerialization['other'] as int,
@@ -47,8 +47,8 @@ abstract class ObjectWithParent
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ObjectWithParent copyWith({
-    int? id,
-    int? other,
+    final int? id,
+    final int? other,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -71,13 +71,13 @@ abstract class ObjectWithParent
   }
 
   static ObjectWithParentIncludeList includeList({
-    _i1.WhereExpressionBuilder<ObjectWithParentTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithParentTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ObjectWithParentTable>? orderByList,
-    ObjectWithParentInclude? include,
+    final _i1.WhereExpressionBuilder<ObjectWithParentTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithParentTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ObjectWithParentTable>? orderByList,
+    final ObjectWithParentInclude? include,
   }) {
     return ObjectWithParentIncludeList._(
       where: where,
@@ -100,8 +100,8 @@ class _Undefined {}
 
 class _ObjectWithParentImpl extends ObjectWithParent {
   _ObjectWithParentImpl({
-    int? id,
-    required int other,
+    final int? id,
+    required final int other,
   }) : super._(
          id: id,
          other: other,
@@ -112,8 +112,8 @@ class _ObjectWithParentImpl extends ObjectWithParent {
   @_i1.useResult
   @override
   ObjectWithParent copyWith({
-    Object? id = _Undefined,
-    int? other,
+    final Object? id = _Undefined,
+    final int? other,
   }) {
     return ObjectWithParent(
       id: id is int? ? id : this.id,
@@ -126,7 +126,7 @@ class ObjectWithParentUpdateTable
     extends _i1.UpdateTable<ObjectWithParentTable> {
   ObjectWithParentUpdateTable(super.table);
 
-  _i1.ColumnValue<int, int> other(int value) => _i1.ColumnValue(
+  _i1.ColumnValue<int, int> other(final int value) => _i1.ColumnValue(
     table.other,
     value,
   );
@@ -165,7 +165,7 @@ class ObjectWithParentInclude extends _i1.IncludeObject {
 
 class ObjectWithParentIncludeList extends _i1.IncludeList {
   ObjectWithParentIncludeList._({
-    _i1.WhereExpressionBuilder<ObjectWithParentTable>? where,
+    final _i1.WhereExpressionBuilder<ObjectWithParentTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -209,14 +209,14 @@ class ObjectWithParentRepository {
   /// );
   /// ```
   Future<List<ObjectWithParent>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ObjectWithParentTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithParentTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ObjectWithParentTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ObjectWithParentTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithParentTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ObjectWithParentTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<ObjectWithParent>(
       where: where?.call(ObjectWithParent.t),
@@ -247,13 +247,13 @@ class ObjectWithParentRepository {
   /// );
   /// ```
   Future<ObjectWithParent?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ObjectWithParentTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithParentTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ObjectWithParentTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ObjectWithParentTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithParentTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ObjectWithParentTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<ObjectWithParent>(
       where: where?.call(ObjectWithParent.t),
@@ -267,9 +267,9 @@ class ObjectWithParentRepository {
 
   /// Finds a single [ObjectWithParent] by its [id] or null if no such row exists.
   Future<ObjectWithParent?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<ObjectWithParent>(
       id,
@@ -284,9 +284,9 @@ class ObjectWithParentRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<ObjectWithParent>> insert(
-    _i1.Session session,
-    List<ObjectWithParent> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<ObjectWithParent> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<ObjectWithParent>(
       rows,
@@ -298,9 +298,9 @@ class ObjectWithParentRepository {
   ///
   /// The returned [ObjectWithParent] will have its `id` field set.
   Future<ObjectWithParent> insertRow(
-    _i1.Session session,
-    ObjectWithParent row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final ObjectWithParent row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<ObjectWithParent>(
       row,
@@ -314,10 +314,10 @@ class ObjectWithParentRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<ObjectWithParent>> update(
-    _i1.Session session,
-    List<ObjectWithParent> rows, {
-    _i1.ColumnSelections<ObjectWithParentTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<ObjectWithParent> rows, {
+    final _i1.ColumnSelections<ObjectWithParentTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<ObjectWithParent>(
       rows,
@@ -330,10 +330,10 @@ class ObjectWithParentRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<ObjectWithParent> updateRow(
-    _i1.Session session,
-    ObjectWithParent row, {
-    _i1.ColumnSelections<ObjectWithParentTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final ObjectWithParent row, {
+    final _i1.ColumnSelections<ObjectWithParentTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<ObjectWithParent>(
       row,
@@ -345,11 +345,11 @@ class ObjectWithParentRepository {
   /// Updates a single [ObjectWithParent] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<ObjectWithParent?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<ObjectWithParentUpdateTable>
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<ObjectWithParentUpdateTable>
     columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<ObjectWithParent>(
       id,
@@ -361,16 +361,16 @@ class ObjectWithParentRepository {
   /// Updates all [ObjectWithParent]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<ObjectWithParent>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<ObjectWithParentUpdateTable>
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<ObjectWithParentUpdateTable>
     columnValues,
-    required _i1.WhereExpressionBuilder<ObjectWithParentTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithParentTable>? orderBy,
-    _i1.OrderByListBuilder<ObjectWithParentTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    required final _i1.WhereExpressionBuilder<ObjectWithParentTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithParentTable>? orderBy,
+    final _i1.OrderByListBuilder<ObjectWithParentTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<ObjectWithParent>(
       columnValues: columnValues(ObjectWithParent.t.updateTable),
@@ -388,9 +388,9 @@ class ObjectWithParentRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<ObjectWithParent>> delete(
-    _i1.Session session,
-    List<ObjectWithParent> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<ObjectWithParent> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<ObjectWithParent>(
       rows,
@@ -400,9 +400,9 @@ class ObjectWithParentRepository {
 
   /// Deletes a single [ObjectWithParent].
   Future<ObjectWithParent> deleteRow(
-    _i1.Session session,
-    ObjectWithParent row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final ObjectWithParent row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<ObjectWithParent>(
       row,
@@ -412,9 +412,9 @@ class ObjectWithParentRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<ObjectWithParent>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<ObjectWithParentTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<ObjectWithParentTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<ObjectWithParent>(
       where: where(ObjectWithParent.t),
@@ -425,10 +425,10 @@ class ObjectWithParentRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ObjectWithParentTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ObjectWithParentTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<ObjectWithParent>(
       where: where?.call(ObjectWithParent.t),

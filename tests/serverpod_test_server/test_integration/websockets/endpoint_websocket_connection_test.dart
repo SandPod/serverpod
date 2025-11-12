@@ -6,7 +6,7 @@ import 'websocket_extensions.dart';
 
 void main() {
   group('Given endpoint websocket connection with connected client', () {
-    var server = IntegrationTestServer.create();
+    final server = IntegrationTestServer.create();
     late WebSocket webSocket;
 
     setUp(() async {
@@ -24,7 +24,7 @@ void main() {
     test('when server is stopped then socket is closed.', () async {
       var isClosed = false;
       webSocket.textEvents.listen(
-        (event) {
+        (final event) {
           // Listen to the stream to keep it open.
         },
         onDone: () {
@@ -32,7 +32,7 @@ void main() {
         },
       );
       // Await connection to be established and all handshakes to be done.
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
 
       await server.shutdown(exitProcess: false);
       expect(isClosed, isTrue);
@@ -42,7 +42,7 @@ void main() {
   group(
     'Given multiple endpoint websocket connections with connected clients',
     () {
-      var server = IntegrationTestServer.create();
+      final server = IntegrationTestServer.create();
       late WebSocket webSocket1;
       late WebSocket webSocket2;
 
@@ -66,7 +66,7 @@ void main() {
         var isClosed1 = false;
         var isClosed2 = false;
         webSocket1.textEvents.listen(
-          (event) {
+          (final event) {
             // Listen to the stream to keep it open.
           },
           onDone: () {
@@ -74,7 +74,7 @@ void main() {
           },
         );
         webSocket2.textEvents.listen(
-          (event) {
+          (final event) {
             // Listen to the stream to keep it open.
           },
           onDone: () {
@@ -82,7 +82,7 @@ void main() {
           },
         );
         // Await connection to be established and all handshakes to be done.
-        await Future.delayed(Duration(seconds: 1));
+        await Future.delayed(const Duration(seconds: 1));
 
         await server.shutdown(exitProcess: false);
         expect(isClosed1, isTrue);

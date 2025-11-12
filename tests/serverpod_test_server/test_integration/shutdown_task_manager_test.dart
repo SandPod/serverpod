@@ -8,7 +8,7 @@ void main() {
       'then the task is executed.', () async {
     var called = false;
 
-    var serverpod = IntegrationTestServer.create();
+    final serverpod = IntegrationTestServer.create();
     serverpod.experimental.shutdownTasks.addTask(
       #testTask,
       () async {
@@ -27,7 +27,7 @@ void main() {
     var called = false;
 
     const id = #testTask;
-    var serverpod = IntegrationTestServer.create();
+    final serverpod = IntegrationTestServer.create();
     serverpod.experimental.shutdownTasks.addTask(
       id,
       () async {
@@ -46,7 +46,7 @@ void main() {
       'then the task is executed once for each shutdown.', () async {
     var callCount = 0;
 
-    var serverpod = IntegrationTestServer.create();
+    final serverpod = IntegrationTestServer.create();
     serverpod.experimental.shutdownTasks.addTask(
       #testTask,
       () async {
@@ -63,7 +63,7 @@ void main() {
   test('Given a shutdown task that throws an error '
       'when the server is shutdown '
       'then the error is thrown from shutdown.', () async {
-    var serverpod = IntegrationTestServer.create();
+    final serverpod = IntegrationTestServer.create();
     serverpod.experimental.shutdownTasks.addTask(
       #testTask,
       () async {
@@ -80,10 +80,10 @@ void main() {
   test('Given multiple shutdown tasks that throw errors '
       'when the server is shutdown '
       'then last thrown exception is thrown from shutdown method.', () async {
-    var exception1 = #firstException;
-    var exception2 = #secondException;
+    const exception1 = #firstException;
+    const exception2 = #secondException;
 
-    var serverpod = IntegrationTestServer.create();
+    final serverpod = IntegrationTestServer.create();
     serverpod.experimental.shutdownTasks.addTask(
       #testTask1,
       () async {
@@ -93,7 +93,7 @@ void main() {
     serverpod.experimental.shutdownTasks.addTask(
       #testTask2,
       () async {
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         throw exception2;
       },
     );
@@ -110,7 +110,7 @@ void main() {
     final completer1 = Completer<void>();
     final completer2 = Completer<void>();
 
-    var serverpod = IntegrationTestServer.create();
+    final serverpod = IntegrationTestServer.create();
     serverpod.experimental.shutdownTasks.addTask(
       #task1,
       () async {
@@ -141,7 +141,7 @@ void main() {
       var webServerStopped = false;
       var serviceServerStopped = false;
 
-      var serverpod = IntegrationTestServer.create();
+      final serverpod = IntegrationTestServer.create();
       serverpod.experimental.shutdownTasks.addTask(
         #testTask,
         () async {

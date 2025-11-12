@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given two simple data objects in database', () {
     group('when querying using positional arguments', () {
@@ -18,14 +18,14 @@ void main() async {
       tearDownAll(() async {
         await SimpleData.db.deleteWhere(
           session,
-          where: (t) => Constant.bool(true),
+          where: (final t) => Constant.bool(true),
         );
       });
 
       test(
         'then querying for both records reports the correct number of rows.',
         () async {
-          var result = await session.db.unsafeQuery(
+          final result = await session.db.unsafeQuery(
             r'SELECT * FROM simple_data WHERE id IN ($1, $2);',
             parameters: QueryParameters.positional([entry_1.id, entry_2.id]),
           );
@@ -36,7 +36,7 @@ void main() async {
       test(
         'then querying for a single record reports the correct record.',
         () async {
-          var result = await session.db.unsafeQuery(
+          final result = await session.db.unsafeQuery(
             r'SELECT * FROM simple_data WHERE id=$1;',
             parameters: QueryParameters.positional([entry_1.id]),
           );
@@ -61,7 +61,7 @@ void main() async {
       tearDownAll(() async {
         await SimpleData.db.deleteWhere(
           session,
-          where: (t) => Constant.bool(true),
+          where: (final t) => Constant.bool(true),
         );
       });
 
@@ -107,14 +107,14 @@ void main() async {
       tearDownAll(() async {
         await SimpleData.db.deleteWhere(
           session,
-          where: (t) => Constant.bool(true),
+          where: (final t) => Constant.bool(true),
         );
       });
 
       test(
         'then executing a query for both records reports the correct number of rows.',
         () async {
-          var result = await session.db.unsafeExecute(
+          final result = await session.db.unsafeExecute(
             r'SELECT * FROM simple_data WHERE id IN ($1, $2);',
             parameters: QueryParameters.positional([entry_1.id, entry_2.id]),
           );
@@ -125,7 +125,7 @@ void main() async {
       test(
         'then executing an update on a single record reports the correct number of rows.',
         () async {
-          var result = await session.db.unsafeExecute(
+          final result = await session.db.unsafeExecute(
             r'UPDATE simple_data SET num=10 WHERE id=$1;',
             parameters: QueryParameters.positional([entry_1.id]),
           );
@@ -145,14 +145,14 @@ void main() async {
       tearDownAll(() async {
         await SimpleData.db.deleteWhere(
           session,
-          where: (t) => Constant.bool(true),
+          where: (final t) => Constant.bool(true),
         );
       });
 
       test(
         'then executing a query for both records reports the correct number of rows.',
         () async {
-          var result = await session.db.unsafeExecute(
+          final result = await session.db.unsafeExecute(
             r'SELECT * FROM simple_data WHERE id IN (@entry_1, @entry_2);',
             parameters: QueryParameters.named({
               'entry_1': entry_1.id,
@@ -166,7 +166,7 @@ void main() async {
       test(
         'then executing an update on a single record reports the correct number of rows.',
         () async {
-          var result = await session.db.unsafeExecute(
+          final result = await session.db.unsafeExecute(
             r'UPDATE simple_data SET num=10 WHERE id=@entry_1;',
             parameters: QueryParameters.named({'entry_1': entry_1.id}),
           );

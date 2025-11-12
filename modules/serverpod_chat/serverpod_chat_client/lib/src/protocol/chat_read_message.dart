@@ -22,13 +22,13 @@ abstract class ChatReadMessage implements _i1.SerializableModel {
   });
 
   factory ChatReadMessage({
-    int? id,
-    required String channel,
-    required int userId,
-    required int lastReadMessageId,
+    final int? id,
+    required final String channel,
+    required final int userId,
+    required final int lastReadMessageId,
   }) = _ChatReadMessageImpl;
 
-  factory ChatReadMessage.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory ChatReadMessage.fromJson(final Map<String, dynamic> jsonSerialization) {
     return ChatReadMessage(
       id: jsonSerialization['id'] as int?,
       channel: jsonSerialization['channel'] as String,
@@ -55,10 +55,10 @@ abstract class ChatReadMessage implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ChatReadMessage copyWith({
-    int? id,
-    String? channel,
-    int? userId,
-    int? lastReadMessageId,
+    final int? id,
+    final String? channel,
+    final int? userId,
+    final int? lastReadMessageId,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -80,10 +80,10 @@ class _Undefined {}
 
 class _ChatReadMessageImpl extends ChatReadMessage {
   _ChatReadMessageImpl({
-    int? id,
-    required String channel,
-    required int userId,
-    required int lastReadMessageId,
+    final int? id,
+    required final String channel,
+    required final int userId,
+    required final int lastReadMessageId,
   }) : super._(
          id: id,
          channel: channel,
@@ -96,10 +96,10 @@ class _ChatReadMessageImpl extends ChatReadMessage {
   @_i1.useResult
   @override
   ChatReadMessage copyWith({
-    Object? id = _Undefined,
-    String? channel,
-    int? userId,
-    int? lastReadMessageId,
+    final Object? id = _Undefined,
+    final String? channel,
+    final int? userId,
+    final int? lastReadMessageId,
   }) {
     return ChatReadMessage(
       id: id is int? ? id : this.id,

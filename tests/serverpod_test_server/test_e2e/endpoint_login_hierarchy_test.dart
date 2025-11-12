@@ -7,14 +7,14 @@ import 'package:serverpod_test_server/test_util/test_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client(
+  final client = Client(
     serverUrl,
     authenticationKeyManager: TestAuthKeyManager(),
   );
 
   setUp(() async {
     await client.authentication.removeAllUsers();
-    var userCount = await client.authentication.countUsers();
+    final userCount = await client.authentication.countUsers();
     expect(userCount, equals(0));
   });
 
@@ -39,11 +39,11 @@ void main() {
             throwsA(
               isA<ServerpodClientException>()
                   .having(
-                    (e) => e.message,
+                    (final e) => e.message,
                     'statusCode',
                     contains('Unauthorized'),
                   )
-                  .having((e) => e.statusCode, 'statusCode', 401),
+                  .having((final e) => e.statusCode, 'statusCode', 401),
             ),
           );
         },
@@ -52,7 +52,7 @@ void main() {
       test(
         'when calling `echo` as a logged-in user, then the request returns the expected value',
         () async {
-          var loginResponse = await client.authentication.authenticate(
+          final loginResponse = await client.authentication.authenticate(
             'test@foo.bar',
             'password',
           );
@@ -79,11 +79,11 @@ void main() {
             throwsA(
               isA<ServerpodClientException>()
                   .having(
-                    (e) => e.message,
+                    (final e) => e.message,
                     'statusCode',
                     contains('Unauthorized'),
                   )
-                  .having((e) => e.statusCode, 'statusCode', 401),
+                  .having((final e) => e.statusCode, 'statusCode', 401),
             ),
           );
         },
@@ -92,7 +92,7 @@ void main() {
       test(
         'when calling `echo` as a logged-in user, then the request errs with "Forbidden" due to the missing scope',
         () async {
-          var loginResponse = await client.authentication.authenticate(
+          final loginResponse = await client.authentication.authenticate(
             'test@foo.bar',
             'password',
           );
@@ -104,8 +104,8 @@ void main() {
             () async => await client.myAdmin.echo('hello'),
             throwsA(
               isA<ServerpodClientException>()
-                  .having((e) => e.message, 'statusCode', contains('Forbidden'))
-                  .having((e) => e.statusCode, 'statusCode', 403),
+                  .having((final e) => e.message, 'statusCode', contains('Forbidden'))
+                  .having((final e) => e.statusCode, 'statusCode', 403),
             ),
           );
         },
@@ -114,7 +114,7 @@ void main() {
       test(
         'when calling `echo` as an admin user, then the request returns the expected value',
         () async {
-          var loginResponse = await client.authentication.authenticate(
+          final loginResponse = await client.authentication.authenticate(
             'test@foo.bar',
             'password',
             [Scope.admin.name!],
@@ -142,11 +142,11 @@ void main() {
             throwsA(
               isA<ServerpodClientException>()
                   .having(
-                    (e) => e.message,
+                    (final e) => e.message,
                     'statusCode',
                     contains('Unauthorized'),
                   )
-                  .having((e) => e.statusCode, 'statusCode', 401),
+                  .having((final e) => e.statusCode, 'statusCode', 401),
             ),
           );
         },
@@ -155,7 +155,7 @@ void main() {
       test(
         'when calling `echo` as a logged-in user, then the request errs with "Forbidden" due to the missing scope',
         () async {
-          var loginResponse = await client.authentication.authenticate(
+          final loginResponse = await client.authentication.authenticate(
             'test@foo.bar',
             'password',
           );
@@ -167,8 +167,8 @@ void main() {
             () async => await client.myConcreteAdmin.echo('hello'),
             throwsA(
               isA<ServerpodClientException>()
-                  .having((e) => e.message, 'statusCode', contains('Forbidden'))
-                  .having((e) => e.statusCode, 'statusCode', 403),
+                  .having((final e) => e.message, 'statusCode', contains('Forbidden'))
+                  .having((final e) => e.statusCode, 'statusCode', 403),
             ),
           );
         },
@@ -177,7 +177,7 @@ void main() {
       test(
         'when calling `echo` as an admin user, then the request returns the expected value',
         () async {
-          var loginResponse = await client.authentication.authenticate(
+          final loginResponse = await client.authentication.authenticate(
             'test@foo.bar',
             'password',
             [Scope.admin.name!],

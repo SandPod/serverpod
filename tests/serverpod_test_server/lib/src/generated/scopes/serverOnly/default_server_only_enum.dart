@@ -16,7 +16,7 @@ enum DefaultServerOnlyEnum implements _i1.SerializableModel {
   foo,
   bar;
 
-  static DefaultServerOnlyEnum fromJson(int index) {
+  static DefaultServerOnlyEnum fromJson(final int index) {
     switch (index) {
       case 0:
         return DefaultServerOnlyEnum.foo;

@@ -31,18 +31,18 @@ abstract class UserInfo implements _i1.SerializableModel {
   });
 
   factory UserInfo({
-    int? id,
-    required String userIdentifier,
-    String? userName,
-    String? fullName,
-    String? email,
-    required DateTime created,
-    String? imageUrl,
-    required List<String> scopeNames,
-    required bool blocked,
+    final int? id,
+    required final String userIdentifier,
+    final String? userName,
+    final String? fullName,
+    final String? email,
+    required final DateTime created,
+    final String? imageUrl,
+    required final List<String> scopeNames,
+    required final bool blocked,
   }) = _UserInfoImpl;
 
-  factory UserInfo.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory UserInfo.fromJson(final Map<String, dynamic> jsonSerialization) {
     return UserInfo(
       id: jsonSerialization['id'] as int?,
       userIdentifier: jsonSerialization['userIdentifier'] as String,
@@ -52,7 +52,7 @@ abstract class UserInfo implements _i1.SerializableModel {
       created: _i1.DateTimeJsonExtension.fromJson(jsonSerialization['created']),
       imageUrl: jsonSerialization['imageUrl'] as String?,
       scopeNames: (jsonSerialization['scopeNames'] as List)
-          .map((e) => e as String)
+          .map((final e) => e as String)
           .toList(),
       blocked: jsonSerialization['blocked'] as bool,
     );
@@ -92,15 +92,15 @@ abstract class UserInfo implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   UserInfo copyWith({
-    int? id,
-    String? userIdentifier,
-    String? userName,
-    String? fullName,
-    String? email,
-    DateTime? created,
-    String? imageUrl,
-    List<String>? scopeNames,
-    bool? blocked,
+    final int? id,
+    final String? userIdentifier,
+    final String? userName,
+    final String? fullName,
+    final String? email,
+    final DateTime? created,
+    final String? imageUrl,
+    final List<String>? scopeNames,
+    final bool? blocked,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -127,15 +127,15 @@ class _Undefined {}
 
 class _UserInfoImpl extends UserInfo {
   _UserInfoImpl({
-    int? id,
-    required String userIdentifier,
-    String? userName,
-    String? fullName,
-    String? email,
-    required DateTime created,
-    String? imageUrl,
-    required List<String> scopeNames,
-    required bool blocked,
+    final int? id,
+    required final String userIdentifier,
+    final String? userName,
+    final String? fullName,
+    final String? email,
+    required final DateTime created,
+    final String? imageUrl,
+    required final List<String> scopeNames,
+    required final bool blocked,
   }) : super._(
          id: id,
          userIdentifier: userIdentifier,
@@ -153,15 +153,15 @@ class _UserInfoImpl extends UserInfo {
   @_i1.useResult
   @override
   UserInfo copyWith({
-    Object? id = _Undefined,
-    String? userIdentifier,
-    Object? userName = _Undefined,
-    Object? fullName = _Undefined,
-    Object? email = _Undefined,
-    DateTime? created,
-    Object? imageUrl = _Undefined,
-    List<String>? scopeNames,
-    bool? blocked,
+    final Object? id = _Undefined,
+    final String? userIdentifier,
+    final Object? userName = _Undefined,
+    final Object? fullName = _Undefined,
+    final Object? email = _Undefined,
+    final DateTime? created,
+    final Object? imageUrl = _Undefined,
+    final List<String>? scopeNames,
+    final bool? blocked,
   }) {
     return UserInfo(
       id: id is int? ? id : this.id,
@@ -171,7 +171,7 @@ class _UserInfoImpl extends UserInfo {
       email: email is String? ? email : this.email,
       created: created ?? this.created,
       imageUrl: imageUrl is String? ? imageUrl : this.imageUrl,
-      scopeNames: scopeNames ?? this.scopeNames.map((e0) => e0).toList(),
+      scopeNames: scopeNames ?? this.scopeNames.map((final e0) => e0).toList(),
       blocked: blocked ?? this.blocked,
     );
   }

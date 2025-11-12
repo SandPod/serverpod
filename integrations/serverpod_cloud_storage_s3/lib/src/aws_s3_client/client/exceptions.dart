@@ -14,7 +14,7 @@ class S3Exception implements Exception {
     }''';
   }
 
-  String get devDebugHint => "We got an unexpected response from S3: ";
+  String get devDebugHint => 'We got an unexpected response from S3: ';
 }
 
 class NoPermissionsException extends S3Exception {
@@ -22,5 +22,5 @@ class NoPermissionsException extends S3Exception {
 
   @override
   String get devDebugHint =>
-      "S3 returned a 403 status code. Please make sure you have the right permissions for this request";
+      'S3 returned a 403 status code. Please make sure you have the right permissions for this request';
 }

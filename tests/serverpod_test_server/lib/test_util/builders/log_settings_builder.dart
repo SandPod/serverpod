@@ -24,54 +24,54 @@ class LogSettingsBuilder {
     return this;
   }
 
-  LogSettingsBuilder withLogLevel(LogLevel logLevel) {
+  LogSettingsBuilder withLogLevel(final LogLevel logLevel) {
     _logLevel = logLevel;
     return this;
   }
 
-  LogSettingsBuilder withLogAllSessions(bool logAllSessions) {
+  LogSettingsBuilder withLogAllSessions(final bool logAllSessions) {
     _logAllSessions = logAllSessions;
     return this;
   }
 
-  LogSettingsBuilder withLogAllQueries(bool logAllQueries) {
+  LogSettingsBuilder withLogAllQueries(final bool logAllQueries) {
     _logAllQueries = logAllQueries;
     return this;
   }
 
-  LogSettingsBuilder withLogSlowSessions(bool logSlowSessions) {
+  LogSettingsBuilder withLogSlowSessions(final bool logSlowSessions) {
     _logSlowSessions = logSlowSessions;
     return this;
   }
 
   LogSettingsBuilder withLogStreamingSessionsContinuously(
-    bool logStreamingSessionsContinuously,
+    final bool logStreamingSessionsContinuously,
   ) {
     _logStreamingSessionsContinuously = logStreamingSessionsContinuously;
     return this;
   }
 
-  LogSettingsBuilder withLogSlowQueries(bool logSlowQueries) {
+  LogSettingsBuilder withLogSlowQueries(final bool logSlowQueries) {
     _logSlowQueries = logSlowQueries;
     return this;
   }
 
-  LogSettingsBuilder withLogFailedSessions(bool logFailedSessions) {
+  LogSettingsBuilder withLogFailedSessions(final bool logFailedSessions) {
     _logFailedSessions = logFailedSessions;
     return this;
   }
 
-  LogSettingsBuilder withLogFailedQueries(bool logFailedQueries) {
+  LogSettingsBuilder withLogFailedQueries(final bool logFailedQueries) {
     _logFailedQueries = logFailedQueries;
     return this;
   }
 
-  LogSettingsBuilder withSlowSessionDuration(double slowSessionDuration) {
+  LogSettingsBuilder withSlowSessionDuration(final double slowSessionDuration) {
     _slowSessionDuration = slowSessionDuration;
     return this;
   }
 
-  LogSettingsBuilder withSlowQueryDuration(double slowQueryDuration) {
+  LogSettingsBuilder withSlowQueryDuration(final double slowQueryDuration) {
     _slowQueryDuration = slowQueryDuration;
     return this;
   }

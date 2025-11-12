@@ -8,7 +8,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "defaultPersist" BigInt field with a string should be null',
         () {
-          var object = BigIntDefaultPersist();
+          final object = BigIntDefaultPersist();
           expect(object.bigIntDefaultPersistStr, isNull);
         },
       );
@@ -16,8 +16,8 @@ void main() async {
       test(
         'when an object of the class is created with a specific value for "bigIntDefaultPersistStr", then the field value should match the provided value',
         () {
-          var bigInt = BigInt.one;
-          var object = BigIntDefaultPersist(
+          final bigInt = BigInt.one;
+          final object = BigIntDefaultPersist(
             bigIntDefaultPersistStr: bigInt,
           );
           expect(

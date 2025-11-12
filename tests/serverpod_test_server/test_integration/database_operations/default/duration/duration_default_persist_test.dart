@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with "defaultPersist" Duration fields,', () {
     tearDownAll(
@@ -17,15 +17,15 @@ void main() async {
     test(
       'when creating a record in the database, then the "defaultPersist=1d 2h 10min 30s 100ms" field should be the expected duration',
       () async {
-        var object = DurationDefaultPersist();
-        var databaseObject = await DurationDefaultPersist.db.insertRow(
+        final object = DurationDefaultPersist();
+        final databaseObject = await DurationDefaultPersist.db.insertRow(
           session,
           object,
         );
         expect(
           databaseObject.durationDefaultPersist,
           equals(
-            Duration(
+            const Duration(
               days: 1,
               hours: 2,
               minutes: 10,
@@ -46,13 +46,13 @@ void main() async {
         VALUES (DEFAULT);
         ''',
         );
-        var databaseObject = await DurationDefaultPersist.db.findFirstRow(
+        final databaseObject = await DurationDefaultPersist.db.findFirstRow(
           session,
         );
         expect(
           databaseObject?.durationDefaultPersist,
           equals(
-            Duration(
+            const Duration(
               days: 1,
               hours: 2,
               minutes: 10,
@@ -67,17 +67,17 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "durationDefaultPersist" field value should match the provided value',
       () async {
-        var specificDuration = Duration(
+        const specificDuration = Duration(
           days: 3,
           hours: 4,
           minutes: 15,
           seconds: 45,
           milliseconds: 500,
         );
-        var specificObject = DurationDefaultPersist(
+        final specificObject = DurationDefaultPersist(
           durationDefaultPersist: specificDuration,
         );
-        var specificDatabaseObject = await DurationDefaultPersist.db.insertRow(
+        final specificDatabaseObject = await DurationDefaultPersist.db.insertRow(
           session,
           specificObject,
         );

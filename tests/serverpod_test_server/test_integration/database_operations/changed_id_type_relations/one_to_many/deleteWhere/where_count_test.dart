@@ -1,10 +1,10 @@
-import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:serverpod/database.dart' as db;
 import 'package:serverpod_test_server/src/generated/protocol.dart';
+import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
   group('Given models with one to many relation', () {
     tearDown(() async {
       await OrderUuid.db.deleteWhere(
@@ -20,7 +20,7 @@ void main() async {
     test(
       'when deleting models filtered on count of many relation then only matching models are deleted',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -37,14 +37,14 @@ void main() async {
           OrderUuid(description: 'OrderUuid 6', customerId: customers[2].id!),
         ]);
 
-        var deletedCustomers = await CustomerInt.db.deleteWhere(
+        final deletedCustomers = await CustomerInt.db.deleteWhere(
           session,
           // All customers with more than one order
-          where: (c) => c.orders.count() > 1,
+          where: (final c) => c.orders.count() > 1,
         );
 
         expect(deletedCustomers, hasLength(2));
-        var deletedCustomerIds = deletedCustomers.map((c) => c.id).toList();
+        final deletedCustomerIds = deletedCustomers.map((final c) => c.id).toList();
         expect(
           deletedCustomerIds,
           containsAll([
@@ -57,7 +57,7 @@ void main() async {
     test(
       'when deleting models filtered on filtered many relation count then result is as expected',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -81,10 +81,10 @@ void main() async {
           ),
         ]);
 
-        var deletedCustomers = await CustomerInt.db.deleteWhere(
+        final deletedCustomers = await CustomerInt.db.deleteWhere(
           session,
           // All customers with more than one order starting with 'prem'
-          where: (c) => c.orders.count((o) => o.description.ilike('prem%')) > 1,
+          where: (final c) => c.orders.count((final o) => o.description.ilike('prem%')) > 1,
         );
 
         expect(deletedCustomers, hasLength(1));
@@ -98,7 +98,7 @@ void main() async {
     test(
       'when deleting models filtered on many relation count in combination with other filter then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -113,14 +113,14 @@ void main() async {
           OrderUuid(description: 'OrderUuid 5', customerId: customers[2].id!),
         ]);
 
-        var deletedCustomers = await CustomerInt.db.deleteWhere(
+        final deletedCustomers = await CustomerInt.db.deleteWhere(
           session,
           // All customers with more than two orders or name 'Isak'
-          where: (c) => (c.orders.count() > 2) | c.name.equals('Isak'),
+          where: (final c) => (c.orders.count() > 2) | c.name.equals('Isak'),
         );
 
         expect(deletedCustomers, hasLength(2));
-        var deletedCustomerIds = deletedCustomers.map((c) => c.id).toList();
+        final deletedCustomerIds = deletedCustomers.map((final c) => c.id).toList();
         expect(
           deletedCustomerIds,
           containsAll([
@@ -134,7 +134,7 @@ void main() async {
     test(
       'when deleting models filtered on multiple many relation count then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -149,10 +149,10 @@ void main() async {
           OrderUuid(description: 'OrderUuid 5', customerId: customers[2].id!),
         ]);
 
-        var deletedCustomers = await CustomerInt.db.deleteWhere(
+        final deletedCustomers = await CustomerInt.db.deleteWhere(
           session,
           // All customers with more than one orders but less than three
-          where: (c) => (c.orders.count() > 1) & (c.orders.count() < 3),
+          where: (final c) => (c.orders.count() > 1) & (c.orders.count() < 3),
         );
 
         expect(deletedCustomers, hasLength(1));
@@ -166,7 +166,7 @@ void main() async {
     test(
       'when deleting models filtered on multiple filtered many relation count then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -204,12 +204,12 @@ void main() async {
           ),
         ]);
 
-        var deletedCustomers = await CustomerInt.db.deleteWhere(
+        final deletedCustomers = await CustomerInt.db.deleteWhere(
           session,
           // All customers with more than one premium order and one basic order
-          where: (c) =>
-              (c.orders.count((o) => o.description.ilike('prem%')) > 1) &
-              (c.orders.count((o) => o.description.ilike('basic%')) > 1),
+          where: (final c) =>
+              (c.orders.count((final o) => o.description.ilike('prem%')) > 1) &
+              (c.orders.count((final o) => o.description.ilike('basic%')) > 1),
         );
 
         expect(deletedCustomers, hasLength(1));
@@ -240,12 +240,12 @@ void main() async {
     test(
       'when filtering on nested many relation count then result is as expected',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
         ]);
-        var orders = await OrderUuid.db.insert(session, [
+        final orders = await OrderUuid.db.insert(session, [
           // Alex orders
           OrderUuid(description: 'OrderUuid 1', customerId: customers[0].id!),
           OrderUuid(description: 'OrderUuid 2', customerId: customers[0].id!),
@@ -277,10 +277,10 @@ void main() async {
           CommentInt(description: 'CommentInt 14', orderId: orders[4].id),
         ]);
 
-        var deletedCustomers = await CustomerInt.db.deleteWhere(
+        final deletedCustomers = await CustomerInt.db.deleteWhere(
           session,
           // All customers with more than one order with more than two comments
-          where: (c) => c.orders.count((o) => o.comments.count() > 2) > 1,
+          where: (final c) => c.orders.count((final o) => o.comments.count() > 2) > 1,
         );
 
         expect(deletedCustomers, hasLength(1));
@@ -294,12 +294,12 @@ void main() async {
     test(
       'when deleting models filtered on filtered nested many relation count then result is as expected',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
         ]);
-        var orders = await OrderUuid.db.insert(session, [
+        final orders = await OrderUuid.db.insert(session, [
           // Alex orders
           OrderUuid(description: 'OrderUuid 1', customerId: customers[0].id!),
           OrderUuid(description: 'OrderUuid 2', customerId: customers[0].id!),
@@ -331,12 +331,12 @@ void main() async {
           CommentInt(description: 'CommentInt 14', orderId: orders[4].id),
         ]);
 
-        var deletedCustomers = await CustomerInt.db.deleteWhere(
+        final deletedCustomers = await CustomerInt.db.deleteWhere(
           session,
-          where: (c) =>
+          where: (final c) =>
               c.orders.count(
                 // All customers with more than one order with more than one comment starting with 'del'
-                (o) => o.comments.count((c) => c.description.ilike('del%')) > 1,
+                (final o) => o.comments.count((final c) => c.description.ilike('del%')) > 1,
               ) >
               1,
         );

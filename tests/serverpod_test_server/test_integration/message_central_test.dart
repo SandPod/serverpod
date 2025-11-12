@@ -37,9 +37,9 @@ void main() async {
 
   group('Given listener on channel in message central', () {
     late Completer<SimpleData> messageReceivedCompleter;
-    var listenerMethod = (message) {
+    void listenerMethod(final message) {
       messageReceivedCompleter.complete(message as SimpleData);
-    };
+    }
 
     setUp(() {
       messageReceivedCompleter = Completer<SimpleData>();
@@ -62,7 +62,7 @@ void main() async {
       await messageCentral.postMessage(channelName, SimpleData(num: 42));
 
       await expectLater(messageReceivedCompleter.future, completes);
-      var message = await messageReceivedCompleter.future;
+      final message = await messageReceivedCompleter.future;
       expect(message.num, 42);
     });
   });
@@ -81,13 +81,13 @@ void main() async {
 
       stream = messageCentral.createStream<SimpleData>(channelName);
       subscription = stream.listen(
-        (data) {
+        (final data) {
           messageReceivedCompleter.complete(data);
         },
         onDone: () {
           streamDoneCompleter.complete();
         },
-        onError: (error) {
+        onError: (final error) {
           streamErrorCompleter.complete(error);
         },
       );
@@ -111,7 +111,7 @@ void main() async {
         await messageCentral.postMessage(channelName, SimpleData(num: 42));
 
         await expectLater(messageReceivedCompleter.future, completes);
-        var message = await messageReceivedCompleter.future;
+        final message = await messageReceivedCompleter.future;
         expect(message.num, 42);
       },
     );
@@ -122,7 +122,7 @@ void main() async {
         await messageCentral.postMessage(channelName, Types());
 
         await expectLater(streamErrorCompleter.future, completes);
-        var error = await streamErrorCompleter.future;
+        final error = await streamErrorCompleter.future;
         expect(error, isA<TypeError>());
       },
     );
@@ -145,9 +145,9 @@ void main() async {
     setUp(() {
       messageReceivedCompleter1 = Completer<SimpleData>();
       stream1DoneCompleter = Completer();
-      var stream1 = messageCentral.createStream<SimpleData>(channelName);
+      final stream1 = messageCentral.createStream<SimpleData>(channelName);
       subscription1 = stream1.listen(
-        (data) {
+        (final data) {
           messageReceivedCompleter1.complete(data);
         },
         onDone: () {
@@ -157,9 +157,9 @@ void main() async {
 
       messageReceivedCompleter2 = Completer<SimpleData>();
       stream2DoneCompleter = Completer();
-      var stream2 = messageCentral.createStream<SimpleData>(channelName);
+      final stream2 = messageCentral.createStream<SimpleData>(channelName);
       subscription2 = stream2.listen(
-        (data) {
+        (final data) {
           messageReceivedCompleter2.complete(data);
         },
         onDone: () {
@@ -179,10 +179,10 @@ void main() async {
         await messageCentral.postMessage(channelName, SimpleData(num: 42));
 
         await expectLater(messageReceivedCompleter1.future, completes);
-        var message1 = await messageReceivedCompleter1.future;
+        final message1 = await messageReceivedCompleter1.future;
         expect(message1.num, 42);
         await expectLater(messageReceivedCompleter2.future, completes);
-        var message2 = await messageReceivedCompleter2.future;
+        final message2 = await messageReceivedCompleter2.future;
         expect(message2.num, 42);
       },
     );
@@ -194,7 +194,7 @@ void main() async {
         await messageCentral.postMessage(channelName, SimpleData(num: 42));
 
         await expectLater(messageReceivedCompleter1.future, completes);
-        var message1 = await messageReceivedCompleter1.future;
+        final message1 = await messageReceivedCompleter1.future;
         expect(message1.num, 42);
       },
     );

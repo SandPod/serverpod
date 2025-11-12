@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/config.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client(serverUrl);
+  final client = Client(serverUrl);
 
   group(
     'Given an endpoint which extends the base class without any overrides, ',
@@ -12,7 +12,7 @@ void main() {
       test(
         'when calling `echoString`, then the input value is returned verbatim.',
         () async {
-          var response = await client.moduleEndpointSubclass.echoString(
+          final response = await client.moduleEndpointSubclass.echoString(
             'hello',
           );
 
@@ -23,7 +23,7 @@ void main() {
       test(
         'when calling `echoRecord`, then the input value is returned verbatim.',
         () async {
-          var response = await client.moduleEndpointSubclass.echoRecord((
+          final response = await client.moduleEndpointSubclass.echoRecord((
             5,
             BigInt.from(100),
           ));
@@ -35,7 +35,7 @@ void main() {
       test(
         'when calling `echoContainer`, then the input value is returned verbatim.',
         () async {
-          var response = await client.moduleEndpointSubclass.echoContainer({
+          final response = await client.moduleEndpointSubclass.echoContainer({
             1,
             2,
             3,
@@ -48,15 +48,15 @@ void main() {
       test(
         'when calling `echoModel`, then the input value is returned verbatim.',
         () async {
-          var response = await client.moduleEndpointSubclass.echoModel(
+          final response = await client.moduleEndpointSubclass.echoModel(
             ModuleClass(name: 'test', data: 1),
           );
 
           expect(
             response,
             isA<ModuleClass>()
-                .having((c) => c.name, 'name', 'test')
-                .having((c) => c.data, 'data', 1),
+                .having((final c) => c.name, 'name', 'test')
+                .having((final c) => c.data, 'data', 1),
           );
         },
       );
@@ -77,7 +77,7 @@ void main() {
     test(
       'when calling `echoString`, then the input value is returned verbatim (re-using the `super` implementation).',
       () async {
-        var response = await client.moduleEndpointAdaptation.echoString(
+        final response = await client.moduleEndpointAdaptation.echoString(
           'hello',
         );
 
@@ -88,7 +88,7 @@ void main() {
     test(
       'when calling `echoRecord`, then the request supports the optional parameter and returns the modified value.',
       () async {
-        var response = await client.moduleEndpointAdaptation.echoRecord(
+        final response = await client.moduleEndpointAdaptation.echoRecord(
           (5, BigInt.from(100)),
           2,
         );
@@ -100,7 +100,7 @@ void main() {
     test(
       'when calling `echoContainer`, then the input value is returned verbatim (re-using the `super` implementation).',
       () async {
-        var response = await client.moduleEndpointAdaptation.echoContainer({
+        final response = await client.moduleEndpointAdaptation.echoContainer({
           1,
           2,
           3,
@@ -113,15 +113,15 @@ void main() {
     test(
       'when calling `echoModel`, then the input value is returned verbatim (re-using the `super` implementation).',
       () async {
-        var response = await client.moduleEndpointAdaptation.echoModel(
+        final response = await client.moduleEndpointAdaptation.echoModel(
           ModuleClass(name: 'test', data: 1),
         );
 
         expect(
           response,
           isA<ModuleClass>()
-              .having((c) => c.name, 'name', 'test')
-              .having((c) => c.data, 'data', 1),
+              .having((final c) => c.name, 'name', 'test')
+              .having((final c) => c.data, 'data', 1),
         );
       },
     );
@@ -145,7 +145,7 @@ void main() {
       test(
         'when calling `greet`, then the input is returned as expected.',
         () async {
-          var response = await client.moduleEndpointExtension.greet(
+          final response = await client.moduleEndpointExtension.greet(
             'Serverpod',
           );
 

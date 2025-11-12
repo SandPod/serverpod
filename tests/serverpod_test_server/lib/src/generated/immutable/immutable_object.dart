@@ -17,7 +17,7 @@ class ImmutableObject
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
   const ImmutableObject({required this.variable});
 
-  factory ImmutableObject.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory ImmutableObject.fromJson(final Map<String, dynamic> jsonSerialization) {
     return ImmutableObject(variable: jsonSerialization['variable'] as String);
   }
 
@@ -26,12 +26,12 @@ class ImmutableObject
   /// Returns a shallow copy of this [ImmutableObject]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  ImmutableObject copyWith({String? variable}) {
+  ImmutableObject copyWith({final String? variable}) {
     return ImmutableObject(variable: variable ?? this.variable);
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(final Object other) {
     return identical(
           other,
           this,

@@ -7,11 +7,11 @@ import 'serverpod_test_tools.dart';
 void main() {
   withServerpod(
     'Given TestToolsEndpoint',
-    (sessionBuilder, endpoints) {
+    (final sessionBuilder, final endpoints) {
       test('when calling returnsString then echoes string', () async {
         final result = await endpoints.testTools.returnsString(
           sessionBuilder,
-          "Hello",
+          'Hello',
         );
         expect(result, 'Hello');
       });
@@ -45,7 +45,7 @@ void main() {
           ]);
           final result = await endpoints.testTools
               .returnsSimpleDataListFromInputStream(sessionBuilder, stream);
-          expect(result.map((s) => s.num), [1, 2, 3]);
+          expect(result.map((final s) => s.num), [1, 2, 3]);
         },
       );
 
@@ -73,27 +73,27 @@ void main() {
           final result = await endpoints.testTools
               .returnsSimpleDataStreamFromInputStream(sessionBuilder, stream)
               .toList();
-          expect(result.map((s) => s.num), [1, 2, 3]);
+          expect(result.map((final s) => s.num), [1, 2, 3]);
         },
       );
 
       test(
         'when calling postNumberToSharedStream and listenForNumbersOnSharedStream with different sessions then number should be echoed',
         () async {
-          var userSession1 = sessionBuilder.copyWith(
+          final userSession1 = sessionBuilder.copyWith(
             authentication: AuthenticationOverride.authenticationInfo(
               '1',
               {},
             ),
           );
-          var userSession2 = sessionBuilder.copyWith(
+          final userSession2 = sessionBuilder.copyWith(
             authentication: AuthenticationOverride.authenticationInfo(
               '2',
               {},
             ),
           );
 
-          var stream = endpoints.testTools.listenForNumbersOnSharedStream(
+          final stream = endpoints.testTools.listenForNumbersOnSharedStream(
             userSession1,
           );
           await flushEventQueue();
@@ -108,7 +108,7 @@ void main() {
       test(
         'when calling postNumberToSharedStreamAndReturnStream without listening to the return stream then number should still be posted',
         () async {
-          var stream = endpoints.testTools.listenForNumbersOnSharedStream(
+          final stream = endpoints.testTools.listenForNumbersOnSharedStream(
             sessionBuilder,
           );
 
@@ -123,7 +123,7 @@ void main() {
 
       test('when calling echoSimpleData then should echo the object', () async {
         final data = SimpleData(num: 1);
-        var result = await endpoints.testTools.echoSimpleData(
+        final result = await endpoints.testTools.echoSimpleData(
           sessionBuilder,
           data,
         );
@@ -135,7 +135,7 @@ void main() {
         () async {
           final data1 = SimpleData(num: 1);
           final data2 = SimpleData(num: 2);
-          var result = await endpoints.testTools.echoSimpleDatas(
+          final result = await endpoints.testTools.echoSimpleDatas(
             sessionBuilder,
             [data1, data2],
           );
@@ -150,7 +150,7 @@ void main() {
           final types = Types(
             aRecord: ('hello', optionalUri: Uri.parse('world://')),
           );
-          var result = await endpoints.testTools.echoTypes(
+          final result = await endpoints.testTools.echoTypes(
             sessionBuilder,
             types,
           );
@@ -169,7 +169,7 @@ void main() {
             Types(aRecord: ('hello', optionalUri: null)),
             Types(aRecord: ('world', optionalUri: null)),
           ];
-          var result = await endpoints.testTools.echoTypesList(
+          final result = await endpoints.testTools.echoTypesList(
             sessionBuilder,
             typesList,
           );
@@ -190,7 +190,7 @@ void main() {
             record: (ModuleClass(name: 'world', data: 2, record: (false,)),),
           );
 
-          var result = await endpoints.testTools.echoModuleDatatype(
+          final result = await endpoints.testTools.echoModuleDatatype(
             sessionBuilder,
             model,
           );
@@ -198,16 +198,16 @@ void main() {
           expect(
             result.model,
             isA<ModuleClass>()
-                .having((m) => m.name, 'name', 'hello')
-                .having((m) => m.data, 'data', 1)
-                .having((m) => m.record, 'record', (true,)),
+                .having((final m) => m.name, 'name', 'hello')
+                .having((final m) => m.data, 'data', 1)
+                .having((final m) => m.record, 'record', (true,)),
           );
           expect(
             result.record?.$1,
             isA<ModuleClass>()
-                .having((m) => m.name, 'name', 'world')
-                .having((m) => m.data, 'data', 2)
-                .having((m) => m.record, 'record', (false,)),
+                .having((final m) => m.name, 'name', 'world')
+                .having((final m) => m.data, 'data', 2)
+                .having((final m) => m.record, 'record', (false,)),
           );
         },
       );
@@ -230,7 +230,7 @@ void main() {
             ),
           ];
 
-          var result = endpoints.testTools.streamModuleDatatype(
+          final result = endpoints.testTools.streamModuleDatatype(
             sessionBuilder,
             initial,
             Stream.fromIterable(streamed),
@@ -242,37 +242,37 @@ void main() {
               [
                 isA<ModuleDatatype>()
                     .having(
-                      ((m) => m.model),
+                      ((final m) => m.model),
                       'model',
                       isA<ModuleClass>()
-                          .having((m) => m.name, 'name', 'hello')
-                          .having((m) => m.data, 'data', 1)
-                          .having((m) => m.record, 'record', (true,)),
+                          .having((final m) => m.name, 'name', 'hello')
+                          .having((final m) => m.data, 'data', 1)
+                          .having((final m) => m.record, 'record', (true,)),
                     )
                     .having(
-                      ((m) => m.record?.$1),
+                      ((final m) => m.record?.$1),
                       'record.\$1',
                       isA<ModuleClass>()
-                          .having((m) => m.name, 'name', 'world')
-                          .having((m) => m.data, 'data', 2)
-                          .having((m) => m.record, 'record', (false,)),
+                          .having((final m) => m.name, 'name', 'world')
+                          .having((final m) => m.data, 'data', 2)
+                          .having((final m) => m.record, 'record', (false,)),
                     ),
                 isA<ModuleDatatype>()
                     .having(
-                      ((m) => m.model),
+                      ((final m) => m.model),
                       'model',
                       isA<ModuleClass>()
-                          .having((m) => m.name, 'name', 'lorem')
-                          .having((m) => m.data, 'data', 3)
-                          .having((m) => m.record, 'record', (true,)),
+                          .having((final m) => m.name, 'name', 'lorem')
+                          .having((final m) => m.data, 'data', 3)
+                          .having((final m) => m.record, 'record', (true,)),
                     )
                     .having(
-                      ((m) => m.record?.$1),
+                      ((final m) => m.record?.$1),
                       'record.\$1',
                       isA<ModuleClass>()
-                          .having((m) => m.name, 'name', 'ipsum')
-                          .having((m) => m.data, 'data', 4)
-                          .having((m) => m.record, 'record', (false,)),
+                          .having((final m) => m.name, 'name', 'ipsum')
+                          .having((final m) => m.data, 'data', 4)
+                          .having((final m) => m.record, 'record', (false,)),
                     ),
               ],
             ),
@@ -285,7 +285,7 @@ void main() {
         () async {
           final model = ModuleClass(name: 'hello', data: 1, record: (true,));
 
-          var result = await endpoints.testTools.echoModuleClass(
+          final result = await endpoints.testTools.echoModuleClass(
             sessionBuilder,
             model,
           );
@@ -304,7 +304,7 @@ void main() {
             ModuleClass(name: 'world', data: 2, record: (false,)),
           ];
 
-          var result = endpoints.testTools.streamModuleClass(
+          final result = endpoints.testTools.streamModuleClass(
             sessionBuilder,
             initial,
             Stream.fromIterable(streamed),
@@ -315,13 +315,13 @@ void main() {
             emitsInOrder(
               [
                 isA<ModuleClass>()
-                    .having((m) => m.name, 'name', 'hello')
-                    .having((m) => m.data, 'data', 1)
-                    .having((m) => m.record, 'record', (true,)),
+                    .having((final m) => m.name, 'name', 'hello')
+                    .having((final m) => m.data, 'data', 1)
+                    .having((final m) => m.record, 'record', (true,)),
                 isA<ModuleClass>()
-                    .having((m) => m.name, 'name', 'world')
-                    .having((m) => m.data, 'data', 2)
-                    .having((m) => m.record, 'record', (false,)),
+                    .having((final m) => m.name, 'name', 'world')
+                    .having((final m) => m.data, 'data', 2)
+                    .having((final m) => m.record, 'record', (false,)),
               ],
             ),
           );
@@ -329,8 +329,8 @@ void main() {
       );
 
       test('when calling echoRecord then should return the record', () async {
-        final record = ('hello', (2, true));
-        var result = await endpoints.testTools.echoRecord(
+        const record = ('hello', (2, true));
+        final result = await endpoints.testTools.echoRecord(
           sessionBuilder,
           record,
         );
@@ -343,7 +343,7 @@ void main() {
           ('world', (4, false)),
         ];
 
-        var result = await endpoints.testTools.echoRecords(
+        final result = await endpoints.testTools.echoRecords(
           sessionBuilder,
           records,
         );
@@ -367,7 +367,7 @@ void main() {
                 ),
               ];
 
-          var result = endpoints.testTools.recordEchoStream(
+          final result = endpoints.testTools.recordEchoStream(
             sessionBuilder,
             records.first,
             Stream.fromIterable(records.skip(1)),
@@ -383,27 +383,27 @@ void main() {
                     )
                   >()
                   .having(
-                    (r) => r.$1,
+                    (final r) => r.$1,
                     'first positional',
                     'hello',
                   )
                   .having(
-                    (r) => r.$2,
+                    (final r) => r.$2,
                     'second positional',
                     isA<
                           (Map<String, int>, {bool flag, SimpleData simpleData})
                         >()
                         .having(
-                          (r) => r.$1,
+                          (final r) => r.$1,
                           'first positional',
                           {'world': 1},
                         )
-                        .having((r) => r.flag, 'flag', isTrue)
+                        .having((final r) => r.flag, 'flag', isTrue)
                         .having(
-                          (r) => r.simpleData,
+                          (final r) => r.simpleData,
                           'simpleData',
                           isA<SimpleData>().having(
-                            (s) => s.num,
+                            (final s) => s.num,
                             'num',
                             2,
                           ),
@@ -416,27 +416,27 @@ void main() {
                     )
                   >()
                   .having(
-                    (r) => r.$1,
+                    (final r) => r.$1,
                     'first positional',
                     'hi',
                   )
                   .having(
-                    (r) => r.$2,
+                    (final r) => r.$2,
                     'second positional',
                     isA<
                           (Map<String, int>, {bool flag, SimpleData simpleData})
                         >()
                         .having(
-                          (r) => r.$1,
+                          (final r) => r.$1,
                           'first positional',
                           {'world': 3},
                         )
-                        .having((r) => r.flag, 'flag', isTrue)
+                        .having((final r) => r.flag, 'flag', isTrue)
                         .having(
-                          (r) => r.simpleData,
+                          (final r) => r.simpleData,
                           'simpleData',
                           isA<SimpleData>().having(
-                            (s) => s.num,
+                            (final s) => s.num,
                             'num',
                             4,
                           ),
@@ -465,7 +465,7 @@ void main() {
             ],
           ];
 
-          var result = endpoints.testTools.listOfRecordEchoStream(
+          final result = endpoints.testTools.listOfRecordEchoStream(
             sessionBuilder,
             lists.first,
             Stream.fromIterable(lists.skip(1)),
@@ -492,7 +492,7 @@ void main() {
                 null,
               ];
 
-          var result = endpoints.testTools.nullableRecordEchoStream(
+          final result = endpoints.testTools.nullableRecordEchoStream(
             sessionBuilder,
             records.first,
             Stream.fromIterable(records.skip(1)),
@@ -529,7 +529,7 @@ void main() {
             null,
           ];
 
-          var result = endpoints.testTools.nullableListOfRecordEchoStream(
+          final result = endpoints.testTools.nullableListOfRecordEchoStream(
             sessionBuilder,
             lists.first,
             Stream.fromIterable(lists.skip(1)),
@@ -552,7 +552,7 @@ void main() {
             TypesRecord(aSimpleData: (SimpleData(num: 2),)),
           ];
 
-          var result = endpoints.testTools.modelWithRecordsEchoStream(
+          final result = endpoints.testTools.modelWithRecordsEchoStream(
             sessionBuilder,
             lists.first,
             Stream.fromIterable(lists.skip(1)),
@@ -562,17 +562,17 @@ void main() {
             result,
             emitsInOrder(
               [
-                isA<TypesRecord>().having((m) => m.anInt, 'anInt', (1,)),
+                isA<TypesRecord>().having((final m) => m.anInt, 'anInt', (1,)),
                 isA<TypesRecord>().having(
-                  (m) => m.aUri?.$1,
+                  (final m) => m.aUri?.$1,
                   'aUri',
                   Uri.parse('http://serverpod.dev'),
                 ),
                 isNull,
                 isA<TypesRecord>().having(
-                  (m) => m.aSimpleData?.$1,
+                  (final m) => m.aSimpleData?.$1,
                   'aSimpleData',
-                  isA<SimpleData>().having((s) => s.num, 'num', 2),
+                  isA<SimpleData>().having((final s) => s.num, 'num', 2),
                 ),
               ],
             ),

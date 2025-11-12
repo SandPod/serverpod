@@ -1,7 +1,7 @@
+import 'package:http/http.dart' as http;
 import 'package:serverpod/serverpod.dart';
 import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
-import 'package:http/http.dart' as http;
 
 // Test widget classes
 class TestHtmlWidget extends WebWidget {
@@ -20,21 +20,21 @@ class TestRedirectWidget extends RedirectWidget {
 // Test route implementations
 class HtmlTestRoute extends WidgetRoute {
   @override
-  Future<WebWidget> build(Session session, Request request) async {
+  Future<WebWidget> build(final Session session, final Request request) async {
     return TestHtmlWidget();
   }
 }
 
 class JsonTestRoute extends WidgetRoute {
   @override
-  Future<WebWidget> build(Session session, Request request) async {
+  Future<WebWidget> build(final Session session, final Request request) async {
     return TestJsonWidget();
   }
 }
 
 class RedirectTestRoute extends WidgetRoute {
   @override
-  Future<WebWidget> build(Session session, Request request) async {
+  Future<WebWidget> build(final Session session, final Request request) async {
     return TestRedirectWidget();
   }
 }
@@ -62,7 +62,7 @@ void main() {
       'when requesting an HTML widget route '
       'then the cache-control header is set to no-cache and private',
       () async {
-        var response = await http.get(
+        final response = await http.get(
           Uri.parse('http://localhost:8082/html-route'),
         );
 
@@ -74,7 +74,7 @@ void main() {
       'when requesting a JSON widget route '
       'then the cache-control header is set to no-cache and private',
       () async {
-        var response = await http.get(
+        final response = await http.get(
           Uri.parse('http://localhost:8082/json-route'),
         );
 
@@ -84,7 +84,7 @@ void main() {
 
     test('when requesting a JSON widget route '
         'then the content-type is application/json', () async {
-      var response = await http.get(
+      final response = await http.get(
         Uri.parse('http://localhost:8082/json-route'),
       );
 
@@ -95,7 +95,7 @@ void main() {
       'when requesting an HTML widget route '
       'then the content-type is text/html even with cache headers set',
       () async {
-        var response = await http.get(
+        final response = await http.get(
           Uri.parse('http://localhost:8082/html-route'),
         );
 
@@ -106,7 +106,7 @@ void main() {
 
     test('when requesting a JSON widget route '
         'then both content-type and cache headers are set correctly', () async {
-      var response = await http.get(
+      final response = await http.get(
         Uri.parse('http://localhost:8082/json-route'),
       );
 
@@ -119,15 +119,15 @@ void main() {
       'then the redirect response does not have cache-control headers',
       () async {
         // Create client that doesn't follow redirects
-        var client = http.Client();
-        var request = http.Request(
+        final client = http.Client();
+        final request = http.Request(
           'GET',
           Uri.parse('http://localhost:8082/redirect-route'),
         );
         request.followRedirects = false;
 
-        var streamedResponse = await client.send(request);
-        var response = await http.Response.fromStream(streamedResponse);
+        final streamedResponse = await client.send(request);
+        final response = await http.Response.fromStream(streamedResponse);
 
         expect(response.statusCode, 303); // See Other redirect
         // Redirect responses don't get cache control headers applied
@@ -138,15 +138,15 @@ void main() {
 
     test('when requesting a redirect widget route '
         'then the location header is set correctly', () async {
-      var client = http.Client();
-      var request = http.Request(
+      final client = http.Client();
+      final request = http.Request(
         'GET',
         Uri.parse('http://localhost:8082/redirect-route'),
       );
       request.followRedirects = false;
 
-      var streamedResponse = await client.send(request);
-      var response = await http.Response.fromStream(streamedResponse);
+      final streamedResponse = await client.send(request);
+      final response = await http.Response.fromStream(streamedResponse);
 
       expect(response.headers['location'], '/redirected');
     });

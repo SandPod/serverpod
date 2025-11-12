@@ -8,7 +8,7 @@ class LoggedInEndpoint extends Endpoint {
 }
 
 class MyLoggedInEndpoint extends LoggedInEndpoint {
-  Future<String> echo(Session session, String value) async {
+  Future<String> echo(final Session session, final String value) async {
     return value;
   }
 }
@@ -19,7 +19,7 @@ class AdminEndpoint extends LoggedInEndpoint {
 }
 
 class MyAdminEndpoint extends AdminEndpoint {
-  Future<String> echo(Session session, String value) async {
+  Future<String> echo(final Session session, final String value) async {
     return value;
   }
 }
@@ -39,7 +39,7 @@ abstract class AbstractAdminEndpoint extends AbstractLoggedInEndpoint {
 }
 
 class MyConcreteAdminEndpoint extends AbstractAdminEndpoint {
-  Future<String> echo(Session session, String value) async {
+  Future<String> echo(final Session session, final String value) async {
     return value;
   }
 }

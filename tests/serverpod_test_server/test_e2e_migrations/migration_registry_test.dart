@@ -6,7 +6,7 @@ import 'package:serverpod_test_server/test_util/test_service_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var serviceClient = Client(
+  final serviceClient = Client(
     serviceServerUrl,
     authenticationKeyManager: TestServiceKeyManager(
       '0',
@@ -23,10 +23,10 @@ void main() {
     test(
       'when creating migration then migration is added to registry.',
       () async {
-        var tag = 'add-migration';
+        const tag = 'add-migration';
         var migrationRegistry = MigrationTestUtils.readMigrationRegistryFile();
         expect(migrationRegistry, isNot(contains(tag)));
-        var migrationProtocols = {
+        final migrationProtocols = {
           'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -35,7 +35,7 @@ fields:
 ''',
         };
 
-        var createMigrationExitCode =
+        final createMigrationExitCode =
             await MigrationTestUtils.createMigrationFromProtocols(
               protocols: migrationProtocols,
               tag: tag,
@@ -62,11 +62,11 @@ fields:
     test(
       'when creating multiple migrations then all are added to registry.',
       () async {
-        var tag = 'add-multiple-migrations';
+        const tag = 'add-multiple-migrations';
         var migrationRegistry = MigrationTestUtils.readMigrationRegistryFile();
         expect(migrationRegistry, isNot(contains(tag)));
 
-        var firstMigrationProtocols = {
+        final firstMigrationProtocols = {
           'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -85,7 +85,7 @@ fields:
           reason: 'Failed to create migration, exit code was not 0.',
         );
 
-        var secondMigrationProtocols = {
+        final secondMigrationProtocols = {
           'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -105,7 +105,7 @@ fields:
           reason: 'Failed to create migration, exit code was not 0.',
         );
 
-        var thirdMigrationProtocols = {
+        final thirdMigrationProtocols = {
           'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -127,7 +127,7 @@ fields:
         );
         migrationRegistry = MigrationTestUtils.readMigrationRegistryFile();
         expect(migrationRegistry, contains(tag));
-        var tagCount = RegExp(tag).allMatches(migrationRegistry).length;
+        final tagCount = RegExp(tag).allMatches(migrationRegistry).length;
         expect(
           tagCount,
           3,

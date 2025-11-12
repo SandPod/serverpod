@@ -28,8 +28,8 @@ void main() {
     test('when ping command is sent then pong response is received.', () async {
       webSocket.sendText(PingCommand.buildMessage());
 
-      var response = await webSocket.textEvents.first;
-      var message = WebSocketMessage.fromJsonString(
+      final response = await webSocket.textEvents.first;
+      final message = WebSocketMessage.fromJsonString(
         response,
         server.serializationManager,
       );
@@ -41,7 +41,7 @@ void main() {
       webSocket.sendText(PongCommand.buildMessage());
 
       expectLater(
-        webSocket.textEvents.first.timeout(Duration(seconds: 1)),
+        webSocket.textEvents.first.timeout(const Duration(seconds: 1)),
         throwsA(isA<TimeoutException>()),
       );
     });

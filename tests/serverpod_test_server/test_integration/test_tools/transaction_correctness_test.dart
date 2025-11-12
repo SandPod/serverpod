@@ -11,12 +11,12 @@ void main() {
   withServerpod(
     'Given transaction call in test and rollbacks are enabled',
     rollbackDatabase: RollbackDatabase.afterEach,
-    (sessionBuilder, endpoints) {
-      var session = sessionBuilder.build();
+    (final sessionBuilder, final endpoints) {
+      final session = sessionBuilder.build();
 
       test('when inserting an object '
           'then should be persisted if transaction completes', () async {
-        await session.db.transaction((transaction) async {
+        await session.db.transaction((final transaction) async {
           await SimpleData.db.insertRow(
             session,
             SimpleData(num: 1),
@@ -24,7 +24,7 @@ void main() {
           );
         });
 
-        var simpleDatas = await SimpleData.db.find(session);
+        final simpleDatas = await SimpleData.db.find(session);
         expect(simpleDatas, hasLength(1));
         expect(simpleDatas.first.num, 1);
       });
@@ -35,14 +35,14 @@ void main() {
         () async {
           var numberOfSimpleDatasInsideTransaction = 0;
           try {
-            await session.db.transaction((transaction) async {
+            await session.db.transaction((final transaction) async {
               await SimpleData.db.insertRow(
                 session,
                 SimpleData(num: 1),
                 transaction: transaction,
               );
 
-              var simpleDatas = await SimpleData.db.find(
+              final simpleDatas = await SimpleData.db.find(
                 session,
                 transaction: transaction,
               );
@@ -52,7 +52,7 @@ void main() {
             });
           } catch (_) {}
 
-          var simpleDatas = await SimpleData.db.find(session);
+          final simpleDatas = await SimpleData.db.find(session);
           expect(simpleDatas, hasLength(0));
           expect(numberOfSimpleDatasInsideTransaction, 1);
         },
@@ -60,7 +60,7 @@ void main() {
 
       test('when inserting objects in parallel '
           'then should be persisted if transaction completes', () async {
-        await session.db.transaction((transaction) async {
+        await session.db.transaction((final transaction) async {
           await Future.wait([
             SimpleData.db.insertRow(
               session,
@@ -80,16 +80,16 @@ void main() {
           ]);
         });
 
-        var simpleDatas = await SimpleData.db.find(session);
+        final simpleDatas = await SimpleData.db.find(session);
 
         expect(simpleDatas, hasLength(3));
-        expect(simpleDatas.map((s) => s.num), containsAll([1, 2, 3]));
+        expect(simpleDatas.map((final s) => s.num), containsAll([1, 2, 3]));
       });
 
       test('when inserting an object in parallel to a transaction'
           'then should throw exception due to concurrent operations', () async {
-        var future = Future.wait([
-          session.db.transaction((transaction) {
+        final future = Future.wait([
+          session.db.transaction((final transaction) {
             return SimpleData.db.insertRow(
               session,
               SimpleData(num: 1),
@@ -104,7 +104,7 @@ void main() {
           throwsA(
             allOf(
               isA<InvalidConfigurationException>(),
-              (e) =>
+              (final e) =>
                   e.message ==
                   'Concurrent database calls outside an already active transaction '
                       'are not supported when database rollbacks are enabled. '
@@ -117,7 +117,7 @@ void main() {
 
       test('when inserting an object without transaction but is executed inside a transaction'
           'then should throw exception due to concurrent operations', () async {
-        var future = session.db.transaction((tx) async {
+        final future = session.db.transaction((final tx) async {
           await SimpleData.db.insertRow(
             session,
             SimpleData(num: 1),
@@ -130,7 +130,7 @@ void main() {
           throwsA(
             allOf(
               isA<InvalidConfigurationException>(),
-              (e) =>
+              (final e) =>
                   e.message ==
                   'Concurrent database calls outside an already active transaction '
                       'are not supported when database rollbacks are enabled. '
@@ -143,9 +143,9 @@ void main() {
 
       test('when executing transactions in parallel'
           'then should throw exception due to concurrent operations', () async {
-        var future = Future.wait([
-          session.db.transaction((tx) async {}),
-          session.db.transaction((tx) async {}),
+        final future = Future.wait([
+          session.db.transaction((final tx) async {}),
+          session.db.transaction((final tx) async {}),
         ]);
 
         await expectLater(
@@ -153,7 +153,7 @@ void main() {
           throwsA(
             allOf(
               isA<InvalidConfigurationException>(),
-              (e) =>
+              (final e) =>
                   e.message ==
                   'Concurrent calls to transaction are not supported when database rollbacks are enabled. '
                       'Disable rolling back the database by setting `rollbackDatabase` to `RollbackDatabase.disabled`.',
@@ -164,8 +164,8 @@ void main() {
 
       test('when database exception occurs '
           'then should not fail `dart test` by leaking exceptions', () async {
-        var future = session.db.transaction((transaction) async {
-          var data = UniqueData(number: 1, email: 'test@test.com');
+        final future = session.db.transaction((final transaction) async {
+          final data = UniqueData(number: 1, email: 'test@test.com');
           await UniqueData.db.insertRow(
             session,
             data,
@@ -187,7 +187,7 @@ void main() {
           future,
           throwsA(
             isA<DatabaseQueryException>().having(
-              (e) => e.code,
+              (final e) => e.code,
               'code',
               PgErrorCode.uniqueViolation,
             ),
@@ -200,7 +200,7 @@ void main() {
 
         setUp(() {
           throwingTransactionFuture = session.db.transaction((
-            transaction,
+            final transaction,
           ) async {
             await SimpleData.db.insertRow(
               session,
@@ -217,7 +217,7 @@ void main() {
             throwingTransactionFuture,
             throwsA(
               isA<ArgumentError>().having(
-                (e) => e.message,
+                (final e) => e.message,
                 'message',
                 'Custom error that is not a DatabaseException',
               ),
@@ -255,8 +255,8 @@ void main() {
     'Given transaction calls when rollbacks are disabled',
     rollbackDatabase: RollbackDatabase.disabled,
     testGroupTagsOverride: [TestTags.concurrencyOneTestTag],
-    (sessionBuilder, endpoints) {
-      var session = sessionBuilder.build();
+    (final sessionBuilder, final endpoints) {
+      final session = sessionBuilder.build();
 
       tearDown(() async {
         await SimpleData.db.deleteWhere(
@@ -268,7 +268,7 @@ void main() {
       test('when inserting an object in parallel to a transaction'
           'then should persist both', () async {
         await Future.wait([
-          session.db.transaction((transaction) {
+          session.db.transaction((final transaction) {
             return SimpleData.db.insertRow(
               session,
               SimpleData(num: 1),
@@ -277,16 +277,16 @@ void main() {
           }),
           SimpleData.db.insertRow(session, SimpleData(num: 2)),
         ]);
-        var simpleDatas = await SimpleData.db.find(session);
+        final simpleDatas = await SimpleData.db.find(session);
         expect(simpleDatas, hasLength(2));
-        expect(simpleDatas.map((s) => s.num), containsAll([1, 2]));
+        expect(simpleDatas.map((final s) => s.num), containsAll([1, 2]));
       });
 
       test(
         'when inserting an object without transaction but is executed inside a transaction'
         'then should persist object',
         () async {
-          await session.db.transaction((tx) async {
+          await session.db.transaction((final tx) async {
             // This is a theoretical scenario that would likely be
             // considered erroneous in real code
             await SimpleData.db.insertRow(
@@ -296,7 +296,7 @@ void main() {
             );
           });
 
-          var simpleDatas = await SimpleData.db.find(session);
+          final simpleDatas = await SimpleData.db.find(session);
           expect(simpleDatas, hasLength(1));
           expect(simpleDatas.first.num, 1);
         },
@@ -306,14 +306,14 @@ void main() {
           'then should persist objects', () async {
         await Future.wait([
           session.db.transaction(
-            (transaction) => SimpleData.db.insertRow(
+            (final transaction) => SimpleData.db.insertRow(
               session,
               SimpleData(num: 1),
               transaction: transaction,
             ),
           ),
           session.db.transaction(
-            (transaction) => SimpleData.db.insertRow(
+            (final transaction) => SimpleData.db.insertRow(
               session,
               SimpleData(num: 2),
               transaction: transaction,
@@ -321,9 +321,9 @@ void main() {
           ),
         ]);
 
-        var simpleDatas = await SimpleData.db.find(session);
+        final simpleDatas = await SimpleData.db.find(session);
         expect(simpleDatas, hasLength(2));
-        expect(simpleDatas.map((s) => s.num), containsAll([1, 2]));
+        expect(simpleDatas.map((final s) => s.num), containsAll([1, 2]));
       });
     },
   );
@@ -331,14 +331,14 @@ void main() {
   group('Demontrate transaction difference between prod and test tools', () {
     withServerpod(
       'Given transaction call in test with database rollbacks enabled (default)',
-      (sessionBuilder, endpoints) {
-        var session = sessionBuilder.build();
+      (final sessionBuilder, final endpoints) {
+        final session = sessionBuilder.build();
         test(
           'when database exception occurs '
           'then transaction WILL NOT throw exception if it was caught in the transaction',
           () async {
-            var future = session.db.transaction((tx) async {
-              var data = UniqueData(number: 1, email: 'test@test.com');
+            final future = session.db.transaction((final tx) async {
+              final data = UniqueData(number: 1, email: 'test@test.com');
               try {
                 await UniqueData.db.insertRow(session, data);
                 await UniqueData.db.insertRow(session, data);
@@ -355,15 +355,15 @@ void main() {
 
     withServerpod(
       'Given transaction call in test with database rollbacks disabled',
-      (sessionBuilder, endpoints) {
-        var session = sessionBuilder.build();
+      (final sessionBuilder, final endpoints) {
+        final session = sessionBuilder.build();
 
         test(
           'when database exception occurs '
           'then transaction WILL throw exception even if it was caught in the transaction',
           () async {
-            var future = session.db.transaction((tx) async {
-              var data = UniqueData(number: 1, email: 'test@test.com');
+            final future = session.db.transaction((final tx) async {
+              final data = UniqueData(number: 1, email: 'test@test.com');
               try {
                 await UniqueData.db.insertRow(session, data, transaction: tx);
                 await UniqueData.db.insertRow(session, data, transaction: tx);

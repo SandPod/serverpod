@@ -14,15 +14,15 @@ class FutureCallManagerBuilder {
 
   InitializeFutureCall _initializeFutureCall =
       (
-        FutureCall futureCall,
-        String name,
+        final FutureCall futureCall,
+        final String name,
       ) {
         // Skip initialization
       };
 
-  FutureCallConfig _config = FutureCallConfig(
+  FutureCallConfig _config = const FutureCallConfig(
     concurrencyLimit: 1,
-    scanInterval: const Duration(milliseconds: 10),
+    scanInterval: Duration(milliseconds: 10),
   );
 
   Protocol _protocol = Protocol();
@@ -30,16 +30,16 @@ class FutureCallManagerBuilder {
   FutureCallDiagnosticsService _diagnosticsService = _MockDiagnosticsService();
 
   FutureCallManagerBuilder({
-    required FutureCallSessionBuilder sessionProvider,
-    required Session internalSession,
+    required final FutureCallSessionBuilder sessionProvider,
+    required final Session internalSession,
   }) : _sessionBuilder = sessionProvider,
        _internalSession = internalSession;
 
   factory FutureCallManagerBuilder.fromTestSessionBuilder(
-    TestSessionBuilder sessionBuilder,
+    final TestSessionBuilder sessionBuilder,
   ) {
     return FutureCallManagerBuilder(
-      sessionProvider: (String futureCallName) => sessionBuilder.build(),
+      sessionProvider: (final String futureCallName) => sessionBuilder.build(),
       internalSession: sessionBuilder.build(),
     );
   }
@@ -53,39 +53,39 @@ class FutureCallManagerBuilder {
     initializeFutureCall: _initializeFutureCall,
   );
 
-  FutureCallManagerBuilder withConfig(FutureCallConfig config) {
+  FutureCallManagerBuilder withConfig(final FutureCallConfig config) {
     _config = config;
     return this;
   }
 
   FutureCallManagerBuilder withDiagnosticsService(
-    FutureCallDiagnosticsService diagnosticsService,
+    final FutureCallDiagnosticsService diagnosticsService,
   ) {
     _diagnosticsService = diagnosticsService;
     return this;
   }
 
   FutureCallManagerBuilder withInitializeFutureCall(
-    InitializeFutureCall initializeFutureCall,
+    final InitializeFutureCall initializeFutureCall,
   ) {
     _initializeFutureCall = initializeFutureCall;
     return this;
   }
 
   FutureCallManagerBuilder withInternalSession(
-    Session internalSession,
+    final Session internalSession,
   ) {
     _internalSession = internalSession;
     return this;
   }
 
-  FutureCallManagerBuilder withProtocol(Protocol protocol) {
+  FutureCallManagerBuilder withProtocol(final Protocol protocol) {
     _protocol = protocol;
     return this;
   }
 
   FutureCallManagerBuilder withSessionProvider(
-    FutureCallSessionBuilder sessionProvider,
+    final FutureCallSessionBuilder sessionProvider,
   ) {
     _sessionBuilder = sessionProvider;
     return this;
@@ -95,18 +95,18 @@ class FutureCallManagerBuilder {
 class _MockDiagnosticsService implements FutureCallDiagnosticsService {
   @override
   void submitCallException(
-    Object error,
-    StackTrace stackTrace, {
-    required Session session,
+    final Object error,
+    final StackTrace stackTrace, {
+    required final Session session,
   }) {
     throw StateError('Diagnostics service not implemented');
   }
 
   @override
   void submitFrameworkException(
-    Object error,
-    StackTrace stackTrace, {
-    String? message,
+    final Object error,
+    final StackTrace stackTrace, {
+    final String? message,
   }) {
     throw StateError('Diagnostics service not implemented');
   }

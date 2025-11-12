@@ -8,7 +8,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "defaultModel" BigInt field with a string should match the default',
         () {
-          var object = BigIntDefaultModel();
+          final object = BigIntDefaultModel();
           expect(
             object.bigIntDefaultModelStr,
             BigInt.parse('1234567890123456789099999999'),
@@ -19,7 +19,7 @@ void main() async {
       test(
         'when an object of the class is created, then the nullable "defaultModel" BigInt field with a string should match the default',
         () {
-          var object = BigIntDefaultModel();
+          final object = BigIntDefaultModel();
           expect(
             object.bigIntDefaultModelStrNull,
             BigInt.parse('-1234567890123456789099999999'),
@@ -30,8 +30,8 @@ void main() async {
       test(
         'when an object of the class is created with a specific value for "bigIntDefaultModelStr", then the field value should match the provided value',
         () {
-          var bigInt = BigInt.one;
-          var object = BigIntDefaultModel(
+          final bigInt = BigInt.one;
+          final object = BigIntDefaultModel(
             bigIntDefaultModelStr: bigInt,
           );
           expect(
@@ -44,8 +44,8 @@ void main() async {
       test(
         'when an object of the class is created with a specific value for "bigIntDefaultModelStrNull", then the field value should match the provided value',
         () {
-          var bigInt = BigInt.one;
-          var object = BigIntDefaultModel(
+          final bigInt = BigInt.one;
+          final object = BigIntDefaultModel(
             bigIntDefaultModelStrNull: bigInt,
           );
           expect(

@@ -3,10 +3,10 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var userName = 'test';
-  var email = 'test@serverpod.dev';
-  var password = 'password';
-  var session = await IntegrationTestServer().session();
+  const userName = 'test';
+  const email = 'test@serverpod.dev';
+  const password = 'password';
+  final session = await IntegrationTestServer().session();
 
   test(
     'Given no validation code length configuration when creating an account then validation code has the default length of 8.',
@@ -14,7 +14,7 @@ void main() async {
       String? generatedValidationCode;
       AuthConfig.set(
         AuthConfig(
-          sendValidationEmail: (session, email, validationCode) async {
+          sendValidationEmail: (final session, final email, final validationCode) async {
             generatedValidationCode = validationCode;
             return true;
           },
@@ -34,7 +34,7 @@ void main() async {
       AuthConfig.set(
         AuthConfig(
           validationCodeLength: 4,
-          sendValidationEmail: (session, email, validationCode) async {
+          sendValidationEmail: (final session, final email, final validationCode) async {
             generatedValidationCode = validationCode;
             return true;
           },
@@ -54,7 +54,7 @@ void main() async {
         () => AuthConfig(validationCodeLength: 0),
         throwsA(
           isA<ArgumentError>().having(
-            (e) => e.toString(),
+            (final e) => e.toString(),
             'message',
             contains('must be at least 4'),
           ),
@@ -70,7 +70,7 @@ void main() async {
         () => AuthConfig(validationCodeLength: -4),
         throwsA(
           isA<ArgumentError>().having(
-            (e) => e.toString(),
+            (final e) => e.toString(),
             'message',
             contains('must be at least 4'),
           ),

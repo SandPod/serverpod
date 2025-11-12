@@ -3,7 +3,7 @@ import 'package:serverpod_test_server/src/generated/protocol.dart';
 import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
-Future<void> _createTestDatabase(Session session) async {
+Future<void> _createTestDatabase(final Session session) async {
   // Towns
   var stockholm = TownInt(name: 'Stockholm');
   var skinnskatteberg = TownInt(name: 'Skinnskatteberg');
@@ -37,8 +37,8 @@ Future<void> _createTestDatabase(Session session) async {
   haris = await CitizenInt.db.insertRow(session, haris);
 
   // Addresses
-  var alexAddress = AddressUuid(street: 'Götgatan 3', inhabitantId: alex.id!);
-  var isakAddress = AddressUuid(street: 'Kungsgatan 4', inhabitantId: isak.id!);
+  final alexAddress = AddressUuid(street: 'Götgatan 3', inhabitantId: alex.id!);
+  final isakAddress = AddressUuid(street: 'Kungsgatan 4', inhabitantId: isak.id!);
 
   await AddressUuid.db.insertRow(session, alexAddress);
   await AddressUuid.db.insertRow(session, isakAddress);
@@ -51,25 +51,25 @@ Future<void> _createTestDatabase(Session session) async {
   post1 = await Post.db.insertRow(session, post1);
 }
 
-Future<int> deleteAll(Session session) async {
-  var addressDeletions = await AddressUuid.db.deleteWhere(
+Future<int> deleteAll(final Session session) async {
+  final addressDeletions = await AddressUuid.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
-  var citizenDeletions = await CitizenInt.db.deleteWhere(
+  final citizenDeletions = await CitizenInt.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
-  var companyDeletions = await CompanyUuid.db.deleteWhere(
+  final companyDeletions = await CompanyUuid.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
-  var townDeletions = await TownInt.db.deleteWhere(
+  final townDeletions = await TownInt.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
 
-  var postDeletions = await Post.db.deleteWhere(
+  final postDeletions = await Post.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
@@ -82,7 +82,7 @@ Future<int> deleteAll(Session session) async {
 }
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group(
     'Given models with relations when filtering on relation attributes',
@@ -94,11 +94,11 @@ void main() async {
       tearDownAll(() async => await deleteAll(session));
 
       test('then expected models are returned.', () async {
-        var citizens = await CitizenInt.db.find(
+        final citizens = await CitizenInt.db.find(
           session,
-          where: (t) => t.company.name.equals('Serverpod'),
+          where: (final t) => t.company.name.equals('Serverpod'),
         );
-        var citizenNames = citizens.map((e) => e.name);
+        final citizenNames = citizens.map((final e) => e.name);
         expect(citizenNames, unorderedEquals(['Alex', 'Isak']));
       });
     },
@@ -112,14 +112,14 @@ void main() async {
         await _createTestDatabase(session);
         citizensWithCompanyTownStockholm = await CitizenInt.db.find(
           session,
-          where: (t) => t.company.town.name.equals('Stockholm'),
+          where: (final t) => t.company.town.name.equals('Stockholm'),
         );
       });
 
       tearDownAll(() async => await deleteAll(session));
 
       test('then expected models are returned.', () {
-        var citizenNames = citizensWithCompanyTownStockholm.map((e) => e.name);
+        final citizenNames = citizensWithCompanyTownStockholm.map((final e) => e.name);
         expect(
           citizenNames,
           unorderedEquals(['Alex', 'Isak', 'Theo', 'Haris']),

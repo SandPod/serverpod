@@ -18,7 +18,7 @@ abstract class EmptyModel
 
   factory EmptyModel() = _EmptyModelImpl;
 
-  factory EmptyModel.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory EmptyModel.fromJson(final Map<String, dynamic> jsonSerialization) {
     return EmptyModel();
   }
 

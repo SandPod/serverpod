@@ -16,7 +16,7 @@ void main() {
     const invalidTestToken = 'invalid-test-token';
     const testUserId = 'test-user-123';
     const testAuthId = 'auth-id-456';
-    final testScopes = {Scope('test'), Scope('admin')};
+    final testScopes = {const Scope('test'), const Scope('admin')};
 
     setUpAll(() async {
       server = IntegrationTestServer.create(
@@ -85,7 +85,7 @@ void main() {
             final scopes = await client.sessionAuthentication
                 .getAuthenticatedScopes();
 
-            expect(scopes, containsAll(testScopes.map((s) => s.name)));
+            expect(scopes, containsAll(testScopes.map((final s) => s.name)));
           },
         );
       },
@@ -232,7 +232,7 @@ void main() {
 
       test('then authenticated user details are returned', () async {
         expect(body['userId'], equals(testUserId));
-        expect(body['scopes'], containsAll(testScopes.map((s) => s.name)));
+        expect(body['scopes'], containsAll(testScopes.map((final s) => s.name)));
         expect(body['authId'], equals(testAuthId));
       });
     });
@@ -389,7 +389,7 @@ void main() {
 
     setUpAll(() async {
       server = IntegrationTestServer.create(
-        authenticationHandler: (session, token) async {
+        authenticationHandler: (final session, final token) async {
           return null;
         },
       );

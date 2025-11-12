@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with "defaultModel" fields,', () {
     tearDownAll(
@@ -17,8 +17,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "defaultModel=\'This is a default model value\'" field value should match the default value',
       () async {
-        var object = StringDefaultModel();
-        var databaseObject = await StringDefaultModel.db.insertRow(
+        final object = StringDefaultModel();
+        final databaseObject = await StringDefaultModel.db.insertRow(
           session,
           object,
         );
@@ -32,8 +32,8 @@ void main() async {
     test(
       'when creating a record in the database, then the nullable "defaultModel=\'This is a default model null value\'" field value should match the default value',
       () async {
-        var object = StringDefaultModel();
-        var databaseObject = await StringDefaultModel.db.insertRow(
+        final object = StringDefaultModel();
+        final databaseObject = await StringDefaultModel.db.insertRow(
           session,
           object,
         );
@@ -47,10 +47,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "stringDefaultModel" field value should match the provided value',
       () async {
-        var specificObject = StringDefaultModel(
+        final specificObject = StringDefaultModel(
           stringDefaultModel: 'A specific model value',
         );
-        var specificDatabaseObject = await StringDefaultModel.db.insertRow(
+        final specificDatabaseObject = await StringDefaultModel.db.insertRow(
           session,
           specificObject,
         );
@@ -64,10 +64,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "stringDefaultModelNull" field value should match the provided value',
       () async {
-        var specificObject = StringDefaultModel(
+        final specificObject = StringDefaultModel(
           stringDefaultModelNull: 'A specific model null value',
         );
-        var specificDatabaseObject = await StringDefaultModel.db.insertRow(
+        final specificDatabaseObject = await StringDefaultModel.db.insertRow(
           session,
           specificObject,
         );

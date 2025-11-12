@@ -18,7 +18,7 @@ enum TestEnumDefaultSerialization implements _i1.SerializableModel {
   beta,
   gamma;
 
-  static TestEnumDefaultSerialization fromJson(String name) {
+  static TestEnumDefaultSerialization fromJson(final String name) {
     switch (name) {
       case 'alpha':
         return TestEnumDefaultSerialization.alpha;

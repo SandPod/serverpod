@@ -9,18 +9,18 @@ import 'package:web_socket/web_socket.dart';
 import '../test_integration/websockets/websocket_extensions.dart';
 
 Future<dynamic> _getWebsocketMessage(
-  WebSocket websocket,
+  final WebSocket websocket,
 ) async {
   try {
     return await websocket.textEvents
         .timeout(
-          Duration(seconds: 5),
-          onTimeout: (sink) => throw TimeoutException(
+          const Duration(seconds: 5),
+          onTimeout: (final sink) => throw TimeoutException(
             'Message was not received within the timeout period.',
           ),
         )
         .firstWhere(
-          (event) => event.contains('serverOnlyScopedFieldModel'),
+          (final event) => event.contains('serverOnlyScopedFieldModel'),
         );
   } catch (e) {
     return e;
@@ -28,13 +28,13 @@ Future<dynamic> _getWebsocketMessage(
 }
 
 void main() {
-  group("Given a Serverpod server when fetching an object, ", () {
+  group('Given a Serverpod server when fetching an object, ', () {
     late http.Response response;
 
     setUpAll(() async {
       response = await http.post(
-        Uri.parse("${serverUrl}serverOnlyScopedFieldModel"),
-        body: jsonEncode({"method": "getScopeServerOnlyField"}),
+        Uri.parse('${serverUrl}serverOnlyScopedFieldModel'),
+        body: jsonEncode({'method': 'getScopeServerOnlyField'}),
       );
     });
 
@@ -45,44 +45,44 @@ void main() {
     test(
       'then the serialized response body should contain the "nested" key',
       () {
-        Map jsonMap = jsonDecode(response.body);
+        final Map jsonMap = jsonDecode(response.body);
         expect(jsonMap, contains('nested'));
       },
     );
   });
 
   group(
-    "Given a Serverpod server when fetching an object with server only field, ",
+    'Given a Serverpod server when fetching an object with server only field, ',
     () {
       late http.Response response;
 
       setUpAll(() async {
         response = await http.post(
-          Uri.parse("${serverUrl}serverOnlyScopedFieldModel"),
-          body: jsonEncode({"method": "getScopeServerOnlyField"}),
+          Uri.parse('${serverUrl}serverOnlyScopedFieldModel'),
+          body: jsonEncode({'method': 'getScopeServerOnlyField'}),
         );
       });
 
       test('then the response body should not contain server-only field', () {
-        Map jsonMap = jsonDecode(response.body);
+        final Map jsonMap = jsonDecode(response.body);
         expect(jsonMap, isNot(contains('serverOnlyScope')));
       });
 
       test('then the "nested" object should not contain server-only field', () {
-        Map jsonMap = jsonDecode(response.body);
-        Map nestedMap = jsonMap['nested'];
+        final Map jsonMap = jsonDecode(response.body);
+        final Map nestedMap = jsonMap['nested'];
         expect(nestedMap, isNot(contains('serverOnlyScope')));
       });
     },
   );
 
   group(
-    "Given a Serverpod server with WebSocket connection, when listening for a serialized object, ",
+    'Given a Serverpod server with WebSocket connection, when listening for a serialized object, ',
     () {
       late dynamic message;
 
       setUpAll(() async {
-        WebSocket websocket = await WebSocket.connect(
+        final WebSocket websocket = await WebSocket.connect(
           Uri.parse(serverEndpointWebsocketUrl),
         );
 
@@ -101,7 +101,7 @@ void main() {
       test(
         'then the serialized response body should contain "endpoint" key',
         () async {
-          Map responseMap = jsonDecode(message);
+          final Map responseMap = jsonDecode(message);
           expect(responseMap, contains('endpoint'));
         },
       );
@@ -109,7 +109,7 @@ void main() {
       test(
         'then the serialized response body should contain "object" key',
         () async {
-          Map responseMap = jsonDecode(message);
+          final Map responseMap = jsonDecode(message);
           expect(responseMap, contains('object'));
         },
       );
@@ -117,8 +117,8 @@ void main() {
       test(
         'then the "object" json object inside serialized response body should contain "className" key',
         () async {
-          Map responseMap = jsonDecode(message);
-          Map objectMap = responseMap['object'];
+          final Map responseMap = jsonDecode(message);
+          final Map objectMap = responseMap['object'];
           expect(objectMap, contains('className'));
         },
       );
@@ -126,8 +126,8 @@ void main() {
       test(
         'then the "object" json object inside serialized response body should contain "data" key',
         () async {
-          Map responseMap = jsonDecode(message);
-          Map objectMap = responseMap['object'];
+          final Map responseMap = jsonDecode(message);
+          final Map objectMap = responseMap['object'];
           expect(objectMap, contains('data'));
         },
       );
@@ -135,12 +135,12 @@ void main() {
   );
 
   group(
-    "Given a Serverpod server with WebSocket connection, when listening for a serialized object with server only field, ",
+    'Given a Serverpod server with WebSocket connection, when listening for a serialized object with server only field, ',
     () {
       late dynamic message;
 
       setUpAll(() async {
-        WebSocket websocket = await WebSocket.connect(
+        final WebSocket websocket = await WebSocket.connect(
           Uri.parse(serverEndpointWebsocketUrl),
         );
 
@@ -152,7 +152,7 @@ void main() {
       test(
         'then the "data" json object should not contain server-only field',
         () async {
-          Map? nestedMap = jsonDecode(message)['object']?['data'];
+          final Map? nestedMap = jsonDecode(message)['object']?['data'];
           expect(nestedMap, isNot(contains('serverOnlyScope')));
         },
       );
@@ -160,7 +160,7 @@ void main() {
       test(
         'then the "nested" json object should not contain server-only field',
         () async {
-          Map? nestedMap = jsonDecode(message)['object']?['data']?['nested'];
+          final Map? nestedMap = jsonDecode(message)['object']?['data']?['nested'];
           expect(nestedMap, isNot(contains('serverOnlyScope')));
         },
       );
@@ -168,31 +168,31 @@ void main() {
   );
 
   group(
-    "Given a Serverpod server when fetching an custom class object with server only field, ",
+    'Given a Serverpod server when fetching an custom class object with server only field, ',
     () {
       late http.Response response;
 
       setUpAll(() async {
         response = await http.post(
-          Uri.parse("${serverUrl}customClassProtocol"),
-          body: jsonEncode({"method": "getProtocolField"}),
+          Uri.parse('${serverUrl}customClassProtocol'),
+          body: jsonEncode({'method': 'getProtocolField'}),
         );
       });
 
       test('then the response body should not contain server-only field', () {
-        Map jsonMap = jsonDecode(response.body);
+        final Map jsonMap = jsonDecode(response.body);
         expect(jsonMap, isNot(contains('serverOnlyValue')));
       });
     },
   );
 
   group(
-    "Given a Serverpod server with WebSocket connection, when listening for a serialized custom class object with server only field, ",
+    'Given a Serverpod server with WebSocket connection, when listening for a serialized custom class object with server only field, ',
     () {
       late dynamic message;
 
       setUpAll(() async {
-        WebSocket websocket = await WebSocket.connect(
+        final WebSocket websocket = await WebSocket.connect(
           Uri.parse(serverEndpointWebsocketUrl),
         );
 
@@ -204,7 +204,7 @@ void main() {
       test(
         'then the "data" json object should not contain server-only field',
         () async {
-          Map? nestedMap = jsonDecode(message)['object']?['data'];
+          final Map? nestedMap = jsonDecode(message)['object']?['data'];
           expect(nestedMap, isNot(contains('serverOnlyValue')));
         },
       );
@@ -212,33 +212,33 @@ void main() {
   );
 
   group(
-    "Given a Serverpod server when fetching an custom class object that extends another custom class object and inherits a server only field",
+    'Given a Serverpod server when fetching an custom class object that extends another custom class object and inherits a server only field',
     () {
       late http.Response response;
 
       setUpAll(() async {
         response = await http.post(
-          Uri.parse("${serverUrl}serverOnlyScopedFieldChildModel"),
-          body: jsonEncode({"method": "getProtocolField"}),
+          Uri.parse('${serverUrl}serverOnlyScopedFieldChildModel'),
+          body: jsonEncode({'method': 'getProtocolField'}),
         );
       });
 
       test('then the response body should not contain server-only field', () {
-        Map jsonMap = jsonDecode(response.body);
+        final Map jsonMap = jsonDecode(response.body);
         expect(jsonMap, isNot(contains('serverOnlyScope')));
       });
     },
   );
 
   group(
-    "Given a Serverpod server when calling an endpoint which throws a normal exception, ",
+    'Given a Serverpod server when calling an endpoint which throws a normal exception, ',
     () {
       late http.Response response;
 
       setUpAll(() async {
         response = await http.post(
-          Uri.parse("${serverUrl}exceptionTest"),
-          body: jsonEncode({"method": "throwNormalException"}),
+          Uri.parse('${serverUrl}exceptionTest'),
+          body: jsonEncode({'method': 'throwNormalException'}),
         );
         print(response.body);
       });
@@ -250,14 +250,14 @@ void main() {
   );
 
   group(
-    "Given a Serverpod server when calling an endpoint which throws a exception with data, ",
+    'Given a Serverpod server when calling an endpoint which throws a exception with data, ',
     () {
       late http.Response response;
 
       setUpAll(() async {
         response = await http.post(
-          Uri.parse("${serverUrl}exceptionTest"),
-          body: jsonEncode({"method": "throwExceptionWithData"}),
+          Uri.parse('${serverUrl}exceptionTest'),
+          body: jsonEncode({'method': 'throwExceptionWithData'}),
         );
       });
 
@@ -268,7 +268,7 @@ void main() {
       test(
         'then the serialized response body should contain the "className" key',
         () {
-          Map jsonMap = jsonDecode(response.body);
+          final Map jsonMap = jsonDecode(response.body);
           expect(jsonMap, contains('className'));
         },
       );
@@ -276,7 +276,7 @@ void main() {
       test(
         'then the serialized response body should contain the "data" key',
         () {
-          Map jsonMap = jsonDecode(response.body);
+          final Map jsonMap = jsonDecode(response.body);
           expect(jsonMap, contains('data'));
         },
       );
@@ -284,7 +284,7 @@ void main() {
       test(
         'then the serialized "data" object inside response body contain all the fields',
         () {
-          Map jsonMap = jsonDecode(response.body)["data"];
+          final Map jsonMap = jsonDecode(response.body)['data'];
           expect(jsonMap, contains('message'));
           expect(jsonMap, contains('creationDate'));
           expect(jsonMap, contains('errorFields'));

@@ -1,19 +1,20 @@
 import 'dart:async';
 
+import 'package:serverpod/serverpod.dart';
 import 'package:serverpod_test_server/test_util/config.dart';
 import 'package:serverpod_test_server/test_util/test_completer_timeout.dart';
 import 'package:serverpod_test_server/test_util/test_serverpod.dart';
-import 'package:serverpod/serverpod.dart';
 import 'package:test/test.dart';
 import 'package:web_socket/web_socket.dart';
+
 import '../../websocket_extensions.dart';
 
 void main() {
   group(
     'Given a method stream connection to an endpoint that echoes a dynamic input stream',
     () {
-      var endpoint = 'methodStreaming';
-      var method = 'dynamicEchoStream';
+      const endpoint = 'methodStreaming';
+      const method = 'dynamicEchoStream';
 
       late Serverpod server;
       late WebSocket webSocket;
@@ -33,29 +34,28 @@ void main() {
 
       group('when a stream of values are passed in', () {
         late Completer<CloseMethodStreamCommand> closeMethodStreamCommand;
-        TestCompleterTimeout testCompleterTimeout = TestCompleterTimeout();
-        var inputValues = [1, 'hello'];
+        final TestCompleterTimeout testCompleterTimeout = TestCompleterTimeout();
+        final inputValues = [1, 'hello'];
         late List<dynamic> endpointResponses;
 
-        var inputParameter = 'stream';
-        var connectionId = const Uuid().v4obj();
+        const inputParameter = 'stream';
+        final connectionId = const Uuid().v4obj();
 
         setUp(() async {
           endpointResponses = [];
           closeMethodStreamCommand = Completer<CloseMethodStreamCommand>();
-          var streamOpened = Completer<void>();
+          final streamOpened = Completer<void>();
 
           testCompleterTimeout.start({
             'closeMethodStreamCommand': closeMethodStreamCommand,
             'streamOpened': streamOpened,
           });
 
-          webSocket.textEvents.listen((event) {
-            var message = WebSocketMessage.fromJsonString(
+          webSocket.textEvents.listen((final event) {
+            final message = WebSocketMessage.fromJsonString(
               event,
               server.serializationManager,
             );
-            ;
             if (message is OpenMethodStreamResponse) {
               streamOpened.complete();
             } else if (message is CloseMethodStreamCommand) {
@@ -85,7 +85,7 @@ void main() {
             'Failed to open method stream with server',
           );
 
-          for (var inputValue in inputValues)
+          for (final inputValue in inputValues) {
             webSocket.sendText(
               MethodStreamMessage.buildMessage(
                 endpoint: endpoint,
@@ -96,6 +96,7 @@ void main() {
                 serializationManager: server.serializationManager,
               ),
             );
+          }
 
           webSocket.sendText(
             CloseMethodStreamCommand.buildMessage(
@@ -111,7 +112,7 @@ void main() {
         tearDown(() => testCompleterTimeout.cancel());
 
         test('then received values matches stream of input.', () async {
-          closeMethodStreamCommand.future.catchError((error) {
+          closeMethodStreamCommand.future.catchError((final error) {
             fail('Server failed to close the output stream.');
           });
 
@@ -127,12 +128,12 @@ void main() {
           'then CloseMethodStreamCommand matching the endpoint is received.',
           () async {
             closeMethodStreamCommand.future
-                .catchError((error) {
+                .catchError((final error) {
                   fail(
                     'Failed to receive CloseMethodStreamCommand from server.',
                   );
                 })
-                .then((message) {
+                .then((final message) {
                   expect(message.endpoint, endpoint);
                   expect(message.method, method);
                   expect(message.connectionId, connectionId);

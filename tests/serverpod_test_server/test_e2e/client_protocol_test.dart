@@ -6,7 +6,7 @@ import 'package:serverpod_test_server/test_util/test_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client(
+  final client = Client(
     serverUrl,
     authenticationKeyManager: TestAuthKeyManager(),
   );

@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with mixed default fields,', () {
     tearDownAll(
@@ -23,7 +23,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await StringDefaultMix.db.findFirstRow(session);
+        final databaseObject = await StringDefaultMix.db.findFirstRow(session);
         expect(
           databaseObject?.stringDefaultAndDefaultModel,
           'This is a default value',
@@ -40,7 +40,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await StringDefaultMix.db.findFirstRow(session);
+        final databaseObject = await StringDefaultMix.db.findFirstRow(session);
         expect(
           databaseObject?.stringDefaultAndDefaultPersist,
           'This is a default persist value',
@@ -57,7 +57,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await StringDefaultMix.db.findFirstRow(session);
+        final databaseObject = await StringDefaultMix.db.findFirstRow(session);
         expect(
           databaseObject?.stringDefaultModelAndDefaultPersist,
           'This is a default persist value',
@@ -68,10 +68,10 @@ void main() async {
     test(
       'when creating a record in the database with specific values, then the "stringDefaultAndDefaultModel" field value should match the provided value',
       () async {
-        var specificObject = StringDefaultMix(
+        final specificObject = StringDefaultMix(
           stringDefaultAndDefaultModel: 'A specific default model value',
         );
-        var specificDatabaseObject = await StringDefaultMix.db.insertRow(
+        final specificDatabaseObject = await StringDefaultMix.db.insertRow(
           session,
           specificObject,
         );
@@ -85,10 +85,10 @@ void main() async {
     test(
       'when creating a record in the database with specific values, then the "stringDefaultAndDefaultPersist" field value should match the provided value',
       () async {
-        var specificObject = StringDefaultMix(
+        final specificObject = StringDefaultMix(
           stringDefaultAndDefaultPersist: 'A specific default persist value',
         );
-        var specificDatabaseObject = await StringDefaultMix.db.insertRow(
+        final specificDatabaseObject = await StringDefaultMix.db.insertRow(
           session,
           specificObject,
         );
@@ -102,11 +102,11 @@ void main() async {
     test(
       'when creating a record in the database with specific values, then the "stringDefaultModelAndDefaultPersist" field value should match the provided value',
       () async {
-        var specificObject = StringDefaultMix(
+        final specificObject = StringDefaultMix(
           stringDefaultModelAndDefaultPersist:
               'A specific default model and persist value',
         );
-        var specificDatabaseObject = await StringDefaultMix.db.insertRow(
+        final specificDatabaseObject = await StringDefaultMix.db.insertRow(
           session,
           specificObject,
         );

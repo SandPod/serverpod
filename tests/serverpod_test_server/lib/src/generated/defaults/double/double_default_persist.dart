@@ -20,12 +20,12 @@ abstract class DoubleDefaultPersist
   });
 
   factory DoubleDefaultPersist({
-    int? id,
-    double? doubleDefaultPersist,
+    final int? id,
+    final double? doubleDefaultPersist,
   }) = _DoubleDefaultPersistImpl;
 
   factory DoubleDefaultPersist.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return DoubleDefaultPersist(
       id: jsonSerialization['id'] as int?,
@@ -50,8 +50,8 @@ abstract class DoubleDefaultPersist
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   DoubleDefaultPersist copyWith({
-    int? id,
-    double? doubleDefaultPersist,
+    final int? id,
+    final double? doubleDefaultPersist,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -76,13 +76,13 @@ abstract class DoubleDefaultPersist
   }
 
   static DoubleDefaultPersistIncludeList includeList({
-    _i1.WhereExpressionBuilder<DoubleDefaultPersistTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<DoubleDefaultPersistTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<DoubleDefaultPersistTable>? orderByList,
-    DoubleDefaultPersistInclude? include,
+    final _i1.WhereExpressionBuilder<DoubleDefaultPersistTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<DoubleDefaultPersistTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<DoubleDefaultPersistTable>? orderByList,
+    final DoubleDefaultPersistInclude? include,
   }) {
     return DoubleDefaultPersistIncludeList._(
       where: where,
@@ -105,8 +105,8 @@ class _Undefined {}
 
 class _DoubleDefaultPersistImpl extends DoubleDefaultPersist {
   _DoubleDefaultPersistImpl({
-    int? id,
-    double? doubleDefaultPersist,
+    final int? id,
+    final double? doubleDefaultPersist,
   }) : super._(
          id: id,
          doubleDefaultPersist: doubleDefaultPersist,
@@ -117,8 +117,8 @@ class _DoubleDefaultPersistImpl extends DoubleDefaultPersist {
   @_i1.useResult
   @override
   DoubleDefaultPersist copyWith({
-    Object? id = _Undefined,
-    Object? doubleDefaultPersist = _Undefined,
+    final Object? id = _Undefined,
+    final Object? doubleDefaultPersist = _Undefined,
   }) {
     return DoubleDefaultPersist(
       id: id is int? ? id : this.id,
@@ -133,7 +133,7 @@ class DoubleDefaultPersistUpdateTable
     extends _i1.UpdateTable<DoubleDefaultPersistTable> {
   DoubleDefaultPersistUpdateTable(super.table);
 
-  _i1.ColumnValue<double, double> doubleDefaultPersist(double? value) =>
+  _i1.ColumnValue<double, double> doubleDefaultPersist(final double? value) =>
       _i1.ColumnValue(
         table.doubleDefaultPersist,
         value,
@@ -174,7 +174,7 @@ class DoubleDefaultPersistInclude extends _i1.IncludeObject {
 
 class DoubleDefaultPersistIncludeList extends _i1.IncludeList {
   DoubleDefaultPersistIncludeList._({
-    _i1.WhereExpressionBuilder<DoubleDefaultPersistTable>? where,
+    final _i1.WhereExpressionBuilder<DoubleDefaultPersistTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -218,14 +218,14 @@ class DoubleDefaultPersistRepository {
   /// );
   /// ```
   Future<List<DoubleDefaultPersist>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<DoubleDefaultPersistTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<DoubleDefaultPersistTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<DoubleDefaultPersistTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<DoubleDefaultPersistTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<DoubleDefaultPersistTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<DoubleDefaultPersistTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<DoubleDefaultPersist>(
       where: where?.call(DoubleDefaultPersist.t),
@@ -256,13 +256,13 @@ class DoubleDefaultPersistRepository {
   /// );
   /// ```
   Future<DoubleDefaultPersist?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<DoubleDefaultPersistTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<DoubleDefaultPersistTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<DoubleDefaultPersistTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<DoubleDefaultPersistTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<DoubleDefaultPersistTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<DoubleDefaultPersistTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<DoubleDefaultPersist>(
       where: where?.call(DoubleDefaultPersist.t),
@@ -276,9 +276,9 @@ class DoubleDefaultPersistRepository {
 
   /// Finds a single [DoubleDefaultPersist] by its [id] or null if no such row exists.
   Future<DoubleDefaultPersist?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<DoubleDefaultPersist>(
       id,
@@ -293,9 +293,9 @@ class DoubleDefaultPersistRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<DoubleDefaultPersist>> insert(
-    _i1.Session session,
-    List<DoubleDefaultPersist> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<DoubleDefaultPersist> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<DoubleDefaultPersist>(
       rows,
@@ -307,9 +307,9 @@ class DoubleDefaultPersistRepository {
   ///
   /// The returned [DoubleDefaultPersist] will have its `id` field set.
   Future<DoubleDefaultPersist> insertRow(
-    _i1.Session session,
-    DoubleDefaultPersist row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final DoubleDefaultPersist row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<DoubleDefaultPersist>(
       row,
@@ -323,10 +323,10 @@ class DoubleDefaultPersistRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<DoubleDefaultPersist>> update(
-    _i1.Session session,
-    List<DoubleDefaultPersist> rows, {
-    _i1.ColumnSelections<DoubleDefaultPersistTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<DoubleDefaultPersist> rows, {
+    final _i1.ColumnSelections<DoubleDefaultPersistTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<DoubleDefaultPersist>(
       rows,
@@ -339,10 +339,10 @@ class DoubleDefaultPersistRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<DoubleDefaultPersist> updateRow(
-    _i1.Session session,
-    DoubleDefaultPersist row, {
-    _i1.ColumnSelections<DoubleDefaultPersistTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final DoubleDefaultPersist row, {
+    final _i1.ColumnSelections<DoubleDefaultPersistTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<DoubleDefaultPersist>(
       row,
@@ -354,11 +354,11 @@ class DoubleDefaultPersistRepository {
   /// Updates a single [DoubleDefaultPersist] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<DoubleDefaultPersist?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<DoubleDefaultPersistUpdateTable>
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<DoubleDefaultPersistUpdateTable>
     columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<DoubleDefaultPersist>(
       id,
@@ -370,16 +370,16 @@ class DoubleDefaultPersistRepository {
   /// Updates all [DoubleDefaultPersist]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<DoubleDefaultPersist>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<DoubleDefaultPersistUpdateTable>
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<DoubleDefaultPersistUpdateTable>
     columnValues,
-    required _i1.WhereExpressionBuilder<DoubleDefaultPersistTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<DoubleDefaultPersistTable>? orderBy,
-    _i1.OrderByListBuilder<DoubleDefaultPersistTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    required final _i1.WhereExpressionBuilder<DoubleDefaultPersistTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<DoubleDefaultPersistTable>? orderBy,
+    final _i1.OrderByListBuilder<DoubleDefaultPersistTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<DoubleDefaultPersist>(
       columnValues: columnValues(DoubleDefaultPersist.t.updateTable),
@@ -397,9 +397,9 @@ class DoubleDefaultPersistRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<DoubleDefaultPersist>> delete(
-    _i1.Session session,
-    List<DoubleDefaultPersist> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<DoubleDefaultPersist> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<DoubleDefaultPersist>(
       rows,
@@ -409,9 +409,9 @@ class DoubleDefaultPersistRepository {
 
   /// Deletes a single [DoubleDefaultPersist].
   Future<DoubleDefaultPersist> deleteRow(
-    _i1.Session session,
-    DoubleDefaultPersist row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final DoubleDefaultPersist row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<DoubleDefaultPersist>(
       row,
@@ -421,9 +421,9 @@ class DoubleDefaultPersistRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<DoubleDefaultPersist>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<DoubleDefaultPersistTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<DoubleDefaultPersistTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<DoubleDefaultPersist>(
       where: where(DoubleDefaultPersist.t),
@@ -434,10 +434,10 @@ class DoubleDefaultPersistRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<DoubleDefaultPersistTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<DoubleDefaultPersistTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<DoubleDefaultPersist>(
       where: where?.call(DoubleDefaultPersist.t),

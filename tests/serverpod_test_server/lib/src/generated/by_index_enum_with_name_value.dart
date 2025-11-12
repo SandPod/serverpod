@@ -16,7 +16,7 @@ enum ByIndexEnumWithNameValue implements _i1.SerializableModel {
   type,
   name;
 
-  static ByIndexEnumWithNameValue fromJson(int index) {
+  static ByIndexEnumWithNameValue fromJson(final int index) {
     switch (index) {
       case 0:
         return ByIndexEnumWithNameValue.type;

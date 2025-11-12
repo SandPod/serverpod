@@ -9,7 +9,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "default=random" UUID field should not be null',
         () {
-          var object = UuidDefault();
+          final object = UuidDefault();
           expect(object.uuidDefaultRandom, isNotNull);
         },
       );
@@ -17,7 +17,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "default=random_v7 UUID field should not be null',
         () {
-          var object = UuidDefault();
+          final object = UuidDefault();
           expect(object.uuidDefaultRandomV7, isNotNull);
         },
       );
@@ -25,7 +25,7 @@ void main() async {
       test(
         'when an object of the class is created, then the nullable "default=random" UUID field should not be null',
         () {
-          var object = UuidDefault();
+          final object = UuidDefault();
           expect(object.uuidDefaultRandomNull, isNotNull);
         },
       );
@@ -33,7 +33,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "default" UUID field with a string should match the default',
         () {
-          var object = UuidDefault();
+          final object = UuidDefault();
           expect(
             object.uuidDefaultStr,
             UuidValue.fromString('550e8400-e29b-41d4-a716-446655440000'),
@@ -44,7 +44,7 @@ void main() async {
       test(
         'when an object of the class is created, then the nullable "default" UUID field with a string should match the default',
         () {
-          var object = UuidDefault();
+          final object = UuidDefault();
           expect(
             object.uuidDefaultStrNull,
             UuidValue.fromString('3f2504e0-4f89-11d3-9a0c-0305e82c3301'),
@@ -55,7 +55,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "default=random" UUID field should generate a valid UUID',
         () {
-          var object = UuidDefault();
+          final object = UuidDefault();
           expect(
             RegExp(
               r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$',
@@ -68,7 +68,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "default=random_v7" UUID field should generate a valid UUID',
         () {
-          var object = UuidDefault();
+          final object = UuidDefault();
           expect(
             RegExp(
               r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$',
@@ -81,7 +81,7 @@ void main() async {
       test(
         'when an object of the class is created, then the nullable "default=random" UUID field should generate a valid UUID',
         () {
-          var object = UuidDefault();
+          final object = UuidDefault();
           expect(
             RegExp(
               r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$',
@@ -94,10 +94,10 @@ void main() async {
       test(
         'when an object of the class is created with a value for "uuidDefaultRandom", then the field value should match the provided value',
         () {
-          var uuid = UuidValue.fromString(
+          final uuid = UuidValue.fromString(
             '3f2504e0-4f89-11d3-9a0c-0305e82c3301',
           );
-          var object = UuidDefault(
+          final object = UuidDefault(
             uuidDefaultRandom: uuid,
           );
           expect(
@@ -110,10 +110,10 @@ void main() async {
       test(
         'when an object of the class is created with a value for "uuidDefaultRandomV7", then the field value should match the provided value',
         () {
-          var uuid = UuidValue.fromString(
+          final uuid = UuidValue.fromString(
             '3f2504e0-4f89-11d3-9a0c-0305e82c3301',
           );
-          var object = UuidDefault(
+          final object = UuidDefault(
             uuidDefaultRandomV7: uuid,
           );
           expect(
@@ -126,10 +126,10 @@ void main() async {
       test(
         'when an object of the class is created with a value for "uuidDefaultRandomNull", then the field value should match the provided value',
         () {
-          var uuid = UuidValue.fromString(
+          final uuid = UuidValue.fromString(
             '3f2504e0-4f89-11d3-9a0c-0305e82c3301',
           );
-          var object = UuidDefault(
+          final object = UuidDefault(
             uuidDefaultRandomNull: uuid,
           );
           expect(
@@ -142,10 +142,10 @@ void main() async {
       test(
         'when an object of the class is created with a value for "uuidDefaultStr", then the field value should match the provided value',
         () {
-          var uuid = UuidValue.fromString(
+          final uuid = UuidValue.fromString(
             '550e8400-e29b-41d4-a716-446655440000',
           );
-          var object = UuidDefault(
+          final object = UuidDefault(
             uuidDefaultStr: uuid,
           );
           expect(
@@ -158,10 +158,10 @@ void main() async {
       test(
         'when an object of the class is created with a value for "uuidDefaultStrNull", then the field value should match the provided value',
         () {
-          var uuid = UuidValue.fromString(
+          final uuid = UuidValue.fromString(
             '550e8400-e29b-41d4-a716-446655440000',
           );
-          var object = UuidDefault(
+          final object = UuidDefault(
             uuidDefaultStrNull: uuid,
           );
           expect(

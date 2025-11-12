@@ -16,16 +16,16 @@ abstract class UuidDefaultModel
     implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   UuidDefaultModel._({
     this.id,
-    _i1.UuidValue? uuidDefaultModelRandom,
-    _i1.UuidValue? uuidDefaultModelRandomV7,
-    _i1.UuidValue? uuidDefaultModelRandomNull,
-    _i1.UuidValue? uuidDefaultModelStr,
-    _i1.UuidValue? uuidDefaultModelStrNull,
-  }) : uuidDefaultModelRandom = uuidDefaultModelRandom ?? _i1.Uuid().v4obj(),
+    final _i1.UuidValue? uuidDefaultModelRandom,
+    final _i1.UuidValue? uuidDefaultModelRandomV7,
+    final _i1.UuidValue? uuidDefaultModelRandomNull,
+    final _i1.UuidValue? uuidDefaultModelStr,
+    final _i1.UuidValue? uuidDefaultModelStrNull,
+  }) : uuidDefaultModelRandom = uuidDefaultModelRandom ?? const _i1.Uuid().v4obj(),
        uuidDefaultModelRandomV7 =
-           uuidDefaultModelRandomV7 ?? _i1.Uuid().v7obj(),
+           uuidDefaultModelRandomV7 ?? const _i1.Uuid().v7obj(),
        uuidDefaultModelRandomNull =
-           uuidDefaultModelRandomNull ?? _i1.Uuid().v4obj(),
+           uuidDefaultModelRandomNull ?? const _i1.Uuid().v4obj(),
        uuidDefaultModelStr =
            uuidDefaultModelStr ??
            _i1.UuidValue.fromString('550e8400-e29b-41d4-a716-446655440000'),
@@ -34,15 +34,15 @@ abstract class UuidDefaultModel
            _i1.UuidValue.fromString('3f2504e0-4f89-11d3-9a0c-0305e82c3301');
 
   factory UuidDefaultModel({
-    int? id,
-    _i1.UuidValue? uuidDefaultModelRandom,
-    _i1.UuidValue? uuidDefaultModelRandomV7,
-    _i1.UuidValue? uuidDefaultModelRandomNull,
-    _i1.UuidValue? uuidDefaultModelStr,
-    _i1.UuidValue? uuidDefaultModelStrNull,
+    final int? id,
+    final _i1.UuidValue? uuidDefaultModelRandom,
+    final _i1.UuidValue? uuidDefaultModelRandomV7,
+    final _i1.UuidValue? uuidDefaultModelRandomNull,
+    final _i1.UuidValue? uuidDefaultModelStr,
+    final _i1.UuidValue? uuidDefaultModelStrNull,
   }) = _UuidDefaultModelImpl;
 
-  factory UuidDefaultModel.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory UuidDefaultModel.fromJson(final Map<String, dynamic> jsonSerialization) {
     return UuidDefaultModel(
       id: jsonSerialization['id'] as int?,
       uuidDefaultModelRandom: _i1.UuidValueJsonExtension.fromJson(
@@ -93,12 +93,12 @@ abstract class UuidDefaultModel
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   UuidDefaultModel copyWith({
-    int? id,
-    _i1.UuidValue? uuidDefaultModelRandom,
-    _i1.UuidValue? uuidDefaultModelRandomV7,
-    _i1.UuidValue? uuidDefaultModelRandomNull,
-    _i1.UuidValue? uuidDefaultModelStr,
-    _i1.UuidValue? uuidDefaultModelStrNull,
+    final int? id,
+    final _i1.UuidValue? uuidDefaultModelRandom,
+    final _i1.UuidValue? uuidDefaultModelRandomV7,
+    final _i1.UuidValue? uuidDefaultModelRandomNull,
+    final _i1.UuidValue? uuidDefaultModelStr,
+    final _i1.UuidValue? uuidDefaultModelStrNull,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -133,13 +133,13 @@ abstract class UuidDefaultModel
   }
 
   static UuidDefaultModelIncludeList includeList({
-    _i1.WhereExpressionBuilder<UuidDefaultModelTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<UuidDefaultModelTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UuidDefaultModelTable>? orderByList,
-    UuidDefaultModelInclude? include,
+    final _i1.WhereExpressionBuilder<UuidDefaultModelTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<UuidDefaultModelTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<UuidDefaultModelTable>? orderByList,
+    final UuidDefaultModelInclude? include,
   }) {
     return UuidDefaultModelIncludeList._(
       where: where,
@@ -162,12 +162,12 @@ class _Undefined {}
 
 class _UuidDefaultModelImpl extends UuidDefaultModel {
   _UuidDefaultModelImpl({
-    int? id,
-    _i1.UuidValue? uuidDefaultModelRandom,
-    _i1.UuidValue? uuidDefaultModelRandomV7,
-    _i1.UuidValue? uuidDefaultModelRandomNull,
-    _i1.UuidValue? uuidDefaultModelStr,
-    _i1.UuidValue? uuidDefaultModelStrNull,
+    final int? id,
+    final _i1.UuidValue? uuidDefaultModelRandom,
+    final _i1.UuidValue? uuidDefaultModelRandomV7,
+    final _i1.UuidValue? uuidDefaultModelRandomNull,
+    final _i1.UuidValue? uuidDefaultModelStr,
+    final _i1.UuidValue? uuidDefaultModelStrNull,
   }) : super._(
          id: id,
          uuidDefaultModelRandom: uuidDefaultModelRandom,
@@ -182,12 +182,12 @@ class _UuidDefaultModelImpl extends UuidDefaultModel {
   @_i1.useResult
   @override
   UuidDefaultModel copyWith({
-    Object? id = _Undefined,
-    _i1.UuidValue? uuidDefaultModelRandom,
-    _i1.UuidValue? uuidDefaultModelRandomV7,
-    Object? uuidDefaultModelRandomNull = _Undefined,
-    _i1.UuidValue? uuidDefaultModelStr,
-    Object? uuidDefaultModelStrNull = _Undefined,
+    final Object? id = _Undefined,
+    final _i1.UuidValue? uuidDefaultModelRandom,
+    final _i1.UuidValue? uuidDefaultModelRandomV7,
+    final Object? uuidDefaultModelRandomNull = _Undefined,
+    final _i1.UuidValue? uuidDefaultModelStr,
+    final Object? uuidDefaultModelStrNull = _Undefined,
   }) {
     return UuidDefaultModel(
       id: id is int? ? id : this.id,
@@ -211,35 +211,35 @@ class UuidDefaultModelUpdateTable
   UuidDefaultModelUpdateTable(super.table);
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> uuidDefaultModelRandom(
-    _i1.UuidValue value,
+    final _i1.UuidValue value,
   ) => _i1.ColumnValue(
     table.uuidDefaultModelRandom,
     value,
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> uuidDefaultModelRandomV7(
-    _i1.UuidValue value,
+    final _i1.UuidValue value,
   ) => _i1.ColumnValue(
     table.uuidDefaultModelRandomV7,
     value,
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> uuidDefaultModelRandomNull(
-    _i1.UuidValue? value,
+    final _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.uuidDefaultModelRandomNull,
     value,
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> uuidDefaultModelStr(
-    _i1.UuidValue value,
+    final _i1.UuidValue value,
   ) => _i1.ColumnValue(
     table.uuidDefaultModelStr,
     value,
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> uuidDefaultModelStrNull(
-    _i1.UuidValue? value,
+    final _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.uuidDefaultModelStrNull,
     value,
@@ -307,7 +307,7 @@ class UuidDefaultModelInclude extends _i1.IncludeObject {
 
 class UuidDefaultModelIncludeList extends _i1.IncludeList {
   UuidDefaultModelIncludeList._({
-    _i1.WhereExpressionBuilder<UuidDefaultModelTable>? where,
+    final _i1.WhereExpressionBuilder<UuidDefaultModelTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -351,14 +351,14 @@ class UuidDefaultModelRepository {
   /// );
   /// ```
   Future<List<UuidDefaultModel>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<UuidDefaultModelTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<UuidDefaultModelTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UuidDefaultModelTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<UuidDefaultModelTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<UuidDefaultModelTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<UuidDefaultModelTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<UuidDefaultModel>(
       where: where?.call(UuidDefaultModel.t),
@@ -389,13 +389,13 @@ class UuidDefaultModelRepository {
   /// );
   /// ```
   Future<UuidDefaultModel?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<UuidDefaultModelTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<UuidDefaultModelTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UuidDefaultModelTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<UuidDefaultModelTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<UuidDefaultModelTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<UuidDefaultModelTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<UuidDefaultModel>(
       where: where?.call(UuidDefaultModel.t),
@@ -409,9 +409,9 @@ class UuidDefaultModelRepository {
 
   /// Finds a single [UuidDefaultModel] by its [id] or null if no such row exists.
   Future<UuidDefaultModel?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<UuidDefaultModel>(
       id,
@@ -426,9 +426,9 @@ class UuidDefaultModelRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<UuidDefaultModel>> insert(
-    _i1.Session session,
-    List<UuidDefaultModel> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<UuidDefaultModel> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<UuidDefaultModel>(
       rows,
@@ -440,9 +440,9 @@ class UuidDefaultModelRepository {
   ///
   /// The returned [UuidDefaultModel] will have its `id` field set.
   Future<UuidDefaultModel> insertRow(
-    _i1.Session session,
-    UuidDefaultModel row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final UuidDefaultModel row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<UuidDefaultModel>(
       row,
@@ -456,10 +456,10 @@ class UuidDefaultModelRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<UuidDefaultModel>> update(
-    _i1.Session session,
-    List<UuidDefaultModel> rows, {
-    _i1.ColumnSelections<UuidDefaultModelTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<UuidDefaultModel> rows, {
+    final _i1.ColumnSelections<UuidDefaultModelTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<UuidDefaultModel>(
       rows,
@@ -472,10 +472,10 @@ class UuidDefaultModelRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<UuidDefaultModel> updateRow(
-    _i1.Session session,
-    UuidDefaultModel row, {
-    _i1.ColumnSelections<UuidDefaultModelTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final UuidDefaultModel row, {
+    final _i1.ColumnSelections<UuidDefaultModelTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<UuidDefaultModel>(
       row,
@@ -487,11 +487,11 @@ class UuidDefaultModelRepository {
   /// Updates a single [UuidDefaultModel] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<UuidDefaultModel?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<UuidDefaultModelUpdateTable>
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<UuidDefaultModelUpdateTable>
     columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<UuidDefaultModel>(
       id,
@@ -503,16 +503,16 @@ class UuidDefaultModelRepository {
   /// Updates all [UuidDefaultModel]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<UuidDefaultModel>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<UuidDefaultModelUpdateTable>
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<UuidDefaultModelUpdateTable>
     columnValues,
-    required _i1.WhereExpressionBuilder<UuidDefaultModelTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<UuidDefaultModelTable>? orderBy,
-    _i1.OrderByListBuilder<UuidDefaultModelTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    required final _i1.WhereExpressionBuilder<UuidDefaultModelTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<UuidDefaultModelTable>? orderBy,
+    final _i1.OrderByListBuilder<UuidDefaultModelTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<UuidDefaultModel>(
       columnValues: columnValues(UuidDefaultModel.t.updateTable),
@@ -530,9 +530,9 @@ class UuidDefaultModelRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<UuidDefaultModel>> delete(
-    _i1.Session session,
-    List<UuidDefaultModel> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<UuidDefaultModel> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<UuidDefaultModel>(
       rows,
@@ -542,9 +542,9 @@ class UuidDefaultModelRepository {
 
   /// Deletes a single [UuidDefaultModel].
   Future<UuidDefaultModel> deleteRow(
-    _i1.Session session,
-    UuidDefaultModel row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final UuidDefaultModel row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<UuidDefaultModel>(
       row,
@@ -554,9 +554,9 @@ class UuidDefaultModelRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<UuidDefaultModel>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<UuidDefaultModelTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<UuidDefaultModelTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<UuidDefaultModel>(
       where: where(UuidDefaultModel.t),
@@ -567,10 +567,10 @@ class UuidDefaultModelRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<UuidDefaultModelTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<UuidDefaultModelTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<UuidDefaultModel>(
       where: where?.call(UuidDefaultModel.t),

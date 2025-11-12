@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with one to many relation', () {
     tearDown(() async {
@@ -14,7 +14,7 @@ void main() async {
     test(
       'when deleting models filtered by any many relation then result is as expected.',
       () async {
-        var zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
+        final zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
         await Cat.db.insertRow(session, Cat(name: 'Smulan'));
 
         await Cat.db.insert(session, [
@@ -23,9 +23,9 @@ void main() async {
           Cat(name: 'Kitten3', motherId: zelda.id),
         ]);
 
-        var deletedCats = await Cat.db.deleteWhere(
+        final deletedCats = await Cat.db.deleteWhere(
           session,
-          where: (t) => t.kittens.any(),
+          where: (final t) => t.kittens.any(),
         );
 
         expect(deletedCats, hasLength(1));
@@ -36,8 +36,8 @@ void main() async {
     test(
       'when deleting models filtered by filtered any many relation then result is as expected',
       () async {
-        var zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
-        var smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
+        final zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
+        final smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
 
         await Cat.db.insert(session, [
           Cat(name: 'Kitten1', motherId: zelda.id),
@@ -46,9 +46,9 @@ void main() async {
           Cat(name: 'Smulan II', motherId: smulan.id),
         ]);
 
-        var deletedCats = await Cat.db.deleteWhere(
+        final deletedCats = await Cat.db.deleteWhere(
           session,
-          where: (t) => t.kittens.any((t) => t.name.ilike('smul%')),
+          where: (final t) => t.kittens.any((final t) => t.name.ilike('smul%')),
         );
 
         expect(deletedCats, hasLength(1));
@@ -59,8 +59,8 @@ void main() async {
     test(
       'when deleting models filtered on any many relation in combination with other filter then result is as expected.',
       () async {
-        var zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
-        var smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
+        final zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
+        final smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
 
         await Cat.db.insert(session, [
           Cat(name: 'Kitten1', motherId: zelda.id),
@@ -69,13 +69,13 @@ void main() async {
           Cat(name: 'Smulan II', motherId: smulan.id),
         ]);
 
-        var deletedCats = await Cat.db.deleteWhere(
+        final deletedCats = await Cat.db.deleteWhere(
           session,
-          where: (t) => t.kittens.any() | t.name.equals('Zelda'),
+          where: (final t) => t.kittens.any() | t.name.equals('Zelda'),
         );
 
         expect(deletedCats, hasLength(2));
-        var deletedCatIds = deletedCats.map((c) => c.id).toList();
+        final deletedCatIds = deletedCats.map((final c) => c.id).toList();
         expect(deletedCatIds, containsAll([zelda.id, smulan.id]));
       },
     );
@@ -83,8 +83,8 @@ void main() async {
     test(
       'when deleting models filtered on OR filtered any many relation then result is as expected.',
       () async {
-        var zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
-        var smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
+        final zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
+        final smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
 
         await Cat.db.insert(session, [
           Cat(name: 'Kitten1', motherId: zelda.id),
@@ -93,15 +93,15 @@ void main() async {
           Cat(name: 'Smulan II', motherId: smulan.id),
         ]);
 
-        var deletedCats = await Cat.db.deleteWhere(
+        final deletedCats = await Cat.db.deleteWhere(
           session,
-          where: (t) => t.kittens.any(
-            (t) => t.name.ilike('kitt%') | t.name.equals('Smulan II'),
+          where: (final t) => t.kittens.any(
+            (final t) => t.name.ilike('kitt%') | t.name.equals('Smulan II'),
           ),
         );
 
         expect(deletedCats, hasLength(2));
-        var deletedCatIds = deletedCats.map((c) => c.id).toList();
+        final deletedCatIds = deletedCats.map((final c) => c.id).toList();
         expect(deletedCatIds, [zelda.id, smulan.id]);
       },
     );
@@ -109,8 +109,8 @@ void main() async {
     test(
       'when deleting models filtered on multiple filtered any many relation then result is as expected.',
       () async {
-        var zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
-        var smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
+        final zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
+        final smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
 
         await Cat.db.insert(session, [
           Cat(name: 'Kitten1', motherId: zelda.id),
@@ -119,11 +119,11 @@ void main() async {
           Cat(name: 'Smulan II', motherId: smulan.id),
         ]);
 
-        var deletedCats = await Cat.db.deleteWhere(
+        final deletedCats = await Cat.db.deleteWhere(
           session,
-          where: (t) =>
-              t.kittens.any((t) => t.name.ilike('kitt%')) &
-              t.kittens.any((t) => t.name.equals('Zelda II')),
+          where: (final t) =>
+              t.kittens.any((final t) => t.name.ilike('kitt%')) &
+              t.kittens.any((final t) => t.name.equals('Zelda II')),
         );
 
         expect(deletedCats, hasLength(1));
@@ -140,10 +140,10 @@ void main() async {
     test(
       'when deleting models filtered on nested any many relation then result is as expected',
       () async {
-        var zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
-        var smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
+        final zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
+        final smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
 
-        var kittens = await Cat.db.insert(session, [
+        final kittens = await Cat.db.insert(session, [
           Cat(name: 'Kitten1', motherId: zelda.id),
           Cat(name: 'Kitten2', motherId: zelda.id),
           Cat(name: 'Kitten3', motherId: zelda.id),
@@ -156,9 +156,9 @@ void main() async {
           Cat(name: 'Nested Kitten3', motherId: kittens.last.id),
         ]);
 
-        var deletedCats = await Cat.db.deleteWhere(
+        final deletedCats = await Cat.db.deleteWhere(
           session,
-          where: (t) => t.kittens.any((o) => o.kittens.any()),
+          where: (final t) => t.kittens.any((final o) => o.kittens.any()),
         );
 
         expect(deletedCats, hasLength(1));
@@ -169,10 +169,10 @@ void main() async {
     test(
       'when deleting models filtered on filtered nested any many relation then result is as expected',
       () async {
-        var zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
-        var smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
+        final zelda = await Cat.db.insertRow(session, Cat(name: 'Zelda'));
+        final smulan = await Cat.db.insertRow(session, Cat(name: 'Smulan'));
 
-        var kittens = await Cat.db.insert(session, [
+        final kittens = await Cat.db.insert(session, [
           Cat(name: 'Kitten1', motherId: zelda.id),
           Cat(name: 'Kitten2', motherId: zelda.id),
           Cat(name: 'Kitten3', motherId: zelda.id),
@@ -186,10 +186,10 @@ void main() async {
           Cat(name: 'Nested Kitten4', motherId: kittens.first.id),
         ]);
 
-        var deletedCats = await Cat.db.deleteWhere(
+        final deletedCats = await Cat.db.deleteWhere(
           session,
-          where: (t) => t.kittens.any(
-            (o) => o.kittens.any((o) => o.name.equals('Nested Kitten1')),
+          where: (final t) => t.kittens.any(
+            (final o) => o.kittens.any((final o) => o.name.equals('Nested Kitten1')),
           ),
         );
 

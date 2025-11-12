@@ -25,15 +25,15 @@ void main() async {
     test(
       'Given an internal session with logging enabled when calling log then a log is written.',
       () async {
-        var settings = RuntimeSettingsBuilder().build();
+        final settings = RuntimeSettingsBuilder().build();
         await server.updateRuntimeSettings(settings);
 
-        var testSession = await server.createSession(enableLogging: true);
+        final testSession = await server.createSession(enableLogging: true);
 
         testSession.log('Test message');
         await testSession.close();
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
         expect(logs.first.logs, hasLength(1));
@@ -45,16 +45,16 @@ void main() async {
     test(
       'Given an internal session with logging disabled but the log settings on the highest level when calling log then no log is written.',
       () async {
-        var settings = RuntimeSettingsBuilder().build();
+        final settings = RuntimeSettingsBuilder().build();
         await server.updateRuntimeSettings(settings);
 
-        var testSession = await server.createSession(enableLogging: false);
+        final testSession = await server.createSession(enableLogging: false);
 
         testSession.log('Test message');
 
         await testSession.close();
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, isEmpty);
       },

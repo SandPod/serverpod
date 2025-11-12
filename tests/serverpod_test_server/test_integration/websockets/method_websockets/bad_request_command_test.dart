@@ -26,9 +26,9 @@ void main() {
     });
 
     test('when bad request is sent then connection is closed.', () async {
-      var webSocketCompleter = Completer<void>();
+      final webSocketCompleter = Completer<void>();
       webSocket.textEvents.listen(
-        (event) {},
+        (final event) {},
         onDone: () {
           webSocketCompleter.complete();
         },
@@ -37,7 +37,7 @@ void main() {
       webSocket.sendText(BadRequestMessage.buildMessage('request'));
 
       expectLater(
-        webSocketCompleter.future.timeout(Duration(seconds: 5)),
+        webSocketCompleter.future.timeout(const Duration(seconds: 5)),
         completes,
       );
     });

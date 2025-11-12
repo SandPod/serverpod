@@ -21,12 +21,12 @@ abstract class ObjectWithUuid
   });
 
   factory ObjectWithUuid({
-    int? id,
-    required _i1.UuidValue uuid,
-    _i1.UuidValue? uuidNullable,
+    final int? id,
+    required final _i1.UuidValue uuid,
+    final _i1.UuidValue? uuidNullable,
   }) = _ObjectWithUuidImpl;
 
-  factory ObjectWithUuid.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory ObjectWithUuid.fromJson(final Map<String, dynamic> jsonSerialization) {
     return ObjectWithUuid(
       id: jsonSerialization['id'] as int?,
       uuid: _i1.UuidValueJsonExtension.fromJson(jsonSerialization['uuid']),
@@ -56,9 +56,9 @@ abstract class ObjectWithUuid
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ObjectWithUuid copyWith({
-    int? id,
-    _i1.UuidValue? uuid,
-    _i1.UuidValue? uuidNullable,
+    final int? id,
+    final _i1.UuidValue? uuid,
+    final _i1.UuidValue? uuidNullable,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -83,13 +83,13 @@ abstract class ObjectWithUuid
   }
 
   static ObjectWithUuidIncludeList includeList({
-    _i1.WhereExpressionBuilder<ObjectWithUuidTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithUuidTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ObjectWithUuidTable>? orderByList,
-    ObjectWithUuidInclude? include,
+    final _i1.WhereExpressionBuilder<ObjectWithUuidTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithUuidTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ObjectWithUuidTable>? orderByList,
+    final ObjectWithUuidInclude? include,
   }) {
     return ObjectWithUuidIncludeList._(
       where: where,
@@ -112,9 +112,9 @@ class _Undefined {}
 
 class _ObjectWithUuidImpl extends ObjectWithUuid {
   _ObjectWithUuidImpl({
-    int? id,
-    required _i1.UuidValue uuid,
-    _i1.UuidValue? uuidNullable,
+    final int? id,
+    required final _i1.UuidValue uuid,
+    final _i1.UuidValue? uuidNullable,
   }) : super._(
          id: id,
          uuid: uuid,
@@ -126,9 +126,9 @@ class _ObjectWithUuidImpl extends ObjectWithUuid {
   @_i1.useResult
   @override
   ObjectWithUuid copyWith({
-    Object? id = _Undefined,
-    _i1.UuidValue? uuid,
-    Object? uuidNullable = _Undefined,
+    final Object? id = _Undefined,
+    final _i1.UuidValue? uuid,
+    final Object? uuidNullable = _Undefined,
   }) {
     return ObjectWithUuid(
       id: id is int? ? id : this.id,
@@ -143,14 +143,14 @@ class _ObjectWithUuidImpl extends ObjectWithUuid {
 class ObjectWithUuidUpdateTable extends _i1.UpdateTable<ObjectWithUuidTable> {
   ObjectWithUuidUpdateTable(super.table);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> uuid(_i1.UuidValue value) =>
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> uuid(final _i1.UuidValue value) =>
       _i1.ColumnValue(
         table.uuid,
         value,
       );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> uuidNullable(
-    _i1.UuidValue? value,
+    final _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.uuidNullable,
     value,
@@ -197,7 +197,7 @@ class ObjectWithUuidInclude extends _i1.IncludeObject {
 
 class ObjectWithUuidIncludeList extends _i1.IncludeList {
   ObjectWithUuidIncludeList._({
-    _i1.WhereExpressionBuilder<ObjectWithUuidTable>? where,
+    final _i1.WhereExpressionBuilder<ObjectWithUuidTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -241,14 +241,14 @@ class ObjectWithUuidRepository {
   /// );
   /// ```
   Future<List<ObjectWithUuid>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ObjectWithUuidTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithUuidTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ObjectWithUuidTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ObjectWithUuidTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithUuidTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ObjectWithUuidTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<ObjectWithUuid>(
       where: where?.call(ObjectWithUuid.t),
@@ -279,13 +279,13 @@ class ObjectWithUuidRepository {
   /// );
   /// ```
   Future<ObjectWithUuid?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ObjectWithUuidTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithUuidTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ObjectWithUuidTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ObjectWithUuidTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithUuidTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ObjectWithUuidTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<ObjectWithUuid>(
       where: where?.call(ObjectWithUuid.t),
@@ -299,9 +299,9 @@ class ObjectWithUuidRepository {
 
   /// Finds a single [ObjectWithUuid] by its [id] or null if no such row exists.
   Future<ObjectWithUuid?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<ObjectWithUuid>(
       id,
@@ -316,9 +316,9 @@ class ObjectWithUuidRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<ObjectWithUuid>> insert(
-    _i1.Session session,
-    List<ObjectWithUuid> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<ObjectWithUuid> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<ObjectWithUuid>(
       rows,
@@ -330,9 +330,9 @@ class ObjectWithUuidRepository {
   ///
   /// The returned [ObjectWithUuid] will have its `id` field set.
   Future<ObjectWithUuid> insertRow(
-    _i1.Session session,
-    ObjectWithUuid row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final ObjectWithUuid row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<ObjectWithUuid>(
       row,
@@ -346,10 +346,10 @@ class ObjectWithUuidRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<ObjectWithUuid>> update(
-    _i1.Session session,
-    List<ObjectWithUuid> rows, {
-    _i1.ColumnSelections<ObjectWithUuidTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<ObjectWithUuid> rows, {
+    final _i1.ColumnSelections<ObjectWithUuidTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<ObjectWithUuid>(
       rows,
@@ -362,10 +362,10 @@ class ObjectWithUuidRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<ObjectWithUuid> updateRow(
-    _i1.Session session,
-    ObjectWithUuid row, {
-    _i1.ColumnSelections<ObjectWithUuidTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final ObjectWithUuid row, {
+    final _i1.ColumnSelections<ObjectWithUuidTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<ObjectWithUuid>(
       row,
@@ -377,10 +377,10 @@ class ObjectWithUuidRepository {
   /// Updates a single [ObjectWithUuid] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<ObjectWithUuid?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<ObjectWithUuidUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<ObjectWithUuidUpdateTable> columnValues,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<ObjectWithUuid>(
       id,
@@ -392,15 +392,15 @@ class ObjectWithUuidRepository {
   /// Updates all [ObjectWithUuid]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<ObjectWithUuid>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<ObjectWithUuidUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<ObjectWithUuidTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithUuidTable>? orderBy,
-    _i1.OrderByListBuilder<ObjectWithUuidTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<ObjectWithUuidUpdateTable> columnValues,
+    required final _i1.WhereExpressionBuilder<ObjectWithUuidTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithUuidTable>? orderBy,
+    final _i1.OrderByListBuilder<ObjectWithUuidTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<ObjectWithUuid>(
       columnValues: columnValues(ObjectWithUuid.t.updateTable),
@@ -418,9 +418,9 @@ class ObjectWithUuidRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<ObjectWithUuid>> delete(
-    _i1.Session session,
-    List<ObjectWithUuid> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<ObjectWithUuid> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<ObjectWithUuid>(
       rows,
@@ -430,9 +430,9 @@ class ObjectWithUuidRepository {
 
   /// Deletes a single [ObjectWithUuid].
   Future<ObjectWithUuid> deleteRow(
-    _i1.Session session,
-    ObjectWithUuid row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final ObjectWithUuid row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<ObjectWithUuid>(
       row,
@@ -442,9 +442,9 @@ class ObjectWithUuidRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<ObjectWithUuid>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<ObjectWithUuidTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<ObjectWithUuidTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<ObjectWithUuid>(
       where: where(ObjectWithUuid.t),
@@ -455,10 +455,10 @@ class ObjectWithUuidRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ObjectWithUuidTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ObjectWithUuidTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<ObjectWithUuid>(
       where: where?.call(ObjectWithUuid.t),

@@ -9,9 +9,10 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
+import 'package:serverpod/serverpod.dart' as _i2;
+
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import '../protocol.dart' as _i1;
-import 'package:serverpod/serverpod.dart' as _i2;
 
 abstract class ServerOnlyChildClass extends _i1.NonServerOnlyParentClass
     implements _i2.SerializableModel, _i2.ProtocolSerialization {
@@ -21,12 +22,12 @@ abstract class ServerOnlyChildClass extends _i1.NonServerOnlyParentClass
   });
 
   factory ServerOnlyChildClass({
-    required String parentField,
-    required String childField,
+    required final String parentField,
+    required final String childField,
   }) = _ServerOnlyChildClassImpl;
 
   factory ServerOnlyChildClass.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return ServerOnlyChildClass(
       parentField: jsonSerialization['parentField'] as String,
@@ -41,8 +42,8 @@ abstract class ServerOnlyChildClass extends _i1.NonServerOnlyParentClass
   @override
   @_i2.useResult
   ServerOnlyChildClass copyWith({
-    String? parentField,
-    String? childField,
+    final String? parentField,
+    final String? childField,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -65,8 +66,8 @@ abstract class ServerOnlyChildClass extends _i1.NonServerOnlyParentClass
 
 class _ServerOnlyChildClassImpl extends ServerOnlyChildClass {
   _ServerOnlyChildClassImpl({
-    required String parentField,
-    required String childField,
+    required final String parentField,
+    required final String childField,
   }) : super._(
          parentField: parentField,
          childField: childField,
@@ -77,8 +78,8 @@ class _ServerOnlyChildClassImpl extends ServerOnlyChildClass {
   @_i2.useResult
   @override
   ServerOnlyChildClass copyWith({
-    String? parentField,
-    String? childField,
+    final String? parentField,
+    final String? childField,
   }) {
     return ServerOnlyChildClass(
       parentField: parentField ?? this.parentField,

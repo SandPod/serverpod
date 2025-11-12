@@ -1,11 +1,10 @@
 @Timeout(Duration(minutes: 12))
 import 'dart:io';
 
+import 'package:bootstrap_project/src/util.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
 import 'package:test/test.dart';
-
-import '../lib/src/util.dart';
 
 const tempDirName = 'temp';
 
@@ -58,7 +57,8 @@ void main() async {
         skipBatExtentionOnWindows: true,
       );
 
-      while (!await isNetworkPortAvailable(8090)) ;
+      while (!await isNetworkPortAvailable(8090)) {
+      }
     });
 
     test(
@@ -73,7 +73,7 @@ void main() async {
           },
         );
 
-        var createProjectExitCode = await createProcess.exitCode;
+        final createProjectExitCode = await createProcess.exitCode;
         expect(
           createProjectExitCode,
           0,
@@ -87,7 +87,7 @@ void main() async {
           ignorePlatform: true,
         );
 
-        var dockerExitCode = await docker.exitCode;
+        final dockerExitCode = await docker.exitCode;
 
         expect(
           dockerExitCode,
@@ -95,13 +95,13 @@ void main() async {
           reason: 'Docker with postgres failed to start.',
         );
 
-        var startProjectProcess = await startProcess(
+        final startProjectProcess = await startProcess(
           'dart',
           ['bin/main.dart', '--apply-migrations', '--role', 'maintenance'],
           workingDirectory: commandRoot,
         );
 
-        var startProjectExitCode = await startProjectProcess.exitCode;
+        final startProjectExitCode = await startProjectProcess.exitCode;
         expect(startProjectExitCode, 0);
       },
       skip: Platform.isWindows
@@ -127,7 +127,8 @@ void main() async {
         skipBatExtentionOnWindows: true,
       );
 
-      while (!await isNetworkPortAvailable(8090)) ;
+      while (!await isNetworkPortAvailable(8090)) {
+      }
     });
 
     test(
@@ -142,7 +143,7 @@ void main() async {
           },
         );
 
-        var createProjectExitCode = await createProcess.exitCode;
+        final createProjectExitCode = await createProcess.exitCode;
         expect(
           createProjectExitCode,
           0,
@@ -156,7 +157,7 @@ void main() async {
           ignorePlatform: true,
         );
 
-        var dockerExitCode = await docker.exitCode;
+        final dockerExitCode = await docker.exitCode;
 
         expect(
           dockerExitCode,
@@ -173,7 +174,7 @@ void main() async {
         var serverStarted = false;
         for (int retries = 0; retries < 10; retries++) {
           try {
-            var response = await http.get(Uri.parse('http://localhost:8080'));
+            final response = await http.get(Uri.parse('http://localhost:8080'));
             serverStarted = response.statusCode == HttpStatus.ok;
             break;
           } catch (e) {
@@ -181,7 +182,7 @@ void main() async {
           }
 
           print('failed to get response from server, retrying...');
-          await Future.delayed(Duration(seconds: 1));
+          await Future.delayed(const Duration(seconds: 1));
         }
 
         expect(
@@ -197,7 +198,7 @@ void main() async {
   });
 
   group('Given a clean state', () {
-    var (:projectName, :commandRoot) = createRandomProjectName(tempPath);
+    final (:projectName, :commandRoot) = createRandomProjectName(tempPath);
     final (:serverDir, :flutterDir, :clientDir) = createProjectFolderPaths(
       projectName,
     );
@@ -209,12 +210,13 @@ void main() async {
         workingDirectory: commandRoot,
         skipBatExtentionOnWindows: true,
       );
-      while (!await isNetworkPortAvailable(8090)) ;
+      while (!await isNetworkPortAvailable(8090)) {
+      }
     });
 
     group('when creating a new project', () {
       setUpAll(() async {
-        var process = await startProcess(
+        final process = await startProcess(
           'serverpod',
           ['create', projectName, '-v', '--no-analytics'],
           workingDirectory: tempPath,
@@ -223,7 +225,7 @@ void main() async {
           },
         );
 
-        var exitCode = await process.exitCode;
+        final exitCode = await process.exitCode;
         assert(exitCode == 0);
       });
 
@@ -234,7 +236,7 @@ void main() async {
           workingDirectory: tempPath,
         );
 
-        var exitCode = await process.exitCode;
+        final exitCode = await process.exitCode;
         expect(exitCode, 0, reason: 'Linting errors in new project.');
       });
 
@@ -407,22 +409,22 @@ void main() async {
         test(
           'macOS DebugProfile entitlements has network client tag and true',
           () {
-            var entitlementsPath = path.join(
+            final entitlementsPath = path.join(
               tempPath,
               flutterDir,
               'macos',
               'Runner',
               'DebugProfile.entitlements',
             );
-            var file = File(entitlementsPath);
-            var exists = file.existsSync();
+            final file = File(entitlementsPath);
+            final exists = file.existsSync();
             expect(
               exists,
               isTrue,
-              reason: "DebugProfile entitlements does not exist.",
+              reason: 'DebugProfile entitlements does not exist.',
             );
-            String contents = file.readAsStringSync();
-            String expected = '''
+            final String contents = file.readAsStringSync();
+            const String expected = '''
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -441,7 +443,7 @@ void main() async {
             expect(
               contents.trim(),
               expected.trim(),
-              reason: "DebugProfile entitlements is not as expected.",
+              reason: 'DebugProfile entitlements is not as expected.',
             );
           },
           skip: Platform.isWindows
@@ -452,22 +454,22 @@ void main() async {
         test(
           'macOS Release entitlements has network client tag and true',
           () {
-            var entitlementsPath = path.join(
+            final entitlementsPath = path.join(
               tempPath,
               flutterDir,
               'macos',
               'Runner',
               'Release.entitlements',
             );
-            var file = File(entitlementsPath);
-            var exists = file.existsSync();
+            final file = File(entitlementsPath);
+            final exists = file.existsSync();
             expect(
               exists,
               isTrue,
-              reason: "Release entitlements does not exist.",
+              reason: 'Release entitlements does not exist.',
             );
-            String contents = file.readAsStringSync();
-            String expected = '''
+            final String contents = file.readAsStringSync();
+            const String expected = '''
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -482,7 +484,7 @@ void main() async {
             expect(
               contents.trim(),
               expected.trim(),
-              reason: "Release entitlements is not as expected.",
+              reason: 'Release entitlements is not as expected.',
             );
           },
           skip: Platform.isWindows
@@ -577,25 +579,25 @@ void main() async {
           },
         );
 
-        var createProjectExitCode = await createProcess.exitCode;
+        final createProjectExitCode = await createProcess.exitCode;
         expect(createProjectExitCode, 0);
 
         // Delete generated files
-        var generatedServerDir = Directory(
+        final generatedServerDir = Directory(
           path.normalize(
             path.join(tempPath, serverDir, 'lib', 'src', 'generated'),
           ),
         );
         generatedServerDir.deleteSync(recursive: true);
 
-        var generatedClientDir = Directory(
+        final generatedClientDir = Directory(
           path.normalize(
             path.join(tempPath, clientDir, 'lib', 'src', 'protocol'),
           ),
         );
         generatedClientDir.deleteSync(recursive: true);
 
-        var generateProcess = await runProcess(
+        final generateProcess = await runProcess(
           'serverpod',
           ['generate'],
           workingDirectory: commandRoot,
@@ -708,19 +710,20 @@ void main() async {
         skipBatExtentionOnWindows: true,
       );
 
-      while (!await isNetworkPortAvailable(8090)) ;
+      while (!await isNetworkPortAvailable(8090)) {
+      }
     });
 
     test(
       'when running tests then example unit and integration tests passes',
       () async {
-        var testProcess = await startProcess(
+        final testProcess = await startProcess(
           'dart',
           ['test'],
           workingDirectory: path.join(
             tempPath,
             projectName,
-            "${projectName}_server",
+            '${projectName}_server',
           ),
         );
 

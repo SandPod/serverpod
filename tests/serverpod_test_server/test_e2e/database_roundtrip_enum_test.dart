@@ -5,14 +5,14 @@ import 'package:test/test.dart';
 import 'object_with_enum_builder.dart';
 
 void main() {
-  var client = Client(serverUrl);
+  final client = Client(serverUrl);
 
   test(
     'Given an enum when sending and writing it to the database then the returned value is contains an ID',
     () async {
-      var object = ObjectWithEnumBuilder().withTestEnum(TestEnum.two).build();
+      final object = ObjectWithEnumBuilder().withTestEnum(TestEnum.two).build();
 
-      var result = await client.basicDatabase.storeObjectWithEnum(object);
+      final result = await client.basicDatabase.storeObjectWithEnum(object);
 
       expect(result.id, isNotNull);
     },
@@ -21,9 +21,9 @@ void main() {
   test(
     'Given an enum when sending and writing it to the database then the returned value is unmodified',
     () async {
-      var object = ObjectWithEnumBuilder().withTestEnum(TestEnum.two).build();
+      final object = ObjectWithEnumBuilder().withTestEnum(TestEnum.two).build();
 
-      var result = await client.basicDatabase.storeObjectWithEnum(object);
+      final result = await client.basicDatabase.storeObjectWithEnum(object);
 
       expect(result.testEnum, equals(TestEnum.two));
     },
@@ -32,9 +32,9 @@ void main() {
   test(
     'Given a `null` nullable enum when sending and writing it to the database then the returned value is unmodified',
     () async {
-      var object = ObjectWithEnumBuilder().build();
+      final object = ObjectWithEnumBuilder().build();
 
-      var result = await client.basicDatabase.storeObjectWithEnum(object);
+      final result = await client.basicDatabase.storeObjectWithEnum(object);
 
       expect(result.nullableEnum, isNull);
     },
@@ -43,11 +43,11 @@ void main() {
   test(
     'Given an enum list when sending and writing it to the database then the returned value is unmodified',
     () async {
-      var object = ObjectWithEnumBuilder().witheEumList(
+      final object = ObjectWithEnumBuilder().witheEumList(
         [TestEnum.one, TestEnum.two, TestEnum.three],
       ).build();
 
-      var result = await client.basicDatabase.storeObjectWithEnum(object);
+      final result = await client.basicDatabase.storeObjectWithEnum(object);
 
       expect(
         result.enumList,
@@ -59,11 +59,11 @@ void main() {
   test(
     'Given a nullable enum list when sending and writing it to the database then the returned value is unmodified',
     () async {
-      var object = ObjectWithEnumBuilder().withNullableEnumList(
+      final object = ObjectWithEnumBuilder().withNullableEnumList(
         [TestEnum.one, null, TestEnum.three],
       ).build();
 
-      var result = await client.basicDatabase.storeObjectWithEnum(object);
+      final result = await client.basicDatabase.storeObjectWithEnum(object);
 
       expect(
         result.nullableEnumList,
@@ -75,14 +75,14 @@ void main() {
   test(
     'Given a nested enum list list when sending and writing it to the database then the returned value is unmodified',
     () async {
-      var object = ObjectWithEnumBuilder().withEnumListList(
+      final object = ObjectWithEnumBuilder().withEnumListList(
         [
           [TestEnum.one, TestEnum.two],
           [TestEnum.two, TestEnum.one],
         ],
       ).build();
 
-      var result = await client.basicDatabase.storeObjectWithEnum(object);
+      final result = await client.basicDatabase.storeObjectWithEnum(object);
 
       expect(result.enumListList, hasLength(2));
       expect(

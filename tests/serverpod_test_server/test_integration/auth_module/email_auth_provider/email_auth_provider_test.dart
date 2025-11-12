@@ -6,7 +6,7 @@ import '../../test_tools/serverpod_test_tools.dart';
 void main() async {
   AuthConfig.set(
     AuthConfig(
-      sendValidationEmail: (session, email, validationCode) async {
+      sendValidationEmail: (final session, final email, final validationCode) async {
         print('Sending validation email to $email with code $validationCode');
         return true;
       },
@@ -14,11 +14,11 @@ void main() async {
     ),
   );
 
-  withServerpod('Given create account request ', (sessionBuilder, _) {
-    var session = sessionBuilder.build();
-    var userName = 'test';
-    var email = 'test@serverpod.dev';
-    var password = 'password';
+  withServerpod('Given create account request ', (final sessionBuilder, _) {
+    final session = sessionBuilder.build();
+    const userName = 'test';
+    const email = 'test@serverpod.dev';
+    const password = 'password';
 
     setUp(() async {
       await Emails.createAccountRequest(session, userName, email, password);
@@ -27,10 +27,10 @@ void main() async {
     test(
       'when inspecting password hash then password is hashed using Argon2id',
       () async {
-        var createAccountRequest = await EmailCreateAccountRequest.db
+        final createAccountRequest = await EmailCreateAccountRequest.db
             .findFirstRow(
               session,
-              where: (t) => t.userName.equals(userName) & t.email.equals(email),
+              where: (final t) => t.userName.equals(userName) & t.email.equals(email),
             );
 
         expect(
@@ -38,7 +38,7 @@ void main() async {
           isNotNull,
           reason: 'Failed to find create account request',
         );
-        var passwordHash = createAccountRequest!.hash;
+        final passwordHash = createAccountRequest!.hash;
 
         expect(
           passwordHash,
@@ -49,11 +49,11 @@ void main() async {
     );
   });
 
-  withServerpod('Given a created user', (sessionBuilder, _) {
-    var session = sessionBuilder.build();
-    var userName = 'test';
-    var email = 'test@serverpod.dev';
-    var password = 'password';
+  withServerpod('Given a created user', (final sessionBuilder, _) {
+    final session = sessionBuilder.build();
+    const userName = 'test';
+    const email = 'test@serverpod.dev';
+    const password = 'password';
 
     setUp(() async {
       await Emails.createUser(session, userName, email, password);
@@ -62,9 +62,9 @@ void main() async {
     test(
       'when inspecting email auth hash then password is hashed using Argon2id',
       () async {
-        var emailAuth = await EmailAuth.db.findFirstRow(
+        final emailAuth = await EmailAuth.db.findFirstRow(
           session,
-          where: (t) => t.email.equals(email),
+          where: (final t) => t.email.equals(email),
         );
         expect(
           emailAuth,
@@ -72,7 +72,7 @@ void main() async {
           reason: 'Failed to find email auth entry',
         );
 
-        var passwordHash = emailAuth!.hash;
+        final passwordHash = emailAuth!.hash;
         expect(
           passwordHash,
           contains('argon2id'),
@@ -83,22 +83,22 @@ void main() async {
   });
 
   withServerpod('Given user with legacy password hash when authenticating', (
-    sessionBuilder,
+    final sessionBuilder,
     _,
   ) {
-    var session = sessionBuilder.build();
-    var userName = 'test';
-    var email = 'test@serverpod.dev';
-    var password = 'hunter2';
+    final session = sessionBuilder.build();
+    const userName = 'test';
+    const email = 'test@serverpod.dev';
+    const password = 'hunter2';
 
     setUp(() async {
       await Emails.createUser(session, userName, email, password);
-      var entry = await EmailAuth.db.findFirstRow(
+      final entry = await EmailAuth.db.findFirstRow(
         session,
-        where: (t) => t.email.equals(email),
+        where: (final t) => t.email.equals(email),
       );
       assert(entry != null, 'Failed to find email auth entry');
-      var withLegacyHash = entry!.copyWith(
+      final withLegacyHash = entry!.copyWith(
         // Legacy hash of the password 'hunter2'
         hash:
             '0713234b3cb6a6f98f6978f17a55a54578c580698dc1d56371502be6abb457eb',
@@ -107,7 +107,7 @@ void main() async {
     });
 
     test('then user can authenticate', () async {
-      var authResponse = await Emails.authenticate(session, email, password);
+      final authResponse = await Emails.authenticate(session, email, password);
       expect(
         authResponse.success,
         isTrue,
@@ -117,9 +117,9 @@ void main() async {
 
     test('then hash is migrated.', () async {
       await Emails.authenticate(session, email, password);
-      var emailAuth = await EmailAuth.db.findFirstRow(
+      final emailAuth = await EmailAuth.db.findFirstRow(
         session,
-        where: (t) => t.email.equals(email),
+        where: (final t) => t.email.equals(email),
       );
       expect(
         emailAuth,
@@ -127,7 +127,7 @@ void main() async {
         reason: 'Failed to find email auth entry for user.',
       );
 
-      var passwordHash = emailAuth!.hash;
+      final passwordHash = emailAuth!.hash;
       expect(
         passwordHash,
         contains('argon2id'),
@@ -137,10 +137,10 @@ void main() async {
   });
 
   withServerpod('Given all password hash types in database', (
-    sessionBuilder,
+    final sessionBuilder,
     _,
   ) {
-    var session = sessionBuilder.build();
+    final session = sessionBuilder.build();
 
     setUp(
       () async => await EmailAuth.db.insert(session, [
@@ -201,7 +201,7 @@ void main() async {
     test(
       'when migrating auth entries then updated rows matches legacy hashes stored.',
       () async {
-        var updatedRows = await Emails.migrateLegacyPasswordHashes(
+        final updatedRows = await Emails.migrateLegacyPasswordHashes(
           session,
           batchSize: 2,
         );
@@ -212,7 +212,7 @@ void main() async {
     test(
       'when migrating auth entries with a maxMigratedEntries then updated rows matches maxMigratedEntries legacy hashes stored.',
       () async {
-        var updatedRows = await Emails.migrateLegacyPasswordHashes(
+        final updatedRows = await Emails.migrateLegacyPasswordHashes(
           session,
           batchSize: 2,
           maxMigratedEntries: 0,
@@ -224,7 +224,7 @@ void main() async {
     test(
       'when migrating auth entries with a maxMigratedEntries then updated rows matches maxMigratedEntries legacy hashes stored.',
       () async {
-        var updatedRows = await Emails.migrateLegacyPasswordHashes(
+        final updatedRows = await Emails.migrateLegacyPasswordHashes(
           session,
           batchSize: 2,
           maxMigratedEntries: 3,
@@ -236,16 +236,16 @@ void main() async {
     test(
       'when migrating auth entries multiple times with maxMigratedEntries defined then total updated rows matches total legacy hashes stored.',
       () async {
-        var migrateHashes = () => Emails.migrateLegacyPasswordHashes(
+        Future<int> migrateHashes() => Emails.migrateLegacyPasswordHashes(
           session,
           batchSize: 2,
           maxMigratedEntries: 3,
         );
-        var updatedRows1 = await migrateHashes();
-        var updatedRows2 = await migrateHashes();
-        var updatedRows3 = await migrateHashes();
+        final updatedRows1 = await migrateHashes();
+        final updatedRows2 = await migrateHashes();
+        final updatedRows3 = await migrateHashes();
 
-        var totalUpdatedRows = updatedRows1 + updatedRows2 + updatedRows3;
+        final totalUpdatedRows = updatedRows1 + updatedRows2 + updatedRows3;
         expect(totalUpdatedRows, 5);
       },
     );
@@ -255,9 +255,9 @@ void main() async {
       () async {
         await Emails.migrateLegacyPasswordHashes(session, batchSize: 2);
 
-        var emailAuth = await EmailAuth.db.find(
+        final emailAuth = await EmailAuth.db.find(
           session,
-          where: (t) => t.email.inSet({
+          where: (final t) => t.email.inSet({
             'test1@serverpod.dev',
             'test2@serverpod.dev',
             'test3@serverpod.dev',
@@ -267,7 +267,7 @@ void main() async {
         );
 
         expect(emailAuth, hasLength(5));
-        var hashes = emailAuth.map((e) => e.hash).toList();
+        final hashes = emailAuth.map((final e) => e.hash).toList();
         expect(
           hashes,
           everyElement(contains('migratedLegacy')),
@@ -283,9 +283,9 @@ void main() async {
       test(
         'then user that had legacy password returns PasswordValidationSuccess.',
         () async {
-          var emailAuth = await EmailAuth.db.findFirstRow(
+          final emailAuth = await EmailAuth.db.findFirstRow(
             session,
-            where: (t) => t.email.equals('test1@serverpod.dev'),
+            where: (final t) => t.email.equals('test1@serverpod.dev'),
           );
 
           expect(
@@ -293,7 +293,7 @@ void main() async {
             isNotNull,
             reason: 'Failed to find email auth entry',
           );
-          var passwordHash = emailAuth!.hash;
+          final passwordHash = emailAuth!.hash;
 
           expect(
             await Emails.validatePasswordHash(
@@ -309,9 +309,9 @@ void main() async {
       test(
         'then user with already migrated legacy password hash returns PasswordValidationSuccess.',
         () async {
-          var emailAuth = await EmailAuth.db.findFirstRow(
+          final emailAuth = await EmailAuth.db.findFirstRow(
             session,
-            where: (t) => t.email.equals('test6@serverpod.dev'),
+            where: (final t) => t.email.equals('test6@serverpod.dev'),
           );
 
           expect(
@@ -319,7 +319,7 @@ void main() async {
             isNotNull,
             reason: 'Failed to find email auth entry',
           );
-          var passwordHash = emailAuth!.hash;
+          final passwordHash = emailAuth!.hash;
 
           expect(
             await Emails.validatePasswordHash(
@@ -335,9 +335,9 @@ void main() async {
       test(
         'then user with argon2id password hash returns PasswordValidationSuccess.',
         () async {
-          var emailAuth = await EmailAuth.db.findFirstRow(
+          final emailAuth = await EmailAuth.db.findFirstRow(
             session,
-            where: (t) => t.email.equals('test7@serverpod.dev'),
+            where: (final t) => t.email.equals('test7@serverpod.dev'),
           );
 
           expect(
@@ -345,7 +345,7 @@ void main() async {
             isNotNull,
             reason: 'Failed to find email auth entry',
           );
-          var passwordHash = emailAuth!.hash;
+          final passwordHash = emailAuth!.hash;
 
           expect(
             await Emails.validatePasswordHash(
@@ -362,9 +362,9 @@ void main() async {
 
   group('Given password not matching the hash when validating password', () {
     // This is the hash from the password 'hunter4'
-    var hunter4PasswordHash =
+    const hunter4PasswordHash =
         '2ee3dc6432300eabf9630ac7827d6dd23fd23cc9120ec4cd58f8f66bd3ce2db9';
-    var notHunter4PasswordHash =
+    const notHunter4PasswordHash =
         '1d24f0d21861e659c50c87ae03b679dc66ac7dd5fb1b03140e53f9331eeb0a31';
 
     test(

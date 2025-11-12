@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with mixed default fields,', () {
     tearDownAll(
@@ -23,7 +23,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await BoolDefaultMix.db.findFirstRow(session);
+        final databaseObject = await BoolDefaultMix.db.findFirstRow(session);
         expect(databaseObject?.boolDefaultAndDefaultModel, isTrue);
       },
     );
@@ -37,7 +37,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await BoolDefaultMix.db.findFirstRow(session);
+        final databaseObject = await BoolDefaultMix.db.findFirstRow(session);
         expect(databaseObject?.boolDefaultAndDefaultPersist, isFalse);
       },
     );
@@ -51,7 +51,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await BoolDefaultMix.db.findFirstRow(session);
+        final databaseObject = await BoolDefaultMix.db.findFirstRow(session);
         expect(databaseObject?.boolDefaultModelAndDefaultPersist, isFalse);
       },
     );
@@ -59,10 +59,10 @@ void main() async {
     test(
       'when creating a record in the database with specific values, then the "boolDefaultAndDefaultModel" field value should match the provided value',
       () async {
-        var specificObject = BoolDefaultMix(
+        final specificObject = BoolDefaultMix(
           boolDefaultAndDefaultModel: false,
         );
-        var specificDatabaseObject = await BoolDefaultMix.db.insertRow(
+        final specificDatabaseObject = await BoolDefaultMix.db.insertRow(
           session,
           specificObject,
         );
@@ -73,10 +73,10 @@ void main() async {
     test(
       'when creating a record in the database with specific values, then the "boolDefaultAndDefaultPersist" field value should match the provided value',
       () async {
-        var specificObject = BoolDefaultMix(
+        final specificObject = BoolDefaultMix(
           boolDefaultAndDefaultPersist: true,
         );
-        var specificDatabaseObject = await BoolDefaultMix.db.insertRow(
+        final specificDatabaseObject = await BoolDefaultMix.db.insertRow(
           session,
           specificObject,
         );
@@ -87,10 +87,10 @@ void main() async {
     test(
       'when creating a record in the database with specific values, then the "boolDefaultModelAndDefaultPersist" field value should match the provided value',
       () async {
-        var specificObject = BoolDefaultMix(
+        final specificObject = BoolDefaultMix(
           boolDefaultModelAndDefaultPersist: false,
         );
-        var specificDatabaseObject = await BoolDefaultMix.db.insertRow(
+        final specificDatabaseObject = await BoolDefaultMix.db.insertRow(
           session,
           specificObject,
         );

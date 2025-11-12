@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
   group('Given a class with "defaultPersist" fields,', () {
     tearDownAll(
       () async => DateTimeDefaultPersist.db.deleteWhere(
@@ -16,8 +16,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "defaultPersist=now" field should be in UTC',
       () async {
-        var object = DateTimeDefaultPersist();
-        var databaseObject = await DateTimeDefaultPersist.db.insertRow(
+        final object = DateTimeDefaultPersist();
+        final databaseObject = await DateTimeDefaultPersist.db.insertRow(
           session,
           object,
         );
@@ -28,8 +28,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "defaultPersist" field with UTC string should be in UTC',
       () async {
-        var object = DateTimeDefaultPersist();
-        var databaseObject = await DateTimeDefaultPersist.db.insertRow(
+        final object = DateTimeDefaultPersist();
+        final databaseObject = await DateTimeDefaultPersist.db.insertRow(
           session,
           object,
         );
@@ -40,8 +40,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "defaultPersist=now" field value should match the current time',
       () async {
-        var object = DateTimeDefaultPersist();
-        var databaseObject = await DateTimeDefaultPersist.db.insertRow(
+        final object = DateTimeDefaultPersist();
+        final databaseObject = await DateTimeDefaultPersist.db.insertRow(
           session,
           object,
         );
@@ -57,14 +57,14 @@ void main() async {
     test(
       'when creating a record in the database, then the "defaultPersist" field value should match the default',
       () async {
-        var object = DateTimeDefaultPersist();
-        var databaseObject = await DateTimeDefaultPersist.db.insertRow(
+        final object = DateTimeDefaultPersist();
+        final databaseObject = await DateTimeDefaultPersist.db.insertRow(
           session,
           object,
         );
         expect(
           databaseObject.dateTimeDefaultPersistStr,
-          DateTime.parse("2024-05-10T22:00:00.000Z"),
+          DateTime.parse('2024-05-10T22:00:00.000Z'),
         );
       },
     );
@@ -78,7 +78,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await DateTimeDefaultPersist.db.findFirstRow(
+        final databaseObject = await DateTimeDefaultPersist.db.findFirstRow(
           session,
         );
         expect(databaseObject?.dateTimeDefaultPersistNow?.isUtc, isTrue);
@@ -94,7 +94,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await DateTimeDefaultPersist.db.findFirstRow(
+        final databaseObject = await DateTimeDefaultPersist.db.findFirstRow(
           session,
         );
         expect(databaseObject?.dateTimeDefaultPersistStr?.isUtc, isTrue);
@@ -110,7 +110,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await DateTimeDefaultPersist.db.findFirstRow(
+        final databaseObject = await DateTimeDefaultPersist.db.findFirstRow(
           session,
         );
         expect(
@@ -131,12 +131,12 @@ void main() async {
         VALUES (DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await DateTimeDefaultPersist.db.findFirstRow(
+        final databaseObject = await DateTimeDefaultPersist.db.findFirstRow(
           session,
         );
         expect(
           databaseObject!.dateTimeDefaultPersistStr,
-          DateTime.parse("2024-05-10T22:00:00.000Z"),
+          DateTime.parse('2024-05-10T22:00:00.000Z'),
         );
       },
     );
@@ -144,11 +144,11 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "dateTimeDefaultPersistNow" field value should match the provided value',
       () async {
-        var date = DateTime.parse('2024-05-05T22:00:00.000Z');
-        var specificObject = DateTimeDefaultPersist(
+        final date = DateTime.parse('2024-05-05T22:00:00.000Z');
+        final specificObject = DateTimeDefaultPersist(
           dateTimeDefaultPersistNow: date,
         );
-        var specificDatabaseObject = await DateTimeDefaultPersist.db.insertRow(
+        final specificDatabaseObject = await DateTimeDefaultPersist.db.insertRow(
           session,
           specificObject,
         );
@@ -162,11 +162,11 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "dateTimeDefaultPersistStr" field value should match the provided value',
       () async {
-        var date = DateTime.parse('2024-05-05T22:00:00.000Z');
-        var specificObject = DateTimeDefaultPersist(
+        final date = DateTime.parse('2024-05-05T22:00:00.000Z');
+        final specificObject = DateTimeDefaultPersist(
           dateTimeDefaultPersistStr: date,
         );
-        var specificDatabaseObject = await DateTimeDefaultPersist.db.insertRow(
+        final specificDatabaseObject = await DateTimeDefaultPersist.db.insertRow(
           session,
           specificObject,
         );

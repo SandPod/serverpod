@@ -2,14 +2,14 @@ import 'package:serverpod/serverpod.dart';
 import 'package:serverpod_auth_server/serverpod_auth_server.dart' as auth;
 import 'package:serverpod_chat_server/serverpod_chat_server.dart' as chat;
 
-import 'src/generated/protocol.dart';
 import 'src/generated/endpoints.dart';
+import 'src/generated/protocol.dart';
 
 // This is the starting point of your Serverpod server. In most cases, you will
 // only need to make additions to this file if you add future calls,  are
 // configuring Relic (Serverpod's web-server), or need custom setup work.
 
-void run(List<String> args) async {
+void run(final List<String> args) async {
   // Initialize Serverpod and connect it with your generated code.
   final pod = Serverpod(
     args,
@@ -23,12 +23,12 @@ void run(List<String> args) async {
   // the users to validate their email.
   auth.AuthConfig.set(
     auth.AuthConfig(
-      sendValidationEmail: (session, email, validationCode) async {
+      sendValidationEmail: (final session, final email, final validationCode) async {
         print('Validation code: $validationCode');
         session.log('Code for $email is $validationCode');
         return true;
       },
-      sendPasswordResetEmail: (session, userInfo, validationCode) async {
+      sendPasswordResetEmail: (final session, final userInfo, final validationCode) async {
         print('Validation code: $validationCode');
         session.log('Code for ${userInfo.userName} is $validationCode');
         return true;
@@ -54,11 +54,11 @@ void run(List<String> args) async {
   await _populateDatabase(pod);
 }
 
-Future<void> _populateDatabase(Serverpod pod) async {
+Future<void> _populateDatabase(final Serverpod pod) async {
   // Create a session so that we can access the database.
-  var session = await pod.createSession();
+  final session = await pod.createSession();
 
-  var numChannels = await Channel.db.count(session);
+  final numChannels = await Channel.db.count(session);
   if (numChannels != 0) {
     // There are already entries in the database, whe shouldn't add them again.
     await session.close();

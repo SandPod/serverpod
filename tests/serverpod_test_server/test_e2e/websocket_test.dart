@@ -11,12 +11,12 @@ import 'package:serverpod_test_shared/serverpod_test_shared.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client(
+  final client = Client(
     serverUrl,
     authenticationKeyManager: TestAuthKeyManager(),
   );
 
-  var streamingStream = client.streaming.stream.asBroadcastStream();
+  final streamingStream = client.streaming.stream.asBroadcastStream();
 
   setUp(() {});
 
@@ -26,15 +26,15 @@ void main() {
         disconnectOnLostInternetConnection: false,
       );
 
-      var nums = [42, 1337, 69];
+      final nums = [42, 1337, 69];
 
-      for (var num in nums) {
+      for (final num in nums) {
         await client.streaming.sendStreamMessage(SimpleData(num: num));
       }
 
       var i = 0;
-      await for (var message in streamingStream) {
-        var simpleData = message as SimpleData;
+      await for (final message in streamingStream) {
+        final simpleData = message as SimpleData;
         expect(simpleData.num, nums[i]);
 
         i += 1;
@@ -52,13 +52,13 @@ void main() {
         disconnectOnLostInternetConnection: false,
       );
 
-      var resultFuture = client.customTypes.stream
+      final resultFuture = client.customTypes.stream
           .timeout(const Duration(seconds: 4))
           .first;
 
       await client.customTypes.sendStreamMessage(CustomClass('test'));
 
-      var result = await resultFuture;
+      final result = await resultFuture;
 
       expect(result, isNotNull);
       expect(result, isA<CustomClass>());
@@ -68,8 +68,8 @@ void main() {
 
   group('Modules', () {
     test('Send ModuleClass to module', () async {
-      var nums = [42, 1337, 69];
-      var names = ['Foo', 'Bar', 'Baz'];
+      final nums = [42, 1337, 69];
+      final names = ['Foo', 'Bar', 'Baz'];
 
       for (var i = 0; i < nums.length; i += 1) {
         await client.modules.module.streaming.sendStreamMessage(
@@ -78,8 +78,8 @@ void main() {
       }
 
       var i = 0;
-      await for (var message in client.modules.module.streaming.stream) {
-        var object = message as ModuleClass;
+      await for (final message in client.modules.module.streaming.stream) {
+        final object = message as ModuleClass;
         expect(object.data, nums[i]);
         expect(object.name, names[i]);
 
@@ -97,7 +97,7 @@ void main() {
     });
 
     test('Authenticate with correct credentials', () async {
-      var response = await client.authentication.authenticate(
+      final response = await client.authentication.authenticate(
         'test@foo.bar',
         'password',
       );
@@ -119,15 +119,15 @@ void main() {
     });
 
     test('Connect and send SimpleData while authenticated', () async {
-      var nums = [11, 22, 33];
+      final nums = [11, 22, 33];
 
-      for (var num in nums) {
+      for (final num in nums) {
         await client.signInRequired.sendStreamMessage(SimpleData(num: num));
       }
 
       var i = 0;
-      await for (var message in client.signInRequired.stream) {
-        var simpleData = message as SimpleData;
+      await for (final message in client.signInRequired.stream) {
+        final simpleData = message as SimpleData;
         expect(simpleData.num, nums[i]);
 
         i += 1;
@@ -150,7 +150,7 @@ void main() {
       await Future.delayed(const Duration(seconds: 1));
 
       // Authenticate and upgrade stream.
-      var response = await client.authentication.authenticate(
+      final response = await client.authentication.authenticate(
         'test@foo.bar',
         'password',
       );
@@ -166,15 +166,15 @@ void main() {
 
       await client.updateStreamingConnectionAuthenticationKey();
 
-      var nums = [11, 22, 33];
+      final nums = [11, 22, 33];
 
-      for (var num in nums) {
+      for (final num in nums) {
         await client.signInRequired.sendStreamMessage(SimpleData(num: num));
       }
 
       var i = 0;
-      await for (var message in client.signInRequired.stream) {
-        var simpleData = message as SimpleData;
+      await for (final message in client.signInRequired.stream) {
+        final simpleData = message as SimpleData;
         expect(simpleData.num, nums[i]);
 
         i += 1;
@@ -186,7 +186,7 @@ void main() {
 
     group('Given signed in user without "admin" scope', () {
       setUp(() async {
-        var response = await client.authentication.authenticate(
+        final response = await client.authentication.authenticate(
           'test@foo.bar',
           'password',
         );
@@ -224,7 +224,7 @@ void main() {
 
           expectLater(
             client.adminScopeRequired.stream.first.timeout(
-              Duration(seconds: 2),
+              const Duration(seconds: 2),
             ),
             throwsA(isA<TimeoutException>()),
           );
@@ -234,7 +234,7 @@ void main() {
 
     group('Given signed in user with "admin" scope', () {
       setUp(() async {
-        var response = await client.authentication.authenticate(
+        final response = await client.authentication.authenticate(
           'test@foo.bar',
           'password',
           [Scope.admin.name!],
@@ -274,11 +274,11 @@ void main() {
 
           expectLater(
             client.adminScopeRequired.stream.first.timeout(
-              Duration(seconds: 2),
+              const Duration(seconds: 2),
             ),
             completion(
               isA<SerializableModel>().having(
-                (e) => (e as SimpleData).num,
+                (final e) => (e as SimpleData).num,
                 'num',
                 streamedNumber,
               ),

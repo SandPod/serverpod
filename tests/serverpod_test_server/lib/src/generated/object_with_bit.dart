@@ -25,16 +25,16 @@ abstract class ObjectWithBit
   });
 
   factory ObjectWithBit({
-    int? id,
-    required _i1.Bit bit,
-    _i1.Bit? bitNullable,
-    required _i1.Bit bitIndexedHnsw,
-    required _i1.Bit bitIndexedHnswWithParams,
-    required _i1.Bit bitIndexedIvfflat,
-    required _i1.Bit bitIndexedIvfflatWithParams,
+    final int? id,
+    required final _i1.Bit bit,
+    final _i1.Bit? bitNullable,
+    required final _i1.Bit bitIndexedHnsw,
+    required final _i1.Bit bitIndexedHnswWithParams,
+    required final _i1.Bit bitIndexedIvfflat,
+    required final _i1.Bit bitIndexedIvfflatWithParams,
   }) = _ObjectWithBitImpl;
 
-  factory ObjectWithBit.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory ObjectWithBit.fromJson(final Map<String, dynamic> jsonSerialization) {
     return ObjectWithBit(
       id: jsonSerialization['id'] as int?,
       bit: _i1.BitJsonExtension.fromJson(jsonSerialization['bit']),
@@ -82,13 +82,13 @@ abstract class ObjectWithBit
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ObjectWithBit copyWith({
-    int? id,
-    _i1.Bit? bit,
-    _i1.Bit? bitNullable,
-    _i1.Bit? bitIndexedHnsw,
-    _i1.Bit? bitIndexedHnswWithParams,
-    _i1.Bit? bitIndexedIvfflat,
-    _i1.Bit? bitIndexedIvfflatWithParams,
+    final int? id,
+    final _i1.Bit? bit,
+    final _i1.Bit? bitNullable,
+    final _i1.Bit? bitIndexedHnsw,
+    final _i1.Bit? bitIndexedHnswWithParams,
+    final _i1.Bit? bitIndexedIvfflat,
+    final _i1.Bit? bitIndexedIvfflatWithParams,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -121,13 +121,13 @@ abstract class ObjectWithBit
   }
 
   static ObjectWithBitIncludeList includeList({
-    _i1.WhereExpressionBuilder<ObjectWithBitTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithBitTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ObjectWithBitTable>? orderByList,
-    ObjectWithBitInclude? include,
+    final _i1.WhereExpressionBuilder<ObjectWithBitTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithBitTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ObjectWithBitTable>? orderByList,
+    final ObjectWithBitInclude? include,
   }) {
     return ObjectWithBitIncludeList._(
       where: where,
@@ -150,13 +150,13 @@ class _Undefined {}
 
 class _ObjectWithBitImpl extends ObjectWithBit {
   _ObjectWithBitImpl({
-    int? id,
-    required _i1.Bit bit,
-    _i1.Bit? bitNullable,
-    required _i1.Bit bitIndexedHnsw,
-    required _i1.Bit bitIndexedHnswWithParams,
-    required _i1.Bit bitIndexedIvfflat,
-    required _i1.Bit bitIndexedIvfflatWithParams,
+    final int? id,
+    required final _i1.Bit bit,
+    final _i1.Bit? bitNullable,
+    required final _i1.Bit bitIndexedHnsw,
+    required final _i1.Bit bitIndexedHnswWithParams,
+    required final _i1.Bit bitIndexedIvfflat,
+    required final _i1.Bit bitIndexedIvfflatWithParams,
   }) : super._(
          id: id,
          bit: bit,
@@ -172,13 +172,13 @@ class _ObjectWithBitImpl extends ObjectWithBit {
   @_i1.useResult
   @override
   ObjectWithBit copyWith({
-    Object? id = _Undefined,
-    _i1.Bit? bit,
-    Object? bitNullable = _Undefined,
-    _i1.Bit? bitIndexedHnsw,
-    _i1.Bit? bitIndexedHnswWithParams,
-    _i1.Bit? bitIndexedIvfflat,
-    _i1.Bit? bitIndexedIvfflatWithParams,
+    final Object? id = _Undefined,
+    final _i1.Bit? bit,
+    final Object? bitNullable = _Undefined,
+    final _i1.Bit? bitIndexedHnsw,
+    final _i1.Bit? bitIndexedHnswWithParams,
+    final _i1.Bit? bitIndexedIvfflat,
+    final _i1.Bit? bitIndexedIvfflatWithParams,
   }) {
     return ObjectWithBit(
       id: id is int? ? id : this.id,
@@ -200,37 +200,37 @@ class _ObjectWithBitImpl extends ObjectWithBit {
 class ObjectWithBitUpdateTable extends _i1.UpdateTable<ObjectWithBitTable> {
   ObjectWithBitUpdateTable(super.table);
 
-  _i1.ColumnValue<_i1.Bit, _i1.Bit> bit(_i1.Bit value) => _i1.ColumnValue(
+  _i1.ColumnValue<_i1.Bit, _i1.Bit> bit(final _i1.Bit value) => _i1.ColumnValue(
     table.bit,
     value,
   );
 
-  _i1.ColumnValue<_i1.Bit, _i1.Bit> bitNullable(_i1.Bit? value) =>
+  _i1.ColumnValue<_i1.Bit, _i1.Bit> bitNullable(final _i1.Bit? value) =>
       _i1.ColumnValue(
         table.bitNullable,
         value,
       );
 
-  _i1.ColumnValue<_i1.Bit, _i1.Bit> bitIndexedHnsw(_i1.Bit value) =>
+  _i1.ColumnValue<_i1.Bit, _i1.Bit> bitIndexedHnsw(final _i1.Bit value) =>
       _i1.ColumnValue(
         table.bitIndexedHnsw,
         value,
       );
 
-  _i1.ColumnValue<_i1.Bit, _i1.Bit> bitIndexedHnswWithParams(_i1.Bit value) =>
+  _i1.ColumnValue<_i1.Bit, _i1.Bit> bitIndexedHnswWithParams(final _i1.Bit value) =>
       _i1.ColumnValue(
         table.bitIndexedHnswWithParams,
         value,
       );
 
-  _i1.ColumnValue<_i1.Bit, _i1.Bit> bitIndexedIvfflat(_i1.Bit value) =>
+  _i1.ColumnValue<_i1.Bit, _i1.Bit> bitIndexedIvfflat(final _i1.Bit value) =>
       _i1.ColumnValue(
         table.bitIndexedIvfflat,
         value,
       );
 
   _i1.ColumnValue<_i1.Bit, _i1.Bit> bitIndexedIvfflatWithParams(
-    _i1.Bit value,
+    final _i1.Bit value,
   ) => _i1.ColumnValue(
     table.bitIndexedIvfflatWithParams,
     value,
@@ -311,7 +311,7 @@ class ObjectWithBitInclude extends _i1.IncludeObject {
 
 class ObjectWithBitIncludeList extends _i1.IncludeList {
   ObjectWithBitIncludeList._({
-    _i1.WhereExpressionBuilder<ObjectWithBitTable>? where,
+    final _i1.WhereExpressionBuilder<ObjectWithBitTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -355,14 +355,14 @@ class ObjectWithBitRepository {
   /// );
   /// ```
   Future<List<ObjectWithBit>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ObjectWithBitTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithBitTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ObjectWithBitTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ObjectWithBitTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithBitTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ObjectWithBitTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<ObjectWithBit>(
       where: where?.call(ObjectWithBit.t),
@@ -393,13 +393,13 @@ class ObjectWithBitRepository {
   /// );
   /// ```
   Future<ObjectWithBit?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ObjectWithBitTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithBitTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ObjectWithBitTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ObjectWithBitTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithBitTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ObjectWithBitTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<ObjectWithBit>(
       where: where?.call(ObjectWithBit.t),
@@ -413,9 +413,9 @@ class ObjectWithBitRepository {
 
   /// Finds a single [ObjectWithBit] by its [id] or null if no such row exists.
   Future<ObjectWithBit?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<ObjectWithBit>(
       id,
@@ -430,9 +430,9 @@ class ObjectWithBitRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<ObjectWithBit>> insert(
-    _i1.Session session,
-    List<ObjectWithBit> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<ObjectWithBit> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<ObjectWithBit>(
       rows,
@@ -444,9 +444,9 @@ class ObjectWithBitRepository {
   ///
   /// The returned [ObjectWithBit] will have its `id` field set.
   Future<ObjectWithBit> insertRow(
-    _i1.Session session,
-    ObjectWithBit row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final ObjectWithBit row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<ObjectWithBit>(
       row,
@@ -460,10 +460,10 @@ class ObjectWithBitRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<ObjectWithBit>> update(
-    _i1.Session session,
-    List<ObjectWithBit> rows, {
-    _i1.ColumnSelections<ObjectWithBitTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<ObjectWithBit> rows, {
+    final _i1.ColumnSelections<ObjectWithBitTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<ObjectWithBit>(
       rows,
@@ -476,10 +476,10 @@ class ObjectWithBitRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<ObjectWithBit> updateRow(
-    _i1.Session session,
-    ObjectWithBit row, {
-    _i1.ColumnSelections<ObjectWithBitTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final ObjectWithBit row, {
+    final _i1.ColumnSelections<ObjectWithBitTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<ObjectWithBit>(
       row,
@@ -491,10 +491,10 @@ class ObjectWithBitRepository {
   /// Updates a single [ObjectWithBit] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<ObjectWithBit?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<ObjectWithBitUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<ObjectWithBitUpdateTable> columnValues,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<ObjectWithBit>(
       id,
@@ -506,15 +506,15 @@ class ObjectWithBitRepository {
   /// Updates all [ObjectWithBit]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<ObjectWithBit>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<ObjectWithBitUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<ObjectWithBitTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithBitTable>? orderBy,
-    _i1.OrderByListBuilder<ObjectWithBitTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<ObjectWithBitUpdateTable> columnValues,
+    required final _i1.WhereExpressionBuilder<ObjectWithBitTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithBitTable>? orderBy,
+    final _i1.OrderByListBuilder<ObjectWithBitTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<ObjectWithBit>(
       columnValues: columnValues(ObjectWithBit.t.updateTable),
@@ -532,9 +532,9 @@ class ObjectWithBitRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<ObjectWithBit>> delete(
-    _i1.Session session,
-    List<ObjectWithBit> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<ObjectWithBit> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<ObjectWithBit>(
       rows,
@@ -544,9 +544,9 @@ class ObjectWithBitRepository {
 
   /// Deletes a single [ObjectWithBit].
   Future<ObjectWithBit> deleteRow(
-    _i1.Session session,
-    ObjectWithBit row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final ObjectWithBit row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<ObjectWithBit>(
       row,
@@ -556,9 +556,9 @@ class ObjectWithBitRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<ObjectWithBit>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<ObjectWithBitTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<ObjectWithBitTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<ObjectWithBit>(
       where: where(ObjectWithBit.t),
@@ -569,10 +569,10 @@ class ObjectWithBitRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ObjectWithBitTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ObjectWithBitTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<ObjectWithBit>(
       where: where?.call(ObjectWithBit.t),

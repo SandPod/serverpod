@@ -7,11 +7,11 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   late RedisCache cache;
   setUpAll(() async {
-    var redisController = session.serverpod.redisController;
+    final redisController = session.serverpod.redisController;
     await redisController?.start();
     cache = RedisCache(Protocol(), redisController);
   });
@@ -21,7 +21,7 @@ void main() async {
   test('Given an object is stored in the cache '
       'when it is retrieved '
       'then the correct object is returned', () async {
-    var entry = SimpleData(num: 0);
+    final entry = SimpleData(num: 0);
 
     await cache.put('entry', entry);
     var retrieved = await cache.get<SimpleData>('entry');
@@ -37,7 +37,7 @@ void main() async {
   test('Given an object is stored in the cache with a lifetime '
       'when the lifetime expires '
       'then the object is no longer retrievable', () async {
-    var entry = SimpleData(num: 0);
+    final entry = SimpleData(num: 0);
 
     await cache.put(
       'entry',
@@ -55,13 +55,13 @@ void main() async {
   test('Given multiple objects are stored with the same key '
       'when a new object is added '
       'then the last object overwrites the previous one', () async {
-    var entryA = SimpleData(num: 0);
-    var entryB = SimpleData(num: 1);
+    final entryA = SimpleData(num: 0);
+    final entryB = SimpleData(num: 1);
 
     await cache.put('entry', entryA);
     await cache.put('entry', entryB);
 
-    var retrieved = await cache.get<SimpleData>('entry');
+    final retrieved = await cache.get<SimpleData>('entry');
     expect(retrieved!.num, equals(1));
   });
 
@@ -71,14 +71,14 @@ void main() async {
     await cache.put('entry:1337', SimpleData(num: 1337));
 
     await cache.invalidateKey('entry:1337');
-    var retrieved = await cache.get<SimpleData>('entry:1337');
+    final retrieved = await cache.get<SimpleData>('entry:1337');
     expect(retrieved, isNull);
   });
 
   test('Given an object is not in the cache '
       'when it is retrieved '
       'then null is returned', () async {
-    var retrieved = await cache.get<SimpleData>('invalidEntry');
+    final retrieved = await cache.get<SimpleData>('invalidEntry');
     expect(retrieved, isNull);
   });
 
@@ -102,7 +102,7 @@ void main() async {
       'when the object is retrieved again '
       'then the cache miss handler value is retrievable from the cache',
       () async {
-        var value = await cache.get<SimpleData>(cacheKey);
+        final value = await cache.get<SimpleData>(cacheKey);
         expect(value?.num, equals(1337));
       },
     );
@@ -126,7 +126,7 @@ void main() async {
 
     test('when the object is retrieved again '
         'then no value is set in the cache', () async {
-      var value = await cache.get<SimpleData>(cacheKey);
+      final value = await cache.get<SimpleData>(cacheKey);
       expect(value, isNull);
     });
   });
@@ -150,20 +150,20 @@ void main() async {
 
     test('when the object is retrieved again '
         'then the object in the cache is still retrievable', () async {
-      var value = await cache.get<SimpleData>(cacheKey);
+      final value = await cache.get<SimpleData>(cacheKey);
       expect(value?.num, equals(1));
     });
   });
 
   group('Given listener registered on a channel', () {
     const channelName = 'testChannel';
-    var messageSent = SimpleData(num: 1337);
+    final messageSent = SimpleData(num: 1337);
     late Completer<SimpleData?> messageCompleter;
-    MessageCentralListenerCallback listener = (message) {
+    void listener(final message) {
       if (message is SimpleData) {
         messageCompleter.complete(message);
       }
-    };
+    }
 
     setUp(() async {
       messageCompleter = Completer();
@@ -193,8 +193,8 @@ void main() async {
         global: true,
       );
 
-      var messageReceived = await messageCompleter.future.timeout(
-        Duration(seconds: 10),
+      final messageReceived = await messageCompleter.future.timeout(
+        const Duration(seconds: 10),
         onTimeout: () => null,
       );
 
@@ -204,7 +204,7 @@ void main() async {
 
     test('when a global message is published to the channel '
         'then confirmation is received', () async {
-      var published = await session.messages.postMessage(
+      final published = await session.messages.postMessage(
         channelName,
         messageSent,
         global: true,
@@ -214,13 +214,13 @@ void main() async {
     });
 
     group('when a global message is published to a different channel', () {
-      var uniqueChannelName = Uuid().v4();
+      final uniqueChannelName = const Uuid().v4();
       late Completer<SimpleData?> uniqueChannelMessageCompleter;
-      MessageCentralListenerCallback uniqueChannelListener = (message) {
+      void uniqueChannelListener(final message) {
         if (message is SimpleData) {
           uniqueChannelMessageCompleter.complete(message);
         }
-      };
+      }
 
       setUp(() async {
         session.messages.addListener(uniqueChannelName, uniqueChannelListener);
@@ -241,17 +241,17 @@ void main() async {
           global: true,
         );
 
-        var uniqueChannelMessageReceived = await uniqueChannelMessageCompleter
+        final uniqueChannelMessageReceived = await uniqueChannelMessageCompleter
             .future
             .timeout(
-              Duration(seconds: 10),
+              const Duration(seconds: 10),
               onTimeout: () => null,
             );
         expect(uniqueChannelMessageReceived, isNotNull);
 
         expectLater(
           messageCompleter.future.timeout(
-            Duration(milliseconds: 100),
+            const Duration(milliseconds: 100),
           ),
           throwsA(isA<TimeoutException>()),
         );
@@ -260,8 +260,8 @@ void main() async {
 
     test('when a global message is published to a channel with no listeners '
         'then the publish is still successful', () async {
-      var uniqueChannelName = Uuid().v4();
-      var published = await session.messages.postMessage(
+      final uniqueChannelName = const Uuid().v4();
+      final published = await session.messages.postMessage(
         uniqueChannelName,
         messageSent,
         global: true,
@@ -273,7 +273,7 @@ void main() async {
 
   group('Given a stopped Redis controller', () {
     setUp(() async {
-      var controller = session.serverpod.redisController;
+      final controller = session.serverpod.redisController;
       assert(controller != null, 'Expected Redis controller to be not null');
       if (controller != null) {
         await controller.stop();
@@ -281,7 +281,7 @@ void main() async {
     });
 
     tearDown(() async {
-      var controller = session.serverpod.redisController;
+      final controller = session.serverpod.redisController;
       assert(controller != null, 'Expected Redis controller to be not null');
       if (controller != null) {
         await controller.start();
@@ -289,7 +289,7 @@ void main() async {
     });
 
     test('when publishing a global message then the publish fails', () async {
-      var published = await session.messages.postMessage(
+      final published = await session.messages.postMessage(
         'testChannel',
         SimpleData(num: 1337),
         global: true,
@@ -328,7 +328,7 @@ void main() async {
           ),
           throwsA(
             isA<StateError>().having(
-              (e) => e.message,
+              (final e) => e.message,
               'message',
               'Redis needs to be enabled to use this method',
             ),

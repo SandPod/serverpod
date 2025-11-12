@@ -6,16 +6,16 @@ import 'package:serverpod/serverpod.dart';
 /// enure classes are not being matched by name only.
 abstract class AbstractBaseEndpoint extends Endpoint {
   /// This is a virtual method that must be overriden.
-  Future<String> virtualMethod(Session session);
+  Future<String> virtualMethod(final Session session);
 
   /// This method should not be present in the any generated class.
   @doNotGenerate
-  Future<String> ignoredMethod(Session session) async {
+  Future<String> ignoredMethod(final Session session) async {
     return 'ignoredMethod';
   }
 
   /// This body should not be present in the generated abstract class.
-  Future<String> abstractBaseMethod(Session session) async {
+  Future<String> abstractBaseMethod(final Session session) async {
     return 'abstractBaseMethod';
   }
 }
@@ -26,12 +26,12 @@ abstract class AbstractBaseEndpoint extends Endpoint {
 /// enure classes are not being matched by name only.
 class ConcreteBaseEndpoint extends AbstractBaseEndpoint {
   @override
-  Future<String> virtualMethod(Session session) async {
+  Future<String> virtualMethod(final Session session) async {
     return 'virtualMethod';
   }
 
   /// A concrete method that should be present in the generated class.
-  Future<String> concreteMethod(Session session) async {
+  Future<String> concreteMethod(final Session session) async {
     return 'concreteMethod';
   }
 }

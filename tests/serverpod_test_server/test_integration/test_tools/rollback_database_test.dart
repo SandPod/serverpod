@@ -8,8 +8,8 @@ import 'serverpod_test_tools.dart';
 void main() {
   withServerpod(
     'Given no explicit rollbackDatabase configuration when having multiple test cases',
-    (sessionBuilder, endpoints) {
-      var session = sessionBuilder.build();
+    (final sessionBuilder, final endpoints) {
+      final session = sessionBuilder.build();
 
       test(
         'then first test creates objects in the database that should be rolled back due to default rollbackDatabase.afterEach configuration',
@@ -44,8 +44,8 @@ void main() {
     group('when creating objects in a setUpAll', () {
       withServerpod(
         '',
-        (sessionBuilder, endpoints) {
-          var session = sessionBuilder.build();
+        (final sessionBuilder, final endpoints) {
+          final session = sessionBuilder.build();
           setUpAll(() async {
             await SimpleData.db.insert(
               session,
@@ -78,8 +78,8 @@ void main() {
 
       withServerpod(
         '',
-        (sessionBuilder, endpoints) {
-          var session = sessionBuilder.build();
+        (final sessionBuilder, final endpoints) {
+          final session = sessionBuilder.build();
 
           test(
             'then the database is rolled back after the first withServerpod',
@@ -96,8 +96,8 @@ void main() {
     group('when creating objects in a setUp', () {
       withServerpod(
         '',
-        (sessionBuilder, endpoints) {
-          var session = sessionBuilder.build();
+        (final sessionBuilder, final endpoints) {
+          final session = sessionBuilder.build();
 
           setUp(() async {
             await SimpleData.db.insert(session, [
@@ -133,8 +133,8 @@ void main() {
 
       withServerpod(
         '',
-        (sessionBuilder, endpoints) {
-          var session = sessionBuilder.build();
+        (final sessionBuilder, final endpoints) {
+          final session = sessionBuilder.build();
 
           test(
             'then the database is rolled back after the first withServerpod',
@@ -150,10 +150,10 @@ void main() {
 
     withServerpod(
       'when creating a copy of the session builder and creating new objects in the database in setUp',
-      (sessionBuilder, endpoints) {
-        var session = sessionBuilder.build();
-        var newSessionBuilder = sessionBuilder.copyWith();
-        var newSession = newSessionBuilder.build();
+      (final sessionBuilder, final endpoints) {
+        final session = sessionBuilder.build();
+        final newSessionBuilder = sessionBuilder.copyWith();
+        final newSession = newSessionBuilder.build();
         setUp(() async {
           await SimpleData.db.insert(newSession, [
             SimpleData(num: 111),
@@ -199,8 +199,8 @@ void main() {
     group('when creating objects in a setUpAll', () {
       withServerpod(
         '',
-        (sessionBuilder, endpoints) {
-          var session = sessionBuilder.build();
+        (final sessionBuilder, final endpoints) {
+          final session = sessionBuilder.build();
           setUpAll(() async {
             await SimpleData.db.insert(session, [
               SimpleData(num: 111),
@@ -235,8 +235,8 @@ void main() {
 
       withServerpod(
         '',
-        (sessionBuilder, endpoints) {
-          var session = sessionBuilder.build();
+        (final sessionBuilder, final endpoints) {
+          final session = sessionBuilder.build();
           test(
             'then the database is rolled back after the first withServerpod',
             () async {
@@ -252,8 +252,8 @@ void main() {
     group('when creating objects in a setUp', () {
       withServerpod(
         '',
-        (sessionBuilder, endpoints) {
-          var session = sessionBuilder.build();
+        (final sessionBuilder, final endpoints) {
+          final session = sessionBuilder.build();
           setUp(() async {
             await SimpleData.db.insert(session, [
               SimpleData(num: 111),
@@ -290,8 +290,8 @@ void main() {
 
       withServerpod(
         '',
-        (sessionBuilder, endpoints) {
-          var session = sessionBuilder.build();
+        (final sessionBuilder, final endpoints) {
+          final session = sessionBuilder.build();
 
           test(
             'then the database is rolled back after the first withServerpod',
@@ -310,8 +310,8 @@ void main() {
       () {
         withServerpod(
           '',
-          (sessionBuilder, endpoints) {
-            var session = sessionBuilder.build();
+          (final sessionBuilder, final endpoints) {
+            final session = sessionBuilder.build();
             test('then creates SimpleData in the first test', () async {
               await SimpleData.db.insert(session, [
                 SimpleData(num: 111),
@@ -335,8 +335,8 @@ void main() {
 
         withServerpod(
           '',
-          (sessionBuilder, endpoints) {
-            var session = sessionBuilder.build();
+          (final sessionBuilder, final endpoints) {
+            final session = sessionBuilder.build();
             test(
               'when fetching SimpleData after the first withServerpod then the database is rolled back',
               () async {
@@ -354,8 +354,8 @@ void main() {
   group('Given rollbackDatabase set to never', () {
     withServerpod(
       'when creating SimpleData in in one test and fetching it in the other',
-      (sessionBuilder, endpoints) {
-        var session = sessionBuilder.build();
+      (final sessionBuilder, final endpoints) {
+        final session = sessionBuilder.build();
         test('then creates SimpleData in the first test', () async {
           await SimpleData.db.insert(session, [
             SimpleData(num: 111),
@@ -380,13 +380,13 @@ void main() {
 
     withServerpod(
       'when fetching SimpleData after the first withServerpod',
-      (sessionBuilder, endpoints) {
-        var session = sessionBuilder.build();
+      (final sessionBuilder, final endpoints) {
+        final session = sessionBuilder.build();
 
         tearDownAll(() async {
           await SimpleData.db.deleteWhere(
             session,
-            where: (t) => Constant.bool(true),
+            where: (final t) => Constant.bool(true),
           );
         });
 

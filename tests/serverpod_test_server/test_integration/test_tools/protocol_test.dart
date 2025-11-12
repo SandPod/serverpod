@@ -5,7 +5,7 @@ import 'serverpod_test_tools.dart';
 void main() {
   withServerpod(
     'Given TestToolsEndpoint',
-    (sessionBuilder, endpoints) {
+    (final sessionBuilder, final endpoints) {
       test(
         'when calling method with positional arg then echoes the value',
         () async {

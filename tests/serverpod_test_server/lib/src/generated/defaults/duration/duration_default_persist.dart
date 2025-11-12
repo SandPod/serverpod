@@ -20,12 +20,12 @@ abstract class DurationDefaultPersist
   });
 
   factory DurationDefaultPersist({
-    int? id,
-    Duration? durationDefaultPersist,
+    final int? id,
+    final Duration? durationDefaultPersist,
   }) = _DurationDefaultPersistImpl;
 
   factory DurationDefaultPersist.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return DurationDefaultPersist(
       id: jsonSerialization['id'] as int?,
@@ -54,8 +54,8 @@ abstract class DurationDefaultPersist
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   DurationDefaultPersist copyWith({
-    int? id,
-    Duration? durationDefaultPersist,
+    final int? id,
+    final Duration? durationDefaultPersist,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -80,13 +80,13 @@ abstract class DurationDefaultPersist
   }
 
   static DurationDefaultPersistIncludeList includeList({
-    _i1.WhereExpressionBuilder<DurationDefaultPersistTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<DurationDefaultPersistTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<DurationDefaultPersistTable>? orderByList,
-    DurationDefaultPersistInclude? include,
+    final _i1.WhereExpressionBuilder<DurationDefaultPersistTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<DurationDefaultPersistTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<DurationDefaultPersistTable>? orderByList,
+    final DurationDefaultPersistInclude? include,
   }) {
     return DurationDefaultPersistIncludeList._(
       where: where,
@@ -109,8 +109,8 @@ class _Undefined {}
 
 class _DurationDefaultPersistImpl extends DurationDefaultPersist {
   _DurationDefaultPersistImpl({
-    int? id,
-    Duration? durationDefaultPersist,
+    final int? id,
+    final Duration? durationDefaultPersist,
   }) : super._(
          id: id,
          durationDefaultPersist: durationDefaultPersist,
@@ -121,8 +121,8 @@ class _DurationDefaultPersistImpl extends DurationDefaultPersist {
   @_i1.useResult
   @override
   DurationDefaultPersist copyWith({
-    Object? id = _Undefined,
-    Object? durationDefaultPersist = _Undefined,
+    final Object? id = _Undefined,
+    final Object? durationDefaultPersist = _Undefined,
   }) {
     return DurationDefaultPersist(
       id: id is int? ? id : this.id,
@@ -137,7 +137,7 @@ class DurationDefaultPersistUpdateTable
     extends _i1.UpdateTable<DurationDefaultPersistTable> {
   DurationDefaultPersistUpdateTable(super.table);
 
-  _i1.ColumnValue<Duration, Duration> durationDefaultPersist(Duration? value) =>
+  _i1.ColumnValue<Duration, Duration> durationDefaultPersist(final Duration? value) =>
       _i1.ColumnValue(
         table.durationDefaultPersist,
         value,
@@ -178,7 +178,7 @@ class DurationDefaultPersistInclude extends _i1.IncludeObject {
 
 class DurationDefaultPersistIncludeList extends _i1.IncludeList {
   DurationDefaultPersistIncludeList._({
-    _i1.WhereExpressionBuilder<DurationDefaultPersistTable>? where,
+    final _i1.WhereExpressionBuilder<DurationDefaultPersistTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -222,14 +222,14 @@ class DurationDefaultPersistRepository {
   /// );
   /// ```
   Future<List<DurationDefaultPersist>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<DurationDefaultPersistTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<DurationDefaultPersistTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<DurationDefaultPersistTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<DurationDefaultPersistTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<DurationDefaultPersistTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<DurationDefaultPersistTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<DurationDefaultPersist>(
       where: where?.call(DurationDefaultPersist.t),
@@ -260,13 +260,13 @@ class DurationDefaultPersistRepository {
   /// );
   /// ```
   Future<DurationDefaultPersist?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<DurationDefaultPersistTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<DurationDefaultPersistTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<DurationDefaultPersistTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<DurationDefaultPersistTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<DurationDefaultPersistTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<DurationDefaultPersistTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<DurationDefaultPersist>(
       where: where?.call(DurationDefaultPersist.t),
@@ -280,9 +280,9 @@ class DurationDefaultPersistRepository {
 
   /// Finds a single [DurationDefaultPersist] by its [id] or null if no such row exists.
   Future<DurationDefaultPersist?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<DurationDefaultPersist>(
       id,
@@ -297,9 +297,9 @@ class DurationDefaultPersistRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<DurationDefaultPersist>> insert(
-    _i1.Session session,
-    List<DurationDefaultPersist> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<DurationDefaultPersist> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<DurationDefaultPersist>(
       rows,
@@ -311,9 +311,9 @@ class DurationDefaultPersistRepository {
   ///
   /// The returned [DurationDefaultPersist] will have its `id` field set.
   Future<DurationDefaultPersist> insertRow(
-    _i1.Session session,
-    DurationDefaultPersist row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final DurationDefaultPersist row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<DurationDefaultPersist>(
       row,
@@ -327,10 +327,10 @@ class DurationDefaultPersistRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<DurationDefaultPersist>> update(
-    _i1.Session session,
-    List<DurationDefaultPersist> rows, {
-    _i1.ColumnSelections<DurationDefaultPersistTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<DurationDefaultPersist> rows, {
+    final _i1.ColumnSelections<DurationDefaultPersistTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<DurationDefaultPersist>(
       rows,
@@ -343,10 +343,10 @@ class DurationDefaultPersistRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<DurationDefaultPersist> updateRow(
-    _i1.Session session,
-    DurationDefaultPersist row, {
-    _i1.ColumnSelections<DurationDefaultPersistTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final DurationDefaultPersist row, {
+    final _i1.ColumnSelections<DurationDefaultPersistTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<DurationDefaultPersist>(
       row,
@@ -358,11 +358,11 @@ class DurationDefaultPersistRepository {
   /// Updates a single [DurationDefaultPersist] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<DurationDefaultPersist?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<DurationDefaultPersistUpdateTable>
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<DurationDefaultPersistUpdateTable>
     columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<DurationDefaultPersist>(
       id,
@@ -374,16 +374,16 @@ class DurationDefaultPersistRepository {
   /// Updates all [DurationDefaultPersist]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<DurationDefaultPersist>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<DurationDefaultPersistUpdateTable>
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<DurationDefaultPersistUpdateTable>
     columnValues,
-    required _i1.WhereExpressionBuilder<DurationDefaultPersistTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<DurationDefaultPersistTable>? orderBy,
-    _i1.OrderByListBuilder<DurationDefaultPersistTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    required final _i1.WhereExpressionBuilder<DurationDefaultPersistTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<DurationDefaultPersistTable>? orderBy,
+    final _i1.OrderByListBuilder<DurationDefaultPersistTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<DurationDefaultPersist>(
       columnValues: columnValues(DurationDefaultPersist.t.updateTable),
@@ -401,9 +401,9 @@ class DurationDefaultPersistRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<DurationDefaultPersist>> delete(
-    _i1.Session session,
-    List<DurationDefaultPersist> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<DurationDefaultPersist> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<DurationDefaultPersist>(
       rows,
@@ -413,9 +413,9 @@ class DurationDefaultPersistRepository {
 
   /// Deletes a single [DurationDefaultPersist].
   Future<DurationDefaultPersist> deleteRow(
-    _i1.Session session,
-    DurationDefaultPersist row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final DurationDefaultPersist row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<DurationDefaultPersist>(
       row,
@@ -425,9 +425,9 @@ class DurationDefaultPersistRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<DurationDefaultPersist>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<DurationDefaultPersistTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<DurationDefaultPersistTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<DurationDefaultPersist>(
       where: where(DurationDefaultPersist.t),
@@ -438,10 +438,10 @@ class DurationDefaultPersistRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<DurationDefaultPersistTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<DurationDefaultPersistTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<DurationDefaultPersist>(
       where: where?.call(DurationDefaultPersist.t),

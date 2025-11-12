@@ -32,16 +32,16 @@ void main() {
     // This method constantly yields a new integer every [delay] milliseconds.
     var outStream = client.methodStreaming.neverEndingStreamWithDelay(100);
     {
-      var valueReceivedCompleter = Completer<int>();
-      var errorReceivedCompleter = Completer<dynamic>();
+      final valueReceivedCompleter = Completer<int>();
+      final errorReceivedCompleter = Completer<dynamic>();
       outStream.listen(
-        (event) {
+        (final event) {
           if (valueReceivedCompleter.isCompleted) {
             return;
           }
           valueReceivedCompleter.complete(event);
         },
-        onError: (e) {
+        onError: (final e) {
           errorReceivedCompleter.complete(e);
         },
       );
@@ -53,7 +53,7 @@ void main() {
     }
 
     outStream = client.methodStreaming.neverEndingStreamWithDelay(100);
-    var value = outStream.first;
+    final value = outStream.first;
     await expectLater(value, completes);
   });
 }

@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with "defaultModel" fields,', () {
     tearDownAll(
@@ -17,8 +17,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "defaultModel=10.5" field value should be 10.5',
       () async {
-        var object = DoubleDefaultModel();
-        var databaseObject = await DoubleDefaultModel.db.insertRow(
+        final object = DoubleDefaultModel();
+        final databaseObject = await DoubleDefaultModel.db.insertRow(
           session,
           object,
         );
@@ -29,8 +29,8 @@ void main() async {
     test(
       'when creating a record in the database, then the nullable "defaultModel=20.5" field value should be 20.5',
       () async {
-        var object = DoubleDefaultModel();
-        var databaseObject = await DoubleDefaultModel.db.insertRow(
+        final object = DoubleDefaultModel();
+        final databaseObject = await DoubleDefaultModel.db.insertRow(
           session,
           object,
         );
@@ -41,10 +41,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "doubleDefaultModel" field value should match the provided value',
       () async {
-        var specificObject = DoubleDefaultModel(
+        final specificObject = DoubleDefaultModel(
           doubleDefaultModel: 30.5,
         );
-        var specificDatabaseObject = await DoubleDefaultModel.db.insertRow(
+        final specificDatabaseObject = await DoubleDefaultModel.db.insertRow(
           session,
           specificObject,
         );
@@ -55,10 +55,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "doubleDefaultModelNull" field value should match the provided value',
       () async {
-        var specificObject = DoubleDefaultModel(
+        final specificObject = DoubleDefaultModel(
           doubleDefaultModelNull: 40.5,
         );
-        var specificDatabaseObject = await DoubleDefaultModel.db.insertRow(
+        final specificDatabaseObject = await DoubleDefaultModel.db.insertRow(
           session,
           specificObject,
         );

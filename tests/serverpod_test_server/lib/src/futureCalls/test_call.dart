@@ -3,9 +3,9 @@ import 'package:serverpod_test_server/src/generated/protocol.dart';
 
 class TestCall extends FutureCall<SimpleData> {
   @override
-  Future<void> invoke(Session session, SimpleData? object) async {
+  Future<void> invoke(final Session session, final SimpleData? object) async {
     if (object != null) {
-      var data = object;
+      final data = object;
       session.log('${data.num}');
     } else {
       session.log('null');

@@ -20,7 +20,7 @@ enum AuthenticationFailReason implements _i1.SerializableModel {
   tooManyFailedAttempts,
   blocked;
 
-  static AuthenticationFailReason fromJson(int index) {
+  static AuthenticationFailReason fromJson(final int index) {
     switch (index) {
       case 0:
         return AuthenticationFailReason.invalidCredentials;

@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/src/generated/protocol.dart';
 import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
-Future<void> _createTestDatabase(Session session) async {
+Future<void> _createTestDatabase(final Session session) async {
   // Towns
   var stockholm = Town(name: 'Stockholm');
   var skinnskatteberg = Town(name: 'Skinnskatteberg');
@@ -38,8 +38,8 @@ Future<void> _createTestDatabase(Session session) async {
   haris = await Citizen.db.insertRow(session, haris);
 
   // Addresses
-  var alexAddress = Address(street: 'Götgatan 3', inhabitantId: alex.id!);
-  var isakAddress = Address(street: 'Kungsgatan 4', inhabitantId: isak.id!);
+  final alexAddress = Address(street: 'Götgatan 3', inhabitantId: alex.id!);
+  final isakAddress = Address(street: 'Kungsgatan 4', inhabitantId: isak.id!);
 
   await Address.db.insertRow(session, alexAddress);
   await Address.db.insertRow(session, isakAddress);
@@ -52,25 +52,25 @@ Future<void> _createTestDatabase(Session session) async {
   post1 = await Post.db.insertRow(session, post1);
 }
 
-Future<int> deleteAll(Session session) async {
-  var addressDeletions = await Address.db.deleteWhere(
+Future<int> deleteAll(final Session session) async {
+  final addressDeletions = await Address.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
-  var citizenDeletions = await Citizen.db.deleteWhere(
+  final citizenDeletions = await Citizen.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
-  var companyDeletions = await Company.db.deleteWhere(
+  final companyDeletions = await Company.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
-  var townDeletions = await Town.db.deleteWhere(
+  final townDeletions = await Town.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
 
-  var postDeletions = await Post.db.deleteWhere(
+  final postDeletions = await Post.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
@@ -83,7 +83,7 @@ Future<int> deleteAll(Session session) async {
 }
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with one to one relation', () {
     tearDown(() async {
@@ -97,7 +97,7 @@ void main() async {
     test(
       'when fetching models including relation then result includes relation data.',
       () async {
-        var towns = await Town.db.insert(session, [
+        final towns = await Town.db.insert(session, [
           Town(name: 'Stockholm'),
           Town(name: 'San Francisco'),
         ]);
@@ -106,15 +106,15 @@ void main() async {
           Company(name: 'Apple', townId: towns[1].id!),
         ]);
 
-        var companiesFetched = await Company.db.find(
+        final companiesFetched = await Company.db.find(
           session,
           include: Company.include(town: Town.include()),
-          orderBy: (t) => t.name,
+          orderBy: (final t) => t.name,
         );
 
-        var companyNames = companiesFetched.map((c) => c.name);
+        final companyNames = companiesFetched.map((final c) => c.name);
         expect(companyNames, containsAll(['Serverpod', 'Apple']));
-        var companyTownNames = companiesFetched.map((c) => c.town?.name);
+        final companyTownNames = companiesFetched.map((final c) => c.town?.name);
         expect(companyTownNames, containsAll(['Stockholm', 'San Francisco']));
       },
     );
@@ -136,11 +136,11 @@ void main() async {
     test(
       'when fetching models including nested relation then result includes nested relation data.',
       () async {
-        var towns = await Town.db.insert(session, [
+        final towns = await Town.db.insert(session, [
           Town(name: 'Stockholm'),
           Town(name: 'San Francisco'),
         ]);
-        var companies = await Company.db.insert(session, [
+        final companies = await Company.db.insert(session, [
           Company(name: 'Serverpod', townId: towns[0].id!),
           Company(name: 'Apple', townId: towns[1].id!),
         ]);
@@ -149,20 +149,20 @@ void main() async {
           Citizen(name: 'Lina', companyId: companies[1].id!),
         ]);
 
-        var citizensFetched = await Citizen.db.find(
+        final citizensFetched = await Citizen.db.find(
           session,
           include: Citizen.include(
             company: Company.include(town: Town.include()),
           ),
-          orderBy: (t) => t.name,
+          orderBy: (final t) => t.name,
         );
 
-        var citizenNames = citizensFetched.map((c) => c.name);
+        final citizenNames = citizensFetched.map((final c) => c.name);
         expect(citizenNames, ['Alex', 'Lina']);
-        var citizenCompanyNames = citizensFetched.map((c) => c.company?.name);
+        final citizenCompanyNames = citizensFetched.map((final c) => c.company?.name);
         expect(citizenCompanyNames, ['Serverpod', 'Apple']);
-        var citizenCompanyTownNames = citizensFetched.map(
-          (c) => c.company?.town?.name,
+        final citizenCompanyTownNames = citizensFetched.map(
+          (final c) => c.company?.town?.name,
         );
         expect(citizenCompanyTownNames, ['Stockholm', 'San Francisco']);
       },
@@ -177,7 +177,7 @@ void main() async {
         await _createTestDatabase(session);
         citizensWithDeepIncludes = await Citizen.db.find(
           session,
-          orderBy: (t) => t.id,
+          orderBy: (final t) => t.id,
           include: Citizen.include(
             company: Company.include(town: Town.include()),
             oldCompany: Company.include(town: Town.include()),
@@ -244,7 +244,7 @@ void main() async {
         await _createTestDatabase(session);
         citizensWithoutIncludes = await Citizen.db.find(
           session,
-          orderBy: (t) => t.id,
+          orderBy: (final t) => t.id,
         );
       });
 
@@ -292,7 +292,7 @@ void main() async {
         await _createTestDatabase(session);
         citizensWithShallowIncludes = await Citizen.db.find(
           session,
-          orderBy: (t) => t.id,
+          orderBy: (final t) => t.id,
           include: Citizen.include(
             company: Company.include(),
             oldCompany: Company.include(),
@@ -352,16 +352,16 @@ void main() async {
     late List<Citizen>? allCitizens;
     setUpAll(() async {
       await _createTestDatabase(session);
-      allCitizens = await Citizen.db.find(session, orderBy: (t) => t.id);
+      allCitizens = await Citizen.db.find(session, orderBy: (final t) => t.id);
     });
 
     tearDownAll(() async => await deleteAll(session));
 
     test('then retrieved citizen is same as expected.', () async {
       assert(allCitizens != null && allCitizens!.length > 1);
-      var secondCitizen = allCitizens![1];
+      final secondCitizen = allCitizens![1];
 
-      var citizenById = await Citizen.db.findById(
+      final citizenById = await Citizen.db.findById(
         session,
         secondCitizen.id!,
         include: Citizen.include(company: Company.include()),
@@ -382,7 +382,7 @@ void main() async {
         await _createTestDatabase(session);
         citizensIncludingAddress = await Citizen.db.find(
           session,
-          orderBy: (t) => t.id,
+          orderBy: (final t) => t.id,
           include: Citizen.include(
             address: Address.include(),
           ),
@@ -417,7 +417,7 @@ void main() async {
         await _createTestDatabase(session);
         addresses = await Address.db.find(
           session,
-          orderBy: (t) => t.id,
+          orderBy: (final t) => t.id,
           include: Address.include(
             inhabitant: Citizen.include(),
           ),
@@ -460,32 +460,32 @@ void main() async {
     });
 
     test('then the first post has a reference to the next post', () {
-      var firstPost = posts[2];
+      final firstPost = posts[2];
       expect(firstPost.next?.content, posts[1].content);
     });
 
     test('then the first post has a null reference to the previous post', () {
-      var firstPost = posts[2];
+      final firstPost = posts[2];
       expect(firstPost.previous, isNull);
     });
 
     test('then the second post has a reference to the next post', () {
-      var secondPost = posts[1];
+      final secondPost = posts[1];
       expect(secondPost.next?.content, posts[0].content);
     });
 
     test('then the second post has a reference to the previous post', () {
-      var secondPost = posts[1];
+      final secondPost = posts[1];
       expect(secondPost.previous?.content, posts[2].content);
     });
 
     test('then the third post has a null reference to the next post', () {
-      var thirdPost = posts[0];
+      final thirdPost = posts[0];
       expect(thirdPost.next, isNull);
     });
 
     test('then the third post has a reference to the previous post', () {
-      var thirdPost = posts[0];
+      final thirdPost = posts[0];
       expect(thirdPost.previous?.content, posts[1].content);
     });
   });

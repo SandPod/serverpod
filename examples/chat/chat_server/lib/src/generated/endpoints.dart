@@ -11,14 +11,15 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-import '../endpoints/channels.dart' as _i2;
 import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i3;
 import 'package:serverpod_chat_server/serverpod_chat_server.dart' as _i4;
 
+import '../endpoints/channels.dart' as _i2;
+
 class Endpoints extends _i1.EndpointDispatch {
   @override
-  void initializeEndpoints(_i1.Server server) {
-    var endpoints = <String, _i1.Endpoint>{
+  void initializeEndpoints(final _i1.Server server) {
+    final endpoints = <String, _i1.Endpoint>{
       'channels': _i2.ChannelsEndpoint()
         ..initialize(
           server,
@@ -35,8 +36,8 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {},
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
               ) async => (endpoints['channels'] as _i2.ChannelsEndpoint)
                   .getChannels(session),
         ),

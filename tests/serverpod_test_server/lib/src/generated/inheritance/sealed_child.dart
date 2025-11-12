@@ -19,7 +19,7 @@ class SealedChild extends _i1.SealedParent
     this.nullableInt,
   });
 
-  factory SealedChild.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory SealedChild.fromJson(final Map<String, dynamic> jsonSerialization) {
     return SealedChild(
       sealedInt: jsonSerialization['sealedInt'] as int,
       sealedString: jsonSerialization['sealedString'] as String,
@@ -33,9 +33,9 @@ class SealedChild extends _i1.SealedParent
   /// with some or all fields replaced by the given arguments.
   @_i2.useResult
   SealedChild copyWith({
-    int? sealedInt,
-    String? sealedString,
-    Object? nullableInt = _Undefined,
+    final int? sealedInt,
+    final String? sealedString,
+    final Object? nullableInt = _Undefined,
   }) {
     return SealedChild(
       sealedInt: sealedInt ?? this.sealedInt,

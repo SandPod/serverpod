@@ -12,7 +12,7 @@ class CompleterTestCall extends FutureCall<SimpleData> {
   final Completer<SimpleData?> completer = Completer<SimpleData?>();
 
   @override
-  Future<void> invoke(Session session, SimpleData? object) async {
+  Future<void> invoke(final Session session, final SimpleData? object) async {
     completer.complete(object);
   }
 }
@@ -21,7 +21,7 @@ class CounterTestCall extends FutureCall<SimpleData> {
   int counter = 0;
 
   @override
-  Future<void> invoke(Session session, SimpleData? object) async {
+  Future<void> invoke(final Session session, final SimpleData? object) async {
     counter++;
   }
 }
@@ -30,7 +30,7 @@ class ListTestCall extends FutureCall<SimpleData> {
   List<SimpleData?> list = [];
 
   @override
-  Future<void> invoke(Session session, SimpleData? object) async {
+  Future<void> invoke(final Session session, final SimpleData? object) async {
     list.add(object);
   }
 }
@@ -39,17 +39,17 @@ class DelayedListTestCall extends FutureCall<SimpleData> {
   List<SimpleData?> completed = [];
 
   @override
-  Future<void> invoke(Session session, SimpleData? object) async {
+  Future<void> invoke(final Session session, final SimpleData? object) async {
     await Future.delayed(Duration(milliseconds: object?.num ?? 0));
     completed.add(object);
   }
 }
 
 void main() async {
-  withServerpod('Given FutureCallManager', (sessionBuilder, _) {
+  withServerpod('Given FutureCallManager', (final sessionBuilder, _) {
     late FutureCallManager futureCallManager;
     late Session session;
-    var testCallName = 'test-db-entry-call';
+    const testCallName = 'test-db-entry-call';
 
     setUp(() async {
       session = sessionBuilder.build();
@@ -78,7 +78,7 @@ void main() async {
       test('then a FutureCallEntry is added to the database', () async {
         final futureCallEntries = await FutureCallEntry.db.find(
           session,
-          where: (entry) => entry.name.equals(testCallName),
+          where: (final entry) => entry.name.equals(testCallName),
         );
 
         expect(futureCallEntries, hasLength(1));
@@ -87,13 +87,13 @@ void main() async {
   });
 
   withServerpod('Given FutureCallManager with a scheduled FutureCall', (
-    sessionBuilder,
+    final sessionBuilder,
     _,
   ) {
     late FutureCallManager futureCallManager;
     late Session session;
-    var testCallName = 'test-cancel-future-call';
-    var identifier = 'unique-identifier-1337';
+    const testCallName = 'test-cancel-future-call';
+    const identifier = 'unique-identifier-1337';
 
     setUp(() async {
       session = sessionBuilder.build();
@@ -105,7 +105,7 @@ void main() async {
       await futureCallManager.scheduleFutureCall(
         testCallName,
         SimpleData(num: 4),
-        DateTime.now().add(Duration(days: 42)),
+        DateTime.now().add(const Duration(days: 42)),
         '1',
         identifier,
       );
@@ -119,7 +119,7 @@ void main() async {
       test('then the FutureCallEntry is removed from the database', () async {
         final futureCallEntries = await FutureCallEntry.db.find(
           session,
-          where: (entry) => entry.name.equals(testCallName),
+          where: (final entry) => entry.name.equals(testCallName),
         );
 
         expect(futureCallEntries, isEmpty);
@@ -128,13 +128,13 @@ void main() async {
   });
 
   withServerpod('Given FutureCallManager with a scheduled FutureCall', (
-    sessionBuilder,
+    final sessionBuilder,
     _,
   ) {
     late FutureCallManager futureCallManager;
     late Session session;
-    var testCallName = 'test-cancel-future-call-existing';
-    var identifier = 'unique-identifier-1337';
+    const testCallName = 'test-cancel-future-call-existing';
+    const identifier = 'unique-identifier-1337';
 
     setUp(() async {
       session = sessionBuilder.build();
@@ -146,7 +146,7 @@ void main() async {
       await futureCallManager.scheduleFutureCall(
         testCallName,
         SimpleData(num: 4),
-        DateTime.now().add(Duration(days: 42)),
+        DateTime.now().add(const Duration(days: 42)),
         '1',
         identifier,
       );
@@ -158,7 +158,7 @@ void main() async {
 
       final futureCallEntries = await FutureCallEntry.db.find(
         session,
-        where: (entry) => entry.name.equals(testCallName),
+        where: (final entry) => entry.name.equals(testCallName),
       );
 
       expect(futureCallEntries, hasLength(1));
@@ -167,11 +167,11 @@ void main() async {
 
   withServerpod(
     'Given FutureCallManager with a scheduled not-registered FutureCall',
-    (sessionBuilder, _) {
+    (final sessionBuilder, _) {
       late FutureCallManager futureCallManager;
       late Session session;
-      var testCallName = 'non-registered-future-call';
-      var identifier = 'very-unique-identifier';
+      const testCallName = 'non-registered-future-call';
+      const identifier = 'very-unique-identifier';
 
       setUp(() async {
         session = sessionBuilder.build();
@@ -183,7 +183,7 @@ void main() async {
         await futureCallManager.scheduleFutureCall(
           testCallName,
           SimpleData(num: 4),
-          DateTime.now().subtract(Duration(days: 42)),
+          DateTime.now().subtract(const Duration(days: 42)),
           '1',
           identifier,
         );
@@ -195,7 +195,7 @@ void main() async {
 
         final futureCallEntries = await FutureCallEntry.db.find(
           session,
-          where: (entry) => entry.name.equals(testCallName),
+          where: (final entry) => entry.name.equals(testCallName),
         );
 
         expect(futureCallEntries, isEmpty);
@@ -205,12 +205,12 @@ void main() async {
 
   withServerpod(
     'Given FutureCallManager with scheduled FutureCall that is due',
-    (sessionBuilder, _) {
+    (final sessionBuilder, _) {
       late FutureCallManager futureCallManager;
       late CompleterTestCall testCall;
       late Session session;
-      var testCallName = 'testCall';
-      var identifier = 'alex';
+      const testCallName = 'testCall';
+      const identifier = 'alex';
 
       setUp(() async {
         session = sessionBuilder.build();
@@ -254,17 +254,17 @@ void main() async {
 
   withServerpod(
     'Given FutureCallManager with registered future call that is not due',
-    (sessionBuilder, _) {
+    (final sessionBuilder, _) {
       late FutureCallManager futureCallManager;
       late CompleterTestCall testCall;
-      var testCallName = 'no-due-call';
-      var identifier = 'not-due-id';
+      const testCallName = 'no-due-call';
+      const identifier = 'not-due-id';
 
       setUp(() async {
         futureCallManager =
             FutureCallManagerBuilder.fromTestSessionBuilder(sessionBuilder)
                 .withConfig(
-                  FutureCallConfig(
+                  const FutureCallConfig(
                     // Set a short scan interval for testing
                     scanInterval: Duration(milliseconds: 1),
                   ),
@@ -277,7 +277,7 @@ void main() async {
         await futureCallManager.scheduleFutureCall(
           testCallName,
           SimpleData(num: 1),
-          DateTime.now().add(Duration(days: 1)),
+          DateTime.now().add(const Duration(days: 1)),
           '1',
           identifier,
         );
@@ -287,7 +287,7 @@ void main() async {
         setUp(() async {
           futureCallManager.start();
           // Wait briefly to allow processing to occur (or not occur)
-          await Future.delayed(Duration(milliseconds: 10));
+          await Future.delayed(const Duration(milliseconds: 10));
         });
 
         tearDown(() async {
@@ -302,19 +302,19 @@ void main() async {
   );
 
   withServerpod('Given FutureCallManager in continuous mode', (
-    sessionBuilder,
+    final sessionBuilder,
     _,
   ) {
     late FutureCallManager futureCallManager;
     late CompleterTestCall testCall;
-    var testCallName = 'continuous-mode-call';
-    var identifier = 'due-now-id';
+    const testCallName = 'continuous-mode-call';
+    const identifier = 'due-now-id';
 
     setUp(() async {
       futureCallManager =
           FutureCallManagerBuilder.fromTestSessionBuilder(sessionBuilder)
               .withConfig(
-                FutureCallConfig(
+                const FutureCallConfig(
                   // Set a short scan interval for testing
                   scanInterval: Duration(milliseconds: 1),
                 ),
@@ -336,7 +336,7 @@ void main() async {
         await futureCallManager.scheduleFutureCall(
           testCallName,
           SimpleData(num: 2),
-          DateTime.now().subtract(Duration(seconds: 1)), // Already due
+          DateTime.now().subtract(const Duration(seconds: 1)), // Already due
           '1',
           identifier,
         );
@@ -350,25 +350,25 @@ void main() async {
 
   withServerpod(
     'Given FutureCallManager that has been stopped from continuous mode',
-    (sessionBuilder, _) {
+    (final sessionBuilder, _) {
       late FutureCallManager futureCallManager;
       late CompleterTestCall testCall;
-      var testCallName = 'after-stop-call';
-      var canaryCallName = 'canary-call';
-      var identifier = 'stop-test-id';
+      const testCallName = 'after-stop-call';
+      const canaryCallName = 'canary-call';
+      const identifier = 'stop-test-id';
 
       setUp(() async {
         futureCallManager =
             FutureCallManagerBuilder.fromTestSessionBuilder(sessionBuilder)
                 .withConfig(
-                  FutureCallConfig(
+                  const FutureCallConfig(
                     // Set a short scan interval for testing
                     scanInterval: Duration(milliseconds: 1),
                   ),
                 )
                 .build();
 
-        var canaryCall = CompleterTestCall();
+        final canaryCall = CompleterTestCall();
         futureCallManager.registerFutureCall(
           canaryCall,
           canaryCallName,
@@ -410,7 +410,7 @@ void main() async {
           // Since scan interval is set to 1, we need to wait a bit to ensure
           // that the scheduler has had a chance to process any new calls if it
           // were to do so.
-          await Future.delayed(Duration(milliseconds: 100));
+          await Future.delayed(const Duration(milliseconds: 100));
 
           expect(testCall.completer.isCompleted, isFalse);
         },
@@ -420,12 +420,12 @@ void main() async {
 
   withServerpod(
     'Given FutureCallManager with due FutureCall scheduled multiple times',
-    (sessionBuilder, _) {
+    (final sessionBuilder, _) {
       late FutureCallManager futureCallManager;
       late CounterTestCall testCall;
       late Session session;
-      var testCallName = 'testCall';
-      var identifier = 'alex';
+      const testCallName = 'testCall';
+      const identifier = 'alex';
 
       setUp(() async {
         session = sessionBuilder.build();
@@ -480,19 +480,19 @@ void main() async {
 
   withServerpod(
     'Given FutureCallManager with due FutureCall scheduled multiple times with different passed due dates',
-    (sessionBuilder, _) {
+    (final sessionBuilder, _) {
       late FutureCallManager futureCallManager;
       late ListTestCall testCall;
-      var oldestSimpleData = SimpleData(num: 1);
-      var newestSimpleData = SimpleData(num: 2);
-      var testCallName = 'testCall';
-      var identifier = 'alex';
+      final oldestSimpleData = SimpleData(num: 1);
+      final newestSimpleData = SimpleData(num: 2);
+      const testCallName = 'testCall';
+      const identifier = 'alex';
 
       setUp(() async {
         futureCallManager =
             FutureCallManagerBuilder.fromTestSessionBuilder(sessionBuilder)
                 .withConfig(
-                  FutureCallConfig(
+                  const FutureCallConfig(
                     // Set a short scan interval for testing
                     scanInterval: Duration(milliseconds: 1),
                     concurrencyLimit: 1,
@@ -543,19 +543,19 @@ void main() async {
 
   withServerpod(
     'Given FutureCallManager with concurrency limit 2 and 2 FutureCalls are scheduled',
-    (sessionBuilder, _) {
+    (final sessionBuilder, _) {
       late FutureCallManager futureCallManager;
       late ListTestCall testCall;
-      var firstButSlowest = SimpleData(num: 1000);
-      var lastButFastest = SimpleData(num: 20);
-      var testCallName = 'testCall';
-      var identifier = 'alex';
+      final firstButSlowest = SimpleData(num: 1000);
+      final lastButFastest = SimpleData(num: 20);
+      const testCallName = 'testCall';
+      const identifier = 'alex';
 
       setUp(() async {
         futureCallManager =
             FutureCallManagerBuilder.fromTestSessionBuilder(sessionBuilder)
                 .withConfig(
-                  FutureCallConfig(
+                  const FutureCallConfig(
                     // Set a short scan interval for testing
                     scanInterval: Duration(milliseconds: 1),
                     concurrencyLimit: 2,

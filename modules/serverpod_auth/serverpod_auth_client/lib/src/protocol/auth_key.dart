@@ -24,22 +24,22 @@ abstract class AuthKey implements _i1.SerializableModel {
   });
 
   factory AuthKey({
-    int? id,
-    required int userId,
-    required String hash,
-    String? key,
-    required List<String> scopeNames,
-    required String method,
+    final int? id,
+    required final int userId,
+    required final String hash,
+    final String? key,
+    required final List<String> scopeNames,
+    required final String method,
   }) = _AuthKeyImpl;
 
-  factory AuthKey.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory AuthKey.fromJson(final Map<String, dynamic> jsonSerialization) {
     return AuthKey(
       id: jsonSerialization['id'] as int?,
       userId: jsonSerialization['userId'] as int,
       hash: jsonSerialization['hash'] as String,
       key: jsonSerialization['key'] as String?,
       scopeNames: (jsonSerialization['scopeNames'] as List)
-          .map((e) => e as String)
+          .map((final e) => e as String)
           .toList(),
       method: jsonSerialization['method'] as String,
     );
@@ -70,12 +70,12 @@ abstract class AuthKey implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   AuthKey copyWith({
-    int? id,
-    int? userId,
-    String? hash,
-    String? key,
-    List<String>? scopeNames,
-    String? method,
+    final int? id,
+    final int? userId,
+    final String? hash,
+    final String? key,
+    final List<String>? scopeNames,
+    final String? method,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -99,12 +99,12 @@ class _Undefined {}
 
 class _AuthKeyImpl extends AuthKey {
   _AuthKeyImpl({
-    int? id,
-    required int userId,
-    required String hash,
-    String? key,
-    required List<String> scopeNames,
-    required String method,
+    final int? id,
+    required final int userId,
+    required final String hash,
+    final String? key,
+    required final List<String> scopeNames,
+    required final String method,
   }) : super._(
          id: id,
          userId: userId,
@@ -119,19 +119,19 @@ class _AuthKeyImpl extends AuthKey {
   @_i1.useResult
   @override
   AuthKey copyWith({
-    Object? id = _Undefined,
-    int? userId,
-    String? hash,
-    Object? key = _Undefined,
-    List<String>? scopeNames,
-    String? method,
+    final Object? id = _Undefined,
+    final int? userId,
+    final String? hash,
+    final Object? key = _Undefined,
+    final List<String>? scopeNames,
+    final String? method,
   }) {
     return AuthKey(
       id: id is int? ? id : this.id,
       userId: userId ?? this.userId,
       hash: hash ?? this.hash,
       key: key is String? ? key : this.key,
-      scopeNames: scopeNames ?? this.scopeNames.map((e0) => e0).toList(),
+      scopeNames: scopeNames ?? this.scopeNames.map((final e0) => e0).toList(),
       method: method ?? this.method,
     );
   }

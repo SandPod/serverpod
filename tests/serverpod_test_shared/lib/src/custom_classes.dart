@@ -8,7 +8,7 @@ class CustomClass implements SerializableModel {
   @override
   String toJson() => value;
 
-  factory CustomClass.fromJson(dynamic data) {
+  factory CustomClass.fromJson(final dynamic data) {
     return CustomClass(data);
   }
 }
@@ -18,7 +18,7 @@ class CustomClass2 {
 
   const CustomClass2(this.value);
 
-  factory CustomClass2.fromJson(dynamic data) {
+  factory CustomClass2.fromJson(final dynamic data) {
     return CustomClass2(data['text']);
   }
 
@@ -42,7 +42,7 @@ class CustomClassWithoutProtocolSerialization {
   CustomClassWithoutProtocolSerialization copyWith() => this;
 
   factory CustomClassWithoutProtocolSerialization.fromJson(
-    Map<String, dynamic> data,
+    final Map<String, dynamic> data,
   ) {
     return CustomClassWithoutProtocolSerialization(
       serverSideValue: data['serverSideValue'] as String?,
@@ -71,7 +71,7 @@ class CustomClassWithProtocolSerialization implements ProtocolSerialization {
   CustomClassWithProtocolSerialization copyWith() => this;
 
   factory CustomClassWithProtocolSerialization.fromJson(
-    Map<String, dynamic> data,
+    final Map<String, dynamic> data,
   ) {
     return CustomClassWithProtocolSerialization(
       serverSideValue: data['serverSideValue'] as String?,
@@ -101,7 +101,7 @@ class CustomClassWithProtocolSerializationMethod {
   CustomClassWithProtocolSerializationMethod copyWith() => this;
 
   factory CustomClassWithProtocolSerializationMethod.fromJson(
-    Map<String, dynamic> data,
+    final Map<String, dynamic> data,
   ) {
     return CustomClassWithProtocolSerializationMethod(
       serverSideValue: data['serverSideValue'] as String?,

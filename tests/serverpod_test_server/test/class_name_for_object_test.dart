@@ -8,16 +8,16 @@ import 'package:serverpod_test_server/src/generated/protocol.dart' as server;
 import 'package:test/test.dart';
 
 void main() {
-  var serverProtocol = server.Protocol();
-  var clientProtocol = client.Protocol();
+  final serverProtocol = server.Protocol();
+  final clientProtocol = client.Protocol();
 
   test(
     'Given a Set with `int`s, when "getClassNameForObject" is called, then both server and client generate the same identifier',
     () {
-      var serverName = serverProtocol.getClassNameForObject(
+      final serverName = serverProtocol.getClassNameForObject(
         <int>{1},
       );
-      var clientName = clientProtocol.getClassNameForObject(
+      final clientName = clientProtocol.getClassNameForObject(
         <int>{1},
       );
 
@@ -29,16 +29,16 @@ void main() {
   test(
     'Given a serialized `Set<int>`, when "deserializeByClassName" is called, then both server and client can decode the data',
     () {
-      var serialized = {
+      final serialized = {
         'className': 'Set<int>',
         'data': [1, 2, 3],
       };
 
-      var serverResult = serverProtocol.deserializeByClassName(serialized);
+      final serverResult = serverProtocol.deserializeByClassName(serialized);
 
       expect(serverResult, {1, 2, 3});
 
-      var clientResult = clientProtocol.deserializeByClassName(serialized);
+      final clientResult = clientProtocol.deserializeByClassName(serialized);
 
       expect(clientResult, {1, 2, 3});
     },
@@ -47,18 +47,18 @@ void main() {
   test(
     'Given a serialized record `(int?,)?`, when "deserializeByClassName" is called, then both server and client can decode the data',
     () {
-      var serialized = {
+      final serialized = {
         'className': '(int?,)?',
         'data': {
           'p': [1234],
         },
       };
 
-      var serverResult = serverProtocol.deserializeByClassName(serialized);
+      final serverResult = serverProtocol.deserializeByClassName(serialized);
 
       expect(serverResult, (1234,));
 
-      var clientResult = clientProtocol.deserializeByClassName(serialized);
+      final clientResult = clientProtocol.deserializeByClassName(serialized);
 
       expect(clientResult, (1234,));
     },
@@ -67,10 +67,10 @@ void main() {
   test(
     'Given a list with a type from another module, when "getClassNameForObject" is called, then both server and client generate the same string with the module name included',
     () {
-      var serverName = serverProtocol.getClassNameForObject(
+      final serverName = serverProtocol.getClassNameForObject(
         <auth_server.UserInfo>[],
       );
-      var clientName = clientProtocol.getClassNameForObject(
+      final clientName = clientProtocol.getClassNameForObject(
         <auth_client.UserInfo>[],
       );
 
@@ -111,8 +111,8 @@ void main() {
 
       for (final MapEntry(key: className, value: cases)
           in modelClassesWithname.entries) {
-        var clientName = clientProtocol.getClassNameForObject(cases.$1);
-        var serverName = serverProtocol.getClassNameForObject(cases.$2);
+        final clientName = clientProtocol.getClassNameForObject(cases.$1);
+        final serverName = serverProtocol.getClassNameForObject(cases.$2);
 
         expect(serverName, className);
         expect(clientName, serverName);
@@ -123,7 +123,7 @@ void main() {
   test(
     'Given a serialized data from another module, when "deserializeByClassName" is called, then both server and client can decode the data`',
     () {
-      var serialized = {
+      final serialized = {
         'className': 'List<serverpod_auth.UserInfo>',
         'data': [
           {
@@ -135,26 +135,26 @@ void main() {
         ],
       };
 
-      var serverResult = serverProtocol.deserializeByClassName(serialized);
+      final serverResult = serverProtocol.deserializeByClassName(serialized);
 
       expect(
         serverResult,
         [
           isA<auth_server.UserInfo>().having(
-            (u) => u.userIdentifier,
+            (final u) => u.userIdentifier,
             'userIdentifier',
             'user1',
           ),
         ],
       );
 
-      var clientResult = clientProtocol.deserializeByClassName(serialized);
+      final clientResult = clientProtocol.deserializeByClassName(serialized);
 
       expect(
         clientResult,
         [
           isA<auth_client.UserInfo>().having(
-            (u) => u.userIdentifier,
+            (final u) => u.userIdentifier,
             'userIdentifier',
             'user1',
           ),

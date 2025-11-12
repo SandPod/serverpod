@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:serverpod_test_server/src/generated/protocol.dart';
 import 'package:serverpod/serverpod.dart';
+import 'package:serverpod_test_server/src/generated/protocol.dart';
 import 'package:serverpod_test_server/test_util/test_tags.dart';
 import 'package:test/test.dart';
 
@@ -12,20 +12,20 @@ void main() async {
     'Given read committed transaction isolation level and single row in database',
     rollbackDatabase: RollbackDatabase.disabled,
     testGroupTagsOverride: [TestTags.concurrencyOneTestTag],
-    (sessionBuilder, _) {
-      var session = sessionBuilder.build();
+    (final sessionBuilder, _) {
+      final session = sessionBuilder.build();
 
       tearDown(() async {
         await SimpleData.db.deleteWhere(
           session,
-          where: (t) => Constant.bool(true),
+          where: (final t) => Constant.bool(true),
         );
       });
 
       group(
         'Given read committed transaction isolation level and single row in database',
         () {
-          var settings = TransactionSettings(
+          const settings = TransactionSettings(
             isolationLevel: IsolationLevel.readCommitted,
           );
 
@@ -39,10 +39,10 @@ void main() async {
 
           test('when row is modified after first statement in transaction '
               'then transaction observes the updated value.', () async {
-            var c1 = Completer();
-            var c2 = Completer();
-            var transactionFuture = session.db.transaction(
-              (t) async {
+            final c1 = Completer();
+            final c2 = Completer();
+            final transactionFuture = session.db.transaction(
+              (final t) async {
                 await SimpleData.db.findById(
                   session,
                   testData.id!,
@@ -68,7 +68,7 @@ void main() async {
             );
             c2.complete();
 
-            var transactionResult = await transactionFuture;
+            final transactionResult = await transactionFuture;
             expect(transactionResult?.num, 2);
           });
         },
@@ -80,31 +80,31 @@ void main() async {
     'Given repeatable read transaction isolation level',
     rollbackDatabase: RollbackDatabase.disabled,
     testGroupTagsOverride: [TestTags.concurrencyOneTestTag],
-    (sessionBuilder, _) {
-      var session = sessionBuilder.build();
+    (final sessionBuilder, _) {
+      final session = sessionBuilder.build();
 
       tearDown(() async {
         await SimpleData.db.deleteWhere(
           session,
-          where: (t) => Constant.bool(true),
+          where: (final t) => Constant.bool(true),
         );
       });
 
-      var settings = TransactionSettings(
+      const settings = TransactionSettings(
         isolationLevel: IsolationLevel.repeatableRead,
       );
 
       test('when row is modified after first statement in transaction '
           'then transaction does NOT observe the updated value.', () async {
-        var testData = await SimpleData.db.insertRow(
+        final testData = await SimpleData.db.insertRow(
           session,
           SimpleData(num: 1),
         );
 
-        var c1 = Completer();
-        var c2 = Completer();
-        var transactionFuture = session.db.transaction(
-          (t) async {
+        final c1 = Completer();
+        final c2 = Completer();
+        final transactionFuture = session.db.transaction(
+          (final t) async {
             await SimpleData.db.findById(
               session,
               testData.id!,
@@ -130,26 +130,26 @@ void main() async {
         );
         c2.complete();
 
-        var result = await transactionFuture;
+        final result = await transactionFuture;
         expect(result?.num, 1);
       });
 
       test('when read row is concurrently modified by other transaction '
           'then modifications are preserved', () async {
-        var testData1 = await SimpleData.db.insertRow(
+        final testData1 = await SimpleData.db.insertRow(
           session,
           SimpleData(num: 1),
         );
-        var testData2 = await SimpleData.db.insertRow(
+        final testData2 = await SimpleData.db.insertRow(
           session,
           SimpleData(num: 2),
         );
-        var c1 = Completer();
-        var c2 = Completer();
+        final c1 = Completer();
+        final c2 = Completer();
 
-        var transaction1 = session.db.transaction(
-          (t) async {
-            var data1 = await SimpleData.db.findById(
+        final transaction1 = session.db.transaction(
+          (final t) async {
+            final data1 = await SimpleData.db.findById(
               session,
               testData1.id!,
               transaction: t,
@@ -167,9 +167,9 @@ void main() async {
           settings: settings,
         );
 
-        var transaction2 = session.db.transaction(
-          (t) async {
-            var data2 = await SimpleData.db.findById(
+        final transaction2 = session.db.transaction(
+          (final t) async {
+            final data2 = await SimpleData.db.findById(
               session,
               testData2.id!,
               transaction: t,
@@ -188,12 +188,12 @@ void main() async {
         );
 
         await Future.wait([transaction1, transaction2]);
-        var data1AfterTransaction = await SimpleData.db.findById(
+        final data1AfterTransaction = await SimpleData.db.findById(
           session,
           testData1.id!,
         );
         expect(data1AfterTransaction?.num, 22);
-        var data2AfterTransaction = await SimpleData.db.findById(
+        final data2AfterTransaction = await SimpleData.db.findById(
           session,
           testData2.id!,
         );
@@ -206,30 +206,30 @@ void main() async {
     'Given serializable transaction isolation level',
     rollbackDatabase: RollbackDatabase.disabled,
     testGroupTagsOverride: [TestTags.concurrencyOneTestTag],
-    (sessionBuilder, _) {
-      var session = sessionBuilder.build();
+    (final sessionBuilder, _) {
+      final session = sessionBuilder.build();
 
       tearDown(() async {
         await SimpleData.db.deleteWhere(
           session,
-          where: (t) => Constant.bool(true),
+          where: (final t) => Constant.bool(true),
         );
       });
 
-      var settings = TransactionSettings(
+      const settings = TransactionSettings(
         isolationLevel: IsolationLevel.serializable,
       );
 
       test('when row is modified after first statement in transaction '
           'then transaction does NOT observe the updated value.', () async {
-        var testData = await SimpleData.db.insertRow(
+        final testData = await SimpleData.db.insertRow(
           session,
           SimpleData(num: 1),
         );
-        var c1 = Completer();
-        var c2 = Completer();
-        var transactionFuture = session.db.transaction(
-          (t) async {
+        final c1 = Completer();
+        final c2 = Completer();
+        final transactionFuture = session.db.transaction(
+          (final t) async {
             await SimpleData.db.findById(
               session,
               testData.id!,
@@ -255,32 +255,32 @@ void main() async {
         );
         c2.complete();
 
-        var result = await transactionFuture;
+        final result = await transactionFuture;
         expect(result?.num, 1);
       });
 
       test('when read row is concurrently modified by other transaction '
           'then database exception is thrown for one transaction', () async {
-        var testData1 = await SimpleData.db.insertRow(
+        final testData1 = await SimpleData.db.insertRow(
           session,
           SimpleData(num: 1),
         );
-        var testData2 = await SimpleData.db.insertRow(
+        final testData2 = await SimpleData.db.insertRow(
           session,
           SimpleData(num: 2),
         );
-        var c1 = Completer();
-        var c2 = Completer();
+        final c1 = Completer();
+        final c2 = Completer();
 
-        var transaction1 = session.db.transaction(
-          (t) async {
-            var data1 = await SimpleData.db.findById(
+        final transaction1 = session.db.transaction(
+          (final t) async {
+            final data1 = await SimpleData.db.findById(
               session,
               testData1.id!,
               transaction: t,
             );
 
-            await Future.delayed(Duration(milliseconds: 100));
+            await Future.delayed(const Duration(milliseconds: 100));
 
             c1.complete();
             await c2.future;
@@ -294,9 +294,9 @@ void main() async {
           settings: settings,
         );
 
-        var transaction2 = session.db.transaction(
-          (t) async {
-            var data2 = await SimpleData.db.findById(
+        final transaction2 = session.db.transaction(
+          (final t) async {
+            final data2 = await SimpleData.db.findById(
               session,
               testData2.id!,
               transaction: t,
@@ -318,19 +318,19 @@ void main() async {
           transaction1,
           throwsA(
             isA<DatabaseQueryException>().having(
-              (e) => e.code,
+              (final e) => e.code,
               'code',
               PgErrorCode.serializationFailure,
             ),
           ),
         );
         await transaction2;
-        var data1AfterTransaction = await SimpleData.db.findById(
+        final data1AfterTransaction = await SimpleData.db.findById(
           session,
           testData1.id!,
         );
         expect(data1AfterTransaction?.num, 22);
-        var data2AfterTransaction = await SimpleData.db.findById(
+        final data2AfterTransaction = await SimpleData.db.findById(
           session,
           testData2.id!,
         );

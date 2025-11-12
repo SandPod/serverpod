@@ -13,12 +13,12 @@ class FutureCallConfigBuilder {
     );
   }
 
-  FutureCallConfigBuilder withConcurrencyLimit(int? concurrencyLimit) {
+  FutureCallConfigBuilder withConcurrencyLimit(final int? concurrencyLimit) {
     _concurrencyLimit = concurrencyLimit;
     return this;
   }
 
-  FutureCallConfigBuilder withScanInterval(Duration scanInterval) {
+  FutureCallConfigBuilder withScanInterval(final Duration scanInterval) {
     _scanInterval = scanInterval;
     return this;
   }

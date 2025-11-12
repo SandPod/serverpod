@@ -21,22 +21,22 @@ abstract class ServerOnlyClassField
   });
 
   factory ServerOnlyClassField({
-    List<_i2.ServerOnlyClass>? serverOnlyClassList,
-    Map<String, _i2.ServerOnlyClass>? serverOnlyClassMap,
+    final List<_i2.ServerOnlyClass>? serverOnlyClassList,
+    final Map<String, _i2.ServerOnlyClass>? serverOnlyClassMap,
   }) = _ServerOnlyClassFieldImpl;
 
   factory ServerOnlyClassField.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return ServerOnlyClassField(
       serverOnlyClassList: (jsonSerialization['serverOnlyClassList'] as List?)
           ?.map(
-            (e) => _i2.ServerOnlyClass.fromJson((e as Map<String, dynamic>)),
+            (final e) => _i2.ServerOnlyClass.fromJson((e as Map<String, dynamic>)),
           )
           .toList(),
       serverOnlyClassMap: (jsonSerialization['serverOnlyClassMap'] as Map?)
           ?.map(
-            (k, v) => MapEntry(
+            (final k, final v) => MapEntry(
               k as String,
               _i2.ServerOnlyClass.fromJson((v as Map<String, dynamic>)),
             ),
@@ -52,19 +52,19 @@ abstract class ServerOnlyClassField
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ServerOnlyClassField copyWith({
-    List<_i2.ServerOnlyClass>? serverOnlyClassList,
-    Map<String, _i2.ServerOnlyClass>? serverOnlyClassMap,
+    final List<_i2.ServerOnlyClass>? serverOnlyClassList,
+    final Map<String, _i2.ServerOnlyClass>? serverOnlyClassMap,
   });
   @override
   Map<String, dynamic> toJson() {
     return {
       if (serverOnlyClassList != null)
         'serverOnlyClassList': serverOnlyClassList?.toJson(
-          valueToJson: (v) => v.toJson(),
+          valueToJson: (final v) => v.toJson(),
         ),
       if (serverOnlyClassMap != null)
         'serverOnlyClassMap': serverOnlyClassMap?.toJson(
-          valueToJson: (v) => v.toJson(),
+          valueToJson: (final v) => v.toJson(),
         ),
     };
   }
@@ -84,8 +84,8 @@ class _Undefined {}
 
 class _ServerOnlyClassFieldImpl extends ServerOnlyClassField {
   _ServerOnlyClassFieldImpl({
-    List<_i2.ServerOnlyClass>? serverOnlyClassList,
-    Map<String, _i2.ServerOnlyClass>? serverOnlyClassMap,
+    final List<_i2.ServerOnlyClass>? serverOnlyClassList,
+    final Map<String, _i2.ServerOnlyClass>? serverOnlyClassMap,
   }) : super._(
          serverOnlyClassList: serverOnlyClassList,
          serverOnlyClassMap: serverOnlyClassMap,
@@ -96,20 +96,20 @@ class _ServerOnlyClassFieldImpl extends ServerOnlyClassField {
   @_i1.useResult
   @override
   ServerOnlyClassField copyWith({
-    Object? serverOnlyClassList = _Undefined,
-    Object? serverOnlyClassMap = _Undefined,
+    final Object? serverOnlyClassList = _Undefined,
+    final Object? serverOnlyClassMap = _Undefined,
   }) {
     return ServerOnlyClassField(
       serverOnlyClassList: serverOnlyClassList is List<_i2.ServerOnlyClass>?
           ? serverOnlyClassList
-          : this.serverOnlyClassList?.map((e0) => e0.copyWith()).toList(),
+          : this.serverOnlyClassList?.map((final e0) => e0.copyWith()).toList(),
       serverOnlyClassMap:
           serverOnlyClassMap is Map<String, _i2.ServerOnlyClass>?
           ? serverOnlyClassMap
           : this.serverOnlyClassMap?.map(
               (
-                key0,
-                value0,
+                final key0,
+                final value0,
               ) => MapEntry(
                 key0,
                 value0.copyWith(),

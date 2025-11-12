@@ -16,7 +16,7 @@ enum ByIndexEnum implements _i1.SerializableModel {
   byIndex1,
   byIndex2;
 
-  static ByIndexEnum fromJson(int index) {
+  static ByIndexEnum fromJson(final int index) {
     switch (index) {
       case 0:
         return ByIndexEnum.byIndex1;

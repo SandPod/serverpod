@@ -6,7 +6,7 @@ import 'package:serverpod_test_server/test_util/test_service_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var serviceClient = Client(
+  final serviceClient = Client(
     serviceServerUrl,
     authenticationKeyManager: TestServiceKeyManager(
       '0',
@@ -25,9 +25,9 @@ void main() {
     test(
       'when creating and applying migration then database contains new table.',
       () async {
-        var tableName = 'migrated_table';
-        var tag = 'add-table';
-        var targetStateProtocols = {
+        const tableName = 'migrated_table';
+        const tag = 'add-table';
+        final targetStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -37,7 +37,7 @@ fields:
 ''',
         };
 
-        var createMigrationExitCode =
+        final createMigrationExitCode =
             await MigrationTestUtils.createMigrationFromProtocols(
               protocols: targetStateProtocols,
               tag: tag,
@@ -48,7 +48,7 @@ fields:
           reason: 'Failed to create migration, exit code was not 0.',
         );
 
-        var applyMigrationExitCode =
+        final applyMigrationExitCode =
             await MigrationTestUtils.runApplyMigrations();
         expect(
           applyMigrationExitCode,
@@ -56,9 +56,9 @@ fields:
           reason: 'Failed to apply migration, exit code was not 0.',
         );
 
-        var liveDefinition = await serviceClient.insights
+        final liveDefinition = await serviceClient.insights
             .getLiveDatabaseDefinition();
-        var databaseTables = liveDefinition.tables.map((t) => t.name);
+        final databaseTables = liveDefinition.tables.map((final t) => t.name);
         expect(
           databaseTables,
           contains(tableName),
@@ -80,13 +80,13 @@ fields:
     test(
       'when creating and applying migration then database contains new tables.',
       () async {
-        var tag = 'add-multiple-tables';
-        var tables = [
+        const tag = 'add-multiple-tables';
+        final tables = [
           'migrated_table',
           'migrated_table_2',
           'migrated_table_3',
         ];
-        var targetStateProtocols = {
+        final targetStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -110,7 +110,7 @@ fields:
 ''',
         };
 
-        var createMigrationExitCode =
+        final createMigrationExitCode =
             await MigrationTestUtils.createMigrationFromProtocols(
               protocols: targetStateProtocols,
               tag: tag,
@@ -121,7 +121,7 @@ fields:
           reason: 'Failed to create migration, exit code was not 0.',
         );
 
-        var applyMigrationExitCode =
+        final applyMigrationExitCode =
             await MigrationTestUtils.runApplyMigrations();
         expect(
           applyMigrationExitCode,
@@ -129,9 +129,9 @@ fields:
           reason: 'Failed to apply migration, exit code was not 0.',
         );
 
-        var liveDefinition = await serviceClient.insights
+        final liveDefinition = await serviceClient.insights
             .getLiveDatabaseDefinition();
-        var databaseTables = liveDefinition.tables.map((t) => t.name);
+        final databaseTables = liveDefinition.tables.map((final t) => t.name);
         expect(
           databaseTables,
           containsAll(tables),
@@ -150,8 +150,8 @@ fields:
     });
 
     test('when creating migration then creating migration fails.', () async {
-      var tag = 'drop-table';
-      var initialStateProtocols = {
+      const tag = 'drop-table';
+      final initialStateProtocols = {
         'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -164,8 +164,8 @@ fields:
         tag: tag,
       );
 
-      var targetStateProtocols = <String, String>{};
-      var createMigrationExitCode =
+      final targetStateProtocols = <String, String>{};
+      final createMigrationExitCode =
           await MigrationTestUtils.createMigrationFromProtocols(
             protocols: targetStateProtocols,
             tag: tag,
@@ -190,9 +190,9 @@ fields:
     test(
       'when creating migration using --force and applying it then table is removed from database.',
       () async {
-        var tag = 'drop-table';
-        var table = 'migrated_table';
-        var initialStateProtocols = {
+        const tag = 'drop-table';
+        const table = 'migrated_table';
+        final initialStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -206,8 +206,8 @@ fields:
           tag: tag,
         );
 
-        var targetStateProtocols = <String, String>{};
-        var createMigrationExitCode =
+        final targetStateProtocols = <String, String>{};
+        final createMigrationExitCode =
             await MigrationTestUtils.createMigrationFromProtocols(
               protocols: targetStateProtocols,
               tag: tag,
@@ -219,7 +219,7 @@ fields:
           reason: 'Failed to create migration, exit code was not 0.',
         );
 
-        var applyMigrationExitCode =
+        final applyMigrationExitCode =
             await MigrationTestUtils.runApplyMigrations();
         expect(
           applyMigrationExitCode,
@@ -227,9 +227,9 @@ fields:
           reason: 'Failed to apply migration, exit code was not 0.',
         );
 
-        var liveDefinition = await serviceClient.insights
+        final liveDefinition = await serviceClient.insights
             .getLiveDatabaseDefinition();
-        var databaseTables = liveDefinition.tables.map((t) => t.name);
+        final databaseTables = liveDefinition.tables.map((final t) => t.name);
         expect(
           databaseTables,
           isNot(contains(table)),
@@ -250,9 +250,9 @@ fields:
     test(
       'when creating and applying migration then contains new column.',
       () async {
-        var tag = 'add-nullable-column';
-        var table = 'migrated_table';
-        var initialStateProtocols = {
+        const tag = 'add-nullable-column';
+        const table = 'migrated_table';
+        final initialStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -266,8 +266,8 @@ fields:
           tag: tag,
         );
 
-        var addedColumn = 'addedColumn';
-        var targetStateProtocols = {
+        const addedColumn = 'addedColumn';
+        final targetStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -277,7 +277,7 @@ fields:
   $addedColumn: String?
 ''',
         };
-        var createMigrationExitCode =
+        final createMigrationExitCode =
             await MigrationTestUtils.createMigrationFromProtocols(
               protocols: targetStateProtocols,
               tag: tag,
@@ -288,7 +288,7 @@ fields:
           reason: 'Failed to create migration, exit code was not 0.',
         );
 
-        var applyMigrationExitCode =
+        final applyMigrationExitCode =
             await MigrationTestUtils.runApplyMigrations();
         expect(
           applyMigrationExitCode,
@@ -296,19 +296,19 @@ fields:
           reason: 'Failed to apply migration, exit code was not 0.',
         );
 
-        var liveDefinition = await serviceClient.insights
+        final liveDefinition = await serviceClient.insights
             .getLiveDatabaseDefinition();
-        var databaseTables = liveDefinition.tables.map((t) => t.name);
+        final databaseTables = liveDefinition.tables.map((final t) => t.name);
         expect(
           databaseTables,
           contains(table),
           reason: 'Could not find migration table in live table definitions.',
         );
 
-        var migratedTable = liveDefinition.tables.firstWhere(
-          (t) => t.name == table,
+        final migratedTable = liveDefinition.tables.firstWhere(
+          (final t) => t.name == table,
         );
-        var databaseColumns = migratedTable.columns.map((c) => c.name);
+        final databaseColumns = migratedTable.columns.map((final c) => c.name);
         expect(
           databaseColumns,
           contains(addedColumn),
@@ -329,10 +329,10 @@ fields:
     test(
       'when creating migration using --force and applying it then table is removed from database.',
       () async {
-        var tag = 'drop-column';
-        var table = 'migrated_table';
-        var columnToRemove = 'columnToRemove';
-        var initialStateProtocols = {
+        const tag = 'drop-column';
+        const table = 'migrated_table';
+        const columnToRemove = 'columnToRemove';
+        final initialStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -347,7 +347,7 @@ fields:
           tag: tag,
         );
 
-        var targetStateProtocols = {
+        final targetStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -356,7 +356,7 @@ fields:
   anInt: int
 ''',
         };
-        var createMigrationExitCode =
+        final createMigrationExitCode =
             await MigrationTestUtils.createMigrationFromProtocols(
               protocols: targetStateProtocols,
               tag: tag,
@@ -368,7 +368,7 @@ fields:
           reason: 'Failed to create migration, exit code was not 0.',
         );
 
-        var applyMigrationExitCode =
+        final applyMigrationExitCode =
             await MigrationTestUtils.runApplyMigrations();
         expect(
           applyMigrationExitCode,
@@ -376,19 +376,19 @@ fields:
           reason: 'Failed to apply migration, exit code was not 0.',
         );
 
-        var liveDefinition = await serviceClient.insights
+        final liveDefinition = await serviceClient.insights
             .getLiveDatabaseDefinition();
-        var databaseTables = liveDefinition.tables.map((t) => t.name);
+        final databaseTables = liveDefinition.tables.map((final t) => t.name);
         expect(
           databaseTables,
           contains(table),
           reason: 'Could not find migration table in live table definitions.',
         );
 
-        var migratedTable = liveDefinition.tables.firstWhere(
-          (t) => t.name == table,
+        final migratedTable = liveDefinition.tables.firstWhere(
+          (final t) => t.name == table,
         );
-        var databaseColumns = migratedTable.columns.map((c) => c.name);
+        final databaseColumns = migratedTable.columns.map((final c) => c.name);
         expect(
           databaseColumns,
           isNot(contains(columnToRemove)),
@@ -407,10 +407,10 @@ fields:
     });
 
     test('when creating migration then creating migration fails.', () async {
-      var tag = 'drop-column';
-      var table = 'migrated_table';
-      var columnToRemove = 'columnToRemove';
-      var initialStateProtocols = {
+      const tag = 'drop-column';
+      const table = 'migrated_table';
+      const columnToRemove = 'columnToRemove';
+      final initialStateProtocols = {
         'migrated_table':
             '''
 class: MigratedTable
@@ -425,7 +425,7 @@ fields:
         tag: tag,
       );
 
-      var targetStateProtocols = {
+      final targetStateProtocols = {
         'migrated_table':
             '''
 class: MigratedTable
@@ -434,7 +434,7 @@ fields:
   anInt: int
 ''',
       };
-      var createMigrationExitCode =
+      final createMigrationExitCode =
           await MigrationTestUtils.createMigrationFromProtocols(
             protocols: targetStateProtocols,
             tag: tag,
@@ -456,9 +456,9 @@ fields:
     });
 
     test('when creating migration then creating migration fails.', () async {
-      var tag = 'add-non-nullable-column';
-      var table = 'migrated_table';
-      var initialStateProtocols = {
+      const tag = 'add-non-nullable-column';
+      const table = 'migrated_table';
+      final initialStateProtocols = {
         'migrated_table':
             '''
 class: MigratedTable
@@ -472,8 +472,8 @@ fields:
         tag: tag,
       );
 
-      var addedColumn = 'addedColumn';
-      var targetStateProtocols = {
+      const addedColumn = 'addedColumn';
+      final targetStateProtocols = {
         'migrated_table':
             '''
 class: MigratedTable
@@ -483,7 +483,7 @@ fields:
   $addedColumn: String
 ''',
       };
-      var createMigrationExitCode =
+      final createMigrationExitCode =
           await MigrationTestUtils.createMigrationFromProtocols(
             protocols: targetStateProtocols,
             tag: tag,
@@ -507,9 +507,9 @@ fields:
     test(
       'when creating migration using --force and applying it then database contains new column.',
       () async {
-        var tag = 'add-non-nullable-column';
-        var table = 'migrated_table';
-        var initialStateProtocols = {
+        const tag = 'add-non-nullable-column';
+        const table = 'migrated_table';
+        final initialStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -523,8 +523,8 @@ fields:
           tag: tag,
         );
 
-        var addedColumn = 'addedColumn';
-        var targetStateProtocols = {
+        const addedColumn = 'addedColumn';
+        final targetStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -534,7 +534,7 @@ fields:
   $addedColumn: String
 ''',
         };
-        var createMigrationExitCode =
+        final createMigrationExitCode =
             await MigrationTestUtils.createMigrationFromProtocols(
               protocols: targetStateProtocols,
               tag: tag,
@@ -546,7 +546,7 @@ fields:
           reason: 'Failed to create migration, exit code was not 0.',
         );
 
-        var applyMigrationExitCode =
+        final applyMigrationExitCode =
             await MigrationTestUtils.runApplyMigrations();
         expect(
           applyMigrationExitCode,
@@ -554,19 +554,19 @@ fields:
           reason: 'Failed to apply migration, exit code was not 0.',
         );
 
-        var liveDefinition = await serviceClient.insights
+        final liveDefinition = await serviceClient.insights
             .getLiveDatabaseDefinition();
-        var databaseTables = liveDefinition.tables.map((t) => t.name);
+        final databaseTables = liveDefinition.tables.map((final t) => t.name);
         expect(
           databaseTables,
           contains(table),
           reason: 'Could not find migration table in live table definitions.',
         );
 
-        var migratedTable = liveDefinition.tables.firstWhere(
-          (t) => t.name == table,
+        final migratedTable = liveDefinition.tables.firstWhere(
+          (final t) => t.name == table,
         );
-        var databaseColumns = migratedTable.columns.map((c) => c.name);
+        final databaseColumns = migratedTable.columns.map((final c) => c.name);
         expect(
           databaseColumns,
           contains(addedColumn),
@@ -587,10 +587,10 @@ fields:
     test(
       'when creating and applying migration then database column is nullable.',
       () async {
-        var tag = 'add-column-nullability';
-        var table = 'migrated_table';
-        var columnToModify = 'previouslyNonNullableColumn';
-        var initialStateProtocols = {
+        const tag = 'add-column-nullability';
+        const table = 'migrated_table';
+        const columnToModify = 'previouslyNonNullableColumn';
+        final initialStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -605,7 +605,7 @@ fields:
           tag: tag,
         );
 
-        var targetStateProtocols = {
+        final targetStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -615,7 +615,7 @@ fields:
   $columnToModify: String?
 ''',
         };
-        var createMigrationExitCode =
+        final createMigrationExitCode =
             await MigrationTestUtils.createMigrationFromProtocols(
               protocols: targetStateProtocols,
               tag: tag,
@@ -626,7 +626,7 @@ fields:
           reason: 'Failed to create migration, exit code was not 0.',
         );
 
-        var applyMigrationExitCode =
+        final applyMigrationExitCode =
             await MigrationTestUtils.runApplyMigrations();
         expect(
           applyMigrationExitCode,
@@ -634,27 +634,27 @@ fields:
           reason: 'Failed to apply migration, exit code was not 0.',
         );
 
-        var liveDefinition = await serviceClient.insights
+        final liveDefinition = await serviceClient.insights
             .getLiveDatabaseDefinition();
-        var databaseTables = liveDefinition.tables.map((t) => t.name);
+        final databaseTables = liveDefinition.tables.map((final t) => t.name);
         expect(
           databaseTables,
           contains(table),
           reason: 'Could not find migration table in live table definitions.',
         );
 
-        var migratedTable = liveDefinition.tables.firstWhere(
-          (t) => t.name == table,
+        final migratedTable = liveDefinition.tables.firstWhere(
+          (final t) => t.name == table,
         );
-        var migratedTableColumnNames = migratedTable.columns.map((c) => c.name);
+        final migratedTableColumnNames = migratedTable.columns.map((final c) => c.name);
         expect(
           migratedTableColumnNames,
           contains(columnToModify),
           reason: 'Could not find modified column in migrated table columns.',
         );
 
-        var migratedTableColumn = migratedTable.columns.firstWhere(
-          (c) => c.name == columnToModify,
+        final migratedTableColumn = migratedTable.columns.firstWhere(
+          (final c) => c.name == columnToModify,
         );
         expect(
           migratedTableColumn.isNullable,
@@ -676,10 +676,10 @@ fields:
     test(
       'when creating migration using --force and applying it then database contains non nullable column.',
       () async {
-        var tag = 'drop-column-nullability';
-        var table = 'migrated_table';
-        var columnToModify = 'previouslyNullableColumn';
-        var initialStateProtocols = {
+        const tag = 'drop-column-nullability';
+        const table = 'migrated_table';
+        const columnToModify = 'previouslyNullableColumn';
+        final initialStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -694,7 +694,7 @@ fields:
           tag: tag,
         );
 
-        var targetStateProtocols = {
+        final targetStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -704,7 +704,7 @@ fields:
   $columnToModify: String
 ''',
         };
-        var createMigrationExitCode =
+        final createMigrationExitCode =
             await MigrationTestUtils.createMigrationFromProtocols(
               protocols: targetStateProtocols,
               tag: tag,
@@ -716,7 +716,7 @@ fields:
           reason: 'Failed to create migration, exit code was not 0.',
         );
 
-        var applyMigrationExitCode =
+        final applyMigrationExitCode =
             await MigrationTestUtils.runApplyMigrations();
         expect(
           applyMigrationExitCode,
@@ -724,27 +724,27 @@ fields:
           reason: 'Failed to apply migration, exit code was not 0.',
         );
 
-        var liveDefinition = await serviceClient.insights
+        final liveDefinition = await serviceClient.insights
             .getLiveDatabaseDefinition();
-        var databaseTables = liveDefinition.tables.map((t) => t.name);
+        final databaseTables = liveDefinition.tables.map((final t) => t.name);
         expect(
           databaseTables,
           contains(table),
           reason: 'Could not find migration table in live table definitions.',
         );
 
-        var migratedTable = liveDefinition.tables.firstWhere(
-          (t) => t.name == table,
+        final migratedTable = liveDefinition.tables.firstWhere(
+          (final t) => t.name == table,
         );
-        var migratedTableColumnNames = migratedTable.columns.map((c) => c.name);
+        final migratedTableColumnNames = migratedTable.columns.map((final c) => c.name);
         expect(
           migratedTableColumnNames,
           contains(columnToModify),
           reason: 'Could not find modified column in migrated table columns.',
         );
 
-        var migratedTableColumn = migratedTable.columns.firstWhere(
-          (c) => c.name == columnToModify,
+        final migratedTableColumn = migratedTable.columns.firstWhere(
+          (final c) => c.name == columnToModify,
         );
         expect(
           migratedTableColumn.isNullable,
@@ -766,10 +766,10 @@ fields:
       });
 
       test('when creating migration then creating migration fails.', () async {
-        var tag = 'drop-column-nullability';
-        var table = 'migrated_table';
-        var columnToModify = 'previouslyNullableColumn';
-        var initialStateProtocols = {
+        const tag = 'drop-column-nullability';
+        const table = 'migrated_table';
+        const columnToModify = 'previouslyNullableColumn';
+        final initialStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -784,7 +784,7 @@ fields:
           tag: tag,
         );
 
-        var targetStateProtocols = {
+        final targetStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -794,7 +794,7 @@ fields:
   $columnToModify: String
 ''',
         };
-        var createMigrationExitCode =
+        final createMigrationExitCode =
             await MigrationTestUtils.createMigrationFromProtocols(
               protocols: targetStateProtocols,
               tag: tag,
@@ -819,9 +819,9 @@ fields:
     test(
       'when creating and applying migration then contains new index.',
       () async {
-        var tag = 'add-index';
-        var table = 'migrated_table';
-        var initialStateProtocols = {
+        const tag = 'add-index';
+        const table = 'migrated_table';
+        final initialStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -835,8 +835,8 @@ fields:
           tag: tag,
         );
 
-        var addedIndex = 'migrated_table_index';
-        var targetStateProtocols = {
+        const addedIndex = 'migrated_table_index';
+        final targetStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -850,7 +850,7 @@ indexes:
 
 ''',
         };
-        var createMigrationExitCode =
+        final createMigrationExitCode =
             await MigrationTestUtils.createMigrationFromProtocols(
               protocols: targetStateProtocols,
               tag: tag,
@@ -861,7 +861,7 @@ indexes:
           reason: 'Failed to create migration, exit code was not 0.',
         );
 
-        var applyMigrationExitCode =
+        final applyMigrationExitCode =
             await MigrationTestUtils.runApplyMigrations();
         expect(
           applyMigrationExitCode,
@@ -869,19 +869,19 @@ indexes:
           reason: 'Failed to apply migration, exit code was not 0.',
         );
 
-        var liveDefinition = await serviceClient.insights
+        final liveDefinition = await serviceClient.insights
             .getLiveDatabaseDefinition();
-        var databaseTables = liveDefinition.tables.map((t) => t.name);
+        final databaseTables = liveDefinition.tables.map((final t) => t.name);
         expect(
           databaseTables,
           contains(table),
           reason: 'Could not find migration table in live table definitions.',
         );
 
-        var migratedTable = liveDefinition.tables.firstWhere(
-          (t) => t.name == table,
+        final migratedTable = liveDefinition.tables.firstWhere(
+          (final t) => t.name == table,
         );
-        var tableIndexes = migratedTable.indexes.map((i) => i.indexName);
+        final tableIndexes = migratedTable.indexes.map((final i) => i.indexName);
         expect(
           tableIndexes,
           contains(addedIndex),
@@ -902,10 +902,10 @@ indexes:
     test(
       'when creating and applying migration then index is removed from database.',
       () async {
-        var tag = 'drop-index';
-        var table = 'migrated_table';
-        var indexToRemove = 'migrated_table_index';
-        var initialStateProtocols = {
+        const tag = 'drop-index';
+        const table = 'migrated_table';
+        const indexToRemove = 'migrated_table_index';
+        final initialStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -923,7 +923,7 @@ indexes:
           tag: tag,
         );
 
-        var targetStateProtocols = {
+        final targetStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -933,7 +933,7 @@ fields:
 
 ''',
         };
-        var createMigrationExitCode =
+        final createMigrationExitCode =
             await MigrationTestUtils.createMigrationFromProtocols(
               protocols: targetStateProtocols,
               tag: tag,
@@ -944,7 +944,7 @@ fields:
           reason: 'Failed to create migration, exit code was not 0.',
         );
 
-        var applyMigrationExitCode =
+        final applyMigrationExitCode =
             await MigrationTestUtils.runApplyMigrations();
         expect(
           applyMigrationExitCode,
@@ -952,19 +952,19 @@ fields:
           reason: 'Failed to apply migration, exit code was not 0.',
         );
 
-        var liveDefinition = await serviceClient.insights
+        final liveDefinition = await serviceClient.insights
             .getLiveDatabaseDefinition();
-        var databaseTables = liveDefinition.tables.map((t) => t.name);
+        final databaseTables = liveDefinition.tables.map((final t) => t.name);
         expect(
           databaseTables,
           contains(table),
           reason: 'Could not find migration table in live table definitions.',
         );
 
-        var migratedTable = liveDefinition.tables.firstWhere(
-          (t) => t.name == table,
+        final migratedTable = liveDefinition.tables.firstWhere(
+          (final t) => t.name == table,
         );
-        var tableIndexes = migratedTable.indexes.map((i) => i.indexName);
+        final tableIndexes = migratedTable.indexes.map((final i) => i.indexName);
         expect(
           tableIndexes,
           isNot(contains(indexToRemove)),
@@ -985,9 +985,9 @@ fields:
     test(
       'when creating and applying migration then database contains new relation.',
       () async {
-        var tag = 'add-relation';
-        var table = 'migrated_table';
-        var initialStateProtocols = {
+        const tag = 'add-relation';
+        const table = 'migrated_table';
+        final initialStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -1001,7 +1001,7 @@ fields:
           tag: tag,
         );
 
-        var targetStateProtocols = {
+        final targetStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -1010,7 +1010,7 @@ fields:
   anInt: int, relation(parent=migrated_table)
 ''',
         };
-        var createMigrationExitCode =
+        final createMigrationExitCode =
             await MigrationTestUtils.createMigrationFromProtocols(
               protocols: targetStateProtocols,
               tag: tag,
@@ -1021,7 +1021,7 @@ fields:
           reason: 'Failed to create migration, exit code was not 0.',
         );
 
-        var applyMigrationExitCode =
+        final applyMigrationExitCode =
             await MigrationTestUtils.runApplyMigrations();
         expect(
           applyMigrationExitCode,
@@ -1029,19 +1029,19 @@ fields:
           reason: 'Failed to apply migration, exit code was not 0.',
         );
 
-        var liveDefinition = await serviceClient.insights
+        final liveDefinition = await serviceClient.insights
             .getLiveDatabaseDefinition();
-        var databaseTables = liveDefinition.tables.map((t) => t.name);
+        final databaseTables = liveDefinition.tables.map((final t) => t.name);
         expect(
           databaseTables,
           contains(table),
           reason: 'Could not find migration table in live table definitions.',
         );
 
-        var migratedTable = liveDefinition.tables.firstWhere(
-          (t) => t.name == table,
+        final migratedTable = liveDefinition.tables.firstWhere(
+          (final t) => t.name == table,
         );
-        var relations = migratedTable.foreignKeys;
+        final relations = migratedTable.foreignKeys;
         expect(
           relations,
           isNotEmpty,
@@ -1062,9 +1062,9 @@ fields:
     test(
       'when creating and applying migration then relation is removed from database.',
       () async {
-        var tag = 'drop-relation';
-        var table = 'migrated_table';
-        var initialStateProtocols = {
+        const tag = 'drop-relation';
+        const table = 'migrated_table';
+        final initialStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -1078,7 +1078,7 @@ fields:
           tag: tag,
         );
 
-        var targetStateProtocols = {
+        final targetStateProtocols = {
           'migrated_table':
               '''
 class: MigratedTable
@@ -1087,7 +1087,7 @@ fields:
   anInt: int
 ''',
         };
-        var createMigrationExitCode =
+        final createMigrationExitCode =
             await MigrationTestUtils.createMigrationFromProtocols(
               protocols: targetStateProtocols,
               tag: tag,
@@ -1098,7 +1098,7 @@ fields:
           reason: 'Failed to create migration, exit code was not 0.',
         );
 
-        var applyMigrationExitCode =
+        final applyMigrationExitCode =
             await MigrationTestUtils.runApplyMigrations();
         expect(
           applyMigrationExitCode,
@@ -1106,19 +1106,19 @@ fields:
           reason: 'Failed to apply migration, exit code was not 0.',
         );
 
-        var liveDefinition = await serviceClient.insights
+        final liveDefinition = await serviceClient.insights
             .getLiveDatabaseDefinition();
-        var databaseTables = liveDefinition.tables.map((t) => t.name);
+        final databaseTables = liveDefinition.tables.map((final t) => t.name);
         expect(
           databaseTables,
           contains(table),
           reason: 'Could not find migration table in live table definitions.',
         );
 
-        var migratedTable = liveDefinition.tables.firstWhere(
-          (t) => t.name == table,
+        final migratedTable = liveDefinition.tables.firstWhere(
+          (final t) => t.name == table,
         );
-        var relations = migratedTable.foreignKeys;
+        final relations = migratedTable.foreignKeys;
         expect(
           relations,
           isEmpty,
@@ -1138,14 +1138,14 @@ fields:
     test(
       'when creating migration then create migration exits with error and migration is not created.',
       () async {
-        var tag = 'invalid-protocol';
-        var targetStateProtocols = {
+        const tag = 'invalid-protocol';
+        final targetStateProtocols = {
           'migrated_table': '''
 This is not a valid protocol file, in yaml format
 ''',
         };
 
-        var createMigrationExitCode =
+        final createMigrationExitCode =
             await MigrationTestUtils.createMigrationFromProtocols(
               protocols: targetStateProtocols,
               tag: tag,
@@ -1156,7 +1156,7 @@ This is not a valid protocol file, in yaml format
           reason: 'Should fail to create migration but exit code 0.',
         );
 
-        var migrationRegistry = MigrationTestUtils.loadMigrationRegistry();
+        final migrationRegistry = MigrationTestUtils.loadMigrationRegistry();
         expect(migrationRegistry.versions, isNot(contains(tag)));
       },
     );
@@ -1172,8 +1172,8 @@ This is not a valid protocol file, in yaml format
     test(
       'when creating migration then create migration exits with error and migration is not created.',
       () async {
-        var tag = 'managed-false';
-        var targetStateProtocols = {
+        const tag = 'managed-false';
+        final targetStateProtocols = {
           'migrated_table': '''
 class: MigratedTable
 managedMigration: false
@@ -1183,7 +1183,7 @@ fields:
 ''',
         };
 
-        var createMigrationExitCode =
+        final createMigrationExitCode =
             await MigrationTestUtils.createMigrationFromProtocols(
               protocols: targetStateProtocols,
               tag: tag,
@@ -1194,7 +1194,7 @@ fields:
           reason: 'Should fail to create migration but exit code 0.',
         );
 
-        var migrationRegistry = MigrationTestUtils.loadMigrationRegistry();
+        final migrationRegistry = MigrationTestUtils.loadMigrationRegistry();
         expect(migrationRegistry.versions, isNot(contains(tag)));
       },
     );
@@ -1204,8 +1204,8 @@ fields:
   group(
     'Given an existing table when a new table is added that is lexically sorted after the existing table and the existing table references the new table',
     () {
-      var oldTable = 'a_old_table';
-      var newTable = 'z_new_table';
+      const oldTable = 'a_old_table';
+      const newTable = 'z_new_table';
       tearDown(() async {
         await MigrationTestUtils.migrationTestCleanup(
           resetSql: 'DROP TABLE IF EXISTS $oldTable, $newTable;',
@@ -1216,9 +1216,9 @@ fields:
       test(
         'when creating and applying migrations then both tables and the relation exist in the database.',
         () async {
-          var initialTag = 'create-old-table';
+          const initialTag = 'create-old-table';
           // a Prefix ensure that it is lexically sorted before the new table
-          var initialStateProtocols = {
+          final initialStateProtocols = {
             oldTable:
                 '''
 class: OldTable
@@ -1232,9 +1232,9 @@ fields:
             tag: initialTag,
           );
 
-          var newTag = 'add-new-table-with-relation';
+          const newTag = 'add-new-table-with-relation';
           // z Prefix ensure that it is lexically sorted after the old table
-          var targetStateProtocols = {
+          final targetStateProtocols = {
             oldTable:
                 '''
 class: OldTable
@@ -1252,7 +1252,7 @@ fields:
 ''',
           };
 
-          var createMigrationExitCode =
+          final createMigrationExitCode =
               await MigrationTestUtils.createMigrationFromProtocols(
                 protocols: targetStateProtocols,
                 tag: newTag,
@@ -1263,7 +1263,7 @@ fields:
             reason: 'Failed to create migration, exit code was not 0.',
           );
 
-          var applyNewMigrationExitCode =
+          final applyNewMigrationExitCode =
               await MigrationTestUtils.runApplyMigrations();
           expect(
             applyNewMigrationExitCode,
@@ -1271,19 +1271,19 @@ fields:
             reason: 'Failed to apply new migration, exit code was not 0.',
           );
 
-          var liveDefinition = await serviceClient.insights
+          final liveDefinition = await serviceClient.insights
               .getLiveDatabaseDefinition();
-          var databaseTables = liveDefinition.tables.map((t) => t.name);
+          final databaseTables = liveDefinition.tables.map((final t) => t.name);
           expect(
             databaseTables,
             containsAll([oldTable, newTable]),
             reason: 'Could not find both tables in live table definitions.',
           );
 
-          var oldTableDefinition = liveDefinition.tables.firstWhere(
-            (t) => t.name == oldTable,
+          final oldTableDefinition = liveDefinition.tables.firstWhere(
+            (final t) => t.name == oldTable,
           );
-          var relations = oldTableDefinition.foreignKeys;
+          final relations = oldTableDefinition.foreignKeys;
           expect(
             relations,
             isNotEmpty,

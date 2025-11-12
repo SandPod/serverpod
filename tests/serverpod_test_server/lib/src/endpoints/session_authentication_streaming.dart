@@ -3,8 +3,8 @@ import 'package:serverpod_test_server/src/generated/protocol.dart';
 
 class SessionAuthenticationStreamingEndpoint extends Endpoint {
   @override
-  Future<void> streamOpened(StreamingSession session) async {
-    var auth = session.authenticated;
+  Future<void> streamOpened(final StreamingSession session) async {
+    final auth = session.authenticated;
     // ignore: deprecated_member_use
     await sendStreamMessage(
       session,
@@ -14,10 +14,10 @@ class SessionAuthenticationStreamingEndpoint extends Endpoint {
 
   @override
   Future<void> handleStreamMessage(
-    StreamingSession session,
-    SerializableModel message,
+    final StreamingSession session,
+    final SerializableModel message,
   ) async {
-    var auth = session.authenticated;
+    final auth = session.authenticated;
     // ignore: deprecated_member_use
     await sendStreamMessage(
       session,
@@ -26,5 +26,5 @@ class SessionAuthenticationStreamingEndpoint extends Endpoint {
   }
 
   @override
-  Future<void> streamClosed(StreamingSession session) async {}
+  Future<void> streamClosed(final StreamingSession session) async {}
 }

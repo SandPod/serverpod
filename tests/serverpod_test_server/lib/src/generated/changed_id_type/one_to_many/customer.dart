@@ -24,17 +24,17 @@ abstract class CustomerInt
   });
 
   factory CustomerInt({
-    int? id,
-    required String name,
-    List<_i2.OrderUuid>? orders,
+    final int? id,
+    required final String name,
+    final List<_i2.OrderUuid>? orders,
   }) = _CustomerIntImpl;
 
-  factory CustomerInt.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory CustomerInt.fromJson(final Map<String, dynamic> jsonSerialization) {
     return CustomerInt(
       id: jsonSerialization['id'] as int?,
       name: jsonSerialization['name'] as String,
       orders: (jsonSerialization['orders'] as List?)
-          ?.map((e) => _i2.OrderUuid.fromJson((e as Map<String, dynamic>)))
+          ?.map((final e) => _i2.OrderUuid.fromJson((e as Map<String, dynamic>)))
           .toList(),
     );
   }
@@ -57,9 +57,9 @@ abstract class CustomerInt
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   CustomerInt copyWith({
-    int? id,
-    String? name,
-    List<_i2.OrderUuid>? orders,
+    final int? id,
+    final String? name,
+    final List<_i2.OrderUuid>? orders,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -67,7 +67,7 @@ abstract class CustomerInt
       if (id != null) 'id': id,
       'name': name,
       if (orders != null)
-        'orders': orders?.toJson(valueToJson: (v) => v.toJson()),
+        'orders': orders?.toJson(valueToJson: (final v) => v.toJson()),
     };
   }
 
@@ -77,22 +77,22 @@ abstract class CustomerInt
       if (id != null) 'id': id,
       'name': name,
       if (orders != null)
-        'orders': orders?.toJson(valueToJson: (v) => v.toJsonForProtocol()),
+        'orders': orders?.toJson(valueToJson: (final v) => v.toJsonForProtocol()),
     };
   }
 
-  static CustomerIntInclude include({_i2.OrderUuidIncludeList? orders}) {
+  static CustomerIntInclude include({final _i2.OrderUuidIncludeList? orders}) {
     return CustomerIntInclude._(orders: orders);
   }
 
   static CustomerIntIncludeList includeList({
-    _i1.WhereExpressionBuilder<CustomerIntTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<CustomerIntTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<CustomerIntTable>? orderByList,
-    CustomerIntInclude? include,
+    final _i1.WhereExpressionBuilder<CustomerIntTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<CustomerIntTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<CustomerIntTable>? orderByList,
+    final CustomerIntInclude? include,
   }) {
     return CustomerIntIncludeList._(
       where: where,
@@ -115,9 +115,9 @@ class _Undefined {}
 
 class _CustomerIntImpl extends CustomerInt {
   _CustomerIntImpl({
-    int? id,
-    required String name,
-    List<_i2.OrderUuid>? orders,
+    final int? id,
+    required final String name,
+    final List<_i2.OrderUuid>? orders,
   }) : super._(
          id: id,
          name: name,
@@ -129,16 +129,16 @@ class _CustomerIntImpl extends CustomerInt {
   @_i1.useResult
   @override
   CustomerInt copyWith({
-    Object? id = _Undefined,
-    String? name,
-    Object? orders = _Undefined,
+    final Object? id = _Undefined,
+    final String? name,
+    final Object? orders = _Undefined,
   }) {
     return CustomerInt(
       id: id is int? ? id : this.id,
       name: name ?? this.name,
       orders: orders is List<_i2.OrderUuid>?
           ? orders
-          : this.orders?.map((e0) => e0.copyWith()).toList(),
+          : this.orders?.map((final e0) => e0.copyWith()).toList(),
     );
   }
 }
@@ -146,7 +146,7 @@ class _CustomerIntImpl extends CustomerInt {
 class CustomerIntUpdateTable extends _i1.UpdateTable<CustomerIntTable> {
   CustomerIntUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> name(String value) => _i1.ColumnValue(
+  _i1.ColumnValue<String, String> name(final String value) => _i1.ColumnValue(
     table.name,
     value,
   );
@@ -176,7 +176,7 @@ class CustomerIntTable extends _i1.Table<int?> {
       field: CustomerInt.t.id,
       foreignField: _i2.OrderUuid.t.customerId,
       tableRelation: tableRelation,
-      createTable: (foreignTableRelation) =>
+      createTable: (final foreignTableRelation) =>
           _i2.OrderUuidTable(tableRelation: foreignTableRelation),
     );
     return ___orders!;
@@ -184,12 +184,12 @@ class CustomerIntTable extends _i1.Table<int?> {
 
   _i1.ManyRelation<_i2.OrderUuidTable> get orders {
     if (_orders != null) return _orders!;
-    var relationTable = _i1.createRelationTable(
+    final relationTable = _i1.createRelationTable(
       relationFieldName: 'orders',
       field: CustomerInt.t.id,
       foreignField: _i2.OrderUuid.t.customerId,
       tableRelation: tableRelation,
-      createTable: (foreignTableRelation) =>
+      createTable: (final foreignTableRelation) =>
           _i2.OrderUuidTable(tableRelation: foreignTableRelation),
     );
     _orders = _i1.ManyRelation<_i2.OrderUuidTable>(
@@ -208,7 +208,7 @@ class CustomerIntTable extends _i1.Table<int?> {
   ];
 
   @override
-  _i1.Table? getRelationTable(String relationField) {
+  _i1.Table? getRelationTable(final String relationField) {
     if (relationField == 'orders') {
       return __orders;
     }
@@ -217,7 +217,7 @@ class CustomerIntTable extends _i1.Table<int?> {
 }
 
 class CustomerIntInclude extends _i1.IncludeObject {
-  CustomerIntInclude._({_i2.OrderUuidIncludeList? orders}) {
+  CustomerIntInclude._({final _i2.OrderUuidIncludeList? orders}) {
     _orders = orders;
   }
 
@@ -232,7 +232,7 @@ class CustomerIntInclude extends _i1.IncludeObject {
 
 class CustomerIntIncludeList extends _i1.IncludeList {
   CustomerIntIncludeList._({
-    _i1.WhereExpressionBuilder<CustomerIntTable>? where,
+    final _i1.WhereExpressionBuilder<CustomerIntTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -284,15 +284,15 @@ class CustomerIntRepository {
   /// );
   /// ```
   Future<List<CustomerInt>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<CustomerIntTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<CustomerIntTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<CustomerIntTable>? orderByList,
-    _i1.Transaction? transaction,
-    CustomerIntInclude? include,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<CustomerIntTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<CustomerIntTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<CustomerIntTable>? orderByList,
+    final _i1.Transaction? transaction,
+    final CustomerIntInclude? include,
   }) async {
     return session.db.find<CustomerInt>(
       where: where?.call(CustomerInt.t),
@@ -324,14 +324,14 @@ class CustomerIntRepository {
   /// );
   /// ```
   Future<CustomerInt?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<CustomerIntTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<CustomerIntTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<CustomerIntTable>? orderByList,
-    _i1.Transaction? transaction,
-    CustomerIntInclude? include,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<CustomerIntTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<CustomerIntTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<CustomerIntTable>? orderByList,
+    final _i1.Transaction? transaction,
+    final CustomerIntInclude? include,
   }) async {
     return session.db.findFirstRow<CustomerInt>(
       where: where?.call(CustomerInt.t),
@@ -346,10 +346,10 @@ class CustomerIntRepository {
 
   /// Finds a single [CustomerInt] by its [id] or null if no such row exists.
   Future<CustomerInt?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
-    CustomerIntInclude? include,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
+    final CustomerIntInclude? include,
   }) async {
     return session.db.findById<CustomerInt>(
       id,
@@ -365,9 +365,9 @@ class CustomerIntRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<CustomerInt>> insert(
-    _i1.Session session,
-    List<CustomerInt> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<CustomerInt> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<CustomerInt>(
       rows,
@@ -379,9 +379,9 @@ class CustomerIntRepository {
   ///
   /// The returned [CustomerInt] will have its `id` field set.
   Future<CustomerInt> insertRow(
-    _i1.Session session,
-    CustomerInt row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final CustomerInt row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<CustomerInt>(
       row,
@@ -395,10 +395,10 @@ class CustomerIntRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<CustomerInt>> update(
-    _i1.Session session,
-    List<CustomerInt> rows, {
-    _i1.ColumnSelections<CustomerIntTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<CustomerInt> rows, {
+    final _i1.ColumnSelections<CustomerIntTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<CustomerInt>(
       rows,
@@ -411,10 +411,10 @@ class CustomerIntRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<CustomerInt> updateRow(
-    _i1.Session session,
-    CustomerInt row, {
-    _i1.ColumnSelections<CustomerIntTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final CustomerInt row, {
+    final _i1.ColumnSelections<CustomerIntTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<CustomerInt>(
       row,
@@ -426,10 +426,10 @@ class CustomerIntRepository {
   /// Updates a single [CustomerInt] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<CustomerInt?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<CustomerIntUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<CustomerIntUpdateTable> columnValues,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<CustomerInt>(
       id,
@@ -441,15 +441,15 @@ class CustomerIntRepository {
   /// Updates all [CustomerInt]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<CustomerInt>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<CustomerIntUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<CustomerIntTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<CustomerIntTable>? orderBy,
-    _i1.OrderByListBuilder<CustomerIntTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<CustomerIntUpdateTable> columnValues,
+    required final _i1.WhereExpressionBuilder<CustomerIntTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<CustomerIntTable>? orderBy,
+    final _i1.OrderByListBuilder<CustomerIntTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<CustomerInt>(
       columnValues: columnValues(CustomerInt.t.updateTable),
@@ -467,9 +467,9 @@ class CustomerIntRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<CustomerInt>> delete(
-    _i1.Session session,
-    List<CustomerInt> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<CustomerInt> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<CustomerInt>(
       rows,
@@ -479,9 +479,9 @@ class CustomerIntRepository {
 
   /// Deletes a single [CustomerInt].
   Future<CustomerInt> deleteRow(
-    _i1.Session session,
-    CustomerInt row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final CustomerInt row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<CustomerInt>(
       row,
@@ -491,9 +491,9 @@ class CustomerIntRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<CustomerInt>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<CustomerIntTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<CustomerIntTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<CustomerInt>(
       where: where(CustomerInt.t),
@@ -504,10 +504,10 @@ class CustomerIntRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<CustomerIntTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<CustomerIntTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<CustomerInt>(
       where: where?.call(CustomerInt.t),
@@ -523,20 +523,20 @@ class CustomerIntAttachRepository {
   /// Creates a relation between this [CustomerInt] and the given [OrderUuid]s
   /// by setting each [OrderUuid]'s foreign key `customerId` to refer to this [CustomerInt].
   Future<void> orders(
-    _i1.Session session,
-    CustomerInt customerInt,
-    List<_i2.OrderUuid> orderUuid, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final CustomerInt customerInt,
+    final List<_i2.OrderUuid> orderUuid, {
+    final _i1.Transaction? transaction,
   }) async {
-    if (orderUuid.any((e) => e.id == null)) {
+    if (orderUuid.any((final e) => e.id == null)) {
       throw ArgumentError.notNull('orderUuid.id');
     }
     if (customerInt.id == null) {
       throw ArgumentError.notNull('customerInt.id');
     }
 
-    var $orderUuid = orderUuid
-        .map((e) => e.copyWith(customerId: customerInt.id))
+    final $orderUuid = orderUuid
+        .map((final e) => e.copyWith(customerId: customerInt.id))
         .toList();
     await session.db.update<_i2.OrderUuid>(
       $orderUuid,
@@ -552,10 +552,10 @@ class CustomerIntAttachRowRepository {
   /// Creates a relation between this [CustomerInt] and the given [OrderUuid]
   /// by setting the [OrderUuid]'s foreign key `customerId` to refer to this [CustomerInt].
   Future<void> orders(
-    _i1.Session session,
-    CustomerInt customerInt,
-    _i2.OrderUuid orderUuid, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final CustomerInt customerInt,
+    final _i2.OrderUuid orderUuid, {
+    final _i1.Transaction? transaction,
   }) async {
     if (orderUuid.id == null) {
       throw ArgumentError.notNull('orderUuid.id');
@@ -564,7 +564,7 @@ class CustomerIntAttachRowRepository {
       throw ArgumentError.notNull('customerInt.id');
     }
 
-    var $orderUuid = orderUuid.copyWith(customerId: customerInt.id);
+    final $orderUuid = orderUuid.copyWith(customerId: customerInt.id);
     await session.db.updateRow<_i2.OrderUuid>(
       $orderUuid,
       columns: [_i2.OrderUuid.t.customerId],
@@ -582,16 +582,16 @@ class CustomerIntDetachRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> orders(
-    _i1.Session session,
-    List<_i2.OrderUuid> orderUuid, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<_i2.OrderUuid> orderUuid, {
+    final _i1.Transaction? transaction,
   }) async {
-    if (orderUuid.any((e) => e.id == null)) {
+    if (orderUuid.any((final e) => e.id == null)) {
       throw ArgumentError.notNull('orderUuid.id');
     }
 
-    var $orderUuid = orderUuid
-        .map((e) => e.copyWith(customerId: null))
+    final $orderUuid = orderUuid
+        .map((final e) => e.copyWith(customerId: null))
         .toList();
     await session.db.update<_i2.OrderUuid>(
       $orderUuid,
@@ -610,15 +610,15 @@ class CustomerIntDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> orders(
-    _i1.Session session,
-    _i2.OrderUuid orderUuid, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final _i2.OrderUuid orderUuid, {
+    final _i1.Transaction? transaction,
   }) async {
     if (orderUuid.id == null) {
       throw ArgumentError.notNull('orderUuid.id');
     }
 
-    var $orderUuid = orderUuid.copyWith(customerId: null);
+    final $orderUuid = orderUuid.copyWith(customerId: null);
     await session.db.updateRow<_i2.OrderUuid>(
       $orderUuid,
       columns: [_i2.OrderUuid.t.customerId],

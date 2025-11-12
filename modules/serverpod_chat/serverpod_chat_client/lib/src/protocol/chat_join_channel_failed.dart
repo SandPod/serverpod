@@ -20,12 +20,12 @@ abstract class ChatJoinChannelFailed implements _i1.SerializableModel {
   });
 
   factory ChatJoinChannelFailed({
-    required String channel,
-    required String reason,
+    required final String channel,
+    required final String reason,
   }) = _ChatJoinChannelFailedImpl;
 
   factory ChatJoinChannelFailed.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return ChatJoinChannelFailed(
       channel: jsonSerialization['channel'] as String,
@@ -43,8 +43,8 @@ abstract class ChatJoinChannelFailed implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ChatJoinChannelFailed copyWith({
-    String? channel,
-    String? reason,
+    final String? channel,
+    final String? reason,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -62,8 +62,8 @@ abstract class ChatJoinChannelFailed implements _i1.SerializableModel {
 
 class _ChatJoinChannelFailedImpl extends ChatJoinChannelFailed {
   _ChatJoinChannelFailedImpl({
-    required String channel,
-    required String reason,
+    required final String channel,
+    required final String reason,
   }) : super._(
          channel: channel,
          reason: reason,
@@ -74,8 +74,8 @@ class _ChatJoinChannelFailedImpl extends ChatJoinChannelFailed {
   @_i1.useResult
   @override
   ChatJoinChannelFailed copyWith({
-    String? channel,
-    String? reason,
+    final String? channel,
+    final String? reason,
   }) {
     return ChatJoinChannelFailed(
       channel: channel ?? this.channel,

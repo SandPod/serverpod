@@ -25,42 +25,42 @@ class DatabaseConfigBuilder {
     );
   }
 
-  DatabaseConfigBuilder withHost(String host) {
+  DatabaseConfigBuilder withHost(final String host) {
     _host = host;
     return this;
   }
 
-  DatabaseConfigBuilder withPort(int port) {
+  DatabaseConfigBuilder withPort(final int port) {
     _port = port;
     return this;
   }
 
-  DatabaseConfigBuilder withName(String name) {
+  DatabaseConfigBuilder withName(final String name) {
     _name = name;
     return this;
   }
 
-  DatabaseConfigBuilder withUser(String user) {
+  DatabaseConfigBuilder withUser(final String user) {
     _user = user;
     return this;
   }
 
-  DatabaseConfigBuilder withPassword(String password) {
+  DatabaseConfigBuilder withPassword(final String password) {
     _password = password;
     return this;
   }
 
-  DatabaseConfigBuilder withRequireSsl(bool requireSsl) {
+  DatabaseConfigBuilder withRequireSsl(final bool requireSsl) {
     _requireSsl = requireSsl;
     return this;
   }
 
-  DatabaseConfigBuilder withIsUnixSocket(bool isUnixSocket) {
+  DatabaseConfigBuilder withIsUnixSocket(final bool isUnixSocket) {
     _isUnixSocket = isUnixSocket;
     return this;
   }
 
-  DatabaseConfigBuilder withSearchPaths(List<String>? searchPaths) {
+  DatabaseConfigBuilder withSearchPaths(final List<String>? searchPaths) {
     _searchPaths = searchPaths;
     return this;
   }

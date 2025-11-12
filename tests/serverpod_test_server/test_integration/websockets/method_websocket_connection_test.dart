@@ -7,7 +7,7 @@ import 'websocket_extensions.dart';
 
 void main() {
   group('Given method websocket connection with connected client', () {
-    var server = IntegrationTestServer.create();
+    final server = IntegrationTestServer.create();
     late WebSocket webSocket;
 
     setUp(() async {
@@ -25,7 +25,7 @@ void main() {
     test('when server is stopped then socket is closed.', () async {
       var isClosed = false;
       webSocket.textEvents.listen(
-        (event) {
+        (final event) {
           // Listen to keep it open.
         },
         onDone: () {
@@ -39,9 +39,9 @@ void main() {
   });
 
   group('Given method websocket connection with connected method stream', () {
-    var server = IntegrationTestServer.create();
+    final server = IntegrationTestServer.create();
     late WebSocket webSocket;
-    var endpoint = 'methodStreaming';
+    const endpoint = 'methodStreaming';
 
     setUp(() async {
       await server.start();
@@ -68,7 +68,7 @@ void main() {
     test('when server is shut down then socket is closed.', () async {
       var isClosed = false;
       webSocket.textEvents.listen(
-        (event) {
+        (final event) {
           // Listen to keep it open.
         },
         onDone: () {
@@ -79,8 +79,8 @@ void main() {
       await expectLater(
         server
             .shutdown(exitProcess: false)
-            .timeout(Duration(seconds: 10))
-            .catchError((error) => fail('Failed to shut down server.')),
+            .timeout(const Duration(seconds: 10))
+            .catchError((final error) => fail('Failed to shut down server.')),
         completes,
       );
       expect(isClosed, isTrue);
@@ -90,9 +90,9 @@ void main() {
   group(
     'Given method websocket connection with connected method stream with never listened input stream',
     () {
-      var server = IntegrationTestServer.create();
+      final server = IntegrationTestServer.create();
       late WebSocket webSocket;
-      var endpoint = 'methodStreaming';
+      const endpoint = 'methodStreaming';
 
       setUp(() async {
         await server.start();
@@ -119,7 +119,7 @@ void main() {
       test('when server is shut down then socket is closed.', () async {
         var isClosed = false;
         webSocket.textEvents.listen(
-          (event) {
+          (final event) {
             // Listen to keep it open.
           },
           onDone: () {
@@ -130,8 +130,8 @@ void main() {
         await expectLater(
           server
               .shutdown(exitProcess: false)
-              .timeout(Duration(seconds: 10))
-              .catchError((error) => fail('Failed to shut down server.')),
+              .timeout(const Duration(seconds: 10))
+              .catchError((final error) => fail('Failed to shut down server.')),
           completes,
         );
         expect(isClosed, isTrue);
@@ -142,9 +142,9 @@ void main() {
   group(
     'Given method websocket connection with connected method stream with paused input stream',
     () {
-      var server = IntegrationTestServer.create();
+      final server = IntegrationTestServer.create();
       late WebSocket webSocket;
-      var endpoint = 'methodStreaming';
+      const endpoint = 'methodStreaming';
 
       setUp(() async {
         await server.start();
@@ -171,7 +171,7 @@ void main() {
       test('when server is shut down then socket is closed.', () async {
         var isClosed = false;
         webSocket.textEvents.listen(
-          (event) {
+          (final event) {
             // Listen to keep it open.
           },
           onDone: () {
@@ -182,8 +182,8 @@ void main() {
         await expectLater(
           server
               .shutdown(exitProcess: false)
-              .timeout(Duration(seconds: 10))
-              .catchError((error) => fail('Failed to shut down server.')),
+              .timeout(const Duration(seconds: 10))
+              .catchError((final error) => fail('Failed to shut down server.')),
           completes,
         );
         expect(isClosed, isTrue);
@@ -194,7 +194,7 @@ void main() {
   group(
     'Given multiple method websocket connections with connected clients',
     () {
-      var server = IntegrationTestServer.create();
+      final server = IntegrationTestServer.create();
       late WebSocket webSocket1;
       late WebSocket webSocket2;
 
@@ -218,7 +218,7 @@ void main() {
         var isClosed1 = false;
         var isClosed2 = false;
         webSocket1.textEvents.listen(
-          (event) {
+          (final event) {
             // Listen to keep it open.
           },
           onDone: () {
@@ -226,7 +226,7 @@ void main() {
           },
         );
         webSocket2.textEvents.listen(
-          (event) {
+          (final event) {
             // Listen to keep it open.
           },
           onDone: () {

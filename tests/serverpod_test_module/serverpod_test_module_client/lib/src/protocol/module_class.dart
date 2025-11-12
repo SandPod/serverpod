@@ -21,12 +21,12 @@ abstract class ModuleClass implements _i1.SerializableModel {
   });
 
   factory ModuleClass({
-    required String name,
-    required int data,
-    (bool,)? record,
+    required final String name,
+    required final int data,
+    final (bool,)? record,
   }) = _ModuleClassImpl;
 
-  factory ModuleClass.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory ModuleClass.fromJson(final Map<String, dynamic> jsonSerialization) {
     return ModuleClass(
       name: jsonSerialization['name'] as String,
       data: jsonSerialization['data'] as int,
@@ -48,9 +48,9 @@ abstract class ModuleClass implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ModuleClass copyWith({
-    String? name,
-    int? data,
-    (bool,)? record,
+    final String? name,
+    final int? data,
+    final (bool,)? record,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -71,9 +71,9 @@ class _Undefined {}
 
 class _ModuleClassImpl extends ModuleClass {
   _ModuleClassImpl({
-    required String name,
-    required int data,
-    (bool,)? record,
+    required final String name,
+    required final int data,
+    final (bool,)? record,
   }) : super._(
          name: name,
          data: data,
@@ -85,9 +85,9 @@ class _ModuleClassImpl extends ModuleClass {
   @_i1.useResult
   @override
   ModuleClass copyWith({
-    String? name,
-    int? data,
-    Object? record = _Undefined,
+    final String? name,
+    final int? data,
+    final Object? record = _Undefined,
   }) {
     return ModuleClass(
       name: name ?? this.name,

@@ -20,11 +20,11 @@ abstract class ImmutableChildObjectWithNoAdditionalFields
   const ImmutableChildObjectWithNoAdditionalFields._({required super.variable});
 
   const factory ImmutableChildObjectWithNoAdditionalFields({
-    required String variable,
+    required final String variable,
   }) = _ImmutableChildObjectWithNoAdditionalFieldsImpl;
 
   factory ImmutableChildObjectWithNoAdditionalFields.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return ImmutableChildObjectWithNoAdditionalFields(
       variable: jsonSerialization['variable'] as String,
@@ -35,9 +35,9 @@ abstract class ImmutableChildObjectWithNoAdditionalFields
   /// with some or all fields replaced by the given arguments.
   @override
   @_i1.useResult
-  ImmutableChildObjectWithNoAdditionalFields copyWith({String? variable});
+  ImmutableChildObjectWithNoAdditionalFields copyWith({final String? variable});
   @override
-  bool operator ==(Object other) {
+  bool operator ==(final Object other) {
     return identical(
           other,
           this,
@@ -78,14 +78,14 @@ abstract class ImmutableChildObjectWithNoAdditionalFields
 class _ImmutableChildObjectWithNoAdditionalFieldsImpl
     extends ImmutableChildObjectWithNoAdditionalFields {
   const _ImmutableChildObjectWithNoAdditionalFieldsImpl({
-    required String variable,
+    required final String variable,
   }) : super._(variable: variable);
 
   /// Returns a shallow copy of this [ImmutableChildObjectWithNoAdditionalFields]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  ImmutableChildObjectWithNoAdditionalFields copyWith({String? variable}) {
+  ImmutableChildObjectWithNoAdditionalFields copyWith({final String? variable}) {
     return ImmutableChildObjectWithNoAdditionalFields(
       variable: variable ?? this.variable,
     );

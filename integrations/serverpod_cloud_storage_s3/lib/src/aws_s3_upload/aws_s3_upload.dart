@@ -13,22 +13,22 @@ class AwsS3Uploader {
   /// Upload a file, returning the file's public URL on success.
   static Future<String?> uploadFile({
     /// AWS access key
-    required String accessKey,
+    required final String accessKey,
 
     /// AWS secret key
-    required String secretKey,
+    required final String secretKey,
 
     /// The name of the S3 storage bucket to upload  to
-    required String bucket,
+    required final String bucket,
 
     /// The file to upload
-    required File file,
+    required final File file,
 
     /// The path to upload the file to (e.g. "uploads/public"). Defaults to the root "directory"
-    required String uploadDst,
+    required final String uploadDst,
 
     /// The AWS region. Must be formatted correctly, e.g. us-west-1
-    required String region,
+    required final String region,
   }) async {
     final endpoint = 'https://$bucket.s3-$region.amazonaws.com';
 
@@ -36,7 +36,7 @@ class AwsS3Uploader {
     final length = await file.length();
 
     final uri = Uri.parse(endpoint);
-    final req = http.MultipartRequest("POST", uri);
+    final req = http.MultipartRequest('POST', uri);
     final multipartFile = http.MultipartFile(
       'file',
       stream,
@@ -90,26 +90,26 @@ class AwsS3Uploader {
   /// Upload a file, returning the file's public URL on success.
   static Future<String?> uploadData({
     /// AWS access key
-    required String accessKey,
+    required final String accessKey,
 
     /// AWS secret key
-    required String secretKey,
+    required final String secretKey,
 
     /// The name of the S3 storage bucket to upload  to
-    required String bucket,
+    required final String bucket,
 
     /// The file to upload
-    required ByteData data,
+    required final ByteData data,
 
     /// The path to upload the file to (e.g. "uploads/public"). Defaults to the root "directory"
-    String destDir = '',
+    final String destDir = '',
 
     /// The AWS region. Must be formatted correctly, e.g. us-west-1
-    required String region,
+    required final String region,
 
     /// The filename to upload as. If null, defaults to the given file's current filename.
-    required String uploadDst,
-    bool public = true,
+    required final String uploadDst,
+    final bool public = true,
   }) async {
     final endpoint = 'https://$bucket.s3-$region.amazonaws.com';
     // final uploadDest = '$destDir/${filename ?? path.basename(file.path)}';
@@ -120,7 +120,7 @@ class AwsS3Uploader {
     final length = data.lengthInBytes;
 
     final uri = Uri.parse(endpoint);
-    final req = http.MultipartRequest("POST", uri);
+    final req = http.MultipartRequest('POST', uri);
     final multipartFile = http.MultipartFile(
       'file',
       stream,
@@ -174,28 +174,28 @@ class AwsS3Uploader {
 
   static Future<String?> getDirectUploadDescription({
     /// AWS access key
-    required String accessKey,
+    required final String accessKey,
 
     /// AWS secret key
-    required String secretKey,
+    required final String secretKey,
 
     /// The name of the S3 storage bucket to upload  to
-    required String bucket,
+    required final String bucket,
 
     /// The file to upload
     // required ByteData data,
 
     /// The path to upload the file to (e.g. "uploads/public"). Defaults to the root "directory"
-    String destDir = '',
+    final String destDir = '',
 
     /// The AWS region. Must be formatted correctly, e.g. us-west-1
-    required String region,
+    required final String region,
 
     /// The filename to upload as. If null, defaults to the given file's current filename.
-    required String uploadDst,
-    Duration expires = const Duration(minutes: 10),
-    int maxFileSize = 10 * 1024 * 1024,
-    bool public = true,
+    required final String uploadDst,
+    final Duration expires = const Duration(minutes: 10),
+    final int maxFileSize = 10 * 1024 * 1024,
+    final bool public = true,
   }) async {
     final endpoint = 'https://$bucket.s3-$region.amazonaws.com';
 
@@ -216,7 +216,7 @@ class AwsS3Uploader {
     );
     final signature = SigV4.calculateSignature(key, policy.encode());
 
-    var uploadDescriptionData = {
+    final uploadDescriptionData = {
       'url': endpoint,
       'type': 'multipart',
       'field': 'file',

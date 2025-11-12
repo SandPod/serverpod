@@ -16,7 +16,7 @@ enum DefaultValueEnum implements _i1.SerializableModel {
   value1,
   value2;
 
-  static DefaultValueEnum fromJson(int index) {
+  static DefaultValueEnum fromJson(final int index) {
     switch (index) {
       case 0:
         return DefaultValueEnum.value1;

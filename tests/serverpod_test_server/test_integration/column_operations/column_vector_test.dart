@@ -1,15 +1,14 @@
+import 'package:serverpod/serverpod.dart';
+import 'package:serverpod_test_server/src/generated/protocol.dart';
 import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
-import 'package:serverpod/serverpod.dart';
-import 'package:serverpod_test_server/src/generated/protocol.dart';
+const firstVector = Vector([1.0, 0.0, 0.0]);
+const secondVector = Vector([0.0, 1.0, 0.0]);
+const thirdVector = Vector([0.0, 0.0, 1.0]);
+const queryVector = Vector([0.5, 0.5, 0.5]);
 
-final firstVector = Vector([1.0, 0.0, 0.0]);
-final secondVector = Vector([0.0, 1.0, 0.0]);
-final thirdVector = Vector([0.0, 0.0, 1.0]);
-final queryVector = Vector([0.5, 0.5, 0.5]);
-
-Future<void> _createTestDatabase(Session session) async {
+Future<void> _createTestDatabase(final Session session) async {
   await Types.db.insert(session, [
     Types(aVector: firstVector),
     Types(aVector: secondVector),
@@ -17,19 +16,19 @@ Future<void> _createTestDatabase(Session session) async {
   ]);
 }
 
-Future<void> _deleteAll(Session session) async {
-  await Types.db.deleteWhere(session, where: (t) => Constant.bool(true));
+Future<void> _deleteAll(final Session session) async {
+  await Types.db.deleteWhere(session, where: (final t) => Constant.bool(true));
 }
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   setUpAll(() async => await _createTestDatabase(session));
   tearDownAll(() async => await _deleteAll(session));
 
   group('Given vector column in database', () {
     test('when fetching all then all rows are returned.', () async {
-      var result = await Types.db.find(
+      final result = await Types.db.find(
         session,
         where: (_) => Constant.bool(true),
       );
@@ -40,9 +39,9 @@ void main() async {
     test(
       'when ordering by L2 distance then closest rows are returned first.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          orderBy: (t) => t.aVector.distanceL2(queryVector),
+          orderBy: (final t) => t.aVector.distanceL2(queryVector),
         );
 
         expect(result.length, 3);
@@ -54,9 +53,9 @@ void main() async {
     test(
       'when filtering using closer than with L2 distance then matching rows are returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aVector.distanceL2(queryVector) < 1.0,
+          where: (final t) => t.aVector.distanceL2(queryVector) < 1.0,
         );
 
         expect(result.isNotEmpty, true);
@@ -66,9 +65,9 @@ void main() async {
     test(
       'when ordering by cosine distance then closest rows are returned first.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          orderBy: (t) => t.aVector.distanceCosine(queryVector),
+          orderBy: (final t) => t.aVector.distanceCosine(queryVector),
         );
 
         expect(result.length, 3);
@@ -80,9 +79,9 @@ void main() async {
     test(
       'when filtering using closer than with cosine distance then matching rows are returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aVector.distanceCosine(queryVector) < 0.5,
+          where: (final t) => t.aVector.distanceCosine(queryVector) < 0.5,
         );
 
         expect(result.isNotEmpty, true);
@@ -92,9 +91,9 @@ void main() async {
     test(
       'when ordering by inner product distance then closest rows are returned first.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          orderBy: (t) => t.aVector.distanceInnerProduct(queryVector),
+          orderBy: (final t) => t.aVector.distanceInnerProduct(queryVector),
         );
 
         expect(result.length, 3);
@@ -106,9 +105,9 @@ void main() async {
     test(
       'when filtering using closer than with inner product distance then matching rows are returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aVector.distanceInnerProduct(queryVector) < 0.5,
+          where: (final t) => t.aVector.distanceInnerProduct(queryVector) < 0.5,
         );
 
         expect(result.isNotEmpty, true);
@@ -118,9 +117,9 @@ void main() async {
     test(
       'when ordering by L1 distance then closest rows are returned first.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          orderBy: (t) => t.aVector.distanceL1(queryVector),
+          orderBy: (final t) => t.aVector.distanceL1(queryVector),
         );
 
         expect(result.length, 3);
@@ -132,9 +131,9 @@ void main() async {
     test(
       'when filtering using closer than with L1 distance then matching rows are returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aVector.distanceL1(queryVector) < 2.0,
+          where: (final t) => t.aVector.distanceL1(queryVector) < 2.0,
         );
 
         expect(result.isNotEmpty, true);
@@ -146,9 +145,9 @@ void main() async {
       () async {
         await Types.db.insert(session, [Types(aVector: thirdVector)]);
 
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aVector.distanceCosine(thirdVector) < 0.01,
+          where: (final t) => t.aVector.distanceCosine(thirdVector) < 0.01,
         );
 
         expect(result.length, 1);

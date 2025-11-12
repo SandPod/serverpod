@@ -7,7 +7,7 @@ import 'serverpod_test_tools.dart';
 void main() {
   withServerpod(
     'Given an `AuthenticationInfo` created through the `TestSessionBuilder` for an `int` user ID, ',
-    (sessionBuilder, final endpoints) {
+    (final sessionBuilder, final endpoints) {
       late AuthenticationInfo? authenticationInfo;
 
       setUp(() async {
@@ -20,18 +20,18 @@ void main() {
             )
             .build();
 
-        authenticationInfo = await session.authenticated;
+        authenticationInfo = session.authenticated;
       });
 
       test(
-        "when inspecting the legacy `userId` property, then it returns the specified value.",
+        'when inspecting the legacy `userId` property, then it returns the specified value.',
         () {
           expect(authenticationInfo?.userId, 123);
         },
       );
 
       test(
-        "when inspecting the `userIdentifier` property, then it returns the stringified value.",
+        'when inspecting the `userIdentifier` property, then it returns the stringified value.',
         () {
           expect(authenticationInfo?.userIdentifier, '123');
         },
@@ -41,7 +41,7 @@ void main() {
 
   withServerpod(
     'Given an `AuthenticationInfo` created through the `TestSessionBuilder` for a `UUID` user ID, ',
-    (sessionBuilder, final endpoints) {
+    (final sessionBuilder, final endpoints) {
       const uuidString = '78da5669-e934-48a2-9f90-047cc0956b9e';
       late AuthenticationInfo? authenticationInfo;
 
@@ -55,11 +55,11 @@ void main() {
             )
             .build();
 
-        authenticationInfo = await session.authenticated;
+        authenticationInfo = session.authenticated;
       });
 
       test(
-        "when inspecting the legacy `userId` property, then it throws.",
+        'when inspecting the legacy `userId` property, then it throws.',
         () {
           expect(
             () => authenticationInfo?.userId,
@@ -69,7 +69,7 @@ void main() {
       );
 
       test(
-        "when inspecting the `userIdentifier` property, then it returns the stringified value.",
+        'when inspecting the `userIdentifier` property, then it returns the stringified value.',
         () {
           expect(authenticationInfo?.userIdentifier, uuidString);
         },

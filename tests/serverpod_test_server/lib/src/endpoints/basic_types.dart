@@ -3,43 +3,43 @@ import 'dart:typed_data';
 import 'package:serverpod/serverpod.dart';
 
 class BasicTypesEndpoint extends Endpoint {
-  Future<int?> testInt(Session session, int? value) async {
+  Future<int?> testInt(final Session session, final int? value) async {
     return value;
   }
 
-  Future<double?> testDouble(Session session, double? value) async {
+  Future<double?> testDouble(final Session session, final double? value) async {
     return value;
   }
 
-  Future<bool?> testBool(Session session, bool? value) async {
+  Future<bool?> testBool(final Session session, final bool? value) async {
     return value;
   }
 
-  Future<DateTime?> testDateTime(Session session, DateTime? dateTime) async {
+  Future<DateTime?> testDateTime(final Session session, final DateTime? dateTime) async {
     return dateTime;
   }
 
-  Future<String?> testString(Session session, String? value) async {
+  Future<String?> testString(final Session session, final String? value) async {
     return value;
   }
 
-  Future<ByteData?> testByteData(Session session, ByteData? value) async {
+  Future<ByteData?> testByteData(final Session session, final ByteData? value) async {
     return value;
   }
 
-  Future<Duration?> testDuration(Session session, Duration? value) async {
+  Future<Duration?> testDuration(final Session session, final Duration? value) async {
     return value;
   }
 
-  Future<UuidValue?> testUuid(Session session, UuidValue? value) async {
+  Future<UuidValue?> testUuid(final Session session, final UuidValue? value) async {
     return value;
   }
 
-  Future<Uri?> testUri(Session session, Uri? value) async {
+  Future<Uri?> testUri(final Session session, final Uri? value) async {
     return value;
   }
 
-  Future<BigInt?> testBigInt(Session session, BigInt? value) async {
+  Future<BigInt?> testBigInt(final Session session, final BigInt? value) async {
     return value;
   }
 }

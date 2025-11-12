@@ -11,7 +11,7 @@ void main() {
       'when deserializing from JSON with a null value, then a TypeError is thrown',
       () {
         expect(
-          () => SimpleData.fromJson({"num": null}),
+          () => SimpleData.fromJson({'num': null}),
           throwsA(isA<TypeError>()),
         );
       },
@@ -226,7 +226,7 @@ void main() {
       () {
         expect(
           Types.fromJson({
-            'aDuration': Duration(milliseconds: 1000),
+            'aDuration': const Duration(milliseconds: 1000),
           }).aDuration?.inMilliseconds,
           1000,
         );
@@ -247,7 +247,7 @@ void main() {
       'when deserializing from JSON with an incorrect value, then a FormatException is thrown',
       () {
         expect(
-          () => Types.fromJson({'aDateTime': "111"}).aString,
+          () => Types.fromJson({'aDateTime': '111'}).aString,
           throwsA(isA<FormatException>()),
         );
       },
@@ -384,9 +384,9 @@ void main() {
       () {
         expect(
           Types.fromJson({
-            'aByteData': 'decode(\'AAECAwQFBgc=\', \'base64\')',
+            'aByteData': "decode('AAECAwQFBgc=', 'base64')",
           }).aByteData?.base64encodedString(),
-          'decode(\'AAECAwQFBgc=\', \'base64\')',
+          "decode('AAECAwQFBgc=', 'base64')",
         );
       },
     );
@@ -394,10 +394,10 @@ void main() {
     test(
       'when deserializing from JSON with a ByteData object, then the result matches the expected value',
       () {
-        ByteData value = ByteData.view(base64Decode('AAECAwQFBgc=').buffer);
+        final ByteData value = ByteData.view(base64Decode('AAECAwQFBgc=').buffer);
         expect(
           Types.fromJson({'aByteData': value}).aByteData?.base64encodedString(),
-          'decode(\'AAECAwQFBgc=\', \'base64\')',
+          "decode('AAECAwQFBgc=', 'base64')",
         );
       },
     );
@@ -405,10 +405,10 @@ void main() {
     test(
       'when deserializing from JSON with a Uint8List object derived, then the result matches the expected value',
       () {
-        Uint8List value = base64Decode('AAECAwQFBgc=');
+        final Uint8List value = base64Decode('AAECAwQFBgc=');
         expect(
           Types.fromJson({'aByteData': value}).aByteData?.base64encodedString(),
-          'decode(\'AAECAwQFBgc=\', \'base64\')',
+          "decode('AAECAwQFBgc=', 'base64')",
         );
       },
     );
@@ -438,7 +438,7 @@ void main() {
     test(
       'when deserializing with correct value in JSON, then the result matches the expected value',
       () {
-        var types = Types.fromJson({'anEnum': 0});
+        final types = Types.fromJson({'anEnum': 0});
         expect(
           types.anEnum,
           TestEnum.one,
@@ -485,7 +485,7 @@ void main() {
     test(
       'when deserializing with correct value in JSON, then the result matches the expected value',
       () {
-        var types = Types.fromJson({'aStringifiedEnum': 'one'});
+        final types = Types.fromJson({'aStringifiedEnum': 'one'});
         expect(
           types.aStringifiedEnum,
           TestEnumStringified.one,
@@ -528,7 +528,7 @@ void main() {
     test(
       'when deserializing with correct value types in JSON, then the result matches the expected value',
       () {
-        var typeList = TypesList.fromJson({
+        final typeList = TypesList.fromJson({
           'anInt': [1, 2],
         });
         expect(typeList.anInt?.length, 2);
@@ -563,7 +563,7 @@ void main() {
     test(
       'when deserializing with correct value type in JSON, then the result matches the expected value',
       () {
-        var typeList = TypesSet.fromJson({
+        final typeList = TypesSet.fromJson({
           'anObject': [
             {'aDateTime': '2024-01-01T00:00:00.000Z'},
           ],
@@ -578,7 +578,7 @@ void main() {
     test(
       'when deserializing with null in JSON, then the result matches the expected value',
       () {
-        var typeList = TypesSet.fromJson({'aDateTime': null});
+        final typeList = TypesSet.fromJson({'aDateTime': null});
         expect(
           typeList.aDateTime,
           isNull,
@@ -605,7 +605,7 @@ void main() {
     test(
       'when deserializing with correct value types in JSON, then the result matches the expected value',
       () {
-        var typeList = TypesSet.fromJson({
+        final typeList = TypesSet.fromJson({
           'anInt': [1, 2],
         });
         expect(typeList.anInt?.length, 2);
@@ -634,7 +634,7 @@ void main() {
           }),
           throwsA(
             isA<Exception>().having(
-              (e) => e.toString(),
+              (final e) => e.toString(),
               'message',
               contains('Input list for Set contained duplicate items'),
             ),
@@ -668,7 +668,7 @@ void main() {
     test(
       'when deserializing with correct value type in JSON, then the result matches the expected value',
       () {
-        var typeList = TypesList.fromJson({
+        final typeList = TypesList.fromJson({
           'anObject': [
             {'aDateTime': '2024-01-01T00:00:00.000Z'},
           ],
@@ -728,7 +728,7 @@ void main() {
         expect(
           () => TypesMap.fromJson({
             'anIntKey': [
-              {'k': " test", 'v': 1},
+              {'k': ' test', 'v': 1},
               {'k': 'test', 'v': null},
               {'k': null, 'v': 1},
               {'k': null, 'v': null},
@@ -767,7 +767,7 @@ void main() {
         TypesSetRequired.fromJson({
           'anInt': [3, 2, 1],
         }),
-        isA<TypesSetRequired>().having((t) => t.anInt, 'anInt', {3, 2, 1}),
+        isA<TypesSetRequired>().having((final t) => t.anInt, 'anInt', {3, 2, 1}),
       );
     },
   );

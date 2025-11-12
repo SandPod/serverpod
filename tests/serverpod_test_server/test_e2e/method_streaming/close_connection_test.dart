@@ -6,7 +6,7 @@ import 'package:serverpod_test_server/test_util/test_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client(
+  final client = Client(
     serverUrl,
     authenticationKeyManager: TestAuthKeyManager(),
   );
@@ -18,16 +18,16 @@ void main() {
   test(
     'Given open streaming method connection when close method streams is called then connection is closed with exception.',
     () async {
-      var messageReceived = Completer();
-      var streamErrorCompleter = Completer<Object>();
-      var inputStream = StreamController<int>();
-      var stream = client.methodStreaming.intEchoStream(inputStream.stream);
+      final messageReceived = Completer();
+      final streamErrorCompleter = Completer<Object>();
+      final inputStream = StreamController<int>();
+      final stream = client.methodStreaming.intEchoStream(inputStream.stream);
 
       stream.listen(
-        (event) {
+        (final event) {
           messageReceived.complete();
         },
-        onError: (e, s) {
+        onError: (final e, final s) {
           streamErrorCompleter.complete(e);
         },
       );
@@ -36,7 +36,7 @@ void main() {
 
       await client.closeStreamingMethodConnections();
       await expectLater(streamErrorCompleter.future, completes);
-      var error = await streamErrorCompleter.future;
+      final error = await streamErrorCompleter.future;
       expect(error, isA<WebSocketClosedException>());
     },
   );
@@ -45,13 +45,13 @@ void main() {
     'Given a streaming connection that was closed when establishing a new streaming connection then messages can be successfully transmitted.',
     () async {
       {
-        var firstConnectionEstablished = Completer();
-        var firstInputStream = StreamController<int>();
-        var firstStream = client.methodStreaming.intEchoStream(
+        final firstConnectionEstablished = Completer();
+        final firstInputStream = StreamController<int>();
+        final firstStream = client.methodStreaming.intEchoStream(
           firstInputStream.stream,
         );
 
-        firstStream.listen((event) {
+        firstStream.listen((final event) {
           firstConnectionEstablished.complete();
         });
         firstInputStream.sink.add(42);
@@ -60,13 +60,13 @@ void main() {
       }
 
       {
-        var secondConnectionEstablished = Completer();
-        var secondInputStream = StreamController<int>();
-        var secondStream = client.methodStreaming.intEchoStream(
+        final secondConnectionEstablished = Completer();
+        final secondInputStream = StreamController<int>();
+        final secondStream = client.methodStreaming.intEchoStream(
           secondInputStream.stream,
         );
 
-        secondStream.listen((event) {
+        secondStream.listen((final event) {
           secondConnectionEstablished.complete();
         });
         secondInputStream.sink.add(42);
@@ -78,13 +78,13 @@ void main() {
   test(
     'Given an input stream that continuously sends data to the server when closing all method streams then the method stream is successfully closed.',
     () async {
-      var stream = client.methodStreaming.intEchoStream(
-        Stream.periodic(Duration(microseconds: 1), (i) => i),
+      final stream = client.methodStreaming.intEchoStream(
+        Stream.periodic(const Duration(microseconds: 1), (final i) => i),
       );
 
-      var streamComplete = Completer();
+      final streamComplete = Completer();
       stream.listen(
-        (event) {
+        (final event) {
           if (event == 10) {
             client.closeStreamingMethodConnections(exception: null);
           }

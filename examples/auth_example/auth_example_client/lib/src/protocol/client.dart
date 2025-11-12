@@ -9,20 +9,22 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
+import 'dart:async' as _i2;
+
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i3;
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'dart:async' as _i2;
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i3;
+
 import 'protocol.dart' as _i4;
 
 /// {@category Endpoint}
 class EndpointExample extends _i1.EndpointRef {
-  EndpointExample(_i1.EndpointCaller caller) : super(caller);
+  EndpointExample(final _i1.EndpointCaller caller) : super(caller);
 
   @override
   String get name => 'example';
 
-  _i2.Future<String> hello(String name) => caller.callServerEndpoint<String>(
+  _i2.Future<String> hello(final String name) => caller.callServerEndpoint<String>(
     'example',
     'hello',
     {'name': name},
@@ -30,7 +32,7 @@ class EndpointExample extends _i1.EndpointRef {
 }
 
 class Modules {
-  Modules(Client client) {
+  Modules(final Client client) {
     auth = _i3.Caller(client);
   }
 
@@ -39,19 +41,19 @@ class Modules {
 
 class Client extends _i1.ServerpodClientShared {
   Client(
-    String host, {
-    dynamic securityContext,
-    _i1.AuthenticationKeyManager? authenticationKeyManager,
-    Duration? streamingConnectionTimeout,
-    Duration? connectionTimeout,
-    Function(
+    final String host, {
+    final dynamic securityContext,
+    final _i1.AuthenticationKeyManager? authenticationKeyManager,
+    final Duration? streamingConnectionTimeout,
+    final Duration? connectionTimeout,
+    final Function(
       _i1.MethodCallContext,
       Object,
       StackTrace,
     )?
     onFailedCall,
-    Function(_i1.MethodCallContext)? onSucceededCall,
-    bool? disconnectStreamsOnLostInternetConnection,
+    final Function(_i1.MethodCallContext)? onSucceededCall,
+    final bool? disconnectStreamsOnLostInternetConnection,
   }) : super(
          host,
          _i4.Protocol(),

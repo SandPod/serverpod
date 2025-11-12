@@ -11,18 +11,19 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
+import 'package:serverpod_test_module_server/src/generated/module_class.dart'
+    as _i7;
+
 import '../endpoints/abstract_endpoint.dart' as _i2;
 import '../endpoints/module_endpoint.dart' as _i3;
 import '../endpoints/streaming.dart' as _i4;
 import '../endpoints/unauthenticated.dart' as _i5;
 import '../module_feature/endpoints/my_feature_endpoint.dart' as _i6;
-import 'package:serverpod_test_module_server/src/generated/module_class.dart'
-    as _i7;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
-  void initializeEndpoints(_i1.Server server) {
-    var endpoints = <String, _i1.Endpoint>{
+  void initializeEndpoints(final _i1.Server server) {
+    final endpoints = <String, _i1.Endpoint>{
       'concreteBase': _i2.ConcreteBaseEndpoint()
         ..initialize(
           server,
@@ -69,8 +70,8 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {},
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
               ) async => (endpoints['concreteBase'] as _i2.ConcreteBaseEndpoint)
                   .virtualMethod(session),
         ),
@@ -79,8 +80,8 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {},
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
               ) async => (endpoints['concreteBase'] as _i2.ConcreteBaseEndpoint)
                   .concreteMethod(session),
         ),
@@ -89,8 +90,8 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {},
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
               ) async => (endpoints['concreteBase'] as _i2.ConcreteBaseEndpoint)
                   .abstractBaseMethod(session),
         ),
@@ -111,8 +112,8 @@ class Endpoints extends _i1.EndpointDispatch {
           },
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
               ) async => (endpoints['module'] as _i3.ModuleEndpoint).hello(
                 session,
                 params['name'],
@@ -129,8 +130,8 @@ class Endpoints extends _i1.EndpointDispatch {
           },
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
               ) async => (endpoints['module'] as _i3.ModuleEndpoint)
                   .modifyModuleObject(
                     session,
@@ -148,8 +149,8 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {},
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
               ) async => (endpoints['streaming'] as _i4.StreamingEndpoint)
                   .wasStreamOpenCalled(session),
         ),
@@ -158,8 +159,8 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {},
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
               ) async => (endpoints['streaming'] as _i4.StreamingEndpoint)
                   .wasStreamClosedCalled(session),
         ),
@@ -175,9 +176,9 @@ class Endpoints extends _i1.EndpointDispatch {
           returnType: _i1.MethodStreamReturnType.streamType,
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
-                Map<String, Stream> streamParams,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
+                final Map<String, Stream> streamParams,
               ) => (endpoints['streaming'] as _i4.StreamingEndpoint)
                   .intEchoStream(
                     session,
@@ -196,9 +197,9 @@ class Endpoints extends _i1.EndpointDispatch {
           returnType: _i1.MethodStreamReturnType.futureType,
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
-                Map<String, Stream> streamParams,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
+                final Map<String, Stream> streamParams,
               ) => (endpoints['streaming'] as _i4.StreamingEndpoint)
                   .simpleInputReturnStream(
                     session,
@@ -216,8 +217,8 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {},
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
               ) async =>
                   (endpoints['unauthenticated'] as _i5.UnauthenticatedEndpoint)
                       .unauthenticatedMethod(session),
@@ -229,9 +230,9 @@ class Endpoints extends _i1.EndpointDispatch {
           returnType: _i1.MethodStreamReturnType.streamType,
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
-                Map<String, Stream> streamParams,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
+                final Map<String, Stream> streamParams,
               ) => (endpoints['unauthenticated'] as _i5.UnauthenticatedEndpoint)
                   .unauthenticatedStream(session),
         ),
@@ -246,8 +247,8 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {},
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
               ) async =>
                   (endpoints['partiallyUnauthenticated']
                           as _i5.PartiallyUnauthenticatedEndpoint)
@@ -258,8 +259,8 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {},
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
               ) async =>
                   (endpoints['partiallyUnauthenticated']
                           as _i5.PartiallyUnauthenticatedEndpoint)
@@ -272,9 +273,9 @@ class Endpoints extends _i1.EndpointDispatch {
           returnType: _i1.MethodStreamReturnType.streamType,
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
-                Map<String, Stream> streamParams,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
+                final Map<String, Stream> streamParams,
               ) =>
                   (endpoints['partiallyUnauthenticated']
                           as _i5.PartiallyUnauthenticatedEndpoint)
@@ -287,9 +288,9 @@ class Endpoints extends _i1.EndpointDispatch {
           returnType: _i1.MethodStreamReturnType.streamType,
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
-                Map<String, Stream> streamParams,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
+                final Map<String, Stream> streamParams,
               ) =>
                   (endpoints['partiallyUnauthenticated']
                           as _i5.PartiallyUnauthenticatedEndpoint)
@@ -306,8 +307,8 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {},
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
               ) async =>
                   (endpoints['myModuleFeature'] as _i6.MyModuleFeatureEndpoint)
                       .myFeatureMethod(session),
@@ -317,8 +318,8 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {},
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
               ) async =>
                   (endpoints['myModuleFeature'] as _i6.MyModuleFeatureEndpoint)
                       .myFeatureModel(session),

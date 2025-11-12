@@ -1,21 +1,19 @@
 import 'dart:io';
 
+import 'package:auth_example_server/src/web/routes/root.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
 import 'package:serverpod/serverpod.dart' hide Message;
-
 import 'package:serverpod_auth_server/serverpod_auth_server.dart' as auth;
 
-import 'package:auth_example_server/src/web/routes/root.dart';
-
-import 'src/generated/protocol.dart';
 import 'src/generated/endpoints.dart';
+import 'src/generated/protocol.dart';
 
 // This is the starting point of your Serverpod server. In most cases, you will
 // only need to make additions to this file if you add future calls,  are
 // configuring Relic (Serverpod's web-server), or need custom setup work.
 
-void run(List<String> args) async {
+void run(final List<String> args) async {
   // Initialize Serverpod and connect it with your generated code.
   final pod = Serverpod(
     args,
@@ -51,7 +49,7 @@ void run(List<String> args) async {
   // Instead use a real email service provider, such as SendGrid, Mailjet or others.
   auth.AuthConfig.set(
     auth.AuthConfig(
-      sendValidationEmail: (session, email, validationCode) async {
+      sendValidationEmail: (final session, final email, final validationCode) async {
         // Retrieve the credentials
         final gmailEmail = session.serverpod.getPassword('gmailEmail')!;
         final gmailPassword = session.serverpod.getPassword('gmailPassword')!;
@@ -76,7 +74,7 @@ void run(List<String> args) async {
 
         return true;
       },
-      sendPasswordResetEmail: (session, userInfo, validationCode) async {
+      sendPasswordResetEmail: (final session, final userInfo, final validationCode) async {
         // Retrieve the credentials
         final gmailEmail = session.serverpod.getPassword('gmailEmail')!;
         final gmailPassword = session.serverpod.getPassword('gmailPassword')!;

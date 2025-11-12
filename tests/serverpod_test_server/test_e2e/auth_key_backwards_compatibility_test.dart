@@ -20,7 +20,7 @@ void main() {
           serverUrl,
           authenticationKeyManager: TestAuthKeyManager(),
         );
-        var response = await client.authentication.authenticate(
+        final response = await client.authentication.authenticate(
           'test@foo.bar',
           'password',
         );
@@ -42,7 +42,7 @@ void main() {
 
       test('when calling an authorized endpoint method with old style auth key '
           'then it should succeed', () async {
-        var response = await http.post(
+        final response = await http.post(
           Uri.parse('${serverUrl}echoRequest'),
           body: jsonEncode({
             'method': 'echoAuthenticationKey',
@@ -56,7 +56,7 @@ void main() {
 
       test('when calling an authorizaed endpoint method without auth key '
           'then it should fail', () async {
-        var response = await http.post(
+        final response = await http.post(
           Uri.parse('${serverUrl}echoRequest'),
           body: jsonEncode({
             'method': 'echoAuthenticationKey',

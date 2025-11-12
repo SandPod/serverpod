@@ -12,7 +12,7 @@ class TestServiceKeyManager extends BearerAuthenticationKeyManager {
   }
 
   @override
-  Future<void> put(String key) async {}
+  Future<void> put(final String key) async {}
 
   @override
   Future<void> remove() async {}

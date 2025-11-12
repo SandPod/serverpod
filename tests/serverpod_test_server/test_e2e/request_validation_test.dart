@@ -10,7 +10,7 @@ void main() {
       late http.Response response;
 
       setUpAll(() async {
-        var anyServerEndpoint = Uri.parse("${serverUrl}exceptionTest");
+        final anyServerEndpoint = Uri.parse('${serverUrl}exceptionTest');
         response = await http.post(
           anyServerEndpoint,
           body: 'malformed json body',

@@ -1,10 +1,10 @@
+import 'package:serverpod/database.dart' as db;
 import 'package:serverpod_test_server/src/generated/protocol.dart';
 import 'package:serverpod_test_server/test_util/test_serverpod.dart';
-import 'package:serverpod/database.dart' as db;
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with one to many relation nested in a one to one relation', () {
     tearDown(() async {
@@ -19,20 +19,20 @@ void main() async {
     test(
       'when fetching models ordered by count of nested many relation then result is as expected.',
       () async {
-        var players = await Player.db.insert(session, [
+        final players = await Player.db.insert(session, [
           Player(name: 'Alex'),
           Player(name: 'Viktor'),
           Player(name: 'Isak'),
         ]);
 
-        var arenas = await Arena.db.insert(session, [
+        final arenas = await Arena.db.insert(session, [
           Arena(name: 'Eagle Stadium'),
           Arena(name: 'Bulls Arena'),
           Arena(name: 'Shark Tank'),
           Arena(name: 'Turtle Arena'),
         ]);
 
-        var teams = await Team.db.insert(session, [
+        final teams = await Team.db.insert(session, [
           Team(name: 'Eagles', arenaId: arenas[0].id),
           Team(name: 'Bulls', arenaId: arenas[1].id),
           Team(name: 'Sharks', arenaId: arenas[2].id),
@@ -43,10 +43,10 @@ void main() async {
         // Attach Isak to Eagles
         await Team.db.attachRow.players(session, teams[0], players[2]);
 
-        var arenasFetched = await Arena.db.find(
+        final arenasFetched = await Arena.db.find(
           session,
           // Order arenas by number of players in their teams and then their name.
-          orderByList: (t) => [
+          orderByList: (final t) => [
             db.Order(
               column: t.team.players.count(),
               orderDescending: true,
@@ -57,7 +57,7 @@ void main() async {
           ],
         );
 
-        var arenaNames = arenasFetched.map((e) => e.name);
+        final arenaNames = arenasFetched.map((final e) => e.name);
         expect(arenaNames, [
           'Bulls Arena',
           'Eagle Stadium',
@@ -70,7 +70,7 @@ void main() async {
     test(
       'when fetching models ordered by count of filtered nested many relation then result is as expected.',
       () async {
-        var players = await Player.db.insert(session, [
+        final players = await Player.db.insert(session, [
           Player(name: 'Alex'),
           Player(name: 'Viktor'),
           Player(name: 'Anna'),
@@ -78,14 +78,14 @@ void main() async {
           Player(name: 'Alice'),
         ]);
 
-        var arenas = await Arena.db.insert(session, [
+        final arenas = await Arena.db.insert(session, [
           Arena(name: 'Eagle Stadium'),
           Arena(name: 'Bulls Arena'),
           Arena(name: 'Shark Tank'),
           Arena(name: 'Turtle Arena'),
         ]);
 
-        var teams = await Team.db.insert(session, [
+        final teams = await Team.db.insert(session, [
           Team(name: 'Eagles', arenaId: arenas[0].id),
           Team(name: 'Bulls', arenaId: arenas[1].id),
           Team(name: 'Sharks', arenaId: arenas[2].id),
@@ -96,12 +96,12 @@ void main() async {
         // Attach Isak And Alice to Eagles
         await Team.db.attach.players(session, teams[0], players.sublist(3, 5));
 
-        var arenasFetched = await Arena.db.find(
+        final arenasFetched = await Arena.db.find(
           session,
           // Fetch all arenas with teams that have any player with a name starting with a.
-          orderByList: (t) => [
+          orderByList: (final t) => [
             db.Order(
-              column: t.team.players.count((p) => p.name.ilike('a%')),
+              column: t.team.players.count((final p) => p.name.ilike('a%')),
               orderDescending: true,
             ),
             db.Order(
@@ -110,7 +110,7 @@ void main() async {
           ],
         );
 
-        var arenaNames = arenasFetched.map((e) => e.name);
+        final arenaNames = arenasFetched.map((final e) => e.name);
         expect(arenaNames, [
           'Bulls Arena',
           'Eagle Stadium',

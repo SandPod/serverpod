@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with "default" enum fields,', () {
     tearDownAll(
@@ -17,8 +17,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "default=byName1" field value should be byName1',
       () async {
-        var object = EnumDefault();
-        var databaseObject = await EnumDefault.db.insertRow(
+        final object = EnumDefault();
+        final databaseObject = await EnumDefault.db.insertRow(
           session,
           object,
         );
@@ -32,8 +32,8 @@ void main() async {
     test(
       'when creating a record in the database, then the nullable "default=byName2" field value should be byName2',
       () async {
-        var object = EnumDefault();
-        var databaseObject = await EnumDefault.db.insertRow(
+        final object = EnumDefault();
+        final databaseObject = await EnumDefault.db.insertRow(
           session,
           object,
         );
@@ -47,8 +47,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "default=byIndex1" field value should be byIndex1',
       () async {
-        var object = EnumDefault();
-        var databaseObject = await EnumDefault.db.insertRow(
+        final object = EnumDefault();
+        final databaseObject = await EnumDefault.db.insertRow(
           session,
           object,
         );
@@ -62,8 +62,8 @@ void main() async {
     test(
       'when creating a record in the database, then the nullable "default=byIndex2" field value should be byIndex2',
       () async {
-        var object = EnumDefault();
-        var databaseObject = await EnumDefault.db.insertRow(
+        final object = EnumDefault();
+        final databaseObject = await EnumDefault.db.insertRow(
           session,
           object,
         );
@@ -77,10 +77,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "byNameEnumDefault" field value should match the provided value',
       () async {
-        var specificObject = EnumDefault(
+        final specificObject = EnumDefault(
           byNameEnumDefault: ByNameEnum.byName2,
         );
-        var specificDatabaseObject = await EnumDefault.db.insertRow(
+        final specificDatabaseObject = await EnumDefault.db.insertRow(
           session,
           specificObject,
         );
@@ -94,10 +94,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "byNameEnumDefaultNull" field value should match the provided value',
       () async {
-        var specificObject = EnumDefault(
+        final specificObject = EnumDefault(
           byNameEnumDefaultNull: ByNameEnum.byName1,
         );
-        var specificDatabaseObject = await EnumDefault.db.insertRow(
+        final specificDatabaseObject = await EnumDefault.db.insertRow(
           session,
           specificObject,
         );
@@ -111,10 +111,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "byIndexEnumDefault" field value should match the provided value',
       () async {
-        var specificObject = EnumDefault(
+        final specificObject = EnumDefault(
           byIndexEnumDefault: ByIndexEnum.byIndex2,
         );
-        var specificDatabaseObject = await EnumDefault.db.insertRow(
+        final specificDatabaseObject = await EnumDefault.db.insertRow(
           session,
           specificObject,
         );
@@ -128,10 +128,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "byIndexEnumDefaultNull" field value should match the provided value',
       () async {
-        var specificObject = EnumDefault(
+        final specificObject = EnumDefault(
           byIndexEnumDefaultNull: ByIndexEnum.byIndex1,
         );
-        var specificDatabaseObject = await EnumDefault.db.insertRow(
+        final specificDatabaseObject = await EnumDefault.db.insertRow(
           session,
           specificObject,
         );
@@ -146,7 +146,7 @@ void main() async {
       test(
         'when deserializing an invalid index for DefaultValueEnum, it should default to value2',
         () async {
-          var object = DefaultValueEnum.fromJson(-1);
+          final object = DefaultValueEnum.fromJson(-1);
           expect(DefaultValueEnum.values.length, 2);
           expect(object, DefaultValueEnum.value2);
         },
@@ -159,7 +159,7 @@ void main() async {
             () => ByIndexEnum.fromJson(-1),
             throwsA(
               predicate(
-                (e) =>
+                (final e) =>
                     e is ArgumentError &&
                     e.message ==
                         'Value "-1" cannot be converted to "ByIndexEnum"',
@@ -176,7 +176,7 @@ void main() async {
             () => ByNameEnum.fromJson('Invalid'),
             throwsA(
               predicate(
-                (e) =>
+                (final e) =>
                     e is ArgumentError &&
                     e.message ==
                         'Value "Invalid" cannot be converted to "ByNameEnum"',

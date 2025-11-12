@@ -8,7 +8,7 @@ void main() {
   test(
     'Given valid certificates when a call to the health endpoint of a service with a valid certificate then the requests completes successfully.',
     () async {
-      var client = Client('https://api.serverpod.app/');
+      final client = Client('https://api.serverpod.app/');
 
       expectLater(
         client.callServerEndpoint<void>('', '', {}),
@@ -20,7 +20,7 @@ void main() {
   test(
     'Given no valid certificates when a call to the health endpoint of a service then the requests is rejected with a handshake exception.',
     () async {
-      var client = Client(
+      final client = Client(
         'https://api.serverpod.app/',
         securityContext: SecurityContext(withTrustedRoots: false),
       );

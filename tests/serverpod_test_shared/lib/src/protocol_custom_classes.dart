@@ -10,26 +10,26 @@ class ProtocolCustomClass implements SerializableModel, ProtocolSerialization {
   });
 
   factory ProtocolCustomClass.fromJson(
-    Map<String, dynamic> json,
+    final Map<String, dynamic> json,
   ) {
     return ProtocolCustomClass(
-      value: json["value"] as String?,
-      serverOnlyValue: json["serverOnlyValue"] as String?,
+      value: json['value'] as String?,
+      serverOnlyValue: json['serverOnlyValue'] as String?,
     );
   }
 
   @override
   Map<String, dynamic> toJsonForProtocol() {
     return {
-      "value": value,
+      'value': value,
     };
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
-      "value": value,
-      "serverOnlyValue": serverOnlyValue,
+      'value': value,
+      'serverOnlyValue': serverOnlyValue,
     };
   }
 }

@@ -1,14 +1,14 @@
 import 'dart:io';
 
-import 'package:serverpod_test_server/test_util/test_tags.dart';
-import 'package:test/test.dart';
-import 'package:uuid/uuid.dart';
-
-import '../test_tools/serverpod_test_tools.dart';
-import 'package:test_descriptor/test_descriptor.dart' as d;
 import 'package:serverpod/src/database/migrations/migration_manager.dart';
 import 'package:serverpod/src/database/migrations/migrations.dart';
 import 'package:serverpod_cli/src/migrations/generator.dart';
+import 'package:serverpod_test_server/test_util/test_tags.dart';
+import 'package:test/test.dart';
+import 'package:test_descriptor/test_descriptor.dart' as d;
+import 'package:uuid/uuid.dart';
+
+import '../test_tools/serverpod_test_tools.dart';
 
 void main() {
   final existingMigrations = MigrationVersions.listVersions(
@@ -19,7 +19,7 @@ void main() {
     rollbackDatabase: RollbackDatabase.disabled,
     testGroupTagsOverride: [TestTags.concurrencyOneTestTag],
     'Given unapplied migration that errors if applied multiple times',
-    (sessionBuilder, _) async {
+    (final sessionBuilder, _) async {
       final migrationName = MigrationGenerator.createVersionName(null);
       final migrationRegistryContents = [
         ...existingMigrations,
@@ -31,7 +31,7 @@ void main() {
           '''
       BEGIN;
 
-      CREATE TABLE ${testTableName} (
+      CREATE TABLE $testTableName (
         id INT PRIMARY KEY,
         name VARCHAR(255) NOT NULL
       );
@@ -44,9 +44,9 @@ void main() {
       -- MIGRATION VERSION FOR serverpod_test
       --
       INSERT INTO "serverpod_migrations" ("module", "version", "timestamp")
-          VALUES ('serverpod_test', '${migrationName}', now())
+          VALUES ('serverpod_test', '$migrationName', now())
           ON CONFLICT ("module")
-          DO UPDATE SET "version" = '${migrationName}', "timestamp" = now();
+          DO UPDATE SET "version" = '$migrationName', "timestamp" = now();
 
       COMMIT;
     ''';
@@ -54,7 +54,7 @@ void main() {
       setUp(() async {
         await d.dir('migrations', [
           d.file('migration_registry.txt', migrationRegistryContents),
-          for (var version in existingMigrations) d.dir(version, []),
+          for (final version in existingMigrations) d.dir(version, []),
           d.dir(migrationName, [
             d.file('definition_project.json', ''),
             d.file('definition.json', ''),
@@ -66,11 +66,11 @@ void main() {
       });
 
       tearDown(() async {
-        var session = sessionBuilder.build();
+        final session = sessionBuilder.build();
         await session.db.unsafeExecute('''
         BEGIN; 
 
-        DROP TABLE IF EXISTS ${testTableName};
+        DROP TABLE IF EXISTS $testTableName;
 
         --
         -- MIGRATION VERSION FOR serverpod_test
@@ -87,11 +87,11 @@ void main() {
       test(
         'when triggering multiple concurrent then migration is successfully applied once',
         () async {
-          var migrationManager = MigrationManager(
+          final migrationManager = MigrationManager(
             Directory(d.sandbox),
           );
 
-          var concurrentMigrations = Future.wait([
+          final concurrentMigrations = Future.wait([
             migrationManager.migrateToLatest(sessionBuilder.build()),
             migrationManager.migrateToLatest(sessionBuilder.build()),
           ]);

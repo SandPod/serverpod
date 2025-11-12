@@ -7,7 +7,7 @@ import 'package:serverpod_test_server/test_util/test_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client(
+  final client = Client(
     serverUrl,
     authenticationKeyManager: TestAuthKeyManager(),
   );
@@ -15,14 +15,14 @@ void main() {
   test(
     'Given an integer stream when calling a streaming method that echoes input stream then values are returned from the server.',
     () async {
-      var streamComplete = Completer();
-      var numberGenerator = List.generate(10, (index) => index++);
-      var inputStream = Stream<int>.fromIterable(numberGenerator);
-      var stream = client.methodStreaming.intEchoStream(inputStream);
+      final streamComplete = Completer();
+      final numberGenerator = List.generate(10, (index) => index++);
+      final inputStream = Stream<int>.fromIterable(numberGenerator);
+      final stream = client.methodStreaming.intEchoStream(inputStream);
 
-      var received = <int>[];
+      final received = <int>[];
       stream.listen(
-        (event) {
+        (final event) {
           received.add(event);
         },
         onDone: () {
@@ -38,15 +38,15 @@ void main() {
   test(
     'Given a stream with mixed value types when calling a streaming method that echoes input stream then values are returned from the server.',
     () async {
-      var streamComplete = Completer();
-      var simpleData = SimpleData(num: 42);
-      var mixedValues = [1, 'two', simpleData];
-      var inputStream = Stream<dynamic>.fromIterable(mixedValues);
-      var stream = client.methodStreaming.dynamicEchoStream(inputStream);
+      final streamComplete = Completer();
+      final simpleData = SimpleData(num: 42);
+      final mixedValues = [1, 'two', simpleData];
+      final inputStream = Stream<dynamic>.fromIterable(mixedValues);
+      final stream = client.methodStreaming.dynamicEchoStream(inputStream);
 
-      var received = [];
+      final received = [];
       stream.listen(
-        (event) {
+        (final event) {
           received.add(event);
         },
         onDone: () {
@@ -60,7 +60,7 @@ void main() {
       expect(received[1], mixedValues[1]);
       expect(
         received[2],
-        isA<SimpleData>().having((s) => s.num, 'num', simpleData.num),
+        isA<SimpleData>().having((final s) => s.num, 'num', simpleData.num),
       );
     },
   );
@@ -68,20 +68,20 @@ void main() {
   test(
     'Given a stream with nullable integer values when calling a streaming method that echoes input stream then values are echoed from the server.',
     () async {
-      var streamComplete = Completer();
-      var numberGenerator = List.generate(10, (index) {
+      final streamComplete = Completer();
+      final numberGenerator = List.generate(10, (index) {
         index++;
         if (index % 2 == 0) {
           return null;
         }
         return index;
       });
-      var inputStream = Stream<int?>.fromIterable(numberGenerator);
-      var stream = client.methodStreaming.nullableIntEchoStream(inputStream);
+      final inputStream = Stream<int?>.fromIterable(numberGenerator);
+      final stream = client.methodStreaming.nullableIntEchoStream(inputStream);
 
-      var received = <int?>[];
+      final received = <int?>[];
       stream.listen(
-        (event) {
+        (final event) {
           received.add(event);
         },
         onDone: () {
@@ -97,18 +97,18 @@ void main() {
   test(
     'Given multiple integer streams when calling a streaming method that echoes multiple input streams then values are echoed from the server.',
     () async {
-      var streamComplete = Completer();
-      var sequence = List.generate(4, (index) => index++);
-      var inputStream1 = StreamController<int>();
-      var inputStream2 = StreamController<int>();
-      var stream = client.methodStreaming.multipleIntEchoStreams(
+      final streamComplete = Completer();
+      final sequence = List.generate(4, (index) => index++);
+      final inputStream1 = StreamController<int>();
+      final inputStream2 = StreamController<int>();
+      final stream = client.methodStreaming.multipleIntEchoStreams(
         inputStream1.stream,
         inputStream2.stream,
       );
       var valueEchoed = Completer();
-      var received = <int>[];
+      final received = <int>[];
       stream.listen(
-        (event) {
+        (final event) {
           received.add(event);
           valueEchoed.complete();
         },
@@ -117,11 +117,12 @@ void main() {
         },
       );
 
-      for (var i in sequence) {
-        if (i % 2 == 0)
+      for (final i in sequence) {
+        if (i % 2 == 0) {
           inputStream1.add(i);
-        else
+        } else {
           inputStream2.add(i);
+        }
         await valueEchoed.future;
         valueEchoed = Completer();
       }
@@ -136,17 +137,17 @@ void main() {
   test(
     'Given multiple integer streams when one stream is finished when calling a streaming method that echoes multiple input streams then values are still echoed from open stream.',
     () async {
-      var streamComplete = Completer();
-      var sequence = List.generate(4, (index) => index++);
-      var inputStream1 = StreamController<int>();
-      var inputStream2 = StreamController<int>();
-      var stream = client.methodStreaming.multipleIntEchoStreams(
+      final streamComplete = Completer();
+      final sequence = List.generate(4, (index) => index++);
+      final inputStream1 = StreamController<int>();
+      final inputStream2 = StreamController<int>();
+      final stream = client.methodStreaming.multipleIntEchoStreams(
         inputStream1.stream,
         inputStream2.stream,
       );
-      var received = <int>[];
+      final received = <int>[];
       stream.listen(
-        (event) {
+        (final event) {
           received.add(event);
         },
         onDone: () {
@@ -166,8 +167,8 @@ void main() {
   test(
     'Given an input stream that throws an exception when calling a streaming method that returns true if exception is thrown on input stream then server responds with true,',
     () async {
-      var inputStream = StreamController<int>();
-      var responseFuture = client.methodStreaming.didInputStreamHaveError(
+      final inputStream = StreamController<int>();
+      final responseFuture = client.methodStreaming.didInputStreamHaveError(
         inputStream.stream,
       );
 
@@ -181,8 +182,8 @@ void main() {
   test(
     'Given an input stream that throws a serializable exception when calling a streaming method that returns true if exception is thrown on input stream then server responds with true,',
     () async {
-      var inputStream = StreamController<int>();
-      var responseFuture = client.methodStreaming
+      final inputStream = StreamController<int>();
+      final responseFuture = client.methodStreaming
           .didInputStreamHaveSerializableExceptionError(inputStream.stream);
 
       inputStream.addError(

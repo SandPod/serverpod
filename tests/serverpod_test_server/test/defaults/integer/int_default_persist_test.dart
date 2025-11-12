@@ -8,7 +8,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "intDefaultPersist" field should be null',
         () {
-          var object = IntDefaultPersist();
+          final object = IntDefaultPersist();
           expect(object.intDefaultPersist, isNull);
         },
       );
@@ -16,7 +16,7 @@ void main() async {
       test(
         'when an object of the class is created with a specific value for "intDefaultPersist", then the field value should match the provided value',
         () {
-          var object = IntDefaultPersist(intDefaultPersist: 15);
+          final object = IntDefaultPersist(intDefaultPersist: 15);
           expect(object.intDefaultPersist, equals(15));
         },
       );

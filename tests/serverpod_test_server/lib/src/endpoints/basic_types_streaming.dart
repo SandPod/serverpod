@@ -3,74 +3,74 @@ import 'dart:typed_data';
 import 'package:serverpod/serverpod.dart';
 
 class BasicTypesStreamingEndpoint extends Endpoint {
-  Stream<int?> testInt(Session session, Stream<int?> value) async* {
-    await for (var v in value) {
+  Stream<int?> testInt(final Session session, final Stream<int?> value) async* {
+    await for (final v in value) {
       yield v;
     }
   }
 
-  Stream<double?> testDouble(Session session, Stream<double?> value) async* {
-    await for (var v in value) {
+  Stream<double?> testDouble(final Session session, final Stream<double?> value) async* {
+    await for (final v in value) {
       yield v;
     }
   }
 
-  Stream<bool?> testBool(Session session, Stream<bool?> value) async* {
-    await for (var v in value) {
+  Stream<bool?> testBool(final Session session, final Stream<bool?> value) async* {
+    await for (final v in value) {
       yield v;
     }
   }
 
   Stream<DateTime?> testDateTime(
-    Session session,
-    Stream<DateTime?> value,
+    final Session session,
+    final Stream<DateTime?> value,
   ) async* {
-    await for (var v in value) {
+    await for (final v in value) {
       yield v;
     }
   }
 
-  Stream<String?> testString(Session session, Stream<String?> value) async* {
-    await for (var v in value) {
+  Stream<String?> testString(final Session session, final Stream<String?> value) async* {
+    await for (final v in value) {
       yield v;
     }
   }
 
   Stream<ByteData?> testByteData(
-    Session session,
-    Stream<ByteData?> value,
+    final Session session,
+    final Stream<ByteData?> value,
   ) async* {
-    await for (var v in value) {
+    await for (final v in value) {
       yield v;
     }
   }
 
   Stream<Duration?> testDuration(
-    Session session,
-    Stream<Duration?> value,
+    final Session session,
+    final Stream<Duration?> value,
   ) async* {
-    await for (var v in value) {
+    await for (final v in value) {
       yield v;
     }
   }
 
   Stream<UuidValue?> testUuid(
-    Session session,
-    Stream<UuidValue?> value,
+    final Session session,
+    final Stream<UuidValue?> value,
   ) async* {
-    await for (var v in value) {
+    await for (final v in value) {
       yield v;
     }
   }
 
-  Stream<Uri?> testUri(Session session, Stream<Uri?> value) async* {
-    await for (var v in value) {
+  Stream<Uri?> testUri(final Session session, final Stream<Uri?> value) async* {
+    await for (final v in value) {
       yield v;
     }
   }
 
-  Stream<BigInt?> testBigInt(Session session, Stream<BigInt?> value) async* {
-    await for (var v in value) {
+  Stream<BigInt?> testBigInt(final Session session, final Stream<BigInt?> value) async* {
+    await for (final v in value) {
       yield v;
     }
   }

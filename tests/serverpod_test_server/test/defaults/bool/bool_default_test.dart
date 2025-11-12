@@ -8,7 +8,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "boolDefaultTrue" field should be true',
         () {
-          var object = BoolDefault();
+          final object = BoolDefault();
           expect(object.boolDefaultTrue, isTrue);
         },
       );
@@ -16,7 +16,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "boolDefaultFalse" field should be false',
         () {
-          var object = BoolDefault();
+          final object = BoolDefault();
           expect(object.boolDefaultFalse, isFalse);
         },
       );
@@ -24,7 +24,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "boolDefaultNullFalse" field should be false',
         () {
-          var object = BoolDefault();
+          final object = BoolDefault();
           expect(object.boolDefaultNullFalse, isFalse);
         },
       );
@@ -32,7 +32,7 @@ void main() async {
       test(
         'when an object of the class is created with a value for "boolDefaultTrue", then the field value should match the provided value',
         () {
-          var object = BoolDefault(boolDefaultTrue: false);
+          final object = BoolDefault(boolDefaultTrue: false);
           expect(object.boolDefaultTrue, isFalse);
         },
       );
@@ -40,7 +40,7 @@ void main() async {
       test(
         'when an object of the class is created with a value for "boolDefaultFalse", then the field value should match the provided value',
         () {
-          var object = BoolDefault(boolDefaultFalse: true);
+          final object = BoolDefault(boolDefaultFalse: true);
           expect(object.boolDefaultFalse, isTrue);
         },
       );
@@ -48,7 +48,7 @@ void main() async {
       test(
         'when an object of the class is created with a value for "boolDefaultNullFalse", then the field value should match the provided value',
         () {
-          var object = BoolDefault(boolDefaultNullFalse: true);
+          final object = BoolDefault(boolDefaultNullFalse: true);
           expect(object.boolDefaultNullFalse, isTrue);
         },
       );

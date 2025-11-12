@@ -8,8 +8,8 @@ import 'package:uuid/uuid.dart';
 
 void main() async {
   late Directory tempDir;
-  var rootPath = path.join(Directory.current.path, '..', '..');
-  var cliPath = path.join(rootPath, 'tools', 'serverpod_cli');
+  final rootPath = path.join(Directory.current.path, '..', '..');
+  final cliPath = path.join(rootPath, 'tools', 'serverpod_cli');
 
   setUpAll(() async {
     await Process.run(
@@ -45,10 +45,10 @@ void main() async {
   group(
     'Given a serverpod project when generate is called with -d option from a different directory',
     () {
-      var projectName =
+      final projectName =
           'test_${const Uuid().v4().replaceAll('-', '_').toLowerCase()}';
-      var serverDir = path.join(projectName, '${projectName}_server');
-      var clientDir = path.join(projectName, '${projectName}_client');
+      final serverDir = path.join(projectName, '${projectName}_server');
+      final clientDir = path.join(projectName, '${projectName}_client');
 
       late Process createProcess;
 
@@ -65,7 +65,7 @@ void main() async {
         createProcess.stdout.transform(const Utf8Decoder()).listen(print);
         createProcess.stderr.transform(const Utf8Decoder()).listen(print);
 
-        var createProjectExitCode = await createProcess.exitCode;
+        final createProjectExitCode = await createProcess.exitCode;
         assert(
           createProjectExitCode == 0,
           'Failed to create the serverpod project.',
@@ -80,8 +80,8 @@ void main() async {
         'then code generation succeeds when using absolute path with -d option.',
         () async {
           // Run generate from temp directory (parent of project) using -d with absolute path
-          var absoluteServerPath = path.join(tempDir.path, serverDir);
-          var generateProcess = await Process.start(
+          final absoluteServerPath = path.join(tempDir.path, serverDir);
+          final generateProcess = await Process.start(
             'serverpod',
             ['generate', '-d', absoluteServerPath, '--no-analytics'],
             workingDirectory: tempDir.path,
@@ -90,28 +90,28 @@ void main() async {
             },
           );
 
-          var stdout = <String>[];
-          var stderr = <String>[];
+          final stdout = <String>[];
+          final stderr = <String>[];
 
           generateProcess.stdout
               .transform(const Utf8Decoder())
               .transform(const LineSplitter())
-              .listen((line) {
+              .listen((final line) {
                 stdout.add(line);
               });
 
           generateProcess.stderr
               .transform(const Utf8Decoder())
               .transform(const LineSplitter())
-              .listen((line) {
+              .listen((final line) {
                 stderr.add(line);
               });
 
-          var exitCode = await generateProcess.exitCode;
+          final exitCode = await generateProcess.exitCode;
 
           expect(exitCode, equals(0), reason: 'Generate should succeed');
 
-          var allOutput = [...stdout, ...stderr].join('\n');
+          final allOutput = [...stdout, ...stderr].join('\n');
           expect(
             allOutput.contains('Done') || allOutput.contains('success'),
             isTrue,
@@ -119,7 +119,7 @@ void main() async {
           );
 
           // Verify that generated files exist
-          var generatedEndpointsFile = File(
+          final generatedEndpointsFile = File(
             path.join(
               tempDir.path,
               serverDir,
@@ -135,7 +135,7 @@ void main() async {
             reason: 'Generated endpoints file should exist',
           );
 
-          var generatedProtocolFile = File(
+          final generatedProtocolFile = File(
             path.join(
               tempDir.path,
               serverDir,
@@ -152,7 +152,7 @@ void main() async {
           );
 
           // Verify client files were generated
-          var clientProtocolDir = Directory(
+          final clientProtocolDir = Directory(
             path.join(
               tempDir.path,
               clientDir,
@@ -173,7 +173,7 @@ void main() async {
         'then code generation succeeds when using relative path with -d option.',
         () async {
           // Run generate from temp directory using -d with relative path
-          var generateProcess = await Process.start(
+          final generateProcess = await Process.start(
             'serverpod',
             ['generate', '-d', serverDir, '--no-analytics'],
             workingDirectory: tempDir.path,
@@ -182,28 +182,28 @@ void main() async {
             },
           );
 
-          var stdout = <String>[];
-          var stderr = <String>[];
+          final stdout = <String>[];
+          final stderr = <String>[];
 
           generateProcess.stdout
               .transform(const Utf8Decoder())
               .transform(const LineSplitter())
-              .listen((line) {
+              .listen((final line) {
                 stdout.add(line);
               });
 
           generateProcess.stderr
               .transform(const Utf8Decoder())
               .transform(const LineSplitter())
-              .listen((line) {
+              .listen((final line) {
                 stderr.add(line);
               });
 
-          var exitCode = await generateProcess.exitCode;
+          final exitCode = await generateProcess.exitCode;
 
           expect(exitCode, equals(0), reason: 'Generate should succeed');
 
-          var allOutput = [...stdout, ...stderr].join('\n');
+          final allOutput = [...stdout, ...stderr].join('\n');
           expect(
             allOutput.contains('Done') || allOutput.contains('success'),
             isTrue,
@@ -211,7 +211,7 @@ void main() async {
           );
 
           // Verify that generated files exist
-          var generatedEndpointsFile = File(
+          final generatedEndpointsFile = File(
             path.join(
               tempDir.path,
               serverDir,
@@ -232,8 +232,8 @@ void main() async {
       test(
         'then code generation fails with proper error when directory does not exist.',
         () async {
-          var nonExistentDir = path.join(tempDir.path, 'nonexistent_server');
-          var generateProcess = await Process.start(
+          final nonExistentDir = path.join(tempDir.path, 'nonexistent_server');
+          final generateProcess = await Process.start(
             'serverpod',
             ['generate', '-d', nonExistentDir, '--no-analytics'],
             workingDirectory: tempDir.path,
@@ -242,28 +242,28 @@ void main() async {
             },
           );
 
-          var stdout = <String>[];
-          var stderr = <String>[];
+          final stdout = <String>[];
+          final stderr = <String>[];
 
           generateProcess.stdout
               .transform(const Utf8Decoder())
               .transform(const LineSplitter())
-              .listen((line) {
+              .listen((final line) {
                 stdout.add(line);
               });
 
           generateProcess.stderr
               .transform(const Utf8Decoder())
               .transform(const LineSplitter())
-              .listen((line) {
+              .listen((final line) {
                 stderr.add(line);
               });
 
-          var exitCode = await generateProcess.exitCode;
+          final exitCode = await generateProcess.exitCode;
 
           expect(exitCode, isNot(equals(0)), reason: 'Generate should fail');
 
-          var allOutput = [...stdout, ...stderr].join('\n').toLowerCase();
+          final allOutput = [...stdout, ...stderr].join('\n').toLowerCase();
           expect(
             allOutput.contains('error') || allOutput.contains('failed'),
             isTrue,

@@ -6,33 +6,33 @@ import '../../test_tools/serverpod_test_tools.dart';
 void main() async {
   AuthConfig.set(
     AuthConfig(
-      sendValidationEmail: (session, email, validationCode) async {
+      sendValidationEmail: (final session, final email, final validationCode) async {
         print('Sending validation email to $email with code $validationCode');
         return true;
       },
       passwordHashValidator:
           ({
-            required password,
-            required email,
-            required hash,
-            onError,
-            onValidationFailure,
+            required final password,
+            required final email,
+            required final hash,
+            final onError,
+            final onValidationFailure,
           }) async =>
               // Always return true to allow the test to proceed
-              PasswordValidationSuccess(),
+              const PasswordValidationSuccess(),
       // Custom password hash generator that does not hash the password
-      passwordHashGenerator: (password) async => password,
+      passwordHashGenerator: (final password) async => password,
       extraSaltyHash: false,
     ),
   );
 
   withServerpod(
     'Given a custom non-hashing password hash generator and a create account request',
-    (sessionBuilder, _) {
-      var session = sessionBuilder.build();
-      var userName = 'test';
-      var email = 'test8@serverpod.dev';
-      var password = 'password';
+    (final sessionBuilder, _) {
+      final session = sessionBuilder.build();
+      const userName = 'test';
+      const email = 'test8@serverpod.dev';
+      const password = 'password';
 
       setUp(() async {
         await Emails.createAccountRequest(session, userName, email, password);
@@ -41,9 +41,9 @@ void main() async {
       test(
         'when inspecting password hash then password is not hashed',
         () async {
-          var emailAuth = await EmailCreateAccountRequest.db.findFirstRow(
+          final emailAuth = await EmailCreateAccountRequest.db.findFirstRow(
             session,
-            where: (t) => t.email.equals(email),
+            where: (final t) => t.email.equals(email),
           );
 
           expect(
@@ -51,7 +51,7 @@ void main() async {
             isNotNull,
             reason: 'Failed to find create account',
           );
-          var passwordHash = emailAuth!.hash;
+          final passwordHash = emailAuth!.hash;
 
           expect(
             passwordHash,
@@ -65,11 +65,11 @@ void main() async {
 
   withServerpod(
     'Given a custom always true password hash validator and a created user',
-    (sessionBuilder, _) {
-      var session = sessionBuilder.build();
-      var userName = 'test';
-      var email = 'test8@serverpod.dev';
-      var password = 'password';
+    (final sessionBuilder, _) {
+      final session = sessionBuilder.build();
+      const userName = 'test';
+      const email = 'test8@serverpod.dev';
+      const password = 'password';
 
       setUp(() async {
         await Emails.createUser(session, userName, email, password);
@@ -78,8 +78,8 @@ void main() async {
       test(
         'when authenticating with incorrect password then user can authenticate',
         () async {
-          var incorrectPassword = '$password-incorrect';
-          var authResponse = await Emails.authenticate(
+          const incorrectPassword = '$password-incorrect';
+          final authResponse = await Emails.authenticate(
             session,
             email,
             incorrectPassword,
@@ -96,23 +96,23 @@ void main() async {
 
   withServerpod(
     'Given custom hash generator and a stored legacy password in the database',
-    (sessionBuilder, _) {
-      var session = sessionBuilder.build();
-      var userName = 'test';
-      var email = 'test@serverpod.dev';
-      var password = 'hunter2';
+    (final sessionBuilder, _) {
+      final session = sessionBuilder.build();
+      const userName = 'test';
+      const email = 'test@serverpod.dev';
+      const password = 'hunter2';
       // Legacy hash of the password 'hunter2'
-      var legacyHash =
+      const legacyHash =
           '0713234b3cb6a6f98f6978f17a55a54578c580698dc1d56371502be6abb457eb';
 
       setUp(() async {
         await Emails.createUser(session, userName, email, password);
-        var entry = await EmailAuth.db.findFirstRow(
+        final entry = await EmailAuth.db.findFirstRow(
           session,
-          where: (t) => t.email.equals(email),
+          where: (final t) => t.email.equals(email),
         );
         assert(entry != null, 'Failed to find email auth entry');
-        var withLegacyHash = entry!.copyWith(
+        final withLegacyHash = entry!.copyWith(
           // Legacy hash of the password 'hunter2'
           hash: legacyHash,
         );
@@ -121,9 +121,9 @@ void main() async {
 
       test('when authenticating then hash is not migrated.', () async {
         await Emails.authenticate(session, email, password);
-        var emailAuth = await EmailAuth.db.findFirstRow(
+        final emailAuth = await EmailAuth.db.findFirstRow(
           session,
-          where: (t) => t.email.equals(email),
+          where: (final t) => t.email.equals(email),
         );
         expect(
           emailAuth,
@@ -131,7 +131,7 @@ void main() async {
           reason: 'Failed to find email auth entry for user.',
         );
 
-        var passwordHash = emailAuth!.hash;
+        final passwordHash = emailAuth!.hash;
         expect(
           passwordHash,
           legacyHash,

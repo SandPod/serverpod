@@ -9,11 +9,12 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
+import 'package:serverpod/serverpod.dart' as _i2;
+
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import '../protocol.dart' as _i1;
-import 'package:serverpod/serverpod.dart' as _i2;
-import '../types.dart' as _i3;
 import '../scopes/scope_server_only_field.dart' as _i4;
+import '../types.dart' as _i3;
 
 abstract class ScopeServerOnlyFieldChild extends _i1.ScopeServerOnlyField
     implements _i2.SerializableModel, _i2.ProtocolSerialization {
@@ -25,14 +26,14 @@ abstract class ScopeServerOnlyFieldChild extends _i1.ScopeServerOnlyField
   });
 
   factory ScopeServerOnlyFieldChild({
-    _i3.Types? allScope,
-    _i3.Types? serverOnlyScope,
-    _i4.ScopeServerOnlyField? nested,
-    required String childFoo,
+    final _i3.Types? allScope,
+    final _i3.Types? serverOnlyScope,
+    final _i4.ScopeServerOnlyField? nested,
+    required final String childFoo,
   }) = _ScopeServerOnlyFieldChildImpl;
 
   factory ScopeServerOnlyFieldChild.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return ScopeServerOnlyFieldChild(
       allScope: jsonSerialization['allScope'] == null
@@ -61,10 +62,10 @@ abstract class ScopeServerOnlyFieldChild extends _i1.ScopeServerOnlyField
   @override
   @_i2.useResult
   ScopeServerOnlyFieldChild copyWith({
-    Object? allScope,
-    Object? serverOnlyScope,
-    Object? nested,
-    String? childFoo,
+    final Object? allScope,
+    final Object? serverOnlyScope,
+    final Object? nested,
+    final String? childFoo,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -95,10 +96,10 @@ class _Undefined {}
 
 class _ScopeServerOnlyFieldChildImpl extends ScopeServerOnlyFieldChild {
   _ScopeServerOnlyFieldChildImpl({
-    _i3.Types? allScope,
-    _i3.Types? serverOnlyScope,
-    _i4.ScopeServerOnlyField? nested,
-    required String childFoo,
+    final _i3.Types? allScope,
+    final _i3.Types? serverOnlyScope,
+    final _i4.ScopeServerOnlyField? nested,
+    required final String childFoo,
   }) : super._(
          allScope: allScope,
          serverOnlyScope: serverOnlyScope,
@@ -111,10 +112,10 @@ class _ScopeServerOnlyFieldChildImpl extends ScopeServerOnlyFieldChild {
   @_i2.useResult
   @override
   ScopeServerOnlyFieldChild copyWith({
-    Object? allScope = _Undefined,
-    Object? serverOnlyScope = _Undefined,
-    Object? nested = _Undefined,
-    String? childFoo,
+    final Object? allScope = _Undefined,
+    final Object? serverOnlyScope = _Undefined,
+    final Object? nested = _Undefined,
+    final String? childFoo,
   }) {
     return ScopeServerOnlyFieldChild(
       allScope: allScope is _i3.Types? ? allScope : this.allScope?.copyWith(),

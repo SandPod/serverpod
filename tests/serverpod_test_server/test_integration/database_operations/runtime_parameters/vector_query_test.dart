@@ -12,7 +12,7 @@ const vectorDimension = 512;
 void main() {
   withServerpod(
     'Given a large number of vectors with very similar distances',
-    (sessionBuilder, _) {
+    (final sessionBuilder, _) {
       final session = sessionBuilder.build();
       final queryVector = Vector(
         [0.5, 0.5] + List.filled(vectorDimension - 2, 0.0),
@@ -47,12 +47,12 @@ void main() {
         /// parameters. Sequential scan is disabled to ensure that the queries
         /// only use the HNSW index and are affected by the efSearch parameter.
         Future<List<ObjectWithVector>> runVectorQuery({
-          required int efSearch,
-          required IterativeScan iterativeScan,
+          required final int efSearch,
+          required final IterativeScan iterativeScan,
         }) async {
-          return session.db.transaction((transaction) async {
+          return session.db.transaction((final transaction) async {
             await transaction.setRuntimeParameters(
-              (params) => [
+              (final params) => [
                 params.vectorIndexQuery(enableSeqScan: false),
                 params.hnswIndexQuery(
                   efSearch: efSearch,
@@ -63,7 +63,7 @@ void main() {
 
             return ObjectWithVector.db.find(
               session,
-              orderBy: (t) => t.vectorIndexedHnsw.distanceL2(queryVector),
+              orderBy: (final t) => t.vectorIndexedHnsw.distanceL2(queryVector),
               limit: 30,
               transaction: transaction,
             );
@@ -83,12 +83,12 @@ void main() {
         });
 
         test('then intersection ratio of found vectors is less than 0.5.', () {
-          var conservativeIds = conservativeResults.map((v) => v.id).toSet();
-          var aggressiveIds = aggressiveResults.map((v) => v.id).toSet();
+          final conservativeIds = conservativeResults.map((final v) => v.id).toSet();
+          final aggressiveIds = aggressiveResults.map((final v) => v.id).toSet();
 
-          var intersection = conservativeIds.intersection(aggressiveIds);
-          var unionSize = conservativeIds.union(aggressiveIds).length;
-          var intersectionRatio = intersection.length / unionSize;
+          final intersection = conservativeIds.intersection(aggressiveIds);
+          final unionSize = conservativeIds.union(aggressiveIds).length;
+          final intersectionRatio = intersection.length / unionSize;
 
           print('Conservative IDs: $conservativeIds');
           print('Aggressive IDs: $aggressiveIds');
@@ -131,14 +131,14 @@ void main() {
 }
 
 /// Helper function to generate test vectors with very similar distances.
-Vector generateTestVector(int i, {required math.Random random}) {
-  var baseVector = List<double>.filled(vectorDimension, 0.0);
+Vector generateTestVector(final int i, {required final math.Random random}) {
+  final baseVector = List<double>.filled(vectorDimension, 0.0);
 
   // Create vectors clustered around distance 0.5 from query point with very
   // small random variations to create borderline cases.
-  var angle = (i * 2 * math.pi) / totalVectors;
-  var radiusVariation = 0.01 * nextGaussian(random);
-  var baseRadius = 0.5 + radiusVariation;
+  final angle = (i * 2 * math.pi) / totalVectors;
+  final radiusVariation = 0.01 * nextGaussian(random);
+  final baseRadius = 0.5 + radiusVariation;
 
   // Place vectors in a spiral pattern with small random noise.
   baseVector[0] =
@@ -155,14 +155,14 @@ Vector generateTestVector(int i, {required math.Random random}) {
 }
 
 /// Helper for normal (Gaussian) distributed random numbers.
-double nextGaussian(math.Random rng) {
-  double u1 = rng.nextDouble();
-  double u2 = rng.nextDouble();
+double nextGaussian(final math.Random rng) {
+  final double u1 = rng.nextDouble();
+  final double u2 = rng.nextDouble();
   return math.sqrt(-2.0 * math.log(u1)) * math.cos(2.0 * math.pi * u2);
 }
 
 /// Calculates the L2 distance between two vectors.
-double l2(Vector a, Vector b) {
+double l2(final Vector a, final Vector b) {
   final aList = a.toList();
   final bList = b.toList();
   double sum = 0.0;
@@ -174,10 +174,10 @@ double l2(Vector a, Vector b) {
 }
 
 /// Calculates the average L2 distance of a list of results against a query vector.
-double avgL2(List<ObjectWithVector> results, Vector query) {
+double avgL2(final List<ObjectWithVector> results, final Vector query) {
   if (results.isEmpty) return double.infinity;
   return results
-          .map((v) => l2(v.vectorIndexedHnsw, query))
-          .reduce((a, b) => a + b) /
+          .map((final v) => l2(v.vectorIndexedHnsw, query))
+          .reduce((final a, final b) => a + b) /
       results.length;
 }

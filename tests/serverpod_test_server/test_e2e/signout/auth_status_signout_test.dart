@@ -1,6 +1,6 @@
 import 'package:serverpod_test_client/serverpod_test_client.dart';
-import 'package:serverpod_test_server/test_util/test_key_manager.dart';
 import 'package:serverpod_test_server/test_util/config.dart';
+import 'package:serverpod_test_server/test_util/test_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -86,8 +86,8 @@ void main() {
   });
 }
 
-Future<void> _authenticateClient(Client client) async {
-  var response = await client.authentication.authenticate(
+Future<void> _authenticateClient(final Client client) async {
+  final response = await client.authentication.authenticate(
     'test@foo.bar',
     'password',
   );

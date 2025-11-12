@@ -33,17 +33,17 @@ void main() async {
     test(
       'and a valid message type when broadcasting revoked authentication event then event is broadcasted',
       () async {
-        var eventCompleter = Completer<RevokedAuthenticationUser>();
+        final eventCompleter = Completer<RevokedAuthenticationUser>();
         session.messages
             .createStream(
               MessageCentralServerpodChannels.revokedAuthentication('1'),
             )
             .listen(
-              (event) => eventCompleter.complete(event),
+              (final event) => eventCompleter.complete(event),
             );
 
-        var message = RevokedAuthenticationUser();
-        var event = await session.messages.authenticationRevoked('1', message);
+        final message = RevokedAuthenticationUser();
+        final event = await session.messages.authenticationRevoked('1', message);
 
         expect(event, isTrue);
         await expectLater(
@@ -81,17 +81,17 @@ void main() async {
     test(
       'and a valid message type when broadcasting revoked authentication event then event is broadcasted',
       () async {
-        var eventCompleter = Completer<RevokedAuthenticationUser>();
+        final eventCompleter = Completer<RevokedAuthenticationUser>();
         session.messages
             .createStream(
               MessageCentralServerpodChannels.revokedAuthentication('1'),
             )
             .listen(
-              (event) => eventCompleter.complete(event),
+              (final event) => eventCompleter.complete(event),
             );
 
-        var message = RevokedAuthenticationUser();
-        var event = await session.messages.authenticationRevoked('1', message);
+        final message = RevokedAuthenticationUser();
+        final event = await session.messages.authenticationRevoked('1', message);
 
         expect(event, isTrue);
         await expectLater(

@@ -10,7 +10,7 @@ import 'package:test/test.dart';
 void main() {
   group('Calling simple endpoint method through parameter', () {
     test('succeed if method and parameters are correct', () async {
-      var result = await http.post(
+      final result = await http.post(
         Uri.parse('${serverUrl}simple?method=hello&name=Bob'),
       );
 
@@ -19,7 +19,7 @@ void main() {
     });
 
     test('fail if method name is incorrect', () async {
-      var result = await http.post(
+      final result = await http.post(
         Uri.parse('${serverUrl}simple?method=helloNonExistent&name=Bob'),
       );
 
@@ -29,7 +29,7 @@ void main() {
 
   group('Calling simple endpoint method through path', () {
     test('succeed if method and path are correct', () async {
-      var result = await http.post(
+      final result = await http.post(
         Uri.parse('${serverUrl}simple/hello?name=Andy'),
       );
 
@@ -38,7 +38,7 @@ void main() {
     });
 
     test('fail if method name is incorrect', () async {
-      var result = await http.post(
+      final result = await http.post(
         Uri.parse('${serverUrl}simple/helloNonExistent?name=Andy'),
       );
 
@@ -48,7 +48,7 @@ void main() {
 
   group('Calling simple endpoint method in a module through parameter', () {
     test('succeed if method and parameters are correct', () async {
-      var result = await http.post(
+      final result = await http.post(
         Uri.parse(
           '${serverUrl}serverpod_test_module.module?method=hello&name=Bob',
         ),
@@ -59,7 +59,7 @@ void main() {
     });
 
     test('fail if method name is incorrect', () async {
-      var result = await http.post(
+      final result = await http.post(
         Uri.parse(
           '${serverUrl}serverpod_test_module.module?method=helloNonExistent&name=Bob',
         ),
@@ -71,7 +71,7 @@ void main() {
 
   group('Calling simple endpoint method in a module through path', () {
     test('succeed if method and path are correct', () async {
-      var result = await http.post(
+      final result = await http.post(
         Uri.parse('${serverUrl}serverpod_test_module.module/hello?name=Andy'),
       );
 
@@ -80,7 +80,7 @@ void main() {
     });
 
     test('fail if method name is incorrect', () async {
-      var result = await http.post(
+      final result = await http.post(
         Uri.parse(
           '${serverUrl}serverpod_test_module.module/helloNonExistent?name=Andy',
         ),

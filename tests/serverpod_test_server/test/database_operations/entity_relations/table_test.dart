@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 void main() {
   group('Given models with deep nested relations', () {
     group('when building expression with deep nested relations', () {
-      Expression expression =
+      final Expression expression =
           Citizen.t.oldCompany.town.mayor.name.equals('Alex') &
           Citizen.t.company.name.equals('Serverpod');
 
@@ -21,9 +21,9 @@ void main() {
       });
 
       test('then each column expression has table relation.', () {
-        var columns = expression.columns;
-        var columnWithTableRelations = columns.where(
-          (element) => element.table.tableRelation != null,
+        final columns = expression.columns;
+        final columnWithTableRelations = columns.where(
+          (final element) => element.table.tableRelation != null,
         );
 
         expect(
@@ -36,7 +36,7 @@ void main() {
     });
 
     group('when accessing nested relations fields', () {
-      var nestedRelationAccess = Citizen.t.oldCompany.town.mayor.name;
+      final nestedRelationAccess = Citizen.t.oldCompany.town.mayor.name;
 
       test('then query prefix is built based on relations.', () {
         expect(
@@ -64,7 +64,7 @@ void main() {
       test(
         'then first table relation describes relation for citizen oldCompany field.',
         () {
-          var firstTableRelation =
+          final firstTableRelation =
               nestedRelationAccess.table.tableRelation?.getRelations[0];
 
           expectTableRelationWith(
@@ -82,7 +82,7 @@ void main() {
       test(
         'then second table relation describes relation for company town field.',
         () {
-          var secondTableRelation =
+          final secondTableRelation =
               nestedRelationAccess.table.tableRelation?.getRelations[1];
 
           expectTableRelationWith(
@@ -100,7 +100,7 @@ void main() {
       test(
         'then third table relation describes relation for town mayor field.',
         () {
-          var thirdTableRelation =
+          final thirdTableRelation =
               nestedRelationAccess.table.tableRelation?.getRelations[2];
 
           expectTableRelationWith(
@@ -121,12 +121,12 @@ void main() {
 }
 
 void expectTableRelationWith({
-  required dynamic
+  required final dynamic
   actualTableRelation /* Dynamic is used since we don't want to expose the TableRelation class */,
-  required String expectedLastForeignTableName,
-  required String expectedRelationQueryAlias,
-  required String expectedLastJoiningField,
-  required String expectedLastJoiningForeignField,
+  required final String expectedLastForeignTableName,
+  required final String expectedRelationQueryAlias,
+  required final String expectedLastJoiningField,
+  required final String expectedLastJoiningForeignField,
 }) {
   expect(
     actualTableRelation.relationQueryAlias,

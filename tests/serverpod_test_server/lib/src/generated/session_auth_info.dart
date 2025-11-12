@@ -22,18 +22,18 @@ abstract class SessionAuthInfo
   });
 
   factory SessionAuthInfo({
-    required bool isAuthenticated,
-    String? userId,
-    required List<String> scopes,
-    String? authId,
+    required final bool isAuthenticated,
+    final String? userId,
+    required final List<String> scopes,
+    final String? authId,
   }) = _SessionAuthInfoImpl;
 
-  factory SessionAuthInfo.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory SessionAuthInfo.fromJson(final Map<String, dynamic> jsonSerialization) {
     return SessionAuthInfo(
       isAuthenticated: jsonSerialization['isAuthenticated'] as bool,
       userId: jsonSerialization['userId'] as String?,
       scopes: (jsonSerialization['scopes'] as List)
-          .map((e) => e as String)
+          .map((final e) => e as String)
           .toList(),
       authId: jsonSerialization['authId'] as String?,
     );
@@ -51,10 +51,10 @@ abstract class SessionAuthInfo
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   SessionAuthInfo copyWith({
-    bool? isAuthenticated,
-    String? userId,
-    List<String>? scopes,
-    String? authId,
+    final bool? isAuthenticated,
+    final String? userId,
+    final List<String>? scopes,
+    final String? authId,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -86,10 +86,10 @@ class _Undefined {}
 
 class _SessionAuthInfoImpl extends SessionAuthInfo {
   _SessionAuthInfoImpl({
-    required bool isAuthenticated,
-    String? userId,
-    required List<String> scopes,
-    String? authId,
+    required final bool isAuthenticated,
+    final String? userId,
+    required final List<String> scopes,
+    final String? authId,
   }) : super._(
          isAuthenticated: isAuthenticated,
          userId: userId,
@@ -102,15 +102,15 @@ class _SessionAuthInfoImpl extends SessionAuthInfo {
   @_i1.useResult
   @override
   SessionAuthInfo copyWith({
-    bool? isAuthenticated,
-    Object? userId = _Undefined,
-    List<String>? scopes,
-    Object? authId = _Undefined,
+    final bool? isAuthenticated,
+    final Object? userId = _Undefined,
+    final List<String>? scopes,
+    final Object? authId = _Undefined,
   }) {
     return SessionAuthInfo(
       isAuthenticated: isAuthenticated ?? this.isAuthenticated,
       userId: userId is String? ? userId : this.userId,
-      scopes: scopes ?? this.scopes.map((e0) => e0).toList(),
+      scopes: scopes ?? this.scopes.map((final e0) => e0).toList(),
       authId: authId is String? ? authId : this.authId,
     );
   }

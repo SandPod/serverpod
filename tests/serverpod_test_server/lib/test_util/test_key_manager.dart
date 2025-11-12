@@ -7,7 +7,7 @@ class TestAuthKeyManager extends BearerAuthenticationKeyManager {
   Future<String?> get() async => _key;
 
   @override
-  Future<void> put(String key) async {
+  Future<void> put(final String key) async {
     _key = key;
   }
 

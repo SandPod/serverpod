@@ -6,10 +6,10 @@ import '../../test_tools/serverpod_test_tools.dart';
 
 void main() async {
   withServerpod('Given no account request when trying to create account ', (
-    sessionBuilder,
+    final sessionBuilder,
     _,
   ) {
-    var session = sessionBuilder.build();
+    final session = sessionBuilder.build();
 
     late UserInfo? response;
     setUp(
@@ -27,9 +27,9 @@ void main() async {
     });
 
     test('then no account is created', () async {
-      var accounts = await UserInfo.db.count(
+      final accounts = await UserInfo.db.count(
         session,
-        where: (t) => Constant.bool(true),
+        where: (final t) => Constant.bool(true),
       );
 
       expect(accounts, 0);
@@ -37,14 +37,14 @@ void main() async {
   });
 
   withServerpod('Given existing account request', (
-    sessionBuilder,
+    final sessionBuilder,
     _,
   ) {
-    var session = sessionBuilder.build();
-    var username = 'test';
-    var password = 'password';
-    var email = 'test@serverpod.dev';
-    var verificationCode = 'somecode';
+    final session = sessionBuilder.build();
+    const username = 'test';
+    const password = 'password';
+    const email = 'test@serverpod.dev';
+    const verificationCode = 'somecode';
 
     setUp(
       () async => {
@@ -64,7 +64,7 @@ void main() async {
       late UserInfo? response;
       setUp(
         () async {
-          var incorrectVerificationCode = 'incorrect-$verificationCode';
+          const incorrectVerificationCode = 'incorrect-$verificationCode';
           response = await Emails.tryCreateAccount(
             session,
             email: email,
@@ -74,9 +74,9 @@ void main() async {
       );
 
       test('then create account request is not removed', () async {
-        var accountRequests = await EmailCreateAccountRequest.db.count(
+        final accountRequests = await EmailCreateAccountRequest.db.count(
           session,
-          where: (t) => Constant.bool(true),
+          where: (final t) => Constant.bool(true),
         );
 
         expect(accountRequests, 1);
@@ -87,9 +87,9 @@ void main() async {
       });
 
       test('then no account is created', () async {
-        var accounts = await UserInfo.db.count(
+        final accounts = await UserInfo.db.count(
           session,
-          where: (t) => Constant.bool(true),
+          where: (final t) => Constant.bool(true),
         );
 
         expect(accounts, 0);
@@ -101,7 +101,7 @@ void main() async {
         late UserInfo? response;
         setUp(
           () async {
-            var incorrectEmail = 'incorrect.$email';
+            const incorrectEmail = 'incorrect.$email';
             response = await Emails.tryCreateAccount(
               session,
               email: incorrectEmail,
@@ -111,9 +111,9 @@ void main() async {
         );
 
         test('then create account request is not removed', () async {
-          var accountRequests = await EmailCreateAccountRequest.db.count(
+          final accountRequests = await EmailCreateAccountRequest.db.count(
             session,
-            where: (t) => Constant.bool(true),
+            where: (final t) => Constant.bool(true),
           );
 
           expect(accountRequests, 1);
@@ -124,9 +124,9 @@ void main() async {
         });
 
         test('then no account is created', () async {
-          var accounts = await UserInfo.db.count(
+          final accounts = await UserInfo.db.count(
             session,
-            where: (t) => Constant.bool(true),
+            where: (final t) => Constant.bool(true),
           );
 
           expect(accounts, 0);
@@ -147,9 +147,9 @@ void main() async {
       );
 
       test('then account is created', () async {
-        var accounts = await UserInfo.db.find(
+        final accounts = await UserInfo.db.find(
           session,
-          where: (t) => Constant.bool(true),
+          where: (final t) => Constant.bool(true),
         );
 
         expect(accounts, hasLength(1));
@@ -161,9 +161,9 @@ void main() async {
       });
 
       test('then account request is removed', () async {
-        var accountRequests = await EmailCreateAccountRequest.db.count(
+        final accountRequests = await EmailCreateAccountRequest.db.count(
           session,
-          where: (t) => Constant.bool(true),
+          where: (final t) => Constant.bool(true),
         );
 
         expect(accountRequests, 0);

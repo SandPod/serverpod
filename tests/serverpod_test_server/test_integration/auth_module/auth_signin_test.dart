@@ -4,15 +4,15 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
-  var userId = 1;
+  final session = await IntegrationTestServer().session();
+  const userId = 1;
 
   group('Given an authenticated user', () {
     tearDown(() async {
       session.updateAuthenticated(null);
       await AuthKey.db.deleteWhere(
         session,
-        where: (row) => Constant.bool(true),
+        where: (final row) => Constant.bool(true),
       );
     });
 
@@ -26,7 +26,7 @@ void main() async {
           updateSession: true,
         );
 
-        var auth = await session.authenticated;
+        final auth = session.authenticated;
 
         expect(
           auth,
@@ -57,7 +57,7 @@ void main() async {
           updateSession: false,
         );
 
-        var auth = await session.authenticated;
+        final auth = session.authenticated;
 
         expect(
           auth,
@@ -77,7 +77,7 @@ void main() async {
           'email',
         );
 
-        var auth = await session.authenticated;
+        final auth = session.authenticated;
 
         expect(
           auth,

@@ -28,14 +28,13 @@ void main() {
     test(
       'when an OpenMethodStreamResponse message and a ping message is sent to the server then OpenMethodStreamResponse is ignored and the server only responds with a pong message.',
       () {
-        var pongReceived = Completer<void>();
-        var otherMessageReceived = Completer<void>();
-        webSocket.textEvents.listen((event) {
-          var message = WebSocketMessage.fromJsonString(
+        final pongReceived = Completer<void>();
+        final otherMessageReceived = Completer<void>();
+        webSocket.textEvents.listen((final event) {
+          final message = WebSocketMessage.fromJsonString(
             event,
             server.serializationManager,
           );
-          ;
           if (message is PongCommand) {
             pongReceived.complete();
           } else {
@@ -59,7 +58,7 @@ void main() {
           reason: 'OpenMethodStreamResponse not generate any messages.',
         );
         expect(
-          pongReceived.future.timeout(Duration(seconds: 5)),
+          pongReceived.future.timeout(const Duration(seconds: 5)),
           completes,
           reason: 'Failed to receive pong message from server.',
         );

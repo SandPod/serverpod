@@ -22,13 +22,13 @@ abstract class UuidDefaultPersist
   });
 
   factory UuidDefaultPersist({
-    int? id,
-    _i1.UuidValue? uuidDefaultPersistRandom,
-    _i1.UuidValue? uuidDefaultPersistRandomV7,
-    _i1.UuidValue? uuidDefaultPersistStr,
+    final int? id,
+    final _i1.UuidValue? uuidDefaultPersistRandom,
+    final _i1.UuidValue? uuidDefaultPersistRandomV7,
+    final _i1.UuidValue? uuidDefaultPersistStr,
   }) = _UuidDefaultPersistImpl;
 
-  factory UuidDefaultPersist.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory UuidDefaultPersist.fromJson(final Map<String, dynamic> jsonSerialization) {
     return UuidDefaultPersist(
       id: jsonSerialization['id'] as int?,
       uuidDefaultPersistRandom:
@@ -71,10 +71,10 @@ abstract class UuidDefaultPersist
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   UuidDefaultPersist copyWith({
-    int? id,
-    _i1.UuidValue? uuidDefaultPersistRandom,
-    _i1.UuidValue? uuidDefaultPersistRandomV7,
-    _i1.UuidValue? uuidDefaultPersistStr,
+    final int? id,
+    final _i1.UuidValue? uuidDefaultPersistRandom,
+    final _i1.UuidValue? uuidDefaultPersistRandomV7,
+    final _i1.UuidValue? uuidDefaultPersistStr,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -107,13 +107,13 @@ abstract class UuidDefaultPersist
   }
 
   static UuidDefaultPersistIncludeList includeList({
-    _i1.WhereExpressionBuilder<UuidDefaultPersistTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<UuidDefaultPersistTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UuidDefaultPersistTable>? orderByList,
-    UuidDefaultPersistInclude? include,
+    final _i1.WhereExpressionBuilder<UuidDefaultPersistTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<UuidDefaultPersistTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<UuidDefaultPersistTable>? orderByList,
+    final UuidDefaultPersistInclude? include,
   }) {
     return UuidDefaultPersistIncludeList._(
       where: where,
@@ -136,10 +136,10 @@ class _Undefined {}
 
 class _UuidDefaultPersistImpl extends UuidDefaultPersist {
   _UuidDefaultPersistImpl({
-    int? id,
-    _i1.UuidValue? uuidDefaultPersistRandom,
-    _i1.UuidValue? uuidDefaultPersistRandomV7,
-    _i1.UuidValue? uuidDefaultPersistStr,
+    final int? id,
+    final _i1.UuidValue? uuidDefaultPersistRandom,
+    final _i1.UuidValue? uuidDefaultPersistRandomV7,
+    final _i1.UuidValue? uuidDefaultPersistStr,
   }) : super._(
          id: id,
          uuidDefaultPersistRandom: uuidDefaultPersistRandom,
@@ -152,10 +152,10 @@ class _UuidDefaultPersistImpl extends UuidDefaultPersist {
   @_i1.useResult
   @override
   UuidDefaultPersist copyWith({
-    Object? id = _Undefined,
-    Object? uuidDefaultPersistRandom = _Undefined,
-    Object? uuidDefaultPersistRandomV7 = _Undefined,
-    Object? uuidDefaultPersistStr = _Undefined,
+    final Object? id = _Undefined,
+    final Object? uuidDefaultPersistRandom = _Undefined,
+    final Object? uuidDefaultPersistRandomV7 = _Undefined,
+    final Object? uuidDefaultPersistStr = _Undefined,
   }) {
     return UuidDefaultPersist(
       id: id is int? ? id : this.id,
@@ -177,21 +177,21 @@ class UuidDefaultPersistUpdateTable
   UuidDefaultPersistUpdateTable(super.table);
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> uuidDefaultPersistRandom(
-    _i1.UuidValue? value,
+    final _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.uuidDefaultPersistRandom,
     value,
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> uuidDefaultPersistRandomV7(
-    _i1.UuidValue? value,
+    final _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.uuidDefaultPersistRandomV7,
     value,
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> uuidDefaultPersistStr(
-    _i1.UuidValue? value,
+    final _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.uuidDefaultPersistStr,
     value,
@@ -248,7 +248,7 @@ class UuidDefaultPersistInclude extends _i1.IncludeObject {
 
 class UuidDefaultPersistIncludeList extends _i1.IncludeList {
   UuidDefaultPersistIncludeList._({
-    _i1.WhereExpressionBuilder<UuidDefaultPersistTable>? where,
+    final _i1.WhereExpressionBuilder<UuidDefaultPersistTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -292,14 +292,14 @@ class UuidDefaultPersistRepository {
   /// );
   /// ```
   Future<List<UuidDefaultPersist>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<UuidDefaultPersistTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<UuidDefaultPersistTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UuidDefaultPersistTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<UuidDefaultPersistTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<UuidDefaultPersistTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<UuidDefaultPersistTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<UuidDefaultPersist>(
       where: where?.call(UuidDefaultPersist.t),
@@ -330,13 +330,13 @@ class UuidDefaultPersistRepository {
   /// );
   /// ```
   Future<UuidDefaultPersist?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<UuidDefaultPersistTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<UuidDefaultPersistTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UuidDefaultPersistTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<UuidDefaultPersistTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<UuidDefaultPersistTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<UuidDefaultPersistTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<UuidDefaultPersist>(
       where: where?.call(UuidDefaultPersist.t),
@@ -350,9 +350,9 @@ class UuidDefaultPersistRepository {
 
   /// Finds a single [UuidDefaultPersist] by its [id] or null if no such row exists.
   Future<UuidDefaultPersist?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<UuidDefaultPersist>(
       id,
@@ -367,9 +367,9 @@ class UuidDefaultPersistRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<UuidDefaultPersist>> insert(
-    _i1.Session session,
-    List<UuidDefaultPersist> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<UuidDefaultPersist> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<UuidDefaultPersist>(
       rows,
@@ -381,9 +381,9 @@ class UuidDefaultPersistRepository {
   ///
   /// The returned [UuidDefaultPersist] will have its `id` field set.
   Future<UuidDefaultPersist> insertRow(
-    _i1.Session session,
-    UuidDefaultPersist row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final UuidDefaultPersist row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<UuidDefaultPersist>(
       row,
@@ -397,10 +397,10 @@ class UuidDefaultPersistRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<UuidDefaultPersist>> update(
-    _i1.Session session,
-    List<UuidDefaultPersist> rows, {
-    _i1.ColumnSelections<UuidDefaultPersistTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<UuidDefaultPersist> rows, {
+    final _i1.ColumnSelections<UuidDefaultPersistTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<UuidDefaultPersist>(
       rows,
@@ -413,10 +413,10 @@ class UuidDefaultPersistRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<UuidDefaultPersist> updateRow(
-    _i1.Session session,
-    UuidDefaultPersist row, {
-    _i1.ColumnSelections<UuidDefaultPersistTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final UuidDefaultPersist row, {
+    final _i1.ColumnSelections<UuidDefaultPersistTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<UuidDefaultPersist>(
       row,
@@ -428,11 +428,11 @@ class UuidDefaultPersistRepository {
   /// Updates a single [UuidDefaultPersist] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<UuidDefaultPersist?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<UuidDefaultPersistUpdateTable>
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<UuidDefaultPersistUpdateTable>
     columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<UuidDefaultPersist>(
       id,
@@ -444,16 +444,16 @@ class UuidDefaultPersistRepository {
   /// Updates all [UuidDefaultPersist]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<UuidDefaultPersist>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<UuidDefaultPersistUpdateTable>
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<UuidDefaultPersistUpdateTable>
     columnValues,
-    required _i1.WhereExpressionBuilder<UuidDefaultPersistTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<UuidDefaultPersistTable>? orderBy,
-    _i1.OrderByListBuilder<UuidDefaultPersistTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    required final _i1.WhereExpressionBuilder<UuidDefaultPersistTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<UuidDefaultPersistTable>? orderBy,
+    final _i1.OrderByListBuilder<UuidDefaultPersistTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<UuidDefaultPersist>(
       columnValues: columnValues(UuidDefaultPersist.t.updateTable),
@@ -471,9 +471,9 @@ class UuidDefaultPersistRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<UuidDefaultPersist>> delete(
-    _i1.Session session,
-    List<UuidDefaultPersist> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<UuidDefaultPersist> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<UuidDefaultPersist>(
       rows,
@@ -483,9 +483,9 @@ class UuidDefaultPersistRepository {
 
   /// Deletes a single [UuidDefaultPersist].
   Future<UuidDefaultPersist> deleteRow(
-    _i1.Session session,
-    UuidDefaultPersist row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final UuidDefaultPersist row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<UuidDefaultPersist>(
       row,
@@ -495,9 +495,9 @@ class UuidDefaultPersistRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<UuidDefaultPersist>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<UuidDefaultPersistTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<UuidDefaultPersistTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<UuidDefaultPersist>(
       where: where(UuidDefaultPersist.t),
@@ -508,10 +508,10 @@ class UuidDefaultPersistRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<UuidDefaultPersistTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<UuidDefaultPersistTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<UuidDefaultPersist>(
       where: where?.call(UuidDefaultPersist.t),

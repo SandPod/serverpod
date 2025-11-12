@@ -15,8 +15,8 @@ void main() {
   group(
     'Given client that disconnects on lost internet connection with an open streaming method connection',
     () {
-      var testConnectivityMonitor = TestConnectivityMonitor();
-      var client = Client(
+      final testConnectivityMonitor = TestConnectivityMonitor();
+      final client = Client(
         serverUrl,
         authenticationKeyManager: TestAuthKeyManager(),
         disconnectStreamsOnLostInternetConnection: true,
@@ -26,16 +26,16 @@ void main() {
       test(
         'when connectivity monitor reports connection is lost then stream is closed with exception.',
         () async {
-          var messageReceived = Completer();
-          var streamErrorCompleter = Completer<Object>();
-          var inputStream = StreamController<int>();
-          var stream = client.methodStreaming.intEchoStream(inputStream.stream);
+          final messageReceived = Completer();
+          final streamErrorCompleter = Completer<Object>();
+          final inputStream = StreamController<int>();
+          final stream = client.methodStreaming.intEchoStream(inputStream.stream);
 
           stream.listen(
-            (event) {
+            (final event) {
               messageReceived.complete();
             },
-            onError: (e, s) {
+            onError: (final e, final s) {
               streamErrorCompleter.complete(e);
             },
           );
@@ -45,7 +45,7 @@ void main() {
           testConnectivityMonitor.notifyConnectionLost();
 
           await expectLater(streamErrorCompleter.future, completes);
-          var error = await streamErrorCompleter.future;
+          final error = await streamErrorCompleter.future;
           expect(error, isA<WebSocketClosedException>());
         },
       );
@@ -55,8 +55,8 @@ void main() {
   group(
     'Given client that does not disconnects on lost internet connection with an open streaming method connection',
     () {
-      var testConnectivityMonitor = TestConnectivityMonitor();
-      var client = Client(
+      final testConnectivityMonitor = TestConnectivityMonitor();
+      final client = Client(
         serverUrl,
         authenticationKeyManager: TestAuthKeyManager(),
         disconnectStreamsOnLostInternetConnection: false,
@@ -69,10 +69,10 @@ void main() {
         'when connectivity monitor reports connection is lost then stream can still be used.',
         () async {
           var messageReceived = Completer();
-          var inputStream = StreamController<int>();
-          var stream = client.methodStreaming.intEchoStream(inputStream.stream);
+          final inputStream = StreamController<int>();
+          final stream = client.methodStreaming.intEchoStream(inputStream.stream);
 
-          stream.listen((event) {
+          stream.listen((final event) {
             messageReceived.complete();
           });
           inputStream.sink.add(42);

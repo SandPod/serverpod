@@ -55,124 +55,124 @@ class ServerpodConfigBuilder {
     );
   }
 
-  ServerpodConfigBuilder withRunMode(String runMode) {
+  ServerpodConfigBuilder withRunMode(final String runMode) {
     _runMode = runMode;
     return this;
   }
 
-  ServerpodConfigBuilder withServerId(String serverId) {
+  ServerpodConfigBuilder withServerId(final String serverId) {
     _serverId = serverId;
     return this;
   }
 
-  ServerpodConfigBuilder withRole(ServerpodRole role) {
+  ServerpodConfigBuilder withRole(final ServerpodRole role) {
     _role = role;
     return this;
   }
 
-  ServerpodConfigBuilder withLoggingMode(ServerpodLoggingMode loggingMode) {
+  ServerpodConfigBuilder withLoggingMode(final ServerpodLoggingMode loggingMode) {
     _loggingMode = loggingMode;
     return this;
   }
 
-  ServerpodConfigBuilder withApplyMigrations(bool applyMigrations) {
+  ServerpodConfigBuilder withApplyMigrations(final bool applyMigrations) {
     _applyMigrations = applyMigrations;
     return this;
   }
 
-  ServerpodConfigBuilder withApplyRepairMigration(bool applyRepairMigration) {
+  ServerpodConfigBuilder withApplyRepairMigration(final bool applyRepairMigration) {
     _applyRepairMigration = applyRepairMigration;
     return this;
   }
 
-  ServerpodConfigBuilder withMaxRequestSize(int maxRequestSize) {
+  ServerpodConfigBuilder withMaxRequestSize(final int maxRequestSize) {
     _maxRequestSize = maxRequestSize;
     return this;
   }
 
-  ServerpodConfigBuilder withApiServer(ServerConfig apiServer) {
+  ServerpodConfigBuilder withApiServer(final ServerConfig apiServer) {
     _apiServer = apiServer;
     return this;
   }
 
   ServerpodConfigBuilder withApiServerBuilder(
-    ServerConfigBuilder Function(ServerConfigBuilder) builder,
+    final ServerConfigBuilder Function(ServerConfigBuilder) builder,
   ) {
     _apiServer = builder(ServerConfigBuilder()).build();
     return this;
   }
 
-  ServerpodConfigBuilder withInsightsServer(ServerConfig? insightsServer) {
+  ServerpodConfigBuilder withInsightsServer(final ServerConfig? insightsServer) {
     _insightsServer = insightsServer;
     return this;
   }
 
-  ServerpodConfigBuilder withWebServer(ServerConfig? webServer) {
+  ServerpodConfigBuilder withWebServer(final ServerConfig? webServer) {
     _webServer = webServer;
     return this;
   }
 
-  ServerpodConfigBuilder withDatabase(DatabaseConfig? database) {
+  ServerpodConfigBuilder withDatabase(final DatabaseConfig? database) {
     _database = database;
     return this;
   }
 
   ServerpodConfigBuilder withDatabaseBuilder(
-    DatabaseConfigBuilder Function(DatabaseConfigBuilder) builder,
+    final DatabaseConfigBuilder Function(DatabaseConfigBuilder) builder,
   ) {
     _database = builder(DatabaseConfigBuilder()).build();
     return this;
   }
 
-  ServerpodConfigBuilder withRedis(RedisConfig? redis) {
+  ServerpodConfigBuilder withRedis(final RedisConfig? redis) {
     _redis = redis;
     return this;
   }
 
   ServerpodConfigBuilder withRedisBuilder(
-    RedisConfigBuilder Function(RedisConfigBuilder) builder,
+    final RedisConfigBuilder Function(RedisConfigBuilder) builder,
   ) {
     _redis = builder(RedisConfigBuilder()).build();
     return this;
   }
 
-  ServerpodConfigBuilder withServiceSecret(String? serviceSecret) {
+  ServerpodConfigBuilder withServiceSecret(final String? serviceSecret) {
     _serviceSecret = serviceSecret;
     return this;
   }
 
-  ServerpodConfigBuilder withSessionLogs(SessionLogConfig? sessionLogs) {
+  ServerpodConfigBuilder withSessionLogs(final SessionLogConfig? sessionLogs) {
     _sessionLogs = sessionLogs;
     return this;
   }
 
   ServerpodConfigBuilder withSessionLogsBuilder(
-    SessionLogConfigBuilder Function(SessionLogConfigBuilder) builder,
+    final SessionLogConfigBuilder Function(SessionLogConfigBuilder) builder,
   ) {
     _sessionLogs = builder(SessionLogConfigBuilder()).build();
     return this;
   }
 
   ServerpodConfigBuilder withExperimentalDiagnosticHandlerTimeout(
-    Duration? timeout,
+    final Duration? timeout,
   ) {
     _experimentalDiagnosticHandlerTimeout = timeout;
     return this;
   }
 
-  ServerpodConfigBuilder withFutureCall(FutureCallConfig futureCall) {
+  ServerpodConfigBuilder withFutureCall(final FutureCallConfig futureCall) {
     _futureCall = futureCall;
     return this;
   }
 
   ServerpodConfigBuilder withFutureCallBuilder(
-    FutureCallConfigBuilder Function(FutureCallConfigBuilder) builder,
+    final FutureCallConfigBuilder Function(FutureCallConfigBuilder) builder,
   ) {
     _futureCall = builder(FutureCallConfigBuilder()).build();
     return this;
   }
 
-  ServerpodConfigBuilder withFutureCallExecutionEnabled(bool enabled) {
+  ServerpodConfigBuilder withFutureCallExecutionEnabled(final bool enabled) {
     _futureCallExecutionEnabled = enabled;
     return this;
   }

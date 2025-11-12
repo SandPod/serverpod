@@ -15,8 +15,8 @@ import '../greeting_endpoint.dart' as _i2;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
-  void initializeEndpoints(_i1.Server server) {
-    var endpoints = <String, _i1.Endpoint>{
+  void initializeEndpoints(final _i1.Server server) {
+    final endpoints = <String, _i1.Endpoint>{
       'greeting': _i2.GreetingEndpoint()
         ..initialize(
           server,
@@ -39,8 +39,8 @@ class Endpoints extends _i1.EndpointDispatch {
           },
           call:
               (
-                _i1.Session session,
-                Map<String, dynamic> params,
+                final _i1.Session session,
+                final Map<String, dynamic> params,
               ) async => (endpoints['greeting'] as _i2.GreetingEndpoint).hello(
                 session,
                 params['name'],

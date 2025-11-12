@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with one to many relation ', () {
     tearDown(() async {
@@ -21,7 +21,7 @@ void main() async {
     test(
       'when counting models filtered on every many relation then result is as expected',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -51,10 +51,10 @@ void main() async {
           ),
         ]);
 
-        var customerCount = await CustomerInt.db.count(
+        final customerCount = await CustomerInt.db.count(
           session,
           // All customers where every order starts with 'prem'
-          where: (c) => c.orders.every((o) => o.description.ilike('prem%')),
+          where: (final c) => c.orders.every((final o) => o.description.ilike('prem%')),
         );
 
         expect(customerCount, 1);
@@ -64,7 +64,7 @@ void main() async {
     test(
       'when counting models filtered on multiple every many relation then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -97,12 +97,12 @@ void main() async {
           ),
         ]);
 
-        var customerCount = await CustomerInt.db.count(
+        final customerCount = await CustomerInt.db.count(
           session,
           // All customers where every order starts with 'prem' or every order starts with 'basic'
-          where: (c) =>
-              c.orders.every((o) => o.description.ilike('basic%')) |
-              c.orders.every((o) => o.description.ilike('prem%')),
+          where: (final c) =>
+              c.orders.every((final o) => o.description.ilike('basic%')) |
+              c.orders.every((final o) => o.description.ilike('prem%')),
         );
 
         expect(customerCount, 2);
@@ -129,13 +129,13 @@ void main() async {
     test(
       'when counting models filtered on nested every many relation then result is as expected',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
           CustomerInt(name: 'Lisa'),
         ]);
-        var orders = await OrderUuid.db.insert(session, [
+        final orders = await OrderUuid.db.insert(session, [
           // Alex orders
           OrderUuid(description: 'OrderUuid 1', customerId: customers[0].id!),
           OrderUuid(description: 'OrderUuid 2', customerId: customers[0].id!),
@@ -166,11 +166,11 @@ void main() async {
           CommentInt(description: 'Del: CommentInt 14', orderId: orders[4].id),
         ]);
 
-        var customerCount = await CustomerInt.db.count(
+        final customerCount = await CustomerInt.db.count(
           session,
           // All customers where every comment of every order starts with 'del'
-          where: (c) => c.orders.every(
-            (o) => o.comments.every((c) => c.description.ilike('del%')),
+          where: (final c) => c.orders.every(
+            (final o) => o.comments.every((final c) => c.description.ilike('del%')),
           ),
         );
 
@@ -181,13 +181,13 @@ void main() async {
     test(
       'when counting models filtered on nested every many relation in combination with separate filter then result is as expected',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
           CustomerInt(name: 'Lisa'),
         ]);
-        var orders = await OrderUuid.db.insert(session, [
+        final orders = await OrderUuid.db.insert(session, [
           // Alex orders
           OrderUuid(description: 'OrderUuid 1', customerId: customers[0].id!),
           OrderUuid(description: 'OrderUuid 2', customerId: customers[0].id!),
@@ -225,12 +225,12 @@ void main() async {
           CommentInt(description: 'Del: CommentInt 14', orderId: orders[4].id),
         ]);
 
-        var customerCount = await CustomerInt.db.count(
+        final customerCount = await CustomerInt.db.count(
           session,
           // All customers where every comment for every order starts with 'del' or every order starts with 'prem'.
-          where: (c) => c.orders.every(
-            (o) =>
-                o.comments.every((c) => c.description.ilike('del%')) |
+          where: (final c) => c.orders.every(
+            (final o) =>
+                o.comments.every((final c) => c.description.ilike('del%')) |
                 o.description.ilike('prem%'),
           ),
         );

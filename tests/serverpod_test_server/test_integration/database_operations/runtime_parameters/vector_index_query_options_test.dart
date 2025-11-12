@@ -7,8 +7,8 @@ void main() async {
     test(
       'when setting parameters globally then options are applied globally.',
       () async {
-        var session = await IntegrationTestServer(
-          runtimeParametersBuilder: (params) => [
+        final session = await IntegrationTestServer(
+          runtimeParametersBuilder: (final params) => [
             params.vectorIndexQuery(
               enableIndexScan: true,
               enableSeqScan: false,
@@ -21,11 +21,11 @@ void main() async {
           ],
         ).session();
 
-        var checkQuery = VectorIndexQueryOptions().buildCheckValues();
-        var result = await session.db.unsafeQuery(checkQuery);
+        final checkQuery = const VectorIndexQueryOptions().buildCheckValues();
+        final result = await session.db.unsafeQuery(checkQuery);
 
         expect(result.length, 1);
-        var row = result.first.toColumnMap();
+        final row = result.first.toColumnMap();
         expect(row['enable_indexscan'], 'on');
         expect(row['enable_seqscan'], 'off');
         expect(row['min_parallel_table_scan_size'], '8MB');
@@ -39,10 +39,10 @@ void main() async {
     test(
       'when setting parameters in transaction then they do not affect global settings.',
       () async {
-        var checkQuery = VectorIndexQueryOptions().buildCheckValues();
+        final checkQuery = const VectorIndexQueryOptions().buildCheckValues();
 
-        var session = await IntegrationTestServer(
-          runtimeParametersBuilder: (params) => [
+        final session = await IntegrationTestServer(
+          runtimeParametersBuilder: (final params) => [
             params.vectorIndexQuery(
               enableIndexScan: true,
               enableSeqScan: false,
@@ -55,9 +55,9 @@ void main() async {
           ],
         ).session();
 
-        await session.db.transaction((transaction) async {
+        await session.db.transaction((final transaction) async {
           await transaction.setRuntimeParameters(
-            (params) => [
+            (final params) => [
               params.vectorIndexQuery(
                 enableIndexScan: false,
                 enableSeqScan: true,
@@ -70,11 +70,11 @@ void main() async {
             ],
           );
 
-          var localResult = await session.db.unsafeQuery(
+          final localResult = await session.db.unsafeQuery(
             checkQuery,
             transaction: transaction,
           );
-          var localRow = localResult.first.toColumnMap();
+          final localRow = localResult.first.toColumnMap();
           expect(localRow['enable_indexscan'], 'off');
           expect(localRow['enable_seqscan'], 'on');
           expect(localRow['min_parallel_table_scan_size'], '4MB');
@@ -84,8 +84,8 @@ void main() async {
           expect(localRow['max_parallel_workers_per_gather'], '1');
         });
 
-        var globalResult = await session.db.unsafeQuery(checkQuery);
-        var globalRow = globalResult.first.toColumnMap();
+        final globalResult = await session.db.unsafeQuery(checkQuery);
+        final globalRow = globalResult.first.toColumnMap();
         expect(globalRow['enable_indexscan'], 'on');
         expect(globalRow['enable_seqscan'], 'off');
         expect(globalRow['min_parallel_table_scan_size'], '8MB');

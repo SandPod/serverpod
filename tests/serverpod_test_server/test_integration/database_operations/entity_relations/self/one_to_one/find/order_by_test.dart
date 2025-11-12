@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with one to one relation', () {
     tearDown(() async {
@@ -14,7 +14,7 @@ void main() async {
     test(
       'when fetching models ordered by relation attributes then result is as expected.',
       () async {
-        var post = await Post.db.insert(
+        final post = await Post.db.insert(
           session,
           [
             Post(content: '2 Hello world!'),
@@ -25,9 +25,9 @@ void main() async {
         await Post.db.attachRow.next(session, post[0], post[1]);
         await Post.db.attachRow.next(session, post[1], post[2]);
 
-        var postsFetched = await Post.db.find(
+        final postsFetched = await Post.db.find(
           session,
-          orderBy: (t) => t.next.content,
+          orderBy: (final t) => t.next.content,
         );
 
         expect(postsFetched[0].content, '3 Hello a third time!'); // next is 1
@@ -45,7 +45,7 @@ void main() async {
     test(
       'when fetching models ordered by nested relation attributes then result is as expected.',
       () async {
-        var post = await Post.db.insert(
+        final post = await Post.db.insert(
           session,
           [
             Post(content: '2 Hello world!'),
@@ -56,9 +56,9 @@ void main() async {
         await Post.db.attachRow.next(session, post[0], post[1]);
         await Post.db.attachRow.next(session, post[1], post[2]);
 
-        var postsFetched = await Post.db.find(
+        final postsFetched = await Post.db.find(
           session,
-          orderByList: (t) => [
+          orderByList: (final t) => [
             db.Order(column: t.next.next.content),
             db.Order(column: t.content),
           ],

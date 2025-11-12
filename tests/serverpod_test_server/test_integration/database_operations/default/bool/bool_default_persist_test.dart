@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with "defaultPersist" fields,', () {
     tearDownAll(
@@ -17,8 +17,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "defaultPersist=true" field should be true',
       () async {
-        var object = BoolDefaultPersist();
-        var databaseObject = await BoolDefaultPersist.db.insertRow(
+        final object = BoolDefaultPersist();
+        final databaseObject = await BoolDefaultPersist.db.insertRow(
           session,
           object,
         );
@@ -29,8 +29,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "defaultPersist=false" field should be false',
       () async {
-        var object = BoolDefaultPersist();
-        var databaseObject = await BoolDefaultPersist.db.insertRow(
+        final object = BoolDefaultPersist();
+        final databaseObject = await BoolDefaultPersist.db.insertRow(
           session,
           object,
         );
@@ -47,7 +47,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await BoolDefaultPersist.db.findFirstRow(session);
+        final databaseObject = await BoolDefaultPersist.db.findFirstRow(session);
         expect(databaseObject?.boolDefaultPersistTrue, isTrue);
       },
     );
@@ -61,7 +61,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await BoolDefaultPersist.db.findFirstRow(session);
+        final databaseObject = await BoolDefaultPersist.db.findFirstRow(session);
         expect(databaseObject?.boolDefaultPersistFalse, isFalse);
       },
     );
@@ -69,10 +69,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "boolDefaultPersistTrue" field value should match the provided value',
       () async {
-        var specificObject = BoolDefaultPersist(
+        final specificObject = BoolDefaultPersist(
           boolDefaultPersistTrue: false,
         );
-        var specificDatabaseObject = await BoolDefaultPersist.db.insertRow(
+        final specificDatabaseObject = await BoolDefaultPersist.db.insertRow(
           session,
           specificObject,
         );
@@ -83,10 +83,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "boolDefaultPersistFalse" field value should match the provided value',
       () async {
-        var specificObject = BoolDefaultPersist(
+        final specificObject = BoolDefaultPersist(
           boolDefaultPersistFalse: true,
         );
-        var specificDatabaseObject = await BoolDefaultPersist.db.insertRow(
+        final specificDatabaseObject = await BoolDefaultPersist.db.insertRow(
           session,
           specificObject,
         );

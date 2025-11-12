@@ -16,18 +16,18 @@ abstract class IntDefaultModel
     implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   IntDefaultModel._({
     this.id,
-    int? intDefaultModel,
-    int? intDefaultModelNull,
+    final int? intDefaultModel,
+    final int? intDefaultModelNull,
   }) : intDefaultModel = intDefaultModel ?? 10,
        intDefaultModelNull = intDefaultModelNull ?? 20;
 
   factory IntDefaultModel({
-    int? id,
-    int? intDefaultModel,
-    int? intDefaultModelNull,
+    final int? id,
+    final int? intDefaultModel,
+    final int? intDefaultModelNull,
   }) = _IntDefaultModelImpl;
 
-  factory IntDefaultModel.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory IntDefaultModel.fromJson(final Map<String, dynamic> jsonSerialization) {
     return IntDefaultModel(
       id: jsonSerialization['id'] as int?,
       intDefaultModel: jsonSerialization['intDefaultModel'] as int,
@@ -53,9 +53,9 @@ abstract class IntDefaultModel
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   IntDefaultModel copyWith({
-    int? id,
-    int? intDefaultModel,
-    int? intDefaultModelNull,
+    final int? id,
+    final int? intDefaultModel,
+    final int? intDefaultModelNull,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -80,13 +80,13 @@ abstract class IntDefaultModel
   }
 
   static IntDefaultModelIncludeList includeList({
-    _i1.WhereExpressionBuilder<IntDefaultModelTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<IntDefaultModelTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<IntDefaultModelTable>? orderByList,
-    IntDefaultModelInclude? include,
+    final _i1.WhereExpressionBuilder<IntDefaultModelTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<IntDefaultModelTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<IntDefaultModelTable>? orderByList,
+    final IntDefaultModelInclude? include,
   }) {
     return IntDefaultModelIncludeList._(
       where: where,
@@ -109,9 +109,9 @@ class _Undefined {}
 
 class _IntDefaultModelImpl extends IntDefaultModel {
   _IntDefaultModelImpl({
-    int? id,
-    int? intDefaultModel,
-    int? intDefaultModelNull,
+    final int? id,
+    final int? intDefaultModel,
+    final int? intDefaultModelNull,
   }) : super._(
          id: id,
          intDefaultModel: intDefaultModel,
@@ -123,9 +123,9 @@ class _IntDefaultModelImpl extends IntDefaultModel {
   @_i1.useResult
   @override
   IntDefaultModel copyWith({
-    Object? id = _Undefined,
-    int? intDefaultModel,
-    int? intDefaultModelNull,
+    final Object? id = _Undefined,
+    final int? intDefaultModel,
+    final int? intDefaultModelNull,
   }) {
     return IntDefaultModel(
       id: id is int? ? id : this.id,
@@ -138,12 +138,12 @@ class _IntDefaultModelImpl extends IntDefaultModel {
 class IntDefaultModelUpdateTable extends _i1.UpdateTable<IntDefaultModelTable> {
   IntDefaultModelUpdateTable(super.table);
 
-  _i1.ColumnValue<int, int> intDefaultModel(int value) => _i1.ColumnValue(
+  _i1.ColumnValue<int, int> intDefaultModel(final int value) => _i1.ColumnValue(
     table.intDefaultModel,
     value,
   );
 
-  _i1.ColumnValue<int, int> intDefaultModelNull(int value) => _i1.ColumnValue(
+  _i1.ColumnValue<int, int> intDefaultModelNull(final int value) => _i1.ColumnValue(
     table.intDefaultModelNull,
     value,
   );
@@ -189,7 +189,7 @@ class IntDefaultModelInclude extends _i1.IncludeObject {
 
 class IntDefaultModelIncludeList extends _i1.IncludeList {
   IntDefaultModelIncludeList._({
-    _i1.WhereExpressionBuilder<IntDefaultModelTable>? where,
+    final _i1.WhereExpressionBuilder<IntDefaultModelTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -233,14 +233,14 @@ class IntDefaultModelRepository {
   /// );
   /// ```
   Future<List<IntDefaultModel>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<IntDefaultModelTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<IntDefaultModelTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<IntDefaultModelTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<IntDefaultModelTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<IntDefaultModelTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<IntDefaultModelTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<IntDefaultModel>(
       where: where?.call(IntDefaultModel.t),
@@ -271,13 +271,13 @@ class IntDefaultModelRepository {
   /// );
   /// ```
   Future<IntDefaultModel?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<IntDefaultModelTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<IntDefaultModelTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<IntDefaultModelTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<IntDefaultModelTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<IntDefaultModelTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<IntDefaultModelTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<IntDefaultModel>(
       where: where?.call(IntDefaultModel.t),
@@ -291,9 +291,9 @@ class IntDefaultModelRepository {
 
   /// Finds a single [IntDefaultModel] by its [id] or null if no such row exists.
   Future<IntDefaultModel?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<IntDefaultModel>(
       id,
@@ -308,9 +308,9 @@ class IntDefaultModelRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<IntDefaultModel>> insert(
-    _i1.Session session,
-    List<IntDefaultModel> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<IntDefaultModel> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<IntDefaultModel>(
       rows,
@@ -322,9 +322,9 @@ class IntDefaultModelRepository {
   ///
   /// The returned [IntDefaultModel] will have its `id` field set.
   Future<IntDefaultModel> insertRow(
-    _i1.Session session,
-    IntDefaultModel row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final IntDefaultModel row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<IntDefaultModel>(
       row,
@@ -338,10 +338,10 @@ class IntDefaultModelRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<IntDefaultModel>> update(
-    _i1.Session session,
-    List<IntDefaultModel> rows, {
-    _i1.ColumnSelections<IntDefaultModelTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<IntDefaultModel> rows, {
+    final _i1.ColumnSelections<IntDefaultModelTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<IntDefaultModel>(
       rows,
@@ -354,10 +354,10 @@ class IntDefaultModelRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<IntDefaultModel> updateRow(
-    _i1.Session session,
-    IntDefaultModel row, {
-    _i1.ColumnSelections<IntDefaultModelTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final IntDefaultModel row, {
+    final _i1.ColumnSelections<IntDefaultModelTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<IntDefaultModel>(
       row,
@@ -369,11 +369,11 @@ class IntDefaultModelRepository {
   /// Updates a single [IntDefaultModel] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<IntDefaultModel?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<IntDefaultModelUpdateTable>
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<IntDefaultModelUpdateTable>
     columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<IntDefaultModel>(
       id,
@@ -385,16 +385,16 @@ class IntDefaultModelRepository {
   /// Updates all [IntDefaultModel]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<IntDefaultModel>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<IntDefaultModelUpdateTable>
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<IntDefaultModelUpdateTable>
     columnValues,
-    required _i1.WhereExpressionBuilder<IntDefaultModelTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<IntDefaultModelTable>? orderBy,
-    _i1.OrderByListBuilder<IntDefaultModelTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    required final _i1.WhereExpressionBuilder<IntDefaultModelTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<IntDefaultModelTable>? orderBy,
+    final _i1.OrderByListBuilder<IntDefaultModelTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<IntDefaultModel>(
       columnValues: columnValues(IntDefaultModel.t.updateTable),
@@ -412,9 +412,9 @@ class IntDefaultModelRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<IntDefaultModel>> delete(
-    _i1.Session session,
-    List<IntDefaultModel> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<IntDefaultModel> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<IntDefaultModel>(
       rows,
@@ -424,9 +424,9 @@ class IntDefaultModelRepository {
 
   /// Deletes a single [IntDefaultModel].
   Future<IntDefaultModel> deleteRow(
-    _i1.Session session,
-    IntDefaultModel row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final IntDefaultModel row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<IntDefaultModel>(
       row,
@@ -436,9 +436,9 @@ class IntDefaultModelRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<IntDefaultModel>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<IntDefaultModelTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<IntDefaultModelTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<IntDefaultModel>(
       where: where(IntDefaultModel.t),
@@ -449,10 +449,10 @@ class IntDefaultModelRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<IntDefaultModelTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<IntDefaultModelTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<IntDefaultModel>(
       where: where?.call(IntDefaultModel.t),

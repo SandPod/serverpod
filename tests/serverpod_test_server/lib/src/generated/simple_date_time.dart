@@ -21,11 +21,11 @@ abstract class SimpleDateTime
   });
 
   factory SimpleDateTime({
-    int? id,
-    required DateTime dateTime,
+    final int? id,
+    required final DateTime dateTime,
   }) = _SimpleDateTimeImpl;
 
-  factory SimpleDateTime.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory SimpleDateTime.fromJson(final Map<String, dynamic> jsonSerialization) {
     return SimpleDateTime(
       id: jsonSerialization['id'] as int?,
       dateTime: _i1.DateTimeJsonExtension.fromJson(
@@ -51,8 +51,8 @@ abstract class SimpleDateTime
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   SimpleDateTime copyWith({
-    int? id,
-    DateTime? dateTime,
+    final int? id,
+    final DateTime? dateTime,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -75,13 +75,13 @@ abstract class SimpleDateTime
   }
 
   static SimpleDateTimeIncludeList includeList({
-    _i1.WhereExpressionBuilder<SimpleDateTimeTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<SimpleDateTimeTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<SimpleDateTimeTable>? orderByList,
-    SimpleDateTimeInclude? include,
+    final _i1.WhereExpressionBuilder<SimpleDateTimeTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<SimpleDateTimeTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<SimpleDateTimeTable>? orderByList,
+    final SimpleDateTimeInclude? include,
   }) {
     return SimpleDateTimeIncludeList._(
       where: where,
@@ -104,8 +104,8 @@ class _Undefined {}
 
 class _SimpleDateTimeImpl extends SimpleDateTime {
   _SimpleDateTimeImpl({
-    int? id,
-    required DateTime dateTime,
+    final int? id,
+    required final DateTime dateTime,
   }) : super._(
          id: id,
          dateTime: dateTime,
@@ -116,8 +116,8 @@ class _SimpleDateTimeImpl extends SimpleDateTime {
   @_i1.useResult
   @override
   SimpleDateTime copyWith({
-    Object? id = _Undefined,
-    DateTime? dateTime,
+    final Object? id = _Undefined,
+    final DateTime? dateTime,
   }) {
     return SimpleDateTime(
       id: id is int? ? id : this.id,
@@ -129,7 +129,7 @@ class _SimpleDateTimeImpl extends SimpleDateTime {
 class SimpleDateTimeUpdateTable extends _i1.UpdateTable<SimpleDateTimeTable> {
   SimpleDateTimeUpdateTable(super.table);
 
-  _i1.ColumnValue<DateTime, DateTime> dateTime(DateTime value) =>
+  _i1.ColumnValue<DateTime, DateTime> dateTime(final DateTime value) =>
       _i1.ColumnValue(
         table.dateTime,
         value,
@@ -170,7 +170,7 @@ class SimpleDateTimeInclude extends _i1.IncludeObject {
 
 class SimpleDateTimeIncludeList extends _i1.IncludeList {
   SimpleDateTimeIncludeList._({
-    _i1.WhereExpressionBuilder<SimpleDateTimeTable>? where,
+    final _i1.WhereExpressionBuilder<SimpleDateTimeTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -214,14 +214,14 @@ class SimpleDateTimeRepository {
   /// );
   /// ```
   Future<List<SimpleDateTime>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<SimpleDateTimeTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<SimpleDateTimeTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<SimpleDateTimeTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<SimpleDateTimeTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<SimpleDateTimeTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<SimpleDateTimeTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<SimpleDateTime>(
       where: where?.call(SimpleDateTime.t),
@@ -252,13 +252,13 @@ class SimpleDateTimeRepository {
   /// );
   /// ```
   Future<SimpleDateTime?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<SimpleDateTimeTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<SimpleDateTimeTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<SimpleDateTimeTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<SimpleDateTimeTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<SimpleDateTimeTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<SimpleDateTimeTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<SimpleDateTime>(
       where: where?.call(SimpleDateTime.t),
@@ -272,9 +272,9 @@ class SimpleDateTimeRepository {
 
   /// Finds a single [SimpleDateTime] by its [id] or null if no such row exists.
   Future<SimpleDateTime?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<SimpleDateTime>(
       id,
@@ -289,9 +289,9 @@ class SimpleDateTimeRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<SimpleDateTime>> insert(
-    _i1.Session session,
-    List<SimpleDateTime> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<SimpleDateTime> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<SimpleDateTime>(
       rows,
@@ -303,9 +303,9 @@ class SimpleDateTimeRepository {
   ///
   /// The returned [SimpleDateTime] will have its `id` field set.
   Future<SimpleDateTime> insertRow(
-    _i1.Session session,
-    SimpleDateTime row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final SimpleDateTime row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<SimpleDateTime>(
       row,
@@ -319,10 +319,10 @@ class SimpleDateTimeRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<SimpleDateTime>> update(
-    _i1.Session session,
-    List<SimpleDateTime> rows, {
-    _i1.ColumnSelections<SimpleDateTimeTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<SimpleDateTime> rows, {
+    final _i1.ColumnSelections<SimpleDateTimeTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<SimpleDateTime>(
       rows,
@@ -335,10 +335,10 @@ class SimpleDateTimeRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<SimpleDateTime> updateRow(
-    _i1.Session session,
-    SimpleDateTime row, {
-    _i1.ColumnSelections<SimpleDateTimeTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final SimpleDateTime row, {
+    final _i1.ColumnSelections<SimpleDateTimeTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<SimpleDateTime>(
       row,
@@ -350,10 +350,10 @@ class SimpleDateTimeRepository {
   /// Updates a single [SimpleDateTime] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<SimpleDateTime?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<SimpleDateTimeUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<SimpleDateTimeUpdateTable> columnValues,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<SimpleDateTime>(
       id,
@@ -365,15 +365,15 @@ class SimpleDateTimeRepository {
   /// Updates all [SimpleDateTime]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<SimpleDateTime>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<SimpleDateTimeUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<SimpleDateTimeTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<SimpleDateTimeTable>? orderBy,
-    _i1.OrderByListBuilder<SimpleDateTimeTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<SimpleDateTimeUpdateTable> columnValues,
+    required final _i1.WhereExpressionBuilder<SimpleDateTimeTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<SimpleDateTimeTable>? orderBy,
+    final _i1.OrderByListBuilder<SimpleDateTimeTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<SimpleDateTime>(
       columnValues: columnValues(SimpleDateTime.t.updateTable),
@@ -391,9 +391,9 @@ class SimpleDateTimeRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<SimpleDateTime>> delete(
-    _i1.Session session,
-    List<SimpleDateTime> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<SimpleDateTime> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<SimpleDateTime>(
       rows,
@@ -403,9 +403,9 @@ class SimpleDateTimeRepository {
 
   /// Deletes a single [SimpleDateTime].
   Future<SimpleDateTime> deleteRow(
-    _i1.Session session,
-    SimpleDateTime row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final SimpleDateTime row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<SimpleDateTime>(
       row,
@@ -415,9 +415,9 @@ class SimpleDateTimeRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<SimpleDateTime>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<SimpleDateTimeTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<SimpleDateTimeTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<SimpleDateTime>(
       where: where(SimpleDateTime.t),
@@ -428,10 +428,10 @@ class SimpleDateTimeRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<SimpleDateTimeTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<SimpleDateTimeTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<SimpleDateTime>(
       where: where?.call(SimpleDateTime.t),

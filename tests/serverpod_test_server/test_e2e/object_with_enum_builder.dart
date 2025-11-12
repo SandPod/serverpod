@@ -28,27 +28,27 @@ class ObjectWithEnumBuilder {
     );
   }
 
-  ObjectWithEnumBuilder withTestEnum(TestEnum value) {
+  ObjectWithEnumBuilder withTestEnum(final TestEnum value) {
     _testEnum = value;
     return this;
   }
 
-  ObjectWithEnumBuilder withNullableEnum(TestEnum? value) {
+  ObjectWithEnumBuilder withNullableEnum(final TestEnum? value) {
     _nullableEnum = value;
     return this;
   }
 
-  ObjectWithEnumBuilder witheEumList(List<TestEnum> value) {
+  ObjectWithEnumBuilder witheEumList(final List<TestEnum> value) {
     _enumList = value;
     return this;
   }
 
-  ObjectWithEnumBuilder withNullableEnumList(List<TestEnum?> value) {
+  ObjectWithEnumBuilder withNullableEnumList(final List<TestEnum?> value) {
     _nullableEnumList = value;
     return this;
   }
 
-  ObjectWithEnumBuilder withEnumListList(List<List<TestEnum>> value) {
+  ObjectWithEnumBuilder withEnumListList(final List<List<TestEnum>> value) {
     _enumListList = value;
     return this;
   }

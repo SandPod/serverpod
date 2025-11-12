@@ -1,10 +1,9 @@
 @Timeout(Duration(minutes: 12))
 import 'dart:io';
 
+import 'package:bootstrap_project/src/util.dart';
 import 'package:path/path.dart' as path;
 import 'package:test/test.dart';
-
-import '../lib/src/util.dart';
 
 const tempDirName = 'temp-mini';
 
@@ -59,20 +58,20 @@ void main() async {
           },
         );
 
-        var createProjectExitCode = await createProcess.exitCode;
+        final createProjectExitCode = await createProcess.exitCode;
         expect(
           createProjectExitCode,
           0,
           reason: 'Failed to create the serverpod project.',
         );
 
-        var startProjectProcess = await startProcess(
+        final startProjectProcess = await startProcess(
           'dart',
           ['bin/main.dart', '--role', 'maintenance'],
           workingDirectory: commandRoot,
         );
 
-        var startProjectExitCode = await startProjectProcess.exitCode;
+        final startProjectExitCode = await startProjectProcess.exitCode;
         expect(startProjectExitCode, 0);
       },
     );
@@ -95,7 +94,7 @@ void main() async {
           },
         );
 
-        var createProjectExitCode = await createProcess.exitCode;
+        final createProjectExitCode = await createProcess.exitCode;
         expect(
           createProjectExitCode,
           0,
@@ -104,7 +103,7 @@ void main() async {
 
         final serverDir = createServerFolderPath(projectName);
 
-        var configDir = Directory(
+        final configDir = Directory(
           path.join(tempPath, serverDir, 'config'),
         ).existsSync();
         expect(
@@ -113,7 +112,7 @@ void main() async {
           reason: 'No config directory should exist but it was found.',
         );
 
-        var deployDir = Directory(
+        final deployDir = Directory(
           path.join(tempPath, serverDir, 'deploy'),
         ).existsSync();
         expect(
@@ -122,7 +121,7 @@ void main() async {
           reason: 'No deploy directory should exist but it was found.',
         );
 
-        var webDir = Directory(
+        final webDir = Directory(
           path.join(tempPath, serverDir, 'web'),
         ).existsSync();
         expect(
@@ -131,7 +130,7 @@ void main() async {
           reason: 'No web directory should exist but it was found.',
         );
 
-        var dockerComposeFile = File(
+        final dockerComposeFile = File(
           path.join(tempPath, serverDir, 'docker-compose.yaml'),
         ).existsSync();
         expect(
@@ -140,7 +139,7 @@ void main() async {
           reason: 'No docker-compose.yml should exist but it was found.',
         );
 
-        var gcloudIgnoreFile = File(
+        final gcloudIgnoreFile = File(
           path.join(tempPath, serverDir, '.gcloudignore'),
         ).existsSync();
         expect(
@@ -167,7 +166,7 @@ void main() async {
         },
       );
 
-      var createProjectExitCode = await createProcess.exitCode;
+      final createProjectExitCode = await createProcess.exitCode;
       assert(
         createProjectExitCode == 0,
         'Failed to create the serverpod mini project.',
@@ -187,7 +186,7 @@ void main() async {
       'when upgrading the project to a full project '
       'then the project is created successfully and can be booted in maintenance mode with the apply-migrations flag.',
       () async {
-        var upgradeProcess = await startProcess(
+        final upgradeProcess = await startProcess(
           'serverpod',
           ['create', '--template', 'server', '.', '-v', '--no-analytics'],
           workingDirectory: path.join(tempPath, serverDir),
@@ -196,7 +195,7 @@ void main() async {
           },
         );
 
-        var upgradeProjectExitCode = await upgradeProcess.exitCode;
+        final upgradeProjectExitCode = await upgradeProcess.exitCode;
         expect(
           upgradeProjectExitCode,
           0,
@@ -210,7 +209,7 @@ void main() async {
           ignorePlatform: true,
         );
 
-        var dockerExitCode = await docker.exitCode;
+        final dockerExitCode = await docker.exitCode;
 
         expect(
           dockerExitCode,
@@ -218,13 +217,13 @@ void main() async {
           reason: 'Docker with postgres failed to start.',
         );
 
-        var startProjectProcess = await startProcess(
+        final startProjectProcess = await startProcess(
           'dart',
           ['bin/main.dart', '--apply-migrations', '--role', 'maintenance'],
           workingDirectory: commandRoot,
         );
 
-        var startProjectExitCode = await startProjectProcess.exitCode;
+        final startProjectExitCode = await startProjectProcess.exitCode;
         expect(startProjectExitCode, 0);
       },
       skip: Platform.isWindows
@@ -247,7 +246,7 @@ void main() async {
         },
       );
 
-      var createProjectExitCode = await createProcess.exitCode;
+      final createProjectExitCode = await createProcess.exitCode;
       assert(
         createProjectExitCode == 0,
         'Failed to create the serverpod mini project.',
@@ -276,7 +275,7 @@ void main() async {
         });
 
         test('then the upgrade command completes successfully', () async {
-          var upgradeProjectExitCode = await upgradeProcess.exitCode;
+          final upgradeProjectExitCode = await upgradeProcess.exitCode;
           expect(
             upgradeProjectExitCode,
             0,
@@ -285,7 +284,7 @@ void main() async {
         });
 
         test('then the project contains a config directory', () {
-          var configDir = Directory(
+          final configDir = Directory(
             path.join(tempPath, serverDir, 'config'),
           ).existsSync();
           expect(
@@ -296,7 +295,7 @@ void main() async {
         });
 
         test('then the project contains a deploy directory', () {
-          var deployDir = Directory(
+          final deployDir = Directory(
             path.join(tempPath, serverDir, 'deploy'),
           ).existsSync();
           expect(
@@ -307,7 +306,7 @@ void main() async {
         });
 
         test('then the project contains a web directory', () {
-          var webDir = Directory(
+          final webDir = Directory(
             path.join(tempPath, serverDir, 'web'),
           ).existsSync();
           expect(
@@ -318,7 +317,7 @@ void main() async {
         });
 
         test('then the project contains a dockerfile', () {
-          var dockerFile = File(
+          final dockerFile = File(
             path.join(tempPath, serverDir, 'Dockerfile'),
           ).existsSync();
           expect(
@@ -329,7 +328,7 @@ void main() async {
         });
 
         test('then the project contains a docker-compose.yaml file', () {
-          var dockerComposeFile = File(
+          final dockerComposeFile = File(
             path.join(tempPath, serverDir, 'docker-compose.yaml'),
           ).existsSync();
           expect(
@@ -340,7 +339,7 @@ void main() async {
         });
 
         test('then the project contains a .gcloudignore file', () {
-          var gcloudIgnoreFile = File(
+          final gcloudIgnoreFile = File(
             path.join(tempPath, serverDir, '.gcloudignore'),
           ).existsSync();
           expect(
@@ -367,7 +366,8 @@ void main() async {
         skipBatExtentionOnWindows: true,
       );
 
-      while (!await isNetworkPortAvailable(8090)) ;
+      while (!await isNetworkPortAvailable(8090)) {
+      }
     });
 
     test(
@@ -382,14 +382,14 @@ void main() async {
           },
         );
 
-        var createProjectExitCode = await createProcess.exitCode;
+        final createProjectExitCode = await createProcess.exitCode;
         expect(
           createProjectExitCode,
           0,
           reason: 'Failed to create the serverpod project.',
         );
 
-        var upgradeProcess = await startProcess(
+        final upgradeProcess = await startProcess(
           'serverpod',
           ['create', '--template', 'server', '.', '-v', '--no-analytics'],
           workingDirectory: path.join(tempPath, serverDir),
@@ -398,7 +398,7 @@ void main() async {
           },
         );
 
-        var upgradeProjectExitCode = await upgradeProcess.exitCode;
+        final upgradeProjectExitCode = await upgradeProcess.exitCode;
         expect(
           upgradeProjectExitCode,
           0,
@@ -412,7 +412,7 @@ void main() async {
           ignorePlatform: true,
         );
 
-        var dockerExitCode = await docker.exitCode;
+        final dockerExitCode = await docker.exitCode;
 
         expect(
           dockerExitCode,
@@ -420,13 +420,13 @@ void main() async {
           reason: 'Docker with postgres failed to start.',
         );
 
-        var startProjectProcess = await startProcess(
+        final startProjectProcess = await startProcess(
           'dart',
           ['bin/main.dart', '--apply-migrations', '--role', 'maintenance'],
           workingDirectory: commandRoot,
         );
 
-        var startProjectExitCode = await startProjectProcess.exitCode;
+        final startProjectExitCode = await startProjectProcess.exitCode;
 
         expect(
           startProjectExitCode,
@@ -434,13 +434,13 @@ void main() async {
           reason: 'Failed to start the serverpod project.',
         );
 
-        var testProcess = await runProcess(
+        final testProcess = await runProcess(
           'dart',
           ['test'],
           workingDirectory: path.join(
             tempPath,
             projectName,
-            "${projectName}_server",
+            '${projectName}_server',
           ),
         );
 
@@ -456,7 +456,7 @@ void main() async {
     final (:projectName, commandRoot: _) = createRandomProjectName(tempPath);
 
     setUp(() async {
-      var createProcess = await runProcess(
+      final createProcess = await runProcess(
         'serverpod',
         ['create', '--template', 'mini', projectName, '-v', '--no-analytics'],
         workingDirectory: tempPath,
@@ -464,19 +464,19 @@ void main() async {
           'SERVERPOD_HOME': rootPath,
         },
       );
-      assert((await createProcess.exitCode) == 0);
+      assert((createProcess.exitCode) == 0);
     });
 
     test(
       'when running tests then example unit and integration tests passes',
       () async {
-        var testProcess = await runProcess(
+        final testProcess = await runProcess(
           'dart',
           ['test'],
           workingDirectory: path.join(
             tempPath,
             projectName,
-            "${projectName}_server",
+            '${projectName}_server',
           ),
         );
 

@@ -24,13 +24,13 @@ class Policy {
   });
 
   factory Policy.fromS3PresignedPost(
-    String key,
-    String bucket,
-    String accessKeyId,
-    int expiryMinutes,
-    int maxFileSize, {
-    String region = 'us-east-1',
-    bool public = true,
+    final String key,
+    final String bucket,
+    final String accessKeyId,
+    final int expiryMinutes,
+    final int maxFileSize, {
+    final String region = 'us-east-1',
+    final bool public = true,
   }) {
     final datetime = SigV4.generateDatetime();
     final expiration = (DateTime.now())

@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with fields that include non-persisted fields,', () {
     tearDownAll(
@@ -80,7 +80,7 @@ void main() async {
         );
 
         for (int i = 0; i < rows.length; i++) {
-          var row = rows[i];
+          final row = rows[i];
           expect(
             row.api,
             'Api Value $i',
@@ -110,7 +110,7 @@ void main() async {
         );
 
         for (int i = 0; i < rows.length; i++) {
-          var row = rows[i];
+          final row = rows[i];
           expect(
             row.data,
             isNotNull,
@@ -234,7 +234,7 @@ void main() async {
         );
 
         for (var i = 0; i < rows.length; i++) {
-          var row = rows[i];
+          final row = rows[i];
           expect(
             row.normal,
             'Updated Normal Value $i',
@@ -280,7 +280,7 @@ void main() async {
         );
 
         for (var i = 0; i < rows.length; i++) {
-          var row = rows[i];
+          final row = rows[i];
           expect(
             row.normal,
             'Updated Normal Value $i',

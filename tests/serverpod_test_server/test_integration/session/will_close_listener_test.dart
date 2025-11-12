@@ -22,8 +22,8 @@ void main() async {
   test(
     'Given a session with a will close listener when the session is closed then listener is called.',
     () async {
-      var listenerCalledCompleter = Completer();
-      session.addWillCloseListener((Session session) {
+      final listenerCalledCompleter = Completer();
+      session.addWillCloseListener((final Session session) {
         listenerCalledCompleter.complete();
       });
 
@@ -36,7 +36,7 @@ void main() async {
     'Given a session with a will close listener when the session is closed multiple times then listener is only called once.',
     () async {
       var callCount = 0;
-      session.addWillCloseListener((Session session) {
+      session.addWillCloseListener((final Session session) {
         callCount++;
       });
 
@@ -50,10 +50,10 @@ void main() async {
   test(
     'Given a session with a will close when listener is removed and the session is closed then the listener is not called.',
     () async {
-      var listenerCalledCompleter = Completer();
-      var listener = (Session session) {
+      final listenerCalledCompleter = Completer();
+      void listener(final Session session) {
         listenerCalledCompleter.complete();
-      };
+      }
       session.addWillCloseListener(listener);
       session.removeWillCloseListener(listener);
 
@@ -65,19 +65,19 @@ void main() async {
   test(
     'Given a session with multiple will close listeners when the session is closed then listener are called in order.',
     () async {
-      var completeOrder = <int>[];
-      var listener1CalledCompleter = Completer();
-      var listener2CalledCompleter = Completer();
-      var listener3CalledCompleter = Completer();
-      session.addWillCloseListener((Session session) {
+      final completeOrder = <int>[];
+      final listener1CalledCompleter = Completer();
+      final listener2CalledCompleter = Completer();
+      final listener3CalledCompleter = Completer();
+      session.addWillCloseListener((final Session session) {
         completeOrder.add(1);
         listener1CalledCompleter.complete();
       });
-      session.addWillCloseListener((Session session) {
+      session.addWillCloseListener((final Session session) {
         completeOrder.add(2);
         listener2CalledCompleter.complete();
       });
-      session.addWillCloseListener((Session session) {
+      session.addWillCloseListener((final Session session) {
         completeOrder.add(3);
         listener3CalledCompleter.complete();
       });
@@ -93,22 +93,22 @@ void main() async {
   test(
     'Given a session with multiple will close listeners when one is removed and the session is closed then remaining listener are called in order.',
     () async {
-      var completeOrder = <int>[];
-      var listener1CalledCompleter = Completer();
-      var listener2CalledCompleter = Completer();
-      var listener3CalledCompleter = Completer();
-      session.addWillCloseListener((Session session) {
+      final completeOrder = <int>[];
+      final listener1CalledCompleter = Completer();
+      final listener2CalledCompleter = Completer();
+      final listener3CalledCompleter = Completer();
+      session.addWillCloseListener((final Session session) {
         completeOrder.add(1);
         listener1CalledCompleter.complete();
       });
 
-      var listener2Callback = (Session session) {
+      void listener2Callback(final Session session) {
         completeOrder.add(2);
         listener2CalledCompleter.complete();
-      };
+      }
       session.addWillCloseListener(listener2Callback);
 
-      session.addWillCloseListener((Session session) {
+      session.addWillCloseListener((final Session session) {
         completeOrder.add(3);
         listener3CalledCompleter.complete();
       });

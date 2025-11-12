@@ -7,9 +7,9 @@ import 'serverpod_test_tools.dart';
 void main() {
   withServerpod(
     'Given calling `copyWith` on the session builder',
-    (sessionBuilder, endpoints) {
+    (final sessionBuilder, final endpoints) {
       group('when setting a new shared session builder on the group level', () {
-        TestSessionBuilder modifiedSessionBuilder = sessionBuilder.copyWith(
+        final TestSessionBuilder modifiedSessionBuilder = sessionBuilder.copyWith(
           authentication: AuthenticationOverride.authenticationInfo(
             '123',
             {},
@@ -22,7 +22,7 @@ void main() {
             expect(
               modifiedSessionBuilder.build().authenticated,
               isA<AuthenticationInfo>().having(
-                (a) => a.userId,
+                (final a) => a.userId,
                 'userId',
                 123,
               ),
@@ -35,7 +35,7 @@ void main() {
             expect(
               modifiedSessionBuilder.build().authenticated,
               isA<AuthenticationInfo>().having(
-                (a) => a.userId,
+                (final a) => a.userId,
                 'userId',
                 123,
               ),
@@ -61,7 +61,7 @@ void main() {
           expect(
             modifiedSessionBuilder.build().authenticated,
             isA<AuthenticationInfo>().having(
-              (a) => a.userId,
+              (final a) => a.userId,
               'userId',
               123,
             ),
@@ -74,7 +74,7 @@ void main() {
             expect(
               modifiedSessionBuilder.build().authenticated,
               isA<AuthenticationInfo>().having(
-                (a) => a.userId,
+                (final a) => a.userId,
                 'userId',
                 123,
               ),

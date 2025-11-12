@@ -5,7 +5,7 @@ import 'package:serverpod_test_server/test_util/config.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client(serverUrl);
+  final client = Client(serverUrl);
 
   group('Given the "Type" database-roundtrip/echo endpoint', () {
     test(
@@ -13,20 +13,20 @@ void main() {
       () async {
         var types = Types();
 
-        var count = await client.basicDatabase.countTypesRows();
+        final count = await client.basicDatabase.countTypesRows();
         expect(count, isNotNull);
 
         types = await client.basicDatabase.insertTypes(types);
         expect(types.id, isNotNull);
 
-        var newCount = await client.basicDatabase.countTypesRows();
+        final newCount = await client.basicDatabase.countTypesRows();
         expect(newCount, isNotNull);
         expect(newCount, equals(count! + 1));
       },
     );
 
     test(
-      'When sending an object with a `bool` field, then it\'s written to the database and can be read later',
+      "When sending an object with a `bool` field, then it's written to the database and can be read later",
       () async {
         var types = Types(
           aBool: true,
@@ -35,7 +35,7 @@ void main() {
         types = await client.basicDatabase.insertTypes(types);
         expect(types.id, isNotNull);
 
-        var storedTypes = await client.basicDatabase.getTypes(types.id!);
+        final storedTypes = await client.basicDatabase.getTypes(types.id!);
         expect(storedTypes, isNotNull);
 
         expect(storedTypes!.id, equals(types.id));
@@ -44,7 +44,7 @@ void main() {
     );
 
     test(
-      'When sending an object with a `ByteData` field, then it\'s written to the database and can be read later',
+      "When sending an object with a `ByteData` field, then it's written to the database and can be read later",
       () async {
         var types = Types(
           aByteData: ByteData.view(Uint8List.fromList([1, 2, 3]).buffer),
@@ -53,7 +53,7 @@ void main() {
         types = await client.basicDatabase.insertTypes(types);
         expect(types.id, isNotNull);
 
-        var storedTypes = await client.basicDatabase.getTypes(types.id!);
+        final storedTypes = await client.basicDatabase.getTypes(types.id!);
         expect(storedTypes, isNotNull);
 
         expect(storedTypes!.id, equals(types.id));
@@ -62,7 +62,7 @@ void main() {
     );
 
     test(
-      'When sending an object with a `double` field, then it\'s written to the database and can be read later',
+      "When sending an object with a `double` field, then it's written to the database and can be read later",
       () async {
         var types = Types(
           aDouble: 1.5,
@@ -71,7 +71,7 @@ void main() {
         types = await client.basicDatabase.insertTypes(types);
         expect(types.id, isNotNull);
 
-        var storedTypes = await client.basicDatabase.getTypes(types.id!);
+        final storedTypes = await client.basicDatabase.getTypes(types.id!);
         expect(storedTypes, isNotNull);
 
         expect(storedTypes!.id, equals(types.id));
@@ -80,7 +80,7 @@ void main() {
     );
 
     test(
-      'When sending an object with a `int` field, then it\'s written to the database and can be read later',
+      "When sending an object with a `int` field, then it's written to the database and can be read later",
       () async {
         var types = Types(
           anInt: 42,
@@ -89,7 +89,7 @@ void main() {
         types = await client.basicDatabase.insertTypes(types);
         expect(types.id, isNotNull);
 
-        var storedTypes = await client.basicDatabase.getTypes(types.id!);
+        final storedTypes = await client.basicDatabase.getTypes(types.id!);
         expect(storedTypes, isNotNull);
 
         expect(storedTypes!.id, equals(types.id));
@@ -98,9 +98,9 @@ void main() {
     );
 
     test(
-      'When sending an object with a `DateTime` field, then it\'s written to the database and can be read later',
+      "When sending an object with a `DateTime` field, then it's written to the database and can be read later",
       () async {
-        var dateTime = DateTime.utc(1976, 9, 10, 2, 10);
+        final dateTime = DateTime.utc(1976, 9, 10, 2, 10);
 
         var types = Types(
           aDateTime: dateTime,
@@ -109,7 +109,7 @@ void main() {
         types = await client.basicDatabase.insertTypes(types);
         expect(types.id, isNotNull);
 
-        var storedTypes = await client.basicDatabase.getTypes(types.id!);
+        final storedTypes = await client.basicDatabase.getTypes(types.id!);
         expect(storedTypes, isNotNull);
 
         expect(storedTypes!.id, equals(types.id));
@@ -118,9 +118,9 @@ void main() {
     );
 
     test(
-      'When sending an object with a `Duration` field, then it\'s written to the database and can be read later',
+      "When sending an object with a `Duration` field, then it's written to the database and can be read later",
       () async {
-        var duration = const Duration(seconds: 1);
+        const duration = Duration(seconds: 1);
 
         var types = Types(
           aDuration: duration,
@@ -128,7 +128,7 @@ void main() {
 
         types = await client.basicDatabase.insertTypes(types);
         expect(types.id, isNotNull);
-        var storedTypes = await client.basicDatabase.getTypes(types.id!);
+        final storedTypes = await client.basicDatabase.getTypes(types.id!);
         expect(storedTypes, isNotNull);
 
         expect(storedTypes!.id, equals(types.id));
@@ -137,7 +137,7 @@ void main() {
     );
 
     test(
-      'When sending an object with a `String` field, then it\'s written to the database and can be read later',
+      "When sending an object with a `String` field, then it's written to the database and can be read later",
       () async {
         var types = Types(
           aString: 'Foo',
@@ -146,7 +146,7 @@ void main() {
         types = await client.basicDatabase.insertTypes(types);
         expect(types.id, isNotNull);
 
-        var storedTypes = await client.basicDatabase.getTypes(types.id!);
+        final storedTypes = await client.basicDatabase.getTypes(types.id!);
         expect(storedTypes, isNotNull);
 
         expect(storedTypes!.id, equals(types.id));
@@ -155,9 +155,9 @@ void main() {
     );
 
     test(
-      'When sending an object with a `UUID` field, then it\'s written to the database and can be read later',
+      "When sending an object with a `UUID` field, then it's written to the database and can be read later",
       () async {
-        var uuid = UuidValue.fromString('a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11');
+        final uuid = UuidValue.fromString('a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11');
 
         var types = Types(
           aUuid: uuid,
@@ -166,7 +166,7 @@ void main() {
         types = await client.basicDatabase.insertTypes(types);
         expect(types.id, isNotNull);
 
-        var storedTypes = await client.basicDatabase.getTypes(types.id!);
+        final storedTypes = await client.basicDatabase.getTypes(types.id!);
         expect(storedTypes, isNotNull);
 
         expect(storedTypes!.id, equals(types.id));
@@ -175,9 +175,9 @@ void main() {
     );
 
     test(
-      'When sending an object with a `BigInt` field, then it\'s written to the database and can be read later',
+      "When sending an object with a `BigInt` field, then it's written to the database and can be read later",
       () async {
-        var bigInt = BigInt.parse('18446744073709551615999');
+        final bigInt = BigInt.parse('18446744073709551615999');
 
         var types = Types(
           aBigInt: bigInt,
@@ -186,7 +186,7 @@ void main() {
         types = await client.basicDatabase.insertTypes(types);
         expect(types.id, isNotNull);
 
-        var storedTypes = await client.basicDatabase.getTypes(types.id!);
+        final storedTypes = await client.basicDatabase.getTypes(types.id!);
         expect(storedTypes, isNotNull);
 
         expect(storedTypes!.id, equals(types.id));
@@ -195,7 +195,7 @@ void main() {
     );
 
     test(
-      'When sending an object with a `Set<int>` field, then it\'s written to the database and can be read later',
+      "When sending an object with a `Set<int>` field, then it's written to the database and can be read later",
       () async {
         const set = {1, 2, 3};
         var types = Types(aSet: set);
@@ -203,7 +203,7 @@ void main() {
         types = await client.basicDatabase.insertTypes(types);
         expect(types.id, isNotNull);
 
-        var storedTypes = await client.basicDatabase.getTypes(types.id!);
+        final storedTypes = await client.basicDatabase.getTypes(types.id!);
         expect(storedTypes, isNotNull);
 
         expect(storedTypes!.id, equals(types.id));
@@ -212,9 +212,9 @@ void main() {
     );
 
     test(
-      'When sending an object with a `Uri` field, then it\'s written to the database and can be read later',
+      "When sending an object with a `Uri` field, then it's written to the database and can be read later",
       () async {
-        var uri = Uri.parse('https://serverpod.dev');
+        final uri = Uri.parse('https://serverpod.dev');
 
         var types = Types(
           aUri: uri,
@@ -223,7 +223,7 @@ void main() {
         types = await client.basicDatabase.insertTypes(types);
         expect(types.id, isNotNull);
 
-        var storedTypes = await client.basicDatabase.getTypes(types.id!);
+        final storedTypes = await client.basicDatabase.getTypes(types.id!);
         expect(storedTypes, isNotNull);
 
         expect(storedTypes!.id, equals(types.id));
@@ -232,9 +232,9 @@ void main() {
     );
 
     test(
-      'When sending an object with a `Record` field, then it\'s written to the database and can be read later',
+      "When sending an object with a `Record` field, then it's written to the database and can be read later",
       () async {
-        var record = ('test', optionalUri: Uri.parse('https://serverpod.dev'));
+        final record = ('test', optionalUri: Uri.parse('https://serverpod.dev'));
 
         var types = Types(
           aRecord: record,
@@ -243,7 +243,7 @@ void main() {
         types = await client.basicDatabase.insertTypes(types);
         expect(types.id, isNotNull);
 
-        var storedTypes = await client.basicDatabase.getTypes(types.id!);
+        final storedTypes = await client.basicDatabase.getTypes(types.id!);
         expect(storedTypes, isNotNull);
 
         expect(storedTypes!.id, equals(types.id));
@@ -259,7 +259,7 @@ void main() {
         types = await client.basicDatabase.insertTypes(types);
         expect(types.id, isNotNull);
 
-        var storedTypes = await client.basicDatabase.getTypes(types.id!);
+        final storedTypes = await client.basicDatabase.getTypes(types.id!);
         expect(storedTypes, isNotNull);
 
         expect(storedTypes!.id, equals(types.id));
@@ -286,7 +286,7 @@ void main() {
 
         expect(types.aMap, isEmpty);
 
-        var storedTypes = await client.basicDatabase.getTypes(types.id!);
+        final storedTypes = await client.basicDatabase.getTypes(types.id!);
 
         expect(storedTypes?.aMap, isEmpty);
       },

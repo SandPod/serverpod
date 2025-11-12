@@ -1,21 +1,20 @@
 import 'package:serverpod/protocol.dart';
+import 'package:serverpod/serverpod.dart';
+import 'package:serverpod/src/database/analyze.dart';
 import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
-import 'package:serverpod/src/database/analyze.dart';
-import 'package:serverpod/serverpod.dart';
-
 void main() async {
-  Session session = await IntegrationTestServer().session();
+  final Session session = await IntegrationTestServer().session();
 
   group('Given declared ObjectWithVector class when analyzing database schema', () {
     late List<IndexDefinition> indexes;
 
     setUpAll(() async {
-      var databaseDefinition = await DatabaseAnalyzer.analyze(session.db);
+      final databaseDefinition = await DatabaseAnalyzer.analyze(session.db);
 
-      var vectorTable = databaseDefinition.tables.firstWhere(
-        (table) => table.name == 'object_with_vector',
+      final vectorTable = databaseDefinition.tables.firstWhere(
+        (final table) => table.name == 'object_with_vector',
       );
 
       indexes = vectorTable.indexes;
@@ -24,8 +23,8 @@ void main() async {
     test(
       'then the implicitly declared vector index exists with default type "hnsw".',
       () {
-        var index = indexes.firstWhere(
-          (idx) => idx.indexName == 'vector_index_default',
+        final index = indexes.firstWhere(
+          (final idx) => idx.indexName == 'vector_index_default',
         );
 
         expect(index.type, 'hnsw');
@@ -37,8 +36,8 @@ void main() async {
     test(
       'then the explicitly declared "hnsw" vector index exists with correct type.',
       () {
-        var index = indexes.firstWhere(
-          (idx) => idx.indexName == 'vector_index_hnsw',
+        final index = indexes.firstWhere(
+          (final idx) => idx.indexName == 'vector_index_hnsw',
         );
 
         expect(index.type, 'hnsw');
@@ -52,8 +51,8 @@ void main() async {
     test(
       'then the explicitly declared "hnsw" vector index with parameters exists with correct type and parameters.',
       () {
-        var index = indexes.firstWhere(
-          (idx) => idx.indexName == 'vector_index_hnsw_with_params',
+        final index = indexes.firstWhere(
+          (final idx) => idx.indexName == 'vector_index_hnsw_with_params',
         );
 
         expect(index.type, 'hnsw');
@@ -67,8 +66,8 @@ void main() async {
     test(
       'then the explicitly declared "ivfflat" vector index exists with correct type.',
       () {
-        var index = indexes.firstWhere(
-          (idx) => idx.indexName == 'vector_index_ivfflat',
+        final index = indexes.firstWhere(
+          (final idx) => idx.indexName == 'vector_index_ivfflat',
         );
 
         expect(index.type, 'ivfflat');
@@ -82,8 +81,8 @@ void main() async {
     test(
       'then the explicitly declared "ivfflat" vector index with parameters exists with correct type and parameters.',
       () {
-        var index = indexes.firstWhere(
-          (idx) => idx.indexName == 'vector_index_ivfflat_with_params',
+        final index = indexes.firstWhere(
+          (final idx) => idx.indexName == 'vector_index_ivfflat_with_params',
         );
 
         expect(index.type, 'ivfflat');
@@ -105,10 +104,10 @@ void main() async {
     late List<IndexDefinition> indexes;
 
     setUpAll(() async {
-      var databaseDefinition = await DatabaseAnalyzer.analyze(session.db);
+      final databaseDefinition = await DatabaseAnalyzer.analyze(session.db);
 
-      var halfVectorTable = databaseDefinition.tables.firstWhere(
-        (table) => table.name == 'object_with_half_vector',
+      final halfVectorTable = databaseDefinition.tables.firstWhere(
+        (final table) => table.name == 'object_with_half_vector',
       );
 
       indexes = halfVectorTable.indexes;
@@ -117,8 +116,8 @@ void main() async {
     test(
       'then the implicitly declared half vector index exists with default type "hnsw".',
       () {
-        var index = indexes.firstWhere(
-          (idx) => idx.indexName == 'half_vector_index_default',
+        final index = indexes.firstWhere(
+          (final idx) => idx.indexName == 'half_vector_index_default',
         );
 
         expect(index.type, 'hnsw');
@@ -130,8 +129,8 @@ void main() async {
     test(
       'then the explicitly declared "hnsw" half vector index exists with correct type.',
       () {
-        var index = indexes.firstWhere(
-          (idx) => idx.indexName == 'half_vector_index_hnsw',
+        final index = indexes.firstWhere(
+          (final idx) => idx.indexName == 'half_vector_index_hnsw',
         );
 
         expect(index.type, 'hnsw');
@@ -145,8 +144,8 @@ void main() async {
     test(
       'then the explicitly declared "hnsw" half vector index with parameters exists with correct type and parameters.',
       () {
-        var index = indexes.firstWhere(
-          (idx) => idx.indexName == 'half_vector_index_hnsw_with_params',
+        final index = indexes.firstWhere(
+          (final idx) => idx.indexName == 'half_vector_index_hnsw_with_params',
         );
 
         expect(index.type, 'hnsw');
@@ -163,8 +162,8 @@ void main() async {
     test(
       'then the explicitly declared "ivfflat" half vector index exists with correct type.',
       () {
-        var index = indexes.firstWhere(
-          (idx) => idx.indexName == 'half_vector_index_ivfflat',
+        final index = indexes.firstWhere(
+          (final idx) => idx.indexName == 'half_vector_index_ivfflat',
         );
 
         expect(index.type, 'ivfflat');
@@ -178,8 +177,8 @@ void main() async {
     test(
       'then the explicitly declared "ivfflat" half vector index with parameters exists with correct type and parameters.',
       () {
-        var index = indexes.firstWhere(
-          (idx) => idx.indexName == 'half_vector_index_ivfflat_with_params',
+        final index = indexes.firstWhere(
+          (final idx) => idx.indexName == 'half_vector_index_ivfflat_with_params',
         );
 
         expect(index.type, 'ivfflat');
@@ -200,10 +199,10 @@ void main() async {
       late List<IndexDefinition> indexes;
 
       setUpAll(() async {
-        var databaseDefinition = await DatabaseAnalyzer.analyze(session.db);
+        final databaseDefinition = await DatabaseAnalyzer.analyze(session.db);
 
-        var sparseVectorTable = databaseDefinition.tables.firstWhere(
-          (table) => table.name == 'object_with_sparse_vector',
+        final sparseVectorTable = databaseDefinition.tables.firstWhere(
+          (final table) => table.name == 'object_with_sparse_vector',
         );
 
         indexes = sparseVectorTable.indexes;
@@ -212,8 +211,8 @@ void main() async {
       test(
         'then the implicitly declared sparse vector index exists with default type "hnsw".',
         () {
-          var index = indexes.firstWhere(
-            (idx) => idx.indexName == 'sparse_vector_index_default',
+          final index = indexes.firstWhere(
+            (final idx) => idx.indexName == 'sparse_vector_index_default',
           );
 
           expect(index.type, 'hnsw');
@@ -225,8 +224,8 @@ void main() async {
       test(
         'then the explicitly declared "hnsw" sparse vector index exists with correct type.',
         () {
-          var index = indexes.firstWhere(
-            (idx) => idx.indexName == 'sparse_vector_index_hnsw',
+          final index = indexes.firstWhere(
+            (final idx) => idx.indexName == 'sparse_vector_index_hnsw',
           );
 
           expect(index.type, 'hnsw');
@@ -240,8 +239,8 @@ void main() async {
       test(
         'then the explicitly declared "hnsw" sparse vector index with parameters exists with correct type and parameters.',
         () {
-          var index = indexes.firstWhere(
-            (idx) => idx.indexName == 'sparse_vector_index_hnsw_with_params',
+          final index = indexes.firstWhere(
+            (final idx) => idx.indexName == 'sparse_vector_index_hnsw_with_params',
           );
 
           expect(index.type, 'hnsw');
@@ -261,10 +260,10 @@ void main() async {
     late List<IndexDefinition> indexes;
 
     setUpAll(() async {
-      var databaseDefinition = await DatabaseAnalyzer.analyze(session.db);
+      final databaseDefinition = await DatabaseAnalyzer.analyze(session.db);
 
-      var bitTable = databaseDefinition.tables.firstWhere(
-        (table) => table.name == 'object_with_bit',
+      final bitTable = databaseDefinition.tables.firstWhere(
+        (final table) => table.name == 'object_with_bit',
       );
 
       indexes = bitTable.indexes;
@@ -273,8 +272,8 @@ void main() async {
     test(
       'then the implicitly declared bit index exists with default type "hnsw".',
       () {
-        var index = indexes.firstWhere(
-          (idx) => idx.indexName == 'bit_index_default',
+        final index = indexes.firstWhere(
+          (final idx) => idx.indexName == 'bit_index_default',
         );
 
         expect(index.type, 'hnsw');
@@ -286,8 +285,8 @@ void main() async {
     test(
       'then the explicitly declared "hnsw" bit index exists with correct type.',
       () {
-        var index = indexes.firstWhere(
-          (idx) => idx.indexName == 'bit_index_hnsw',
+        final index = indexes.firstWhere(
+          (final idx) => idx.indexName == 'bit_index_hnsw',
         );
 
         expect(index.type, 'hnsw');
@@ -301,8 +300,8 @@ void main() async {
     test(
       'then the explicitly declared "hnsw" bit index with parameters exists with correct type and parameters.',
       () {
-        var index = indexes.firstWhere(
-          (idx) => idx.indexName == 'bit_index_hnsw_with_params',
+        final index = indexes.firstWhere(
+          (final idx) => idx.indexName == 'bit_index_hnsw_with_params',
         );
 
         expect(index.type, 'hnsw');
@@ -316,8 +315,8 @@ void main() async {
     test(
       'then the explicitly declared "ivfflat" bit index exists with correct type.',
       () {
-        var index = indexes.firstWhere(
-          (idx) => idx.indexName == 'bit_index_ivfflat',
+        final index = indexes.firstWhere(
+          (final idx) => idx.indexName == 'bit_index_ivfflat',
         );
 
         expect(index.type, 'ivfflat');
@@ -331,8 +330,8 @@ void main() async {
     test(
       'then the explicitly declared "ivfflat" bit index with parameters exists with correct type and parameters.',
       () {
-        var index = indexes.firstWhere(
-          (idx) => idx.indexName == 'bit_index_ivfflat_with_params',
+        final index = indexes.firstWhere(
+          (final idx) => idx.indexName == 'bit_index_ivfflat_with_params',
         );
 
         expect(index.type, 'ivfflat');

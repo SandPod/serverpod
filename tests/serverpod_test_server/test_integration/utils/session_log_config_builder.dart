@@ -15,18 +15,18 @@ class SessionLogConfigBuilder {
     );
   }
 
-  SessionLogConfigBuilder withPersistentEnabled(bool persistentEnabled) {
+  SessionLogConfigBuilder withPersistentEnabled(final bool persistentEnabled) {
     _persistentEnabled = persistentEnabled;
     return this;
   }
 
-  SessionLogConfigBuilder withConsoleEnabled(bool consoleEnabled) {
+  SessionLogConfigBuilder withConsoleEnabled(final bool consoleEnabled) {
     _consoleEnabled = consoleEnabled;
     return this;
   }
 
   SessionLogConfigBuilder withConsoleLogFormat(
-    ConsoleLogFormat consoleLogFormat,
+    final ConsoleLogFormat consoleLogFormat,
   ) {
     _consoleLogFormat = consoleLogFormat;
     return this;

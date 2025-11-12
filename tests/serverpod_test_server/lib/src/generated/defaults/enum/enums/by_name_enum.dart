@@ -16,7 +16,7 @@ enum ByNameEnum implements _i1.SerializableModel {
   byName1,
   byName2;
 
-  static ByNameEnum fromJson(String name) {
+  static ByNameEnum fromJson(final String name) {
     switch (name) {
       case 'byName1':
         return ByNameEnum.byName1;

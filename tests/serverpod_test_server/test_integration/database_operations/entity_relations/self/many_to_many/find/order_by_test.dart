@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with many to many relation', () {
     tearDown(() async {
@@ -21,7 +21,7 @@ void main() async {
     test(
       'when fetching models ordered on count of many relation then result is as expected',
       () async {
-        var member = await Member.db.insert(session, [
+        final member = await Member.db.insert(session, [
           Member(name: 'Member1'),
           Member(name: 'Member2'),
           Member(name: 'Member3'),
@@ -42,12 +42,12 @@ void main() async {
           Blocking(blockedById: member[2].id!, blockedId: member[0].id!),
         ]);
 
-        var fetchedMembers = await Member.db.find(
+        final fetchedMembers = await Member.db.find(
           session,
-          orderBy: (t) => t.blocking.count(),
+          orderBy: (final t) => t.blocking.count(),
         );
 
-        var memberNames = fetchedMembers.map((e) => e.name);
+        final memberNames = fetchedMembers.map((final e) => e.name);
 
         expect(memberNames, ['Member4', 'Member3', 'Member2', 'Member1']);
       },
@@ -56,7 +56,7 @@ void main() async {
     test(
       'when fetching models ordered on filtered count of many relation then result is as expected',
       () async {
-        var member = await Member.db.insert(session, [
+        final member = await Member.db.insert(session, [
           Member(name: 'Member1'),
           Member(name: 'Member2'),
           Member(name: 'Member3'),
@@ -77,12 +77,12 @@ void main() async {
           Blocking(blockedById: member[2].id!, blockedId: member[0].id!),
         ]);
 
-        var fetchedMembers = await Member.db.find(
+        final fetchedMembers = await Member.db.find(
           session,
-          orderByList: (t) => [
+          orderByList: (final t) => [
             db.Order(
               column: t.blocking.count(
-                (c) => c.blockedId.equals(member[0].id!),
+                (final c) => c.blockedId.equals(member[0].id!),
               ),
             ),
             db.Order(
@@ -91,7 +91,7 @@ void main() async {
           ],
         );
 
-        var memberNames = fetchedMembers.map((e) => e.name);
+        final memberNames = fetchedMembers.map((final e) => e.name);
 
         expect(memberNames, ['Member1', 'Member4', 'Member2', 'Member3']);
       },

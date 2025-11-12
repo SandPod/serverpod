@@ -6,7 +6,7 @@ import 'package:serverpod_test_server/test_util/test_service_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var serviceClient = Client(
+  final serviceClient = Client(
     serviceServerUrl,
     authenticationKeyManager: TestServiceKeyManager(
       '0',
@@ -18,7 +18,7 @@ void main() {
     'Given an existing table, when adding a non-nullable column with a default value,',
     () {
       setUpAll(() async {
-        var createTableProtocol = {
+        final createTableProtocol = {
           'existing_table': '''
         class: ExistingTable
         table: existing_table
@@ -45,7 +45,7 @@ void main() {
       test(
         'then the table contains the new non-nullable column with the correct default value.',
         () async {
-          var targetStateProtocols = {
+          final targetStateProtocols = {
             'existing_table': '''
         class: ExistingTable
         table: existing_table
@@ -55,7 +55,7 @@ void main() {
         ''',
           };
 
-          var createMigrationExitCode =
+          final createMigrationExitCode =
               await MigrationTestUtils.createMigrationFromProtocols(
                 protocols: targetStateProtocols,
                 tag: 'add-new-column',
@@ -67,7 +67,7 @@ void main() {
             reason: 'Failed to create migration, exit code was not 0.',
           );
 
-          var applyMigrationExitCode =
+          final applyMigrationExitCode =
               await MigrationTestUtils.runApplyMigrations();
 
           expect(
@@ -76,11 +76,11 @@ void main() {
             reason: 'Failed to apply migration, exit code was not 0.',
           );
 
-          var liveDefinition = await serviceClient.insights
+          final liveDefinition = await serviceClient.insights
               .getLiveDatabaseDefinition();
 
-          var databaseTable = liveDefinition.tables.firstWhereOrNull(
-            (t) => t.name == 'existing_table',
+          final databaseTable = liveDefinition.tables.firstWhereOrNull(
+            (final t) => t.name == 'existing_table',
           );
 
           expect(
@@ -89,14 +89,14 @@ void main() {
             reason: 'Could not find existing table in live table definitions.',
           );
 
-          var columns = databaseTable!.columns;
+          final columns = databaseTable!.columns;
           expect(
             columns.length,
             3,
             reason: 'Invalid Table Columns',
           );
 
-          var newColumn = columns[2];
+          final newColumn = columns[2];
           expect(
             newColumn.columnDefault,
             'CURRENT_TIMESTAMP',
@@ -109,7 +109,7 @@ void main() {
 
   group('Given an existing table with a nullable column,', () {
     setUpAll(() async {
-      var createTableProtocol = {
+      final createTableProtocol = {
         'existing_table': '''
         class: ExistingTable
         table: existing_table
@@ -138,7 +138,7 @@ void main() {
       test(
         'then the column is modified to be non-nullable with the correct default value.',
         () async {
-          var targetStateProtocols = {
+          final targetStateProtocols = {
             'existing_table': '''
         class: ExistingTable
         table: existing_table
@@ -148,7 +148,7 @@ void main() {
         ''',
           };
 
-          var createMigrationExitCode =
+          final createMigrationExitCode =
               await MigrationTestUtils.createMigrationFromProtocols(
                 force: true,
                 protocols: targetStateProtocols,
@@ -161,7 +161,7 @@ void main() {
             reason: 'Failed to create migration, exit code was not 0.',
           );
 
-          var applyMigrationExitCode =
+          final applyMigrationExitCode =
               await MigrationTestUtils.runApplyMigrations();
 
           expect(
@@ -170,11 +170,11 @@ void main() {
             reason: 'Failed to apply migration, exit code was not 0.',
           );
 
-          var liveDefinition = await serviceClient.insights
+          final liveDefinition = await serviceClient.insights
               .getLiveDatabaseDefinition();
 
-          var databaseTable = liveDefinition.tables.firstWhereOrNull(
-            (t) => t.name == 'existing_table',
+          final databaseTable = liveDefinition.tables.firstWhereOrNull(
+            (final t) => t.name == 'existing_table',
           );
 
           expect(
@@ -183,14 +183,14 @@ void main() {
             reason: 'Could not find existing table in live table definitions.',
           );
 
-          var columns = databaseTable!.columns;
+          final columns = databaseTable!.columns;
           expect(
             columns.length,
             3,
             reason: 'Invalid Table Columns',
           );
 
-          var existingColumn = columns[2];
+          final existingColumn = columns[2];
           expect(
             existingColumn.columnDefault,
             'CURRENT_TIMESTAMP',
@@ -204,8 +204,8 @@ void main() {
 
 extension _ListExt<T> on List<T> {
   /// The first element satisfying [test], or `null` if there are none.
-  T? firstWhereOrNull(bool Function(T element) test) {
-    for (var element in this) {
+  T? firstWhereOrNull(final bool Function(T element) test) {
+    for (final element in this) {
       if (test(element)) return element;
     }
     return null;

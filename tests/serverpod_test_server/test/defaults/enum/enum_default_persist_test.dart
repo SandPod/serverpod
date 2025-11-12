@@ -8,7 +8,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "byNameEnumDefaultPersist" field should be null',
         () {
-          var object = EnumDefaultPersist();
+          final object = EnumDefaultPersist();
           expect(
             object.byNameEnumDefaultPersist,
             isNull,
@@ -19,7 +19,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "byIndexEnumDefaultPersist" field should be null',
         () {
-          var object = EnumDefaultPersist();
+          final object = EnumDefaultPersist();
           expect(
             object.byIndexEnumDefaultPersist,
             isNull,
@@ -30,7 +30,7 @@ void main() async {
       test(
         'when an object of the class is created with a specific value for "byNameEnumDefaultPersist", then the field value should match the provided enum value',
         () {
-          var object = EnumDefaultPersist(
+          final object = EnumDefaultPersist(
             byNameEnumDefaultPersist: ByNameEnum.byName2,
           );
           expect(
@@ -43,7 +43,7 @@ void main() async {
       test(
         'when an object of the class is created with a specific value for "byIndexEnumDefaultPersist", then the field value should match the provided enum value',
         () {
-          var object = EnumDefaultPersist(
+          final object = EnumDefaultPersist(
             byIndexEnumDefaultPersist: ByIndexEnum.byIndex2,
           );
           expect(

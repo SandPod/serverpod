@@ -5,25 +5,25 @@ import 'package:serverpod_test_shared/src/protocol_custom_classes.dart';
 
 class CustomClassProtocolEndpoint extends Endpoint {
   Future<ProtocolCustomClass> getProtocolField(
-    Session session,
+    final Session session,
   ) async {
     return ProtocolCustomClass(
-      value: "Value",
-      serverOnlyValue: "ServerOnlyValue",
+      value: 'Value',
+      serverOnlyValue: 'ServerOnlyValue',
     );
   }
 
   @override
-  Future<void> streamOpened(StreamingSession session) async {
+  Future<void> streamOpened(final StreamingSession session) async {
     unawaited(
       Future.delayed(const Duration(seconds: 1)).then(
-        (value) async {
+        (final value) async {
           // ignore: deprecated_member_use
           await sendStreamMessage(
             session,
             ProtocolCustomClass(
-              value: "Value",
-              serverOnlyValue: "ServerOnlyValue",
+              value: 'Value',
+              serverOnlyValue: 'ServerOnlyValue',
             ),
           );
         },

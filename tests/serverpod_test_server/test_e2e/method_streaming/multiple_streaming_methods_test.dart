@@ -7,7 +7,7 @@ import 'package:serverpod_test_server/test_util/test_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client(
+  final client = Client(
     serverUrl,
     authenticationKeyManager: TestAuthKeyManager(),
   );
@@ -15,19 +15,19 @@ void main() {
   test(
     'Given multiple streaming method connections when one is finished then the open method stream can still transmit messages.',
     () async {
-      var keepAliveStreamComplete = Completer();
-      var closeStreamComplete = Completer();
-      var keepAliveInputStream = StreamController<int>();
-      var keepAliveStream = client.methodStreaming.intEchoStream(
+      final keepAliveStreamComplete = Completer();
+      final closeStreamComplete = Completer();
+      final keepAliveInputStream = StreamController<int>();
+      final keepAliveStream = client.methodStreaming.intEchoStream(
         keepAliveInputStream.stream,
       );
-      var closeStreamInputStream = StreamController<int>();
-      var closeStream = client.methodStreaming.intEchoStream(
+      final closeStreamInputStream = StreamController<int>();
+      final closeStream = client.methodStreaming.intEchoStream(
         closeStreamInputStream.stream,
       );
 
       closeStream.listen(
-        (event) {
+        (final event) {
           // Do nothing
         },
         onDone: () {
@@ -35,9 +35,9 @@ void main() {
         },
       );
 
-      var received = <int>[];
+      final received = <int>[];
       keepAliveStream.listen(
-        (event) {
+        (final event) {
           received.add(event);
         },
         onDone: () {

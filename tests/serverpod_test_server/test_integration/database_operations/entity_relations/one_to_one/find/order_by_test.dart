@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/src/generated/protocol.dart';
 import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
-Future<void> _createTestDatabase(Session session) async {
+Future<void> _createTestDatabase(final Session session) async {
   // Towns
   var stockholm = Town(name: 'Stockholm');
   var skinnskatteberg = Town(name: 'Skinnskatteberg');
@@ -38,8 +38,8 @@ Future<void> _createTestDatabase(Session session) async {
   haris = await Citizen.db.insertRow(session, haris);
 
   // Addresses
-  var alexAddress = Address(street: 'Götgatan 3', inhabitantId: alex.id!);
-  var isakAddress = Address(street: 'Kungsgatan 4', inhabitantId: isak.id!);
+  final alexAddress = Address(street: 'Götgatan 3', inhabitantId: alex.id!);
+  final isakAddress = Address(street: 'Kungsgatan 4', inhabitantId: isak.id!);
 
   await Address.db.insertRow(session, alexAddress);
   await Address.db.insertRow(session, isakAddress);
@@ -52,25 +52,25 @@ Future<void> _createTestDatabase(Session session) async {
   post1 = await Post.db.insertRow(session, post1);
 }
 
-Future<int> deleteAll(Session session) async {
-  var addressDeletions = await Address.db.deleteWhere(
+Future<int> deleteAll(final Session session) async {
+  final addressDeletions = await Address.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
-  var citizenDeletions = await Citizen.db.deleteWhere(
+  final citizenDeletions = await Citizen.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
-  var companyDeletions = await Company.db.deleteWhere(
+  final companyDeletions = await Company.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
-  var townDeletions = await Town.db.deleteWhere(
+  final townDeletions = await Town.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
 
-  var postDeletions = await Post.db.deleteWhere(
+  final postDeletions = await Post.db.deleteWhere(
     session,
     where: (_) => Constant.bool(true),
   );
@@ -83,7 +83,7 @@ Future<int> deleteAll(Session session) async {
 }
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with one to one relation', () {
     tearDown(() async {
@@ -97,7 +97,7 @@ void main() async {
     test(
       'when fetching models ordered by relation attributes then result is as expected.',
       () async {
-        var towns = await Town.db.insert(session, [
+        final towns = await Town.db.insert(session, [
           Town(name: 'Stockholm'),
           Town(name: 'San Francisco'),
         ]);
@@ -107,16 +107,16 @@ void main() async {
           Company(name: 'Google', townId: towns[1].id!),
         ]);
 
-        var companiesFetched = await Company.db.find(
+        final companiesFetched = await Company.db.find(
           session,
           // Order by company town name and then company name
-          orderByList: (t) => [
+          orderByList: (final t) => [
             db.Order(column: t.town.name),
             db.Order(column: t.name),
           ],
         );
 
-        var companyNames = companiesFetched.map((c) => c.name);
+        final companyNames = companiesFetched.map((final c) => c.name);
         expect(companyNames, [
           'Apple',
           'Google',
@@ -142,12 +142,12 @@ void main() async {
     test(
       'when fetching models ordered by nested relation attributes then result is as expected.',
       () async {
-        var towns = await Town.db.insert(session, [
+        final towns = await Town.db.insert(session, [
           Town(name: 'Stockholm'),
           Town(name: 'San Francisco'),
           Town(name: 'Tokyo'),
         ]);
-        var companies = await Company.db.insert(session, [
+        final companies = await Company.db.insert(session, [
           Company(name: 'Serverpod', townId: towns[0].id!),
           Company(name: 'Apple', townId: towns[1].id!),
           Company(name: 'Honda', townId: towns[2].id!),
@@ -160,16 +160,16 @@ void main() async {
           Citizen(name: 'Yuko', companyId: companies[2].id!),
         ]);
 
-        var citizens = await Citizen.db.find(
+        final citizens = await Citizen.db.find(
           session,
           // Order by citizen company town name and then citizen name
-          orderByList: (t) => [
+          orderByList: (final t) => [
             db.Order(column: t.company.town.name),
             db.Order(column: t.name),
           ],
         );
 
-        var citizenNames = citizens.map((c) => c.name);
+        final citizenNames = citizens.map((final c) => c.name);
         expect(citizenNames, [
           'Lina',
           'Marc',
@@ -187,14 +187,14 @@ void main() async {
       await _createTestDatabase(session);
       citizensOrderedByCompanyName = await Citizen.db.find(
         session,
-        orderBy: (t) => t.company.name,
+        orderBy: (final t) => t.company.name,
       );
     });
 
     tearDownAll(() async => await deleteAll(session));
 
     test('then models returned are in expected order.', () {
-      var citizenNames = citizensOrderedByCompanyName.map((e) => e.name);
+      final citizenNames = citizensOrderedByCompanyName.map((final e) => e.name);
       expect(citizenNames, ['Theo', 'Haris', 'Alex', 'Isak', 'Lina', 'Joanna']);
     });
   });
@@ -207,14 +207,14 @@ void main() async {
         await _createTestDatabase(session);
         citizensOrderedByCompanyTownName = await Citizen.db.find(
           session,
-          orderBy: (t) => t.company.town.name,
+          orderBy: (final t) => t.company.town.name,
         );
       });
 
       tearDownAll(() async => await deleteAll(session));
 
       test('then models returned are in expected order.', () {
-        var citizenNames = citizensOrderedByCompanyTownName.map((e) => e.name);
+        final citizenNames = citizensOrderedByCompanyTownName.map((final e) => e.name);
         expect(citizenNames, [
           'Lina',
           'Joanna',

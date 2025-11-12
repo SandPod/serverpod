@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with "default" fields,', () {
     tearDownAll(
@@ -17,8 +17,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "default=10" field value should be 10',
       () async {
-        var object = IntDefault();
-        var databaseObject = await IntDefault.db.insertRow(
+        final object = IntDefault();
+        final databaseObject = await IntDefault.db.insertRow(
           session,
           object,
         );
@@ -32,8 +32,8 @@ void main() async {
     test(
       'when creating a record in the database, then the nullable "default=20" field value should be 20',
       () async {
-        var object = IntDefault();
-        var databaseObject = await IntDefault.db.insertRow(
+        final object = IntDefault();
+        final databaseObject = await IntDefault.db.insertRow(
           session,
           object,
         );
@@ -47,10 +47,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "intDefault" field value should match the provided value',
       () async {
-        var specificObject = IntDefault(
+        final specificObject = IntDefault(
           intDefault: 30,
         );
-        var specificDatabaseObject = await IntDefault.db.insertRow(
+        final specificDatabaseObject = await IntDefault.db.insertRow(
           session,
           specificObject,
         );
@@ -64,10 +64,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "intDefaultNull" field value should match the provided value',
       () async {
-        var specificObject = IntDefault(
+        final specificObject = IntDefault(
           intDefaultNull: 40,
         );
-        var specificDatabaseObject = await IntDefault.db.insertRow(
+        final specificDatabaseObject = await IntDefault.db.insertRow(
           session,
           specificObject,
         );

@@ -11,7 +11,7 @@ import 'package:serverpod_test_server/test_util/test_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client(
+  final client = Client(
     serverUrl,
     authenticationKeyManager: TestAuthKeyManager(),
   );
@@ -19,13 +19,13 @@ void main() {
   test(
     'Given an unauthenticated user when calling an authenticated streaming method then client exception with forbidden HTTP status code is thrown.',
     () async {
-      var errorCompleter = Completer();
-      var stream = await client.authenticatedMethodStreaming.simpleStream();
+      final errorCompleter = Completer();
+      final stream = client.authenticatedMethodStreaming.simpleStream();
       stream.listen(
-        (event) {
+        (final event) {
           // Do nothing
         },
-        onError: (error) {
+        onError: (final error) {
           errorCompleter.complete(error);
         },
       );
@@ -33,7 +33,7 @@ void main() {
       await expectLater(
         await errorCompleter.future,
         isA<ServerpodClientException>().having(
-          (e) => e.statusCode,
+          (final e) => e.statusCode,
           'statusCode',
           HttpStatus.unauthorized,
         ),
@@ -44,7 +44,7 @@ void main() {
   group('Given an authenticated user with insufficient access', () {
     setUp(() async {
       // Missing required admin scope for endpoint
-      var response = await client.authentication.authenticate(
+      final response = await client.authentication.authenticate(
         'test@foo.bar',
         'password',
       );
@@ -71,13 +71,13 @@ void main() {
     test(
       'when calling an authenticated streaming method then client exception with unauthorized HTTP status code is thrown',
       () async {
-        var errorCompleter = Completer();
-        var stream = await client.authenticatedMethodStreaming.simpleStream();
+        final errorCompleter = Completer();
+        final stream = client.authenticatedMethodStreaming.simpleStream();
         stream.listen(
-          (event) {
+          (final event) {
             // Do nothing
           },
-          onError: (error) {
+          onError: (final error) {
             errorCompleter.complete(error);
           },
         );
@@ -85,7 +85,7 @@ void main() {
         await expectLater(
           await errorCompleter.future,
           isA<ServerpodClientException>().having(
-            (e) => e.statusCode,
+            (final e) => e.statusCode,
             'statusCode',
             HttpStatus.forbidden,
           ),
@@ -97,7 +97,7 @@ void main() {
   group('Given an authenticated user with sufficient access', () {
     setUp(() async {
       // Admin scope required by the endpoint
-      var response = await client.authentication.authenticate(
+      final response = await client.authentication.authenticate(
         'test@foo.bar',
         'password',
         [Scope.admin.name!],
@@ -125,11 +125,11 @@ void main() {
     test(
       'when calling an authenticated streaming method then access is granted and the expected integers are received.',
       () async {
-        var streamComplete = Completer();
-        var stream = await client.authenticatedMethodStreaming.simpleStream();
-        var received = <int>[];
+        final streamComplete = Completer();
+        final stream = client.authenticatedMethodStreaming.simpleStream();
+        final received = <int>[];
         stream.listen(
-          (event) {
+          (final event) {
             received.add(event);
           },
           onDone: () {
@@ -147,7 +147,7 @@ void main() {
     late int userId;
     setUp(() async {
       // Admin scope required by the endpoint
-      var response = await client.authentication.authenticate(
+      final response = await client.authentication.authenticate(
         'test@foo.bar',
         'password',
         [Scope.admin.name!, 'unrelated_scope'],
@@ -176,17 +176,17 @@ void main() {
     test(
       'when the user signs out then the stream is closed with an exception',
       () async {
-        var streamErrorCompleter = Completer();
-        var inStream = StreamController<int>();
-        var stream = await client.authenticatedMethodStreaming.intEchoStream(
+        final streamErrorCompleter = Completer();
+        final inStream = StreamController<int>();
+        final stream = client.authenticatedMethodStreaming.intEchoStream(
           inStream.stream,
         );
-        var valueReceivedCompleter = Completer<int>();
-        stream.listen((event) {
+        final valueReceivedCompleter = Completer<int>();
+        stream.listen((final event) {
           if (valueReceivedCompleter.isCompleted) return;
 
           valueReceivedCompleter.complete(event);
-        }, onError: (e) => streamErrorCompleter.complete(e));
+        }, onError: (final e) => streamErrorCompleter.complete(e));
         inStream.add(1);
         // Verify connection is established.
         await expectLater(valueReceivedCompleter.future, completion(1));
@@ -203,17 +203,17 @@ void main() {
     test(
       'when user scopes are updated and a required scope for the endpoint is removed then the stream is closed with an exception',
       () async {
-        var streamErrorCompleter = Completer();
-        var inStream = StreamController<int>();
-        var stream = await client.authenticatedMethodStreaming.intEchoStream(
+        final streamErrorCompleter = Completer();
+        final inStream = StreamController<int>();
+        final stream = client.authenticatedMethodStreaming.intEchoStream(
           inStream.stream,
         );
-        var valueReceivedCompleter = Completer<int>();
-        stream.listen((event) {
+        final valueReceivedCompleter = Completer<int>();
+        stream.listen((final event) {
           if (valueReceivedCompleter.isCompleted) return;
 
           valueReceivedCompleter.complete(event);
-        }, onError: (e) => streamErrorCompleter.complete(e));
+        }, onError: (final e) => streamErrorCompleter.complete(e));
         inStream.add(1);
         // Verify connection is established.
         await expectLater(valueReceivedCompleter.future, completion(1));
@@ -230,17 +230,17 @@ void main() {
     test(
       'when the users scopes are updated and an unrelated scope is removed then the stream can still be used',
       () async {
-        var streamErrorCompleter = Completer();
-        var inStream = StreamController<int>();
-        var stream = await client.authenticatedMethodStreaming.intEchoStream(
+        final streamErrorCompleter = Completer();
+        final inStream = StreamController<int>();
+        final stream = client.authenticatedMethodStreaming.intEchoStream(
           inStream.stream,
         );
         var valueReceivedCompleter = Completer<int>();
-        stream.listen((event) {
+        stream.listen((final event) {
           if (valueReceivedCompleter.isCompleted) return;
 
           valueReceivedCompleter.complete(event);
-        }, onError: (e) => streamErrorCompleter.complete(e));
+        }, onError: (final e) => streamErrorCompleter.complete(e));
         inStream.add(1);
         // Verify connection is established.
         await expectLater(valueReceivedCompleter.future, completion(1));

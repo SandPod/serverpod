@@ -9,25 +9,26 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
-// ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'dart:async' as _i2;
-import 'package:serverpod_chat_client/src/protocol/chat_message_attachment_upload_description.dart'
-    as _i3;
+
 import 'package:serverpod_chat_client/src/protocol/chat_message_attachment.dart'
     as _i4;
+import 'package:serverpod_chat_client/src/protocol/chat_message_attachment_upload_description.dart'
+    as _i3;
+// ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:serverpod_client/serverpod_client.dart' as _i1;
 
 /// Connect to the chat endpoint to send and receive chat messages.
 /// {@category Endpoint}
 class EndpointChat extends _i1.EndpointRef {
-  EndpointChat(_i1.EndpointCaller caller) : super(caller);
+  EndpointChat(final _i1.EndpointCaller caller) : super(caller);
 
   @override
   String get name => 'serverpod_chat.chat';
 
   /// Creates a description for uploading an attachment.
   _i2.Future<_i3.ChatMessageAttachmentUploadDescription?>
-  createAttachmentUploadDescription(String fileName) =>
+  createAttachmentUploadDescription(final String fileName) =>
       caller.callServerEndpoint<_i3.ChatMessageAttachmentUploadDescription?>(
         'serverpod_chat.chat',
         'createAttachmentUploadDescription',
@@ -36,8 +37,8 @@ class EndpointChat extends _i1.EndpointRef {
 
   /// Verifies that an attachment has been uploaded.
   _i2.Future<_i4.ChatMessageAttachment?> verifyAttachmentUpload(
-    String fileName,
-    String filePath,
+    final String fileName,
+    final String filePath,
   ) => caller.callServerEndpoint<_i4.ChatMessageAttachment?>(
     'serverpod_chat.chat',
     'verifyAttachmentUpload',
@@ -49,7 +50,7 @@ class EndpointChat extends _i1.EndpointRef {
 }
 
 class Caller extends _i1.ModuleEndpointCaller {
-  Caller(_i1.ServerpodClientShared client) : super(client) {
+  Caller(final _i1.ServerpodClientShared client) : super(client) {
     chat = EndpointChat(this);
   }
 

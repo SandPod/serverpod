@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with one to many relation ', () {
     tearDown(() async {
@@ -18,7 +18,7 @@ void main() async {
     test(
       'when counting models filtered on any many relation then result is as expected.',
       () async {
-        var customers = await Customer.db.insert(session, [
+        final customers = await Customer.db.insert(session, [
           Customer(name: 'Alex'),
           Customer(name: 'Isak'),
           Customer(name: 'Viktor'),
@@ -34,10 +34,10 @@ void main() async {
           Order(description: 'Order 6', customerId: customers[3].id!),
         ]);
 
-        var customerCount = await Customer.db.count(
+        final customerCount = await Customer.db.count(
           session,
           // All customers with any order
-          where: (c) => c.orders.any(),
+          where: (final c) => c.orders.any(),
         );
 
         expect(customerCount, 2);
@@ -47,7 +47,7 @@ void main() async {
     test(
       'when counting models filtered on filtered any many relation then result is as expected',
       () async {
-        var customers = await Customer.db.insert(session, [
+        final customers = await Customer.db.insert(session, [
           Customer(name: 'Alex'),
           Customer(name: 'Isak'),
           Customer(name: 'Viktor'),
@@ -65,10 +65,10 @@ void main() async {
           Order(description: 'Order 6', customerId: customers[3].id!),
         ]);
 
-        var customerCount = await Customer.db.count(
+        final customerCount = await Customer.db.count(
           session,
           // All customers with any order starting with 'prem'
-          where: (c) => c.orders.any((o) => o.description.ilike('prem%')),
+          where: (final c) => c.orders.any((final o) => o.description.ilike('prem%')),
         );
 
         expect(customerCount, 2);
@@ -78,7 +78,7 @@ void main() async {
     test(
       'when counting models filtered on multiple any many relation then result is as expected.',
       () async {
-        var customers = await Customer.db.insert(session, [
+        final customers = await Customer.db.insert(session, [
           Customer(name: 'Alex'),
           Customer(name: 'Isak'),
           Customer(name: 'Viktor'),
@@ -96,12 +96,12 @@ void main() async {
           Order(description: 'Order 6', customerId: customers[3].id!),
         ]);
 
-        var customerCount = await Customer.db.count(
+        final customerCount = await Customer.db.count(
           session,
           // All customers with any order starting with 'del and any order starting with 'prem'
-          where: (c) =>
-              c.orders.any((o) => o.description.ilike('del%')) &
-              c.orders.any((o) => o.description.ilike('prem%')),
+          where: (final c) =>
+              c.orders.any((final o) => o.description.ilike('del%')) &
+              c.orders.any((final o) => o.description.ilike('prem%')),
         );
 
         expect(customerCount, 1);
@@ -125,13 +125,13 @@ void main() async {
     test(
       'when counting models filtered on nested any many relation then result is as expected',
       () async {
-        var customers = await Customer.db.insert(session, [
+        final customers = await Customer.db.insert(session, [
           Customer(name: 'Alex'),
           Customer(name: 'Isak'),
           Customer(name: 'Viktor'),
           Customer(name: 'Lisa'),
         ]);
-        var orders = await Order.db.insert(session, [
+        final orders = await Order.db.insert(session, [
           // Alex orders
           Order(description: 'Order 1', customerId: customers[0].id!),
           Order(description: 'Order 2', customerId: customers[0].id!),
@@ -154,10 +154,10 @@ void main() async {
           Comment(description: 'Comment 10', orderId: orders[3].id!),
           Comment(description: 'Comment 11', orderId: orders[3].id!),
         ]);
-        var customerCount = await Customer.db.count(
+        final customerCount = await Customer.db.count(
           session,
           // All customers with any order that has any comment.
-          where: (c) => c.orders.any((o) => o.comments.any()),
+          where: (final c) => c.orders.any((final o) => o.comments.any()),
         );
 
         expect(customerCount, 2);
@@ -167,13 +167,13 @@ void main() async {
     test(
       'when counting models filtered on filtered nested any many relation then result is as expected',
       () async {
-        var customers = await Customer.db.insert(session, [
+        final customers = await Customer.db.insert(session, [
           Customer(name: 'Alex'),
           Customer(name: 'Isak'),
           Customer(name: 'Viktor'),
           Customer(name: 'Lisa'),
         ]);
-        var orders = await Order.db.insert(session, [
+        final orders = await Order.db.insert(session, [
           // Alex orders
           Order(description: 'Order 1', customerId: customers[0].id!),
           Order(description: 'Order 2', customerId: customers[0].id!),
@@ -205,11 +205,11 @@ void main() async {
           Comment(description: 'Comment 14', orderId: orders[4].id!),
         ]);
 
-        var customerCount = await Customer.db.count(
+        final customerCount = await Customer.db.count(
           session,
-          where: (c) => c.orders.any(
+          where: (final c) => c.orders.any(
             // All customers any order that has any comment starting with 'del'
-            (o) => o.comments.any((c) => c.description.ilike('del%')),
+            (final o) => o.comments.any((final c) => c.description.ilike('del%')),
           ),
         );
 

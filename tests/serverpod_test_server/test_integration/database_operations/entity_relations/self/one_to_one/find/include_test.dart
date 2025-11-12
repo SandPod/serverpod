@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with one to one relation', () {
     tearDown(() async {
@@ -14,7 +14,7 @@ void main() async {
     test(
       'when fetching models including relation then result includes relation data.',
       () async {
-        var post = await Post.db.insert(
+        final post = await Post.db.insert(
           session,
           [
             Post(content: 'Hello world!'),
@@ -25,10 +25,10 @@ void main() async {
         await Post.db.attachRow.next(session, post[0], post[1]);
         await Post.db.attachRow.next(session, post[1], post[2]);
 
-        var postsFetched = await Post.db.find(
+        final postsFetched = await Post.db.find(
           session,
           include: Post.include(next: Post.include()),
-          orderBy: (t) => t.id,
+          orderBy: (final t) => t.id,
         );
 
         expect(postsFetched[0].next?.content, 'Hello again!');
@@ -46,7 +46,7 @@ void main() async {
     test(
       'when fetching models including nested relation then result includes nested relation data.',
       () async {
-        var post = await Post.db.insert(
+        final post = await Post.db.insert(
           session,
           [
             Post(content: 'Hello world!'),
@@ -57,10 +57,10 @@ void main() async {
         await Post.db.attachRow.next(session, post[0], post[1]);
         await Post.db.attachRow.next(session, post[1], post[2]);
 
-        var postsFetched = await Post.db.find(
+        final postsFetched = await Post.db.find(
           session,
           include: Post.include(next: Post.include(next: Post.include())),
-          orderBy: (t) => t.id,
+          orderBy: (final t) => t.id,
         );
 
         expect(postsFetched[0].next?.next?.content, 'Hello a third time!');

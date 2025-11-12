@@ -9,16 +9,16 @@ import 'package:test/test.dart';
 void main() async {
   late Completer<String> tokenInspectionCompleter;
   Future<AuthenticationInfo?> authenticationHandler(
-    Session session,
-    String token,
+    final Session session,
+    final String token,
   ) {
     tokenInspectionCompleter.complete(token);
     return Future.value(AuthenticationInfo('1', {}));
   }
 
   group('Given auth key in valid HTTP header format', () {
-    var authKeyManager = TestBasicAuthenticationKeyManager();
-    var client = Client(
+    final authKeyManager = TestBasicAuthenticationKeyManager();
+    final client = Client(
       'http://localhost:8080/',
       authenticationKeyManager: authKeyManager,
     );
@@ -43,13 +43,13 @@ void main() async {
       'when calling an endpoint method without parameters '
       'then it should receive plain auth key (i.e. in original format)',
       () async {
-        var key = 'username-4711:password-4711';
+        const key = 'username-4711:password-4711';
         await authKeyManager.put(key);
 
-        var reflectedKey = await client.echoRequest.echoAuthenticationKey();
+        final reflectedKey = await client.echoRequest.echoAuthenticationKey();
         expect(reflectedKey, key);
 
-        var receivedToken = await tokenInspectionCompleter.future;
+        final receivedToken = await tokenInspectionCompleter.future;
         expect(receivedToken, key);
       },
     );
@@ -58,12 +58,12 @@ void main() async {
       'when calling an endpoint method with a parameter '
       'then the authentication handler receives the raw key without the schema prefix',
       () async {
-        var key = 'username-4711:password-4711';
+        const key = 'username-4711:password-4711';
         await authKeyManager.put(key);
 
         await client.echoRequest.echoHttpHeader('authorization');
 
-        var receivedToken = await tokenInspectionCompleter.future;
+        final receivedToken = await tokenInspectionCompleter.future;
         expect(receivedToken, key);
       },
     );
@@ -72,10 +72,10 @@ void main() async {
       'when calling an endpoint method '
       'then endpoint method request should contain properly formatted "authorization" header with Basic scheme',
       () async {
-        var key = 'username-4712:password-4712';
+        const key = 'username-4712:password-4712';
         await authKeyManager.put(key);
 
-        var reflectedHeader = await client.echoRequest.echoHttpHeader(
+        final reflectedHeader = await client.echoRequest.echoHttpHeader(
           'authorization',
         );
 
@@ -83,7 +83,7 @@ void main() async {
         expect(reflectedHeader!, isNotEmpty);
         expect(isValidAuthHeaderValue(reflectedHeader.first), isTrue);
         expect(isWrappedBasicAuthHeaderValue(reflectedHeader.first), isTrue);
-        var scheme = reflectedHeader.first.split(' ')[0];
+        final scheme = reflectedHeader.first.split(' ')[0];
         expect(scheme, 'Basic');
       },
     );
@@ -92,22 +92,22 @@ void main() async {
       'when calling an endpoint method '
       'then endpoint method request\'s "authorization" should when unwrapped contain the original key',
       () async {
-        var key = 'username-4713:password-4713';
+        const key = 'username-4713:password-4713';
         await authKeyManager.put(key);
 
-        var reflectedHeader = await client.echoRequest.echoHttpHeader(
+        final reflectedHeader = await client.echoRequest.echoHttpHeader(
           'authorization',
         );
 
-        var unwrappedKey = unwrapAuthHeaderValue(reflectedHeader!.first);
+        final unwrappedKey = unwrapAuthHeaderValue(reflectedHeader!.first);
         expect(unwrappedKey, key);
       },
     );
   });
 
   group('Given auth key in invalid Basic HTTP header format', () {
-    var incorrectAuthKeyManager = TestIncorrectAuthKeyManager();
-    var client = Client(
+    final incorrectAuthKeyManager = TestIncorrectAuthKeyManager();
+    final client = Client(
       'http://localhost:8080/',
       authenticationKeyManager: incorrectAuthKeyManager,
     );
@@ -132,7 +132,7 @@ void main() async {
       'when calling an endpoint method '
       'then endpoint method should return error corresponding to HTTP invalid request error (400)',
       () async {
-        var key = 'username-4711:password-4711';
+        const key = 'username-4711:password-4711';
         await incorrectAuthKeyManager.put(key);
 
         ServerpodClientException? clientException;
@@ -152,8 +152,8 @@ void main() async {
   });
 
   group('Given auth key with Bearer HTTP header format', () {
-    var authKeyManager = TestAuthKeyManager();
-    var client = Client(
+    final authKeyManager = TestAuthKeyManager();
+    final client = Client(
       'http://localhost:8080/',
       authenticationKeyManager: authKeyManager,
     );
@@ -178,13 +178,13 @@ void main() async {
       'when calling an endpoint method without parameters '
       'then it should receive plain auth key (i.e. in original format)',
       () async {
-        var key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9';
+        const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9';
         await authKeyManager.put(key);
 
-        var reflectedKey = await client.echoRequest.echoAuthenticationKey();
+        final reflectedKey = await client.echoRequest.echoAuthenticationKey();
         expect(reflectedKey, key);
 
-        var receivedToken = await tokenInspectionCompleter.future;
+        final receivedToken = await tokenInspectionCompleter.future;
         expect(receivedToken, key);
       },
     );
@@ -193,12 +193,12 @@ void main() async {
       'when calling an endpoint method with a parameter '
       'then the authentication handler receives the raw token without the schema prefix',
       () async {
-        var key = 'abc123-bearer-token';
+        const key = 'abc123-bearer-token';
         await authKeyManager.put(key);
 
         await client.echoRequest.echoHttpHeader('authorization');
 
-        var receivedToken = await tokenInspectionCompleter.future;
+        final receivedToken = await tokenInspectionCompleter.future;
         expect(receivedToken, key);
       },
     );
@@ -207,10 +207,10 @@ void main() async {
       'when calling an endpoint method '
       'then endpoint method request should contain properly formatted "authorization" header with Bearer scheme',
       () async {
-        var key = 'jwt-token-4712';
+        const key = 'jwt-token-4712';
         await authKeyManager.put(key);
 
-        var reflectedHeader = await client.echoRequest.echoHttpHeader(
+        final reflectedHeader = await client.echoRequest.echoHttpHeader(
           'authorization',
         );
 
@@ -218,7 +218,7 @@ void main() async {
         expect(reflectedHeader!, isNotEmpty);
         expect(isValidAuthHeaderValue(reflectedHeader.first), isTrue);
         expect(isWrappedBearerAuthHeaderValue(reflectedHeader.first), isTrue);
-        var scheme = reflectedHeader.first.split(' ')[0];
+        final scheme = reflectedHeader.first.split(' ')[0];
         expect(scheme, 'Bearer');
       },
     );
@@ -227,7 +227,7 @@ void main() async {
       'when calling an endpoint method with invalid token '
       'then endpoint method should return error corresponding to HTTP invalid request error (400)',
       () async {
-        var key = 'doubled-bearer jwt-token-4712';
+        const key = 'doubled-bearer jwt-token-4712';
         await authKeyManager.put(key);
 
         ServerpodClientException? clientException;
@@ -249,14 +249,14 @@ void main() async {
       'when calling an endpoint method '
       'then endpoint method request\'s "authorization" should when unwrapped contain the original key',
       () async {
-        var key = 'bearer-token-4713';
+        const key = 'bearer-token-4713';
         await authKeyManager.put(key);
 
-        var reflectedHeader = await client.echoRequest.echoHttpHeader(
+        final reflectedHeader = await client.echoRequest.echoHttpHeader(
           'authorization',
         );
 
-        var unwrappedKey = unwrapAuthHeaderValue(reflectedHeader!.first);
+        final unwrappedKey = unwrapAuthHeaderValue(reflectedHeader!.first);
         expect(unwrappedKey, key);
       },
     );
@@ -271,7 +271,7 @@ class TestBasicAuthenticationKeyManager extends BasicAuthenticationKeyManager {
   Future<String?> get() async => _key;
 
   @override
-  Future<void> put(String key) async {
+  Future<void> put(final String key) async {
     _key = key;
   }
 
@@ -284,7 +284,7 @@ class TestBasicAuthenticationKeyManager extends BasicAuthenticationKeyManager {
 /// A test implementation that skips encoding of the key, i.e. yields invalid header values.
 class TestIncorrectAuthKeyManager extends TestAuthKeyManager {
   @override
-  Future<String?> toHeaderValue(String? key) async {
+  Future<String?> toHeaderValue(final String? key) async {
     return 'basic $key';
   }
 }

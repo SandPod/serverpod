@@ -38,12 +38,12 @@ void main() {
       late http.Response response;
 
       setUp(() async {
-        var uri = Uri.parse('http://localhost:8080/test');
-        var body = {};
+        final uri = Uri.parse('http://localhost:8080/test');
+        final body = {};
         for (var i = 0; i < 10; i++) {
           body[i.toString()] = 'Hello, Serverpod!';
         }
-        var jsonBody = jsonEncode(body);
+        final jsonBody = jsonEncode(body);
 
         response = await http.post(
           uri,
@@ -57,7 +57,7 @@ void main() {
 
       test('then response contains an error message indicating the request size '
           'exceeded the maximum allowed size', () {
-        var expectedMessage =
+        const expectedMessage =
             'Request size exceeds the maximum allowed size of $maxRequestSize bytes.';
         expect(response.body, equals(expectedMessage));
       });

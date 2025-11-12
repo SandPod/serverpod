@@ -24,13 +24,13 @@ abstract class Person implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   }) : _cityCitizensCityId = null;
 
   factory Person({
-    int? id,
-    required String name,
-    int? organizationId,
-    _i2.Organization? organization,
+    final int? id,
+    required final String name,
+    final int? organizationId,
+    final _i2.Organization? organization,
   }) = _PersonImpl;
 
-  factory Person.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory Person.fromJson(final Map<String, dynamic> jsonSerialization) {
     return PersonImplicit._(
       id: jsonSerialization['id'] as int?,
       name: jsonSerialization['name'] as String,
@@ -66,10 +66,10 @@ abstract class Person implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   Person copyWith({
-    int? id,
-    String? name,
-    int? organizationId,
-    _i2.Organization? organization,
+    final int? id,
+    final String? name,
+    final int? organizationId,
+    final _i2.Organization? organization,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -94,18 +94,18 @@ abstract class Person implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
     };
   }
 
-  static PersonInclude include({_i2.OrganizationInclude? organization}) {
+  static PersonInclude include({final _i2.OrganizationInclude? organization}) {
     return PersonInclude._(organization: organization);
   }
 
   static PersonIncludeList includeList({
-    _i1.WhereExpressionBuilder<PersonTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<PersonTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<PersonTable>? orderByList,
-    PersonInclude? include,
+    final _i1.WhereExpressionBuilder<PersonTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<PersonTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<PersonTable>? orderByList,
+    final PersonInclude? include,
   }) {
     return PersonIncludeList._(
       where: where,
@@ -128,10 +128,10 @@ class _Undefined {}
 
 class _PersonImpl extends Person {
   _PersonImpl({
-    int? id,
-    required String name,
-    int? organizationId,
-    _i2.Organization? organization,
+    final int? id,
+    required final String name,
+    final int? organizationId,
+    final _i2.Organization? organization,
   }) : super._(
          id: id,
          name: name,
@@ -144,10 +144,10 @@ class _PersonImpl extends Person {
   @_i1.useResult
   @override
   Person copyWith({
-    Object? id = _Undefined,
-    String? name,
-    Object? organizationId = _Undefined,
-    Object? organization = _Undefined,
+    final Object? id = _Undefined,
+    final String? name,
+    final Object? organizationId = _Undefined,
+    final Object? organization = _Undefined,
   }) {
     return PersonImplicit._(
       id: id is int? ? id : this.id,
@@ -158,18 +158,18 @@ class _PersonImpl extends Person {
       organization: organization is _i2.Organization?
           ? organization
           : this.organization?.copyWith(),
-      $_cityCitizensCityId: this._cityCitizensCityId,
+      $_cityCitizensCityId: _cityCitizensCityId,
     );
   }
 }
 
 class PersonImplicit extends _PersonImpl {
   PersonImplicit._({
-    int? id,
-    required String name,
-    int? organizationId,
-    _i2.Organization? organization,
-    int? $_cityCitizensCityId,
+    final int? id,
+    required final String name,
+    final int? organizationId,
+    final _i2.Organization? organization,
+    final int? $_cityCitizensCityId,
   }) : _cityCitizensCityId = $_cityCitizensCityId,
        super(
          id: id,
@@ -179,8 +179,8 @@ class PersonImplicit extends _PersonImpl {
        );
 
   factory PersonImplicit(
-    Person person, {
-    int? $_cityCitizensCityId,
+    final Person person, {
+    final int? $_cityCitizensCityId,
   }) {
     return PersonImplicit._(
       id: person.id,
@@ -198,17 +198,17 @@ class PersonImplicit extends _PersonImpl {
 class PersonUpdateTable extends _i1.UpdateTable<PersonTable> {
   PersonUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> name(String value) => _i1.ColumnValue(
+  _i1.ColumnValue<String, String> name(final String value) => _i1.ColumnValue(
     table.name,
     value,
   );
 
-  _i1.ColumnValue<int, int> organizationId(int? value) => _i1.ColumnValue(
+  _i1.ColumnValue<int, int> organizationId(final int? value) => _i1.ColumnValue(
     table.organizationId,
     value,
   );
 
-  _i1.ColumnValue<int, int> $_cityCitizensCityId(int? value) => _i1.ColumnValue(
+  _i1.ColumnValue<int, int> $_cityCitizensCityId(final int? value) => _i1.ColumnValue(
     table.$_cityCitizensCityId,
     value,
   );
@@ -248,7 +248,7 @@ class PersonTable extends _i1.Table<int?> {
       field: Person.t.organizationId,
       foreignField: _i2.Organization.t.id,
       tableRelation: tableRelation,
-      createTable: (foreignTableRelation) =>
+      createTable: (final foreignTableRelation) =>
           _i2.OrganizationTable(tableRelation: foreignTableRelation),
     );
     return _organization!;
@@ -270,7 +270,7 @@ class PersonTable extends _i1.Table<int?> {
   ];
 
   @override
-  _i1.Table? getRelationTable(String relationField) {
+  _i1.Table? getRelationTable(final String relationField) {
     if (relationField == 'organization') {
       return organization;
     }
@@ -279,7 +279,7 @@ class PersonTable extends _i1.Table<int?> {
 }
 
 class PersonInclude extends _i1.IncludeObject {
-  PersonInclude._({_i2.OrganizationInclude? organization}) {
+  PersonInclude._({final _i2.OrganizationInclude? organization}) {
     _organization = organization;
   }
 
@@ -294,7 +294,7 @@ class PersonInclude extends _i1.IncludeObject {
 
 class PersonIncludeList extends _i1.IncludeList {
   PersonIncludeList._({
-    _i1.WhereExpressionBuilder<PersonTable>? where,
+    final _i1.WhereExpressionBuilder<PersonTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -342,15 +342,15 @@ class PersonRepository {
   /// );
   /// ```
   Future<List<Person>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<PersonTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<PersonTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<PersonTable>? orderByList,
-    _i1.Transaction? transaction,
-    PersonInclude? include,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<PersonTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<PersonTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<PersonTable>? orderByList,
+    final _i1.Transaction? transaction,
+    final PersonInclude? include,
   }) async {
     return session.db.find<Person>(
       where: where?.call(Person.t),
@@ -382,14 +382,14 @@ class PersonRepository {
   /// );
   /// ```
   Future<Person?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<PersonTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<PersonTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<PersonTable>? orderByList,
-    _i1.Transaction? transaction,
-    PersonInclude? include,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<PersonTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<PersonTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<PersonTable>? orderByList,
+    final _i1.Transaction? transaction,
+    final PersonInclude? include,
   }) async {
     return session.db.findFirstRow<Person>(
       where: where?.call(Person.t),
@@ -404,10 +404,10 @@ class PersonRepository {
 
   /// Finds a single [Person] by its [id] or null if no such row exists.
   Future<Person?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
-    PersonInclude? include,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
+    final PersonInclude? include,
   }) async {
     return session.db.findById<Person>(
       id,
@@ -423,9 +423,9 @@ class PersonRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<Person>> insert(
-    _i1.Session session,
-    List<Person> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<Person> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<Person>(
       rows,
@@ -437,9 +437,9 @@ class PersonRepository {
   ///
   /// The returned [Person] will have its `id` field set.
   Future<Person> insertRow(
-    _i1.Session session,
-    Person row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final Person row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<Person>(
       row,
@@ -453,10 +453,10 @@ class PersonRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<Person>> update(
-    _i1.Session session,
-    List<Person> rows, {
-    _i1.ColumnSelections<PersonTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<Person> rows, {
+    final _i1.ColumnSelections<PersonTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<Person>(
       rows,
@@ -469,10 +469,10 @@ class PersonRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<Person> updateRow(
-    _i1.Session session,
-    Person row, {
-    _i1.ColumnSelections<PersonTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final Person row, {
+    final _i1.ColumnSelections<PersonTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<Person>(
       row,
@@ -484,10 +484,10 @@ class PersonRepository {
   /// Updates a single [Person] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<Person?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<PersonUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<PersonUpdateTable> columnValues,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<Person>(
       id,
@@ -499,15 +499,15 @@ class PersonRepository {
   /// Updates all [Person]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<Person>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<PersonUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<PersonTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<PersonTable>? orderBy,
-    _i1.OrderByListBuilder<PersonTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<PersonUpdateTable> columnValues,
+    required final _i1.WhereExpressionBuilder<PersonTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<PersonTable>? orderBy,
+    final _i1.OrderByListBuilder<PersonTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<Person>(
       columnValues: columnValues(Person.t.updateTable),
@@ -525,9 +525,9 @@ class PersonRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<Person>> delete(
-    _i1.Session session,
-    List<Person> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<Person> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<Person>(
       rows,
@@ -537,9 +537,9 @@ class PersonRepository {
 
   /// Deletes a single [Person].
   Future<Person> deleteRow(
-    _i1.Session session,
-    Person row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final Person row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<Person>(
       row,
@@ -549,9 +549,9 @@ class PersonRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<Person>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<PersonTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<PersonTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<Person>(
       where: where(Person.t),
@@ -562,10 +562,10 @@ class PersonRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<PersonTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<PersonTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<Person>(
       where: where?.call(Person.t),
@@ -581,10 +581,10 @@ class PersonAttachRowRepository {
   /// Creates a relation between the given [Person] and [Organization]
   /// by setting the [Person]'s foreign key `organizationId` to refer to the [Organization].
   Future<void> organization(
-    _i1.Session session,
-    Person person,
-    _i2.Organization organization, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final Person person,
+    final _i2.Organization organization, {
+    final _i1.Transaction? transaction,
   }) async {
     if (person.id == null) {
       throw ArgumentError.notNull('person.id');
@@ -593,7 +593,7 @@ class PersonAttachRowRepository {
       throw ArgumentError.notNull('organization.id');
     }
 
-    var $person = person.copyWith(organizationId: organization.id);
+    final $person = person.copyWith(organizationId: organization.id);
     await session.db.updateRow<Person>(
       $person,
       columns: [Person.t.organizationId],
@@ -611,15 +611,15 @@ class PersonDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> organization(
-    _i1.Session session,
-    Person person, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final Person person, {
+    final _i1.Transaction? transaction,
   }) async {
     if (person.id == null) {
       throw ArgumentError.notNull('person.id');
     }
 
-    var $person = person.copyWith(organizationId: null);
+    final $person = person.copyWith(organizationId: null);
     await session.db.updateRow<Person>(
       $person,
       columns: [Person.t.organizationId],

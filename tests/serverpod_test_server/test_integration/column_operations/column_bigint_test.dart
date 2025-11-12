@@ -7,7 +7,7 @@ final _firstBigInt = BigInt.parse('12345678901234567890');
 final _secondBigInt = BigInt.one;
 final _thirdBigInt = BigInt.zero;
 
-Future<void> _createTestDatabase(Session session) async {
+Future<void> _createTestDatabase(final Session session) async {
   await Types.db.insert(session, [
     Types(aBigInt: _firstBigInt),
     Types(aBigInt: _secondBigInt),
@@ -16,19 +16,19 @@ Future<void> _createTestDatabase(Session session) async {
   ]);
 }
 
-Future<void> _deleteAll(Session session) async {
+Future<void> _deleteAll(final Session session) async {
   await Types.db.deleteWhere(session, where: (_) => Constant.bool(true));
 }
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   setUpAll(() async => await _createTestDatabase(session));
   tearDownAll(() async => await _deleteAll(session));
 
   group('Given BigInt column in database', () {
     test('when fetching all then all rows are returned.', () async {
-      var result = await Types.db.find(
+      final result = await Types.db.find(
         session,
         where: (_) => Constant.bool(true),
       );
@@ -39,9 +39,9 @@ void main() async {
     test(
       'when filtering using equals then matching row is returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aBigInt.equals(_firstBigInt),
+          where: (final t) => t.aBigInt.equals(_firstBigInt),
         );
 
         expect(result.first.aBigInt, _firstBigInt);
@@ -51,9 +51,9 @@ void main() async {
     test(
       'when filtering using equals with null then matching row is returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aBigInt.equals(null),
+          where: (final t) => t.aBigInt.equals(null),
         );
 
         expect(result.first.aBigInt, isNull);
@@ -63,9 +63,9 @@ void main() async {
     test(
       'when filtering using notEquals then matching rows are returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aBigInt.notEquals(_firstBigInt),
+          where: (final t) => t.aBigInt.notEquals(_firstBigInt),
         );
 
         expect(result.length, 3);
@@ -75,9 +75,9 @@ void main() async {
     test(
       'when filtering using notEquals with null then matching rows are returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aBigInt.notEquals(null),
+          where: (final t) => t.aBigInt.notEquals(null),
         );
 
         expect(result.length, 3);
@@ -87,9 +87,9 @@ void main() async {
     test(
       'when filtering using inSet then matching rows are returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aBigInt.inSet({_firstBigInt, _secondBigInt}),
+          where: (final t) => t.aBigInt.inSet({_firstBigInt, _secondBigInt}),
         );
 
         expect(result.length, 2);
@@ -99,9 +99,9 @@ void main() async {
     test(
       'when filtering using empty inSet then no rows are returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aBigInt.inSet({}),
+          where: (final t) => t.aBigInt.inSet({}),
         );
 
         expect(result, isEmpty);
@@ -111,9 +111,9 @@ void main() async {
     test(
       'when filtering using notInSet then matching row is returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aBigInt.notInSet({_firstBigInt}),
+          where: (final t) => t.aBigInt.notInSet({_firstBigInt}),
         );
 
         expect(result.length, 3);
@@ -123,9 +123,9 @@ void main() async {
     test(
       'when filtering using empty notInSet then all rows are returned.',
       () async {
-        var result = await Types.db.find(
+        final result = await Types.db.find(
           session,
-          where: (t) => t.aBigInt.notInSet({}),
+          where: (final t) => t.aBigInt.notInSet({}),
         );
 
         expect(result.length, 4);

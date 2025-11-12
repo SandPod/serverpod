@@ -24,15 +24,15 @@ abstract class ImmutableObjectWithMultipleFields
   });
 
   const factory ImmutableObjectWithMultipleFields({
-    int? anInt,
-    bool? aBool,
-    double? aDouble,
-    DateTime? aDateTime,
-    String? aString,
+    final int? anInt,
+    final bool? aBool,
+    final double? aDouble,
+    final DateTime? aDateTime,
+    final String? aString,
   }) = _ImmutableObjectWithMultipleFieldsImpl;
 
   factory ImmutableObjectWithMultipleFields.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return ImmutableObjectWithMultipleFields(
       anInt: jsonSerialization['anInt'] as int?,
@@ -59,14 +59,14 @@ abstract class ImmutableObjectWithMultipleFields
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ImmutableObjectWithMultipleFields copyWith({
-    int? anInt,
-    bool? aBool,
-    double? aDouble,
-    DateTime? aDateTime,
-    String? aString,
+    final int? anInt,
+    final bool? aBool,
+    final double? aDouble,
+    final DateTime? aDateTime,
+    final String? aString,
   });
   @override
-  bool operator ==(Object other) {
+  bool operator ==(final Object other) {
     return identical(
           other,
           this,
@@ -145,11 +145,11 @@ class _Undefined {}
 class _ImmutableObjectWithMultipleFieldsImpl
     extends ImmutableObjectWithMultipleFields {
   const _ImmutableObjectWithMultipleFieldsImpl({
-    int? anInt,
-    bool? aBool,
-    double? aDouble,
-    DateTime? aDateTime,
-    String? aString,
+    final int? anInt,
+    final bool? aBool,
+    final double? aDouble,
+    final DateTime? aDateTime,
+    final String? aString,
   }) : super._(
          anInt: anInt,
          aBool: aBool,
@@ -163,11 +163,11 @@ class _ImmutableObjectWithMultipleFieldsImpl
   @_i1.useResult
   @override
   ImmutableObjectWithMultipleFields copyWith({
-    Object? anInt = _Undefined,
-    Object? aBool = _Undefined,
-    Object? aDouble = _Undefined,
-    Object? aDateTime = _Undefined,
-    Object? aString = _Undefined,
+    final Object? anInt = _Undefined,
+    final Object? aBool = _Undefined,
+    final Object? aDouble = _Undefined,
+    final Object? aDateTime = _Undefined,
+    final Object? aString = _Undefined,
   }) {
     return ImmutableObjectWithMultipleFields(
       anInt: anInt is int? ? anInt : this.anInt,

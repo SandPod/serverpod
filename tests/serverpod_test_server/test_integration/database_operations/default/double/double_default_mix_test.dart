@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with mixed default fields,', () {
     tearDownAll(
@@ -23,7 +23,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await DoubleDefaultMix.db.findFirstRow(session);
+        final databaseObject = await DoubleDefaultMix.db.findFirstRow(session);
         expect(databaseObject?.doubleDefaultAndDefaultModel, 10.5);
       },
     );
@@ -37,7 +37,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await DoubleDefaultMix.db.findFirstRow(session);
+        final databaseObject = await DoubleDefaultMix.db.findFirstRow(session);
         expect(databaseObject?.doubleDefaultAndDefaultPersist, 20.5);
       },
     );
@@ -51,7 +51,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await DoubleDefaultMix.db.findFirstRow(session);
+        final databaseObject = await DoubleDefaultMix.db.findFirstRow(session);
         expect(databaseObject?.doubleDefaultModelAndDefaultPersist, 20.5);
       },
     );
@@ -59,10 +59,10 @@ void main() async {
     test(
       'when creating a record in the database with specific values, then the "doubleDefaultAndDefaultModel" field value should match the provided value',
       () async {
-        var specificObject = DoubleDefaultMix(
+        final specificObject = DoubleDefaultMix(
           doubleDefaultAndDefaultModel: 30.5,
         );
-        var specificDatabaseObject = await DoubleDefaultMix.db.insertRow(
+        final specificDatabaseObject = await DoubleDefaultMix.db.insertRow(
           session,
           specificObject,
         );
@@ -73,10 +73,10 @@ void main() async {
     test(
       'when creating a record in the database with specific values, then the "doubleDefaultAndDefaultPersist" field value should match the provided value',
       () async {
-        var specificObject = DoubleDefaultMix(
+        final specificObject = DoubleDefaultMix(
           doubleDefaultAndDefaultPersist: 40.5,
         );
-        var specificDatabaseObject = await DoubleDefaultMix.db.insertRow(
+        final specificDatabaseObject = await DoubleDefaultMix.db.insertRow(
           session,
           specificObject,
         );
@@ -87,10 +87,10 @@ void main() async {
     test(
       'when creating a record in the database with specific values, then the "doubleDefaultModelAndDefaultPersist" field value should match the provided value',
       () async {
-        var specificObject = DoubleDefaultMix(
+        final specificObject = DoubleDefaultMix(
           doubleDefaultModelAndDefaultPersist: 50.5,
         );
-        var specificDatabaseObject = await DoubleDefaultMix.db.insertRow(
+        final specificDatabaseObject = await DoubleDefaultMix.db.insertRow(
           session,
           specificObject,
         );

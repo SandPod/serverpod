@@ -23,13 +23,13 @@ abstract class EmailFailedSignIn implements _i1.SerializableModel {
   });
 
   factory EmailFailedSignIn({
-    int? id,
-    required String email,
-    required DateTime time,
-    required String ipAddress,
+    final int? id,
+    required final String email,
+    required final DateTime time,
+    required final String ipAddress,
   }) = _EmailFailedSignInImpl;
 
-  factory EmailFailedSignIn.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory EmailFailedSignIn.fromJson(final Map<String, dynamic> jsonSerialization) {
     return EmailFailedSignIn(
       id: jsonSerialization['id'] as int?,
       email: jsonSerialization['email'] as String,
@@ -56,10 +56,10 @@ abstract class EmailFailedSignIn implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   EmailFailedSignIn copyWith({
-    int? id,
-    String? email,
-    DateTime? time,
-    String? ipAddress,
+    final int? id,
+    final String? email,
+    final DateTime? time,
+    final String? ipAddress,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -81,10 +81,10 @@ class _Undefined {}
 
 class _EmailFailedSignInImpl extends EmailFailedSignIn {
   _EmailFailedSignInImpl({
-    int? id,
-    required String email,
-    required DateTime time,
-    required String ipAddress,
+    final int? id,
+    required final String email,
+    required final DateTime time,
+    required final String ipAddress,
   }) : super._(
          id: id,
          email: email,
@@ -97,10 +97,10 @@ class _EmailFailedSignInImpl extends EmailFailedSignIn {
   @_i1.useResult
   @override
   EmailFailedSignIn copyWith({
-    Object? id = _Undefined,
-    String? email,
-    DateTime? time,
-    String? ipAddress,
+    final Object? id = _Undefined,
+    final String? email,
+    final DateTime? time,
+    final String? ipAddress,
   }) {
     return EmailFailedSignIn(
       id: id is int? ? id : this.id,

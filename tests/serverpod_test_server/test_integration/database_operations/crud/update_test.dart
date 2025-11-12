@@ -6,7 +6,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   tearDown(() async {
     await UniqueData.db.deleteWhere(session, where: (_) => Constant.bool(true));
@@ -15,19 +15,19 @@ void main() async {
   test(
     'Given a list of entries when batch updating only a single column then no other data is updated.',
     () async {
-      var expectedFirstEmail = 'info@serverpod.dev';
-      var expectedLastEmail = 'dev@serverpod.dev';
-      var expectedFirstNumber = 5;
-      var expectedLastNumber = 6;
+      const expectedFirstEmail = 'info@serverpod.dev';
+      const expectedLastEmail = 'dev@serverpod.dev';
+      const expectedFirstNumber = 5;
+      const expectedLastNumber = 6;
 
-      var data = <UniqueData>[
+      final data = <UniqueData>[
         UniqueData(number: 1, email: expectedFirstEmail),
         UniqueData(number: 2, email: expectedLastEmail),
       ];
 
-      var inserted = await UniqueData.db.insert(session, data);
+      final inserted = await UniqueData.db.insert(session, data);
 
-      var toUpdate = <UniqueData>[
+      final toUpdate = <UniqueData>[
         UniqueData(
           id: inserted.first.id,
           number: expectedFirstNumber,
@@ -40,10 +40,10 @@ void main() async {
         ),
       ];
 
-      var updated = await UniqueData.db.update(
+      final updated = await UniqueData.db.update(
         session,
         toUpdate,
-        columns: (t) => [t.number],
+        columns: (final t) => [t.number],
       );
 
       expect(updated.first.number, expectedFirstNumber);
@@ -57,14 +57,14 @@ void main() async {
   test(
     'Given a list of entries to update where one does not have an id then an error is thrown.',
     () async {
-      var data = <UniqueData>[
+      final data = <UniqueData>[
         UniqueData(number: 1, email: 'info@serverpod.dev'),
         UniqueData(number: 2, email: 'dev@serverpod.dev'),
       ];
 
-      var inserted = await UniqueData.db.insert(session, data);
+      final inserted = await UniqueData.db.insert(session, data);
 
-      var toUpdate = [
+      final toUpdate = [
         ...inserted,
         UniqueData(number: 3, email: 'extra@serverpod.dev'),
       ];
@@ -82,12 +82,12 @@ void main() async {
   test(
     'Given a list of entries trying to update a column that does not exist then an error is thrown.',
     () async {
-      var data = <UniqueData>[
+      final data = <UniqueData>[
         UniqueData(number: 1, email: 'info@serverpod.dev'),
         UniqueData(number: 2, email: 'dev@serverpod.dev'),
       ];
 
-      var inserted = await UniqueData.db.insert(session, data);
+      final inserted = await UniqueData.db.insert(session, data);
 
       expect(
         UniqueData.db.update(
@@ -103,24 +103,24 @@ void main() async {
   test(
     'Given an model when batch updatingRow with a specific column only that column and no other data is updated.',
     () async {
-      var expectedEmail = 'info@serverpod.dev';
-      var expectedNumber = 5;
+      const expectedEmail = 'info@serverpod.dev';
+      const expectedNumber = 5;
 
-      var inserted = await UniqueData.db.insertRow(
+      final inserted = await UniqueData.db.insertRow(
         session,
         UniqueData(number: 1, email: expectedEmail),
       );
 
-      var toUpdate = UniqueData(
+      final toUpdate = UniqueData(
         id: inserted.id,
         number: expectedNumber,
         email: 'new@serverpod.dev',
       );
 
-      var updated = await UniqueData.db.updateRow(
+      final updated = await UniqueData.db.updateRow(
         session,
         toUpdate,
-        columns: (t) => [t.number],
+        columns: (final t) => [t.number],
       );
 
       expect(updated.number, expectedNumber);
@@ -136,7 +136,7 @@ void main() async {
         UniqueData.db.updateRow(
           session,
           UniqueData(number: 1, email: 'info@serverpod.dev'),
-          columns: (t) => [t.number],
+          columns: (final t) => [t.number],
         ),
         throwsA(isA<ArgumentError>()),
       );
@@ -146,7 +146,7 @@ void main() async {
   test(
     'Given an model trying to updateRow with a column that does not exist then an error is thrown.',
     () async {
-      var inserted = await UniqueData.db.insertRow(
+      final inserted = await UniqueData.db.insertRow(
         session,
         UniqueData(number: 1, email: 'info@serverpod.dev'),
       );
@@ -163,19 +163,19 @@ void main() async {
   );
 
   group('Given a typed entry in the database', () {
-    var data = Types(
+    final data = Types(
       anInt: 1,
       aBool: true,
       aDouble: 1.0,
       aString: 'string',
       aDateTime: DateTime.now(),
       aByteData: ByteData.view(Uint8List(8).buffer),
-      aDuration: Duration(milliseconds: 1000),
-      aUuid: UuidValue.fromString(Uuid().v4()),
+      aDuration: const Duration(milliseconds: 1000),
+      aUuid: UuidValue.fromString(const Uuid().v4()),
       aUri: Uri.parse('https://example.com'),
       aBigInt: BigInt.from(123456789),
-      aVector: Vector([1.0, 2.0, 3.0]),
-      aHalfVector: HalfVector([1.0, 2.0, 3.0]),
+      aVector: const Vector([1.0, 2.0, 3.0]),
+      aHalfVector: const HalfVector([1.0, 2.0, 3.0]),
       aSparseVector: SparseVector([1.0, 0.0, 2.0]),
       aBit: Bit([true, false, true]),
       anEnum: TestEnum.one,
@@ -193,18 +193,18 @@ void main() async {
     });
 
     tearDown(() async {
-      await Types.db.deleteWhere(session, where: (t) => Constant.bool(true));
+      await Types.db.deleteWhere(session, where: (final t) => Constant.bool(true));
     });
 
     test(
       'when updating anInt to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           anInt: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.anInt, isNull);
       },
@@ -213,12 +213,12 @@ void main() async {
     test(
       'when updating aBool to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aBool: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aBool, isNull);
       },
@@ -227,12 +227,12 @@ void main() async {
     test(
       'when updating aDouble to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aDouble: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aDouble, isNull);
       },
@@ -241,12 +241,12 @@ void main() async {
     test(
       'when updating aString to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aString: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aString, isNull);
       },
@@ -255,12 +255,12 @@ void main() async {
     test(
       'when updating aDateTime to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aDateTime: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aDateTime, isNull);
       },
@@ -269,12 +269,12 @@ void main() async {
     test(
       'when updating aByteData to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aByteData: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aByteData, isNull);
       },
@@ -283,12 +283,12 @@ void main() async {
     test(
       'when updating aDuration to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aDuration: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aDuration, isNull);
       },
@@ -297,12 +297,12 @@ void main() async {
     test(
       'when updating aUuid to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aUuid: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aUuid, isNull);
       },
@@ -311,12 +311,12 @@ void main() async {
     test(
       'when updating aUri to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aUri: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aUri, isNull);
       },
@@ -325,12 +325,12 @@ void main() async {
     test(
       'when updating aBigInt to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aBigInt: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aBigInt, isNull);
       },
@@ -339,12 +339,12 @@ void main() async {
     test(
       'when updating aVector to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aVector: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aVector, isNull);
       },
@@ -353,12 +353,12 @@ void main() async {
     test(
       'when updating aHalfVector to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aHalfVector: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aHalfVector, isNull);
       },
@@ -367,12 +367,12 @@ void main() async {
     test(
       'when updating aSparseVector to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aSparseVector: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aSparseVector, isNull);
       },
@@ -381,12 +381,12 @@ void main() async {
     test(
       'when updating aBit to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aBit: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aBit, isNull);
       },
@@ -395,12 +395,12 @@ void main() async {
     test(
       'when updating anEnum to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           anEnum: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.anEnum, isNull);
       },
@@ -409,12 +409,12 @@ void main() async {
     test(
       'when updating aStringifiedEnum to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aStringifiedEnum: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aStringifiedEnum, isNull);
       },
@@ -423,12 +423,12 @@ void main() async {
     test(
       'when updating aList to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aList: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aList, isNull);
       },
@@ -437,12 +437,12 @@ void main() async {
     test(
       'when updating aMap to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aMap: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aMap, isNull);
       },
@@ -451,12 +451,12 @@ void main() async {
     test(
       'when updating aSet to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aSet: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aSet, isNull);
       },
@@ -465,12 +465,12 @@ void main() async {
     test(
       'when updating aRecord to null then the database is updated with null value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aRecord: null,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aRecord, isNull);
       },
@@ -478,7 +478,7 @@ void main() async {
   });
 
   group('Given a typed entry in the database', () {
-    var data = Types(
+    final data = Types(
       anInt: null,
       aBool: null,
       aDouble: null,
@@ -508,18 +508,18 @@ void main() async {
     });
 
     tearDown(() async {
-      await Types.db.deleteWhere(session, where: (t) => Constant.bool(true));
+      await Types.db.deleteWhere(session, where: (final t) => Constant.bool(true));
     });
 
     test(
       'when updating anInt to 1 then the database is updated with value 1.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           anInt: 1,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.anInt, equals(1));
       },
@@ -528,12 +528,12 @@ void main() async {
     test(
       'when updating aBool to true then the database is updated with value true.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aBool: true,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aBool, equals(true));
       },
@@ -542,12 +542,12 @@ void main() async {
     test(
       'when updating aDouble to 1.0 then the database is updated with value 1.0.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aDouble: 1.0,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aDouble, equals(1.0));
       },
@@ -556,12 +556,12 @@ void main() async {
     test(
       'when updating aString to "string" then the database is updated with value "string".',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aString: 'string',
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aString, equals('string'));
       },
@@ -570,13 +570,13 @@ void main() async {
     test(
       'when updating aDateTime to a real value then the database is updated with the real value.',
       () async {
-        var now = DateTime.now().toUtc();
-        var value = Types(
+        final now = DateTime.now().toUtc();
+        final value = Types(
           id: type.id,
           aDateTime: now,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aDateTime, equals(now));
       },
@@ -585,15 +585,15 @@ void main() async {
     test(
       'when updating aByteData to a real value then the database is updated with the real value.',
       () async {
-        var byteData = ByteData.view(Uint8List(8).buffer);
-        var value = Types(
+        final byteData = ByteData.view(Uint8List(8).buffer);
+        final value = Types(
           id: type.id,
           aByteData: byteData,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
-        var byteDataResult = updated.aByteData;
+        final byteDataResult = updated.aByteData;
 
         expect(
           byteDataResult?.buffer.asUint8List(
@@ -608,13 +608,13 @@ void main() async {
     test(
       'when updating aDuration to a real value then the database is updated with the real value.',
       () async {
-        var duration = Duration(milliseconds: 1000);
-        var value = Types(
+        const duration = Duration(milliseconds: 1000);
+        final value = Types(
           id: type.id,
           aDuration: duration,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aDuration, equals(duration));
       },
@@ -623,13 +623,13 @@ void main() async {
     test(
       'when updating aUuid to a real value then the database is updated with the real value.',
       () async {
-        var uuidValue = UuidValue.fromString(Uuid().v4());
-        var value = Types(
+        final uuidValue = UuidValue.fromString(const Uuid().v4());
+        final value = Types(
           id: type.id,
           aUuid: uuidValue,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aUuid, equals(uuidValue));
       },
@@ -638,13 +638,13 @@ void main() async {
     test(
       'when updating aUri to a real value then the database is updated with the real value.',
       () async {
-        var uri = Uri.parse('https://example.com');
-        var value = Types(
+        final uri = Uri.parse('https://example.com');
+        final value = Types(
           id: type.id,
           aUri: uri,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aUri, equals(uri));
       },
@@ -653,13 +653,13 @@ void main() async {
     test(
       'when updating aBigInt to a real value then the database is updated with the real value.',
       () async {
-        var bigInt = BigInt.from(987654321);
-        var value = Types(
+        final bigInt = BigInt.from(987654321);
+        final value = Types(
           id: type.id,
           aBigInt: bigInt,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aBigInt, equals(bigInt));
       },
@@ -668,13 +668,13 @@ void main() async {
     test(
       'when updating aVector to a real value then the database is updated with the real value.',
       () async {
-        var vector = Vector([4.0, 5.0, 6.0]);
-        var value = Types(
+        const vector = Vector([4.0, 5.0, 6.0]);
+        final value = Types(
           id: type.id,
           aVector: vector,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aVector, equals(vector));
       },
@@ -683,13 +683,13 @@ void main() async {
     test(
       'when updating aHalfVector to a real value then the database is updated with the real value.',
       () async {
-        var halfVector = HalfVector([4.0, 5.0, 6.0]);
-        var value = Types(
+        const halfVector = HalfVector([4.0, 5.0, 6.0]);
+        final value = Types(
           id: type.id,
           aHalfVector: halfVector,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aHalfVector, equals(halfVector));
       },
@@ -698,13 +698,13 @@ void main() async {
     test(
       'when updating aSparseVector to a real value then the database is updated with the real value.',
       () async {
-        var sparseVector = SparseVector([0.0, 4.0, 5.0]);
-        var value = Types(
+        final sparseVector = SparseVector([0.0, 4.0, 5.0]);
+        final value = Types(
           id: type.id,
           aSparseVector: sparseVector,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aSparseVector, equals(sparseVector));
       },
@@ -713,12 +713,12 @@ void main() async {
     test(
       'when updating aBit to a real value then the database is updated with the real value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aBit: Bit([true, false, true]),
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aBit, equals(Bit([true, false, true])));
       },
@@ -727,12 +727,12 @@ void main() async {
     test(
       'when updating anEnum to TestEnum.one then the database is updated with value TestEnum.one.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           anEnum: TestEnum.one,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.anEnum, equals(TestEnum.one));
       },
@@ -741,12 +741,12 @@ void main() async {
     test(
       'when updating aStringifiedEnum to TestEnumStringified.two then the database is updated with value TestEnumStringified.two.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aStringifiedEnum: TestEnumStringified.two,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aStringifiedEnum, equals(TestEnumStringified.two));
       },
@@ -755,13 +755,13 @@ void main() async {
     test(
       'when updating aList to a real value then the database is updated with the real value.',
       () async {
-        var list = [4, 5, 6];
-        var value = Types(
+        final list = [4, 5, 6];
+        final value = Types(
           id: type.id,
           aList: list,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aList, equals(list));
       },
@@ -770,13 +770,13 @@ void main() async {
     test(
       'when updating aMap to a real value then the database is updated with the real value.',
       () async {
-        var map = {3: 30, 4: 40};
-        var value = Types(
+        final map = {3: 30, 4: 40};
+        final value = Types(
           id: type.id,
           aMap: map,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aMap, equals(map));
       },
@@ -785,13 +785,13 @@ void main() async {
     test(
       'when updating aSet to a real value then the database is updated with the real value.',
       () async {
-        var set = {4, 5, 6};
-        var value = Types(
+        final set = {4, 5, 6};
+        final value = Types(
           id: type.id,
           aSet: set,
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(updated.aSet, equals(set));
       },
@@ -800,12 +800,12 @@ void main() async {
     test(
       'when updating aRecord to a new value then the database is updated with the value.',
       () async {
-        var value = Types(
+        final value = Types(
           id: type.id,
           aRecord: ('test', optionalUri: Uri.parse('https://serverpod.dev')),
         );
 
-        var updated = await Types.db.updateRow(session, value);
+        final updated = await Types.db.updateRow(session, value);
 
         expect(
           updated.aRecord,
@@ -816,7 +816,7 @@ void main() async {
   });
 
   group('Given a typed entry in the database', () {
-    var data = <Types>[
+    final data = <Types>[
       Types(
         anInt: 1,
         aBool: true,
@@ -824,12 +824,12 @@ void main() async {
         aString: 'string',
         aDateTime: DateTime.now(),
         aByteData: ByteData.view(Uint8List(8).buffer),
-        aDuration: Duration(milliseconds: 1000),
-        aUuid: UuidValue.fromString(Uuid().v4()),
+        aDuration: const Duration(milliseconds: 1000),
+        aUuid: UuidValue.fromString(const Uuid().v4()),
         aUri: Uri.parse('https://example.com'),
         aBigInt: BigInt.from(123456789),
-        aVector: Vector([1.0, 2.0, 3.0]),
-        aHalfVector: HalfVector([1.0, 2.0, 3.0]),
+        aVector: const Vector([1.0, 2.0, 3.0]),
+        aHalfVector: const HalfVector([1.0, 2.0, 3.0]),
         aSparseVector: SparseVector([0.0, 4.0, 5.0]),
         aBit: Bit([true, false, true]),
         anEnum: TestEnum.one,
@@ -844,25 +844,25 @@ void main() async {
     late Types type;
 
     setUp(() async {
-      var inserted = await Types.db.insert(session, data);
+      final inserted = await Types.db.insert(session, data);
       type = inserted.first;
     });
 
     tearDown(() async {
-      await Types.db.deleteWhere(session, where: (t) => Constant.bool(true));
+      await Types.db.deleteWhere(session, where: (final t) => Constant.bool(true));
     });
 
     test(
       'when batch updating anInt to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             anInt: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.anInt, isNull);
       },
@@ -871,14 +871,14 @@ void main() async {
     test(
       'when batch updating aBool to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aBool: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aBool, isNull);
       },
@@ -887,14 +887,14 @@ void main() async {
     test(
       'when batch updating aDouble to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aDouble: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aDouble, isNull);
       },
@@ -903,14 +903,14 @@ void main() async {
     test(
       'when batch updating aString to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aString: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aString, isNull);
       },
@@ -919,14 +919,14 @@ void main() async {
     test(
       'when batch updating aDateTime to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aDateTime: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aDateTime, isNull);
       },
@@ -935,14 +935,14 @@ void main() async {
     test(
       'when batch updating aByteData to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aByteData: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aByteData, isNull);
       },
@@ -951,14 +951,14 @@ void main() async {
     test(
       'when batch updating aDuration to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aDuration: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aDuration, isNull);
       },
@@ -967,14 +967,14 @@ void main() async {
     test(
       'when batch updating aUuid to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aUuid: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aUuid, isNull);
       },
@@ -983,14 +983,14 @@ void main() async {
     test(
       'when batch updating aUri to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aUri: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aUri, isNull);
       },
@@ -999,14 +999,14 @@ void main() async {
     test(
       'when batch updating aBigInt to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aBigInt: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aBigInt, isNull);
       },
@@ -1015,14 +1015,14 @@ void main() async {
     test(
       'when batch updating aVector to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aVector: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aVector, isNull);
       },
@@ -1031,14 +1031,14 @@ void main() async {
     test(
       'when batch updating aHalfVector to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aHalfVector: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aHalfVector, isNull);
       },
@@ -1047,14 +1047,14 @@ void main() async {
     test(
       'when batch updating aSparseVector to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aSparseVector: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aSparseVector, isNull);
       },
@@ -1063,14 +1063,14 @@ void main() async {
     test(
       'when batch updating aBit to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aBit: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aBit, isNull);
       },
@@ -1079,14 +1079,14 @@ void main() async {
     test(
       'when batch updating anEnum to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             anEnum: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.anEnum, isNull);
       },
@@ -1095,14 +1095,14 @@ void main() async {
     test(
       'when batch updating aStringifiedEnum to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aStringifiedEnum: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aStringifiedEnum, isNull);
       },
@@ -1111,14 +1111,14 @@ void main() async {
     test(
       'when batch updating aList to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aList: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aList, isNull);
       },
@@ -1127,14 +1127,14 @@ void main() async {
     test(
       'when batch updating aMap to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aMap: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aMap, isNull);
       },
@@ -1143,14 +1143,14 @@ void main() async {
     test(
       'when batch updating aSet to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aSet: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aSet, isNull);
       },
@@ -1159,14 +1159,14 @@ void main() async {
     test(
       'when batch updating aRecord to null then the database is updated with null value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aRecord: null,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aRecord, isNull);
       },
@@ -1174,7 +1174,7 @@ void main() async {
   });
 
   group('Given a typed entry in the database', () {
-    var data = <Types>[
+    final data = <Types>[
       Types(
         anInt: null,
         aBool: null,
@@ -1202,25 +1202,25 @@ void main() async {
     late Types type;
 
     setUp(() async {
-      var inserted = await Types.db.insert(session, data);
+      final inserted = await Types.db.insert(session, data);
       type = inserted.first;
     });
 
     tearDown(() async {
-      await Types.db.deleteWhere(session, where: (t) => Constant.bool(true));
+      await Types.db.deleteWhere(session, where: (final t) => Constant.bool(true));
     });
 
     test(
       'when batch updating anInt to 1 then the database is updated with value 1.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             anInt: 1,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.anInt, equals(1));
       },
@@ -1229,14 +1229,14 @@ void main() async {
     test(
       'when batch updating aBool to true then the database is updated with value true.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aBool: true,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aBool, equals(true));
       },
@@ -1245,14 +1245,14 @@ void main() async {
     test(
       'when batch updating aDouble to 1.0 then the database is updated with value 1.0.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aDouble: 1.0,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aDouble, equals(1.0));
       },
@@ -1261,14 +1261,14 @@ void main() async {
     test(
       'when batch updating aString to "string" then the database is updated with value "string".',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aString: 'string',
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aString, equals('string'));
       },
@@ -1277,15 +1277,15 @@ void main() async {
     test(
       'when batch updating aDateTime to a real value then the database is updated with the real value.',
       () async {
-        var now = DateTime.now().toUtc();
-        var toUpdate = <Types>[
+        final now = DateTime.now().toUtc();
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aDateTime: now,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aDateTime, equals(now));
       },
@@ -1294,17 +1294,17 @@ void main() async {
     test(
       'when batch updating aByteData to a real value then the database is updated with the real value.',
       () async {
-        var byteData = ByteData.view(Uint8List(8).buffer);
-        var toUpdate = <Types>[
+        final byteData = ByteData.view(Uint8List(8).buffer);
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aByteData: byteData,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
-        var byteDataResult = updated.first.aByteData;
+        final byteDataResult = updated.first.aByteData;
 
         expect(
           byteDataResult?.buffer.asUint8List(
@@ -1319,15 +1319,15 @@ void main() async {
     test(
       'when batch updating aDuration to a real value then the database is updated with the real value.',
       () async {
-        var duration = Duration(milliseconds: 1000);
-        var toUpdate = <Types>[
+        const duration = Duration(milliseconds: 1000);
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aDuration: duration,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aDuration, equals(duration));
       },
@@ -1336,15 +1336,15 @@ void main() async {
     test(
       'when batch updating aUuid to a real value then the database is updated with the real value.',
       () async {
-        var uuidValue = UuidValue.fromString(Uuid().v4());
-        var toUpdate = <Types>[
+        final uuidValue = UuidValue.fromString(const Uuid().v4());
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aUuid: uuidValue,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aUuid, equals(uuidValue));
       },
@@ -1353,15 +1353,15 @@ void main() async {
     test(
       'when batch updating aUri to a real value then the database is updated with the real value.',
       () async {
-        var uri = Uri.parse('https://example.com');
-        var toUpdate = <Types>[
+        final uri = Uri.parse('https://example.com');
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aUri: uri,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aUri, equals(uri));
       },
@@ -1370,15 +1370,15 @@ void main() async {
     test(
       'when batch updating aBigInt to a real value then the database is updated with the real value.',
       () async {
-        var bigInt = BigInt.from(987654321);
-        var toUpdate = <Types>[
+        final bigInt = BigInt.from(987654321);
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aBigInt: bigInt,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aBigInt, equals(bigInt));
       },
@@ -1387,15 +1387,15 @@ void main() async {
     test(
       'when batch updating aVector to a real value then the database is updated with the real value.',
       () async {
-        var vector = Vector([4.0, 5.0, 6.0]);
-        var toUpdate = <Types>[
+        const vector = Vector([4.0, 5.0, 6.0]);
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aVector: vector,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aVector, equals(vector));
       },
@@ -1404,15 +1404,15 @@ void main() async {
     test(
       'when batch updating aHalfVector to a real value then the database is updated with the real value.',
       () async {
-        var halfVector = HalfVector([4.0, 5.0, 6.0]);
-        var toUpdate = <Types>[
+        const halfVector = HalfVector([4.0, 5.0, 6.0]);
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aHalfVector: halfVector,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aHalfVector, equals(halfVector));
       },
@@ -1421,15 +1421,15 @@ void main() async {
     test(
       'when batch updating aSparseVector to a real value then the database is updated with the real value.',
       () async {
-        var sparseVector = SparseVector([0.0, 4.0, 5.0]);
-        var toUpdate = <Types>[
+        final sparseVector = SparseVector([0.0, 4.0, 5.0]);
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aSparseVector: sparseVector,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aSparseVector, equals(sparseVector));
       },
@@ -1438,15 +1438,15 @@ void main() async {
     test(
       'when batch updating aBit to a real value then the database is updated with the real value.',
       () async {
-        var bit = Bit([true, false, true]);
-        var toUpdate = <Types>[
+        final bit = Bit([true, false, true]);
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aBit: bit,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aBit, equals(bit));
       },
@@ -1455,14 +1455,14 @@ void main() async {
     test(
       'when batch updating anEnum to TestEnum.one then the database is updated with value TestEnum.one.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             anEnum: TestEnum.one,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.anEnum, equals(TestEnum.one));
       },
@@ -1471,14 +1471,14 @@ void main() async {
     test(
       'when batch updating aStringifiedEnum to TestEnumStringified.two then the database is updated with value TestEnumStringified.two.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aStringifiedEnum: TestEnumStringified.two,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aStringifiedEnum, equals(TestEnumStringified.two));
       },
@@ -1487,15 +1487,15 @@ void main() async {
     test(
       'when batch updating aList to a real value then the database is updated with the real value.',
       () async {
-        var list = [4, 5, 6];
-        var toUpdate = <Types>[
+        final list = [4, 5, 6];
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aList: list,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aList, equals(list));
       },
@@ -1504,15 +1504,15 @@ void main() async {
     test(
       'when batch updating aMap to a real value then the database is updated with the real value.',
       () async {
-        var map = {3: 30, 4: 40};
-        var toUpdate = <Types>[
+        final map = {3: 30, 4: 40};
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aMap: map,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aMap, equals(map));
       },
@@ -1521,15 +1521,15 @@ void main() async {
     test(
       'when batch updating aSet to a real value then the database is updated with the real value.',
       () async {
-        var set = {4, 5, 6};
-        var toUpdate = <Types>[
+        final set = {4, 5, 6};
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aSet: set,
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(updated.first.aSet, equals(set));
       },
@@ -1538,14 +1538,14 @@ void main() async {
     test(
       'when batch updating aRecord then the database is updated with the given value.',
       () async {
-        var toUpdate = <Types>[
+        final toUpdate = <Types>[
           Types(
             id: type.id,
             aRecord: ('test', optionalUri: Uri.parse('https://serverpod.dev')),
           ),
         ];
 
-        var updated = await Types.db.update(session, toUpdate);
+        final updated = await Types.db.update(session, toUpdate);
 
         expect(
           updated.first.aRecord,
@@ -1560,7 +1560,7 @@ void main() async {
       'when listing id column in an update query of a row then update completes successfully.',
       () async {
         expect(
-          Types.db.updateRow(session, type, columns: (t) => [t.id]),
+          Types.db.updateRow(session, type, columns: (final t) => [t.id]),
           completes,
         );
       },
@@ -1579,7 +1579,7 @@ void main() async {
     tearDown(() async {
       await EmptyModelWithTable.db.deleteWhere(
         session,
-        where: (t) => Constant.bool(true),
+        where: (final t) => Constant.bool(true),
       );
     });
 
@@ -1593,23 +1593,23 @@ void main() async {
     test(
       'when with columns from different model then error is thrown',
       () async {
-        var invalidColumns = [SimpleData.t.num, Types.t.anInt];
+        final invalidColumns = [SimpleData.t.num, Types.t.anInt];
         expect(
           EmptyModelWithTable.db.updateRow(
             session,
             model,
-            columns: (t) => invalidColumns,
+            columns: (final t) => invalidColumns,
           ),
           throwsA(
             isA<ArgumentError>()
                 .having(
-                  (e) => e.message,
+                  (final e) => e.message,
                   'message',
                   equals('Columns do not exist in table'),
                 )
-                .having((e) => e.name, 'name', 'columns')
+                .having((final e) => e.name, 'name', 'columns')
                 .having(
-                  (e) => e.invalidValue,
+                  (final e) => e.invalidValue,
                   'invalidValue',
                   invalidColumns.toString(),
                 ),

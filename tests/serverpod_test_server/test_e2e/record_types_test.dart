@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/config.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client(serverUrl);
+  final client = Client(serverUrl);
 
   group('Record with single positional field', () {
     test(
@@ -12,7 +12,7 @@ void main() {
       () async {
         const record = (1,);
 
-        var result = await client.recordParameters.returnRecordOfInt(record);
+        final result = await client.recordParameters.returnRecordOfInt(record);
 
         expect(result, record);
       },
@@ -23,7 +23,7 @@ void main() {
       () async {
         const record = (1,);
 
-        var result = await client.recordParameters.returnRecordOfNullableInt(
+        final result = await client.recordParameters.returnRecordOfNullableInt(
           record,
         );
 
@@ -36,7 +36,7 @@ void main() {
       () async {
         (int?,) record = (null,);
 
-        var result = await client.recordParameters.returnRecordOfNullableInt(
+        final result = await client.recordParameters.returnRecordOfNullableInt(
           record,
         );
 
@@ -49,7 +49,7 @@ void main() {
       () async {
         const (int?,)? record = (null,);
 
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNullableRecordOfNullableInt(record);
 
         expect(result, record);
@@ -59,7 +59,7 @@ void main() {
     test(
       'Given the test server, when a `null` simple int? record is sent to the server, then it is returned verbatim',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNullableRecordOfNullableInt(null);
 
         expect(result, isNull);
@@ -68,14 +68,14 @@ void main() {
     test(
       'Given the test server, when a `null` simple int? record is sent to the server, then it is returned verbatim',
       () async {
-        var values = <(int?,)?>[
+        final values = <(int?,)?>[
           null,
           (2,),
           null,
           (4,),
         ];
 
-        var result = client.recordParameters.streamNullableRecordOfNullableInt(
+        final result = client.recordParameters.streamNullableRecordOfNullableInt(
           Stream.fromIterable(values),
         );
 
@@ -90,7 +90,7 @@ void main() {
       () async {
         const record = (1, 'hello');
 
-        var result = await client.recordParameters.returnIntStringRecord(
+        final result = await client.recordParameters.returnIntStringRecord(
           record,
         );
 
@@ -103,7 +103,7 @@ void main() {
       () async {
         const record = (1, 'hello');
 
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNullableIntStringRecord(record);
 
         expect(result, record);
@@ -113,7 +113,7 @@ void main() {
     test(
       'Given the test server, when a `null` simple (int, String)? record is sent to the server, then it is returned verbatim',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNullableIntStringRecord(null);
 
         expect(result, isNull);
@@ -123,34 +123,34 @@ void main() {
     test(
       'Given the test server, when a simple (int, SimpleData) record is sent to the server, then it is returned verbatim',
       () async {
-        var record = (1, SimpleData(num: 1000));
+        final record = (1, SimpleData(num: 1000));
 
-        var result = await client.recordParameters.returnIntSimpleDataRecord(
+        final result = await client.recordParameters.returnIntSimpleDataRecord(
           record,
         );
 
         expect(result.$1, 1);
-        expect(result.$2, isA<SimpleData>().having((d) => d.num, 'num', 1000));
+        expect(result.$2, isA<SimpleData>().having((final d) => d.num, 'num', 1000));
       },
     );
 
     test(
       'Given the test server, when a non-`null` simple (int, String)? record is sent to the server, then it is returned verbatim',
       () async {
-        var record = (1, SimpleData(num: 1000));
+        final record = (1, SimpleData(num: 1000));
 
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNullableIntSimpleDataRecord(record);
 
         expect(result?.$1, 1);
-        expect(result?.$2, isA<SimpleData>().having((d) => d.num, 'num', 1000));
+        expect(result?.$2, isA<SimpleData>().having((final d) => d.num, 'num', 1000));
       },
     );
 
     test(
       'Given the test server, when a `null` simple (int, SimpleData)? record is sent to the server, then it is returned verbatim',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNullableIntSimpleDataRecord(null);
 
         expect(result, isNull);
@@ -160,7 +160,7 @@ void main() {
     test(
       'Given the test server, when an empty (Map<String, int>,) record is sent to the server, then it is returned verbatim.',
       () async {
-        var result = await client.recordParameters.returnStringKeyedMapRecord(
+        final result = await client.recordParameters.returnStringKeyedMapRecord(
           ({},),
         );
 
@@ -171,7 +171,7 @@ void main() {
     test(
       'Given the test server, when a (Map<String, int>,) record is sent to the server, then it is returned verbatim.',
       () async {
-        var result = await client.recordParameters.returnStringKeyedMapRecord(
+        final result = await client.recordParameters.returnStringKeyedMapRecord(
           ({'test': 1},),
         );
 
@@ -182,7 +182,7 @@ void main() {
     test(
       'Given the test server, when an empty (Map<int, int>,) record is sent to the server, then it is returned verbatim.',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNonStringKeyedMapRecord(
               ({},),
             );
@@ -194,7 +194,7 @@ void main() {
     test(
       'Given the test server, when a (Map<int, int>,) record is sent to the server, then it is returned verbatim.',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNonStringKeyedMapRecord(
               ({123: 456},),
             );
@@ -206,7 +206,7 @@ void main() {
     test(
       'Given the test server, when an empty (Map<(Map<int, String>, String), String>,) is sent to the server, then it is returned verbatim.',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNestedNonStringKeyedMapInsideRecordInsideMapInsideRecord(
               ({},),
             );
@@ -218,7 +218,7 @@ void main() {
     test(
       'Given the test server, when an inner empty (Map<(Map<int, String>, String), String>,) is sent to the server, then it is returned verbatim.',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNestedNonStringKeyedMapInsideRecordInsideMapInsideRecord(
               (
                 {
@@ -237,9 +237,9 @@ void main() {
     test(
       'Given the test server, when a simple record with named fields is sent to the server, then it is returned verbatim',
       () async {
-        var record = (number: 1, text: 'test');
+        const record = (number: 1, text: 'test');
 
-        var result = await client.recordParameters.returnNamedIntStringRecord(
+        final result = await client.recordParameters.returnNamedIntStringRecord(
           record,
         );
 
@@ -252,7 +252,7 @@ void main() {
       () async {
         const ({int number, String text})? record = (number: 1, text: 'test');
 
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNamedNullableIntStringRecord(record);
 
         expect(result, record);
@@ -262,7 +262,7 @@ void main() {
     test(
       'Given the test server, when a simple `null` record with named fields is sent to the server, then it is returned verbatim',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNamedNullableIntStringRecord(null);
 
         expect(result, isNull);
@@ -272,15 +272,15 @@ void main() {
     test(
       'Given the test server, when a record with named fields including an object is sent to the server, then it is returned verbatim',
       () async {
-        var record = (number: 1, data: SimpleData(num: 1000));
+        final record = (number: 1, data: SimpleData(num: 1000));
 
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnRecordOfNamedIntAndObject(record);
 
         expect(result.number, 1);
         expect(
           result.data,
-          isA<SimpleData>().having((d) => d.num, 'num', 1000),
+          isA<SimpleData>().having((final d) => d.num, 'num', 1000),
         );
       },
     );
@@ -288,15 +288,15 @@ void main() {
     test(
       'Given the test server, when a nullable record with named fields including an object is sent to the server, then it is returned verbatim',
       () async {
-        var record = (number: 1, data: SimpleData(num: 1000));
+        final record = (number: 1, data: SimpleData(num: 1000));
 
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNullableRecordOfNamedIntAndObject(record);
 
         expect(result?.number, 1);
         expect(
           result?.data,
-          isA<SimpleData>().having((d) => d.num, 'num', 1000),
+          isA<SimpleData>().having((final d) => d.num, 'num', 1000),
         );
       },
     );
@@ -304,7 +304,7 @@ void main() {
     test(
       'Given the test server, when a  `null` record with named fields including an object is sent to the server, then it is returned verbatim',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNullableRecordOfNamedIntAndObject(null);
 
         expect(result, isNull);
@@ -314,15 +314,15 @@ void main() {
     test(
       'Given the test server, when a record with nullable named fields including an object is sent to the server, then it is returned verbatim',
       () async {
-        var record = (number: 1, data: SimpleData(num: 1000));
+        final record = (number: 1, data: SimpleData(num: 1000));
 
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnRecordOfNamedNullableIntAndNullableObject(record);
 
         expect(result.number, 1);
         expect(
           result.data,
-          isA<SimpleData>().having((d) => d.num, 'num', 1000),
+          isA<SimpleData>().having((final d) => d.num, 'num', 1000),
         );
       },
     );
@@ -335,7 +335,7 @@ void main() {
           data: null,
         );
 
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnRecordOfNamedNullableIntAndNullableObject(record);
 
         expect(result, record);
@@ -345,7 +345,7 @@ void main() {
     test(
       'Given an empty `Map<int, int>` inside a record, when sending a request to the server, then it is returned empty.',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNamedNonStringKeyedMapRecord(
               (intIntMap: {}),
             );
@@ -357,7 +357,7 @@ void main() {
     test(
       'Given the test server, when a record with a nested Set containing records is send to the server, then it is returned verbatim.',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNamedSetWithNestedRecordRecord(
               (boolSet: {(true,), (false,)}),
             );
@@ -375,16 +375,16 @@ void main() {
       test(
         'Given the test server, when a record is sent to the server, then it is returned verbatim',
         () async {
-          var record = (1, data: SimpleData(num: 1000));
+          final record = (1, data: SimpleData(num: 1000));
 
-          var result = await client.recordParameters.returnRecordTypedef(
+          final result = await client.recordParameters.returnRecordTypedef(
             record,
           );
 
           expect(result.$1, 1);
           expect(
             result.data,
-            isA<SimpleData>().having((d) => d.num, 'num', 1000),
+            isA<SimpleData>().having((final d) => d.num, 'num', 1000),
           );
         },
       );
@@ -392,15 +392,15 @@ void main() {
       test(
         'Given the test server, when a nullable record is sent to the server, then it is returned verbatim',
         () async {
-          var record = (1, data: SimpleData(num: 1000));
+          final record = (1, data: SimpleData(num: 1000));
 
-          var result = await client.recordParameters
+          final result = await client.recordParameters
               .returnNullableRecordTypedef(record);
 
           expect(result?.$1, 1);
           expect(
             result?.data,
-            isA<SimpleData>().having((d) => d.num, 'num', 1000),
+            isA<SimpleData>().having((final d) => d.num, 'num', 1000),
           );
         },
       );
@@ -408,7 +408,7 @@ void main() {
       test(
         'Given the test server, when a `null` record is sent to the server, then it is returned verbatim',
         () async {
-          var result = await client.recordParameters
+          final result = await client.recordParameters
               .returnNullableRecordTypedef(null);
 
           expect(result, isNull);
@@ -421,7 +421,7 @@ void main() {
     test(
       'Given the test server, when a list of records is sent to the server, then it is returned verbatim',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnListOfIntSimpleDataRecord([
               (1, SimpleData(num: 1)),
               (2, SimpleData(num: 2)),
@@ -432,12 +432,12 @@ void main() {
         expect(result.first.$1, 1);
         expect(
           result.first.$2,
-          isA<SimpleData>().having((d) => d.num, 'num', 1),
+          isA<SimpleData>().having((final d) => d.num, 'num', 1),
         );
         expect(result.last.$1, 2);
         expect(
           result.last.$2,
-          isA<SimpleData>().having((d) => d.num, 'num', 2),
+          isA<SimpleData>().having((final d) => d.num, 'num', 2),
         );
       },
     );
@@ -445,7 +445,7 @@ void main() {
     test(
       'Given the test server, when a list of nullable records is sent to the server, then it is returned verbatim',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnListOfNullableIntSimpleDataRecord([
               null,
               (1, SimpleData(num: 1)),
@@ -465,13 +465,13 @@ void main() {
         expect(result.elementAt(1)?.$1, 1);
         expect(
           result.elementAt(1)?.$2,
-          isA<SimpleData>().having((d) => d.num, 'num', 1),
+          isA<SimpleData>().having((final d) => d.num, 'num', 1),
         );
 
         expect(result.elementAt(3)?.$1, 2);
         expect(
           result.elementAt(3)?.$2,
-          isA<SimpleData>().having((d) => d.num, 'num', 2),
+          isA<SimpleData>().having((final d) => d.num, 'num', 2),
         );
       },
     );
@@ -481,7 +481,7 @@ void main() {
     test(
       'Given the test server, when a set of records sent to the server, then it is returned verbatim',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnSetOfIntSimpleDataRecord({
               (1, SimpleData(num: 1)),
               (2, SimpleData(num: 2)),
@@ -492,12 +492,12 @@ void main() {
         expect(result.first.$1, 1);
         expect(
           result.first.$2,
-          isA<SimpleData>().having((d) => d.num, 'num', 1),
+          isA<SimpleData>().having((final d) => d.num, 'num', 1),
         );
         expect(result.last.$1, 2);
         expect(
           result.last.$2,
-          isA<SimpleData>().having((d) => d.num, 'num', 2),
+          isA<SimpleData>().having((final d) => d.num, 'num', 2),
         );
       },
     );
@@ -505,7 +505,7 @@ void main() {
     test(
       'Given the test server, when a set of nullable records sent to the server, then it is returned verbatim',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnSetOfNullableIntSimpleDataRecord({
               (1, SimpleData(num: 1)),
               null,
@@ -517,13 +517,13 @@ void main() {
         expect(result.first?.$1, 1);
         expect(
           result.first?.$2,
-          isA<SimpleData>().having((d) => d.num, 'num', 1),
+          isA<SimpleData>().having((final d) => d.num, 'num', 1),
         );
         expect(result.elementAt(1), isNull);
         expect(result.last?.$1, 2);
         expect(
           result.last?.$2,
-          isA<SimpleData>().having((d) => d.num, 'num', 2),
+          isA<SimpleData>().having((final d) => d.num, 'num', 2),
         );
       },
     );
@@ -531,7 +531,7 @@ void main() {
     test(
       'Given the test server, when a set of records sent to the server, then it is returned verbatim',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNullableSetOfIntSimpleDataRecord({
               (1, SimpleData(num: 1)),
               (2, SimpleData(num: 2)),
@@ -542,12 +542,12 @@ void main() {
         expect(result?.first.$1, 1);
         expect(
           result?.first.$2,
-          isA<SimpleData>().having((d) => d.num, 'num', 1),
+          isA<SimpleData>().having((final d) => d.num, 'num', 1),
         );
         expect(result?.last.$1, 2);
         expect(
           result?.last.$2,
-          isA<SimpleData>().having((d) => d.num, 'num', 2),
+          isA<SimpleData>().having((final d) => d.num, 'num', 2),
         );
       },
     );
@@ -555,7 +555,7 @@ void main() {
     test(
       'Given the test server, when a `null` Set of records sent to the server, then it is returned verbatim',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNullableSetOfIntSimpleDataRecord(null);
 
         expect(
@@ -570,7 +570,7 @@ void main() {
     test(
       'Given the test server, when a `Map<String, Record>` is sent to the server, then it is returned verbatim',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnStringMapOfIntSimpleDataRecord({
               'a': (1, SimpleData(num: 1)),
               'b': (2, SimpleData(num: 2)),
@@ -581,13 +581,13 @@ void main() {
         expect(result['a']?.$1, 1);
         expect(
           result['a']?.$2,
-          isA<SimpleData>().having((d) => d.num, 'num', 1),
+          isA<SimpleData>().having((final d) => d.num, 'num', 1),
         );
 
         expect(result['b']?.$1, 2);
         expect(
           result['b']?.$2,
-          isA<SimpleData>().having((d) => d.num, 'num', 2),
+          isA<SimpleData>().having((final d) => d.num, 'num', 2),
         );
       },
     );
@@ -595,7 +595,7 @@ void main() {
     test(
       'Given the test server, when a `Map<String, Record?>` is sent to the server, then it is returned verbatim',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnStringMapOfNullableIntSimpleDataRecord({
               'foo': (1, SimpleData(num: 2)),
               'bar': null,
@@ -606,7 +606,7 @@ void main() {
         expect(result['foo']?.$1, 1);
         expect(
           result['foo']?.$2,
-          isA<SimpleData>().having((d) => d.num, 'num', 2),
+          isA<SimpleData>().having((final d) => d.num, 'num', 2),
         );
 
         expect(result['bar'], isNull);
@@ -617,7 +617,7 @@ void main() {
   test(
     'Given the test server, when a `Map<Record, Record>` is sent to the server, then it is returned verbatim',
     () async {
-      var result = await client.recordParameters
+      final result = await client.recordParameters
           .returnRecordMapOfIntSimpleDataRecord({
             ('1', 1): (1, SimpleData(num: 1)),
             ('2', 2): (2, SimpleData(num: 2)),
@@ -628,13 +628,13 @@ void main() {
       expect(result[('1', 1)]?.$1, 1);
       expect(
         result[('1', 1)]?.$2,
-        isA<SimpleData>().having((d) => d.num, 'num', 1),
+        isA<SimpleData>().having((final d) => d.num, 'num', 1),
       );
 
       expect(result[('2', 2)]?.$1, 2);
       expect(
         result[('2', 2)]?.$2,
-        isA<SimpleData>().having((d) => d.num, 'num', 2),
+        isA<SimpleData>().having((final d) => d.num, 'num', 2),
       );
     },
   );
@@ -643,7 +643,7 @@ void main() {
     test(
       'Given the test server, when a complex nested structure with records is sent to the server, then it is returned in the expected transformation',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnStringMapOfListOfRecord({
               [
                 {'key': (123,)},
@@ -660,15 +660,15 @@ void main() {
     test(
       'Given the test server, when a complex nested named record is sent to the server, then it is returned verbatim',
       () async {
-        var record = (namedSubRecord: (SimpleData(num: 1), 1.234));
+        final record = (namedSubRecord: (SimpleData(num: 1), 1.234));
 
-        var result = await client.recordParameters.returnNestedNamedRecord(
+        final result = await client.recordParameters.returnNestedNamedRecord(
           record,
         );
 
         expect(
           result.namedSubRecord.$1,
-          isA<SimpleData>().having((d) => d.num, 'num', 1),
+          isA<SimpleData>().having((final d) => d.num, 'num', 1),
         );
         expect(result.namedSubRecord.$2, 1.234);
       },
@@ -677,7 +677,7 @@ void main() {
     test(
       'Given the test server, when a `null` complex nested named record is sent to the server, then it is returned verbatim',
       () async {
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNestedNullableNamedRecord((
               namedSubRecord: null,
             ));
@@ -689,7 +689,7 @@ void main() {
     test(
       'Given the test server, when a complex nested positioned and named record is sent to the server, then it is returned verbatim',
       () async {
-        var record = (
+        final record = (
           (1, '2'),
           namedSubRecord: (
             SimpleData(num: 3),
@@ -697,7 +697,7 @@ void main() {
           ),
         );
 
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnNestedPositionalAndNamedRecord(record);
 
         expect(
@@ -706,7 +706,7 @@ void main() {
         );
         expect(
           result.namedSubRecord.$1,
-          isA<SimpleData>().having((d) => d.num, 'num', 3),
+          isA<SimpleData>().having((final d) => d.num, 'num', 3),
         );
         expect(result.namedSubRecord.$2, 4.5);
       },
@@ -715,7 +715,7 @@ void main() {
     test(
       'Given the test server, when a `null` complex nested positioned record is sent to the server, then it is returned verbatim',
       () async {
-        var record = (
+        final record = (
           (1, '2'),
           namedSubRecord: (
             SimpleData(num: 3),
@@ -723,7 +723,7 @@ void main() {
           ),
         );
 
-        var result = await client.recordParameters
+        final result = await client.recordParameters
             .returnListOfNestedPositionalAndNamedRecord([record, record]);
 
         expect(result, hasLength(2));
@@ -733,7 +733,7 @@ void main() {
         );
         expect(
           result.first.namedSubRecord.$1,
-          isA<SimpleData>().having((d) => d.num, 'num', 3),
+          isA<SimpleData>().having((final d) => d.num, 'num', 3),
         );
         expect(result.first.namedSubRecord.$2, 4.5);
       },
@@ -743,11 +743,11 @@ void main() {
   test(
     'Given the test server, when a model class with a record field is sent to the server, then it is returned verbatim',
     () async {
-      var model = TypesRecord(
+      final model = TypesRecord(
         aNestedRecord: ((1, 'hello'), namedNestedRecord: (2, 'world')),
       );
 
-      var result = await client.recordParameters.echoModelClassWithRecordField(
+      final result = await client.recordParameters.echoModelClassWithRecordField(
         model,
       );
 
@@ -761,11 +761,11 @@ void main() {
   test(
     'Given the test server, when a nullable model class with a record field is sent to the server, then it is returned verbatim',
     () async {
-      var model = TypesRecord(
+      final model = TypesRecord(
         aNestedRecord: ((1, 'hello'), namedNestedRecord: (2, 'world')),
       );
 
-      var result = await client.recordParameters
+      final result = await client.recordParameters
           .echoNullableModelClassWithRecordField(model);
 
       expect(
@@ -778,13 +778,13 @@ void main() {
   test(
     'Given the test server, when a nullable model class defined in another module with a record field is sent to the server, then it is returned verbatim',
     () async {
-      var model = ModuleClass(
+      final model = ModuleClass(
         data: 1,
         name: '',
         record: (true,),
       );
 
-      var result = await client.recordParameters
+      final result = await client.recordParameters
           .echoNullableModelClassWithRecordFieldFromExternalModule(model);
 
       expect(
@@ -797,12 +797,12 @@ void main() {
   test(
     'Given the test server, when a `null` complex nested positioned record stream is sent to the server, then it is returned verbatim',
     () async {
-      var records =
+      final records =
           <List<((int, String), {(SimpleData, double) namedSubRecord})?>?>[
             null,
           ];
 
-      var result = client.recordParameters
+      final result = client.recordParameters
           .streamNullableListOfNullableNestedPositionalAndNamedRecord(
             null,
             Stream.fromIterable(records),
@@ -823,7 +823,7 @@ void main() {
   test(
     'Given the test server, when a complex nested positioned record stream is sent to the server, then it is returned verbatim',
     () async {
-      var records =
+      final records =
           <List<((int, String), {(SimpleData, double) namedSubRecord})?>?>[
             [
               null,
@@ -838,7 +838,7 @@ void main() {
             ],
           ];
 
-      var result = client.recordParameters
+      final result = client.recordParameters
           .streamNullableListOfNullableNestedPositionalAndNamedRecord(
             null,
             Stream.fromIterable(records),
@@ -853,22 +853,22 @@ void main() {
               isNull,
               isA<((int, String), {(SimpleData, double) namedSubRecord})>()
                   .having(
-                    (r) => r.$1,
+                    (final r) => r.$1,
                     'first positional',
                     (1, '2'),
                   )
                   .having(
-                    (r) => r.namedSubRecord.$1,
+                    (final r) => r.namedSubRecord.$1,
                     'named subrecord SimpleData',
-                    isA<SimpleData>().having((s) => s.num, 'num', 3),
+                    isA<SimpleData>().having((final s) => s.num, 'num', 3),
                   )
                   .having(
-                    (r) => r.$1,
+                    (final r) => r.$1,
                     'first positional',
                     (1, '2'),
                   )
                   .having(
-                    (r) => r.namedSubRecord.$2,
+                    (final r) => r.namedSubRecord.$2,
                     'named subrecord double',
                     4.5,
                   ),
@@ -883,13 +883,13 @@ void main() {
   test(
     'Given the test server, when a model class with record fields stream is sent to the server, then it is returned verbatim',
     () async {
-      var models = <TypesRecord>[
+      final models = <TypesRecord>[
         TypesRecord(anInt: (1,)),
         TypesRecord(anInt: (2,)),
         TypesRecord(anInt: (3,)),
       ];
 
-      var result = client.recordParameters.streamOfModelClassWithRecordField(
+      final result = client.recordParameters.streamOfModelClassWithRecordField(
         models.first,
         Stream.fromIterable(models.skip(1)),
       );
@@ -898,9 +898,9 @@ void main() {
         result,
         emitsInOrder(
           [
-            isA<TypesRecord>().having((m) => m.anInt, 'anInt', (1,)),
-            isA<TypesRecord>().having((m) => m.anInt, 'anInt', (2,)),
-            isA<TypesRecord>().having((m) => m.anInt, 'anInt', (3,)),
+            isA<TypesRecord>().having((final m) => m.anInt, 'anInt', (1,)),
+            isA<TypesRecord>().having((final m) => m.anInt, 'anInt', (2,)),
+            isA<TypesRecord>().having((final m) => m.anInt, 'anInt', (3,)),
           ],
         ),
       );
@@ -910,7 +910,7 @@ void main() {
   test(
     'Given the test server, when a nullable model class with record fields stream is sent to the server, then it is returned verbatim',
     () async {
-      var models = <TypesRecord?>[
+      final models = <TypesRecord?>[
         null,
         TypesRecord(anInt: (1,)),
         TypesRecord(aUri: (Uri.parse('http://serverpod.dev'),)),
@@ -918,7 +918,7 @@ void main() {
         null,
       ];
 
-      var result = client.recordParameters
+      final result = client.recordParameters
           .streamOfNullableModelClassWithRecordField(
             models.first,
             Stream.fromIterable(models.skip(1)),
@@ -929,16 +929,16 @@ void main() {
         emitsInOrder(
           [
             isNull,
-            isA<TypesRecord>().having((m) => m.anInt, 'anInt', (1,)),
+            isA<TypesRecord>().having((final m) => m.anInt, 'anInt', (1,)),
             isA<TypesRecord>().having(
-              (m) => m.aUri?.$1,
+              (final m) => m.aUri?.$1,
               'aUri',
               Uri.parse('http://serverpod.dev'),
             ),
             isA<TypesRecord>().having(
-              (m) => m.aSimpleData?.$1,
+              (final m) => m.aSimpleData?.$1,
               'aSimpleData',
-              isA<SimpleData>().having((s) => s.num, 'num', 2),
+              isA<SimpleData>().having((final s) => s.num, 'num', 2),
             ),
             isNull,
           ],
@@ -950,7 +950,7 @@ void main() {
   test(
     'Given the test server, when a nullable model class from another module with record fields stream is sent to the server, then it is returned verbatim',
     () async {
-      var models = [
+      final models = [
         null,
         ModuleClass(
           data: 1,
@@ -960,7 +960,7 @@ void main() {
         null,
       ];
 
-      var result = client.recordParameters
+      final result = client.recordParameters
           .streamOfNullableModelClassWithRecordFieldFromExternalModule(
             models.first,
             Stream.fromIterable(models.skip(1)),
@@ -972,7 +972,7 @@ void main() {
           [
             isNull,
             isA<ModuleClass>().having(
-              (m) => m.record,
+              (final m) => m.record,
               'record',
               (true,),
             ),
@@ -986,7 +986,7 @@ void main() {
   test(
     'Given the test server, when calling the `recordParametersWithCustomNames`, then the sum of both input values is returned',
     () async {
-      var result = await client.recordParameters
+      final result = await client.recordParameters
           .recordParametersWithCustomNames(
             (1,),
             namedRecord: (2,),

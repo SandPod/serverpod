@@ -13,7 +13,7 @@ abstract class ListBucketResult
     implements Built<ListBucketResult, ListBucketResultBuilder> {
   ListBucketResult._();
 
-  factory ListBucketResult([Function(ListBucketResultBuilder b)? updates]) =
+  factory ListBucketResult([final Function(ListBucketResultBuilder b)? updates]) =
       _$ListBucketResult;
 
   @BuiltValueField(wireName: 'Name')
@@ -40,7 +40,7 @@ abstract class ListBucketResult
     );
   }
 
-  static ListBucketResult fromJson(String jsonString) {
+  static ListBucketResult fromJson(final String jsonString) {
     return serializers.deserializeWith(
       ListBucketResult.serializer,
       json.decode(jsonString),

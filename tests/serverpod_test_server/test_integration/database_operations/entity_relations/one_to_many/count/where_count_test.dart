@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with one to many relation ', () {
     tearDown(() async {
@@ -18,7 +18,7 @@ void main() async {
     test(
       'when counting models filtered on many relation count then result is as expected.',
       () async {
-        var customers = await Customer.db.insert(session, [
+        final customers = await Customer.db.insert(session, [
           Customer(name: 'Alex'),
           Customer(name: 'Isak'),
           Customer(name: 'Viktor'),
@@ -36,10 +36,10 @@ void main() async {
           Order(description: 'Order 6', customerId: customers[3].id!),
         ]);
 
-        var customerCount = await Customer.db.count(
+        final customerCount = await Customer.db.count(
           session,
           // All customers with more than one order
-          where: (c) => c.orders.count() > 1,
+          where: (final c) => c.orders.count() > 1,
         );
 
         expect(customerCount, 2);
@@ -49,7 +49,7 @@ void main() async {
     test(
       'when counting models filtered on filtered many relation count then result is as expected',
       () async {
-        var customers = await Customer.db.insert(session, [
+        final customers = await Customer.db.insert(session, [
           Customer(name: 'Alex'),
           Customer(name: 'Isak'),
           Customer(name: 'Viktor'),
@@ -67,10 +67,10 @@ void main() async {
           Order(description: 'Order 6', customerId: customers[3].id!),
         ]);
 
-        var customerCount = await Customer.db.count(
+        final customerCount = await Customer.db.count(
           session,
           // All customers with more than one order starting with 'prem'
-          where: (c) => c.orders.count((o) => o.description.ilike('prem%')) > 1,
+          where: (final c) => c.orders.count((final o) => o.description.ilike('prem%')) > 1,
         );
 
         expect(customerCount, 1);
@@ -80,7 +80,7 @@ void main() async {
     test(
       'when counting models filtered on multiple many relation count then result is as expected.',
       () async {
-        var customers = await Customer.db.insert(session, [
+        final customers = await Customer.db.insert(session, [
           Customer(name: 'Alex'),
           Customer(name: 'Isak'),
           Customer(name: 'Viktor'),
@@ -98,10 +98,10 @@ void main() async {
           Order(description: 'Order 6', customerId: customers[3].id!),
         ]);
 
-        var customerCount = await Customer.db.count(
+        final customerCount = await Customer.db.count(
           session,
           // All customers with more than one order but less than 3
-          where: (c) => (c.orders.count() > 1) & (c.orders.count() < 3),
+          where: (final c) => (c.orders.count() > 1) & (c.orders.count() < 3),
         );
 
         expect(customerCount, 1);
@@ -125,12 +125,12 @@ void main() async {
     test(
       'when counting models filtered on nested many relation count then result is as expected',
       () async {
-        var customers = await Customer.db.insert(session, [
+        final customers = await Customer.db.insert(session, [
           Customer(name: 'Alex'),
           Customer(name: 'Isak'),
           Customer(name: 'Viktor'),
         ]);
-        var orders = await Order.db.insert(session, [
+        final orders = await Order.db.insert(session, [
           // Alex orders
           Order(description: 'Order 1', customerId: customers[0].id!),
           Order(description: 'Order 2', customerId: customers[0].id!),
@@ -161,10 +161,10 @@ void main() async {
           Comment(description: 'Comment 13', orderId: orders[4].id!),
           Comment(description: 'Comment 14', orderId: orders[4].id!),
         ]);
-        var customerCount = await Customer.db.count(
+        final customerCount = await Customer.db.count(
           session,
           // All customers with more than one order with more than two comments
-          where: (c) => c.orders.count((o) => o.comments.count() > 2) > 1,
+          where: (final c) => c.orders.count((final o) => o.comments.count() > 2) > 1,
         );
 
         expect(customerCount, 1);
@@ -174,12 +174,12 @@ void main() async {
     test(
       'when counting models filtered on filtered nested many relation count then result is as expected',
       () async {
-        var customers = await Customer.db.insert(session, [
+        final customers = await Customer.db.insert(session, [
           Customer(name: 'Alex'),
           Customer(name: 'Isak'),
           Customer(name: 'Viktor'),
         ]);
-        var orders = await Order.db.insert(session, [
+        final orders = await Order.db.insert(session, [
           // Alex orders
           Order(description: 'Order 1', customerId: customers[0].id!),
           Order(description: 'Order 2', customerId: customers[0].id!),
@@ -211,12 +211,12 @@ void main() async {
           Comment(description: 'Comment 14', orderId: orders[4].id!),
         ]);
 
-        var customerCount = await Customer.db.count(
+        final customerCount = await Customer.db.count(
           session,
-          where: (c) =>
+          where: (final c) =>
               c.orders.count(
                 // All customers with more than one order with more than one comments starting with 'del'
-                (o) => o.comments.count((c) => c.description.ilike('del%')) > 1,
+                (final o) => o.comments.count((final c) => c.description.ilike('del%')) > 1,
               ) >
               1,
         );

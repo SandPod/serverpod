@@ -16,9 +16,9 @@ abstract class ServerOnlyClass
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
   ServerOnlyClass._({required this.foo});
 
-  factory ServerOnlyClass({required String foo}) = _ServerOnlyClassImpl;
+  factory ServerOnlyClass({required final String foo}) = _ServerOnlyClassImpl;
 
-  factory ServerOnlyClass.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory ServerOnlyClass.fromJson(final Map<String, dynamic> jsonSerialization) {
     return ServerOnlyClass(foo: jsonSerialization['foo'] as String);
   }
 
@@ -27,7 +27,7 @@ abstract class ServerOnlyClass
   /// Returns a shallow copy of this [ServerOnlyClass]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  ServerOnlyClass copyWith({String? foo});
+  ServerOnlyClass copyWith({final String? foo});
   @override
   Map<String, dynamic> toJson() {
     return {'foo': foo};
@@ -45,13 +45,13 @@ abstract class ServerOnlyClass
 }
 
 class _ServerOnlyClassImpl extends ServerOnlyClass {
-  _ServerOnlyClassImpl({required String foo}) : super._(foo: foo);
+  _ServerOnlyClassImpl({required final String foo}) : super._(foo: foo);
 
   /// Returns a shallow copy of this [ServerOnlyClass]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  ServerOnlyClass copyWith({String? foo}) {
+  ServerOnlyClass copyWith({final String? foo}) {
     return ServerOnlyClass(foo: foo ?? this.foo);
   }
 }

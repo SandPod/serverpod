@@ -16,9 +16,9 @@ abstract class EmptyModelWithTable
     implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   EmptyModelWithTable._({this.id});
 
-  factory EmptyModelWithTable({int? id}) = _EmptyModelWithTableImpl;
+  factory EmptyModelWithTable({final int? id}) = _EmptyModelWithTableImpl;
 
-  factory EmptyModelWithTable.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory EmptyModelWithTable.fromJson(final Map<String, dynamic> jsonSerialization) {
     return EmptyModelWithTable(id: jsonSerialization['id'] as int?);
   }
 
@@ -35,7 +35,7 @@ abstract class EmptyModelWithTable
   /// Returns a shallow copy of this [EmptyModelWithTable]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  EmptyModelWithTable copyWith({int? id});
+  EmptyModelWithTable copyWith({final int? id});
   @override
   Map<String, dynamic> toJson() {
     return {if (id != null) 'id': id};
@@ -51,13 +51,13 @@ abstract class EmptyModelWithTable
   }
 
   static EmptyModelWithTableIncludeList includeList({
-    _i1.WhereExpressionBuilder<EmptyModelWithTableTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<EmptyModelWithTableTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<EmptyModelWithTableTable>? orderByList,
-    EmptyModelWithTableInclude? include,
+    final _i1.WhereExpressionBuilder<EmptyModelWithTableTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<EmptyModelWithTableTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<EmptyModelWithTableTable>? orderByList,
+    final EmptyModelWithTableInclude? include,
   }) {
     return EmptyModelWithTableIncludeList._(
       where: where,
@@ -79,13 +79,13 @@ abstract class EmptyModelWithTable
 class _Undefined {}
 
 class _EmptyModelWithTableImpl extends EmptyModelWithTable {
-  _EmptyModelWithTableImpl({int? id}) : super._(id: id);
+  _EmptyModelWithTableImpl({final int? id}) : super._(id: id);
 
   /// Returns a shallow copy of this [EmptyModelWithTable]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  EmptyModelWithTable copyWith({Object? id = _Undefined}) {
+  EmptyModelWithTable copyWith({final Object? id = _Undefined}) {
     return EmptyModelWithTable(id: id is int? ? id : this.id);
   }
 }
@@ -119,7 +119,7 @@ class EmptyModelWithTableInclude extends _i1.IncludeObject {
 
 class EmptyModelWithTableIncludeList extends _i1.IncludeList {
   EmptyModelWithTableIncludeList._({
-    _i1.WhereExpressionBuilder<EmptyModelWithTableTable>? where,
+    final _i1.WhereExpressionBuilder<EmptyModelWithTableTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -163,14 +163,14 @@ class EmptyModelWithTableRepository {
   /// );
   /// ```
   Future<List<EmptyModelWithTable>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<EmptyModelWithTableTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<EmptyModelWithTableTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<EmptyModelWithTableTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<EmptyModelWithTableTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<EmptyModelWithTableTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<EmptyModelWithTableTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<EmptyModelWithTable>(
       where: where?.call(EmptyModelWithTable.t),
@@ -201,13 +201,13 @@ class EmptyModelWithTableRepository {
   /// );
   /// ```
   Future<EmptyModelWithTable?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<EmptyModelWithTableTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<EmptyModelWithTableTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<EmptyModelWithTableTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<EmptyModelWithTableTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<EmptyModelWithTableTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<EmptyModelWithTableTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<EmptyModelWithTable>(
       where: where?.call(EmptyModelWithTable.t),
@@ -221,9 +221,9 @@ class EmptyModelWithTableRepository {
 
   /// Finds a single [EmptyModelWithTable] by its [id] or null if no such row exists.
   Future<EmptyModelWithTable?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<EmptyModelWithTable>(
       id,
@@ -238,9 +238,9 @@ class EmptyModelWithTableRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<EmptyModelWithTable>> insert(
-    _i1.Session session,
-    List<EmptyModelWithTable> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<EmptyModelWithTable> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<EmptyModelWithTable>(
       rows,
@@ -252,9 +252,9 @@ class EmptyModelWithTableRepository {
   ///
   /// The returned [EmptyModelWithTable] will have its `id` field set.
   Future<EmptyModelWithTable> insertRow(
-    _i1.Session session,
-    EmptyModelWithTable row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final EmptyModelWithTable row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<EmptyModelWithTable>(
       row,
@@ -268,10 +268,10 @@ class EmptyModelWithTableRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<EmptyModelWithTable>> update(
-    _i1.Session session,
-    List<EmptyModelWithTable> rows, {
-    _i1.ColumnSelections<EmptyModelWithTableTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<EmptyModelWithTable> rows, {
+    final _i1.ColumnSelections<EmptyModelWithTableTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<EmptyModelWithTable>(
       rows,
@@ -284,10 +284,10 @@ class EmptyModelWithTableRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<EmptyModelWithTable> updateRow(
-    _i1.Session session,
-    EmptyModelWithTable row, {
-    _i1.ColumnSelections<EmptyModelWithTableTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final EmptyModelWithTable row, {
+    final _i1.ColumnSelections<EmptyModelWithTableTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<EmptyModelWithTable>(
       row,
@@ -299,11 +299,11 @@ class EmptyModelWithTableRepository {
   /// Updates a single [EmptyModelWithTable] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<EmptyModelWithTable?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<EmptyModelWithTableUpdateTable>
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<EmptyModelWithTableUpdateTable>
     columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<EmptyModelWithTable>(
       id,
@@ -315,16 +315,16 @@ class EmptyModelWithTableRepository {
   /// Updates all [EmptyModelWithTable]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<EmptyModelWithTable>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<EmptyModelWithTableUpdateTable>
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<EmptyModelWithTableUpdateTable>
     columnValues,
-    required _i1.WhereExpressionBuilder<EmptyModelWithTableTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<EmptyModelWithTableTable>? orderBy,
-    _i1.OrderByListBuilder<EmptyModelWithTableTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    required final _i1.WhereExpressionBuilder<EmptyModelWithTableTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<EmptyModelWithTableTable>? orderBy,
+    final _i1.OrderByListBuilder<EmptyModelWithTableTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<EmptyModelWithTable>(
       columnValues: columnValues(EmptyModelWithTable.t.updateTable),
@@ -342,9 +342,9 @@ class EmptyModelWithTableRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<EmptyModelWithTable>> delete(
-    _i1.Session session,
-    List<EmptyModelWithTable> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<EmptyModelWithTable> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<EmptyModelWithTable>(
       rows,
@@ -354,9 +354,9 @@ class EmptyModelWithTableRepository {
 
   /// Deletes a single [EmptyModelWithTable].
   Future<EmptyModelWithTable> deleteRow(
-    _i1.Session session,
-    EmptyModelWithTable row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final EmptyModelWithTable row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<EmptyModelWithTable>(
       row,
@@ -366,9 +366,9 @@ class EmptyModelWithTableRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<EmptyModelWithTable>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<EmptyModelWithTableTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<EmptyModelWithTableTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<EmptyModelWithTable>(
       where: where(EmptyModelWithTable.t),
@@ -379,10 +379,10 @@ class EmptyModelWithTableRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<EmptyModelWithTableTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<EmptyModelWithTableTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<EmptyModelWithTable>(
       where: where?.call(EmptyModelWithTable.t),

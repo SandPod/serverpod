@@ -37,8 +37,8 @@ void main() {
           ),
         );
 
-        var response = await webSocket.textEvents.first;
-        var message = WebSocketMessage.fromJsonString(
+        final response = await webSocket.textEvents.first;
+        final message = WebSocketMessage.fromJsonString(
           response,
           server.serializationManager,
         );
@@ -46,7 +46,7 @@ void main() {
         expect(
           message,
           isA<OpenMethodStreamResponse>().having(
-            (m) => m.responseType,
+            (final m) => m.responseType,
             'responseType',
             OpenMethodStreamResponseType.endpointNotFound,
           ),
@@ -67,8 +67,8 @@ void main() {
           ),
         );
 
-        var response = await webSocket.textEvents.first;
-        var message = WebSocketMessage.fromJsonString(
+        final response = await webSocket.textEvents.first;
+        final message = WebSocketMessage.fromJsonString(
           response,
           server.serializationManager,
         );
@@ -76,7 +76,7 @@ void main() {
         expect(
           message,
           isA<OpenMethodStreamResponse>().having(
-            (m) => m.responseType,
+            (final m) => m.responseType,
             'responseType',
             OpenMethodStreamResponseType.endpointNotFound,
           ),
@@ -97,8 +97,8 @@ void main() {
           ),
         );
 
-        var response = await webSocket.textEvents.first;
-        var message = WebSocketMessage.fromJsonString(
+        final response = await webSocket.textEvents.first;
+        final message = WebSocketMessage.fromJsonString(
           response,
           server.serializationManager,
         );
@@ -106,7 +106,7 @@ void main() {
         expect(
           message,
           isA<OpenMethodStreamResponse>().having(
-            (m) => m.responseType,
+            (final m) => m.responseType,
             'responseType',
             OpenMethodStreamResponseType.endpointNotFound,
           ),
@@ -127,8 +127,8 @@ void main() {
           ),
         );
 
-        var response = await webSocket.textEvents.first;
-        var message = WebSocketMessage.fromJsonString(
+        final response = await webSocket.textEvents.first;
+        final message = WebSocketMessage.fromJsonString(
           response,
           server.serializationManager,
         );
@@ -136,7 +136,7 @@ void main() {
         expect(
           message,
           isA<OpenMethodStreamResponse>().having(
-            (m) => m.responseType,
+            (final m) => m.responseType,
             'responseType',
             OpenMethodStreamResponseType.success,
           ),
@@ -157,8 +157,8 @@ void main() {
           ),
         );
 
-        var response = await webSocket.textEvents.first;
-        var message = WebSocketMessage.fromJsonString(
+        final response = await webSocket.textEvents.first;
+        final message = WebSocketMessage.fromJsonString(
           response,
           server.serializationManager,
         );
@@ -166,7 +166,7 @@ void main() {
         expect(
           message,
           isA<OpenMethodStreamResponse>().having(
-            (m) => m.responseType,
+            (final m) => m.responseType,
             'responseType',
             OpenMethodStreamResponseType.invalidArguments,
           ),
@@ -187,8 +187,8 @@ void main() {
           ),
         );
 
-        var response = await webSocket.textEvents.first;
-        var message = WebSocketMessage.fromJsonString(
+        final response = await webSocket.textEvents.first;
+        final message = WebSocketMessage.fromJsonString(
           response,
           server.serializationManager,
         );
@@ -196,7 +196,7 @@ void main() {
         expect(
           message,
           isA<OpenMethodStreamResponse>().having(
-            (m) => m.responseType,
+            (final m) => m.responseType,
             'responseType',
             OpenMethodStreamResponseType.invalidArguments,
           ),
@@ -217,8 +217,8 @@ void main() {
           ),
         );
 
-        var response = await webSocket.textEvents.first;
-        var message = WebSocketMessage.fromJsonString(
+        final response = await webSocket.textEvents.first;
+        final message = WebSocketMessage.fromJsonString(
           response,
           server.serializationManager,
         );
@@ -226,7 +226,7 @@ void main() {
         expect(
           message,
           isA<OpenMethodStreamResponse>().having(
-            (m) => m.responseType,
+            (final m) => m.responseType,
             'responseType',
             OpenMethodStreamResponseType.success,
           ),
@@ -247,21 +247,21 @@ void main() {
           ),
         );
 
-        var response = webSocket.textEvents.first;
+        final response = webSocket.textEvents.first;
         await expectLater(
-          response.timeout(Duration(seconds: 5)),
+          response.timeout(const Duration(seconds: 5)),
           completion(isA<String>()),
           reason: 'Expected a response from the server.',
         );
 
-        var message = WebSocketMessage.fromJsonString(
+        final message = WebSocketMessage.fromJsonString(
           await response,
           server.serializationManager,
         );
         expect(
           message,
           isA<OpenMethodStreamResponse>().having(
-            (m) => m.responseType,
+            (final m) => m.responseType,
             'responseType',
             OpenMethodStreamResponseType.success,
           ),
@@ -283,8 +283,8 @@ void main() {
           ),
         );
 
-        var response = await webSocket.textEvents.first;
-        var message = WebSocketMessage.fromJsonString(
+        final response = await webSocket.textEvents.first;
+        final message = WebSocketMessage.fromJsonString(
           response,
           server.serializationManager,
         );
@@ -292,7 +292,7 @@ void main() {
         expect(
           message,
           isA<OpenMethodStreamResponse>().having(
-            (m) => m.responseType,
+            (final m) => m.responseType,
             'responseType',
             OpenMethodStreamResponseType.authenticationFailed,
           ),
@@ -314,8 +314,8 @@ void main() {
           ),
         );
 
-        var response = await webSocket.textEvents.first;
-        var message = WebSocketMessage.fromJsonString(
+        final response = await webSocket.textEvents.first;
+        final message = WebSocketMessage.fromJsonString(
           response,
           server.serializationManager,
         );
@@ -323,7 +323,7 @@ void main() {
         expect(
           message,
           isA<OpenMethodStreamResponse>().having(
-            (m) => m.responseType,
+            (final m) => m.responseType,
             'responseType',
             OpenMethodStreamResponseType.authenticationFailed,
           ),
@@ -336,15 +336,15 @@ void main() {
       () {
         late String token;
         setUp(() async {
-          var session = await server.createSession();
+          final session = await server.createSession();
           // Missing required "Admin" scope
-          var authKey = await UserAuthentication.signInUser(session, 1, 'test');
+          final authKey = await UserAuthentication.signInUser(session, 1, 'test');
           session.close();
           token = '${authKey.id}:${authKey.key}';
         });
 
         tearDown(() async {
-          var session = await server.createSession();
+          final session = await server.createSession();
           AuthKey.db.deleteWhere(session, where: (_) => Constant.bool(true));
           session.close();
         });
@@ -363,8 +363,8 @@ void main() {
               ),
             );
 
-            var response = await webSocket.textEvents.first;
-            var message = WebSocketMessage.fromJsonString(
+            final response = await webSocket.textEvents.first;
+            final message = WebSocketMessage.fromJsonString(
               response,
               server.serializationManager,
             );
@@ -372,7 +372,7 @@ void main() {
             expect(
               message,
               isA<OpenMethodStreamResponse>().having(
-                (m) => m.responseType,
+                (final m) => m.responseType,
                 'responseType',
                 OpenMethodStreamResponseType.authorizationDeclined,
               ),
@@ -387,8 +387,8 @@ void main() {
       () {
         late String token;
         setUp(() async {
-          var session = await server.createSession();
-          var authKey = await UserAuthentication.signInUser(
+          final session = await server.createSession();
+          final authKey = await UserAuthentication.signInUser(
             session,
             1,
             'test',
@@ -399,7 +399,7 @@ void main() {
         });
 
         tearDown(() async {
-          var session = await server.createSession();
+          final session = await server.createSession();
           AuthKey.db.deleteWhere(session, where: (_) => Constant.bool(true));
           session.close();
         });
@@ -418,8 +418,8 @@ void main() {
               ),
             );
 
-            var response = await webSocket.textEvents.first;
-            var message = WebSocketMessage.fromJsonString(
+            final response = await webSocket.textEvents.first;
+            final message = WebSocketMessage.fromJsonString(
               response,
               server.serializationManager,
             );
@@ -427,7 +427,7 @@ void main() {
             expect(
               message,
               isA<OpenMethodStreamResponse>().having(
-                (m) => m.responseType,
+                (final m) => m.responseType,
                 'responseType',
                 OpenMethodStreamResponseType.success,
               ),

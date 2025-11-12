@@ -1,16 +1,16 @@
 import 'dart:io';
 
+import 'package:http/http.dart' as http;
+import 'package:path/path.dart' as path;
 import 'package:serverpod/serverpod.dart';
 import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
-import 'package:http/http.dart' as http;
-import 'package:path/path.dart' as path;
 
 void main() {
-  var directory = Directory(
+  final directory = Directory(
     path.join(Directory.current.path, 'web', 'server_root_directory'),
   );
-  var nestedDirectory = Directory(path.join(directory.path, 'nested_dir'));
+  final nestedDirectory = Directory(path.join(directory.path, 'nested_dir'));
 
   late http.Client client;
   setUpAll(() async {
@@ -49,7 +49,7 @@ void main() {
         pod.webServer.addRoute(
           StaticRoute.directory(
             directory,
-            cacheControlFactory: (ctx, fileInfo) =>
+            cacheControlFactory: (final ctx, final fileInfo) =>
                 RegExp(r'.*\.txt').hasMatch(ctx.remainingPath.path)
                 ? CacheControlHeader(maxAge: 1)
                 : null,
@@ -63,7 +63,7 @@ void main() {
 
       test('when requesting a static file with the same path pattern '
           'then the cache-control header is set to max-age=1', () async {
-        var response = await client.get(
+        final response = await client.get(
           Uri.parse(
             'http://localhost:8082/url_prefix/file1.txt',
           ),
@@ -74,7 +74,7 @@ void main() {
 
       test('when requesting a static file with a different path pattern '
           'then the cache-control header is set to default max age', () async {
-        var response = await client.get(
+        final response = await client.get(
           Uri.parse(
             'http://localhost:8082/url_prefix/file2.test',
           ),
@@ -89,7 +89,7 @@ void main() {
         pod.webServer.addRoute(
           StaticRoute.directory(
             directory,
-            cacheControlFactory: (ctx, fileInfo) =>
+            cacheControlFactory: (final ctx, final fileInfo) =>
                 RegExp(r'.*\.txt').hasMatch(ctx.remainingPath.path)
                 ? CacheControlHeader(maxAge: 1)
                 : null,
@@ -103,7 +103,7 @@ void main() {
 
       test('when requesting a static file with the same path string '
           'then the cache-control header is set to max-age=1', () async {
-        var response = await client.get(
+        final response = await client.get(
           Uri.parse(
             'http://localhost:8082/url_prefix/file1.txt',
           ),
@@ -114,7 +114,7 @@ void main() {
 
       test('when requesting a static file with a different path string '
           'then the cache-control header is set to default max age', () async {
-        var response = await client.get(
+        final response = await client.get(
           Uri.parse(
             'http://localhost:8082/url_prefix/file2.test',
           ),
@@ -128,7 +128,7 @@ void main() {
       late String file1AssetPath;
 
       setUp(() async {
-        var cacheBustingConfig = CacheBustingConfig(
+        final cacheBustingConfig = CacheBustingConfig(
           mountPrefix: '/url_prefix',
           fileSystemRoot: directory,
           separator: '___',
@@ -153,7 +153,7 @@ void main() {
 
       test('when requesting a static file with '
           'then the file is served correctly', () async {
-        var response = await client.get(
+        final response = await client.get(
           Uri.parse(
             'http://localhost:8082/$file1AssetPath',
           ),
@@ -174,7 +174,7 @@ void main() {
       });
 
       test('then the file is served correctly', () async {
-        var response = await client.get(
+        final response = await client.get(
           Uri.parse(
             'http://localhost:8082/url_prefix/nested_dir/file3.txt',
           ),
@@ -197,7 +197,7 @@ void main() {
 
       group('and an If-None-Match header', () {
         test('then ETag header is returned with initial request', () async {
-          var response = await client.get(
+          final response = await client.get(
             Uri.parse('http://localhost:8082/url_prefix/file1.txt'),
           );
 
@@ -210,14 +210,14 @@ void main() {
           'then 304 Not Modified is returned when If-None-Match matches ETag',
           () async {
             // First request to get ETag
-            var initialResponse = await client.get(
+            final initialResponse = await client.get(
               Uri.parse('http://localhost:8082/url_prefix/file1.txt'),
             );
-            var etag = initialResponse.headers['etag'];
+            final etag = initialResponse.headers['etag'];
             expect(etag, isNotNull);
 
             // Second request with If-None-Match
-            var response = await client.get(
+            final response = await client.get(
               Uri.parse('http://localhost:8082/url_prefix/file1.txt'),
               headers: {
                 'If-None-Match': etag!,
@@ -234,7 +234,7 @@ void main() {
         test(
           'then Last-Modified header is returned with initial request',
           () async {
-            var response = await client.get(
+            final response = await client.get(
               Uri.parse('http://localhost:8082/url_prefix/file1.txt'),
             );
 
@@ -248,7 +248,7 @@ void main() {
           'then 304 Not Modified is returned when If-Modified-Since is after last modification',
           () async {
             // First request to get Last-Modified
-            var initialResponse = await client.get(
+            final initialResponse = await client.get(
               Uri.parse('http://localhost:8082/url_prefix/file1.txt'),
             );
             var lastModified = initialResponse.headers['last-modified'];
@@ -257,11 +257,11 @@ void main() {
             // Move lastModified 1 second into the future to ensure it's after
             // the file's actual last modified time.
             lastModified = HttpDate.format(
-              HttpDate.parse(lastModified!).add(Duration(seconds: 1)),
+              HttpDate.parse(lastModified!).add(const Duration(seconds: 1)),
             );
 
             // Second request with If-Modified-Since set to lastModified
-            var response = await client.get(
+            final response = await client.get(
               Uri.parse('http://localhost:8082/url_prefix/file1.txt'),
               headers: {
                 'If-Modified-Since': lastModified,
@@ -276,7 +276,7 @@ void main() {
 
       group('and a Range header for partial content', () {
         test('then byte range requests are supported', () async {
-          var response = await client.get(
+          final response = await client.get(
             Uri.parse('http://localhost:8082/url_prefix/file1.txt'),
             headers: {
               'Range': 'bytes=0-3',
@@ -289,7 +289,7 @@ void main() {
         });
 
         test('then range request for end of file is supported', () async {
-          var response = await http.get(
+          final response = await http.get(
             Uri.parse('http://localhost:8082/url_prefix/file1.txt'),
             headers: {
               'Range': 'bytes=4-7',
@@ -302,7 +302,7 @@ void main() {
         });
 
         test('then 416 is returned for invalid range', () async {
-          var response = await http.get(
+          final response = await http.get(
             Uri.parse('http://localhost:8082/url_prefix/file1.txt'),
             headers: {
               'Range': 'bytes=100-200', // Beyond file size
@@ -315,7 +315,7 @@ void main() {
 
       group('and Content-Type header validation', () {
         test('then correct content-type is set for text files', () async {
-          var response = await client.get(
+          final response = await client.get(
             Uri.parse('http://localhost:8082/url_prefix/file1.txt'),
           );
 
@@ -329,13 +329,13 @@ void main() {
           'then HEAD requests are supported with same headers as GET',
           () async {
             // GET request for comparison
-            var getResponse = await client.get(
+            final getResponse = await client.get(
               Uri.parse('http://localhost:8082/url_prefix/file1.txt'),
             );
             expect(getResponse.statusCode, 200);
 
             // HEAD request
-            var headResponse = await client.head(
+            final headResponse = await client.head(
               Uri.parse('http://localhost:8082/url_prefix/file1.txt'),
             );
 

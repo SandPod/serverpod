@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group(
     'Given a simple data object in database when fetching with unsafe query',
@@ -21,14 +21,14 @@ void main() async {
       tearDownAll(() async {
         await SimpleData.db.deleteWhere(
           session,
-          where: (t) => Constant.bool(true),
+          where: (final t) => Constant.bool(true),
         );
       });
 
       test('then schema contains column descriptions.', () async {
-        var columnDescriptions = result.schema.columns.toList();
+        final columnDescriptions = result.schema.columns.toList();
         expect(columnDescriptions.length, 2);
-        expect(columnDescriptions.map((e) => e.columnName), ['id', 'num']);
+        expect(columnDescriptions.map((final e) => e.columnName), ['id', 'num']);
       });
 
       test('then result reports affected rows.', () async {
@@ -36,7 +36,7 @@ void main() async {
       });
 
       test('then result row can be converted to column map.', () async {
-        var resultRow = result.firstOrNull;
+        final resultRow = result.firstOrNull;
         expect(resultRow?.toColumnMap(), {'id': data.id, 'num': 1});
       });
     },
@@ -83,9 +83,9 @@ ORDER BY
       });
 
       test('then schema contains all column descriptions.', () async {
-        var columnDescriptions = result.schema.columns.toList();
+        final columnDescriptions = result.schema.columns.toList();
         expect(columnDescriptions.length, 6);
-        expect(columnDescriptions.map((e) => e.columnName), [
+        expect(columnDescriptions.map((final e) => e.columnName), [
           'company.id',
           'company.name',
           'company.townId',
@@ -100,7 +100,7 @@ ORDER BY
       });
 
       test('then result row can be converted to column map.', () async {
-        var resultRow = result.firstOrNull;
+        final resultRow = result.firstOrNull;
         expect(resultRow?.toColumnMap(), {
           'company.id': company.id,
           'company.name': 'Serverpod',

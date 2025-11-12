@@ -4,12 +4,12 @@ import 'package:test/test.dart';
 
 void main() async {
   group(
-    "Given a class with mixed UUID fields defaults",
+    'Given a class with mixed UUID fields defaults',
     () {
       test(
         'when the field has both "default" and "defaultModel", then the field value should be the "defaultModel" value',
         () {
-          var object = UuidDefaultMix();
+          final object = UuidDefaultMix();
           expect(
             object.uuidDefaultAndDefaultModel,
             UuidValue.fromString('550e8400-e29b-41d4-a716-446655440000'),
@@ -20,7 +20,7 @@ void main() async {
       test(
         'when the field has both "default" and "defaultPersist", then the field value should be the "default" value',
         () {
-          var object = UuidDefaultMix();
+          final object = UuidDefaultMix();
           expect(
             object.uuidDefaultAndDefaultPersist,
             UuidValue.fromString('6fa459ea-ee8a-3ca4-894e-db77e160355e'),
@@ -31,7 +31,7 @@ void main() async {
       test(
         'when the field has both "defaultModel" and "defaultPersist", then the field value should be the "defaultModel" value',
         () {
-          var object = UuidDefaultMix();
+          final object = UuidDefaultMix();
           expect(
             object.uuidDefaultModelAndDefaultPersist,
             UuidValue.fromString('d9428888-122b-11e1-b85c-61cd3cbb3210'),
@@ -42,10 +42,10 @@ void main() async {
       test(
         'when an object of the class is created with a value for "uuidDefaultAndDefaultModel", then the field value should match the provided value',
         () {
-          var uuid = UuidValue.fromString(
+          final uuid = UuidValue.fromString(
             '3f2504e0-4f89-11d3-9a0c-0305e82c3301',
           );
-          var object = UuidDefaultMix(
+          final object = UuidDefaultMix(
             uuidDefaultAndDefaultModel: uuid,
           );
           expect(
@@ -58,10 +58,10 @@ void main() async {
       test(
         'when an object of the class is created with a value for "uuidDefaultAndDefaultPersist", then the field value should match the provided value',
         () {
-          var uuid = UuidValue.fromString(
+          final uuid = UuidValue.fromString(
             '3f2504e0-4f89-11d3-9a0c-0305e82c3301',
           );
-          var object = UuidDefaultMix(
+          final object = UuidDefaultMix(
             uuidDefaultAndDefaultPersist: uuid,
           );
           expect(
@@ -74,10 +74,10 @@ void main() async {
       test(
         'when an object of the class is created with a value for "uuidDefaultModelAndDefaultPersist", then the field value should match the provided value',
         () {
-          var uuid = UuidValue.fromString(
+          final uuid = UuidValue.fromString(
             '3f2504e0-4f89-11d3-9a0c-0305e82c3301',
           );
-          var object = UuidDefaultMix(
+          final object = UuidDefaultMix(
             uuidDefaultModelAndDefaultPersist: uuid,
           );
           expect(

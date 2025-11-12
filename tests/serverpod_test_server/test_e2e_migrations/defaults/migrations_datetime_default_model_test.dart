@@ -6,7 +6,7 @@ import 'package:serverpod_test_server/test_util/test_service_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var serviceClient = Client(
+  final serviceClient = Client(
     serviceServerUrl,
     authenticationKeyManager: TestServiceKeyManager(
       '0',
@@ -27,9 +27,9 @@ void main() {
       test(
         'when creating and applying migration, then the database does not contain default values for "dateTimeDefaultNow" with "defaultModel".',
         () async {
-          var tableName = 'migrated_table';
-          var tag = 'add-table';
-          var targetStateProtocols = {
+          const tableName = 'migrated_table';
+          const tag = 'add-table';
+          final targetStateProtocols = {
             'migrated_table':
                 '''
         class: MigratedTable
@@ -39,7 +39,7 @@ void main() {
         ''',
           };
 
-          var createMigrationExitCode =
+          final createMigrationExitCode =
               await MigrationTestUtils.createMigrationFromProtocols(
                 protocols: targetStateProtocols,
                 tag: tag,
@@ -51,7 +51,7 @@ void main() {
             reason: 'Failed to create migration, exit code was not 0.',
           );
 
-          var applyMigrationExitCode =
+          final applyMigrationExitCode =
               await MigrationTestUtils.runApplyMigrations();
 
           expect(
@@ -60,11 +60,11 @@ void main() {
             reason: 'Failed to apply migration, exit code was not 0.',
           );
 
-          var liveDefinition = await serviceClient.insights
+          final liveDefinition = await serviceClient.insights
               .getLiveDatabaseDefinition();
 
-          var databaseTable = liveDefinition.tables.firstWhereOrNull(
-            (t) => t.name == tableName,
+          final databaseTable = liveDefinition.tables.firstWhereOrNull(
+            (final t) => t.name == tableName,
           );
 
           expect(
@@ -73,14 +73,14 @@ void main() {
             reason: 'Could not find migration table in live table definitions.',
           );
 
-          var columns = databaseTable!.columns;
+          final columns = databaseTable!.columns;
           expect(
             columns.length,
             2,
             reason: 'Invalid Table Columns',
           );
 
-          var dateTimeDefaultNow = columns.last;
+          final dateTimeDefaultNow = columns.last;
           expect(
             dateTimeDefaultNow.columnDefault,
             isNull,
@@ -93,9 +93,9 @@ void main() {
       test(
         'when creating and applying migration, then the database does not contain default values for "dateTimeDefaultStr" with "defaultModel".',
         () async {
-          var tableName = 'migrated_table';
-          var tag = 'add-table';
-          var targetStateProtocols = {
+          const tableName = 'migrated_table';
+          const tag = 'add-table';
+          final targetStateProtocols = {
             'migrated_table':
                 '''
         class: MigratedTable
@@ -105,7 +105,7 @@ void main() {
         ''',
           };
 
-          var createMigrationExitCode =
+          final createMigrationExitCode =
               await MigrationTestUtils.createMigrationFromProtocols(
                 protocols: targetStateProtocols,
                 tag: tag,
@@ -117,7 +117,7 @@ void main() {
             reason: 'Failed to create migration, exit code was not 0.',
           );
 
-          var applyMigrationExitCode =
+          final applyMigrationExitCode =
               await MigrationTestUtils.runApplyMigrations();
 
           expect(
@@ -126,11 +126,11 @@ void main() {
             reason: 'Failed to apply migration, exit code was not 0.',
           );
 
-          var liveDefinition = await serviceClient.insights
+          final liveDefinition = await serviceClient.insights
               .getLiveDatabaseDefinition();
 
-          var databaseTable = liveDefinition.tables.firstWhereOrNull(
-            (t) => t.name == tableName,
+          final databaseTable = liveDefinition.tables.firstWhereOrNull(
+            (final t) => t.name == tableName,
           );
 
           expect(
@@ -139,14 +139,14 @@ void main() {
             reason: 'Could not find migration table in live table definitions.',
           );
 
-          var columns = databaseTable!.columns;
+          final columns = databaseTable!.columns;
           expect(
             columns.length,
             2,
             reason: 'Invalid Table Columns',
           );
 
-          var dateTimeDefaultStr = columns.last;
+          final dateTimeDefaultStr = columns.last;
           expect(
             dateTimeDefaultStr.columnDefault,
             isNull,
@@ -161,8 +161,8 @@ void main() {
 
 extension _ListExt<T> on List<T> {
   /// The first element satisfying [test], or `null` if there are none.
-  T? firstWhereOrNull(bool Function(T element) test) {
-    for (var element in this) {
+  T? firstWhereOrNull(final bool Function(T element) test) {
+    for (final element in this) {
       if (test(element)) return element;
     }
     return null;

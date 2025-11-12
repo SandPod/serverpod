@@ -16,9 +16,9 @@ abstract class NotServerOnlyClass
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
   NotServerOnlyClass._({required this.foo});
 
-  factory NotServerOnlyClass({required String foo}) = _NotServerOnlyClassImpl;
+  factory NotServerOnlyClass({required final String foo}) = _NotServerOnlyClassImpl;
 
-  factory NotServerOnlyClass.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory NotServerOnlyClass.fromJson(final Map<String, dynamic> jsonSerialization) {
     return NotServerOnlyClass(foo: jsonSerialization['foo'] as String);
   }
 
@@ -27,7 +27,7 @@ abstract class NotServerOnlyClass
   /// Returns a shallow copy of this [NotServerOnlyClass]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  NotServerOnlyClass copyWith({String? foo});
+  NotServerOnlyClass copyWith({final String? foo});
   @override
   Map<String, dynamic> toJson() {
     return {'foo': foo};
@@ -45,13 +45,13 @@ abstract class NotServerOnlyClass
 }
 
 class _NotServerOnlyClassImpl extends NotServerOnlyClass {
-  _NotServerOnlyClassImpl({required String foo}) : super._(foo: foo);
+  _NotServerOnlyClassImpl({required final String foo}) : super._(foo: foo);
 
   /// Returns a shallow copy of this [NotServerOnlyClass]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  NotServerOnlyClass copyWith({String? foo}) {
+  NotServerOnlyClass copyWith({final String? foo}) {
     return NotServerOnlyClass(foo: foo ?? this.foo);
   }
 }

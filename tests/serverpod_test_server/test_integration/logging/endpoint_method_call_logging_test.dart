@@ -9,12 +9,12 @@ import 'package:serverpod_test_server/test_util/mock_stdout.dart';
 import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
-List<int> toLogLevelInts(List<LogLevel> levels) {
-  return levels.map((e) => e.index).toList();
+List<int> toLogLevelInts(final List<LogLevel> levels) {
+  return levels.map((final e) => e.index).toList();
 }
 
 void main() async {
-  var client = Client('http://localhost:8080/');
+  final client = Client('http://localhost:8080/');
   late Serverpod server;
   late Session session;
 
@@ -35,12 +35,12 @@ void main() async {
     test(
       'Given a log settings that enables all logging when calling a noop method then a single log entry is created.',
       () async {
-        var settings = RuntimeSettingsBuilder().build();
+        final settings = RuntimeSettingsBuilder().build();
         await server.updateRuntimeSettings(settings);
 
         await client.logging.emptyMethod();
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
 
@@ -52,7 +52,7 @@ void main() async {
     test(
       'Given a restricted log setting when calling a noop method then no log entries are created.',
       () async {
-        var settings = RuntimeSettingsBuilder()
+        final settings = RuntimeSettingsBuilder()
             .withLogSettings(
               LogSettingsBuilder().withLoggingTurnedDown().build(),
             )
@@ -62,7 +62,7 @@ void main() async {
 
         await client.logging.emptyMethod();
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, isEmpty);
       },
@@ -71,7 +71,7 @@ void main() async {
     test(
       'Given a log setting that enables slow session logging when calling a slow method then a single log entry is created.',
       () async {
-        var settings = RuntimeSettingsBuilder()
+        final settings = RuntimeSettingsBuilder()
             .withLogSettings(
               LogSettingsBuilder()
                   .withLoggingTurnedDown()
@@ -86,7 +86,7 @@ void main() async {
         await client.logging.emptyMethod();
         await client.logging.slowMethod(500);
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
 
@@ -98,7 +98,7 @@ void main() async {
     test(
       'Given a log setting that enables failed session logging when calling a method that throws then a single log entry is created.',
       () async {
-        var settings = RuntimeSettingsBuilder()
+        final settings = RuntimeSettingsBuilder()
             .withLogSettings(
               LogSettingsBuilder()
                   .withLoggingTurnedDown()
@@ -115,7 +115,7 @@ void main() async {
           await client.logging.failingMethod();
         } catch (_) {}
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
 
@@ -127,7 +127,7 @@ void main() async {
     test(
       'Given a log setting that enables slow query logging when calling a slow query method then a single log entry is created.',
       () async {
-        var settings = RuntimeSettingsBuilder()
+        final settings = RuntimeSettingsBuilder()
             .withLogSettings(
               LogSettingsBuilder()
                   .withLoggingTurnedDown()
@@ -142,7 +142,7 @@ void main() async {
         await client.logging.emptyMethod();
         await client.logging.slowQueryMethod(1);
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
 
@@ -154,7 +154,7 @@ void main() async {
     test(
       'Given a log setting that enables all logs when calling a method executing a query then a query log is created',
       () async {
-        var settings = RuntimeSettingsBuilder()
+        final settings = RuntimeSettingsBuilder()
             .withLogSettings(
               LogSettingsBuilder().build(),
             )
@@ -164,7 +164,7 @@ void main() async {
 
         await client.logging.queryMethod(1);
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
 
@@ -176,7 +176,7 @@ void main() async {
     test(
       'Given a log setting that enables all logs when calling a method executing several queries then a log for each query is created',
       () async {
-        var settings = RuntimeSettingsBuilder()
+        final settings = RuntimeSettingsBuilder()
             .withLogSettings(
               LogSettingsBuilder().build(),
             )
@@ -186,7 +186,7 @@ void main() async {
 
         await client.logging.queryMethod(4);
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
 
@@ -198,7 +198,7 @@ void main() async {
     test(
       'Given a log setting that turns off all database query logging when calling a method executing several queries then the number of queries are still counted.',
       () async {
-        var settings = RuntimeSettingsBuilder()
+        final settings = RuntimeSettingsBuilder()
             .withLogSettings(
               LogSettingsBuilder()
                   .withLoggingTurnedDown()
@@ -211,7 +211,7 @@ void main() async {
 
         await client.logging.queryMethod(4);
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
 
@@ -223,7 +223,7 @@ void main() async {
     test(
       'Given a log setting that enables failed query logging when calling a method executing an invalid query then a single log entry is created.',
       () async {
-        var settings = RuntimeSettingsBuilder()
+        final settings = RuntimeSettingsBuilder()
             .withLogSettings(
               LogSettingsBuilder()
                   .withLoggingTurnedDown()
@@ -240,9 +240,9 @@ void main() async {
           await client.logging.failedQueryMethod();
         } catch (_) {}
 
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
 
@@ -254,13 +254,13 @@ void main() async {
     test(
       'Given a log setting with everything turned on when calling a method logging a message then the log including the message log is written.',
       () async {
-        var settings = RuntimeSettingsBuilder().build();
+        final settings = RuntimeSettingsBuilder().build();
 
         await server.updateRuntimeSettings(settings);
 
         await client.logging.log('message', [LogLevel.debug.index]);
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
 
@@ -274,13 +274,13 @@ void main() async {
     test(
       'Given a log setting with everything turned on when calling a method logging a message then the logs messageId is null.',
       () async {
-        var settings = RuntimeSettingsBuilder().build();
+        final settings = RuntimeSettingsBuilder().build();
 
         await server.updateRuntimeSettings(settings);
 
         await client.logging.log('message', [LogLevel.debug.index]);
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, isNotEmpty);
 
@@ -292,7 +292,7 @@ void main() async {
     test(
       'Given a log setting with everything turned on but only accepting info level and below when calling a method logging a message then the log is written but only includes the info level message.',
       () async {
-        var settings = RuntimeSettingsBuilder()
+        final settings = RuntimeSettingsBuilder()
             .withLogSettings(
               LogSettingsBuilder().withLogLevel(LogLevel.info).build(),
             )
@@ -305,7 +305,7 @@ void main() async {
           toLogLevelInts([LogLevel.debug, LogLevel.info]),
         );
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
 
@@ -320,7 +320,7 @@ void main() async {
     test(
       'Given a log setting with everything turned on but only accepting warning level and below when calling a method logging a message then the log is written but only includes the warning level message.',
       () async {
-        var settings = RuntimeSettingsBuilder()
+        final settings = RuntimeSettingsBuilder()
             .withLogSettings(
               LogSettingsBuilder().withLogLevel(LogLevel.warning).build(),
             )
@@ -337,7 +337,7 @@ void main() async {
           ]),
         );
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
 
@@ -352,7 +352,7 @@ void main() async {
     test(
       'Given a log setting with everything turned on but only accepting error level and below when calling a method logging a message then the log is written but only includes the error level message.',
       () async {
-        var settings = RuntimeSettingsBuilder()
+        final settings = RuntimeSettingsBuilder()
             .withLogSettings(
               LogSettingsBuilder().withLogLevel(LogLevel.error).build(),
             )
@@ -370,7 +370,7 @@ void main() async {
           ]),
         );
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
 
@@ -385,7 +385,7 @@ void main() async {
     test(
       'Given a log setting with everything turned on but only accepting fatal level and below when calling a method logging a message then the log is written but only includes the fatal level message.',
       () async {
-        var settings = RuntimeSettingsBuilder()
+        final settings = RuntimeSettingsBuilder()
             .withLogSettings(
               LogSettingsBuilder().withLogLevel(LogLevel.fatal).build(),
             )
@@ -404,7 +404,7 @@ void main() async {
           ]),
         );
 
-        var logs = await LoggingUtil.findAllLogs(session);
+        final logs = await LoggingUtil.findAllLogs(session);
 
         expect(logs, hasLength(1));
 
@@ -452,7 +452,7 @@ void main() async {
       'Given a log settings that enable all logging and the serverpod config does not have a database config when calling a noop method ',
       () {
         setUp(() async {
-          var settings = RuntimeSettingsBuilder().build();
+          final settings = RuntimeSettingsBuilder().build();
           await server.updateRuntimeSettings(settings);
 
           await client.logging.emptyMethod();
@@ -512,7 +512,7 @@ void main() async {
       'Given a log settings that enable all logging to the text logger when calling a noop method ',
       () {
         setUp(() async {
-          var settings = RuntimeSettingsBuilder().build();
+          final settings = RuntimeSettingsBuilder().build();
           await server.updateRuntimeSettings(settings);
 
           await client.logging.emptyMethod();

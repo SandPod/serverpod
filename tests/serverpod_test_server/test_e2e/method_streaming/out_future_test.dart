@@ -8,7 +8,7 @@ import 'package:serverpod_test_server/test_util/test_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client(
+  final client = Client(
     serverUrl,
     authenticationKeyManager: TestAuthKeyManager(),
   );
@@ -16,8 +16,8 @@ void main() {
   test(
     'Given a streaming method that returns first value from stream, when calling the method, then the first value is received.',
     () async {
-      var stream = Stream<int>.fromIterable([1, 2, 3]);
-      var result = client.methodStreaming.intReturnFromStream(stream);
+      final stream = Stream<int>.fromIterable([1, 2, 3]);
+      final result = client.methodStreaming.intReturnFromStream(stream);
       expect(await result, 1);
     },
   );
@@ -25,8 +25,8 @@ void main() {
   test(
     'Given a streaming method with void return after input stream is closed when calling the method, then the method returns once input stream is complete.',
     () async {
-      var stream = Stream<int>.fromIterable([1, 2, 3]);
-      var responseFuture = client.methodStreaming.voidReturnAfterStream(stream);
+      final stream = Stream<int>.fromIterable([1, 2, 3]);
+      final responseFuture = client.methodStreaming.voidReturnAfterStream(stream);
       expect(responseFuture, completes);
     },
   );
@@ -34,8 +34,8 @@ void main() {
   test(
     'Given a streaming method with int return that throws an exception when calling the method, then ServerpodClientException is thrown.',
     () async {
-      var stream = Stream<int>.fromIterable([1, 2, 3]);
-      var responseFuture = client.methodStreaming.throwsException(stream);
+      final stream = Stream<int>.fromIterable([1, 2, 3]);
+      final responseFuture = client.methodStreaming.throwsException(stream);
       await expectLater(
         responseFuture,
         throwsA(isA<ConnectionClosedException>()),
@@ -46,8 +46,8 @@ void main() {
   test(
     'Given a streaming method with int return that throws a serializable exception when calling the method, then the exception is thrown.',
     () async {
-      var stream = Stream<int>.fromIterable([1, 2, 3]);
-      var responseFuture = client.methodStreaming.throwsSerializableException(
+      final stream = Stream<int>.fromIterable([1, 2, 3]);
+      final responseFuture = client.methodStreaming.throwsSerializableException(
         stream,
       );
       await expectLater(responseFuture, throwsA(isA<ExceptionWithData>()));
@@ -57,8 +57,8 @@ void main() {
   test(
     'Given a streaming method with void return that throws an exception when calling the method, then ServerpodClientException is thrown.',
     () async {
-      var stream = Stream<int>.fromIterable([1, 2, 3]);
-      var responseFuture = client.methodStreaming.throwsExceptionVoid(stream);
+      final stream = Stream<int>.fromIterable([1, 2, 3]);
+      final responseFuture = client.methodStreaming.throwsExceptionVoid(stream);
       await expectLater(
         responseFuture,
         throwsA(isA<ConnectionClosedException>()),
@@ -69,8 +69,8 @@ void main() {
   test(
     'Given a streaming method with void return that throws a serializable exception when calling the method, then the exception is thrown.',
     () async {
-      var stream = Stream<int>.fromIterable([1, 2, 3]);
-      var responseFuture = client.methodStreaming
+      final stream = Stream<int>.fromIterable([1, 2, 3]);
+      final responseFuture = client.methodStreaming
           .throwsSerializableExceptionVoid(stream);
       await expectLater(responseFuture, throwsA(isA<ExceptionWithData>()));
     },

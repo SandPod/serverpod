@@ -8,7 +8,7 @@ void main() {
   group(
     'Given a method websocket connection and an endpoint method connection with connected clients',
     () {
-      var server = IntegrationTestServer.create();
+      final server = IntegrationTestServer.create();
       late WebSocket methodWebSocketConnection;
       late WebSocket endpointWebSocketConnection;
 
@@ -32,7 +32,7 @@ void main() {
         var methodIsClosed = false;
         var endpointIsClosed = false;
         methodWebSocketConnection.textEvents.listen(
-          (event) {
+          (final event) {
             // Listen to the to keep it open.
           },
           onDone: () {
@@ -40,7 +40,7 @@ void main() {
           },
         );
         endpointWebSocketConnection.textEvents.listen(
-          (event) {
+          (final event) {
             // Listen to the to keep it open.
           },
           onDone: () {
@@ -49,7 +49,7 @@ void main() {
         );
 
         // Await connection to be established and all handshakes to be done.
-        await Future.delayed(Duration(seconds: 1));
+        await Future.delayed(const Duration(seconds: 1));
 
         await server.shutdown(exitProcess: false);
         expect(methodIsClosed, isTrue);

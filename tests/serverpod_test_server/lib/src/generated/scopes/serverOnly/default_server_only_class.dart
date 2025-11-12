@@ -16,11 +16,11 @@ abstract class DefaultServerOnlyClass
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
   DefaultServerOnlyClass._({required this.foo});
 
-  factory DefaultServerOnlyClass({required String foo}) =
+  factory DefaultServerOnlyClass({required final String foo}) =
       _DefaultServerOnlyClassImpl;
 
   factory DefaultServerOnlyClass.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return DefaultServerOnlyClass(foo: jsonSerialization['foo'] as String);
   }
@@ -30,7 +30,7 @@ abstract class DefaultServerOnlyClass
   /// Returns a shallow copy of this [DefaultServerOnlyClass]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  DefaultServerOnlyClass copyWith({String? foo});
+  DefaultServerOnlyClass copyWith({final String? foo});
   @override
   Map<String, dynamic> toJson() {
     return {'foo': foo};
@@ -48,13 +48,13 @@ abstract class DefaultServerOnlyClass
 }
 
 class _DefaultServerOnlyClassImpl extends DefaultServerOnlyClass {
-  _DefaultServerOnlyClassImpl({required String foo}) : super._(foo: foo);
+  _DefaultServerOnlyClassImpl({required final String foo}) : super._(foo: foo);
 
   /// Returns a shallow copy of this [DefaultServerOnlyClass]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  DefaultServerOnlyClass copyWith({String? foo}) {
+  DefaultServerOnlyClass copyWith({final String? foo}) {
     return DefaultServerOnlyClass(foo: foo ?? this.foo);
   }
 }

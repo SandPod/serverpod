@@ -5,7 +5,7 @@ import 'package:serverpod_test_server/test_util/test_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client(
+  final client = Client(
     serverUrl,
     authenticationKeyManager: TestAuthKeyManager(),
   );
@@ -14,7 +14,7 @@ void main() {
     'Given an endpoint that is defined outside of the endpoint directory',
     () {
       test('when calling the endpoint then call is successful', () async {
-        var response = client.myFeature.myFeatureMethod();
+        final response = client.myFeature.myFeatureMethod();
         await expectLater(response, completion('Hello, world!'));
       });
     },
@@ -24,7 +24,7 @@ void main() {
     'Given a module endpoint that is defined outside of the endpoint directory',
     () {
       test('when calling the endpoint then call is successful', () async {
-        var response = client.modules.module.myModuleFeature.myFeatureMethod();
+        final response = client.modules.module.myModuleFeature.myFeatureMethod();
         await expectLater(response, completion('Hello, world!'));
       });
     },
@@ -34,11 +34,11 @@ void main() {
     'Given an endpoint that returns a model defined outside of the models directory',
     () {
       test('when calling the endpoint then call is successful', () async {
-        var response = client.myFeature.myFeatureModel();
+        final response = client.myFeature.myFeatureModel();
         await expectLater(
           response,
           completion(
-            isA<MyFeatureModel>().having((model) => model.name, 'name', 'Alex'),
+            isA<MyFeatureModel>().having((final model) => model.name, 'name', 'Alex'),
           ),
         );
       });
@@ -49,12 +49,12 @@ void main() {
     'Given a module endpoint that returns a model defined outside of the models directory',
     () {
       test('when calling the endpoint then call is successful', () async {
-        var response = client.modules.module.myModuleFeature.myFeatureModel();
+        final response = client.modules.module.myModuleFeature.myFeatureModel();
         await expectLater(
           response,
           completion(
             isA<MyModuleFeatureModel>().having(
-              (model) => model.name,
+              (final model) => model.name,
               'name',
               'Isak',
             ),

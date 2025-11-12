@@ -21,12 +21,12 @@ abstract class ChatMessageAttachmentUploadDescription
   });
 
   factory ChatMessageAttachmentUploadDescription({
-    required String filePath,
-    required String uploadDescription,
+    required final String filePath,
+    required final String uploadDescription,
   }) = _ChatMessageAttachmentUploadDescriptionImpl;
 
   factory ChatMessageAttachmentUploadDescription.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return ChatMessageAttachmentUploadDescription(
       filePath: jsonSerialization['filePath'] as String,
@@ -45,8 +45,8 @@ abstract class ChatMessageAttachmentUploadDescription
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ChatMessageAttachmentUploadDescription copyWith({
-    String? filePath,
-    String? uploadDescription,
+    final String? filePath,
+    final String? uploadDescription,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -65,8 +65,8 @@ abstract class ChatMessageAttachmentUploadDescription
 class _ChatMessageAttachmentUploadDescriptionImpl
     extends ChatMessageAttachmentUploadDescription {
   _ChatMessageAttachmentUploadDescriptionImpl({
-    required String filePath,
-    required String uploadDescription,
+    required final String filePath,
+    required final String uploadDescription,
   }) : super._(
          filePath: filePath,
          uploadDescription: uploadDescription,
@@ -77,8 +77,8 @@ class _ChatMessageAttachmentUploadDescriptionImpl
   @_i1.useResult
   @override
   ChatMessageAttachmentUploadDescription copyWith({
-    String? filePath,
-    String? uploadDescription,
+    final String? filePath,
+    final String? uploadDescription,
   }) {
     return ChatMessageAttachmentUploadDescription(
       filePath: filePath ?? this.filePath,

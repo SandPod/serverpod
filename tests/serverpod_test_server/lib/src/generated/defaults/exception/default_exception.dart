@@ -19,22 +19,22 @@ abstract class DefaultException
         _i1.SerializableModel,
         _i1.ProtocolSerialization {
   DefaultException._({
-    bool? defaultBoolean,
-    DateTime? defaultDateTime,
-    double? defaultDouble,
-    Duration? defaultDuration,
-    _i2.ByNameEnum? defaultEnum,
-    int? defaultInteger,
-    String? defaultString,
-    _i1.UuidValue? defaultUuid,
-    String? defaultModelField,
-    String? defaultMixField,
+    final bool? defaultBoolean,
+    final DateTime? defaultDateTime,
+    final double? defaultDouble,
+    final Duration? defaultDuration,
+    final _i2.ByNameEnum? defaultEnum,
+    final int? defaultInteger,
+    final String? defaultString,
+    final _i1.UuidValue? defaultUuid,
+    final String? defaultModelField,
+    final String? defaultMixField,
   }) : defaultBoolean = defaultBoolean ?? true,
        defaultDateTime = defaultDateTime ?? DateTime.now(),
        defaultDouble = defaultDouble ?? 10.5,
        defaultDuration =
            defaultDuration ??
-           Duration(
+           const Duration(
              days: 1,
              hours: 2,
              minutes: 30,
@@ -44,24 +44,24 @@ abstract class DefaultException
        defaultEnum = defaultEnum ?? _i2.ByNameEnum.byName1,
        defaultInteger = defaultInteger ?? 10,
        defaultString = defaultString ?? 'Default error message',
-       defaultUuid = defaultUuid ?? _i1.Uuid().v4obj(),
+       defaultUuid = defaultUuid ?? const _i1.Uuid().v4obj(),
        defaultModelField = defaultModelField ?? 'Model specific message',
        defaultMixField = defaultMixField ?? 'Model specific mix message';
 
   factory DefaultException({
-    bool? defaultBoolean,
-    DateTime? defaultDateTime,
-    double? defaultDouble,
-    Duration? defaultDuration,
-    _i2.ByNameEnum? defaultEnum,
-    int? defaultInteger,
-    String? defaultString,
-    _i1.UuidValue? defaultUuid,
-    String? defaultModelField,
-    String? defaultMixField,
+    final bool? defaultBoolean,
+    final DateTime? defaultDateTime,
+    final double? defaultDouble,
+    final Duration? defaultDuration,
+    final _i2.ByNameEnum? defaultEnum,
+    final int? defaultInteger,
+    final String? defaultString,
+    final _i1.UuidValue? defaultUuid,
+    final String? defaultModelField,
+    final String? defaultMixField,
   }) = _DefaultExceptionImpl;
 
-  factory DefaultException.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory DefaultException.fromJson(final Map<String, dynamic> jsonSerialization) {
     return DefaultException(
       defaultBoolean: jsonSerialization['defaultBoolean'] as bool,
       defaultDateTime: _i1.DateTimeJsonExtension.fromJson(
@@ -108,16 +108,16 @@ abstract class DefaultException
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   DefaultException copyWith({
-    bool? defaultBoolean,
-    DateTime? defaultDateTime,
-    double? defaultDouble,
-    Duration? defaultDuration,
-    _i2.ByNameEnum? defaultEnum,
-    int? defaultInteger,
-    String? defaultString,
-    _i1.UuidValue? defaultUuid,
-    String? defaultModelField,
-    String? defaultMixField,
+    final bool? defaultBoolean,
+    final DateTime? defaultDateTime,
+    final double? defaultDouble,
+    final Duration? defaultDuration,
+    final _i2.ByNameEnum? defaultEnum,
+    final int? defaultInteger,
+    final String? defaultString,
+    final _i1.UuidValue? defaultUuid,
+    final String? defaultModelField,
+    final String? defaultMixField,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -159,16 +159,16 @@ abstract class DefaultException
 
 class _DefaultExceptionImpl extends DefaultException {
   _DefaultExceptionImpl({
-    bool? defaultBoolean,
-    DateTime? defaultDateTime,
-    double? defaultDouble,
-    Duration? defaultDuration,
-    _i2.ByNameEnum? defaultEnum,
-    int? defaultInteger,
-    String? defaultString,
-    _i1.UuidValue? defaultUuid,
-    String? defaultModelField,
-    String? defaultMixField,
+    final bool? defaultBoolean,
+    final DateTime? defaultDateTime,
+    final double? defaultDouble,
+    final Duration? defaultDuration,
+    final _i2.ByNameEnum? defaultEnum,
+    final int? defaultInteger,
+    final String? defaultString,
+    final _i1.UuidValue? defaultUuid,
+    final String? defaultModelField,
+    final String? defaultMixField,
   }) : super._(
          defaultBoolean: defaultBoolean,
          defaultDateTime: defaultDateTime,
@@ -187,16 +187,16 @@ class _DefaultExceptionImpl extends DefaultException {
   @_i1.useResult
   @override
   DefaultException copyWith({
-    bool? defaultBoolean,
-    DateTime? defaultDateTime,
-    double? defaultDouble,
-    Duration? defaultDuration,
-    _i2.ByNameEnum? defaultEnum,
-    int? defaultInteger,
-    String? defaultString,
-    _i1.UuidValue? defaultUuid,
-    String? defaultModelField,
-    String? defaultMixField,
+    final bool? defaultBoolean,
+    final DateTime? defaultDateTime,
+    final double? defaultDouble,
+    final Duration? defaultDuration,
+    final _i2.ByNameEnum? defaultEnum,
+    final int? defaultInteger,
+    final String? defaultString,
+    final _i1.UuidValue? defaultUuid,
+    final String? defaultModelField,
+    final String? defaultMixField,
   }) {
     return DefaultException(
       defaultBoolean: defaultBoolean ?? this.defaultBoolean,

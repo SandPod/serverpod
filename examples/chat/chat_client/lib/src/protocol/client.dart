@@ -9,17 +9,19 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
-// ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'dart:async' as _i2;
+
 import 'package:chat_client/src/protocol/channel.dart' as _i3;
 import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i4;
 import 'package:serverpod_chat_client/serverpod_chat_client.dart' as _i5;
+// ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:serverpod_client/serverpod_client.dart' as _i1;
+
 import 'protocol.dart' as _i6;
 
 /// {@category Endpoint}
 class EndpointChannels extends _i1.EndpointRef {
-  EndpointChannels(_i1.EndpointCaller caller) : super(caller);
+  EndpointChannels(final _i1.EndpointCaller caller) : super(caller);
 
   @override
   String get name => 'channels';
@@ -33,7 +35,7 @@ class EndpointChannels extends _i1.EndpointRef {
 }
 
 class Modules {
-  Modules(Client client) {
+  Modules(final Client client) {
     auth = _i4.Caller(client);
     chat = _i5.Caller(client);
   }
@@ -45,19 +47,19 @@ class Modules {
 
 class Client extends _i1.ServerpodClientShared {
   Client(
-    String host, {
-    dynamic securityContext,
-    _i1.AuthenticationKeyManager? authenticationKeyManager,
-    Duration? streamingConnectionTimeout,
-    Duration? connectionTimeout,
-    Function(
+    final String host, {
+    final dynamic securityContext,
+    final _i1.AuthenticationKeyManager? authenticationKeyManager,
+    final Duration? streamingConnectionTimeout,
+    final Duration? connectionTimeout,
+    final Function(
       _i1.MethodCallContext,
       Object,
       StackTrace,
     )?
     onFailedCall,
-    Function(_i1.MethodCallContext)? onSucceededCall,
-    bool? disconnectStreamsOnLostInternetConnection,
+    final Function(_i1.MethodCallContext)? onSucceededCall,
+    final bool? disconnectStreamsOnLostInternetConnection,
   }) : super(
          host,
          _i6.Protocol(),

@@ -20,12 +20,12 @@ abstract class EmptyModelRelationItem
   }) : _relationEmptyModelItemsRelationEmptyModelId = null;
 
   factory EmptyModelRelationItem({
-    int? id,
-    required String name,
+    final int? id,
+    required final String name,
   }) = _EmptyModelRelationItemImpl;
 
   factory EmptyModelRelationItem.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return EmptyModelRelationItemImplicit._(
       id: jsonSerialization['id'] as int?,
@@ -54,8 +54,8 @@ abstract class EmptyModelRelationItem
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   EmptyModelRelationItem copyWith({
-    int? id,
-    String? name,
+    final int? id,
+    final String? name,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -81,13 +81,13 @@ abstract class EmptyModelRelationItem
   }
 
   static EmptyModelRelationItemIncludeList includeList({
-    _i1.WhereExpressionBuilder<EmptyModelRelationItemTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<EmptyModelRelationItemTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<EmptyModelRelationItemTable>? orderByList,
-    EmptyModelRelationItemInclude? include,
+    final _i1.WhereExpressionBuilder<EmptyModelRelationItemTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<EmptyModelRelationItemTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<EmptyModelRelationItemTable>? orderByList,
+    final EmptyModelRelationItemInclude? include,
   }) {
     return EmptyModelRelationItemIncludeList._(
       where: where,
@@ -110,8 +110,8 @@ class _Undefined {}
 
 class _EmptyModelRelationItemImpl extends EmptyModelRelationItem {
   _EmptyModelRelationItemImpl({
-    int? id,
-    required String name,
+    final int? id,
+    required final String name,
   }) : super._(
          id: id,
          name: name,
@@ -122,23 +122,23 @@ class _EmptyModelRelationItemImpl extends EmptyModelRelationItem {
   @_i1.useResult
   @override
   EmptyModelRelationItem copyWith({
-    Object? id = _Undefined,
-    String? name,
+    final Object? id = _Undefined,
+    final String? name,
   }) {
     return EmptyModelRelationItemImplicit._(
       id: id is int? ? id : this.id,
       name: name ?? this.name,
       $_relationEmptyModelItemsRelationEmptyModelId:
-          this._relationEmptyModelItemsRelationEmptyModelId,
+          _relationEmptyModelItemsRelationEmptyModelId,
     );
   }
 }
 
 class EmptyModelRelationItemImplicit extends _EmptyModelRelationItemImpl {
   EmptyModelRelationItemImplicit._({
-    int? id,
-    required String name,
-    int? $_relationEmptyModelItemsRelationEmptyModelId,
+    final int? id,
+    required final String name,
+    final int? $_relationEmptyModelItemsRelationEmptyModelId,
   }) : _relationEmptyModelItemsRelationEmptyModelId =
            $_relationEmptyModelItemsRelationEmptyModelId,
        super(
@@ -147,8 +147,8 @@ class EmptyModelRelationItemImplicit extends _EmptyModelRelationItemImpl {
        );
 
   factory EmptyModelRelationItemImplicit(
-    EmptyModelRelationItem emptyModelRelationItem, {
-    int? $_relationEmptyModelItemsRelationEmptyModelId,
+    final EmptyModelRelationItem emptyModelRelationItem, {
+    final int? $_relationEmptyModelItemsRelationEmptyModelId,
   }) {
     return EmptyModelRelationItemImplicit._(
       id: emptyModelRelationItem.id,
@@ -166,13 +166,13 @@ class EmptyModelRelationItemUpdateTable
     extends _i1.UpdateTable<EmptyModelRelationItemTable> {
   EmptyModelRelationItemUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> name(String value) => _i1.ColumnValue(
+  _i1.ColumnValue<String, String> name(final String value) => _i1.ColumnValue(
     table.name,
     value,
   );
 
   _i1.ColumnValue<int, int> $_relationEmptyModelItemsRelationEmptyModelId(
-    int? value,
+    final int? value,
   ) => _i1.ColumnValue(
     table.$_relationEmptyModelItemsRelationEmptyModelId,
     value,
@@ -225,7 +225,7 @@ class EmptyModelRelationItemInclude extends _i1.IncludeObject {
 
 class EmptyModelRelationItemIncludeList extends _i1.IncludeList {
   EmptyModelRelationItemIncludeList._({
-    _i1.WhereExpressionBuilder<EmptyModelRelationItemTable>? where,
+    final _i1.WhereExpressionBuilder<EmptyModelRelationItemTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -269,14 +269,14 @@ class EmptyModelRelationItemRepository {
   /// );
   /// ```
   Future<List<EmptyModelRelationItem>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<EmptyModelRelationItemTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<EmptyModelRelationItemTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<EmptyModelRelationItemTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<EmptyModelRelationItemTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<EmptyModelRelationItemTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<EmptyModelRelationItemTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<EmptyModelRelationItem>(
       where: where?.call(EmptyModelRelationItem.t),
@@ -307,13 +307,13 @@ class EmptyModelRelationItemRepository {
   /// );
   /// ```
   Future<EmptyModelRelationItem?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<EmptyModelRelationItemTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<EmptyModelRelationItemTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<EmptyModelRelationItemTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<EmptyModelRelationItemTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<EmptyModelRelationItemTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<EmptyModelRelationItemTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<EmptyModelRelationItem>(
       where: where?.call(EmptyModelRelationItem.t),
@@ -327,9 +327,9 @@ class EmptyModelRelationItemRepository {
 
   /// Finds a single [EmptyModelRelationItem] by its [id] or null if no such row exists.
   Future<EmptyModelRelationItem?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<EmptyModelRelationItem>(
       id,
@@ -344,9 +344,9 @@ class EmptyModelRelationItemRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<EmptyModelRelationItem>> insert(
-    _i1.Session session,
-    List<EmptyModelRelationItem> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<EmptyModelRelationItem> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<EmptyModelRelationItem>(
       rows,
@@ -358,9 +358,9 @@ class EmptyModelRelationItemRepository {
   ///
   /// The returned [EmptyModelRelationItem] will have its `id` field set.
   Future<EmptyModelRelationItem> insertRow(
-    _i1.Session session,
-    EmptyModelRelationItem row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final EmptyModelRelationItem row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<EmptyModelRelationItem>(
       row,
@@ -374,10 +374,10 @@ class EmptyModelRelationItemRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<EmptyModelRelationItem>> update(
-    _i1.Session session,
-    List<EmptyModelRelationItem> rows, {
-    _i1.ColumnSelections<EmptyModelRelationItemTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<EmptyModelRelationItem> rows, {
+    final _i1.ColumnSelections<EmptyModelRelationItemTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<EmptyModelRelationItem>(
       rows,
@@ -390,10 +390,10 @@ class EmptyModelRelationItemRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<EmptyModelRelationItem> updateRow(
-    _i1.Session session,
-    EmptyModelRelationItem row, {
-    _i1.ColumnSelections<EmptyModelRelationItemTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final EmptyModelRelationItem row, {
+    final _i1.ColumnSelections<EmptyModelRelationItemTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<EmptyModelRelationItem>(
       row,
@@ -405,11 +405,11 @@ class EmptyModelRelationItemRepository {
   /// Updates a single [EmptyModelRelationItem] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<EmptyModelRelationItem?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<EmptyModelRelationItemUpdateTable>
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<EmptyModelRelationItemUpdateTable>
     columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<EmptyModelRelationItem>(
       id,
@@ -421,16 +421,16 @@ class EmptyModelRelationItemRepository {
   /// Updates all [EmptyModelRelationItem]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<EmptyModelRelationItem>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<EmptyModelRelationItemUpdateTable>
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<EmptyModelRelationItemUpdateTable>
     columnValues,
-    required _i1.WhereExpressionBuilder<EmptyModelRelationItemTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<EmptyModelRelationItemTable>? orderBy,
-    _i1.OrderByListBuilder<EmptyModelRelationItemTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    required final _i1.WhereExpressionBuilder<EmptyModelRelationItemTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<EmptyModelRelationItemTable>? orderBy,
+    final _i1.OrderByListBuilder<EmptyModelRelationItemTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<EmptyModelRelationItem>(
       columnValues: columnValues(EmptyModelRelationItem.t.updateTable),
@@ -448,9 +448,9 @@ class EmptyModelRelationItemRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<EmptyModelRelationItem>> delete(
-    _i1.Session session,
-    List<EmptyModelRelationItem> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<EmptyModelRelationItem> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<EmptyModelRelationItem>(
       rows,
@@ -460,9 +460,9 @@ class EmptyModelRelationItemRepository {
 
   /// Deletes a single [EmptyModelRelationItem].
   Future<EmptyModelRelationItem> deleteRow(
-    _i1.Session session,
-    EmptyModelRelationItem row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final EmptyModelRelationItem row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<EmptyModelRelationItem>(
       row,
@@ -472,9 +472,9 @@ class EmptyModelRelationItemRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<EmptyModelRelationItem>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<EmptyModelRelationItemTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<EmptyModelRelationItemTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<EmptyModelRelationItem>(
       where: where(EmptyModelRelationItem.t),
@@ -485,10 +485,10 @@ class EmptyModelRelationItemRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<EmptyModelRelationItemTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<EmptyModelRelationItemTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<EmptyModelRelationItem>(
       where: where?.call(EmptyModelRelationItem.t),

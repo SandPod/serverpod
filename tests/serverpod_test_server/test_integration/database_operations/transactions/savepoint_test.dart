@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   tearDown(() async {
     await SimpleData.db.deleteWhere(session, where: (_) => Constant.bool(true));
@@ -14,8 +14,8 @@ void main() async {
       'when rolling back to savepoint '
       'then no data is persisted in the database', () async {
     await session.db.transaction<void>(
-      (transaction) async {
-        var savepoint = await transaction.createSavepoint();
+      (final transaction) async {
+        final savepoint = await transaction.createSavepoint();
         await SimpleData.db.insertRow(
           session,
           SimpleData(num: 1),
@@ -25,7 +25,7 @@ void main() async {
       },
     );
 
-    var fetchedData = await SimpleData.db.find(session);
+    final fetchedData = await SimpleData.db.find(session);
 
     expect(fetchedData, isEmpty);
   });
@@ -34,8 +34,8 @@ void main() async {
       'when rolling back multiple times to same savepoint '
       'then no data is persisted in the database', () async {
     await session.db.transaction<void>(
-      (transaction) async {
-        var savepoint = await transaction.createSavepoint();
+      (final transaction) async {
+        final savepoint = await transaction.createSavepoint();
         await SimpleData.db.insertRow(
           session,
           SimpleData(num: 1),
@@ -46,7 +46,7 @@ void main() async {
       },
     );
 
-    var fetchedData = await SimpleData.db.find(session);
+    final fetchedData = await SimpleData.db.find(session);
 
     expect(fetchedData, isEmpty);
   });
@@ -56,8 +56,8 @@ void main() async {
       'rolling back to the first savepoint '
       'then no data is persisted in the database', () async {
     await session.db.transaction<void>(
-      (transaction) async {
-        var firstSavepoint = await transaction.createSavepoint();
+      (final transaction) async {
+        final firstSavepoint = await transaction.createSavepoint();
         await SimpleData.db.insertRow(
           session,
           SimpleData(num: 1),
@@ -65,7 +65,7 @@ void main() async {
         );
         await firstSavepoint.rollback();
 
-        var secondSavepoint = await transaction.createSavepoint();
+        final secondSavepoint = await transaction.createSavepoint();
         await SimpleData.db.insertRow(
           session,
           SimpleData(num: 2),
@@ -75,7 +75,7 @@ void main() async {
       },
     );
 
-    var fetchedData = await SimpleData.db.find(session);
+    final fetchedData = await SimpleData.db.find(session);
 
     expect(fetchedData, isEmpty);
   });
@@ -84,8 +84,8 @@ void main() async {
       'when releasing savepoint '
       'then data is persisted in the database', () async {
     await session.db.transaction<void>(
-      (transaction) async {
-        var savepoint = await transaction.createSavepoint();
+      (final transaction) async {
+        final savepoint = await transaction.createSavepoint();
         await SimpleData.db.insertRow(
           session,
           SimpleData(num: 1),
@@ -95,7 +95,7 @@ void main() async {
       },
     );
 
-    var fetchedData = await SimpleData.db.find(session);
+    final fetchedData = await SimpleData.db.find(session);
 
     expect(fetchedData, hasLength(1));
     expect(fetchedData.first.num, 1);
@@ -106,8 +106,8 @@ void main() async {
     late Future<void> transactionFuture;
     setUp(() async {
       transactionFuture = session.db.transaction<void>(
-        (transaction) async {
-          var savepoint = await transaction.createSavepoint();
+        (final transaction) async {
+          final savepoint = await transaction.createSavepoint();
           await SimpleData.db.insertRow(
             session,
             SimpleData(num: 1),
@@ -124,7 +124,7 @@ void main() async {
         transactionFuture,
         throwsA(
           isA<DatabaseQueryException>().having(
-            (e) => e.code,
+            (final e) => e.code,
             'code',
             PgErrorCode.invalidSavepointSpecification,
           ),
@@ -133,9 +133,9 @@ void main() async {
     });
 
     test('then no data is persisted in the database', () async {
-      await transactionFuture.catchError((e) => null);
+      await transactionFuture.catchError((final e) => null);
 
-      var fetchedData = await SimpleData.db.find(session);
+      final fetchedData = await SimpleData.db.find(session);
 
       expect(fetchedData, isEmpty);
     });
@@ -148,14 +148,14 @@ void main() async {
       late Future<void> transactionFuture;
       setUp(() async {
         transactionFuture = session.db.transaction<void>(
-          (transaction) async {
-            var savepoint = await transaction.createSavepoint();
+          (final transaction) async {
+            final savepoint = await transaction.createSavepoint();
             await SimpleData.db.insertRow(
               session,
               SimpleData(num: 1),
               transaction: transaction,
             );
-            var savepoint2 = await transaction.createSavepoint();
+            final savepoint2 = await transaction.createSavepoint();
             await SimpleData.db.insertRow(
               session,
               SimpleData(num: 2),
@@ -172,7 +172,7 @@ void main() async {
           transactionFuture,
           throwsA(
             isA<DatabaseQueryException>().having(
-              (e) => e.code,
+              (final e) => e.code,
               'code',
               PgErrorCode.invalidSavepointSpecification,
             ),
@@ -181,9 +181,9 @@ void main() async {
       });
 
       test('then no data is persisted in the database', () async {
-        await transactionFuture.catchError((e) => null);
+        await transactionFuture.catchError((final e) => null);
 
-        var fetchedData = await SimpleData.db.find(session);
+        final fetchedData = await SimpleData.db.find(session);
 
         expect(fetchedData, isEmpty);
       });
@@ -195,17 +195,17 @@ void main() async {
     'when rolling back to savepoint '
     'then data inserted before savepoint is persisted in the database',
     () async {
-      var data1 = SimpleData(num: 1);
-      var data2 = SimpleData(num: 2);
+      final data1 = SimpleData(num: 1);
+      final data2 = SimpleData(num: 2);
 
       await session.db.transaction<void>(
-        (transaction) async {
+        (final transaction) async {
           await SimpleData.db.insertRow(
             session,
             data1,
             transaction: transaction,
           );
-          var savepoint = await transaction.createSavepoint();
+          final savepoint = await transaction.createSavepoint();
           await SimpleData.db.insertRow(
             session,
             data2,
@@ -215,7 +215,7 @@ void main() async {
         },
       );
 
-      var fetchedData = await SimpleData.db.find(session);
+      final fetchedData = await SimpleData.db.find(session);
 
       expect(fetchedData, hasLength(1));
       expect(fetchedData.first.num, 1);

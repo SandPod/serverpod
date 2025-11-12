@@ -9,10 +9,11 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i3;
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
+
 import 'chat_message_chunk.dart' as _i2;
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i3;
 
 /// A message passed to a user when it joins a channel.
 abstract class ChatJoinedChannel implements _i1.SerializableModel {
@@ -24,13 +25,13 @@ abstract class ChatJoinedChannel implements _i1.SerializableModel {
   });
 
   factory ChatJoinedChannel({
-    required String channel,
-    required _i2.ChatMessageChunk initialMessageChunk,
-    required int lastReadMessageId,
-    required _i3.UserInfo userInfo,
+    required final String channel,
+    required final _i2.ChatMessageChunk initialMessageChunk,
+    required final int lastReadMessageId,
+    required final _i3.UserInfo userInfo,
   }) = _ChatJoinedChannelImpl;
 
-  factory ChatJoinedChannel.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory ChatJoinedChannel.fromJson(final Map<String, dynamic> jsonSerialization) {
     return ChatJoinedChannel(
       channel: jsonSerialization['channel'] as String,
       initialMessageChunk: _i2.ChatMessageChunk.fromJson(
@@ -59,10 +60,10 @@ abstract class ChatJoinedChannel implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ChatJoinedChannel copyWith({
-    String? channel,
-    _i2.ChatMessageChunk? initialMessageChunk,
-    int? lastReadMessageId,
-    _i3.UserInfo? userInfo,
+    final String? channel,
+    final _i2.ChatMessageChunk? initialMessageChunk,
+    final int? lastReadMessageId,
+    final _i3.UserInfo? userInfo,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -82,10 +83,10 @@ abstract class ChatJoinedChannel implements _i1.SerializableModel {
 
 class _ChatJoinedChannelImpl extends ChatJoinedChannel {
   _ChatJoinedChannelImpl({
-    required String channel,
-    required _i2.ChatMessageChunk initialMessageChunk,
-    required int lastReadMessageId,
-    required _i3.UserInfo userInfo,
+    required final String channel,
+    required final _i2.ChatMessageChunk initialMessageChunk,
+    required final int lastReadMessageId,
+    required final _i3.UserInfo userInfo,
   }) : super._(
          channel: channel,
          initialMessageChunk: initialMessageChunk,
@@ -98,10 +99,10 @@ class _ChatJoinedChannelImpl extends ChatJoinedChannel {
   @_i1.useResult
   @override
   ChatJoinedChannel copyWith({
-    String? channel,
-    _i2.ChatMessageChunk? initialMessageChunk,
-    int? lastReadMessageId,
-    _i3.UserInfo? userInfo,
+    final String? channel,
+    final _i2.ChatMessageChunk? initialMessageChunk,
+    final int? lastReadMessageId,
+    final _i3.UserInfo? userInfo,
   }) {
     return ChatJoinedChannel(
       channel: channel ?? this.channel,

@@ -23,20 +23,20 @@ abstract class ChatMessagePost implements _i1.SerializableModel {
   });
 
   factory ChatMessagePost({
-    required String channel,
-    required String message,
-    required int clientMessageId,
-    List<_i2.ChatMessageAttachment>? attachments,
+    required final String channel,
+    required final String message,
+    required final int clientMessageId,
+    final List<_i2.ChatMessageAttachment>? attachments,
   }) = _ChatMessagePostImpl;
 
-  factory ChatMessagePost.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory ChatMessagePost.fromJson(final Map<String, dynamic> jsonSerialization) {
     return ChatMessagePost(
       channel: jsonSerialization['channel'] as String,
       message: jsonSerialization['message'] as String,
       clientMessageId: jsonSerialization['clientMessageId'] as int,
       attachments: (jsonSerialization['attachments'] as List?)
           ?.map(
-            (e) =>
+            (final e) =>
                 _i2.ChatMessageAttachment.fromJson((e as Map<String, dynamic>)),
           )
           .toList(),
@@ -59,10 +59,10 @@ abstract class ChatMessagePost implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ChatMessagePost copyWith({
-    String? channel,
-    String? message,
-    int? clientMessageId,
-    List<_i2.ChatMessageAttachment>? attachments,
+    final String? channel,
+    final String? message,
+    final int? clientMessageId,
+    final List<_i2.ChatMessageAttachment>? attachments,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -71,7 +71,7 @@ abstract class ChatMessagePost implements _i1.SerializableModel {
       'message': message,
       'clientMessageId': clientMessageId,
       if (attachments != null)
-        'attachments': attachments?.toJson(valueToJson: (v) => v.toJson()),
+        'attachments': attachments?.toJson(valueToJson: (final v) => v.toJson()),
     };
   }
 
@@ -85,10 +85,10 @@ class _Undefined {}
 
 class _ChatMessagePostImpl extends ChatMessagePost {
   _ChatMessagePostImpl({
-    required String channel,
-    required String message,
-    required int clientMessageId,
-    List<_i2.ChatMessageAttachment>? attachments,
+    required final String channel,
+    required final String message,
+    required final int clientMessageId,
+    final List<_i2.ChatMessageAttachment>? attachments,
   }) : super._(
          channel: channel,
          message: message,
@@ -101,10 +101,10 @@ class _ChatMessagePostImpl extends ChatMessagePost {
   @_i1.useResult
   @override
   ChatMessagePost copyWith({
-    String? channel,
-    String? message,
-    int? clientMessageId,
-    Object? attachments = _Undefined,
+    final String? channel,
+    final String? message,
+    final int? clientMessageId,
+    final Object? attachments = _Undefined,
   }) {
     return ChatMessagePost(
       channel: channel ?? this.channel,
@@ -112,7 +112,7 @@ class _ChatMessagePostImpl extends ChatMessagePost {
       clientMessageId: clientMessageId ?? this.clientMessageId,
       attachments: attachments is List<_i2.ChatMessageAttachment>?
           ? attachments
-          : this.attachments?.map((e0) => e0.copyWith()).toList(),
+          : this.attachments?.map((final e0) => e0.copyWith()).toList(),
     );
   }
 }

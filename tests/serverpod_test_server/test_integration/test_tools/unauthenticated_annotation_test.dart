@@ -22,16 +22,16 @@ void main() {
 
     await client.authentication.removeAllUsers();
 
-    var response = await client.authentication.authenticate(
+    final response = await client.authentication.authenticate(
       'test@foo.bar',
       'password',
-      [Scope('user').name!],
+      [const Scope('user').name!],
     );
 
     expect(response.success, isTrue, reason: 'Failed to authenticate.');
     await authKeyManager.put('${response.keyId}:${response.key}');
 
-    var authenticated = await client.modules.auth.status.isSignedIn();
+    final authenticated = await client.modules.auth.status.isSignedIn();
     expect(authenticated, isTrue, reason: 'Client should be authenticated');
   });
 

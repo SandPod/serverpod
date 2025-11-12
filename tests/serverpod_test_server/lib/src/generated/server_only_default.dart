@@ -16,18 +16,18 @@ abstract class ServerOnlyDefault
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
   ServerOnlyDefault._({
     required this.normalField,
-    int? serverOnlyField,
-    String? serverOnlyStringField,
+    final int? serverOnlyField,
+    final String? serverOnlyStringField,
   }) : serverOnlyField = serverOnlyField ?? -1,
        serverOnlyStringField = serverOnlyStringField ?? 'Server only message';
 
   factory ServerOnlyDefault({
-    required String normalField,
-    int? serverOnlyField,
-    String? serverOnlyStringField,
+    required final String normalField,
+    final int? serverOnlyField,
+    final String? serverOnlyStringField,
   }) = _ServerOnlyDefaultImpl;
 
-  factory ServerOnlyDefault.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory ServerOnlyDefault.fromJson(final Map<String, dynamic> jsonSerialization) {
     return ServerOnlyDefault(
       normalField: jsonSerialization['normalField'] as String,
       serverOnlyField: jsonSerialization['serverOnlyField'] as int?,
@@ -46,9 +46,9 @@ abstract class ServerOnlyDefault
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ServerOnlyDefault copyWith({
-    String? normalField,
-    int? serverOnlyField,
-    String? serverOnlyStringField,
+    final String? normalField,
+    final int? serverOnlyField,
+    final String? serverOnlyStringField,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -75,9 +75,9 @@ class _Undefined {}
 
 class _ServerOnlyDefaultImpl extends ServerOnlyDefault {
   _ServerOnlyDefaultImpl({
-    required String normalField,
-    int? serverOnlyField,
-    String? serverOnlyStringField,
+    required final String normalField,
+    final int? serverOnlyField,
+    final String? serverOnlyStringField,
   }) : super._(
          normalField: normalField,
          serverOnlyField: serverOnlyField,
@@ -89,9 +89,9 @@ class _ServerOnlyDefaultImpl extends ServerOnlyDefault {
   @_i1.useResult
   @override
   ServerOnlyDefault copyWith({
-    String? normalField,
-    Object? serverOnlyField = _Undefined,
-    Object? serverOnlyStringField = _Undefined,
+    final String? normalField,
+    final Object? serverOnlyField = _Undefined,
+    final Object? serverOnlyStringField = _Undefined,
   }) {
     return ServerOnlyDefault(
       normalField: normalField ?? this.normalField,

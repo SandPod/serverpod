@@ -12,9 +12,9 @@ class S3CloudStorageEndpoint extends Endpoint {
   // }
 
   Future<void> storePublicFile(
-    Session session,
-    String path,
-    ByteData byteData,
+    final Session session,
+    final String path,
+    final ByteData byteData,
   ) async {
     await session.storage.storeFile(
       storageId: 's3',
@@ -23,40 +23,40 @@ class S3CloudStorageEndpoint extends Endpoint {
     );
   }
 
-  Future<ByteData?> retrievePublicFile(Session session, String path) async {
+  Future<ByteData?> retrievePublicFile(final Session session, final String path) async {
     return await session.storage.retrieveFile(
       storageId: 's3',
       path: path,
     );
   }
 
-  Future<bool?> existsPublicFile(Session session, String path) async {
+  Future<bool?> existsPublicFile(final Session session, final String path) async {
     return await session.storage.fileExists(
       storageId: 's3',
       path: path,
     );
   }
 
-  Future<void> deletePublicFile(Session session, String path) async {
+  Future<void> deletePublicFile(final Session session, final String path) async {
     await session.storage.deleteFile(
       storageId: 's3',
       path: path,
     );
   }
 
-  Future<String?> getPublicUrlForFile(Session session, String path) async {
-    var uri = await session.storage.getPublicUrl(storageId: 's3', path: path);
+  Future<String?> getPublicUrlForFile(final Session session, final String path) async {
+    final uri = await session.storage.getPublicUrl(storageId: 's3', path: path);
     return uri?.toString();
   }
 
-  Future<String?> getDirectFilePostUrl(Session session, String path) async {
+  Future<String?> getDirectFilePostUrl(final Session session, final String path) async {
     return await session.storage.createDirectFileUploadDescription(
       storageId: 's3',
       path: path,
     );
   }
 
-  Future<bool> verifyDirectFileUpload(Session session, String path) async {
+  Future<bool> verifyDirectFileUpload(final Session session, final String path) async {
     return await session.storage.verifyDirectFileUpload(
       storageId: 's3',
       path: path,

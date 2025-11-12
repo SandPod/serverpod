@@ -20,12 +20,12 @@ abstract class UserNoteWithALongName
   }) : _userNoteCollectionWithALongNameNotesUserNoteCollectionWi06adId = null;
 
   factory UserNoteWithALongName({
-    int? id,
-    required String name,
+    final int? id,
+    required final String name,
   }) = _UserNoteWithALongNameImpl;
 
   factory UserNoteWithALongName.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return UserNoteWithALongNameImplicit._(
       id: jsonSerialization['id'] as int?,
@@ -54,8 +54,8 @@ abstract class UserNoteWithALongName
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   UserNoteWithALongName copyWith({
-    int? id,
-    String? name,
+    final int? id,
+    final String? name,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -82,13 +82,13 @@ abstract class UserNoteWithALongName
   }
 
   static UserNoteWithALongNameIncludeList includeList({
-    _i1.WhereExpressionBuilder<UserNoteWithALongNameTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<UserNoteWithALongNameTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UserNoteWithALongNameTable>? orderByList,
-    UserNoteWithALongNameInclude? include,
+    final _i1.WhereExpressionBuilder<UserNoteWithALongNameTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<UserNoteWithALongNameTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<UserNoteWithALongNameTable>? orderByList,
+    final UserNoteWithALongNameInclude? include,
   }) {
     return UserNoteWithALongNameIncludeList._(
       where: where,
@@ -111,8 +111,8 @@ class _Undefined {}
 
 class _UserNoteWithALongNameImpl extends UserNoteWithALongName {
   _UserNoteWithALongNameImpl({
-    int? id,
-    required String name,
+    final int? id,
+    required final String name,
   }) : super._(
          id: id,
          name: name,
@@ -123,23 +123,23 @@ class _UserNoteWithALongNameImpl extends UserNoteWithALongName {
   @_i1.useResult
   @override
   UserNoteWithALongName copyWith({
-    Object? id = _Undefined,
-    String? name,
+    final Object? id = _Undefined,
+    final String? name,
   }) {
     return UserNoteWithALongNameImplicit._(
       id: id is int? ? id : this.id,
       name: name ?? this.name,
       $_userNoteCollectionWithALongNameNotesUserNoteCollectionWi06adId:
-          this._userNoteCollectionWithALongNameNotesUserNoteCollectionWi06adId,
+          _userNoteCollectionWithALongNameNotesUserNoteCollectionWi06adId,
     );
   }
 }
 
 class UserNoteWithALongNameImplicit extends _UserNoteWithALongNameImpl {
   UserNoteWithALongNameImplicit._({
-    int? id,
-    required String name,
-    int? $_userNoteCollectionWithALongNameNotesUserNoteCollectionWi06adId,
+    final int? id,
+    required final String name,
+    final int? $_userNoteCollectionWithALongNameNotesUserNoteCollectionWi06adId,
   }) : _userNoteCollectionWithALongNameNotesUserNoteCollectionWi06adId =
            $_userNoteCollectionWithALongNameNotesUserNoteCollectionWi06adId,
        super(
@@ -148,8 +148,8 @@ class UserNoteWithALongNameImplicit extends _UserNoteWithALongNameImpl {
        );
 
   factory UserNoteWithALongNameImplicit(
-    UserNoteWithALongName userNoteWithALongName, {
-    int? $_userNoteCollectionWithALongNameNotesUserNoteCollectionWi06adId,
+    final UserNoteWithALongName userNoteWithALongName, {
+    final int? $_userNoteCollectionWithALongNameNotesUserNoteCollectionWi06adId,
   }) {
     return UserNoteWithALongNameImplicit._(
       id: userNoteWithALongName.id,
@@ -167,14 +167,14 @@ class UserNoteWithALongNameUpdateTable
     extends _i1.UpdateTable<UserNoteWithALongNameTable> {
   UserNoteWithALongNameUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> name(String value) => _i1.ColumnValue(
+  _i1.ColumnValue<String, String> name(final String value) => _i1.ColumnValue(
     table.name,
     value,
   );
 
   _i1.ColumnValue<int, int>
   $_userNoteCollectionWithALongNameNotesUserNoteCollectionWi06adId(
-    int? value,
+    final int? value,
   ) => _i1.ColumnValue(
     table.$_userNoteCollectionWithALongNameNotesUserNoteCollectionWi06adId,
     value,
@@ -229,7 +229,7 @@ class UserNoteWithALongNameInclude extends _i1.IncludeObject {
 
 class UserNoteWithALongNameIncludeList extends _i1.IncludeList {
   UserNoteWithALongNameIncludeList._({
-    _i1.WhereExpressionBuilder<UserNoteWithALongNameTable>? where,
+    final _i1.WhereExpressionBuilder<UserNoteWithALongNameTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -273,14 +273,14 @@ class UserNoteWithALongNameRepository {
   /// );
   /// ```
   Future<List<UserNoteWithALongName>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<UserNoteWithALongNameTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<UserNoteWithALongNameTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UserNoteWithALongNameTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<UserNoteWithALongNameTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<UserNoteWithALongNameTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<UserNoteWithALongNameTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<UserNoteWithALongName>(
       where: where?.call(UserNoteWithALongName.t),
@@ -311,13 +311,13 @@ class UserNoteWithALongNameRepository {
   /// );
   /// ```
   Future<UserNoteWithALongName?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<UserNoteWithALongNameTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<UserNoteWithALongNameTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UserNoteWithALongNameTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<UserNoteWithALongNameTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<UserNoteWithALongNameTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<UserNoteWithALongNameTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<UserNoteWithALongName>(
       where: where?.call(UserNoteWithALongName.t),
@@ -331,9 +331,9 @@ class UserNoteWithALongNameRepository {
 
   /// Finds a single [UserNoteWithALongName] by its [id] or null if no such row exists.
   Future<UserNoteWithALongName?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<UserNoteWithALongName>(
       id,
@@ -348,9 +348,9 @@ class UserNoteWithALongNameRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<UserNoteWithALongName>> insert(
-    _i1.Session session,
-    List<UserNoteWithALongName> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<UserNoteWithALongName> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<UserNoteWithALongName>(
       rows,
@@ -362,9 +362,9 @@ class UserNoteWithALongNameRepository {
   ///
   /// The returned [UserNoteWithALongName] will have its `id` field set.
   Future<UserNoteWithALongName> insertRow(
-    _i1.Session session,
-    UserNoteWithALongName row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final UserNoteWithALongName row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<UserNoteWithALongName>(
       row,
@@ -378,10 +378,10 @@ class UserNoteWithALongNameRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<UserNoteWithALongName>> update(
-    _i1.Session session,
-    List<UserNoteWithALongName> rows, {
-    _i1.ColumnSelections<UserNoteWithALongNameTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<UserNoteWithALongName> rows, {
+    final _i1.ColumnSelections<UserNoteWithALongNameTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<UserNoteWithALongName>(
       rows,
@@ -394,10 +394,10 @@ class UserNoteWithALongNameRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<UserNoteWithALongName> updateRow(
-    _i1.Session session,
-    UserNoteWithALongName row, {
-    _i1.ColumnSelections<UserNoteWithALongNameTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final UserNoteWithALongName row, {
+    final _i1.ColumnSelections<UserNoteWithALongNameTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<UserNoteWithALongName>(
       row,
@@ -409,11 +409,11 @@ class UserNoteWithALongNameRepository {
   /// Updates a single [UserNoteWithALongName] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<UserNoteWithALongName?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<UserNoteWithALongNameUpdateTable>
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<UserNoteWithALongNameUpdateTable>
     columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<UserNoteWithALongName>(
       id,
@@ -425,16 +425,16 @@ class UserNoteWithALongNameRepository {
   /// Updates all [UserNoteWithALongName]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<UserNoteWithALongName>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<UserNoteWithALongNameUpdateTable>
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<UserNoteWithALongNameUpdateTable>
     columnValues,
-    required _i1.WhereExpressionBuilder<UserNoteWithALongNameTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<UserNoteWithALongNameTable>? orderBy,
-    _i1.OrderByListBuilder<UserNoteWithALongNameTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    required final _i1.WhereExpressionBuilder<UserNoteWithALongNameTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<UserNoteWithALongNameTable>? orderBy,
+    final _i1.OrderByListBuilder<UserNoteWithALongNameTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<UserNoteWithALongName>(
       columnValues: columnValues(UserNoteWithALongName.t.updateTable),
@@ -452,9 +452,9 @@ class UserNoteWithALongNameRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<UserNoteWithALongName>> delete(
-    _i1.Session session,
-    List<UserNoteWithALongName> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<UserNoteWithALongName> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<UserNoteWithALongName>(
       rows,
@@ -464,9 +464,9 @@ class UserNoteWithALongNameRepository {
 
   /// Deletes a single [UserNoteWithALongName].
   Future<UserNoteWithALongName> deleteRow(
-    _i1.Session session,
-    UserNoteWithALongName row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final UserNoteWithALongName row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<UserNoteWithALongName>(
       row,
@@ -476,9 +476,9 @@ class UserNoteWithALongNameRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<UserNoteWithALongName>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<UserNoteWithALongNameTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<UserNoteWithALongNameTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<UserNoteWithALongName>(
       where: where(UserNoteWithALongName.t),
@@ -489,10 +489,10 @@ class UserNoteWithALongNameRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<UserNoteWithALongNameTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<UserNoteWithALongNameTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<UserNoteWithALongName>(
       where: where?.call(UserNoteWithALongName.t),

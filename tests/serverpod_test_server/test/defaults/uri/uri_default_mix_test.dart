@@ -3,12 +3,12 @@ import 'package:test/test.dart';
 
 void main() async {
   group(
-    "Given a class with mixed fields defaults",
+    'Given a class with mixed fields defaults',
     () {
       test(
         'when the field has both "default" and "defaultModel", then the field value should be the "defaultModel" value',
         () {
-          var object = UriDefaultMix();
+          final object = UriDefaultMix();
           expect(
             object.uriDefaultAndDefaultModel,
             equals(Uri.parse('https://serverpod.dev/defaultModel')),
@@ -19,7 +19,7 @@ void main() async {
       test(
         'when the field has both "default" and "defaultPersist", then the field value should be the "default" value',
         () {
-          var object = UriDefaultMix();
+          final object = UriDefaultMix();
           expect(
             object.uriDefaultAndDefaultPersist,
             equals(Uri.parse('https://serverpod.dev/default')),
@@ -30,7 +30,7 @@ void main() async {
       test(
         'when the field has both "defaultModel" and "defaultPersist", then the field value should be the "defaultModel" value',
         () {
-          var object = UriDefaultMix();
+          final object = UriDefaultMix();
           expect(
             object.uriDefaultModelAndDefaultPersist,
             equals(Uri.parse('https://serverpod.dev/defaultModel')),
@@ -41,8 +41,8 @@ void main() async {
       test(
         'when an object of the class is created with a value for "uriDefaultAndDefaultModel", then the field value should match the provided value',
         () {
-          var uri = Uri.parse('https://example.com');
-          var object = UriDefaultMix(
+          final uri = Uri.parse('https://example.com');
+          final object = UriDefaultMix(
             uriDefaultAndDefaultModel: uri,
           );
           expect(
@@ -55,8 +55,8 @@ void main() async {
       test(
         'when an object of the class is created with a value for "uriDefaultAndDefaultPersist", then the field value should match the provided value',
         () {
-          var uri = Uri.parse('https://example.com');
-          var object = UriDefaultMix(
+          final uri = Uri.parse('https://example.com');
+          final object = UriDefaultMix(
             uriDefaultAndDefaultPersist: uri,
           );
           expect(
@@ -69,8 +69,8 @@ void main() async {
       test(
         'when an object of the class is created with a value for "uriDefaultModelAndDefaultPersist", then the field value should match the provided value',
         () {
-          var uri = Uri.parse('https://example.com');
-          var object = UriDefaultMix(
+          final uri = Uri.parse('https://example.com');
+          final object = UriDefaultMix(
             uriDefaultModelAndDefaultPersist: uri,
           );
           expect(

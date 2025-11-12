@@ -17,20 +17,20 @@ void main() async {
     // Configure sending reset emails to capture the verification code
     AuthConfig.set(
       AuthConfig(
-        sendPasswordResetEmail: (sess, userInfo, validationCode) async {
+        sendPasswordResetEmail: (final sess, final userInfo, final validationCode) async {
           latestResetCode.complete(validationCode);
           return true;
         },
         // Some other tests set this to false; keep defaults suitable for test
         extraSaltyHash: false,
-        sendValidationEmail: (sess, email, code) async => true,
+        sendValidationEmail: (final sess, final email, final code) async => true,
         minPasswordLength: minPasswordLength,
         maxPasswordLength: maxPasswordLength,
       ),
     );
   });
 
-  withServerpod('Given an existing user ', (sessionBuilder, _) {
+  withServerpod('Given an existing user ', (final sessionBuilder, _) {
     final session = sessionBuilder.build();
 
     const userName = 'user-change';
@@ -105,7 +105,7 @@ void main() async {
           reason: 'Reset code should be completed',
         );
 
-        var resetCode = await latestResetCode.future;
+        final resetCode = await latestResetCode.future;
         final success = await Emails.resetPassword(
           session,
           resetCode,
@@ -127,7 +127,7 @@ void main() async {
           reason: 'Reset code should be captured',
         );
 
-        var resetCode = await latestResetCode.future;
+        final resetCode = await latestResetCode.future;
         final success = await Emails.resetPassword(
           session,
           resetCode,
@@ -149,7 +149,7 @@ void main() async {
           reason: 'Reset code should be captured',
         );
 
-        var resetCode = await latestResetCode.future;
+        final resetCode = await latestResetCode.future;
         final success = await Emails.resetPassword(
           session,
           resetCode,
@@ -161,10 +161,10 @@ void main() async {
     );
   });
 
-  withServerpod('Given create account request ', (sessionBuilder, _) async {
-    var session = sessionBuilder.build();
-    var userName = 'test';
-    var email = 'test@serverpod.dev';
+  withServerpod('Given create account request ', (final sessionBuilder, _) async {
+    final session = sessionBuilder.build();
+    const userName = 'test';
+    const email = 'test@serverpod.dev';
 
     test(
       'when creating an account with a password that is in range within required password length then password change is accepted',
@@ -176,10 +176,10 @@ void main() async {
           Random().nextString(length: minPasswordLength),
         );
 
-        var createAccountRequest = await EmailCreateAccountRequest.db
+        final createAccountRequest = await EmailCreateAccountRequest.db
             .findFirstRow(
               session,
-              where: (t) => t.userName.equals(userName) & t.email.equals(email),
+              where: (final t) => t.userName.equals(userName) & t.email.equals(email),
             );
 
         expect(response, isTrue);

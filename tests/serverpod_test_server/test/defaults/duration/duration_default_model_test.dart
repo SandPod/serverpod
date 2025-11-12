@@ -8,8 +8,8 @@ void main() async {
       test(
         'when an object of the class is created, then the "durationDefaultModel" field should match the default value',
         () {
-          var object = DurationDefaultModel();
-          var expectedDuration = Duration(
+          final object = DurationDefaultModel();
+          const expectedDuration = Duration(
             days: 1,
             hours: 2,
             minutes: 10,
@@ -23,8 +23,8 @@ void main() async {
       test(
         'when an object of the class is created, then the "durationDefaultModelNull" field should match the default value',
         () {
-          var object = DurationDefaultModel();
-          var expectedDuration = Duration(
+          final object = DurationDefaultModel();
+          const expectedDuration = Duration(
             days: 2,
             hours: 1,
             minutes: 20,
@@ -38,14 +38,14 @@ void main() async {
       test(
         'when an object of the class is created with a specific value for "durationDefaultModel", then the field value should match the provided value',
         () {
-          var duration = Duration(
+          const duration = Duration(
             days: 3,
             hours: 4,
             minutes: 15,
             seconds: 45,
             milliseconds: 500,
           );
-          var object = DurationDefaultModel(durationDefaultModel: duration);
+          final object = DurationDefaultModel(durationDefaultModel: duration);
           expect(object.durationDefaultModel, equals(duration));
         },
       );
@@ -53,14 +53,14 @@ void main() async {
       test(
         'when an object of the class is created with a specific value for "durationDefaultModelNull", then the field value should match the provided value',
         () {
-          var duration = Duration(
+          const duration = Duration(
             days: 3,
             hours: 5,
             minutes: 25,
             seconds: 50,
             milliseconds: 600,
           );
-          var object = DurationDefaultModel(durationDefaultModelNull: duration);
+          final object = DurationDefaultModel(durationDefaultModelNull: duration);
           expect(object.durationDefaultModelNull, equals(duration));
         },
       );

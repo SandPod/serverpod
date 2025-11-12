@@ -5,7 +5,7 @@ class ExternalCustomClass {
 
   String toJson() => value;
 
-  static ExternalCustomClass fromJson(dynamic data) {
+  static ExternalCustomClass fromJson(final dynamic data) {
     return ExternalCustomClass(data);
   }
 }

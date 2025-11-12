@@ -8,7 +8,7 @@ void main() async {
       test(
         'when an object of the class is created, then the "durationDefaultPersist" field should be null',
         () {
-          var object = DurationDefaultPersist();
+          final object = DurationDefaultPersist();
           expect(object.durationDefaultPersist, isNull);
         },
       );
@@ -16,14 +16,14 @@ void main() async {
       test(
         'when an object of the class is created with a specific value for "durationDefaultPersist", then the field value should match the provided value',
         () {
-          var duration = Duration(
+          const duration = Duration(
             days: 3,
             hours: 4,
             minutes: 15,
             seconds: 45,
             milliseconds: 500,
           );
-          var object = DurationDefaultPersist(durationDefaultPersist: duration);
+          final object = DurationDefaultPersist(durationDefaultPersist: duration);
           expect(object.durationDefaultPersist, equals(duration));
         },
       );

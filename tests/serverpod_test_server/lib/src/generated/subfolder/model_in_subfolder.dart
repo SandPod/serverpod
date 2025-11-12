@@ -11,11 +11,12 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-import '../nullability.dart' as _i2;
-import '../test_enum_stringified.dart' as _i3;
 import 'package:serverpod_test_module_server/serverpod_test_module_server.dart'
     as _i4;
 import 'package:serverpod_test_server/src/generated/protocol.dart' as _i5;
+
+import '../nullability.dart' as _i2;
+import '../test_enum_stringified.dart' as _i3;
 
 abstract class ModelInSubfolder
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
@@ -34,20 +35,20 @@ abstract class ModelInSubfolder
   });
 
   factory ModelInSubfolder({
-    _i2.Nullability? classField,
-    _i3.TestEnumStringified? enumField,
-    List<_i3.TestEnumStringified>? enumListField,
-    (_i3.TestEnumStringified,)? enumRecordField,
-    List<(_i3.TestEnumStringified,)>? enumRecordListField,
-    (_i4.ModuleClass,)? moduleClassRecordField,
-    (_i2.Nullability,)? classRecordField,
-    ({_i3.TestEnumStringified value})? enumNamedRecordField,
-    List<({_i3.TestEnumStringified value})>? enumNamedRecordListField,
-    ({_i4.ModuleClass value})? moduleClassNamedRecordField,
-    ({_i2.Nullability value})? classNamedRecordField,
+    final _i2.Nullability? classField,
+    final _i3.TestEnumStringified? enumField,
+    final List<_i3.TestEnumStringified>? enumListField,
+    final (_i3.TestEnumStringified,)? enumRecordField,
+    final List<(_i3.TestEnumStringified,)>? enumRecordListField,
+    final (_i4.ModuleClass,)? moduleClassRecordField,
+    final (_i2.Nullability,)? classRecordField,
+    final ({_i3.TestEnumStringified value})? enumNamedRecordField,
+    final List<({_i3.TestEnumStringified value})>? enumNamedRecordListField,
+    final ({_i4.ModuleClass value})? moduleClassNamedRecordField,
+    final ({_i2.Nullability value})? classNamedRecordField,
   }) = _ModelInSubfolderImpl;
 
-  factory ModelInSubfolder.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory ModelInSubfolder.fromJson(final Map<String, dynamic> jsonSerialization) {
     return ModelInSubfolder(
       classField: jsonSerialization['classField'] == null
           ? null
@@ -60,7 +61,7 @@ abstract class ModelInSubfolder
               (jsonSerialization['enumField'] as String),
             ),
       enumListField: (jsonSerialization['enumListField'] as List?)
-          ?.map((e) => _i3.TestEnumStringified.fromJson((e as String)))
+          ?.map((final e) => _i3.TestEnumStringified.fromJson((e as String)))
           .toList(),
       enumRecordField: jsonSerialization['enumRecordField'] == null
           ? null
@@ -69,7 +70,7 @@ abstract class ModelInSubfolder
             ),
       enumRecordListField: (jsonSerialization['enumRecordListField'] as List?)
           ?.map(
-            (e) => _i5.Protocol().deserialize<(_i3.TestEnumStringified,)>(
+            (final e) => _i5.Protocol().deserialize<(_i3.TestEnumStringified,)>(
               (e as Map<String, dynamic>),
             ),
           )
@@ -95,7 +96,7 @@ abstract class ModelInSubfolder
       enumNamedRecordListField:
           (jsonSerialization['enumNamedRecordListField'] as List?)
               ?.map(
-                (e) => _i5.Protocol()
+                (final e) => _i5.Protocol()
                     .deserialize<({_i3.TestEnumStringified value})>(
                       (e as Map<String, dynamic>),
                     ),
@@ -143,17 +144,17 @@ abstract class ModelInSubfolder
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ModelInSubfolder copyWith({
-    _i2.Nullability? classField,
-    _i3.TestEnumStringified? enumField,
-    List<_i3.TestEnumStringified>? enumListField,
-    (_i3.TestEnumStringified,)? enumRecordField,
-    List<(_i3.TestEnumStringified,)>? enumRecordListField,
-    (_i4.ModuleClass,)? moduleClassRecordField,
-    (_i2.Nullability,)? classRecordField,
-    ({_i3.TestEnumStringified value})? enumNamedRecordField,
-    List<({_i3.TestEnumStringified value})>? enumNamedRecordListField,
-    ({_i4.ModuleClass value})? moduleClassNamedRecordField,
-    ({_i2.Nullability value})? classNamedRecordField,
+    final _i2.Nullability? classField,
+    final _i3.TestEnumStringified? enumField,
+    final List<_i3.TestEnumStringified>? enumListField,
+    final (_i3.TestEnumStringified,)? enumRecordField,
+    final List<(_i3.TestEnumStringified,)>? enumRecordListField,
+    final (_i4.ModuleClass,)? moduleClassRecordField,
+    final (_i2.Nullability,)? classRecordField,
+    final ({_i3.TestEnumStringified value})? enumNamedRecordField,
+    final List<({_i3.TestEnumStringified value})>? enumNamedRecordListField,
+    final ({_i4.ModuleClass value})? moduleClassNamedRecordField,
+    final ({_i2.Nullability value})? classNamedRecordField,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -161,7 +162,7 @@ abstract class ModelInSubfolder
       if (classField != null) 'classField': classField?.toJson(),
       if (enumField != null) 'enumField': enumField?.toJson(),
       if (enumListField != null)
-        'enumListField': enumListField?.toJson(valueToJson: (v) => v.toJson()),
+        'enumListField': enumListField?.toJson(valueToJson: (final v) => v.toJson()),
       if (enumRecordField != null)
         'enumRecordField': _i5.mapRecordToJson(enumRecordField),
       if (enumRecordListField != null)
@@ -191,7 +192,7 @@ abstract class ModelInSubfolder
       if (classField != null) 'classField': classField?.toJsonForProtocol(),
       if (enumField != null) 'enumField': enumField?.toJson(),
       if (enumListField != null)
-        'enumListField': enumListField?.toJson(valueToJson: (v) => v.toJson()),
+        'enumListField': enumListField?.toJson(valueToJson: (final v) => v.toJson()),
       if (enumRecordField != null)
         'enumRecordField': _i5.mapRecordToJson(enumRecordField),
       if (enumRecordListField != null)
@@ -225,17 +226,17 @@ class _Undefined {}
 
 class _ModelInSubfolderImpl extends ModelInSubfolder {
   _ModelInSubfolderImpl({
-    _i2.Nullability? classField,
-    _i3.TestEnumStringified? enumField,
-    List<_i3.TestEnumStringified>? enumListField,
-    (_i3.TestEnumStringified,)? enumRecordField,
-    List<(_i3.TestEnumStringified,)>? enumRecordListField,
-    (_i4.ModuleClass,)? moduleClassRecordField,
-    (_i2.Nullability,)? classRecordField,
-    ({_i3.TestEnumStringified value})? enumNamedRecordField,
-    List<({_i3.TestEnumStringified value})>? enumNamedRecordListField,
-    ({_i4.ModuleClass value})? moduleClassNamedRecordField,
-    ({_i2.Nullability value})? classNamedRecordField,
+    final _i2.Nullability? classField,
+    final _i3.TestEnumStringified? enumField,
+    final List<_i3.TestEnumStringified>? enumListField,
+    final (_i3.TestEnumStringified,)? enumRecordField,
+    final List<(_i3.TestEnumStringified,)>? enumRecordListField,
+    final (_i4.ModuleClass,)? moduleClassRecordField,
+    final (_i2.Nullability,)? classRecordField,
+    final ({_i3.TestEnumStringified value})? enumNamedRecordField,
+    final List<({_i3.TestEnumStringified value})>? enumNamedRecordListField,
+    final ({_i4.ModuleClass value})? moduleClassNamedRecordField,
+    final ({_i2.Nullability value})? classNamedRecordField,
   }) : super._(
          classField: classField,
          enumField: enumField,
@@ -255,17 +256,17 @@ class _ModelInSubfolderImpl extends ModelInSubfolder {
   @_i1.useResult
   @override
   ModelInSubfolder copyWith({
-    Object? classField = _Undefined,
-    Object? enumField = _Undefined,
-    Object? enumListField = _Undefined,
-    Object? enumRecordField = _Undefined,
-    Object? enumRecordListField = _Undefined,
-    Object? moduleClassRecordField = _Undefined,
-    Object? classRecordField = _Undefined,
-    Object? enumNamedRecordField = _Undefined,
-    Object? enumNamedRecordListField = _Undefined,
-    Object? moduleClassNamedRecordField = _Undefined,
-    Object? classNamedRecordField = _Undefined,
+    final Object? classField = _Undefined,
+    final Object? enumField = _Undefined,
+    final Object? enumListField = _Undefined,
+    final Object? enumRecordField = _Undefined,
+    final Object? enumRecordListField = _Undefined,
+    final Object? moduleClassRecordField = _Undefined,
+    final Object? classRecordField = _Undefined,
+    final Object? enumNamedRecordField = _Undefined,
+    final Object? enumNamedRecordListField = _Undefined,
+    final Object? moduleClassNamedRecordField = _Undefined,
+    final Object? classNamedRecordField = _Undefined,
   }) {
     return ModelInSubfolder(
       classField: classField is _i2.Nullability?
@@ -276,7 +277,7 @@ class _ModelInSubfolderImpl extends ModelInSubfolder {
           : this.enumField,
       enumListField: enumListField is List<_i3.TestEnumStringified>?
           ? enumListField
-          : this.enumListField?.map((e0) => e0).toList(),
+          : this.enumListField?.map((final e0) => e0).toList(),
       enumRecordField: enumRecordField is (_i3.TestEnumStringified,)?
           ? enumRecordField
           : this.enumRecordField == null
@@ -285,7 +286,7 @@ class _ModelInSubfolderImpl extends ModelInSubfolder {
       enumRecordListField:
           enumRecordListField is List<(_i3.TestEnumStringified,)>?
           ? enumRecordListField
-          : this.enumRecordListField?.map((e0) => (e0.$1,)).toList(),
+          : this.enumRecordListField?.map((final e0) => (e0.$1,)).toList(),
       moduleClassRecordField: moduleClassRecordField is (_i4.ModuleClass,)?
           ? moduleClassRecordField
           : this.moduleClassRecordField == null
@@ -309,7 +310,7 @@ class _ModelInSubfolderImpl extends ModelInSubfolder {
           ? enumNamedRecordListField
           : this.enumNamedRecordListField
                 ?.map(
-                  (e0) => (
+                  (final e0) => (
                     value: e0.value,
                   ),
                 )

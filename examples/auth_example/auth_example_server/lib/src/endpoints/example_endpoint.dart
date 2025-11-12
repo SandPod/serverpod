@@ -15,7 +15,7 @@ class ExampleEndpoint extends Endpoint {
   // The methods should return a typed future; the same types as for the parameters are
   // supported. The `session` object provides access to the database, logging,
   // passwords, and information about the request being made to the server.
-  Future<String> hello(Session session, String name) async {
+  Future<String> hello(final Session session, final String name) async {
     return 'Hello $name';
   }
 }

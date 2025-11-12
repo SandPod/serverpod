@@ -8,17 +8,17 @@ void main() async {
     test(
       'when setting parameters globally then options are applied globally.',
       () async {
-        var session = await IntegrationTestServer(
-          runtimeParametersBuilder: (params) => [
+        final session = await IntegrationTestServer(
+          runtimeParametersBuilder: (final params) => [
             params.searchPaths(['custom_schema', 'public']),
           ],
         ).session();
 
-        var checkQuery = SearchPathsConfig().buildCheckValues();
-        var result = await session.db.unsafeQuery(checkQuery);
+        final checkQuery = const SearchPathsConfig().buildCheckValues();
+        final result = await session.db.unsafeQuery(checkQuery);
 
         expect(result.length, 1);
-        var row = result.first.toColumnMap();
+        final row = result.first.toColumnMap();
         expect(row['search_path'], 'custom_schema, public');
       },
     );
@@ -26,38 +26,38 @@ void main() async {
     test(
       'when setting parameters in transaction then they do not affect global settings.',
       () async {
-        var checkQuery = SearchPathsConfig().buildCheckValues();
+        final checkQuery = const SearchPathsConfig().buildCheckValues();
 
-        var session = await IntegrationTestServer(
-          runtimeParametersBuilder: (params) => [
+        final session = await IntegrationTestServer(
+          runtimeParametersBuilder: (final params) => [
             params.searchPaths(['custom_schema', 'public']),
           ],
         ).session();
 
-        await session.db.transaction((transaction) async {
+        await session.db.transaction((final transaction) async {
           await transaction.setRuntimeParameters(
-            (params) => [
+            (final params) => [
               params.searchPaths(['transaction_schema', 'temp_schema']),
             ],
           );
 
-          var localResult = await session.db.unsafeQuery(
+          final localResult = await session.db.unsafeQuery(
             checkQuery,
             transaction: transaction,
           );
-          var localRow = localResult.first.toColumnMap();
+          final localRow = localResult.first.toColumnMap();
 
           expect(localRow['search_path'], 'transaction_schema, temp_schema');
         });
 
-        var globalResult = await session.db.unsafeQuery(checkQuery);
-        var globalRow = globalResult.first.toColumnMap();
+        final globalResult = await session.db.unsafeQuery(checkQuery);
+        final globalRow = globalResult.first.toColumnMap();
         expect(globalRow['search_path'], 'custom_schema, public');
       },
     );
 
     group('when the server has search_paths configured in the config', () {
-      var config = ServerpodConfig(
+      final config = ServerpodConfig(
         apiServer: ServerConfig(
           port: 8080,
           publicHost: 'localhost',
@@ -84,15 +84,15 @@ void main() async {
       test(
         'when no runtime parameters override config search paths then config search paths are used.',
         () async {
-          var session = await IntegrationTestServer(
+          final session = await IntegrationTestServer(
             config: config,
           ).session();
 
-          var checkQuery = SearchPathsConfig().buildCheckValues();
-          var result = await session.db.unsafeQuery(checkQuery);
+          final checkQuery = const SearchPathsConfig().buildCheckValues();
+          final result = await session.db.unsafeQuery(checkQuery);
 
           expect(result.length, 1);
-          var row = result.first.toColumnMap();
+          final row = result.first.toColumnMap();
           expect(row['search_path'], 'first_path, second_path');
         },
       );
@@ -100,18 +100,18 @@ void main() async {
       test(
         'when runtime parameters override config search paths then runtime parameters take precedence.',
         () async {
-          var session = await IntegrationTestServer(
+          final session = await IntegrationTestServer(
             config: config,
-            runtimeParametersBuilder: (params) => [
+            runtimeParametersBuilder: (final params) => [
               params.searchPaths(['runtime_schema', 'runtime_public']),
             ],
           ).session();
 
-          var checkQuery = SearchPathsConfig().buildCheckValues();
-          var result = await session.db.unsafeQuery(checkQuery);
+          final checkQuery = const SearchPathsConfig().buildCheckValues();
+          final result = await session.db.unsafeQuery(checkQuery);
 
           expect(result.length, 1);
-          var row = result.first.toColumnMap();
+          final row = result.first.toColumnMap();
           expect(row['search_path'], 'runtime_schema, runtime_public');
         },
       );
@@ -119,18 +119,18 @@ void main() async {
       test(
         'when setting search paths to null via runtime parameters then search paths are cleared.',
         () async {
-          var session = await IntegrationTestServer(
+          final session = await IntegrationTestServer(
             config: config,
-            runtimeParametersBuilder: (params) => [
+            runtimeParametersBuilder: (final params) => [
               params.searchPaths(),
             ],
           ).session();
 
-          var checkQuery = SearchPathsConfig().buildCheckValues();
-          var result = await session.db.unsafeQuery(checkQuery);
+          final checkQuery = const SearchPathsConfig().buildCheckValues();
+          final result = await session.db.unsafeQuery(checkQuery);
 
           expect(result.length, 1);
-          var row = result.first.toColumnMap();
+          final row = result.first.toColumnMap();
           expect(row['search_path'], '"\$user", public');
         },
       );

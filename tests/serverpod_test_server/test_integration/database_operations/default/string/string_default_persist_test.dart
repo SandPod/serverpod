@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with "defaultPersist" fields,', () {
     tearDownAll(
@@ -17,8 +17,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "defaultPersist=\'This is a default persist value\'" field should match the default value',
       () async {
-        var object = StringDefaultPersist();
-        var databaseObject = await StringDefaultPersist.db.insertRow(
+        final object = StringDefaultPersist();
+        final databaseObject = await StringDefaultPersist.db.insertRow(
           session,
           object,
         );
@@ -38,7 +38,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await StringDefaultPersist.db.findFirstRow(
+        final databaseObject = await StringDefaultPersist.db.findFirstRow(
           session,
         );
         expect(
@@ -51,10 +51,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "stringDefaultPersist" field value should match the provided value',
       () async {
-        var specificObject = StringDefaultPersist(
+        final specificObject = StringDefaultPersist(
           stringDefaultPersist: 'A specific persist value',
         );
-        var specificDatabaseObject = await StringDefaultPersist.db.insertRow(
+        final specificDatabaseObject = await StringDefaultPersist.db.insertRow(
           session,
           specificObject,
         );
@@ -70,15 +70,15 @@ void main() async {
     test(
       'when creating a record in the database, then the "stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote" field should match the default value',
       () async {
-        var object = StringDefaultPersist();
-        var databaseObject = await StringDefaultPersist.db.insertRow(
+        final object = StringDefaultPersist();
+        final databaseObject = await StringDefaultPersist.db.insertRow(
           session,
           object,
         );
         expect(
           databaseObject
               .stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote,
-          equals('This is a \'default persist value'),
+          equals("This is a 'default persist value"),
         );
       },
     );
@@ -92,13 +92,13 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await StringDefaultPersist.db.findFirstRow(
+        final databaseObject = await StringDefaultPersist.db.findFirstRow(
           session,
         );
         expect(
           databaseObject
               ?.stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote,
-          equals('This is a \'default persist value'),
+          equals("This is a 'default persist value"),
         );
       },
     );
@@ -106,18 +106,18 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote" field value should match the provided value',
       () async {
-        var specificObject = StringDefaultPersist(
+        final specificObject = StringDefaultPersist(
           stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote:
-              'A \'specific\' value',
+              "A 'specific' value",
         );
-        var specificDatabaseObject = await StringDefaultPersist.db.insertRow(
+        final specificDatabaseObject = await StringDefaultPersist.db.insertRow(
           session,
           specificObject,
         );
         expect(
           specificDatabaseObject
               .stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote,
-          equals('A \'specific\' value'),
+          equals("A 'specific' value"),
         );
       },
     );
@@ -125,15 +125,15 @@ void main() async {
     test(
       'when creating a record in the database, then the "stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote" field should match the default value',
       () async {
-        var object = StringDefaultPersist();
-        var databaseObject = await StringDefaultPersist.db.insertRow(
+        final object = StringDefaultPersist();
+        final databaseObject = await StringDefaultPersist.db.insertRow(
           session,
           object,
         );
         expect(
           databaseObject
               .stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote,
-          equals('This is a \'default\' persist value'),
+          equals("This is a 'default' persist value"),
         );
       },
     );
@@ -147,13 +147,13 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await StringDefaultPersist.db.findFirstRow(
+        final databaseObject = await StringDefaultPersist.db.findFirstRow(
           session,
         );
         expect(
           databaseObject
               ?.stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote,
-          equals('This is a \'default\' persist value'),
+          equals("This is a 'default' persist value"),
         );
       },
     );
@@ -161,18 +161,18 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote" field value should match the provided value',
       () async {
-        var specificObject = StringDefaultPersist(
+        final specificObject = StringDefaultPersist(
           stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote:
-              'A \'specific\' value',
+              "A 'specific' value",
         );
-        var specificDatabaseObject = await StringDefaultPersist.db.insertRow(
+        final specificDatabaseObject = await StringDefaultPersist.db.insertRow(
           session,
           specificObject,
         );
         expect(
           specificDatabaseObject
               .stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote,
-          equals('A \'specific\' value'),
+          equals("A 'specific' value"),
         );
       },
     );
@@ -180,8 +180,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote" field should match the default value',
       () async {
-        var object = StringDefaultPersist();
-        var databaseObject = await StringDefaultPersist.db.insertRow(
+        final object = StringDefaultPersist();
+        final databaseObject = await StringDefaultPersist.db.insertRow(
           session,
           object,
         );
@@ -202,7 +202,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await StringDefaultPersist.db.findFirstRow(
+        final databaseObject = await StringDefaultPersist.db.findFirstRow(
           session,
         );
         expect(
@@ -213,7 +213,7 @@ void main() async {
         expect(
           databaseObject
               ?.stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote,
-          equals("This is a \"default persist value"),
+          equals('This is a "default persist value'),
         );
       },
     );
@@ -221,11 +221,11 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote" field value should match the provided value',
       () async {
-        var specificObject = StringDefaultPersist(
+        final specificObject = StringDefaultPersist(
           stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote:
               'A "specific" value',
         );
-        var specificDatabaseObject = await StringDefaultPersist.db.insertRow(
+        final specificDatabaseObject = await StringDefaultPersist.db.insertRow(
           session,
           specificObject,
         );
@@ -240,8 +240,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote" field should match the default value',
       () async {
-        var object = StringDefaultPersist();
-        var databaseObject = await StringDefaultPersist.db.insertRow(
+        final object = StringDefaultPersist();
+        final databaseObject = await StringDefaultPersist.db.insertRow(
           session,
           object,
         );
@@ -262,7 +262,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await StringDefaultPersist.db.findFirstRow(
+        final databaseObject = await StringDefaultPersist.db.findFirstRow(
           session,
         );
         expect(
@@ -276,11 +276,11 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote" field value should match the provided value',
       () async {
-        var specificObject = StringDefaultPersist(
+        final specificObject = StringDefaultPersist(
           stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote:
               'A "specific" value',
         );
-        var specificDatabaseObject = await StringDefaultPersist.db.insertRow(
+        final specificDatabaseObject = await StringDefaultPersist.db.insertRow(
           session,
           specificObject,
         );
@@ -295,8 +295,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "stringDefaultPersistSingleQuoteWithOneDoubleQuote" field should match the default value',
       () async {
-        var object = StringDefaultPersist();
-        var databaseObject = await StringDefaultPersist.db.insertRow(
+        final object = StringDefaultPersist();
+        final databaseObject = await StringDefaultPersist.db.insertRow(
           session,
           object,
         );
@@ -316,7 +316,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await StringDefaultPersist.db.findFirstRow(
+        final databaseObject = await StringDefaultPersist.db.findFirstRow(
           session,
         );
         expect(
@@ -329,11 +329,11 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "stringDefaultPersistSingleQuoteWithOneDoubleQuote" field value should match the provided value',
       () async {
-        var specificObject = StringDefaultPersist(
+        final specificObject = StringDefaultPersist(
           stringDefaultPersistSingleQuoteWithOneDoubleQuote:
               'A "specific" value',
         );
-        var specificDatabaseObject = await StringDefaultPersist.db.insertRow(
+        final specificDatabaseObject = await StringDefaultPersist.db.insertRow(
           session,
           specificObject,
         );
@@ -348,8 +348,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "stringDefaultPersistSingleQuoteWithTwoDoubleQuote" field should match the default value',
       () async {
-        var object = StringDefaultPersist();
-        var databaseObject = await StringDefaultPersist.db.insertRow(
+        final object = StringDefaultPersist();
+        final databaseObject = await StringDefaultPersist.db.insertRow(
           session,
           object,
         );
@@ -369,7 +369,7 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await StringDefaultPersist.db.findFirstRow(
+        final databaseObject = await StringDefaultPersist.db.findFirstRow(
           session,
         );
         expect(
@@ -382,11 +382,11 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "stringDefaultPersistSingleQuoteWithTwoDoubleQuote" field value should match the provided value',
       () async {
-        var specificObject = StringDefaultPersist(
+        final specificObject = StringDefaultPersist(
           stringDefaultPersistSingleQuoteWithTwoDoubleQuote:
               'A "specific" value',
         );
-        var specificDatabaseObject = await StringDefaultPersist.db.insertRow(
+        final specificDatabaseObject = await StringDefaultPersist.db.insertRow(
           session,
           specificObject,
         );
@@ -401,14 +401,14 @@ void main() async {
     test(
       'when creating a record in the database, then the "stringDefaultPersistDoubleQuoteWithOneSingleQuote" field should match the default value',
       () async {
-        var object = StringDefaultPersist();
-        var databaseObject = await StringDefaultPersist.db.insertRow(
+        final object = StringDefaultPersist();
+        final databaseObject = await StringDefaultPersist.db.insertRow(
           session,
           object,
         );
         expect(
           databaseObject.stringDefaultPersistDoubleQuoteWithOneSingleQuote,
-          equals('This is a \'default persist value'),
+          equals("This is a 'default persist value"),
         );
       },
     );
@@ -422,12 +422,12 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await StringDefaultPersist.db.findFirstRow(
+        final databaseObject = await StringDefaultPersist.db.findFirstRow(
           session,
         );
         expect(
           databaseObject?.stringDefaultPersistDoubleQuoteWithOneSingleQuote,
-          equals('This is a \'default persist value'),
+          equals("This is a 'default persist value"),
         );
       },
     );
@@ -435,18 +435,18 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "stringDefaultPersistDoubleQuoteWithOneSingleQuote" field value should match the provided value',
       () async {
-        var specificObject = StringDefaultPersist(
+        final specificObject = StringDefaultPersist(
           stringDefaultPersistDoubleQuoteWithOneSingleQuote:
-              'A \'specific\' value',
+              "A 'specific' value",
         );
-        var specificDatabaseObject = await StringDefaultPersist.db.insertRow(
+        final specificDatabaseObject = await StringDefaultPersist.db.insertRow(
           session,
           specificObject,
         );
         expect(
           specificDatabaseObject
               .stringDefaultPersistDoubleQuoteWithOneSingleQuote,
-          equals('A \'specific\' value'),
+          equals("A 'specific' value"),
         );
       },
     );
@@ -454,14 +454,14 @@ void main() async {
     test(
       'when creating a record in the database, then the "stringDefaultPersistDoubleQuoteWithTwoSingleQuote" field should match the default value',
       () async {
-        var object = StringDefaultPersist();
-        var databaseObject = await StringDefaultPersist.db.insertRow(
+        final object = StringDefaultPersist();
+        final databaseObject = await StringDefaultPersist.db.insertRow(
           session,
           object,
         );
         expect(
           databaseObject.stringDefaultPersistDoubleQuoteWithTwoSingleQuote,
-          equals('This is a \'default\' persist value'),
+          equals("This is a 'default' persist value"),
         );
       },
     );
@@ -475,12 +475,12 @@ void main() async {
         VALUES (DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
         ''',
         );
-        var databaseObject = await StringDefaultPersist.db.findFirstRow(
+        final databaseObject = await StringDefaultPersist.db.findFirstRow(
           session,
         );
         expect(
           databaseObject?.stringDefaultPersistDoubleQuoteWithTwoSingleQuote,
-          equals('This is a \'default\' persist value'),
+          equals("This is a 'default' persist value"),
         );
       },
     );
@@ -488,18 +488,18 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "stringDefaultPersistDoubleQuoteWithTwoSingleQuote" field value should match the provided value',
       () async {
-        var specificObject = StringDefaultPersist(
+        final specificObject = StringDefaultPersist(
           stringDefaultPersistDoubleQuoteWithTwoSingleQuote:
-              'A \'specific\' value',
+              "A 'specific' value",
         );
-        var specificDatabaseObject = await StringDefaultPersist.db.insertRow(
+        final specificDatabaseObject = await StringDefaultPersist.db.insertRow(
           session,
           specificObject,
         );
         expect(
           specificDatabaseObject
               .stringDefaultPersistDoubleQuoteWithTwoSingleQuote,
-          equals('A \'specific\' value'),
+          equals("A 'specific' value"),
         );
       },
     );

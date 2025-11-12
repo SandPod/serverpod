@@ -16,8 +16,8 @@ abstract class BigIntDefaultModel
     implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   BigIntDefaultModel._({
     this.id,
-    BigInt? bigIntDefaultModelStr,
-    BigInt? bigIntDefaultModelStrNull,
+    final BigInt? bigIntDefaultModelStr,
+    final BigInt? bigIntDefaultModelStrNull,
   }) : bigIntDefaultModelStr =
            bigIntDefaultModelStr ??
            BigInt.parse('1234567890123456789099999999'),
@@ -26,12 +26,12 @@ abstract class BigIntDefaultModel
            BigInt.parse('-1234567890123456789099999999');
 
   factory BigIntDefaultModel({
-    int? id,
-    BigInt? bigIntDefaultModelStr,
-    BigInt? bigIntDefaultModelStrNull,
+    final int? id,
+    final BigInt? bigIntDefaultModelStr,
+    final BigInt? bigIntDefaultModelStrNull,
   }) = _BigIntDefaultModelImpl;
 
-  factory BigIntDefaultModel.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory BigIntDefaultModel.fromJson(final Map<String, dynamic> jsonSerialization) {
     return BigIntDefaultModel(
       id: jsonSerialization['id'] as int?,
       bigIntDefaultModelStr: _i1.BigIntJsonExtension.fromJson(
@@ -64,9 +64,9 @@ abstract class BigIntDefaultModel
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   BigIntDefaultModel copyWith({
-    int? id,
-    BigInt? bigIntDefaultModelStr,
-    BigInt? bigIntDefaultModelStrNull,
+    final int? id,
+    final BigInt? bigIntDefaultModelStr,
+    final BigInt? bigIntDefaultModelStrNull,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -93,13 +93,13 @@ abstract class BigIntDefaultModel
   }
 
   static BigIntDefaultModelIncludeList includeList({
-    _i1.WhereExpressionBuilder<BigIntDefaultModelTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<BigIntDefaultModelTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<BigIntDefaultModelTable>? orderByList,
-    BigIntDefaultModelInclude? include,
+    final _i1.WhereExpressionBuilder<BigIntDefaultModelTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<BigIntDefaultModelTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<BigIntDefaultModelTable>? orderByList,
+    final BigIntDefaultModelInclude? include,
   }) {
     return BigIntDefaultModelIncludeList._(
       where: where,
@@ -122,9 +122,9 @@ class _Undefined {}
 
 class _BigIntDefaultModelImpl extends BigIntDefaultModel {
   _BigIntDefaultModelImpl({
-    int? id,
-    BigInt? bigIntDefaultModelStr,
-    BigInt? bigIntDefaultModelStrNull,
+    final int? id,
+    final BigInt? bigIntDefaultModelStr,
+    final BigInt? bigIntDefaultModelStrNull,
   }) : super._(
          id: id,
          bigIntDefaultModelStr: bigIntDefaultModelStr,
@@ -136,9 +136,9 @@ class _BigIntDefaultModelImpl extends BigIntDefaultModel {
   @_i1.useResult
   @override
   BigIntDefaultModel copyWith({
-    Object? id = _Undefined,
-    BigInt? bigIntDefaultModelStr,
-    Object? bigIntDefaultModelStrNull = _Undefined,
+    final Object? id = _Undefined,
+    final BigInt? bigIntDefaultModelStr,
+    final Object? bigIntDefaultModelStrNull = _Undefined,
   }) {
     return BigIntDefaultModel(
       id: id is int? ? id : this.id,
@@ -155,13 +155,13 @@ class BigIntDefaultModelUpdateTable
     extends _i1.UpdateTable<BigIntDefaultModelTable> {
   BigIntDefaultModelUpdateTable(super.table);
 
-  _i1.ColumnValue<BigInt, BigInt> bigIntDefaultModelStr(BigInt value) =>
+  _i1.ColumnValue<BigInt, BigInt> bigIntDefaultModelStr(final BigInt value) =>
       _i1.ColumnValue(
         table.bigIntDefaultModelStr,
         value,
       );
 
-  _i1.ColumnValue<BigInt, BigInt> bigIntDefaultModelStrNull(BigInt? value) =>
+  _i1.ColumnValue<BigInt, BigInt> bigIntDefaultModelStrNull(final BigInt? value) =>
       _i1.ColumnValue(
         table.bigIntDefaultModelStrNull,
         value,
@@ -208,7 +208,7 @@ class BigIntDefaultModelInclude extends _i1.IncludeObject {
 
 class BigIntDefaultModelIncludeList extends _i1.IncludeList {
   BigIntDefaultModelIncludeList._({
-    _i1.WhereExpressionBuilder<BigIntDefaultModelTable>? where,
+    final _i1.WhereExpressionBuilder<BigIntDefaultModelTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -252,14 +252,14 @@ class BigIntDefaultModelRepository {
   /// );
   /// ```
   Future<List<BigIntDefaultModel>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<BigIntDefaultModelTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<BigIntDefaultModelTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<BigIntDefaultModelTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<BigIntDefaultModelTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<BigIntDefaultModelTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<BigIntDefaultModelTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<BigIntDefaultModel>(
       where: where?.call(BigIntDefaultModel.t),
@@ -290,13 +290,13 @@ class BigIntDefaultModelRepository {
   /// );
   /// ```
   Future<BigIntDefaultModel?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<BigIntDefaultModelTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<BigIntDefaultModelTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<BigIntDefaultModelTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<BigIntDefaultModelTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<BigIntDefaultModelTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<BigIntDefaultModelTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<BigIntDefaultModel>(
       where: where?.call(BigIntDefaultModel.t),
@@ -310,9 +310,9 @@ class BigIntDefaultModelRepository {
 
   /// Finds a single [BigIntDefaultModel] by its [id] or null if no such row exists.
   Future<BigIntDefaultModel?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<BigIntDefaultModel>(
       id,
@@ -327,9 +327,9 @@ class BigIntDefaultModelRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<BigIntDefaultModel>> insert(
-    _i1.Session session,
-    List<BigIntDefaultModel> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<BigIntDefaultModel> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<BigIntDefaultModel>(
       rows,
@@ -341,9 +341,9 @@ class BigIntDefaultModelRepository {
   ///
   /// The returned [BigIntDefaultModel] will have its `id` field set.
   Future<BigIntDefaultModel> insertRow(
-    _i1.Session session,
-    BigIntDefaultModel row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final BigIntDefaultModel row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<BigIntDefaultModel>(
       row,
@@ -357,10 +357,10 @@ class BigIntDefaultModelRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<BigIntDefaultModel>> update(
-    _i1.Session session,
-    List<BigIntDefaultModel> rows, {
-    _i1.ColumnSelections<BigIntDefaultModelTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<BigIntDefaultModel> rows, {
+    final _i1.ColumnSelections<BigIntDefaultModelTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<BigIntDefaultModel>(
       rows,
@@ -373,10 +373,10 @@ class BigIntDefaultModelRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<BigIntDefaultModel> updateRow(
-    _i1.Session session,
-    BigIntDefaultModel row, {
-    _i1.ColumnSelections<BigIntDefaultModelTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final BigIntDefaultModel row, {
+    final _i1.ColumnSelections<BigIntDefaultModelTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<BigIntDefaultModel>(
       row,
@@ -388,11 +388,11 @@ class BigIntDefaultModelRepository {
   /// Updates a single [BigIntDefaultModel] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<BigIntDefaultModel?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<BigIntDefaultModelUpdateTable>
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<BigIntDefaultModelUpdateTable>
     columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<BigIntDefaultModel>(
       id,
@@ -404,16 +404,16 @@ class BigIntDefaultModelRepository {
   /// Updates all [BigIntDefaultModel]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<BigIntDefaultModel>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<BigIntDefaultModelUpdateTable>
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<BigIntDefaultModelUpdateTable>
     columnValues,
-    required _i1.WhereExpressionBuilder<BigIntDefaultModelTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<BigIntDefaultModelTable>? orderBy,
-    _i1.OrderByListBuilder<BigIntDefaultModelTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    required final _i1.WhereExpressionBuilder<BigIntDefaultModelTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<BigIntDefaultModelTable>? orderBy,
+    final _i1.OrderByListBuilder<BigIntDefaultModelTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<BigIntDefaultModel>(
       columnValues: columnValues(BigIntDefaultModel.t.updateTable),
@@ -431,9 +431,9 @@ class BigIntDefaultModelRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<BigIntDefaultModel>> delete(
-    _i1.Session session,
-    List<BigIntDefaultModel> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<BigIntDefaultModel> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<BigIntDefaultModel>(
       rows,
@@ -443,9 +443,9 @@ class BigIntDefaultModelRepository {
 
   /// Deletes a single [BigIntDefaultModel].
   Future<BigIntDefaultModel> deleteRow(
-    _i1.Session session,
-    BigIntDefaultModel row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final BigIntDefaultModel row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<BigIntDefaultModel>(
       row,
@@ -455,9 +455,9 @@ class BigIntDefaultModelRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<BigIntDefaultModel>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<BigIntDefaultModelTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<BigIntDefaultModelTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<BigIntDefaultModel>(
       where: where(BigIntDefaultModel.t),
@@ -468,10 +468,10 @@ class BigIntDefaultModelRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<BigIntDefaultModelTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<BigIntDefaultModelTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<BigIntDefaultModel>(
       where: where?.call(BigIntDefaultModel.t),

@@ -6,7 +6,7 @@ import 'package:serverpod_test_server/test_util/test_service_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var serviceClient = Client(
+  final serviceClient = Client(
     serviceServerUrl,
     authenticationKeyManager: TestServiceKeyManager(
       '0',
@@ -16,7 +16,7 @@ void main() {
 
   group('Given an existing table with a nullable column,', () {
     setUpAll(() async {
-      var createTableProtocol = {
+      final createTableProtocol = {
         'existing_table': '''
         class: ExistingTable
         table: existing_table
@@ -45,7 +45,7 @@ void main() {
       'when attempting to modify it to be non-nullable with a default value without force,',
       () {
         test('then the migration should fail and throw an error.', () async {
-          var targetStateProtocols = {
+          final targetStateProtocols = {
             'existing_table': '''
         class: ExistingTable
         table: existing_table
@@ -55,7 +55,7 @@ void main() {
         ''',
           };
 
-          var createMigrationExitCode =
+          final createMigrationExitCode =
               await MigrationTestUtils.createMigrationFromProtocols(
                 protocols: targetStateProtocols,
                 tag: 'modify-existing-column',
@@ -74,7 +74,7 @@ void main() {
 
   group('Given an existing table with a column having a default value,', () {
     setUpAll(() async {
-      var createTableProtocol = {
+      final createTableProtocol = {
         'existing_table': '''
       class: ExistingTable
       table: existing_table
@@ -101,7 +101,7 @@ void main() {
 
     group('when attempting to remove the column without force,', () {
       test('then the migration should fail and throw an error.', () async {
-        var targetStateProtocols = {
+        final targetStateProtocols = {
           'existing_table': '''
       class: ExistingTable
       table: existing_table
@@ -110,7 +110,7 @@ void main() {
       ''',
         };
 
-        var createMigrationExitCode =
+        final createMigrationExitCode =
             await MigrationTestUtils.createMigrationFromProtocols(
               protocols: targetStateProtocols,
               tag: 'remove-column',

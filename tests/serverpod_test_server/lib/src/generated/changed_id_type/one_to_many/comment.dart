@@ -25,13 +25,13 @@ abstract class CommentInt
   });
 
   factory CommentInt({
-    int? id,
-    required String description,
-    required _i1.UuidValue orderId,
-    _i2.OrderUuid? order,
+    final int? id,
+    required final String description,
+    required final _i1.UuidValue orderId,
+    final _i2.OrderUuid? order,
   }) = _CommentIntImpl;
 
-  factory CommentInt.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory CommentInt.fromJson(final Map<String, dynamic> jsonSerialization) {
     return CommentInt(
       id: jsonSerialization['id'] as int?,
       description: jsonSerialization['description'] as String,
@@ -66,10 +66,10 @@ abstract class CommentInt
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   CommentInt copyWith({
-    int? id,
-    String? description,
-    _i1.UuidValue? orderId,
-    _i2.OrderUuid? order,
+    final int? id,
+    final String? description,
+    final _i1.UuidValue? orderId,
+    final _i2.OrderUuid? order,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -91,18 +91,18 @@ abstract class CommentInt
     };
   }
 
-  static CommentIntInclude include({_i2.OrderUuidInclude? order}) {
+  static CommentIntInclude include({final _i2.OrderUuidInclude? order}) {
     return CommentIntInclude._(order: order);
   }
 
   static CommentIntIncludeList includeList({
-    _i1.WhereExpressionBuilder<CommentIntTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<CommentIntTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<CommentIntTable>? orderByList,
-    CommentIntInclude? include,
+    final _i1.WhereExpressionBuilder<CommentIntTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<CommentIntTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<CommentIntTable>? orderByList,
+    final CommentIntInclude? include,
   }) {
     return CommentIntIncludeList._(
       where: where,
@@ -125,10 +125,10 @@ class _Undefined {}
 
 class _CommentIntImpl extends CommentInt {
   _CommentIntImpl({
-    int? id,
-    required String description,
-    required _i1.UuidValue orderId,
-    _i2.OrderUuid? order,
+    final int? id,
+    required final String description,
+    required final _i1.UuidValue orderId,
+    final _i2.OrderUuid? order,
   }) : super._(
          id: id,
          description: description,
@@ -141,10 +141,10 @@ class _CommentIntImpl extends CommentInt {
   @_i1.useResult
   @override
   CommentInt copyWith({
-    Object? id = _Undefined,
-    String? description,
-    _i1.UuidValue? orderId,
-    Object? order = _Undefined,
+    final Object? id = _Undefined,
+    final String? description,
+    final _i1.UuidValue? orderId,
+    final Object? order = _Undefined,
   }) {
     return CommentInt(
       id: id is int? ? id : this.id,
@@ -158,12 +158,12 @@ class _CommentIntImpl extends CommentInt {
 class CommentIntUpdateTable extends _i1.UpdateTable<CommentIntTable> {
   CommentIntUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> description(String value) => _i1.ColumnValue(
+  _i1.ColumnValue<String, String> description(final String value) => _i1.ColumnValue(
     table.description,
     value,
   );
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> orderId(_i1.UuidValue value) =>
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> orderId(final _i1.UuidValue value) =>
       _i1.ColumnValue(
         table.orderId,
         value,
@@ -198,7 +198,7 @@ class CommentIntTable extends _i1.Table<int?> {
       field: CommentInt.t.orderId,
       foreignField: _i2.OrderUuid.t.id,
       tableRelation: tableRelation,
-      createTable: (foreignTableRelation) =>
+      createTable: (final foreignTableRelation) =>
           _i2.OrderUuidTable(tableRelation: foreignTableRelation),
     );
     return _order!;
@@ -212,7 +212,7 @@ class CommentIntTable extends _i1.Table<int?> {
   ];
 
   @override
-  _i1.Table? getRelationTable(String relationField) {
+  _i1.Table? getRelationTable(final String relationField) {
     if (relationField == 'order') {
       return order;
     }
@@ -221,7 +221,7 @@ class CommentIntTable extends _i1.Table<int?> {
 }
 
 class CommentIntInclude extends _i1.IncludeObject {
-  CommentIntInclude._({_i2.OrderUuidInclude? order}) {
+  CommentIntInclude._({final _i2.OrderUuidInclude? order}) {
     _order = order;
   }
 
@@ -236,7 +236,7 @@ class CommentIntInclude extends _i1.IncludeObject {
 
 class CommentIntIncludeList extends _i1.IncludeList {
   CommentIntIncludeList._({
-    _i1.WhereExpressionBuilder<CommentIntTable>? where,
+    final _i1.WhereExpressionBuilder<CommentIntTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -282,15 +282,15 @@ class CommentIntRepository {
   /// );
   /// ```
   Future<List<CommentInt>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<CommentIntTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<CommentIntTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<CommentIntTable>? orderByList,
-    _i1.Transaction? transaction,
-    CommentIntInclude? include,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<CommentIntTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<CommentIntTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<CommentIntTable>? orderByList,
+    final _i1.Transaction? transaction,
+    final CommentIntInclude? include,
   }) async {
     return session.db.find<CommentInt>(
       where: where?.call(CommentInt.t),
@@ -322,14 +322,14 @@ class CommentIntRepository {
   /// );
   /// ```
   Future<CommentInt?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<CommentIntTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<CommentIntTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<CommentIntTable>? orderByList,
-    _i1.Transaction? transaction,
-    CommentIntInclude? include,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<CommentIntTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<CommentIntTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<CommentIntTable>? orderByList,
+    final _i1.Transaction? transaction,
+    final CommentIntInclude? include,
   }) async {
     return session.db.findFirstRow<CommentInt>(
       where: where?.call(CommentInt.t),
@@ -344,10 +344,10 @@ class CommentIntRepository {
 
   /// Finds a single [CommentInt] by its [id] or null if no such row exists.
   Future<CommentInt?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
-    CommentIntInclude? include,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
+    final CommentIntInclude? include,
   }) async {
     return session.db.findById<CommentInt>(
       id,
@@ -363,9 +363,9 @@ class CommentIntRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<CommentInt>> insert(
-    _i1.Session session,
-    List<CommentInt> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<CommentInt> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<CommentInt>(
       rows,
@@ -377,9 +377,9 @@ class CommentIntRepository {
   ///
   /// The returned [CommentInt] will have its `id` field set.
   Future<CommentInt> insertRow(
-    _i1.Session session,
-    CommentInt row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final CommentInt row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<CommentInt>(
       row,
@@ -393,10 +393,10 @@ class CommentIntRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<CommentInt>> update(
-    _i1.Session session,
-    List<CommentInt> rows, {
-    _i1.ColumnSelections<CommentIntTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<CommentInt> rows, {
+    final _i1.ColumnSelections<CommentIntTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<CommentInt>(
       rows,
@@ -409,10 +409,10 @@ class CommentIntRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<CommentInt> updateRow(
-    _i1.Session session,
-    CommentInt row, {
-    _i1.ColumnSelections<CommentIntTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final CommentInt row, {
+    final _i1.ColumnSelections<CommentIntTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<CommentInt>(
       row,
@@ -424,10 +424,10 @@ class CommentIntRepository {
   /// Updates a single [CommentInt] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<CommentInt?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<CommentIntUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<CommentIntUpdateTable> columnValues,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<CommentInt>(
       id,
@@ -439,15 +439,15 @@ class CommentIntRepository {
   /// Updates all [CommentInt]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<CommentInt>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<CommentIntUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<CommentIntTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<CommentIntTable>? orderBy,
-    _i1.OrderByListBuilder<CommentIntTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<CommentIntUpdateTable> columnValues,
+    required final _i1.WhereExpressionBuilder<CommentIntTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<CommentIntTable>? orderBy,
+    final _i1.OrderByListBuilder<CommentIntTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<CommentInt>(
       columnValues: columnValues(CommentInt.t.updateTable),
@@ -465,9 +465,9 @@ class CommentIntRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<CommentInt>> delete(
-    _i1.Session session,
-    List<CommentInt> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<CommentInt> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<CommentInt>(
       rows,
@@ -477,9 +477,9 @@ class CommentIntRepository {
 
   /// Deletes a single [CommentInt].
   Future<CommentInt> deleteRow(
-    _i1.Session session,
-    CommentInt row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final CommentInt row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<CommentInt>(
       row,
@@ -489,9 +489,9 @@ class CommentIntRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<CommentInt>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<CommentIntTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<CommentIntTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<CommentInt>(
       where: where(CommentInt.t),
@@ -502,10 +502,10 @@ class CommentIntRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<CommentIntTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<CommentIntTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<CommentInt>(
       where: where?.call(CommentInt.t),
@@ -521,10 +521,10 @@ class CommentIntAttachRowRepository {
   /// Creates a relation between the given [CommentInt] and [OrderUuid]
   /// by setting the [CommentInt]'s foreign key `orderId` to refer to the [OrderUuid].
   Future<void> order(
-    _i1.Session session,
-    CommentInt commentInt,
-    _i2.OrderUuid order, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final CommentInt commentInt,
+    final _i2.OrderUuid order, {
+    final _i1.Transaction? transaction,
   }) async {
     if (commentInt.id == null) {
       throw ArgumentError.notNull('commentInt.id');
@@ -533,7 +533,7 @@ class CommentIntAttachRowRepository {
       throw ArgumentError.notNull('order.id');
     }
 
-    var $commentInt = commentInt.copyWith(orderId: order.id);
+    final $commentInt = commentInt.copyWith(orderId: order.id);
     await session.db.updateRow<CommentInt>(
       $commentInt,
       columns: [CommentInt.t.orderId],

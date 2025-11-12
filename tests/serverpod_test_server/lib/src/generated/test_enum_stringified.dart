@@ -18,7 +18,7 @@ enum TestEnumStringified implements _i1.SerializableModel {
   two,
   three;
 
-  static TestEnumStringified fromJson(String name) {
+  static TestEnumStringified fromJson(final String name) {
     switch (name) {
       case 'one':
         return TestEnumStringified.one;

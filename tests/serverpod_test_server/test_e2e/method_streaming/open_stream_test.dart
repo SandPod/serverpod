@@ -8,38 +8,38 @@ void main() {
   test('Given a client '
       'when calling an endpoint multiple times in quick succession '
       'then all streams complete successfully', () async {
-    var client = Client(serverUrl);
-    var numMessages = 1000;
-    List<Future> streamCompleteFutures = [];
+    final client = Client(serverUrl);
+    const numMessages = 1000;
+    final List<Future> streamCompleteFutures = [];
     for (var i = 0; i < 10; i++) {
-      var stream = client.methodStreaming.intStreamFromValue(numMessages);
+      final stream = client.methodStreaming.intStreamFromValue(numMessages);
       streamCompleteFutures.add(stream.last);
     }
 
     await [
-      for (var future in streamCompleteFutures) expectLater(future, completes),
+      for (final future in streamCompleteFutures) expectLater(future, completes),
     ].wait;
   });
 
   test('Given multiple method streaming connections to the same endpoint '
       'when streams are listened, paused and resumed '
       'then all streams complete successfully', () async {
-    var client = Client(serverUrl);
-    var numMessages = 1000;
-    List<Future> streamCompleteFutures = [];
+    final client = Client(serverUrl);
+    const numMessages = 1000;
+    final List<Future> streamCompleteFutures = [];
     for (var i = 0; i < 10; i++) {
-      var streamIsComplete = Completer();
+      final streamIsComplete = Completer();
       streamCompleteFutures.add(streamIsComplete.future);
 
-      var stream = client.methodStreaming.intStreamFromValue(numMessages);
+      final stream = client.methodStreaming.intStreamFromValue(numMessages);
       var beenPaused = false;
       late StreamSubscription<int> subscription;
       subscription = stream.listen(
-        (data) async {
+        (final data) async {
           if (!beenPaused) {
             subscription.pause();
             beenPaused = true;
-            await Future.delayed(Duration(milliseconds: 100), () {
+            await Future.delayed(const Duration(milliseconds: 100), () {
               subscription.resume();
             });
           }
@@ -49,7 +49,7 @@ void main() {
     }
 
     await [
-      for (var future in streamCompleteFutures) expectLater(future, completes),
+      for (final future in streamCompleteFutures) expectLater(future, completes),
     ].wait;
   });
 }

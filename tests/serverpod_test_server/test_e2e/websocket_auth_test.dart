@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('Given a websocket that requires authentication', () {
-    TestAuthKeyManager authKeyManager = TestAuthKeyManager();
+    final TestAuthKeyManager authKeyManager = TestAuthKeyManager();
     late Client client;
 
     setUp(() async {
@@ -40,10 +40,10 @@ void main() {
 
         // This should be ignored by the server as user isn't authenticated.
         await client.signInRequired.sendStreamMessage(SimpleData(num: 666));
-        var streamingStream = client.signInRequired.stream.timeout(
+        final streamingStream = client.signInRequired.stream.timeout(
           const Duration(seconds: 2),
         );
-        var receivedData = streamingStream.single;
+        final receivedData = streamingStream.single;
 
         expect(receivedData, throwsA(isA<TimeoutException>()));
       },
@@ -51,7 +51,7 @@ void main() {
 
     test('when sending a message to a restricted endpoint with authentication '
         'then the message should succeed', () async {
-      var response = await client.authentication.authenticate(
+      final response = await client.authentication.authenticate(
         'test@foo.bar',
         'password',
       );
@@ -60,7 +60,7 @@ void main() {
       expect(response.key, isNotNull);
       expect(response.keyId, isNotNull);
 
-      var key = '${response.keyId}:${response.key}';
+      final key = '${response.keyId}:${response.key}';
       await authKeyManager.put(key);
 
       // ignore: deprecated_member_use
@@ -69,13 +69,13 @@ void main() {
       );
 
       await client.signInRequired.sendStreamMessage(SimpleData(num: 666));
-      var streamingStream = client.signInRequired.stream.timeout(
+      final streamingStream = client.signInRequired.stream.timeout(
         const Duration(seconds: 2),
       );
-      var receivedData = streamingStream.first;
+      final receivedData = streamingStream.first;
 
-      var message = await receivedData;
-      var simpleData = message as SimpleData;
+      final message = await receivedData;
+      final simpleData = message as SimpleData;
       expect(simpleData.num, 666);
     });
   });

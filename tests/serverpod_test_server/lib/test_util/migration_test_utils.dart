@@ -2,19 +2,19 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as path;
+import 'package:serverpod/protocol.dart' as serverProtocol;
 import 'package:serverpod_cli/src/migrations/migration_registry.dart';
 import 'package:serverpod_service_client/serverpod_service_client.dart';
-import 'package:serverpod/protocol.dart' as serverProtocol;
 
 var _moduleName = 'serverpod_test';
 
 abstract class MigrationTestUtils {
   static Future<void> createInitialState({
-    required List<Map<String, String>> migrationProtocols,
-    String tag = 'test',
+    required final List<Map<String, String>> migrationProtocols,
+    final String tag = 'test',
   }) async {
-    for (var protocols in migrationProtocols) {
-      var exitCode = await createMigrationFromProtocols(
+    for (final protocols in migrationProtocols) {
+      final exitCode = await createMigrationFromProtocols(
         protocols: protocols,
         tag: tag,
       );
@@ -32,15 +32,15 @@ abstract class MigrationTestUtils {
   }
 
   static Future<int> createMigrationFromProtocols({
-    required Map<String, String> protocols,
-    String tag = 'test',
-    bool force = false,
+    required final Map<String, String> protocols,
+    final String tag = 'test',
+    final bool force = false,
   }) async {
     _removeMigrationTestProtocolFolder();
     _migrationProtocolTestDirectory().createSync(recursive: true);
 
-    protocols.forEach((fileName, contents) {
-      var protocolFile = File(
+    protocols.forEach((final fileName, final contents) {
+      final protocolFile = File(
         path.join(
           _migrationProtocolTestDirectory().path,
           '$fileName.yaml',
@@ -50,7 +50,7 @@ abstract class MigrationTestUtils {
       protocolFile.writeAsStringSync(contents);
     });
 
-    var exitCode = await _runProcess(
+    final exitCode = await _runProcess(
       'serverpod',
       arguments: [
         'create-migration',
@@ -64,13 +64,13 @@ abstract class MigrationTestUtils {
     );
 
     // Ensures that another migration is never created with the same millisecond.
-    await Future.delayed(Duration(milliseconds: 2));
+    await Future.delayed(const Duration(milliseconds: 2));
 
     return exitCode;
   }
 
   static String readMigrationRegistryFile() {
-    var migrationRegistryFile = File(
+    final migrationRegistryFile = File(
       path.join(
         _migrationsProjectDirectory().path,
         'migration_registry.txt',
@@ -87,8 +87,8 @@ abstract class MigrationTestUtils {
   }
 
   static Future<void> migrationTestCleanup({
-    String? resetSql,
-    required Client serviceClient,
+    final String? resetSql,
+    required final Client serviceClient,
   }) async {
     removeAllTaggedMigrations();
     removeRepairMigration();
@@ -101,21 +101,21 @@ abstract class MigrationTestUtils {
   }
 
   static void _recreateMigrationRegistryFile() {
-    var migrationRegistry = MigrationRegistry.load(
+    final migrationRegistry = MigrationRegistry.load(
       _migrationsProjectDirectory(),
     );
     migrationRegistry.write();
   }
 
   static void removeRepairMigration() {
-    var repairMigrationDirectory = _repairMigrationDirectory();
+    final repairMigrationDirectory = _repairMigrationDirectory();
     if (repairMigrationDirectory.existsSync()) {
       repairMigrationDirectory.deleteSync(recursive: true);
     }
   }
 
   static void removeAllTaggedMigrations() {
-    for (var model in _migrationsProjectDirectory().listSync()) {
+    for (final model in _migrationsProjectDirectory().listSync()) {
       if (model is Directory) {
         if (path.basename(model.path).contains('-')) {
           model.deleteSync(recursive: true);
@@ -177,9 +177,9 @@ abstract class MigrationTestUtils {
   }
 
   static Future<int> runCreateRepairMigration({
-    String tag = 'test',
-    bool force = false,
-    String? targetVersion,
+    final String tag = 'test',
+    final bool force = false,
+    final String? targetVersion,
   }) async {
     return await _runProcess(
       'serverpod',
@@ -198,12 +198,12 @@ abstract class MigrationTestUtils {
   }
 
   static File? tryLoadRepairMigrationFile() {
-    var repairMigrationDirectory = _repairMigrationDirectory();
+    final repairMigrationDirectory = _repairMigrationDirectory();
     if (!repairMigrationDirectory.existsSync()) {
       return null;
     }
 
-    var repairMigrationFiles = repairMigrationDirectory.listSync();
+    final repairMigrationFiles = repairMigrationDirectory.listSync();
     if (repairMigrationFiles.isEmpty) {
       return null;
     }
@@ -211,7 +211,7 @@ abstract class MigrationTestUtils {
     return repairMigrationFiles.first as File;
   }
 
-  static void setModuleName(String moduleName) {
+  static void setModuleName(final String moduleName) {
     _moduleName = moduleName;
   }
 
@@ -240,25 +240,25 @@ abstract class MigrationTestUtils {
   );
 
   static void _removeMigrationTestProtocolFolder() {
-    var protocolDirectory = _migrationProtocolTestDirectory();
+    final protocolDirectory = _migrationProtocolTestDirectory();
     if (protocolDirectory.existsSync()) {
       protocolDirectory.deleteSync(recursive: true);
     }
   }
 
   static Future<void> _resetDatabase({
-    required Client serviceClient,
-    required String resetSql,
+    required final Client serviceClient,
+    required final String resetSql,
   }) async {
     await serviceClient.insights.executeSql(resetSql);
   }
 
   static Future<void> _setDatabaseMigrationToLatestInRegistry({
-    required Client serviceClient,
+    required final Client serviceClient,
   }) async {
-    var migrationRegistry = loadMigrationRegistry();
+    final migrationRegistry = loadMigrationRegistry();
 
-    var latestMigration = migrationRegistry.getLatest();
+    final latestMigration = migrationRegistry.getLatest();
 
     await serviceClient.insights.executeSql('''
 INSERT INTO "${serverProtocol.DatabaseMigrationVersion.t.tableName}"
@@ -270,11 +270,11 @@ INSERT INTO "${serverProtocol.DatabaseMigrationVersion.t.tableName}"
   }
 
   static Future<int> _runProcess(
-    String command, {
-    List<String>? arguments,
-    Directory? workingDirectory,
+    final String command, {
+    final List<String>? arguments,
+    final Directory? workingDirectory,
   }) async {
-    var process = await Process.start(
+    final process = await Process.start(
       command,
       arguments ?? [],
       workingDirectory: workingDirectory?.path ?? Directory.current.path,

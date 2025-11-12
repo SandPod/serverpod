@@ -11,7 +11,7 @@ void main() {
   group('Given method websocket connection', () {
     late Serverpod server;
     late WebSocket webSocket;
-    var unrecognizedCommandMessage =
+    const unrecognizedCommandMessage =
         '{"command":"this is not a valid command"}';
 
     setUp(() async {
@@ -30,9 +30,9 @@ void main() {
     test(
       'when an unrecognized message is sent then connection is closed.',
       () async {
-        var webSocketCompleter = Completer<void>();
+        final webSocketCompleter = Completer<void>();
         webSocket.textEvents.listen(
-          (event) {},
+          (final event) {},
           onDone: () {
             webSocketCompleter.complete();
           },
@@ -41,7 +41,7 @@ void main() {
         webSocket.sendText(unrecognizedCommandMessage);
 
         expectLater(
-          webSocketCompleter.future.timeout(Duration(seconds: 10)),
+          webSocketCompleter.future.timeout(const Duration(seconds: 10)),
           completes,
         );
       },
@@ -50,8 +50,8 @@ void main() {
     test(
       'when an unrecognized message is sent then BadRequestMessage response is received.',
       () async {
-        var response = webSocket.textEvents.first.timeout(
-          Duration(seconds: 10),
+        final response = webSocket.textEvents.first.timeout(
+          const Duration(seconds: 10),
         );
         webSocket.sendText(unrecognizedCommandMessage);
 

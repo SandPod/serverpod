@@ -17,20 +17,20 @@ class S3CloudStorage extends CloudStorage {
 
   /// Creates a new [S3CloudStorage] reference.
   S3CloudStorage({
-    required Serverpod serverpod,
-    required String storageId,
+    required final Serverpod serverpod,
+    required final String storageId,
     required this.public,
     required this.region,
     required this.bucket,
-    String? publicHost,
+    final String? publicHost,
   }) : super(storageId) {
     serverpod.loadCustomPasswords([
       (envName: 'SERVERPOD_AWS_ACCESS_KEY_ID', alias: 'AWSAccessKeyId'),
       (envName: 'SERVERPOD_AWS_SECRET_KEY', alias: 'AWSSecretKey'),
     ]);
 
-    var awsAccessKeyId = serverpod.getPassword('AWSAccessKeyId');
-    var awsSecretKey = serverpod.getPassword('AWSSecretKey');
+    final awsAccessKeyId = serverpod.getPassword('AWSAccessKeyId');
+    final awsSecretKey = serverpod.getPassword('AWSSecretKey');
 
     if (awsAccessKeyId == null) {
       throw StateError('HMACAccessKeyId must be configured in your passwords.');
@@ -56,11 +56,11 @@ class S3CloudStorage extends CloudStorage {
 
   @override
   Future<void> storeFile({
-    required Session session,
-    required String path,
-    required ByteData byteData,
-    DateTime? expiration,
-    bool verified = true,
+    required final Session session,
+    required final String path,
+    required final ByteData byteData,
+    final DateTime? expiration,
+    final bool verified = true,
   }) async {
     await AwsS3Uploader.uploadData(
       accessKey: _awsAccessKeyId,
@@ -75,8 +75,8 @@ class S3CloudStorage extends CloudStorage {
 
   @override
   Future<ByteData?> retrieveFile({
-    required Session session,
-    required String path,
+    required final Session session,
+    required final String path,
   }) async {
     final response = await _s3Client.getObject(path);
     if (response.statusCode == 200) {
@@ -87,8 +87,8 @@ class S3CloudStorage extends CloudStorage {
 
   @override
   Future<Uri?> getPublicUrl({
-    required Session session,
-    required String path,
+    required final Session session,
+    required final String path,
   }) async {
     if (await fileExists(session: session, path: path)) {
       return Uri.parse('https://$publicHost/$path');
@@ -98,27 +98,27 @@ class S3CloudStorage extends CloudStorage {
 
   @override
   Future<bool> fileExists({
-    required Session session,
-    required String path,
+    required final Session session,
+    required final String path,
   }) async {
-    var response = await _s3Client.headObject(path);
+    final response = await _s3Client.headObject(path);
     return response.statusCode == 200;
   }
 
   @override
   Future<void> deleteFile({
-    required Session session,
-    required String path,
+    required final Session session,
+    required final String path,
   }) async {
     await _s3Client.deleteObject(path);
   }
 
   @override
   Future<String?> createDirectFileUploadDescription({
-    required Session session,
-    required String path,
-    Duration expirationDuration = const Duration(minutes: 10),
-    int maxFileSize = 10 * 1024 * 1024,
+    required final Session session,
+    required final String path,
+    final Duration expirationDuration = const Duration(minutes: 10),
+    final int maxFileSize = 10 * 1024 * 1024,
   }) async {
     return await AwsS3Uploader.getDirectUploadDescription(
       accessKey: _awsAccessKeyId,
@@ -134,8 +134,8 @@ class S3CloudStorage extends CloudStorage {
 
   @override
   Future<bool> verifyDirectFileUpload({
-    required Session session,
-    required String path,
+    required final Session session,
+    required final String path,
   }) async {
     return fileExists(session: session, path: path);
   }

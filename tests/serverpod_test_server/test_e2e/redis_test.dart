@@ -5,7 +5,7 @@ import 'package:serverpod_test_server/test_util/config.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client(
+  final client = Client(
     serverUrl,
   );
 
@@ -13,48 +13,48 @@ void main() {
 
   group('Redis cache set and get', () {
     test('Set and get', () async {
-      var data = SimpleData(num: 42);
+      final data = SimpleData(num: 42);
       await client.redis.setSimpleData('test', data);
 
-      var retrievedData = await client.redis.getSimpleData('test');
+      final retrievedData = await client.redis.getSimpleData('test');
       expect(retrievedData, isNotNull);
       expect(retrievedData!.num, equals(42));
     });
 
     test('Get non-existing', () async {
-      var retrievedData = await client.redis.getSimpleData('test-nonexistent');
+      final retrievedData = await client.redis.getSimpleData('test-nonexistent');
       expect(retrievedData, isNull);
     });
 
     test('Delete key', () async {
       await client.redis.deleteSimpleData('test');
 
-      var retrievedData = await client.redis.getSimpleData('test');
+      final retrievedData = await client.redis.getSimpleData('test');
       expect(retrievedData, isNull);
     });
 
     test('Expiring object', () async {
-      var data = SimpleData(num: 42);
+      final data = SimpleData(num: 42);
       await client.redis.setSimpleDataWithLifetime('test', data);
 
-      var retrievedData = await client.redis.getSimpleData('test');
+      final retrievedData = await client.redis.getSimpleData('test');
       expect(retrievedData, isNotNull);
       expect(retrievedData!.num, equals(42));
 
       await Future.delayed(const Duration(seconds: 1));
 
-      var retrievedDataAgain = await client.redis.getSimpleData('test');
+      final retrievedDataAgain = await client.redis.getSimpleData('test');
       expect(retrievedDataAgain, isNull);
     });
   });
 
   group('Redis message central', () {
     test('Post and listen', () async {
-      var data = SimpleData(num: 42);
+      final data = SimpleData(num: 42);
 
       SimpleData? retrieved;
       unawaited(
-        client.redis.listenToChannel('test').then((value) {
+        client.redis.listenToChannel('test').then((final value) {
           retrieved = value;
         }),
       );

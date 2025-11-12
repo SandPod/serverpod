@@ -23,14 +23,14 @@ abstract class UserSettingsConfig implements _i1.SerializableModel {
   });
 
   factory UserSettingsConfig({
-    required bool canSeeUserName,
-    required bool canSeeFullName,
-    required bool canEditUserName,
-    required bool canEditFullName,
-    required bool canEditUserImage,
+    required final bool canSeeUserName,
+    required final bool canSeeFullName,
+    required final bool canEditUserName,
+    required final bool canEditFullName,
+    required final bool canEditUserImage,
   }) = _UserSettingsConfigImpl;
 
-  factory UserSettingsConfig.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory UserSettingsConfig.fromJson(final Map<String, dynamic> jsonSerialization) {
     return UserSettingsConfig(
       canSeeUserName: jsonSerialization['canSeeUserName'] as bool,
       canSeeFullName: jsonSerialization['canSeeFullName'] as bool,
@@ -59,11 +59,11 @@ abstract class UserSettingsConfig implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   UserSettingsConfig copyWith({
-    bool? canSeeUserName,
-    bool? canSeeFullName,
-    bool? canEditUserName,
-    bool? canEditFullName,
-    bool? canEditUserImage,
+    final bool? canSeeUserName,
+    final bool? canSeeFullName,
+    final bool? canEditUserName,
+    final bool? canEditFullName,
+    final bool? canEditUserImage,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -84,11 +84,11 @@ abstract class UserSettingsConfig implements _i1.SerializableModel {
 
 class _UserSettingsConfigImpl extends UserSettingsConfig {
   _UserSettingsConfigImpl({
-    required bool canSeeUserName,
-    required bool canSeeFullName,
-    required bool canEditUserName,
-    required bool canEditFullName,
-    required bool canEditUserImage,
+    required final bool canSeeUserName,
+    required final bool canSeeFullName,
+    required final bool canEditUserName,
+    required final bool canEditFullName,
+    required final bool canEditUserImage,
   }) : super._(
          canSeeUserName: canSeeUserName,
          canSeeFullName: canSeeFullName,
@@ -102,11 +102,11 @@ class _UserSettingsConfigImpl extends UserSettingsConfig {
   @_i1.useResult
   @override
   UserSettingsConfig copyWith({
-    bool? canSeeUserName,
-    bool? canSeeFullName,
-    bool? canEditUserName,
-    bool? canEditFullName,
-    bool? canEditUserImage,
+    final bool? canSeeUserName,
+    final bool? canSeeFullName,
+    final bool? canEditUserName,
+    final bool? canEditFullName,
+    final bool? canEditUserImage,
   }) {
     return UserSettingsConfig(
       canSeeUserName: canSeeUserName ?? this.canSeeUserName,

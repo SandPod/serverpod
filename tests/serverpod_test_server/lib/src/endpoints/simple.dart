@@ -7,24 +7,24 @@ int globalInt = 0;
 class SimpleEndpoint extends Endpoint {
   /// Sets a global integer.
   Future<void> setGlobalInt(
-    Session session,
-    int? value, [
-    int? secondValue,
+    final Session session,
+    final int? value, [
+    final int? secondValue,
   ]) async {
     globalInt = value!;
   }
 
   /// Adds 1 to the global integer.
-  Future<void> addToGlobalInt(Session session) async {
+  Future<void> addToGlobalInt(final Session session) async {
     globalInt += 1;
   }
 
   /// Retrieves a global integer.
-  Future<int> getGlobalInt(Session session) async {
+  Future<int> getGlobalInt(final Session session) async {
     return globalInt;
   }
 
-  Future<String> hello(Session session, String name) async {
+  Future<String> hello(final Session session, final String name) async {
     return 'Hello $name';
   }
 }

@@ -11,11 +11,13 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
+
 import 'module_class.dart' as _i2;
 import 'module_feature/models/my_feature_model.dart' as _i3;
+
+export 'client.dart';
 export 'module_class.dart';
 export 'module_feature/models/my_feature_model.dart';
-export 'client.dart';
 
 class Protocol extends _i1.SerializationManager {
   Protocol._();
@@ -26,7 +28,7 @@ class Protocol extends _i1.SerializationManager {
 
   @override
   T deserialize<T>(
-    dynamic data, [
+    final dynamic data, [
     Type? t,
   ]) {
     t ??= T;
@@ -57,8 +59,8 @@ class Protocol extends _i1.SerializationManager {
   }
 
   @override
-  String? getClassNameForObject(Object? data) {
-    String? className = super.getClassNameForObject(data);
+  String? getClassNameForObject(final Object? data) {
+    final String? className = super.getClassNameForObject(data);
     if (className != null) return className;
     switch (data) {
       case _i2.ModuleClass():
@@ -70,8 +72,8 @@ class Protocol extends _i1.SerializationManager {
   }
 
   @override
-  dynamic deserializeByClassName(Map<String, dynamic> data) {
-    var dataClassName = data['className'];
+  dynamic deserializeByClassName(final Map<String, dynamic> data) {
+    final dataClassName = data['className'];
     if (dataClassName is! String) {
       return super.deserializeByClassName(data);
     }
@@ -90,13 +92,13 @@ class Protocol extends _i1.SerializationManager {
 /// Throws in case the record type is not known.
 ///
 /// This method will return `null` (only) for `null` inputs.
-Map<String, dynamic>? mapRecordToJson(Record? record) {
+Map<String, dynamic>? mapRecordToJson(final Record? record) {
   if (record == null) {
     return null;
   }
   if (record is (bool,)) {
     return {
-      "p": [
+      'p': [
         record.$1,
       ],
     };
@@ -115,7 +117,7 @@ Map<String, dynamic>? mapRecordToJson(Record? record) {
 /// Returns either a `List<dynamic>` (for List, Sets, and Maps with
 /// non-String keys) or a `Map<String, dynamic>` in case the input was
 /// a `Map<String, …>`.
-Object? mapContainerToJson(Object obj) {
+Object? mapContainerToJson(final Object obj) {
   if (obj is! Iterable && obj is! Map) {
     throw ArgumentError.value(
       obj,
@@ -124,23 +126,23 @@ Object? mapContainerToJson(Object obj) {
     );
   }
 
-  dynamic mapIfNeeded(Object? obj) {
+  dynamic mapIfNeeded(final Object? obj) {
     return switch (obj) {
-      Record record => mapRecordToJson(record),
-      Iterable iterable => mapContainerToJson(iterable),
-      Map map => mapContainerToJson(map),
-      Object? value => value,
+      final Record record => mapRecordToJson(record),
+      final Iterable iterable => mapContainerToJson(iterable),
+      final Map map => mapContainerToJson(map),
+      final Object? value => value,
     };
   }
 
   switch (obj) {
     case Map<String, dynamic>():
       return {
-        for (var entry in obj.entries) entry.key: mapIfNeeded(entry.value),
+        for (final entry in obj.entries) entry.key: mapIfNeeded(entry.value),
       };
     case Map():
       return [
-        for (var entry in obj.entries)
+        for (final entry in obj.entries)
           {
             'k': mapIfNeeded(entry.key),
             'v': mapIfNeeded(entry.value),
@@ -149,7 +151,7 @@ Object? mapContainerToJson(Object obj) {
 
     case Iterable():
       return [
-        for (var e in obj) mapIfNeeded(e),
+        for (final e in obj) mapIfNeeded(e),
       ];
   }
 

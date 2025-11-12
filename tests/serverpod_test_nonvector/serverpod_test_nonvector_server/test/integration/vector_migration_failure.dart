@@ -1,9 +1,9 @@
 @Timeout(Duration(minutes: 5))
-import 'package:test/test.dart';
-
 import 'package:serverpod_service_client/serverpod_service_client.dart';
 import 'package:serverpod_test_server/test_util/migration_test_utils.dart';
 import 'package:serverpod_test_server/test_util/test_service_key_manager.dart';
+import 'package:test/test.dart';
+
 import 'test_tools/serverpod_test_tools.dart';
 
 const serviceServerUrl = 'http://localhost:8081/';
@@ -14,8 +14,8 @@ void main() {
   withServerpod(
     'Given a database without pgvector extension',
     runMode: 'production',
-    (sessionBuilder, endpoints) {
-      var serviceClient = Client(
+    (final sessionBuilder, final endpoints) {
+      final serviceClient = Client(
         serviceServerUrl,
         authenticationKeyManager: TestServiceKeyManager(
           '0',
@@ -32,9 +32,9 @@ void main() {
         });
 
         test('then the database migration is correctly applied.', () async {
-          var tableName = 'integrity_test_table';
-          var tag = 'integrity-test';
-          var targetStateProtocols = {
+          const tableName = 'integrity_test_table';
+          const tag = 'integrity-test';
+          final targetStateProtocols = {
             'integrity_test_table':
                 '''
 class: IntegrityTestTable
@@ -47,7 +47,7 @@ fields:
 ''',
           };
 
-          var createMigrationExitCode =
+          final createMigrationExitCode =
               await MigrationTestUtils.createMigrationFromProtocols(
                 protocols: targetStateProtocols,
                 tag: tag,
@@ -59,7 +59,7 @@ fields:
             reason: 'Failed to create migration, exit code was not 0.',
           );
 
-          var applyMigrationExitCode =
+          final applyMigrationExitCode =
               await MigrationTestUtils.runApplyMigrations();
 
           expect(
@@ -68,11 +68,11 @@ fields:
             reason: 'Failed to apply migration, exit code was not 0.',
           );
 
-          var liveDefinition = await serviceClient.insights
+          final liveDefinition = await serviceClient.insights
               .getLiveDatabaseDefinition();
 
-          var databaseTable = liveDefinition.tables.firstWhereOrNull(
-            (t) => t.name == tableName,
+          final databaseTable = liveDefinition.tables.firstWhereOrNull(
+            (final t) => t.name == tableName,
           );
 
           expect(
@@ -94,9 +94,9 @@ fields:
         test(
           'then the migration fails due to missing pgvector extension.',
           () async {
-            var tableName = 'vector_test_table';
-            var tag = 'vector-column-test';
-            var targetStateProtocols = {
+            const tableName = 'vector_test_table';
+            const tag = 'vector-column-test';
+            final targetStateProtocols = {
               'vector_test_table':
                   '''
 class: VectorTestTable
@@ -106,7 +106,7 @@ fields:
 ''',
             };
 
-            var createMigrationExitCode =
+            final createMigrationExitCode =
                 await MigrationTestUtils.createMigrationFromProtocols(
                   protocols: targetStateProtocols,
                   tag: tag,
@@ -118,7 +118,7 @@ fields:
               reason: 'Failed to create migration, exit code was not 0.',
             );
 
-            var applyMigrationExitCode =
+            final applyMigrationExitCode =
                 await MigrationTestUtils.runApplyMigrations();
 
             expect(
@@ -129,11 +129,11 @@ fields:
             );
 
             // Verify table was not created
-            var liveDefinition = await serviceClient.insights
+            final liveDefinition = await serviceClient.insights
                 .getLiveDatabaseDefinition();
 
-            var databaseTable = liveDefinition.tables.firstWhereOrNull(
-              (t) => t.name == tableName,
+            final databaseTable = liveDefinition.tables.firstWhereOrNull(
+              (final t) => t.name == tableName,
             );
 
             expect(
@@ -150,8 +150,8 @@ fields:
 
 extension _ListExt<T> on List<T> {
   /// The first element satisfying [test], or `null` if there are none.
-  T? firstWhereOrNull(bool Function(T element) test) {
-    for (var element in this) {
+  T? firstWhereOrNull(final bool Function(T element) test) {
+    for (final element in this) {
       if (test(element)) return element;
     }
     return null;

@@ -1,7 +1,7 @@
 import 'package:test/test.dart';
 
-Matcher containsCount(String substring, int expectedCount) {
-  return predicate((String mainString) {
+Matcher containsCount(final String substring, final int expectedCount) {
+  return predicate((final String mainString) {
     int count = 0;
     int index = mainString.indexOf(substring);
     while (index != -1) {

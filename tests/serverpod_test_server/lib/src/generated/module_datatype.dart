@@ -25,22 +25,22 @@ abstract class ModuleDatatype
   });
 
   factory ModuleDatatype({
-    required _i2.ModuleClass model,
-    required List<_i2.ModuleClass> list,
-    required Map<String, _i2.ModuleClass> map,
-    (_i2.ModuleClass,)? record,
+    required final _i2.ModuleClass model,
+    required final List<_i2.ModuleClass> list,
+    required final Map<String, _i2.ModuleClass> map,
+    final (_i2.ModuleClass,)? record,
   }) = _ModuleDatatypeImpl;
 
-  factory ModuleDatatype.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory ModuleDatatype.fromJson(final Map<String, dynamic> jsonSerialization) {
     return ModuleDatatype(
       model: _i2.ModuleClass.fromJson(
         (jsonSerialization['model'] as Map<String, dynamic>),
       ),
       list: (jsonSerialization['list'] as List)
-          .map((e) => _i2.ModuleClass.fromJson((e as Map<String, dynamic>)))
+          .map((final e) => _i2.ModuleClass.fromJson((e as Map<String, dynamic>)))
           .toList(),
       map: (jsonSerialization['map'] as Map).map(
-        (k, v) => MapEntry(
+        (final k, final v) => MapEntry(
           k as String,
           _i2.ModuleClass.fromJson((v as Map<String, dynamic>)),
         ),
@@ -65,17 +65,17 @@ abstract class ModuleDatatype
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ModuleDatatype copyWith({
-    _i2.ModuleClass? model,
-    List<_i2.ModuleClass>? list,
-    Map<String, _i2.ModuleClass>? map,
-    (_i2.ModuleClass,)? record,
+    final _i2.ModuleClass? model,
+    final List<_i2.ModuleClass>? list,
+    final Map<String, _i2.ModuleClass>? map,
+    final (_i2.ModuleClass,)? record,
   });
   @override
   Map<String, dynamic> toJson() {
     return {
       'model': model.toJson(),
-      'list': list.toJson(valueToJson: (v) => v.toJson()),
-      'map': map.toJson(valueToJson: (v) => v.toJson()),
+      'list': list.toJson(valueToJson: (final v) => v.toJson()),
+      'map': map.toJson(valueToJson: (final v) => v.toJson()),
       if (record != null) 'record': _i3.mapRecordToJson(record),
     };
   }
@@ -84,8 +84,8 @@ abstract class ModuleDatatype
   Map<String, dynamic> toJsonForProtocol() {
     return {
       'model': model.toJsonForProtocol(),
-      'list': list.toJson(valueToJson: (v) => v.toJsonForProtocol()),
-      'map': map.toJson(valueToJson: (v) => v.toJsonForProtocol()),
+      'list': list.toJson(valueToJson: (final v) => v.toJsonForProtocol()),
+      'map': map.toJson(valueToJson: (final v) => v.toJsonForProtocol()),
       if (record != null) 'record': _i3.mapRecordToJson(record),
     };
   }
@@ -100,10 +100,10 @@ class _Undefined {}
 
 class _ModuleDatatypeImpl extends ModuleDatatype {
   _ModuleDatatypeImpl({
-    required _i2.ModuleClass model,
-    required List<_i2.ModuleClass> list,
-    required Map<String, _i2.ModuleClass> map,
-    (_i2.ModuleClass,)? record,
+    required final _i2.ModuleClass model,
+    required final List<_i2.ModuleClass> list,
+    required final Map<String, _i2.ModuleClass> map,
+    final (_i2.ModuleClass,)? record,
   }) : super._(
          model: model,
          list: list,
@@ -116,20 +116,20 @@ class _ModuleDatatypeImpl extends ModuleDatatype {
   @_i1.useResult
   @override
   ModuleDatatype copyWith({
-    _i2.ModuleClass? model,
-    List<_i2.ModuleClass>? list,
-    Map<String, _i2.ModuleClass>? map,
-    Object? record = _Undefined,
+    final _i2.ModuleClass? model,
+    final List<_i2.ModuleClass>? list,
+    final Map<String, _i2.ModuleClass>? map,
+    final Object? record = _Undefined,
   }) {
     return ModuleDatatype(
       model: model ?? this.model.copyWith(),
-      list: list ?? this.list.map((e0) => e0.copyWith()).toList(),
+      list: list ?? this.list.map((final e0) => e0.copyWith()).toList(),
       map:
           map ??
           this.map.map(
             (
-              key0,
-              value0,
+              final key0,
+              final value0,
             ) => MapEntry(
               key0,
               value0.copyWith(),

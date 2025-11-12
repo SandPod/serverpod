@@ -8,7 +8,7 @@ class DeserializationTestClass {}
 
 void main() {
   group(
-    "Given an unknown type for protocol, ",
+    'Given an unknown type for protocol, ',
     () {
       test(
         'when trying to deserialize using server protocol, then a DeserializationTypeNotFoundException exception is thrown',
@@ -39,8 +39,8 @@ void main() {
         () {
           expect(
             server.Protocol().deserialize<module.ModuleClass>({
-              "name": "test",
-              "data": 0,
+              'name': 'test',
+              'data': 0,
             }),
             isA<module.ModuleClass>(),
           );
@@ -52,8 +52,8 @@ void main() {
         () {
           expect(
             () => server.Protocol().deserialize<module.ModuleClass>({
-              "name": "test",
-              "data": "test",
+              'name': 'test',
+              'data': 'test',
             }),
             throwsA(isA<TypeError>()),
           );

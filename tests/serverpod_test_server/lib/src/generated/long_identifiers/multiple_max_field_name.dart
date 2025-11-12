@@ -21,15 +21,15 @@ abstract class MultipleMaxFieldName
   }) : _relationToMultipleMaxFieldNameMultiplemaxfieldnamesRelat674eId = null;
 
   factory MultipleMaxFieldName({
-    int? id,
-    required String
+    final int? id,
+    required final String
     thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames1,
-    required String
+    required final String
     thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames2,
   }) = _MultipleMaxFieldNameImpl;
 
   factory MultipleMaxFieldName.fromJson(
-    Map<String, dynamic> jsonSerialization,
+    final Map<String, dynamic> jsonSerialization,
   ) {
     return MultipleMaxFieldNameImplicit._(
       id: jsonSerialization['id'] as int?,
@@ -65,9 +65,9 @@ abstract class MultipleMaxFieldName
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   MultipleMaxFieldName copyWith({
-    int? id,
-    String? thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames1,
-    String? thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames2,
+    final int? id,
+    final String? thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames1,
+    final String? thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames2,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -100,13 +100,13 @@ abstract class MultipleMaxFieldName
   }
 
   static MultipleMaxFieldNameIncludeList includeList({
-    _i1.WhereExpressionBuilder<MultipleMaxFieldNameTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<MultipleMaxFieldNameTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<MultipleMaxFieldNameTable>? orderByList,
-    MultipleMaxFieldNameInclude? include,
+    final _i1.WhereExpressionBuilder<MultipleMaxFieldNameTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<MultipleMaxFieldNameTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<MultipleMaxFieldNameTable>? orderByList,
+    final MultipleMaxFieldNameInclude? include,
   }) {
     return MultipleMaxFieldNameIncludeList._(
       where: where,
@@ -129,10 +129,10 @@ class _Undefined {}
 
 class _MultipleMaxFieldNameImpl extends MultipleMaxFieldName {
   _MultipleMaxFieldNameImpl({
-    int? id,
-    required String
+    final int? id,
+    required final String
     thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames1,
-    required String
+    required final String
     thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames2,
   }) : super._(
          id: id,
@@ -147,9 +147,9 @@ class _MultipleMaxFieldNameImpl extends MultipleMaxFieldName {
   @_i1.useResult
   @override
   MultipleMaxFieldName copyWith({
-    Object? id = _Undefined,
-    String? thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames1,
-    String? thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames2,
+    final Object? id = _Undefined,
+    final String? thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames1,
+    final String? thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames2,
   }) {
     return MultipleMaxFieldNameImplicit._(
       id: id is int? ? id : this.id,
@@ -160,19 +160,19 @@ class _MultipleMaxFieldNameImpl extends MultipleMaxFieldName {
           thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames2 ??
           this.thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames2,
       $_relationToMultipleMaxFieldNameMultiplemaxfieldnamesRelat674eId:
-          this._relationToMultipleMaxFieldNameMultiplemaxfieldnamesRelat674eId,
+          _relationToMultipleMaxFieldNameMultiplemaxfieldnamesRelat674eId,
     );
   }
 }
 
 class MultipleMaxFieldNameImplicit extends _MultipleMaxFieldNameImpl {
   MultipleMaxFieldNameImplicit._({
-    int? id,
-    required String
+    final int? id,
+    required final String
     thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames1,
-    required String
+    required final String
     thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames2,
-    int? $_relationToMultipleMaxFieldNameMultiplemaxfieldnamesRelat674eId,
+    final int? $_relationToMultipleMaxFieldNameMultiplemaxfieldnamesRelat674eId,
   }) : _relationToMultipleMaxFieldNameMultiplemaxfieldnamesRelat674eId =
            $_relationToMultipleMaxFieldNameMultiplemaxfieldnamesRelat674eId,
        super(
@@ -184,8 +184,8 @@ class MultipleMaxFieldNameImplicit extends _MultipleMaxFieldNameImpl {
        );
 
   factory MultipleMaxFieldNameImplicit(
-    MultipleMaxFieldName multipleMaxFieldName, {
-    int? $_relationToMultipleMaxFieldNameMultiplemaxfieldnamesRelat674eId,
+    final MultipleMaxFieldName multipleMaxFieldName, {
+    final int? $_relationToMultipleMaxFieldNameMultiplemaxfieldnamesRelat674eId,
   }) {
     return MultipleMaxFieldNameImplicit._(
       id: multipleMaxFieldName.id,
@@ -209,14 +209,14 @@ class MultipleMaxFieldNameUpdateTable
   MultipleMaxFieldNameUpdateTable(super.table);
 
   _i1.ColumnValue<String, String>
-  thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames1(String value) =>
+  thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames1(final String value) =>
       _i1.ColumnValue(
         table.thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames1,
         value,
       );
 
   _i1.ColumnValue<String, String>
-  thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames2(String value) =>
+  thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames2(final String value) =>
       _i1.ColumnValue(
         table.thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames2,
         value,
@@ -224,7 +224,7 @@ class MultipleMaxFieldNameUpdateTable
 
   _i1.ColumnValue<int, int>
   $_relationToMultipleMaxFieldNameMultiplemaxfieldnamesRelat674eId(
-    int? value,
+    final int? value,
   ) => _i1.ColumnValue(
     table.$_relationToMultipleMaxFieldNameMultiplemaxfieldnamesRelat674eId,
     value,
@@ -291,7 +291,7 @@ class MultipleMaxFieldNameInclude extends _i1.IncludeObject {
 
 class MultipleMaxFieldNameIncludeList extends _i1.IncludeList {
   MultipleMaxFieldNameIncludeList._({
-    _i1.WhereExpressionBuilder<MultipleMaxFieldNameTable>? where,
+    final _i1.WhereExpressionBuilder<MultipleMaxFieldNameTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -335,14 +335,14 @@ class MultipleMaxFieldNameRepository {
   /// );
   /// ```
   Future<List<MultipleMaxFieldName>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<MultipleMaxFieldNameTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<MultipleMaxFieldNameTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<MultipleMaxFieldNameTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<MultipleMaxFieldNameTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<MultipleMaxFieldNameTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<MultipleMaxFieldNameTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<MultipleMaxFieldName>(
       where: where?.call(MultipleMaxFieldName.t),
@@ -373,13 +373,13 @@ class MultipleMaxFieldNameRepository {
   /// );
   /// ```
   Future<MultipleMaxFieldName?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<MultipleMaxFieldNameTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<MultipleMaxFieldNameTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<MultipleMaxFieldNameTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<MultipleMaxFieldNameTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<MultipleMaxFieldNameTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<MultipleMaxFieldNameTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<MultipleMaxFieldName>(
       where: where?.call(MultipleMaxFieldName.t),
@@ -393,9 +393,9 @@ class MultipleMaxFieldNameRepository {
 
   /// Finds a single [MultipleMaxFieldName] by its [id] or null if no such row exists.
   Future<MultipleMaxFieldName?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<MultipleMaxFieldName>(
       id,
@@ -410,9 +410,9 @@ class MultipleMaxFieldNameRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<MultipleMaxFieldName>> insert(
-    _i1.Session session,
-    List<MultipleMaxFieldName> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<MultipleMaxFieldName> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<MultipleMaxFieldName>(
       rows,
@@ -424,9 +424,9 @@ class MultipleMaxFieldNameRepository {
   ///
   /// The returned [MultipleMaxFieldName] will have its `id` field set.
   Future<MultipleMaxFieldName> insertRow(
-    _i1.Session session,
-    MultipleMaxFieldName row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final MultipleMaxFieldName row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<MultipleMaxFieldName>(
       row,
@@ -440,10 +440,10 @@ class MultipleMaxFieldNameRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<MultipleMaxFieldName>> update(
-    _i1.Session session,
-    List<MultipleMaxFieldName> rows, {
-    _i1.ColumnSelections<MultipleMaxFieldNameTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<MultipleMaxFieldName> rows, {
+    final _i1.ColumnSelections<MultipleMaxFieldNameTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<MultipleMaxFieldName>(
       rows,
@@ -456,10 +456,10 @@ class MultipleMaxFieldNameRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<MultipleMaxFieldName> updateRow(
-    _i1.Session session,
-    MultipleMaxFieldName row, {
-    _i1.ColumnSelections<MultipleMaxFieldNameTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final MultipleMaxFieldName row, {
+    final _i1.ColumnSelections<MultipleMaxFieldNameTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<MultipleMaxFieldName>(
       row,
@@ -471,11 +471,11 @@ class MultipleMaxFieldNameRepository {
   /// Updates a single [MultipleMaxFieldName] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<MultipleMaxFieldName?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<MultipleMaxFieldNameUpdateTable>
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<MultipleMaxFieldNameUpdateTable>
     columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<MultipleMaxFieldName>(
       id,
@@ -487,16 +487,16 @@ class MultipleMaxFieldNameRepository {
   /// Updates all [MultipleMaxFieldName]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<MultipleMaxFieldName>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<MultipleMaxFieldNameUpdateTable>
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<MultipleMaxFieldNameUpdateTable>
     columnValues,
-    required _i1.WhereExpressionBuilder<MultipleMaxFieldNameTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<MultipleMaxFieldNameTable>? orderBy,
-    _i1.OrderByListBuilder<MultipleMaxFieldNameTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    required final _i1.WhereExpressionBuilder<MultipleMaxFieldNameTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<MultipleMaxFieldNameTable>? orderBy,
+    final _i1.OrderByListBuilder<MultipleMaxFieldNameTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<MultipleMaxFieldName>(
       columnValues: columnValues(MultipleMaxFieldName.t.updateTable),
@@ -514,9 +514,9 @@ class MultipleMaxFieldNameRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<MultipleMaxFieldName>> delete(
-    _i1.Session session,
-    List<MultipleMaxFieldName> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<MultipleMaxFieldName> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<MultipleMaxFieldName>(
       rows,
@@ -526,9 +526,9 @@ class MultipleMaxFieldNameRepository {
 
   /// Deletes a single [MultipleMaxFieldName].
   Future<MultipleMaxFieldName> deleteRow(
-    _i1.Session session,
-    MultipleMaxFieldName row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final MultipleMaxFieldName row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<MultipleMaxFieldName>(
       row,
@@ -538,9 +538,9 @@ class MultipleMaxFieldNameRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<MultipleMaxFieldName>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<MultipleMaxFieldNameTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<MultipleMaxFieldNameTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<MultipleMaxFieldName>(
       where: where(MultipleMaxFieldName.t),
@@ -551,10 +551,10 @@ class MultipleMaxFieldNameRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<MultipleMaxFieldNameTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<MultipleMaxFieldNameTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<MultipleMaxFieldName>(
       where: where?.call(MultipleMaxFieldName.t),

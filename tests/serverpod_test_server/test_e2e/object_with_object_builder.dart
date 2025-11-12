@@ -20,19 +20,19 @@ class ObjectWithObjectBuilder {
     );
   }
 
-  ObjectWithObjectBuilder withData(SimpleData value) {
+  ObjectWithObjectBuilder withData(final SimpleData value) {
     _data = value;
 
     return this;
   }
 
-  ObjectWithObjectBuilder withDataList(List<SimpleData> value) {
+  ObjectWithObjectBuilder withDataList(final List<SimpleData> value) {
     _dataList = value;
 
     return this;
   }
 
-  ObjectWithObjectBuilder withListWithNullableData(List<SimpleData?> value) {
+  ObjectWithObjectBuilder withListWithNullableData(final List<SimpleData?> value) {
     _listWithNullableData = value;
 
     return this;

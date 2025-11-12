@@ -5,7 +5,7 @@ import 'package:serverpod_test_server/src/generated/protocol.dart';
 
 class ServerOnlyScopedFieldModelEndpoint extends Endpoint {
   Future<ScopeServerOnlyField> getScopeServerOnlyField(
-    Session session,
+    final Session session,
   ) async {
     return ScopeServerOnlyField(
       serverOnlyScope: Types(anInt: 2),
@@ -17,10 +17,10 @@ class ServerOnlyScopedFieldModelEndpoint extends Endpoint {
   }
 
   @override
-  Future<void> streamOpened(StreamingSession session) async {
+  Future<void> streamOpened(final StreamingSession session) async {
     unawaited(
       Future.delayed(const Duration(seconds: 1)).then(
-        (value) async {
+        (final value) async {
           // ignore: deprecated_member_use
           await sendStreamMessage(
             session,

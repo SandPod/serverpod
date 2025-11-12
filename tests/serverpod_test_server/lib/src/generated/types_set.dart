@@ -9,13 +9,15 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
+import 'dart:typed_data' as _i2;
+
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-import 'dart:typed_data' as _i2;
+import 'package:serverpod_test_server/src/generated/protocol.dart' as _i6;
+
 import 'test_enum.dart' as _i3;
 import 'test_enum_stringified.dart' as _i4;
 import 'types.dart' as _i5;
-import 'package:serverpod_test_server/src/generated/protocol.dart' as _i6;
 
 abstract class TypesSet
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
@@ -39,106 +41,106 @@ abstract class TypesSet
   });
 
   factory TypesSet({
-    Set<int>? anInt,
-    Set<bool>? aBool,
-    Set<double>? aDouble,
-    Set<DateTime>? aDateTime,
-    Set<String>? aString,
-    Set<_i2.ByteData>? aByteData,
-    Set<Duration>? aDuration,
-    Set<_i1.UuidValue>? aUuid,
-    Set<BigInt>? aBigInt,
-    Set<_i3.TestEnum>? anEnum,
-    Set<_i4.TestEnumStringified>? aStringifiedEnum,
-    Set<_i5.Types>? anObject,
-    Set<Map<String, _i5.Types>>? aMap,
-    Set<List<_i5.Types>>? aList,
-    Set<(int,)>? aRecord,
-    Set<(int,)?>? aNullableRecord,
+    final Set<int>? anInt,
+    final Set<bool>? aBool,
+    final Set<double>? aDouble,
+    final Set<DateTime>? aDateTime,
+    final Set<String>? aString,
+    final Set<_i2.ByteData>? aByteData,
+    final Set<Duration>? aDuration,
+    final Set<_i1.UuidValue>? aUuid,
+    final Set<BigInt>? aBigInt,
+    final Set<_i3.TestEnum>? anEnum,
+    final Set<_i4.TestEnumStringified>? aStringifiedEnum,
+    final Set<_i5.Types>? anObject,
+    final Set<Map<String, _i5.Types>>? aMap,
+    final Set<List<_i5.Types>>? aList,
+    final Set<(int,)>? aRecord,
+    final Set<(int,)?>? aNullableRecord,
   }) = _TypesSetImpl;
 
-  factory TypesSet.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory TypesSet.fromJson(final Map<String, dynamic> jsonSerialization) {
     return TypesSet(
       anInt: jsonSerialization['anInt'] == null
           ? null
           : _i1.SetJsonExtension.fromJson(
               (jsonSerialization['anInt'] as List),
-              itemFromJson: (e) => e as int,
+              itemFromJson: (final e) => e as int,
             ),
       aBool: jsonSerialization['aBool'] == null
           ? null
           : _i1.SetJsonExtension.fromJson(
               (jsonSerialization['aBool'] as List),
-              itemFromJson: (e) => e as bool,
+              itemFromJson: (final e) => e as bool,
             ),
       aDouble: jsonSerialization['aDouble'] == null
           ? null
           : _i1.SetJsonExtension.fromJson(
               (jsonSerialization['aDouble'] as List),
-              itemFromJson: (e) => (e as num).toDouble(),
+              itemFromJson: (final e) => (e as num).toDouble(),
             ),
       aDateTime: jsonSerialization['aDateTime'] == null
           ? null
           : _i1.SetJsonExtension.fromJson(
               (jsonSerialization['aDateTime'] as List),
-              itemFromJson: (e) => _i1.DateTimeJsonExtension.fromJson(e),
+              itemFromJson: (final e) => _i1.DateTimeJsonExtension.fromJson(e),
             ),
       aString: jsonSerialization['aString'] == null
           ? null
           : _i1.SetJsonExtension.fromJson(
               (jsonSerialization['aString'] as List),
-              itemFromJson: (e) => e as String,
+              itemFromJson: (final e) => e as String,
             ),
       aByteData: jsonSerialization['aByteData'] == null
           ? null
           : _i1.SetJsonExtension.fromJson(
               (jsonSerialization['aByteData'] as List),
-              itemFromJson: (e) => _i1.ByteDataJsonExtension.fromJson(e),
+              itemFromJson: (final e) => _i1.ByteDataJsonExtension.fromJson(e),
             ),
       aDuration: jsonSerialization['aDuration'] == null
           ? null
           : _i1.SetJsonExtension.fromJson(
               (jsonSerialization['aDuration'] as List),
-              itemFromJson: (e) => _i1.DurationJsonExtension.fromJson(e),
+              itemFromJson: (final e) => _i1.DurationJsonExtension.fromJson(e),
             ),
       aUuid: jsonSerialization['aUuid'] == null
           ? null
           : _i1.SetJsonExtension.fromJson(
               (jsonSerialization['aUuid'] as List),
-              itemFromJson: (e) => _i1.UuidValueJsonExtension.fromJson(e),
+              itemFromJson: (final e) => _i1.UuidValueJsonExtension.fromJson(e),
             ),
       aBigInt: jsonSerialization['aBigInt'] == null
           ? null
           : _i1.SetJsonExtension.fromJson(
               (jsonSerialization['aBigInt'] as List),
-              itemFromJson: (e) => _i1.BigIntJsonExtension.fromJson(e),
+              itemFromJson: (final e) => _i1.BigIntJsonExtension.fromJson(e),
             ),
       anEnum: jsonSerialization['anEnum'] == null
           ? null
           : _i1.SetJsonExtension.fromJson(
               (jsonSerialization['anEnum'] as List),
-              itemFromJson: (e) => _i3.TestEnum.fromJson((e as int)),
+              itemFromJson: (final e) => _i3.TestEnum.fromJson((e as int)),
             ),
       aStringifiedEnum: jsonSerialization['aStringifiedEnum'] == null
           ? null
           : _i1.SetJsonExtension.fromJson(
               (jsonSerialization['aStringifiedEnum'] as List),
-              itemFromJson: (e) =>
+              itemFromJson: (final e) =>
                   _i4.TestEnumStringified.fromJson((e as String)),
             ),
       anObject: jsonSerialization['anObject'] == null
           ? null
           : _i1.SetJsonExtension.fromJson(
               (jsonSerialization['anObject'] as List),
-              itemFromJson: (e) =>
+              itemFromJson: (final e) =>
                   _i5.Types.fromJson((e as Map<String, dynamic>)),
             ),
       aMap: jsonSerialization['aMap'] == null
           ? null
           : _i1.SetJsonExtension.fromJson(
               (jsonSerialization['aMap'] as List),
-              itemFromJson: (e) => (e as Map).map(
-                (k, v) => MapEntry(
+              itemFromJson: (final e) => (e as Map).map(
+                (final k, final v) => MapEntry(
                   k as String,
                   _i5.Types.fromJson((v as Map<String, dynamic>)),
                 ),
@@ -148,15 +150,15 @@ abstract class TypesSet
           ? null
           : _i1.SetJsonExtension.fromJson(
               (jsonSerialization['aList'] as List),
-              itemFromJson: (e) => (e as List)
-                  .map((e) => _i5.Types.fromJson((e as Map<String, dynamic>)))
+              itemFromJson: (final e) => (e as List)
+                  .map((final e) => _i5.Types.fromJson((e as Map<String, dynamic>)))
                   .toList(),
             ),
       aRecord: jsonSerialization['aRecord'] == null
           ? null
           : _i1.SetJsonExtension.fromJson(
               (jsonSerialization['aRecord'] as List),
-              itemFromJson: (e) => _i6.Protocol().deserialize<(int,)>(
+              itemFromJson: (final e) => _i6.Protocol().deserialize<(int,)>(
                 (e as Map<String, dynamic>),
               ),
             ),
@@ -164,7 +166,7 @@ abstract class TypesSet
           ? null
           : _i1.SetJsonExtension.fromJson(
               (jsonSerialization['aNullableRecord'] as List),
-              itemFromJson: (e) => e == null
+              itemFromJson: (final e) => e == null
                   ? null
                   : _i6.Protocol().deserialize<(int,)?>(
                       (e as Map<String, dynamic>),
@@ -209,22 +211,22 @@ abstract class TypesSet
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   TypesSet copyWith({
-    Set<int>? anInt,
-    Set<bool>? aBool,
-    Set<double>? aDouble,
-    Set<DateTime>? aDateTime,
-    Set<String>? aString,
-    Set<_i2.ByteData>? aByteData,
-    Set<Duration>? aDuration,
-    Set<_i1.UuidValue>? aUuid,
-    Set<BigInt>? aBigInt,
-    Set<_i3.TestEnum>? anEnum,
-    Set<_i4.TestEnumStringified>? aStringifiedEnum,
-    Set<_i5.Types>? anObject,
-    Set<Map<String, _i5.Types>>? aMap,
-    Set<List<_i5.Types>>? aList,
-    Set<(int,)>? aRecord,
-    Set<(int,)?>? aNullableRecord,
+    final Set<int>? anInt,
+    final Set<bool>? aBool,
+    final Set<double>? aDouble,
+    final Set<DateTime>? aDateTime,
+    final Set<String>? aString,
+    final Set<_i2.ByteData>? aByteData,
+    final Set<Duration>? aDuration,
+    final Set<_i1.UuidValue>? aUuid,
+    final Set<BigInt>? aBigInt,
+    final Set<_i3.TestEnum>? anEnum,
+    final Set<_i4.TestEnumStringified>? aStringifiedEnum,
+    final Set<_i5.Types>? anObject,
+    final Set<Map<String, _i5.Types>>? aMap,
+    final Set<List<_i5.Types>>? aList,
+    final Set<(int,)>? aRecord,
+    final Set<(int,)?>? aNullableRecord,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -233,30 +235,30 @@ abstract class TypesSet
       if (aBool != null) 'aBool': aBool?.toJson(),
       if (aDouble != null) 'aDouble': aDouble?.toJson(),
       if (aDateTime != null)
-        'aDateTime': aDateTime?.toJson(valueToJson: (v) => v.toJson()),
+        'aDateTime': aDateTime?.toJson(valueToJson: (final v) => v.toJson()),
       if (aString != null) 'aString': aString?.toJson(),
       if (aByteData != null)
-        'aByteData': aByteData?.toJson(valueToJson: (v) => v.toJson()),
+        'aByteData': aByteData?.toJson(valueToJson: (final v) => v.toJson()),
       if (aDuration != null)
-        'aDuration': aDuration?.toJson(valueToJson: (v) => v.toJson()),
-      if (aUuid != null) 'aUuid': aUuid?.toJson(valueToJson: (v) => v.toJson()),
+        'aDuration': aDuration?.toJson(valueToJson: (final v) => v.toJson()),
+      if (aUuid != null) 'aUuid': aUuid?.toJson(valueToJson: (final v) => v.toJson()),
       if (aBigInt != null)
-        'aBigInt': aBigInt?.toJson(valueToJson: (v) => v.toJson()),
+        'aBigInt': aBigInt?.toJson(valueToJson: (final v) => v.toJson()),
       if (anEnum != null)
-        'anEnum': anEnum?.toJson(valueToJson: (v) => v.toJson()),
+        'anEnum': anEnum?.toJson(valueToJson: (final v) => v.toJson()),
       if (aStringifiedEnum != null)
         'aStringifiedEnum': aStringifiedEnum?.toJson(
-          valueToJson: (v) => v.toJson(),
+          valueToJson: (final v) => v.toJson(),
         ),
       if (anObject != null)
-        'anObject': anObject?.toJson(valueToJson: (v) => v.toJson()),
+        'anObject': anObject?.toJson(valueToJson: (final v) => v.toJson()),
       if (aMap != null)
         'aMap': aMap?.toJson(
-          valueToJson: (v) => v.toJson(valueToJson: (v) => v.toJson()),
+          valueToJson: (final v) => v.toJson(valueToJson: (final v) => v.toJson()),
         ),
       if (aList != null)
         'aList': aList?.toJson(
-          valueToJson: (v) => v.toJson(valueToJson: (v) => v.toJson()),
+          valueToJson: (final v) => v.toJson(valueToJson: (final v) => v.toJson()),
         ),
       if (aRecord != null) 'aRecord': _i6.mapContainerToJson(aRecord!),
       if (aNullableRecord != null)
@@ -271,32 +273,32 @@ abstract class TypesSet
       if (aBool != null) 'aBool': aBool?.toJson(),
       if (aDouble != null) 'aDouble': aDouble?.toJson(),
       if (aDateTime != null)
-        'aDateTime': aDateTime?.toJson(valueToJson: (v) => v.toJson()),
+        'aDateTime': aDateTime?.toJson(valueToJson: (final v) => v.toJson()),
       if (aString != null) 'aString': aString?.toJson(),
       if (aByteData != null)
-        'aByteData': aByteData?.toJson(valueToJson: (v) => v.toJson()),
+        'aByteData': aByteData?.toJson(valueToJson: (final v) => v.toJson()),
       if (aDuration != null)
-        'aDuration': aDuration?.toJson(valueToJson: (v) => v.toJson()),
-      if (aUuid != null) 'aUuid': aUuid?.toJson(valueToJson: (v) => v.toJson()),
+        'aDuration': aDuration?.toJson(valueToJson: (final v) => v.toJson()),
+      if (aUuid != null) 'aUuid': aUuid?.toJson(valueToJson: (final v) => v.toJson()),
       if (aBigInt != null)
-        'aBigInt': aBigInt?.toJson(valueToJson: (v) => v.toJson()),
+        'aBigInt': aBigInt?.toJson(valueToJson: (final v) => v.toJson()),
       if (anEnum != null)
-        'anEnum': anEnum?.toJson(valueToJson: (v) => v.toJson()),
+        'anEnum': anEnum?.toJson(valueToJson: (final v) => v.toJson()),
       if (aStringifiedEnum != null)
         'aStringifiedEnum': aStringifiedEnum?.toJson(
-          valueToJson: (v) => v.toJson(),
+          valueToJson: (final v) => v.toJson(),
         ),
       if (anObject != null)
-        'anObject': anObject?.toJson(valueToJson: (v) => v.toJsonForProtocol()),
+        'anObject': anObject?.toJson(valueToJson: (final v) => v.toJsonForProtocol()),
       if (aMap != null)
         'aMap': aMap?.toJson(
-          valueToJson: (v) =>
-              v.toJson(valueToJson: (v) => v.toJsonForProtocol()),
+          valueToJson: (final v) =>
+              v.toJson(valueToJson: (final v) => v.toJsonForProtocol()),
         ),
       if (aList != null)
         'aList': aList?.toJson(
-          valueToJson: (v) =>
-              v.toJson(valueToJson: (v) => v.toJsonForProtocol()),
+          valueToJson: (final v) =>
+              v.toJson(valueToJson: (final v) => v.toJsonForProtocol()),
         ),
       if (aRecord != null) 'aRecord': _i6.mapContainerToJson(aRecord!),
       if (aNullableRecord != null)
@@ -314,22 +316,22 @@ class _Undefined {}
 
 class _TypesSetImpl extends TypesSet {
   _TypesSetImpl({
-    Set<int>? anInt,
-    Set<bool>? aBool,
-    Set<double>? aDouble,
-    Set<DateTime>? aDateTime,
-    Set<String>? aString,
-    Set<_i2.ByteData>? aByteData,
-    Set<Duration>? aDuration,
-    Set<_i1.UuidValue>? aUuid,
-    Set<BigInt>? aBigInt,
-    Set<_i3.TestEnum>? anEnum,
-    Set<_i4.TestEnumStringified>? aStringifiedEnum,
-    Set<_i5.Types>? anObject,
-    Set<Map<String, _i5.Types>>? aMap,
-    Set<List<_i5.Types>>? aList,
-    Set<(int,)>? aRecord,
-    Set<(int,)?>? aNullableRecord,
+    final Set<int>? anInt,
+    final Set<bool>? aBool,
+    final Set<double>? aDouble,
+    final Set<DateTime>? aDateTime,
+    final Set<String>? aString,
+    final Set<_i2.ByteData>? aByteData,
+    final Set<Duration>? aDuration,
+    final Set<_i1.UuidValue>? aUuid,
+    final Set<BigInt>? aBigInt,
+    final Set<_i3.TestEnum>? anEnum,
+    final Set<_i4.TestEnumStringified>? aStringifiedEnum,
+    final Set<_i5.Types>? anObject,
+    final Set<Map<String, _i5.Types>>? aMap,
+    final Set<List<_i5.Types>>? aList,
+    final Set<(int,)>? aRecord,
+    final Set<(int,)?>? aNullableRecord,
   }) : super._(
          anInt: anInt,
          aBool: aBool,
@@ -354,64 +356,64 @@ class _TypesSetImpl extends TypesSet {
   @_i1.useResult
   @override
   TypesSet copyWith({
-    Object? anInt = _Undefined,
-    Object? aBool = _Undefined,
-    Object? aDouble = _Undefined,
-    Object? aDateTime = _Undefined,
-    Object? aString = _Undefined,
-    Object? aByteData = _Undefined,
-    Object? aDuration = _Undefined,
-    Object? aUuid = _Undefined,
-    Object? aBigInt = _Undefined,
-    Object? anEnum = _Undefined,
-    Object? aStringifiedEnum = _Undefined,
-    Object? anObject = _Undefined,
-    Object? aMap = _Undefined,
-    Object? aList = _Undefined,
-    Object? aRecord = _Undefined,
-    Object? aNullableRecord = _Undefined,
+    final Object? anInt = _Undefined,
+    final Object? aBool = _Undefined,
+    final Object? aDouble = _Undefined,
+    final Object? aDateTime = _Undefined,
+    final Object? aString = _Undefined,
+    final Object? aByteData = _Undefined,
+    final Object? aDuration = _Undefined,
+    final Object? aUuid = _Undefined,
+    final Object? aBigInt = _Undefined,
+    final Object? anEnum = _Undefined,
+    final Object? aStringifiedEnum = _Undefined,
+    final Object? anObject = _Undefined,
+    final Object? aMap = _Undefined,
+    final Object? aList = _Undefined,
+    final Object? aRecord = _Undefined,
+    final Object? aNullableRecord = _Undefined,
   }) {
     return TypesSet(
-      anInt: anInt is Set<int>? ? anInt : this.anInt?.map((e0) => e0).toSet(),
-      aBool: aBool is Set<bool>? ? aBool : this.aBool?.map((e0) => e0).toSet(),
+      anInt: anInt is Set<int>? ? anInt : this.anInt?.map((final e0) => e0).toSet(),
+      aBool: aBool is Set<bool>? ? aBool : this.aBool?.map((final e0) => e0).toSet(),
       aDouble: aDouble is Set<double>?
           ? aDouble
-          : this.aDouble?.map((e0) => e0).toSet(),
+          : this.aDouble?.map((final e0) => e0).toSet(),
       aDateTime: aDateTime is Set<DateTime>?
           ? aDateTime
-          : this.aDateTime?.map((e0) => e0).toSet(),
+          : this.aDateTime?.map((final e0) => e0).toSet(),
       aString: aString is Set<String>?
           ? aString
-          : this.aString?.map((e0) => e0).toSet(),
+          : this.aString?.map((final e0) => e0).toSet(),
       aByteData: aByteData is Set<_i2.ByteData>?
           ? aByteData
-          : this.aByteData?.map((e0) => e0.clone()).toSet(),
+          : this.aByteData?.map((final e0) => e0.clone()).toSet(),
       aDuration: aDuration is Set<Duration>?
           ? aDuration
-          : this.aDuration?.map((e0) => e0).toSet(),
+          : this.aDuration?.map((final e0) => e0).toSet(),
       aUuid: aUuid is Set<_i1.UuidValue>?
           ? aUuid
-          : this.aUuid?.map((e0) => e0).toSet(),
+          : this.aUuid?.map((final e0) => e0).toSet(),
       aBigInt: aBigInt is Set<BigInt>?
           ? aBigInt
-          : this.aBigInt?.map((e0) => e0).toSet(),
+          : this.aBigInt?.map((final e0) => e0).toSet(),
       anEnum: anEnum is Set<_i3.TestEnum>?
           ? anEnum
-          : this.anEnum?.map((e0) => e0).toSet(),
+          : this.anEnum?.map((final e0) => e0).toSet(),
       aStringifiedEnum: aStringifiedEnum is Set<_i4.TestEnumStringified>?
           ? aStringifiedEnum
-          : this.aStringifiedEnum?.map((e0) => e0).toSet(),
+          : this.aStringifiedEnum?.map((final e0) => e0).toSet(),
       anObject: anObject is Set<_i5.Types>?
           ? anObject
-          : this.anObject?.map((e0) => e0.copyWith()).toSet(),
+          : this.anObject?.map((final e0) => e0.copyWith()).toSet(),
       aMap: aMap is Set<Map<String, _i5.Types>>?
           ? aMap
           : this.aMap
                 ?.map(
-                  (e0) => e0.map(
+                  (final e0) => e0.map(
                     (
-                      key1,
-                      value1,
+                      final key1,
+                      final value1,
                     ) => MapEntry(
                       key1,
                       value1.copyWith(),
@@ -422,15 +424,15 @@ class _TypesSetImpl extends TypesSet {
       aList: aList is Set<List<_i5.Types>>?
           ? aList
           : this.aList
-                ?.map((e0) => e0.map((e1) => e1.copyWith()).toList())
+                ?.map((final e0) => e0.map((final e1) => e1.copyWith()).toList())
                 .toSet(),
       aRecord: aRecord is Set<(int,)>?
           ? aRecord
-          : this.aRecord?.map((e0) => (e0.$1,)).toSet(),
+          : this.aRecord?.map((final e0) => (e0.$1,)).toSet(),
       aNullableRecord: aNullableRecord is Set<(int,)?>?
           ? aNullableRecord
           : this.aNullableRecord
-                ?.map((e0) => e0 == null ? null : (e0.$1,))
+                ?.map((final e0) => e0 == null ? null : (e0.$1,))
                 .toSet(),
     );
   }

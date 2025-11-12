@@ -9,9 +9,10 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
+import 'dart:typed_data' as _i2;
+
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-import 'dart:typed_data' as _i2;
 
 abstract class ObjectWithByteData
     implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
@@ -21,11 +22,11 @@ abstract class ObjectWithByteData
   });
 
   factory ObjectWithByteData({
-    int? id,
-    required _i2.ByteData byteData,
+    final int? id,
+    required final _i2.ByteData byteData,
   }) = _ObjectWithByteDataImpl;
 
-  factory ObjectWithByteData.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory ObjectWithByteData.fromJson(final Map<String, dynamic> jsonSerialization) {
     return ObjectWithByteData(
       id: jsonSerialization['id'] as int?,
       byteData: _i1.ByteDataJsonExtension.fromJson(
@@ -50,8 +51,8 @@ abstract class ObjectWithByteData
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ObjectWithByteData copyWith({
-    int? id,
-    _i2.ByteData? byteData,
+    final int? id,
+    final _i2.ByteData? byteData,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -74,13 +75,13 @@ abstract class ObjectWithByteData
   }
 
   static ObjectWithByteDataIncludeList includeList({
-    _i1.WhereExpressionBuilder<ObjectWithByteDataTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithByteDataTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ObjectWithByteDataTable>? orderByList,
-    ObjectWithByteDataInclude? include,
+    final _i1.WhereExpressionBuilder<ObjectWithByteDataTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithByteDataTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ObjectWithByteDataTable>? orderByList,
+    final ObjectWithByteDataInclude? include,
   }) {
     return ObjectWithByteDataIncludeList._(
       where: where,
@@ -103,8 +104,8 @@ class _Undefined {}
 
 class _ObjectWithByteDataImpl extends ObjectWithByteData {
   _ObjectWithByteDataImpl({
-    int? id,
-    required _i2.ByteData byteData,
+    final int? id,
+    required final _i2.ByteData byteData,
   }) : super._(
          id: id,
          byteData: byteData,
@@ -115,8 +116,8 @@ class _ObjectWithByteDataImpl extends ObjectWithByteData {
   @_i1.useResult
   @override
   ObjectWithByteData copyWith({
-    Object? id = _Undefined,
-    _i2.ByteData? byteData,
+    final Object? id = _Undefined,
+    final _i2.ByteData? byteData,
   }) {
     return ObjectWithByteData(
       id: id is int? ? id : this.id,
@@ -129,7 +130,7 @@ class ObjectWithByteDataUpdateTable
     extends _i1.UpdateTable<ObjectWithByteDataTable> {
   ObjectWithByteDataUpdateTable(super.table);
 
-  _i1.ColumnValue<_i2.ByteData, _i2.ByteData> byteData(_i2.ByteData value) =>
+  _i1.ColumnValue<_i2.ByteData, _i2.ByteData> byteData(final _i2.ByteData value) =>
       _i1.ColumnValue(
         table.byteData,
         value,
@@ -169,7 +170,7 @@ class ObjectWithByteDataInclude extends _i1.IncludeObject {
 
 class ObjectWithByteDataIncludeList extends _i1.IncludeList {
   ObjectWithByteDataIncludeList._({
-    _i1.WhereExpressionBuilder<ObjectWithByteDataTable>? where,
+    final _i1.WhereExpressionBuilder<ObjectWithByteDataTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -213,14 +214,14 @@ class ObjectWithByteDataRepository {
   /// );
   /// ```
   Future<List<ObjectWithByteData>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ObjectWithByteDataTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithByteDataTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ObjectWithByteDataTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ObjectWithByteDataTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithByteDataTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ObjectWithByteDataTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<ObjectWithByteData>(
       where: where?.call(ObjectWithByteData.t),
@@ -251,13 +252,13 @@ class ObjectWithByteDataRepository {
   /// );
   /// ```
   Future<ObjectWithByteData?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ObjectWithByteDataTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithByteDataTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ObjectWithByteDataTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ObjectWithByteDataTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithByteDataTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ObjectWithByteDataTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<ObjectWithByteData>(
       where: where?.call(ObjectWithByteData.t),
@@ -271,9 +272,9 @@ class ObjectWithByteDataRepository {
 
   /// Finds a single [ObjectWithByteData] by its [id] or null if no such row exists.
   Future<ObjectWithByteData?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<ObjectWithByteData>(
       id,
@@ -288,9 +289,9 @@ class ObjectWithByteDataRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<ObjectWithByteData>> insert(
-    _i1.Session session,
-    List<ObjectWithByteData> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<ObjectWithByteData> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<ObjectWithByteData>(
       rows,
@@ -302,9 +303,9 @@ class ObjectWithByteDataRepository {
   ///
   /// The returned [ObjectWithByteData] will have its `id` field set.
   Future<ObjectWithByteData> insertRow(
-    _i1.Session session,
-    ObjectWithByteData row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final ObjectWithByteData row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<ObjectWithByteData>(
       row,
@@ -318,10 +319,10 @@ class ObjectWithByteDataRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<ObjectWithByteData>> update(
-    _i1.Session session,
-    List<ObjectWithByteData> rows, {
-    _i1.ColumnSelections<ObjectWithByteDataTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<ObjectWithByteData> rows, {
+    final _i1.ColumnSelections<ObjectWithByteDataTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<ObjectWithByteData>(
       rows,
@@ -334,10 +335,10 @@ class ObjectWithByteDataRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<ObjectWithByteData> updateRow(
-    _i1.Session session,
-    ObjectWithByteData row, {
-    _i1.ColumnSelections<ObjectWithByteDataTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final ObjectWithByteData row, {
+    final _i1.ColumnSelections<ObjectWithByteDataTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<ObjectWithByteData>(
       row,
@@ -349,11 +350,11 @@ class ObjectWithByteDataRepository {
   /// Updates a single [ObjectWithByteData] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<ObjectWithByteData?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<ObjectWithByteDataUpdateTable>
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<ObjectWithByteDataUpdateTable>
     columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<ObjectWithByteData>(
       id,
@@ -365,16 +366,16 @@ class ObjectWithByteDataRepository {
   /// Updates all [ObjectWithByteData]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<ObjectWithByteData>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<ObjectWithByteDataUpdateTable>
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<ObjectWithByteDataUpdateTable>
     columnValues,
-    required _i1.WhereExpressionBuilder<ObjectWithByteDataTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ObjectWithByteDataTable>? orderBy,
-    _i1.OrderByListBuilder<ObjectWithByteDataTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    required final _i1.WhereExpressionBuilder<ObjectWithByteDataTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ObjectWithByteDataTable>? orderBy,
+    final _i1.OrderByListBuilder<ObjectWithByteDataTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<ObjectWithByteData>(
       columnValues: columnValues(ObjectWithByteData.t.updateTable),
@@ -392,9 +393,9 @@ class ObjectWithByteDataRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<ObjectWithByteData>> delete(
-    _i1.Session session,
-    List<ObjectWithByteData> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<ObjectWithByteData> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<ObjectWithByteData>(
       rows,
@@ -404,9 +405,9 @@ class ObjectWithByteDataRepository {
 
   /// Deletes a single [ObjectWithByteData].
   Future<ObjectWithByteData> deleteRow(
-    _i1.Session session,
-    ObjectWithByteData row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final ObjectWithByteData row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<ObjectWithByteData>(
       row,
@@ -416,9 +417,9 @@ class ObjectWithByteDataRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<ObjectWithByteData>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<ObjectWithByteDataTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<ObjectWithByteDataTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<ObjectWithByteData>(
       where: where(ObjectWithByteData.t),
@@ -429,10 +430,10 @@ class ObjectWithByteDataRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ObjectWithByteDataTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ObjectWithByteDataTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<ObjectWithByteData>(
       where: where?.call(ObjectWithByteData.t),

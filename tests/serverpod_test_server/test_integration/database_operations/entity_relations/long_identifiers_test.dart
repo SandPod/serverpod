@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a model with a list relation to model with max length named fields', () {
     tearDown(() async {
@@ -21,7 +21,7 @@ void main() async {
     test(
       'when filtering on related fields data multiple times then fetched data is as expected.',
       () async {
-        var multipleMaxFieldNames = await MultipleMaxFieldName.db.insert(
+        final multipleMaxFieldNames = await MultipleMaxFieldName.db.insert(
           session,
           [
             MultipleMaxFieldName(
@@ -45,7 +45,7 @@ void main() async {
           ],
         );
 
-        var relationToMultipleMaxFieldNames =
+        final relationToMultipleMaxFieldNames =
             await RelationToMultipleMaxFieldName.db.insert(session, [
               RelationToMultipleMaxFieldName(
                 name: 'First',
@@ -79,22 +79,22 @@ void main() async {
           multipleMaxFieldNames[2],
         );
 
-        var fetched = await RelationToMultipleMaxFieldName.db.find(
+        final fetched = await RelationToMultipleMaxFieldName.db.find(
           session,
-          where: (t) =>
+          where: (final t) =>
               t.multipleMaxFieldNames.any(
-                (t) => t
+                (final t) => t
                     .thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames1
                     .ilike('First 1'),
               ) |
               t.multipleMaxFieldNames.any(
-                (t) => t
+                (final t) => t
                     .thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames2
                     .ilike('Second 2'),
               ),
         );
 
-        var fetchedNamed = fetched.map((e) => e.name).toList();
+        final fetchedNamed = fetched.map((final e) => e.name).toList();
         expect(fetchedNamed, hasLength(2));
         expect(fetchedNamed, containsAll(['First', 'Second']));
       },
@@ -103,7 +103,7 @@ void main() async {
     test(
       'when filtering on both fields then fetched data is as expected.',
       () async {
-        var multipleMaxFieldNames = await MultipleMaxFieldName.db.insert(
+        final multipleMaxFieldNames = await MultipleMaxFieldName.db.insert(
           session,
           [
             MultipleMaxFieldName(
@@ -121,7 +121,7 @@ void main() async {
           ],
         );
 
-        var relationToMultipleMaxFieldNames =
+        final relationToMultipleMaxFieldNames =
             await RelationToMultipleMaxFieldName.db.insert(session, [
               RelationToMultipleMaxFieldName(
                 name: 'First',
@@ -145,10 +145,10 @@ void main() async {
           multipleMaxFieldNames[1],
         );
 
-        var fetched = await RelationToMultipleMaxFieldName.db.find(
+        final fetched = await RelationToMultipleMaxFieldName.db.find(
           session,
-          where: (t) => t.multipleMaxFieldNames.any(
-            (t) =>
+          where: (final t) => t.multipleMaxFieldNames.any(
+            (final t) =>
                 t.thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames1
                     .ilike('First 1') &
                 t.thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNames2
@@ -156,7 +156,7 @@ void main() async {
           ),
         );
 
-        var fetchedNamed = fetched.map((e) => e.name).toList();
+        final fetchedNamed = fetched.map((final e) => e.name).toList();
         expect(fetchedNamed, hasLength(1));
         expect(fetchedNamed, ['First']);
       },
@@ -172,15 +172,15 @@ void main() async {
     );
 
     test('when fetching then data is fetched.', () async {
-      var name = 'Test Name';
-      var row = await MaxFieldName.db.insertRow(
+      const name = 'Test Name';
+      final row = await MaxFieldName.db.insertRow(
         session,
         MaxFieldName(
           thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNameFo: name,
         ),
       );
 
-      var fetched = await MaxFieldName.db.findById(session, row.id!);
+      final fetched = await MaxFieldName.db.findById(session, row.id!);
 
       expect(
         fetched?.thisFieldIsExactly61CharactersLongAndIsThereforeValidAsNameFo,
@@ -204,14 +204,14 @@ void main() async {
     test(
       'when fetching the relational data then the data is fetched.',
       () async {
-        var longImplicitField = await LongImplicitIdField.db.insertRow(
+        final longImplicitField = await LongImplicitIdField.db.insertRow(
           session,
           LongImplicitIdField(
             name: 'HasField',
           ),
         );
 
-        var longImplicitIdFieldCollection = await LongImplicitIdFieldCollection
+        final longImplicitIdFieldCollection = await LongImplicitIdFieldCollection
             .db
             .insertRow(
               session,
@@ -225,7 +225,7 @@ void main() async {
               longImplicitField,
             );
 
-        var fetched = await LongImplicitIdFieldCollection.db.findById(
+        final fetched = await LongImplicitIdFieldCollection.db.findById(
           session,
           longImplicitIdFieldCollection.id!,
           include: LongImplicitIdFieldCollection.include(
@@ -257,13 +257,13 @@ void main() async {
         // ensure we don't get an alias collision when the end of the alias is
         // truncated.
 
-        var longImplicitFields = await LongImplicitIdField.db.insert(session, [
+        final longImplicitFields = await LongImplicitIdField.db.insert(session, [
           LongImplicitIdField(name: 'One'),
           LongImplicitIdField(name: 'Two'),
           LongImplicitIdField(name: 'Three'),
         ]);
 
-        var longImplicitIdFieldCollections = await LongImplicitIdFieldCollection
+        final longImplicitIdFieldCollections = await LongImplicitIdFieldCollection
             .db
             .insert(session, [
               LongImplicitIdFieldCollection(name: 'First Collection'),
@@ -293,16 +293,16 @@ void main() async {
               longImplicitFields[1],
             );
 
-        var fetched = await LongImplicitIdFieldCollection.db.find(
+        final fetched = await LongImplicitIdFieldCollection.db.find(
           session,
-          where: (t) =>
+          where: (final t) =>
               t.thisFieldIsExactly61CharactersLongAndIsThereforeAValidFieldNa
-                  .any((t) => t.name.ilike('One')) |
+                  .any((final t) => t.name.ilike('One')) |
               t.thisFieldIsExactly61CharactersLongAndIsThereforeAValidFieldNa
-                  .any((t) => t.name.ilike('Two')),
+                  .any((final t) => t.name.ilike('Two')),
         );
 
-        var collectionNames = fetched.map((e) => e.name).toList();
+        final collectionNames = fetched.map((final e) => e.name).toList();
         expect(collectionNames, hasLength(2));
         expect(
           collectionNames,
@@ -327,11 +327,11 @@ void main() async {
     test(
       'when fetching the model with relational data included then the data is fetched.',
       () async {
-        var userNote = await UserNoteWithALongName.db.insertRow(
+        final userNote = await UserNoteWithALongName.db.insertRow(
           session,
           UserNoteWithALongName(name: 'Note'),
         );
-        var userNoteCollection = await UserNoteCollectionWithALongName.db
+        final userNoteCollection = await UserNoteCollectionWithALongName.db
             .insertRow(
               session,
               UserNoteCollectionWithALongName(name: 'Collection'),
@@ -342,7 +342,7 @@ void main() async {
           userNote,
         );
 
-        var collection = await UserNoteCollectionWithALongName.db.findById(
+        final collection = await UserNoteCollectionWithALongName.db.findById(
           session,
           userNoteCollection.id!,
           include: UserNoteCollectionWithALongName.include(
@@ -366,11 +366,11 @@ void main() async {
     test(
       'when fetching the model with relational data included then the data is fetched.',
       () async {
-        var userNote = await UserNote.db.insertRow(
+        final userNote = await UserNote.db.insertRow(
           session,
           UserNote(name: 'Note'),
         );
-        var userNoteCollection = await UserNoteCollection.db.insertRow(
+        final userNoteCollection = await UserNoteCollection.db.insertRow(
           session,
           UserNoteCollection(name: 'Collection'),
         );
@@ -381,7 +381,7 @@ void main() async {
           userNote,
         );
 
-        var collection = await UserNoteCollection.db.findById(
+        final collection = await UserNoteCollection.db.findById(
           session,
           userNoteCollection.id!,
           include: UserNoteCollection.include(
@@ -402,7 +402,7 @@ void main() async {
     test(
       'when including the relation so many times the relation path exceeds sql limit then data is still successfully fetched.',
       () async {
-        var posts = await Post.db.insert(
+        final posts = await Post.db.insert(
           session,
           [
             Post(content: '0'),
@@ -425,7 +425,7 @@ void main() async {
         await Post.db.attachRow.next(session, posts[6], posts[7]);
         await Post.db.attachRow.next(session, posts[7], posts[8]);
 
-        var fetchedPost = await Post.db.findById(
+        final fetchedPost = await Post.db.findById(
           session,
           posts[0].id!,
           include: Post.include(
@@ -477,16 +477,16 @@ void main() async {
         );
       });
 
-      var personName = 'Alex';
-      var cityName = 'Stockholm';
-      var organizationName = 'Serverpod';
+      const personName = 'Alex';
+      const cityName = 'Stockholm';
+      const organizationName = 'Serverpod';
       setUpAll(() async {
-        var insertedPerson = await PersonWithLongTableName.db.insertRow(
+        final insertedPerson = await PersonWithLongTableName.db.insertRow(
           session,
           PersonWithLongTableName(name: personName),
         );
 
-        var insertedCity = await CityWithLongTableName.db.insertRow(
+        final insertedCity = await CityWithLongTableName.db.insertRow(
           session,
           CityWithLongTableName(name: cityName),
         );
@@ -497,7 +497,7 @@ void main() async {
           insertedPerson,
         );
 
-        var insertedOrganization = await OrganizationWithLongTableName.db
+        final insertedOrganization = await OrganizationWithLongTableName.db
             .insertRow(
               session,
               OrganizationWithLongTableName(name: organizationName),
@@ -511,7 +511,7 @@ void main() async {
       });
 
       test('then all includes are included in the result.', () async {
-        var organizations = await OrganizationWithLongTableName.db.find(
+        final organizations = await OrganizationWithLongTableName.db.find(
           session,
           include: OrganizationWithLongTableName.include(
             city: CityWithLongTableName.include(
@@ -520,11 +520,11 @@ void main() async {
           ),
         );
 
-        var firstOrganization = organizations.firstOrNull;
+        final firstOrganization = organizations.firstOrNull;
         expect(firstOrganization?.name, organizationName);
-        var city = firstOrganization?.city;
+        final city = firstOrganization?.city;
         expect(city?.name, cityName);
-        var citizen = city?.citizens?.firstOrNull;
+        final citizen = city?.citizens?.firstOrNull;
         expect(citizen?.name, personName);
       });
     },

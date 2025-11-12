@@ -4,22 +4,22 @@ import 'package:serverpod_test_server/test_util/builders/log_settings_builder.da
 class RuntimeSettingsBuilder {
   LogSettings _logSettings = LogSettingsBuilder().build();
 
-  List<LogSettingsOverride> _logSettingsOverrides = [];
+  final List<LogSettingsOverride> _logSettingsOverrides = [];
 
   bool _logServiceCalls = true;
 
   bool _logMalformedCalls = true;
 
-  RuntimeSettingsBuilder withLogSettings(LogSettings logSettings) {
+  RuntimeSettingsBuilder withLogSettings(final LogSettings logSettings) {
     _logSettings = logSettings;
     return this;
   }
 
   RuntimeSettingsBuilder withLogSettingsOverride({
-    String? module,
-    String? endpoint,
-    String? method,
-    required LogSettings logSettings,
+    final String? module,
+    final String? endpoint,
+    final String? method,
+    required final LogSettings logSettings,
   }) {
     _logSettingsOverrides.add(
       LogSettingsOverride(
@@ -33,18 +33,18 @@ class RuntimeSettingsBuilder {
   }
 
   RuntimeSettingsBuilder withLogSettingsOverrides(
-    List<LogSettingsOverride> logSettingsOverrides,
+    final List<LogSettingsOverride> logSettingsOverrides,
   ) {
     _logSettingsOverrides.addAll(logSettingsOverrides);
     return this;
   }
 
-  RuntimeSettingsBuilder withLogServiceCalls(bool logServiceCalls) {
+  RuntimeSettingsBuilder withLogServiceCalls(final bool logServiceCalls) {
     _logServiceCalls = logServiceCalls;
     return this;
   }
 
-  RuntimeSettingsBuilder withLogMalformedCalls(bool logMalformedCalls) {
+  RuntimeSettingsBuilder withLogMalformedCalls(final bool logMalformedCalls) {
     _logMalformedCalls = logMalformedCalls;
     return this;
   }

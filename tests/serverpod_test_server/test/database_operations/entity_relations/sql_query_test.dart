@@ -1,11 +1,11 @@
+import 'package:serverpod/src/database/sql_query_builder.dart';
 import 'package:serverpod_test_server/src/generated/protocol.dart';
 import 'package:test/test.dart';
-import '../../../../../packages/serverpod/lib/src/database/sql_query_builder.dart';
 
 void main() {
   group('Given nested relations when building shallow include sql query', () {
     test('then query only joins what is included.', () {
-      var query = SelectQueryBuilder(table: Citizen.t)
+      final query = SelectQueryBuilder(table: Citizen.t)
           .withSelectFields(Citizen.t.columns)
           .withInclude(
             Citizen.include(
@@ -28,7 +28,7 @@ SELECT
 FROM "citizen" 
 LEFT JOIN "company" AS "citizen_company_company" ON "citizen"."companyId" = "citizen_company_company"."id"
 '''
-            .replaceAll("\n", ""),
+            .replaceAll('\n', ''),
       );
     });
   });

@@ -22,12 +22,12 @@ abstract class Channel
   });
 
   factory Channel({
-    int? id,
-    required String name,
-    required String channel,
+    final int? id,
+    required final String name,
+    required final String channel,
   }) = _ChannelImpl;
 
-  factory Channel.fromJson(Map<String, dynamic> jsonSerialization) {
+  factory Channel.fromJson(final Map<String, dynamic> jsonSerialization) {
     return Channel(
       id: jsonSerialization['id'] as int?,
       name: jsonSerialization['name'] as String,
@@ -55,9 +55,9 @@ abstract class Channel
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   Channel copyWith({
-    int? id,
-    String? name,
-    String? channel,
+    final int? id,
+    final String? name,
+    final String? channel,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -82,13 +82,13 @@ abstract class Channel
   }
 
   static ChannelIncludeList includeList({
-    _i1.WhereExpressionBuilder<ChannelTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ChannelTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ChannelTable>? orderByList,
-    ChannelInclude? include,
+    final _i1.WhereExpressionBuilder<ChannelTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ChannelTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ChannelTable>? orderByList,
+    final ChannelInclude? include,
   }) {
     return ChannelIncludeList._(
       where: where,
@@ -111,9 +111,9 @@ class _Undefined {}
 
 class _ChannelImpl extends Channel {
   _ChannelImpl({
-    int? id,
-    required String name,
-    required String channel,
+    final int? id,
+    required final String name,
+    required final String channel,
   }) : super._(
          id: id,
          name: name,
@@ -125,9 +125,9 @@ class _ChannelImpl extends Channel {
   @_i1.useResult
   @override
   Channel copyWith({
-    Object? id = _Undefined,
-    String? name,
-    String? channel,
+    final Object? id = _Undefined,
+    final String? name,
+    final String? channel,
   }) {
     return Channel(
       id: id is int? ? id : this.id,
@@ -140,12 +140,12 @@ class _ChannelImpl extends Channel {
 class ChannelUpdateTable extends _i1.UpdateTable<ChannelTable> {
   ChannelUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> name(String value) => _i1.ColumnValue(
+  _i1.ColumnValue<String, String> name(final String value) => _i1.ColumnValue(
     table.name,
     value,
   );
 
-  _i1.ColumnValue<String, String> channel(String value) => _i1.ColumnValue(
+  _i1.ColumnValue<String, String> channel(final String value) => _i1.ColumnValue(
     table.channel,
     value,
   );
@@ -192,7 +192,7 @@ class ChannelInclude extends _i1.IncludeObject {
 
 class ChannelIncludeList extends _i1.IncludeList {
   ChannelIncludeList._({
-    _i1.WhereExpressionBuilder<ChannelTable>? where,
+    final _i1.WhereExpressionBuilder<ChannelTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -236,14 +236,14 @@ class ChannelRepository {
   /// );
   /// ```
   Future<List<Channel>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ChannelTable>? where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ChannelTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ChannelTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ChannelTable>? where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ChannelTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ChannelTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.find<Channel>(
       where: where?.call(Channel.t),
@@ -274,13 +274,13 @@ class ChannelRepository {
   /// );
   /// ```
   Future<Channel?> findFirstRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ChannelTable>? where,
-    int? offset,
-    _i1.OrderByBuilder<ChannelTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ChannelTable>? orderByList,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ChannelTable>? where,
+    final int? offset,
+    final _i1.OrderByBuilder<ChannelTable>? orderBy,
+    final bool orderDescending = false,
+    final _i1.OrderByListBuilder<ChannelTable>? orderByList,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<Channel>(
       where: where?.call(Channel.t),
@@ -294,9 +294,9 @@ class ChannelRepository {
 
   /// Finds a single [Channel] by its [id] or null if no such row exists.
   Future<Channel?> findById(
-    _i1.Session session,
-    int id, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.findById<Channel>(
       id,
@@ -311,9 +311,9 @@ class ChannelRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<Channel>> insert(
-    _i1.Session session,
-    List<Channel> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<Channel> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insert<Channel>(
       rows,
@@ -325,9 +325,9 @@ class ChannelRepository {
   ///
   /// The returned [Channel] will have its `id` field set.
   Future<Channel> insertRow(
-    _i1.Session session,
-    Channel row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final Channel row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<Channel>(
       row,
@@ -341,10 +341,10 @@ class ChannelRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<Channel>> update(
-    _i1.Session session,
-    List<Channel> rows, {
-    _i1.ColumnSelections<ChannelTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<Channel> rows, {
+    final _i1.ColumnSelections<ChannelTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.update<Channel>(
       rows,
@@ -357,10 +357,10 @@ class ChannelRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<Channel> updateRow(
-    _i1.Session session,
-    Channel row, {
-    _i1.ColumnSelections<ChannelTable>? columns,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final Channel row, {
+    final _i1.ColumnSelections<ChannelTable>? columns,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<Channel>(
       row,
@@ -372,10 +372,10 @@ class ChannelRepository {
   /// Updates a single [Channel] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<Channel?> updateById(
-    _i1.Session session,
-    int id, {
-    required _i1.ColumnValueListBuilder<ChannelUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final int id, {
+    required final _i1.ColumnValueListBuilder<ChannelUpdateTable> columnValues,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<Channel>(
       id,
@@ -387,15 +387,15 @@ class ChannelRepository {
   /// Updates all [Channel]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<Channel>> updateWhere(
-    _i1.Session session, {
-    required _i1.ColumnValueListBuilder<ChannelUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<ChannelTable> where,
-    int? limit,
-    int? offset,
-    _i1.OrderByBuilder<ChannelTable>? orderBy,
-    _i1.OrderByListBuilder<ChannelTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.ColumnValueListBuilder<ChannelUpdateTable> columnValues,
+    required final _i1.WhereExpressionBuilder<ChannelTable> where,
+    final int? limit,
+    final int? offset,
+    final _i1.OrderByBuilder<ChannelTable>? orderBy,
+    final _i1.OrderByListBuilder<ChannelTable>? orderByList,
+    final bool orderDescending = false,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<Channel>(
       columnValues: columnValues(Channel.t.updateTable),
@@ -413,9 +413,9 @@ class ChannelRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<Channel>> delete(
-    _i1.Session session,
-    List<Channel> rows, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final List<Channel> rows, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.delete<Channel>(
       rows,
@@ -425,9 +425,9 @@ class ChannelRepository {
 
   /// Deletes a single [Channel].
   Future<Channel> deleteRow(
-    _i1.Session session,
-    Channel row, {
-    _i1.Transaction? transaction,
+    final _i1.Session session,
+    final Channel row, {
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<Channel>(
       row,
@@ -437,9 +437,9 @@ class ChannelRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<Channel>> deleteWhere(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<ChannelTable> where,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    required final _i1.WhereExpressionBuilder<ChannelTable> where,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<Channel>(
       where: where(Channel.t),
@@ -450,10 +450,10 @@ class ChannelRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ChannelTable>? where,
-    int? limit,
-    _i1.Transaction? transaction,
+    final _i1.Session session, {
+    final _i1.WhereExpressionBuilder<ChannelTable>? where,
+    final int? limit,
+    final _i1.Transaction? transaction,
   }) async {
     return session.db.count<Channel>(
       where: where?.call(Channel.t),

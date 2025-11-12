@@ -5,8 +5,8 @@ extension UserInfoExtension on UserInfo {
   /// Returns an object with only the information that can safely be shared
   /// publicly for the user.
   UserInfoPublic toPublic({
-    bool includeUserId = true,
-    bool includeFullName = true,
+    final bool includeUserId = true,
+    final bool includeFullName = true,
   }) {
     return UserInfoPublic(
       id: includeUserId ? id : null,

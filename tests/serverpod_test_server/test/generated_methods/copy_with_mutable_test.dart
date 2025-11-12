@@ -7,8 +7,8 @@ import 'package:test/test.dart';
 void main() {
   group('Copy behavior', () {
     group('Given an object with an int when copying with a new value', () {
-      var types = Types(anInt: 1);
-      var typesCopy = types.copyWith(anInt: 2);
+      final types = Types(anInt: 1);
+      final typesCopy = types.copyWith(anInt: 2);
 
       test('then the original object is unmodified.', () {
         expect(types.anInt, 1);
@@ -26,8 +26,8 @@ void main() {
     test(
       'Given an object with an int when copying the object without giving a new value then the copy has the same value.',
       () {
-        var types = Types(anInt: 1);
-        var typesCopy = types.copyWith();
+        final types = Types(anInt: 1);
+        final typesCopy = types.copyWith();
 
         expect(typesCopy.anInt, 1);
       },
@@ -36,8 +36,8 @@ void main() {
     test(
       'Given an object with a nullable int when copying the object setting it to null then the copy is null but not the original.',
       () {
-        var types = Types(anInt: 1);
-        var typesCopy = types.copyWith(anInt: null);
+        final types = Types(anInt: 1);
+        final typesCopy = types.copyWith(anInt: null);
 
         expect(typesCopy.anInt, isNull);
         expect(types.anInt, 1);
@@ -49,8 +49,8 @@ void main() {
     test(
       'Given an object with an int and a copy of that object when mutating the original then the copy is unmodified.',
       () {
-        var types = Types(anInt: 1);
-        var typesCopy = types.copyWith();
+        final types = Types(anInt: 1);
+        final typesCopy = types.copyWith();
         types.anInt = 3;
 
         expect(typesCopy.anInt, 1);
@@ -60,8 +60,8 @@ void main() {
     test(
       'Given an object with an double and a copy of that object when mutating the original then the copy is unmodified.',
       () {
-        var types = Types(aDouble: 1);
-        var typesCopy = types.copyWith();
+        final types = Types(aDouble: 1);
+        final typesCopy = types.copyWith();
         types.aDouble = 3;
 
         expect(typesCopy.aDouble, 1.0);
@@ -71,8 +71,8 @@ void main() {
     test(
       'Given an object with an bool and a copy of that object when mutating the original then the copy is unmodified.',
       () {
-        var types = Types(aBool: false);
-        var typesCopy = types.copyWith();
+        final types = Types(aBool: false);
+        final typesCopy = types.copyWith();
         types.aBool = true;
 
         expect(typesCopy.aBool, false);
@@ -82,8 +82,8 @@ void main() {
     test(
       'Given an object with an String and a copy of that object when mutating the original then the copy is unmodified.',
       () {
-        var types = Types(aString: 'hello');
-        var typesCopy = types.copyWith();
+        final types = Types(aString: 'hello');
+        final typesCopy = types.copyWith();
         types.aString = 'world';
 
         expect(typesCopy.aString, 'hello');
@@ -93,13 +93,13 @@ void main() {
     test(
       'Given an object with an Duration and a copy of that object when mutating the original then the copy is unmodified.',
       () {
-        var types = Types(aDuration: Duration(seconds: 1));
-        var typesCopy = types.copyWith();
-        types.aDuration = Duration(seconds: 3);
+        final types = Types(aDuration: const Duration(seconds: 1));
+        final typesCopy = types.copyWith();
+        types.aDuration = const Duration(seconds: 3);
 
         expect(
           typesCopy.aDuration?.inMilliseconds,
-          Duration(seconds: 1).inMilliseconds,
+          const Duration(seconds: 1).inMilliseconds,
         );
       },
     );
@@ -108,11 +108,11 @@ void main() {
       'Given an object with an Uuid and a copy of that object when mutating the original then the copy is unmodified.',
       () {
         // ignore: deprecated_member_use
-        var uuid = UuidValue.fromString(Uuid.NAMESPACE_NIL);
+        final uuid = UuidValue.fromString(Uuid.NAMESPACE_NIL);
 
-        var types = Types(aUuid: uuid);
-        var typesCopy = types.copyWith();
-        types.aUuid = UuidValue.fromString(Uuid().v4());
+        final types = Types(aUuid: uuid);
+        final typesCopy = types.copyWith();
+        types.aUuid = UuidValue.fromString(const Uuid().v4());
 
         expect(
           typesCopy.aUuid?.uuid,
@@ -125,10 +125,10 @@ void main() {
     test(
       'Given an object with an Uri and a copy of that object when mutating the original then the copy is unmodified.',
       () {
-        var uri = Uri.parse('https://serverpod.dev');
+        final uri = Uri.parse('https://serverpod.dev');
 
-        var types = Types(aUri: uri);
-        var typesCopy = types.copyWith();
+        final types = Types(aUri: uri);
+        final typesCopy = types.copyWith();
         types.aUri = Uri.parse('https://flutter.dev');
 
         expect(typesCopy.aUri, uri);
@@ -138,10 +138,10 @@ void main() {
     test(
       'Given an object with an BigInt and a copy of that object when mutating the original then the copy is unmodified.',
       () {
-        var bigInt = BigInt.one;
+        final bigInt = BigInt.one;
 
-        var types = Types(aBigInt: bigInt);
-        var typesCopy = types.copyWith();
+        final types = Types(aBigInt: bigInt);
+        final typesCopy = types.copyWith();
         types.aBigInt = BigInt.two;
 
         expect(
@@ -154,10 +154,10 @@ void main() {
     test(
       'Given an object with an DateTime and a copy of that object when mutating the original then the copy is unmodified.',
       () {
-        var dateTime = DateTime.fromMillisecondsSinceEpoch(1000);
+        final dateTime = DateTime.fromMillisecondsSinceEpoch(1000);
 
-        var types = Types(aDateTime: dateTime);
-        var typesCopy = types.copyWith();
+        final types = Types(aDateTime: dateTime);
+        final typesCopy = types.copyWith();
         types.aDateTime = DateTime.fromMillisecondsSinceEpoch(3000);
 
         expect(
@@ -170,10 +170,10 @@ void main() {
     test(
       'Given an object with an ByteData and a copy of that object when mutating the original then the copy is unmodified.',
       () {
-        var byteData = Uint8List.fromList([0, 1, 2, 3, 4]).buffer.asByteData();
+        final byteData = Uint8List.fromList([0, 1, 2, 3, 4]).buffer.asByteData();
 
-        var types = Types(aByteData: byteData);
-        var typesCopy = types.copyWith();
+        final types = Types(aByteData: byteData);
+        final typesCopy = types.copyWith();
         types.aByteData?.setInt8(0, 9);
 
         expect(
@@ -186,10 +186,10 @@ void main() {
     test(
       'Given an object with an ByteData and a copy of that object when mutating the original then the copy is unmodified.',
       () {
-        var byteData = Uint64List.fromList([0, 1, 2, 3, 4]).buffer.asByteData();
+        final byteData = Uint64List.fromList([0, 1, 2, 3, 4]).buffer.asByteData();
 
-        var types = Types(aByteData: byteData);
-        var typesCopy = types.copyWith();
+        final types = Types(aByteData: byteData);
+        final typesCopy = types.copyWith();
         types.aByteData?.setInt64(0, 9);
 
         expect(
@@ -202,7 +202,7 @@ void main() {
     test(
       'Given an object with an ByteData and a copy of that object when mutating the original then the copy is unmodified.',
       () {
-        var byteData = Float32List.fromList([
+        final byteData = Float32List.fromList([
           0,
           1,
           2,
@@ -210,8 +210,8 @@ void main() {
           4,
         ]).buffer.asByteData();
 
-        var types = Types(aByteData: byteData);
-        var typesCopy = types.copyWith();
+        final types = Types(aByteData: byteData);
+        final typesCopy = types.copyWith();
         types.aByteData?.setInt64(0, 9);
 
         expect(
@@ -224,10 +224,10 @@ void main() {
     test(
       'Given an object with a List and a copy of that object when mutating the original then the copy is unmodified.',
       () {
-        var list = [SimpleData(num: 1), SimpleData(num: 2)];
+        final list = [SimpleData(num: 1), SimpleData(num: 2)];
 
-        var listData = SimpleDataList(rows: list);
-        var listDataCopy = listData.copyWith();
+        final listData = SimpleDataList(rows: list);
+        final listDataCopy = listData.copyWith();
         listData.rows.add(SimpleData(num: 3));
 
         // Inspecting each value as the expect compares the references otherwise.
@@ -242,10 +242,10 @@ void main() {
     test(
       'Given an object with a List and a copy of that object when mutating an object in the list then the copy is unmodified.',
       () {
-        var list = [SimpleData(num: 1), SimpleData(num: 2)];
+        final list = [SimpleData(num: 1), SimpleData(num: 2)];
 
-        var listData = SimpleDataList(rows: list);
-        var listDataCopy = listData.copyWith();
+        final listData = SimpleDataList(rows: list);
+        final listDataCopy = listData.copyWith();
         listData.rows[0].num = 3;
 
         // Inspecting each value as the expect compares the references otherwise.
@@ -260,10 +260,10 @@ void main() {
     test(
       'Given an object with a Map and a copy of that object when mutating the original then the copy is unmodified.',
       () {
-        var map = {'a': SimpleData(num: 1), 'b': SimpleData(num: 2)};
+        final map = {'a': SimpleData(num: 1), 'b': SimpleData(num: 2)};
 
-        var mapData = SimpleDataMap(data: map);
-        var mapDataCopy = mapData.copyWith();
+        final mapData = SimpleDataMap(data: map);
+        final mapDataCopy = mapData.copyWith();
         mapData.data['c'] = SimpleData(num: 3);
 
         expect(mapDataCopy.data, hasLength(2));
@@ -277,10 +277,10 @@ void main() {
     test(
       'Given an object with a Map and a copy of that object when mutating an object in the map then the copy is unmodified.',
       () {
-        var map = {'a': SimpleData(num: 1), 'b': SimpleData(num: 2)};
+        final map = {'a': SimpleData(num: 1), 'b': SimpleData(num: 2)};
 
-        var mapData = SimpleDataMap(data: map);
-        var mapDataCopy = mapData.copyWith();
+        final mapData = SimpleDataMap(data: map);
+        final mapDataCopy = mapData.copyWith();
         mapData.data['a']?.num = 3;
 
         expect(mapDataCopy.data, hasLength(2));
@@ -294,7 +294,7 @@ void main() {
     group(
       'Given an object with nested Lists and Maps when calling copyWith',
       () {
-        var objectWithNestedObjects = ObjectWithObject(
+        final objectWithNestedObjects = ObjectWithObject(
           data: SimpleData(num: 1),
           dataList: [SimpleData(num: 2)],
           listWithNullableData: [],
@@ -319,7 +319,7 @@ void main() {
         );
 
         test('then a nested map is deeply cloned', () {
-          var copy = objectWithNestedObjects.copyWith();
+          final copy = objectWithNestedObjects.copyWith();
           copy.nestedDataMap?['firstKey']?[333]?.num = 12345;
 
           expect(
@@ -330,7 +330,7 @@ void main() {
         });
 
         test('then a nested list is deeply cloned', () {
-          var copy = objectWithNestedObjects.copyWith();
+          final copy = objectWithNestedObjects.copyWith();
           copy.nestedDataList?.first[1].num = 12345;
 
           expect(copy.nestedDataList, hasLength(1));
@@ -345,7 +345,7 @@ void main() {
         });
 
         test('then a nested list in a map is deeply cloned', () {
-          var copy = objectWithNestedObjects.copyWith();
+          final copy = objectWithNestedObjects.copyWith();
           copy.nestedDataListInMap?['firstKey']?[1]?.first[222]?.num = 12345;
 
           expect(copy.nestedDataListInMap?['firstKey'], hasLength(2));
@@ -373,7 +373,7 @@ void main() {
     test(
       'Given an object with an Enum in a nested List when calling copyWith then the Enum is copied',
       () {
-        var objectWithEnum = ObjectWithEnum(
+        final objectWithEnum = ObjectWithEnum(
           testEnum: TestEnum.two,
           nullableEnum: null,
           enumList: [
@@ -386,7 +386,7 @@ void main() {
           ],
         );
 
-        var copy = objectWithEnum.copyWith();
+        final copy = objectWithEnum.copyWith();
         copy.enumListList[1] = [TestEnum.three];
 
         expect(copy.enumListList, hasLength(2));

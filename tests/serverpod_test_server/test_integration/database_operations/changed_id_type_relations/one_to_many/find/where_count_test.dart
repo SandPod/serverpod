@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with one to many relation', () {
     tearDown(() async {
@@ -21,7 +21,7 @@ void main() async {
     test(
       'when fetching models filtered on many relation count then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -36,13 +36,13 @@ void main() async {
           OrderUuid(description: 'OrderUuid 5', customerId: customers[2].id!),
         ]);
 
-        var fetchedCustomers = await CustomerInt.db.find(
+        final fetchedCustomers = await CustomerInt.db.find(
           session,
           // All customers with more than one order
-          where: (c) => c.orders.count() > 1,
+          where: (final c) => c.orders.count() > 1,
         );
 
-        var customerNames = fetchedCustomers.map((e) => e.name);
+        final customerNames = fetchedCustomers.map((final e) => e.name);
         expect(customerNames, hasLength(2));
         expect(customerNames, containsAll(['Alex', 'Viktor']));
       },
@@ -51,7 +51,7 @@ void main() async {
     test(
       'when fetching models filtered on filtered many relation count then result is as expected',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -75,13 +75,13 @@ void main() async {
           ),
         ]);
 
-        var fetchedCustomers = await CustomerInt.db.find(
+        final fetchedCustomers = await CustomerInt.db.find(
           session,
           // All customers with more than one order starting with 'prem'
-          where: (c) => c.orders.count((o) => o.description.ilike('prem%')) > 1,
+          where: (final c) => c.orders.count((final o) => o.description.ilike('prem%')) > 1,
         );
 
-        var customerNames = fetchedCustomers.map((e) => e.name);
+        final customerNames = fetchedCustomers.map((final e) => e.name);
         expect(customerNames, ['Viktor']);
       },
     );
@@ -89,7 +89,7 @@ void main() async {
     test(
       'when fetching models filtered on many relation count in combination with other filter then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -104,13 +104,13 @@ void main() async {
           OrderUuid(description: 'OrderUuid 5', customerId: customers[2].id!),
         ]);
 
-        var fetchedCustomers = await CustomerInt.db.find(
+        final fetchedCustomers = await CustomerInt.db.find(
           session,
           // All customers with more than two orders or name 'Isak'
-          where: (c) => (c.orders.count() > 2) | c.name.equals('Isak'),
+          where: (final c) => (c.orders.count() > 2) | c.name.equals('Isak'),
         );
 
-        var customerNames = fetchedCustomers.map((e) => e.name);
+        final customerNames = fetchedCustomers.map((final e) => e.name);
         expect(customerNames, hasLength(2));
         expect(customerNames, containsAll(['Alex', 'Isak']));
       },
@@ -119,7 +119,7 @@ void main() async {
     test(
       'when fetching models filtered on multiple many relation count then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -134,13 +134,13 @@ void main() async {
           OrderUuid(description: 'OrderUuid 5', customerId: customers[2].id!),
         ]);
 
-        var fetchedCustomers = await CustomerInt.db.find(
+        final fetchedCustomers = await CustomerInt.db.find(
           session,
           // All customers with more than one orders but less than three
-          where: (c) => (c.orders.count() > 1) & (c.orders.count() < 3),
+          where: (final c) => (c.orders.count() > 1) & (c.orders.count() < 3),
         );
 
-        var customerNames = fetchedCustomers.map((e) => e.name);
+        final customerNames = fetchedCustomers.map((final e) => e.name);
         expect(customerNames, ['Viktor']);
       },
     );
@@ -148,7 +148,7 @@ void main() async {
     test(
       'when fetching models filtered on multiple filtered many relation count then result is as expected.',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -186,15 +186,15 @@ void main() async {
           ),
         ]);
 
-        var fetchedCustomers = await CustomerInt.db.find(
+        final fetchedCustomers = await CustomerInt.db.find(
           session,
           // All customers with more than one premium order and one basic order
-          where: (c) =>
-              (c.orders.count((o) => o.description.ilike('prem%')) > 1) &
-              (c.orders.count((o) => o.description.ilike('basic%')) > 1),
+          where: (final c) =>
+              (c.orders.count((final o) => o.description.ilike('prem%')) > 1) &
+              (c.orders.count((final o) => o.description.ilike('basic%')) > 1),
         );
 
-        var customerNames = fetchedCustomers.map((e) => e.name);
+        final customerNames = fetchedCustomers.map((final e) => e.name);
         expect(customerNames, ['Viktor']);
       },
     );
@@ -202,7 +202,7 @@ void main() async {
     test(
       'when fetching models filtered and ordered on many relation count then result is as expected',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
@@ -235,16 +235,16 @@ void main() async {
           ),
         ]);
 
-        var fetchedCustomers = await CustomerInt.db.find(
+        final fetchedCustomers = await CustomerInt.db.find(
           session,
           // All customers with more than one order with a description starting with 'prem'
-          where: (c) => c.orders.count((o) => o.description.ilike('prem%')) > 1,
+          where: (final c) => c.orders.count((final o) => o.description.ilike('prem%')) > 1,
           // OrderUuid by number of orders with descriptions starting with 'basic'
-          orderBy: (t) => t.orders.count((o) => o.description.ilike('basic%')),
+          orderBy: (final t) => t.orders.count((final o) => o.description.ilike('basic%')),
           orderDescending: true,
         );
 
-        var customerNames = fetchedCustomers.map((e) => e.name);
+        final customerNames = fetchedCustomers.map((final e) => e.name);
         expect(customerNames, hasLength(2));
         expect(customerNames.first, 'Viktor');
         expect(customerNames.last, 'Isak');
@@ -271,12 +271,12 @@ void main() async {
     test(
       'when filtering on nested many relation count then result is as expected',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
         ]);
-        var orders = await OrderUuid.db.insert(session, [
+        final orders = await OrderUuid.db.insert(session, [
           // Alex orders
           OrderUuid(description: 'OrderUuid 1', customerId: customers[0].id!),
           OrderUuid(description: 'OrderUuid 2', customerId: customers[0].id!),
@@ -308,13 +308,13 @@ void main() async {
           CommentInt(description: 'CommentInt 14', orderId: orders[4].id),
         ]);
 
-        var fetchedCustomers = await CustomerInt.db.find(
+        final fetchedCustomers = await CustomerInt.db.find(
           session,
           // All customers with more than one order with more than two comments
-          where: (c) => c.orders.count((o) => o.comments.count() > 2) > 1,
+          where: (final c) => c.orders.count((final o) => o.comments.count() > 2) > 1,
         );
 
-        var customerNames = fetchedCustomers.map((e) => e.name);
+        final customerNames = fetchedCustomers.map((final e) => e.name);
         expect(customerNames, hasLength(1));
         expect(customerNames, contains('Isak'));
       },
@@ -323,12 +323,12 @@ void main() async {
     test(
       'when fetching models filtered on filtered nested many relation count then result is as expected',
       () async {
-        var customers = await CustomerInt.db.insert(session, [
+        final customers = await CustomerInt.db.insert(session, [
           CustomerInt(name: 'Alex'),
           CustomerInt(name: 'Isak'),
           CustomerInt(name: 'Viktor'),
         ]);
-        var orders = await OrderUuid.db.insert(session, [
+        final orders = await OrderUuid.db.insert(session, [
           // Alex orders
           OrderUuid(description: 'OrderUuid 1', customerId: customers[0].id!),
           OrderUuid(description: 'OrderUuid 2', customerId: customers[0].id!),
@@ -360,17 +360,17 @@ void main() async {
           CommentInt(description: 'CommentInt 14', orderId: orders[4].id),
         ]);
 
-        var fetchedCustomers = await CustomerInt.db.find(
+        final fetchedCustomers = await CustomerInt.db.find(
           session,
-          where: (c) =>
+          where: (final c) =>
               c.orders.count(
                 // All customers with more than one order with more than one comment starting with 'del'
-                (o) => o.comments.count((c) => c.description.ilike('del%')) > 1,
+                (final o) => o.comments.count((final c) => c.description.ilike('del%')) > 1,
               ) >
               1,
         );
 
-        var customerNames = fetchedCustomers.map((e) => e.name);
+        final customerNames = fetchedCustomers.map((final e) => e.name);
         expect(customerNames, ['Isak']);
       },
     );

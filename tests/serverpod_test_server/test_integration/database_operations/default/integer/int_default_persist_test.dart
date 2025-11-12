@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with "defaultPersist" fields,', () {
     tearDownAll(
@@ -17,8 +17,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "defaultPersist=10" field should be 10',
       () async {
-        var object = IntDefaultPersist();
-        var databaseObject = await IntDefaultPersist.db.insertRow(
+        final object = IntDefaultPersist();
+        final databaseObject = await IntDefaultPersist.db.insertRow(
           session,
           object,
         );
@@ -35,7 +35,7 @@ void main() async {
         VALUES (DEFAULT);
         ''',
         );
-        var databaseObject = await IntDefaultPersist.db.findFirstRow(session);
+        final databaseObject = await IntDefaultPersist.db.findFirstRow(session);
         expect(databaseObject?.intDefaultPersist, equals(10));
       },
     );
@@ -43,10 +43,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "intDefaultPersist" field value should match the provided value',
       () async {
-        var specificObject = IntDefaultPersist(
+        final specificObject = IntDefaultPersist(
           intDefaultPersist: 20,
         );
-        var specificDatabaseObject = await IntDefaultPersist.db.insertRow(
+        final specificDatabaseObject = await IntDefaultPersist.db.insertRow(
           session,
           specificObject,
         );

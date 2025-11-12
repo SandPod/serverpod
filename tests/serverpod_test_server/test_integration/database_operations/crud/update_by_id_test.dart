@@ -9,8 +9,8 @@ import '../../test_tools/serverpod_test_tools.dart';
 void main() {
   withServerpod(
     'Given a database entry with all basic fields',
-    (sessionBuilder, endpoints) {
-      var session = sessionBuilder.build();
+    (final sessionBuilder, final endpoints) {
+      final session = sessionBuilder.build();
 
       const originalBool = true;
       const originalInt = 1;
@@ -35,7 +35,7 @@ void main() {
             () => Types.db.updateById(
               session,
               existingEntry.id!,
-              columnValues: (t) => [],
+              columnValues: (final t) => [],
             ),
             throwsA(isA<ArgumentError>()),
           );
@@ -44,7 +44,7 @@ void main() {
         test(
           'then the row remains unchanged in the database',
           () async {
-            var dbRow = await Types.db.findById(session, existingEntry.id!);
+            final dbRow = await Types.db.findById(session, existingEntry.id!);
             expect(dbRow, isNotNull);
             expect(dbRow!.anInt, originalInt);
             expect(dbRow.aBool, originalBool);
@@ -61,7 +61,7 @@ void main() {
           updated = await Types.db.updateById(
             session,
             existingEntry.id!,
-            columnValues: (t) => [t.anInt(updatedInt)],
+            columnValues: (final t) => [t.anInt(updatedInt)],
           );
         });
 
@@ -75,7 +75,7 @@ void main() {
         test(
           'then only that column is updated',
           () async {
-            var dbRow = await Types.db.findById(session, existingEntry.id!);
+            final dbRow = await Types.db.findById(session, existingEntry.id!);
             expect(dbRow, isNotNull);
             expect(dbRow!.anInt, updatedInt);
           },
@@ -84,7 +84,7 @@ void main() {
         test(
           'then other columns are not updated',
           () async {
-            var dbRow = await Types.db.findById(session, existingEntry.id!);
+            final dbRow = await Types.db.findById(session, existingEntry.id!);
             expect(dbRow, isNotNull);
             expect(dbRow!.aBool, originalBool);
             expect(dbRow.aString, originalString);
@@ -101,7 +101,7 @@ void main() {
           updated = await Types.db.updateById(
             session,
             existingEntry.id!,
-            columnValues: (t) => [
+            columnValues: (final t) => [
               t.anInt(updatedInt),
               t.aString(updatedString),
             ],
@@ -118,7 +118,7 @@ void main() {
         test(
           'then only the selected columns are updated',
           () async {
-            var dbRow = await Types.db.findById(session, existingEntry.id!);
+            final dbRow = await Types.db.findById(session, existingEntry.id!);
             expect(dbRow, isNotNull);
             expect(dbRow!.anInt, updatedInt);
             expect(dbRow.aString, updatedString);
@@ -128,7 +128,7 @@ void main() {
         test(
           'then other columns are not updated',
           () async {
-            var dbRow = await Types.db.findById(session, existingEntry.id!);
+            final dbRow = await Types.db.findById(session, existingEntry.id!);
             expect(dbRow, isNotNull);
             expect(dbRow!.aBool, originalBool);
           },
@@ -139,13 +139,13 @@ void main() {
         const transactionUpdatedInt = 42;
 
         setUp(() async {
-          await session.db.transaction((transaction) async {
-            var savepoint = await transaction.createSavepoint();
+          await session.db.transaction((final transaction) async {
+            final savepoint = await transaction.createSavepoint();
 
             await Types.db.updateById(
               session,
               existingEntry.id!,
-              columnValues: (t) => [t.anInt(transactionUpdatedInt)],
+              columnValues: (final t) => [t.anInt(transactionUpdatedInt)],
               transaction: transaction,
             );
 
@@ -154,7 +154,7 @@ void main() {
         });
 
         test('then update is reverted as part of transaction', () async {
-          var result = await Types.db.findById(session, existingEntry.id!);
+          final result = await Types.db.findById(session, existingEntry.id!);
           expect(result!.anInt, originalInt);
         });
       });
@@ -163,8 +163,8 @@ void main() {
 
   withServerpod(
     'Given a database entry with non-null values',
-    (sessionBuilder, endpoints) {
-      var session = sessionBuilder.build();
+    (final sessionBuilder, final endpoints) {
+      final session = sessionBuilder.build();
 
       const originalInt = 1;
       const originalString = 'original';
@@ -185,7 +185,7 @@ void main() {
           updated = await Types.db.updateById(
             session,
             existingEntry.id!,
-            columnValues: (t) => [t.anInt(null), t.aString(null)],
+            columnValues: (final t) => [t.anInt(null), t.aString(null)],
           );
         });
 
@@ -196,7 +196,7 @@ void main() {
         });
 
         test('then the column is null in the database', () async {
-          var dbRow = await Types.db.findById(session, existingEntry.id!);
+          final dbRow = await Types.db.findById(session, existingEntry.id!);
           expect(dbRow, isNotNull);
           expect(dbRow!.anInt, isNull);
           expect(dbRow.aString, isNull);
@@ -207,8 +207,8 @@ void main() {
 
   withServerpod(
     'Given a database entry with null values',
-    (sessionBuilder, endpoints) {
-      var session = sessionBuilder.build();
+    (final sessionBuilder, final endpoints) {
+      final session = sessionBuilder.build();
 
       late Types existingEntry;
 
@@ -228,7 +228,7 @@ void main() {
           updated = await Types.db.updateById(
             session,
             existingEntry.id!,
-            columnValues: (t) => [
+            columnValues: (final t) => [
               t.anInt(updatedInt),
               t.aString(updatedString),
             ],
@@ -246,8 +246,8 @@ void main() {
 
   withServerpod(
     'Given a database entry with all supported data types',
-    (sessionBuilder, endpoints) {
-      var session = sessionBuilder.build();
+    (final sessionBuilder, final endpoints) {
+      final session = sessionBuilder.build();
 
       late Types existingEntry;
 
@@ -261,12 +261,12 @@ void main() {
             aDateTime: DateTime(2024, 1, 1),
             aString: 'original',
             aByteData: ByteData.view(Uint8List.fromList([1, 2, 3]).buffer),
-            aDuration: Duration(seconds: 30),
+            aDuration: const Duration(seconds: 30),
             aUuid: UuidValue.fromString('550e8400-e29b-41d4-a716-446655440000'),
             aUri: Uri.parse('https://serverpod.dev'),
             aBigInt: BigInt.from(123456789),
-            aVector: Vector([1.0, 2.0, 3.0]),
-            aHalfVector: HalfVector([1.0, 2.0, 3.0]),
+            aVector: const Vector([1.0, 2.0, 3.0]),
+            aHalfVector: const HalfVector([1.0, 2.0, 3.0]),
             aSparseVector: SparseVector([1.0, 2.0, 3.0]),
             aBit: Bit([true, false, true]),
             anEnum: TestEnum.one,
@@ -289,21 +289,21 @@ void main() {
           updated = await Types.db.updateById(
             session,
             existingEntry.id!,
-            columnValues: (t) => [
+            columnValues: (final t) => [
               t.anInt(42),
               t.aBool(false),
               t.aDouble(3.14),
               t.aDateTime(DateTime.utc(2024, 12, 31)),
               t.aString('updated'),
               t.aByteData(ByteData.view(Uint8List.fromList([4, 5, 6]).buffer)),
-              t.aDuration(Duration(minutes: 5)),
+              t.aDuration(const Duration(minutes: 5)),
               t.aUuid(
                 UuidValue.fromString('123e4567-e89b-12d3-a456-426614174000'),
               ),
               t.aUri(Uri.parse('https://example.com')),
               t.aBigInt(BigInt.from(987654321)),
-              t.aVector(Vector([4.0, 5.0, 6.0])),
-              t.aHalfVector(HalfVector([4.0, 5.0, 6.0])),
+              t.aVector(const Vector([4.0, 5.0, 6.0])),
+              t.aHalfVector(const HalfVector([4.0, 5.0, 6.0])),
               t.aSparseVector(SparseVector([4.0, 5.0, 6.0])),
               t.aBit(Bit([false, true, false])),
               t.anEnum(TestEnum.two),
@@ -333,15 +333,15 @@ void main() {
             ).toList(),
             [4, 5, 6],
           );
-          expect(updated!.aDuration, Duration(minutes: 5));
+          expect(updated!.aDuration, const Duration(minutes: 5));
           expect(
             updated!.aUuid,
             UuidValue.fromString('123e4567-e89b-12d3-a456-426614174000'),
           );
           expect(updated!.aUri, Uri.parse('https://example.com'));
           expect(updated!.aBigInt, BigInt.from(987654321));
-          expect(updated!.aVector, Vector([4.0, 5.0, 6.0]));
-          expect(updated!.aHalfVector, HalfVector([4.0, 5.0, 6.0]));
+          expect(updated!.aVector, const Vector([4.0, 5.0, 6.0]));
+          expect(updated!.aHalfVector, const HalfVector([4.0, 5.0, 6.0]));
           expect(updated!.aSparseVector, SparseVector([4.0, 5.0, 6.0]));
           expect(updated!.aBit, Bit([false, true, false]));
           expect(updated!.anEnum, TestEnum.two);
@@ -356,7 +356,7 @@ void main() {
         });
 
         test('then all data types are updated in the database', () async {
-          var dbRow = await Types.db.findById(session, existingEntry.id!);
+          final dbRow = await Types.db.findById(session, existingEntry.id!);
           expect(dbRow, isNotNull);
           expect(dbRow!.anInt, 42);
           expect(dbRow.aBool, false);
@@ -371,15 +371,15 @@ void main() {
             ).toList(),
             [4, 5, 6],
           );
-          expect(dbRow.aDuration, Duration(minutes: 5));
+          expect(dbRow.aDuration, const Duration(minutes: 5));
           expect(
             dbRow.aUuid,
             UuidValue.fromString('123e4567-e89b-12d3-a456-426614174000'),
           );
           expect(dbRow.aUri, Uri.parse('https://example.com'));
           expect(dbRow.aBigInt, BigInt.from(987654321));
-          expect(dbRow.aVector, Vector([4.0, 5.0, 6.0]));
-          expect(dbRow.aHalfVector, HalfVector([4.0, 5.0, 6.0]));
+          expect(dbRow.aVector, const Vector([4.0, 5.0, 6.0]));
+          expect(dbRow.aHalfVector, const HalfVector([4.0, 5.0, 6.0]));
           expect(dbRow.aSparseVector, SparseVector([4.0, 5.0, 6.0]));
           expect(dbRow.aBit, Bit([false, true, false]));
           expect(dbRow.anEnum, TestEnum.two);
@@ -398,16 +398,16 @@ void main() {
 
   withServerpod(
     'Given a non-existent database entry',
-    (testSession, endpoints) {
-      var session = testSession.build();
+    (final testSession, final endpoints) {
+      final session = testSession.build();
 
       test(
         'when updating by non-existent id then DatabaseUpdateRowException is thrown',
         () async {
-          var updated = Types.db.updateById(
+          final updated = Types.db.updateById(
             session,
             999999,
-            columnValues: (t) => [t.anInt(123)],
+            columnValues: (final t) => [t.anInt(123)],
           );
 
           expect(updated, throwsA(isA<DatabaseUpdateRowException>()));

@@ -8,9 +8,9 @@ void main() {
   test(
     'Given a class with only nullable fields without any of them defined when calling toJson then an empty map is returned.',
     () {
-      var types = Types();
+      final types = Types();
 
-      var jsonMap = types.toJson();
+      final jsonMap = types.toJson();
 
       expect(jsonMap, {});
     },
@@ -19,9 +19,9 @@ void main() {
   test(
     'Given a class with only nullable fields with an int defined when calling toJson then the key and value is set.',
     () {
-      var types = Types(anInt: 1);
+      final types = Types(anInt: 1);
 
-      var jsonMap = types.toJson();
+      final jsonMap = types.toJson();
 
       expect(jsonMap, {'anInt': 1});
     },
@@ -30,9 +30,9 @@ void main() {
   test(
     'Given a class with only nullable fields with a double defined when calling toJson then the key and value is set.',
     () {
-      var types = Types(aDouble: 1.0);
+      final types = Types(aDouble: 1.0);
 
-      var jsonMap = types.toJson();
+      final jsonMap = types.toJson();
 
       expect(jsonMap, {'aDouble': 1.0});
     },
@@ -41,9 +41,9 @@ void main() {
   test(
     'Given a class with only nullable fields with a bool defined when calling toJson then the key and value is set.',
     () {
-      var types = Types(aBool: true);
+      final types = Types(aBool: true);
 
-      var jsonMap = types.toJson();
+      final jsonMap = types.toJson();
 
       expect(jsonMap, {'aBool': true});
     },
@@ -52,9 +52,9 @@ void main() {
   test(
     'Given a class with only nullable fields with a String defined when calling toJson then the key and value is set.',
     () {
-      var types = Types(aString: 'Hello world!');
+      final types = Types(aString: 'Hello world!');
 
-      var jsonMap = types.toJson();
+      final jsonMap = types.toJson();
 
       expect(jsonMap, {'aString': 'Hello world!'});
     },
@@ -63,9 +63,9 @@ void main() {
   test(
     'Given a class with only nullable fields with an enum serialized by index defined when calling toJson then the key and value is set.',
     () {
-      var types = Types(anEnum: TestEnum.one);
+      final types = Types(anEnum: TestEnum.one);
 
-      var jsonMap = types.toJson();
+      final jsonMap = types.toJson();
 
       expect(jsonMap, {'anEnum': 0});
     },
@@ -74,9 +74,9 @@ void main() {
   test(
     'Given a class with only nullable fields with an enum serialized by name defined when calling toJson then the key and value is set.',
     () {
-      var types = Types(aStringifiedEnum: TestEnumStringified.one);
+      final types = Types(aStringifiedEnum: TestEnumStringified.one);
 
-      var jsonMap = types.toJson();
+      final jsonMap = types.toJson();
 
       expect(jsonMap, {'aStringifiedEnum': 'one'});
     },
@@ -86,9 +86,9 @@ void main() {
     'Given a class with only nullable fields with a Uuid defined when calling toJson then the key and value is set.',
     () {
       // ignore: deprecated_member_use
-      var types = Types(aUuid: UuidValue.nil);
+      final types = Types(aUuid: UuidValue.nil);
 
-      var jsonMap = types.toJson();
+      final jsonMap = types.toJson();
 
       expect(jsonMap, {'aUuid': '00000000-0000-0000-0000-000000000000'});
     },
@@ -97,9 +97,9 @@ void main() {
   test(
     'Given a class with only nullable fields with a Uuid defined when calling toJson then the key and value is set.',
     () {
-      var types = Types(aUri: Uri.parse('https://serverpod.dev/foo#test'));
+      final types = Types(aUri: Uri.parse('https://serverpod.dev/foo#test'));
 
-      var jsonMap = types.toJson();
+      final jsonMap = types.toJson();
 
       expect(jsonMap, {'aUri': 'https://serverpod.dev/foo#test'});
     },
@@ -108,9 +108,9 @@ void main() {
   test(
     'Given a class with only nullable fields with a Duration defined when calling toJson then the key and value is set.',
     () {
-      var types = Types(aDuration: Duration(seconds: 1));
+      final types = Types(aDuration: const Duration(seconds: 1));
 
-      var jsonMap = types.toJson();
+      final jsonMap = types.toJson();
 
       expect(jsonMap, {'aDuration': 1000});
     },
@@ -119,9 +119,9 @@ void main() {
   test(
     'Given a class with only nullable fields with a DateTime defined when calling toJson then the key and value is set.',
     () {
-      var types = Types(aDateTime: DateTime.parse('2024-01-01T00:00:00.000Z'));
+      final types = Types(aDateTime: DateTime.parse('2024-01-01T00:00:00.000Z'));
 
-      var jsonMap = types.toJson();
+      final jsonMap = types.toJson();
 
       expect(jsonMap, {'aDateTime': '2024-01-01T00:00:00.000Z'});
     },
@@ -130,26 +130,26 @@ void main() {
   test(
     'Given a class with only nullable fields with a ByteData defined when calling toJson then the key and value is set.',
     () {
-      var intList = Uint8List(8);
+      final intList = Uint8List(8);
       for (var i = 0; i < intList.length; i++) {
         intList[i] = i;
       }
 
-      var types = Types(aByteData: ByteData.view(intList.buffer));
+      final types = Types(aByteData: ByteData.view(intList.buffer));
 
-      var jsonMap = types.toJson();
+      final jsonMap = types.toJson();
 
-      expect(jsonMap, {'aByteData': 'decode(\'AAECAwQFBgc=\', \'base64\')'});
+      expect(jsonMap, {'aByteData': "decode('AAECAwQFBgc=', 'base64')"});
     },
   );
 
   test(
     'Given a class with a relation to an object when calling toJson the entire nested structure is converted.',
     () {
-      var next = Post(content: 'next');
-      var post = Post(content: 'post', next: next);
+      final next = Post(content: 'next');
+      final post = Post(content: 'post', next: next);
 
-      var jsonMap = post.toJson();
+      final jsonMap = post.toJson();
 
       expect(jsonMap, {
         'content': 'post',
@@ -161,10 +161,10 @@ void main() {
   test(
     'Given a class with a nested object when calling toJson the entire nested structure is converted.',
     () {
-      var simpleData = SimpleData(num: 123);
-      var object = SimpleDataObject(object: simpleData);
+      final simpleData = SimpleData(num: 123);
+      final object = SimpleDataObject(object: simpleData);
 
-      var jsonMap = object.toJson();
+      final jsonMap = object.toJson();
 
       expect(jsonMap, {
         'object': {'num': 123},
@@ -177,10 +177,10 @@ void main() {
   test(
     'Given a class with a List with a nested object when calling toJson the entire nested structure is converted.',
     () {
-      var type = Types(anInt: 123);
-      var object = TypesList(anObject: [type]);
+      final type = Types(anInt: 123);
+      final object = TypesList(anObject: [type]);
 
-      var jsonMap = object.toJson();
+      final jsonMap = object.toJson();
 
       expect(jsonMap, {
         'anObject': [
@@ -193,11 +193,11 @@ void main() {
   test(
     'Given a class with a List with a nested DateTime when calling toJson the entire nested structure is converted.',
     () {
-      var object = TypesList(
+      final object = TypesList(
         aDateTime: [DateTime.parse('2024-01-01T00:00:00.000Z')],
       );
 
-      var jsonMap = object.toJson();
+      final jsonMap = object.toJson();
 
       expect(jsonMap, {
         'aDateTime': ['2024-01-01T00:00:00.000Z'],
@@ -208,19 +208,19 @@ void main() {
   test(
     'Given a class with a List with a nested ByteData when calling toJson the entire nested structure is converted.',
     () {
-      var intList = Uint8List(8);
+      final intList = Uint8List(8);
       for (var i = 0; i < intList.length; i++) {
         intList[i] = i;
       }
 
-      var object = TypesList(
+      final object = TypesList(
         aByteData: [ByteData.view(intList.buffer)],
       );
 
-      var jsonMap = object.toJson();
+      final jsonMap = object.toJson();
 
       expect(jsonMap, {
-        'aByteData': ['decode(\'AAECAwQFBgc=\', \'base64\')'],
+        'aByteData': ["decode('AAECAwQFBgc=', 'base64')"],
       });
     },
   );
@@ -228,11 +228,11 @@ void main() {
   test(
     'Given a class with a List with a nested Duration when calling toJson the entire nested structure is converted.',
     () {
-      var object = TypesList(
-        aDuration: [Duration(seconds: 1)],
+      final object = TypesList(
+        aDuration: [const Duration(seconds: 1)],
       );
 
-      var jsonMap = object.toJson();
+      final jsonMap = object.toJson();
 
       expect(jsonMap, {
         'aDuration': [1000],
@@ -243,12 +243,12 @@ void main() {
   test(
     'Given a class with a List with a nested Uuid when calling toJson the entire nested structure is converted.',
     () {
-      var object = TypesList(
+      final object = TypesList(
         // ignore: deprecated_member_use
         aUuid: [UuidValue.nil],
       );
 
-      var jsonMap = object.toJson();
+      final jsonMap = object.toJson();
 
       expect(jsonMap, {
         'aUuid': ['00000000-0000-0000-0000-000000000000'],
@@ -259,14 +259,14 @@ void main() {
   test(
     'Given a class with a List<BigInt> when calling toJson the entire nested structure is converted.',
     () {
-      var object = TypesList(
+      final object = TypesList(
         aBigInt: [
           BigInt.parse('-12345678901234567890'),
           BigInt.parse('18446744073709551615'),
         ],
       );
 
-      var jsonMap = object.toJson();
+      final jsonMap = object.toJson();
 
       expect(jsonMap, {
         'aBigInt': [
@@ -280,11 +280,11 @@ void main() {
   test(
     'Given a class with a List with a nested enum serialized by index when calling toJson the entire nested structure is converted.',
     () {
-      var object = TypesList(
+      final object = TypesList(
         anEnum: [TestEnum.one],
       );
 
-      var jsonMap = object.toJson();
+      final jsonMap = object.toJson();
 
       expect(jsonMap, {
         'anEnum': [0],
@@ -295,11 +295,11 @@ void main() {
   test(
     'Given a class with a List with a nested enum serialized by name when calling toJson the entire nested structure is converted.',
     () {
-      var object = TypesList(
+      final object = TypesList(
         aStringifiedEnum: [TestEnumStringified.one],
       );
 
-      var jsonMap = object.toJson();
+      final jsonMap = object.toJson();
 
       expect(jsonMap, {
         'aStringifiedEnum': ['one'],
@@ -310,14 +310,14 @@ void main() {
   test(
     'Given a class with a List with a nested Map serialized by name when calling toJson the entire nested structure is converted.',
     () {
-      var type = Types(anInt: 123);
-      var object = TypesList(
+      final type = Types(anInt: 123);
+      final object = TypesList(
         aMap: [
           {'key': type},
         ],
       );
 
-      var jsonMap = object.toJson();
+      final jsonMap = object.toJson();
 
       expect(jsonMap, {
         'aMap': [
@@ -332,14 +332,14 @@ void main() {
   test(
     'Given a class with a List with a nested List serialized by name when calling toJson the entire nested structure is converted.',
     () {
-      var type = Types(anInt: 123);
-      var object = TypesList(
+      final type = Types(anInt: 123);
+      final object = TypesList(
         aList: [
           [type],
         ],
       );
 
-      var jsonMap = object.toJson();
+      final jsonMap = object.toJson();
 
       expect(jsonMap, {
         'aList': [
@@ -355,10 +355,10 @@ void main() {
     test(
       'Given a class with a Set with a nested object when calling toJson the entire nested structure is converted.',
       () {
-        var type = Types(anInt: 123);
-        var object = TypesSet(anObject: {type});
+        final type = Types(anInt: 123);
+        final object = TypesSet(anObject: {type});
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'anObject': [
@@ -371,11 +371,11 @@ void main() {
     test(
       'Given a class with a Set with a nested DateTime when calling toJson the entire nested structure is converted.',
       () {
-        var object = TypesSet(
+        final object = TypesSet(
           aDateTime: {DateTime.parse('2024-01-01T00:00:00.000Z')},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aDateTime': ['2024-01-01T00:00:00.000Z'],
@@ -386,19 +386,19 @@ void main() {
     test(
       'Given a class with a Set with a nested ByteData when calling toJson the entire nested structure is converted.',
       () {
-        var intList = Uint8List(8);
+        final intList = Uint8List(8);
         for (var i = 0; i < intList.length; i++) {
           intList[i] = i;
         }
 
-        var object = TypesSet(
+        final object = TypesSet(
           aByteData: {ByteData.view(intList.buffer)},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
-          'aByteData': ['decode(\'AAECAwQFBgc=\', \'base64\')'],
+          'aByteData': ["decode('AAECAwQFBgc=', 'base64')"],
         });
       },
     );
@@ -406,11 +406,11 @@ void main() {
     test(
       'Given a class with a Set with a nested Duration when calling toJson the entire nested structure is converted.',
       () {
-        var object = TypesSet(
-          aDuration: {Duration(seconds: 1)},
+        final object = TypesSet(
+          aDuration: {const Duration(seconds: 1)},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aDuration': [1000],
@@ -421,12 +421,12 @@ void main() {
     test(
       'Given a class with a Set with a nested Uuid when calling toJson the entire nested structure is converted.',
       () {
-        var object = TypesSet(
+        final object = TypesSet(
           // ignore: deprecated_member_use
           aUuid: {UuidValue.nil},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aUuid': ['00000000-0000-0000-0000-000000000000'],
@@ -437,14 +437,14 @@ void main() {
     test(
       'Given a class with a Set<BigInt> when calling toJson the entire nested structure is converted.',
       () {
-        var object = TypesSet(
+        final object = TypesSet(
           aBigInt: {
             BigInt.parse('-12345678901234567890'),
             BigInt.parse('18446744073709551615'),
           },
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aBigInt': [
@@ -458,11 +458,11 @@ void main() {
     test(
       'Given a class with a Set with a nested enum serialized by index when calling toJson the entire nested structure is converted.',
       () {
-        var object = TypesSet(
+        final object = TypesSet(
           anEnum: {TestEnum.one},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'anEnum': [0],
@@ -473,11 +473,11 @@ void main() {
     test(
       'Given a class with a Set with a nested enum serialized by name when calling toJson the entire nested structure is converted.',
       () {
-        var object = TypesSet(
+        final object = TypesSet(
           aStringifiedEnum: {TestEnumStringified.one},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aStringifiedEnum': ['one'],
@@ -488,14 +488,14 @@ void main() {
     test(
       'Given a class with a Set with a nested Map serialized by name when calling toJson the entire nested structure is converted.',
       () {
-        var type = Types(anInt: 123);
-        var object = TypesSet(
+        final type = Types(anInt: 123);
+        final object = TypesSet(
           aMap: {
             {'key': type},
           },
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aMap': [
@@ -510,14 +510,14 @@ void main() {
     test(
       'Given a class with a Set with a nested List serialized by name when calling toJson the entire nested structure is converted.',
       () {
-        var type = Types(anInt: 123);
-        var object = TypesSet(
+        final type = Types(anInt: 123);
+        final object = TypesSet(
           aList: {
             [type],
           },
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aList': [
@@ -534,10 +534,10 @@ void main() {
     test(
       'Given a class with a Map with a nested object when calling toJson the entire nested structure is converted.',
       () {
-        var type = Types(anInt: 123);
-        var object = TypesMap(anObjectValue: {'key': type});
+        final type = Types(anInt: 123);
+        final object = TypesMap(anObjectValue: {'key': type});
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'anObjectValue': {
@@ -550,11 +550,11 @@ void main() {
     test(
       'Given a class with a Map with a nested DateTime when calling toJson the entire nested structure is converted.',
       () {
-        var object = TypesMap(
+        final object = TypesMap(
           aDateTimeValue: {'key': DateTime.parse('2024-01-01T00:00:00.000Z')},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aDateTimeValue': {'key': '2024-01-01T00:00:00.000Z'},
@@ -565,19 +565,19 @@ void main() {
     test(
       'Given a class with a Map with a nested ByteData when calling toJson the entire nested structure is converted.',
       () {
-        var intList = Uint8List(8);
+        final intList = Uint8List(8);
         for (var i = 0; i < intList.length; i++) {
           intList[i] = i;
         }
 
-        var object = TypesMap(
+        final object = TypesMap(
           aByteDataValue: {'key': ByteData.view(intList.buffer)},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
-          'aByteDataValue': {'key': 'decode(\'AAECAwQFBgc=\', \'base64\')'},
+          'aByteDataValue': {'key': "decode('AAECAwQFBgc=', 'base64')"},
         });
       },
     );
@@ -585,11 +585,11 @@ void main() {
     test(
       'Given a class with a Map with a nested Duration when calling toJson the entire nested structure is converted.',
       () {
-        var object = TypesMap(
-          aDurationValue: {'key': Duration(seconds: 1)},
+        final object = TypesMap(
+          aDurationValue: {'key': const Duration(seconds: 1)},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aDurationValue': {'key': 1000},
@@ -600,12 +600,12 @@ void main() {
     test(
       'Given a class with a Map with a nested Uuid when calling toJson the entire nested structure is converted.',
       () {
-        var object = TypesMap(
+        final object = TypesMap(
           // ignore: deprecated_member_use
           aUuidValue: {'key': UuidValue.nil},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aUuidValue': {'key': '00000000-0000-0000-0000-000000000000'},
@@ -616,11 +616,11 @@ void main() {
     test(
       'Given a class with a Map with a nested enum serialized by index when calling toJson the entire nested structure is converted.',
       () {
-        var object = TypesMap(
+        final object = TypesMap(
           anEnumValue: {'key': TestEnum.one},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'anEnumValue': {'key': 0},
@@ -631,11 +631,11 @@ void main() {
     test(
       'Given a class with a Map with a nested enum serialized by name when calling toJson the entire nested structure is converted.',
       () {
-        var object = TypesMap(
+        final object = TypesMap(
           aStringifiedEnumValue: {'key': TestEnumStringified.one},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aStringifiedEnumValue': {'key': 'one'},
@@ -646,14 +646,14 @@ void main() {
     test(
       'Given a class with a Map with a nested Map serialized by name when calling toJson the entire nested structure is converted.',
       () {
-        var type = Types(anInt: 1);
-        var object = TypesMap(
+        final type = Types(anInt: 1);
+        final object = TypesMap(
           aMapValue: {
             'key': {'key': type},
           },
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aMapValue': {
@@ -668,14 +668,14 @@ void main() {
     test(
       'Given a class with a Map with a nested List serialized by name when calling toJson the entire nested structure is converted.',
       () {
-        var type = Types(anInt: 1);
-        var object = TypesMap(
+        final type = Types(anInt: 1);
+        final object = TypesMap(
           aListValue: {
             'key': [type],
           },
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aListValue': {
@@ -692,10 +692,10 @@ void main() {
     test(
       'Given a class with a Map with a nested object when calling toJson the entire nested structure is converted.',
       () {
-        var type = Types(anInt: 123);
-        var object = TypesMap(anObjectKey: {type: 'value'});
+        final type = Types(anInt: 123);
+        final object = TypesMap(anObjectKey: {type: 'value'});
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'anObjectKey': [
@@ -711,11 +711,11 @@ void main() {
     test(
       'Given a class with a Map with a nested DateTime when calling toJson the entire nested structure is converted.',
       () {
-        var object = TypesMap(
+        final object = TypesMap(
           aDateTimeKey: {DateTime.parse('2024-01-01T00:00:00.000Z'): 'value'},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aDateTimeKey': [
@@ -728,20 +728,20 @@ void main() {
     test(
       'Given a class with a Map with a nested ByteData when calling toJson the entire nested structure is converted.',
       () {
-        var intList = Uint8List(8);
+        final intList = Uint8List(8);
         for (var i = 0; i < intList.length; i++) {
           intList[i] = i;
         }
 
-        var object = TypesMap(
+        final object = TypesMap(
           aByteDataKey: {ByteData.view(intList.buffer): 'value'},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aByteDataKey': [
-            {'k': 'decode(\'AAECAwQFBgc=\', \'base64\')', 'v': 'value'},
+            {'k': "decode('AAECAwQFBgc=', 'base64')", 'v': 'value'},
           ],
         });
       },
@@ -750,11 +750,11 @@ void main() {
     test(
       'Given a class with a Map with a nested Duration when calling toJson the entire nested structure is converted.',
       () {
-        var object = TypesMap(
-          aDurationKey: {Duration(seconds: 1): 'value'},
+        final object = TypesMap(
+          aDurationKey: {const Duration(seconds: 1): 'value'},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aDurationKey': [
@@ -767,12 +767,12 @@ void main() {
     test(
       'Given a class with a Map with a nested Uuid when calling toJson the entire nested structure is converted.',
       () {
-        var object = TypesMap(
+        final object = TypesMap(
           // ignore: deprecated_member_use
           aUuidKey: {UuidValue.nil: 'value'},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aUuidKey': [
@@ -785,11 +785,11 @@ void main() {
     test(
       'Given a class with a Map with a nested enum serialized by index when calling toJson the entire nested structure is converted.',
       () {
-        var object = TypesMap(
+        final object = TypesMap(
           anEnumKey: {TestEnum.one: 'value'},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'anEnumKey': [
@@ -802,11 +802,11 @@ void main() {
     test(
       'Given a class with a Map with a nested enum serialized by name when calling toJson the entire nested structure is converted.',
       () {
-        var object = TypesMap(
+        final object = TypesMap(
           aStringifiedEnumKey: {TestEnumStringified.one: 'value'},
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aStringifiedEnumKey': [
@@ -819,14 +819,14 @@ void main() {
     test(
       'Given a class with a Map with a nested Map serialized by name when calling toJson the entire nested structure is converted.',
       () {
-        var type = Types(anInt: 1);
-        var object = TypesMap(
+        final type = Types(anInt: 1);
+        final object = TypesMap(
           aMapKey: {
             {type: 'value'}: 'value',
           },
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aMapKey': [
@@ -847,14 +847,14 @@ void main() {
     test(
       'Given a class with a Map with a nested List serialized by name when calling toJson the entire nested structure is converted.',
       () {
-        var type = Types(anInt: 1);
-        var object = TypesMap(
+        final type = Types(anInt: 1);
+        final object = TypesMap(
           aListKey: {
             [type]: 'value',
           },
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'aListKey': [
@@ -870,13 +870,13 @@ void main() {
     );
   });
 
-  group("Given an object with server only field, ", () {
+  group('Given an object with server only field, ', () {
     test('then the serialized json should contain server-only field.', () {
-      var object = ScopeServerOnlyField(
+      final object = ScopeServerOnlyField(
         serverOnlyScope: Types(anInt: 2),
       );
 
-      var jsonMap = object.toJson();
+      final jsonMap = object.toJson();
 
       expect(jsonMap, {
         'serverOnlyScope': {'anInt': 2},
@@ -886,14 +886,14 @@ void main() {
     test(
       'then the serialized "nested" json should contain server-only field',
       () {
-        var object = ScopeServerOnlyField(
+        final object = ScopeServerOnlyField(
           nested: ScopeServerOnlyField(
             allScope: Types(anInt: 1),
             serverOnlyScope: Types(anInt: 2),
           ),
         );
 
-        var jsonMap = object.toJson();
+        final jsonMap = object.toJson();
 
         expect(jsonMap, {
           'nested': {

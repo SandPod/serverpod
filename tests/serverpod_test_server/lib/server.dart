@@ -8,9 +8,9 @@ import 'src/futureCalls/test_call.dart';
 import 'src/generated/endpoints.dart';
 import 'src/generated/protocol.dart';
 
-void run(List<String> args) async {
+void run(final List<String> args) async {
   // Create serverpod
-  var pod = Serverpod(
+  final pod = Serverpod(
     args,
     Protocol(),
     Endpoints(),
@@ -34,14 +34,14 @@ void run(List<String> args) async {
   // Callbacks for auth
   auth.AuthConfig.set(
     auth.AuthConfig(
-      onUserWillBeCreated: (session, userInfo, authMethod) async {
+      onUserWillBeCreated: (final session, final userInfo, final authMethod) async {
         return (userInfo.email!.endsWith('.bar'));
       },
-      sendValidationEmail: (session, email, validationCode) async {
+      sendValidationEmail: (final session, final email, final validationCode) async {
         print('Sending validation email to $email with code $validationCode');
         return true;
       },
-      sendPasswordResetEmail: (session, userInfo, resetCode) async {
+      sendPasswordResetEmail: (final session, final userInfo, final resetCode) async {
         print('Sending reset email to ${userInfo.email} with code $resetCode');
         return true;
       },

@@ -1,10 +1,10 @@
-import 'package:serverpod_test_server/src/generated/protocol.dart';
 import 'package:serverpod/database.dart' as db;
+import 'package:serverpod_test_server/src/generated/protocol.dart';
 import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given models with one to many relation nested in a one to one relation', () {
     tearDown(() async {
@@ -19,19 +19,19 @@ void main() async {
     test(
       'when deleting models filtered on none of nested many relation then result is as expected.',
       () async {
-        var players = await Player.db.insert(session, [
+        final players = await Player.db.insert(session, [
           Player(name: 'Alex'),
           Player(name: 'Viktor'),
           Player(name: 'Isak'),
         ]);
 
-        var arenas = await Arena.db.insert(session, [
+        final arenas = await Arena.db.insert(session, [
           Arena(name: 'Eagle Stadium'),
           Arena(name: 'Bulls Arena'),
           Arena(name: 'Shark Tank'),
         ]);
 
-        var teams = await Team.db.insert(session, [
+        final teams = await Team.db.insert(session, [
           Team(name: 'Eagles', arenaId: arenas[0].id),
           Team(name: 'Bulls', arenaId: arenas[1].id),
           Team(name: 'Sharks', arenaId: arenas[2].id),
@@ -42,10 +42,10 @@ void main() async {
         // Attach Isak to Bulls
         await Team.db.attachRow.players(session, teams[1], players[2]);
 
-        var deletedArenas = await Arena.db.deleteWhere(
+        final deletedArenas = await Arena.db.deleteWhere(
           session,
           // Delete all arenas with teams that have no players.
-          where: (a) => a.team.players.none(),
+          where: (final a) => a.team.players.none(),
         );
 
         expect(deletedArenas, hasLength(1));
@@ -59,19 +59,19 @@ void main() async {
     test(
       'when deleting models filtered on filtered none of nested many relation then result is as expected.',
       () async {
-        var players = await Player.db.insert(session, [
+        final players = await Player.db.insert(session, [
           Player(name: 'Alex'),
           Player(name: 'Viktor'),
           Player(name: 'Isak'),
         ]);
 
-        var arenas = await Arena.db.insert(session, [
+        final arenas = await Arena.db.insert(session, [
           Arena(name: 'Eagle Stadium'),
           Arena(name: 'Bulls Arena'),
           Arena(name: 'Shark Tank'),
         ]);
 
-        var teams = await Team.db.insert(session, [
+        final teams = await Team.db.insert(session, [
           Team(name: 'Eagles', arenaId: arenas[0].id),
           Team(name: 'Bulls', arenaId: arenas[1].id),
           Team(name: 'Sharks', arenaId: arenas[2].id),
@@ -82,14 +82,14 @@ void main() async {
         // Attach Isak to Bulls
         await Team.db.attachRow.players(session, teams[1], players[2]);
 
-        var deletedArenas = await Arena.db.deleteWhere(
+        final deletedArenas = await Arena.db.deleteWhere(
           session,
           // Delete all arenas with teams that have no players with a name starting with a.
-          where: (a) => a.team.players.none((p) => p.name.ilike('a%')),
+          where: (final a) => a.team.players.none((final p) => p.name.ilike('a%')),
         );
 
         expect(deletedArenas, hasLength(2));
-        var deletedArenaIds = deletedArenas.map((c) => c.id).toList();
+        final deletedArenaIds = deletedArenas.map((final c) => c.id).toList();
         expect(
           deletedArenaIds,
           containsAll([

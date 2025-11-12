@@ -4,7 +4,7 @@ import 'package:serverpod_test_server/test_util/test_serverpod.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  var session = await IntegrationTestServer().session();
+  final session = await IntegrationTestServer().session();
 
   group('Given a class with "defaultModel" fields,', () {
     tearDownAll(
@@ -17,8 +17,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "defaultModel=true" field value should be true',
       () async {
-        var object = BoolDefaultModel();
-        var databaseObject = await BoolDefaultModel.db.insertRow(
+        final object = BoolDefaultModel();
+        final databaseObject = await BoolDefaultModel.db.insertRow(
           session,
           object,
         );
@@ -29,8 +29,8 @@ void main() async {
     test(
       'when creating a record in the database, then the "defaultModel=false" field value should be false',
       () async {
-        var object = BoolDefaultModel();
-        var databaseObject = await BoolDefaultModel.db.insertRow(
+        final object = BoolDefaultModel();
+        final databaseObject = await BoolDefaultModel.db.insertRow(
           session,
           object,
         );
@@ -41,8 +41,8 @@ void main() async {
     test(
       'when creating a record in the database, then the nullable "defaultModel=false" field value should be false',
       () async {
-        var object = BoolDefaultModel();
-        var databaseObject = await BoolDefaultModel.db.insertRow(
+        final object = BoolDefaultModel();
+        final databaseObject = await BoolDefaultModel.db.insertRow(
           session,
           object,
         );
@@ -53,10 +53,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "boolDefaultModelTrue" field value should match the provided value',
       () async {
-        var specificObject = BoolDefaultModel(
+        final specificObject = BoolDefaultModel(
           boolDefaultModelTrue: false,
         );
-        var specificDatabaseObject = await BoolDefaultModel.db.insertRow(
+        final specificDatabaseObject = await BoolDefaultModel.db.insertRow(
           session,
           specificObject,
         );
@@ -67,10 +67,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "boolDefaultModelFalse" field value should match the provided value',
       () async {
-        var specificObject = BoolDefaultModel(
+        final specificObject = BoolDefaultModel(
           boolDefaultModelFalse: true,
         );
-        var specificDatabaseObject = await BoolDefaultModel.db.insertRow(
+        final specificDatabaseObject = await BoolDefaultModel.db.insertRow(
           session,
           specificObject,
         );
@@ -81,10 +81,10 @@ void main() async {
     test(
       'when creating a record in the database with a specific value, then the "boolDefaultModelNullFalse" field value should match the provided value',
       () async {
-        var specificObject = BoolDefaultModel(
+        final specificObject = BoolDefaultModel(
           boolDefaultModelNullFalse: true,
         );
-        var specificDatabaseObject = await BoolDefaultModel.db.insertRow(
+        final specificDatabaseObject = await BoolDefaultModel.db.insertRow(
           session,
           specificObject,
         );

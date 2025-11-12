@@ -3,89 +3,89 @@ import 'package:serverpod_test_shared/serverpod_test_shared.dart';
 
 class CustomTypesEndpoint extends Endpoint {
   Future<CustomClass> returnCustomClass(
-    Session session,
-    CustomClass data,
+    final Session session,
+    final CustomClass data,
   ) async {
     return data;
   }
 
   Future<CustomClass?> returnCustomClassNullable(
-    Session session,
-    CustomClass? data,
+    final Session session,
+    final CustomClass? data,
   ) async {
     return data;
   }
 
   Future<CustomClass2> returnCustomClass2(
-    Session session,
-    CustomClass2 data,
+    final Session session,
+    final CustomClass2 data,
   ) async {
     return data;
   }
 
   Future<CustomClass2?> returnCustomClass2Nullable(
-    Session session,
-    CustomClass2? data,
+    final Session session,
+    final CustomClass2? data,
   ) async {
     return data;
   }
 
   Future<ExternalCustomClass> returnExternalCustomClass(
-    Session session,
-    ExternalCustomClass data,
+    final Session session,
+    final ExternalCustomClass data,
   ) async {
     return data;
   }
 
   Future<ExternalCustomClass?> returnExternalCustomClassNullable(
-    Session session,
-    ExternalCustomClass? data,
+    final Session session,
+    final ExternalCustomClass? data,
   ) async {
     return data;
   }
 
   Future<FreezedCustomClass> returnFreezedCustomClass(
-    Session session,
-    FreezedCustomClass data,
+    final Session session,
+    final FreezedCustomClass data,
   ) async {
     return data;
   }
 
   Future<FreezedCustomClass?> returnFreezedCustomClassNullable(
-    Session session,
-    FreezedCustomClass? data,
+    final Session session,
+    final FreezedCustomClass? data,
   ) async {
     return data;
   }
 
   Future<CustomClassWithoutProtocolSerialization>
   returnCustomClassWithoutProtocolSerialization(
-    Session session,
-    CustomClassWithoutProtocolSerialization data,
+    final Session session,
+    final CustomClassWithoutProtocolSerialization data,
   ) async {
     return data;
   }
 
   Future<CustomClassWithProtocolSerialization>
   returnCustomClassWithProtocolSerialization(
-    Session session,
-    CustomClassWithProtocolSerialization data,
+    final Session session,
+    final CustomClassWithProtocolSerialization data,
   ) async {
     return data;
   }
 
   Future<CustomClassWithProtocolSerializationMethod>
   returnCustomClassWithProtocolSerializationMethod(
-    Session session,
-    CustomClassWithProtocolSerializationMethod data,
+    final Session session,
+    final CustomClassWithProtocolSerializationMethod data,
   ) async {
     return data;
   }
 
   @override
   Future<void> handleStreamMessage(
-    StreamingSession session,
-    SerializableModel message,
+    final StreamingSession session,
+    final SerializableModel message,
   ) async {
     if (message is CustomClass) {
       // ignore: deprecated_member_use

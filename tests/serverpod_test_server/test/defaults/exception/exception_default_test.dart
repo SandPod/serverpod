@@ -9,7 +9,7 @@ void main() async {
       test(
         'when an exception is created, then the "defaultBoolean" field should match the default value',
         () {
-          var exception = DefaultException();
+          final exception = DefaultException();
           expect(
             exception.defaultBoolean,
             equals(true),
@@ -20,7 +20,7 @@ void main() async {
       test(
         'when an exception is created, then the "defaultDateTime" field should match the default value',
         () {
-          var exception = DefaultException();
+          final exception = DefaultException();
           expect(
             exception.defaultDateTime.difference(DateTime.now()).inSeconds,
             0,
@@ -31,7 +31,7 @@ void main() async {
       test(
         'when an exception is created, then the "defaultDouble" field should match the default value',
         () {
-          var exception = DefaultException();
+          final exception = DefaultException();
           expect(
             exception.defaultDouble,
             equals(10.5),
@@ -42,10 +42,10 @@ void main() async {
       test(
         'when an exception is created, then the "defaultDuration" field should match the default value',
         () {
-          var exception = DefaultException();
+          final exception = DefaultException();
           expect(
             exception.defaultDuration,
-            equals(Duration(days: 1, hours: 2, minutes: 30)),
+            equals(const Duration(days: 1, hours: 2, minutes: 30)),
           );
         },
       );
@@ -53,7 +53,7 @@ void main() async {
       test(
         'when an exception is created, then the "defaultEnum" field should match the default value',
         () {
-          var exception = DefaultException();
+          final exception = DefaultException();
           expect(
             exception.defaultEnum,
             equals(ByNameEnum.byName1),
@@ -64,7 +64,7 @@ void main() async {
       test(
         'when an exception is created, then the "defaultInteger" field should match the default value',
         () {
-          var exception = DefaultException();
+          final exception = DefaultException();
           expect(
             exception.defaultInteger,
             equals(10),
@@ -75,7 +75,7 @@ void main() async {
       test(
         'when an exception is created, then the "defaultString" field should match the default value',
         () {
-          var exception = DefaultException();
+          final exception = DefaultException();
           expect(
             exception.defaultString,
             equals('Default error message'),
@@ -86,7 +86,7 @@ void main() async {
       test(
         'when an exception is created, then the "defaultUuid" field should match the default value',
         () {
-          var exception = DefaultException();
+          final exception = DefaultException();
           expect(
             exception.defaultUuid,
             isNotNull,
@@ -97,7 +97,7 @@ void main() async {
       test(
         'when an exception is created, then the "defaultModelField" field should match the default value',
         () {
-          var exception = DefaultException();
+          final exception = DefaultException();
           expect(
             exception.defaultModelField,
             equals('Model specific message'),
@@ -108,7 +108,7 @@ void main() async {
       test(
         'when an exception is created, then the "defaultMixField" field should match the defaultModel value',
         () {
-          var exception = DefaultException();
+          final exception = DefaultException();
           expect(
             exception.defaultMixField,
             equals('Model specific mix message'),
@@ -119,7 +119,7 @@ void main() async {
       test(
         'when an exception is created with a specific value for "defaultBoolean", then the field value should match the provided value',
         () {
-          var exception = DefaultException(
+          final exception = DefaultException(
             defaultBoolean: false,
           );
           expect(
@@ -132,8 +132,8 @@ void main() async {
       test(
         'when an exception is created with a specific value for "defaultDateTime", then the field value should match the provided value',
         () {
-          var dateTime = DateTime.now().subtract(Duration(days: 1));
-          var exception = DefaultException(
+          final dateTime = DateTime.now().subtract(const Duration(days: 1));
+          final exception = DefaultException(
             defaultDateTime: dateTime,
           );
           expect(
@@ -146,7 +146,7 @@ void main() async {
       test(
         'when an exception is created with a specific value for "defaultDouble", then the field value should match the provided value',
         () {
-          var exception = DefaultException(
+          final exception = DefaultException(
             defaultDouble: 20.5,
           );
           expect(
@@ -159,8 +159,8 @@ void main() async {
       test(
         'when an exception is created with a specific value for "defaultDuration", then the field value should match the provided value',
         () {
-          var duration = Duration(hours: 5);
-          var exception = DefaultException(
+          const duration = Duration(hours: 5);
+          final exception = DefaultException(
             defaultDuration: duration,
           );
           expect(
@@ -173,7 +173,7 @@ void main() async {
       test(
         'when an exception is created with a specific value for "defaultEnum", then the field value should match the provided value',
         () {
-          var exception = DefaultException(
+          final exception = DefaultException(
             defaultEnum: ByNameEnum.byName2,
           );
           expect(
@@ -186,7 +186,7 @@ void main() async {
       test(
         'when an exception is created with a specific value for "defaultInteger", then the field value should match the provided value',
         () {
-          var exception = DefaultException(
+          final exception = DefaultException(
             defaultInteger: 25,
           );
           expect(
@@ -199,7 +199,7 @@ void main() async {
       test(
         'when an exception is created with a specific value for "defaultString", then the field value should match the provided value',
         () {
-          var exception = DefaultException(
+          final exception = DefaultException(
             defaultString: 'Custom error message',
           );
           expect(
@@ -212,10 +212,10 @@ void main() async {
       test(
         'when an exception is created with a specific value for "defaultUuid", then the field value should match the provided value',
         () {
-          var uuid = UuidValue.fromString(
+          final uuid = UuidValue.fromString(
             '550e8400-e29b-41d4-a716-446655440000',
           );
-          var exception = DefaultException(
+          final exception = DefaultException(
             defaultUuid: uuid,
           );
           expect(
@@ -228,7 +228,7 @@ void main() async {
       test(
         'when an exception is created with a specific value for "defaultModelField", then the field value should match the provided value',
         () {
-          var exception = DefaultException(
+          final exception = DefaultException(
             defaultModelField: 'Custom model message',
           );
           expect(
@@ -241,7 +241,7 @@ void main() async {
       test(
         'when an exception is created with a specific value for "defaultMixField", then the field value should match the provided value',
         () {
-          var exception = DefaultException(
+          final exception = DefaultException(
             defaultMixField: 'Custom mix message',
           );
           expect(

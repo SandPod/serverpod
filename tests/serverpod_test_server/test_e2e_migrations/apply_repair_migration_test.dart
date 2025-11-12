@@ -6,7 +6,7 @@ import 'package:serverpod_test_server/test_util/test_service_key_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var serviceClient = Client(
+  final serviceClient = Client(
     serviceServerUrl,
     authenticationKeyManager: TestServiceKeyManager(
       '0',
@@ -22,7 +22,7 @@ void main() {
     });
 
     setUpAll(() async {
-      var firstMigrationProtocols = {
+      final firstMigrationProtocols = {
         'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -37,7 +37,7 @@ fields:
         ],
       );
 
-      var unappliedMigrationProtocols = {
+      final unappliedMigrationProtocols = {
         'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -63,7 +63,7 @@ fields:
     test(
       'when creating and applying repair migration then database matches latest migration',
       () async {
-        var createRepairMigrationExitCode =
+        final createRepairMigrationExitCode =
             await MigrationTestUtils.runCreateRepairMigration();
         expect(
           createRepairMigrationExitCode,
@@ -71,7 +71,7 @@ fields:
           reason: 'Should create a repair migration.',
         );
 
-        var applyRepairMigrationExitCode =
+        final applyRepairMigrationExitCode =
             await MigrationTestUtils.runApplyRepairMigration();
         expect(
           applyRepairMigrationExitCode,
@@ -79,9 +79,9 @@ fields:
           reason: 'Should successfully apply repair migration.',
         );
 
-        var liveDefinition = await serviceClient.insights
+        final liveDefinition = await serviceClient.insights
             .getLiveDatabaseDefinition();
-        var databaseTables = liveDefinition.tables.map((t) => t.name);
+        final databaseTables = liveDefinition.tables.map((final t) => t.name);
         expect(
           databaseTables,
           contains('migrated_table_2'),
@@ -100,7 +100,7 @@ fields:
     });
 
     setUpAll(() async {
-      var firstMigrationProtocols = {
+      final firstMigrationProtocols = {
         'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -109,7 +109,7 @@ fields:
 ''',
       };
 
-      var secondMigrationProtocols = {
+      final secondMigrationProtocols = {
         'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -135,12 +135,12 @@ fields:
     test(
       'when creating and applying destructive repair migration to older migration then database matches older migration',
       () async {
-        var migrationRegistry = MigrationTestUtils.loadMigrationRegistry();
-        var previousMigrationIndex = migrationRegistry.versions.length - 2;
-        var previousMigrationName =
+        final migrationRegistry = MigrationTestUtils.loadMigrationRegistry();
+        final previousMigrationIndex = migrationRegistry.versions.length - 2;
+        final previousMigrationName =
             migrationRegistry.versions[previousMigrationIndex];
 
-        var createRepairMigrationExitCode =
+        final createRepairMigrationExitCode =
             await MigrationTestUtils.runCreateRepairMigration(
               targetVersion: previousMigrationName,
               force: true,
@@ -152,7 +152,7 @@ fields:
           reason: 'Should create a repair migration.',
         );
 
-        var applyRepairMigrationExitCode =
+        final applyRepairMigrationExitCode =
             await MigrationTestUtils.runApplyRepairMigration();
         expect(
           applyRepairMigrationExitCode,
@@ -160,9 +160,9 @@ fields:
           reason: 'Should successfully apply repair migration.',
         );
 
-        var liveDefinition = await serviceClient.insights
+        final liveDefinition = await serviceClient.insights
             .getLiveDatabaseDefinition();
-        var databaseTables = liveDefinition.tables.map((t) => t.name);
+        final databaseTables = liveDefinition.tables.map((final t) => t.name);
         expect(
           databaseTables,
           isNot(contains('migrated_table_2')),
@@ -183,7 +183,7 @@ fields:
       });
 
       setUpAll(() async {
-        var firstMigrationProtocols = {
+        final firstMigrationProtocols = {
           'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -198,7 +198,7 @@ fields:
               ),
         );
 
-        var secondMigrationProtocols = {
+        final secondMigrationProtocols = {
           'migrated_table': '''
 class: MigratedTable
 table: migrated_table
@@ -222,12 +222,12 @@ fields:
       test(
         'when creating and applying repair migration targeting older migration and applying migrations then database matches latest migration',
         () async {
-          var migrationRegistry = MigrationTestUtils.loadMigrationRegistry();
-          var previousMigrationIndex = migrationRegistry.versions.length - 2;
-          var previousMigrationName =
+          final migrationRegistry = MigrationTestUtils.loadMigrationRegistry();
+          final previousMigrationIndex = migrationRegistry.versions.length - 2;
+          final previousMigrationName =
               migrationRegistry.versions[previousMigrationIndex];
 
-          var createRepairMigrationExitCode =
+          final createRepairMigrationExitCode =
               await MigrationTestUtils.runCreateRepairMigration(
                 targetVersion: previousMigrationName,
                 force: true,
@@ -239,7 +239,7 @@ fields:
             reason: 'Should create a repair migration.',
           );
 
-          var applyRepairMigrationExitCode =
+          final applyRepairMigrationExitCode =
               await MigrationTestUtils.runApplyBothRepairMigrationAndMigrations();
           expect(
             applyRepairMigrationExitCode,
@@ -248,9 +248,9 @@ fields:
                 'Should successfully apply repair migration and migrations.',
           );
 
-          var liveDefinition = await serviceClient.insights
+          final liveDefinition = await serviceClient.insights
               .getLiveDatabaseDefinition();
-          var databaseTables = liveDefinition.tables.map((t) => t.name);
+          final databaseTables = liveDefinition.tables.map((final t) => t.name);
           expect(
             databaseTables,
             contains('migrated_table'),

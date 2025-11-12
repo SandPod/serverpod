@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:amazon_cognito_identity_dart_2/sig_v4.dart';
 import 'package:built_value/serializer.dart';
-import 'exceptions.dart';
 import 'package:http/http.dart';
 import 'package:xml2json/xml2json.dart';
 
 import '../model/list_bucket_result.dart';
 import '../model/list_bucket_result_parker.dart';
+import 'exceptions.dart';
 
 class AwsS3Client {
   final String _secretKey;
@@ -18,7 +18,7 @@ class AwsS3Client {
   final String? _sessionToken;
   final Client _client;
 
-  static const _service = "s3";
+  static const _service = 's3';
 
   /// Creates a new AwsS3Client instance.
   ///
@@ -30,63 +30,63 @@ class AwsS3Client {
   /// @param sessionToken The session token. Optional.
   /// @param client The http client. Optional. Useful for debugging.
   AwsS3Client({
-    required String secretKey,
-    required String accessKey,
-    required String bucketId,
-    String? host,
-    required String region,
-    String? sessionToken,
-    Client? client,
+    required final String secretKey,
+    required final String accessKey,
+    required final String bucketId,
+    final String? host,
+    required final String region,
+    final String? sessionToken,
+    final Client? client,
   }) : _accessKey = accessKey,
        _secretKey = secretKey,
-       _host = host ?? "s3.$region.amazonaws.com",
+       _host = host ?? 's3.$region.amazonaws.com',
        _bucketId = bucketId,
        _region = region,
        _sessionToken = sessionToken,
        _client = client ?? Client();
 
   Future<ListBucketResult?> listObjects({
-    String? prefix,
-    String? delimiter,
-    int? maxKeys,
+    final String? prefix,
+    final String? delimiter,
+    final int? maxKeys,
   }) async {
     final response = await _doSignedGetRequest(
       key: '',
       queryParams: {
-        "list-type": "2",
-        if (prefix != null) "prefix": prefix,
-        if (delimiter != null) "delimiter": delimiter,
-        if (maxKeys != null) "maxKeys": maxKeys.toString(),
+        'list-type': '2',
+        if (prefix != null) 'prefix': prefix,
+        if (delimiter != null) 'delimiter': delimiter,
+        if (maxKeys != null) 'maxKeys': maxKeys.toString(),
       },
     );
     _checkResponseError(response);
     return _parseListObjectResponse(response.body);
   }
 
-  Future<Response> getObject(String key) {
+  Future<Response> getObject(final String key) {
     return _doSignedGetRequest(key: key);
   }
 
-  Future<Response> headObject(String key) {
+  Future<Response> headObject(final String key) {
     return _doSignedHeadRequest(key: key);
   }
 
-  Future<Response> deleteObject(String key) {
+  Future<Response> deleteObject(final String key) {
     return _doSignedDeleteRequest(key: key);
   }
 
-  String keytoPath(String key) =>
+  String keytoPath(final String key) =>
       '/$key'.split('/').map(Uri.encodeQueryComponent).join('/');
 
   ///Returns a [SignedRequestParams] object containing the uri and the HTTP headers
   ///needed to do a signed GET request to AWS S3. Does not actually execute a request.
   ///You can use this method to integrate this client with an HTTP client of your choice.
   SignedRequestParams buildSignedParams({
-    required String key,
-    Map<String, String>? queryParams,
-    String method = 'GET',
+    required final String key,
+    final Map<String, String>? queryParams,
+    final String method = 'GET',
   }) {
-    final unencodedPath = "$_bucketId/$key";
+    final unencodedPath = '$_bucketId/$key';
     final uri = Uri.https(_host, unencodedPath, queryParams);
     final payload = SigV4.hashCanonicalRequest('');
     final datetime = SigV4.generateDatetime();
@@ -136,8 +136,8 @@ $payload''';
   }
 
   Future<Response> _doSignedGetRequest({
-    required String key,
-    Map<String, String>? queryParams,
+    required final String key,
+    final Map<String, String>? queryParams,
   }) async {
     final SignedRequestParams params = buildSignedParams(
       key: key,
@@ -147,8 +147,8 @@ $payload''';
   }
 
   Future<Response> _doSignedHeadRequest({
-    required String key,
-    Map<String, String>? queryParams,
+    required final String key,
+    final Map<String, String>? queryParams,
   }) async {
     final SignedRequestParams params = buildSignedParams(
       key: key,
@@ -159,8 +159,8 @@ $payload''';
   }
 
   Future<Response> _doSignedDeleteRequest({
-    required String key,
-    Map<String, String>? queryParams,
+    required final String key,
+    final Map<String, String>? queryParams,
   }) async {
     final SignedRequestParams params = buildSignedParams(
       key: key,
@@ -170,7 +170,7 @@ $payload''';
     return _client.delete(params.uri, headers: params.headers);
   }
 
-  void _checkResponseError(Response response) {
+  void _checkResponseError(final Response response) {
     if (response.statusCode >= 200 && response.statusCode <= 300) {
       return;
     }
@@ -192,15 +192,15 @@ class SignedRequestParams {
 
 /// aws s3 list bucket response string -> [ListBucketResult] object,
 /// this function should be called via [compute]
-ListBucketResult? _parseListObjectResponse(String responseXml) {
+ListBucketResult? _parseListObjectResponse(final String responseXml) {
   //parse xml
   final Xml2Json myTransformer = Xml2Json();
   myTransformer.parse(responseXml);
   //convert xml to json
-  String jsonString = myTransformer.toParker();
+  final String jsonString = myTransformer.toParker();
   //parse json to src.model objects
   try {
-    ListBucketResult? parsedObj = ListBucketResultParker.fromJson(
+    final ListBucketResult? parsedObj = ListBucketResultParker.fromJson(
       jsonString,
     ).result;
 
@@ -210,8 +210,8 @@ ListBucketResult? _parseListObjectResponse(String responseXml) {
     //issue due to json/xml transform: Lists with 1 element are transformed to json objects instead of lists
     final fixedJson = json.decode(jsonString);
 
-    fixedJson["ListBucketResult"]["Contents"] = [
-      fixedJson["ListBucketResult"]["Contents"],
+    fixedJson['ListBucketResult']['Contents'] = [
+      fixedJson['ListBucketResult']['Contents'],
     ];
 
     return ListBucketResultParker.fromJsonMap(fixedJson).result;

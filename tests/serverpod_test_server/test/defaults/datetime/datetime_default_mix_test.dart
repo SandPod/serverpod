@@ -3,12 +3,12 @@ import 'package:test/test.dart';
 
 void main() async {
   group(
-    "Given a class with mixed fields defaults",
+    'Given a class with mixed fields defaults',
     () {
       test(
         'when the field has both "default" and "defaultModel", then the field value should be the "defaultModel" value',
         () {
-          var object = DateTimeDefaultMix();
+          final object = DateTimeDefaultMix();
           expect(
             object.dateTimeDefaultAndDefaultModel,
             DateTime.parse('2024-05-10T22:00:00.000Z'),
@@ -19,7 +19,7 @@ void main() async {
       test(
         'when the field has both "default" and "defaultPersist", then the field value should be the "default" value',
         () {
-          var object = DateTimeDefaultMix();
+          final object = DateTimeDefaultMix();
           expect(
             object.dateTimeDefaultAndDefaultPersist,
             DateTime.parse('2024-05-01T22:00:00.000Z'),
@@ -30,7 +30,7 @@ void main() async {
       test(
         'when the field has both "defaultModel" and "defaultPersist", then the field value should be the "defaultModel" value',
         () {
-          var object = DateTimeDefaultMix();
+          final object = DateTimeDefaultMix();
           expect(
             object.dateTimeDefaultModelAndDefaultPersist,
             DateTime.parse('2024-05-01T22:00:00.000Z'),
@@ -41,8 +41,8 @@ void main() async {
       test(
         'when an object of the class is created with a value for "dateTimeDefaultAndDefaultModel", then the field value should match the provided value',
         () {
-          var date = DateTime.parse('2024-05-05T22:00:00.000Z');
-          var object = DateTimeDefaultMix(
+          final date = DateTime.parse('2024-05-05T22:00:00.000Z');
+          final object = DateTimeDefaultMix(
             dateTimeDefaultAndDefaultModel: date,
           );
           expect(
@@ -55,8 +55,8 @@ void main() async {
       test(
         'when an object of the class is created with a value for "dateTimeDefaultAndDefaultPersist", then the field value should match the provided value',
         () {
-          var date = DateTime.parse('2024-05-05T22:00:00.000Z');
-          var object = DateTimeDefaultMix(
+          final date = DateTime.parse('2024-05-05T22:00:00.000Z');
+          final object = DateTimeDefaultMix(
             dateTimeDefaultAndDefaultPersist: date,
           );
           expect(
@@ -69,8 +69,8 @@ void main() async {
       test(
         'when an object of the class is created with a value for "dateTimeDefaultModelAndDefaultPersist", then the field value should match the provided value',
         () {
-          var date = DateTime.parse('2024-05-05T22:00:00.000Z');
-          var object = DateTimeDefaultMix(
+          final date = DateTime.parse('2024-05-05T22:00:00.000Z');
+          final object = DateTimeDefaultMix(
             dateTimeDefaultModelAndDefaultPersist: date,
           );
           expect(

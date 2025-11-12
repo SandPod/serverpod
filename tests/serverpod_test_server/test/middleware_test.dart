@@ -2,10 +2,9 @@ import 'dart:async';
 
 import 'package:http/http.dart' as http;
 import 'package:serverpod/serverpod.dart';
-import 'package:test/test.dart';
-
-import 'package:serverpod_test_server/src/generated/protocol.dart';
 import 'package:serverpod_test_server/src/generated/endpoints.dart';
+import 'package:serverpod_test_server/src/generated/protocol.dart';
+import 'package:test/test.dart';
 
 void main() {
   late Serverpod pod;
@@ -28,7 +27,7 @@ void main() {
         apiServer: portZeroConfig, // not used in these tests
         webServer: portZeroConfig,
       ),
-      authenticationHandler: (session, token) => Future.value(
+      authenticationHandler: (final session, final token) => Future.value(
         token == 'good' ? AuthenticationInfo('mario', {}) : null,
       ),
     );
@@ -52,14 +51,14 @@ void main() {
     () {
       test('when client requests the path without authorization, '
           'then a 401 Unauthorized is returned', () async {
-        var response = await http.get(Uri.http('localhost:$port', '/api/foo'));
+        final response = await http.get(Uri.http('localhost:$port', '/api/foo'));
 
         expect(response.statusCode, 401);
       });
 
       test('when client requests the path with invalid authorization, '
           'then a 401 Unauthorized is returned', () async {
-        var response = await http.get(
+        final response = await http.get(
           Uri.http('localhost:$port', '/api/foo'),
           headers: {
             'Authorization': 'Bearer bad',
@@ -71,7 +70,7 @@ void main() {
 
       test('when client requests the path with valid authorization, '
           'then a 200 OK is returned', () async {
-        var response = await http.get(
+        final response = await http.get(
           Uri.http('localhost:$port', '/api/foo'),
           headers: {
             'Authorization': 'Bearer good',
@@ -89,7 +88,7 @@ void main() {
     'when a client request the path without authorization, '
     'then a 500 Internal Error is returned',
     () async {
-      var response = await http.get(
+      final response = await http.get(
         Uri.http('localhost:$port', '/bar'),
         headers: {},
       );
@@ -102,7 +101,7 @@ void main() {
 /// Test route that requires authentication (uses ctx.authInfo)
 class TestRoute extends Route {
   @override
-  FutureOr<Result> handleCall(Session session, Request req) {
+  FutureOr<Result> handleCall(final Session session, final Request req) {
     return Response.ok(body: Body.fromString(req.authInfo.userIdentifier));
   }
 }
@@ -114,9 +113,9 @@ extension on Request {
 }
 
 class _AuthMiddleware {
-  Handler call(Handler next) {
-    return (ctx) async {
-      final info = await ctx.session.authenticated;
+  Handler call(final Handler next) {
+    return (final ctx) async {
+      final info = ctx.session.authenticated;
       if (info == null) return Response.unauthorized();
       _authInfoProperty[ctx] = info;
       return next(ctx);
