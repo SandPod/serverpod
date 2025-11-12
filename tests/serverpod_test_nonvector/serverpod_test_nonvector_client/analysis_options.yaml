@@ -1,1 +1,5 @@
 include: package:serverpod_lints/internal.yaml
+
+analyzer:
+  exclude:
+    - lib/src/protocol/**

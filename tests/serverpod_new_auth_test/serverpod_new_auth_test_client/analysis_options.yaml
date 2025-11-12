@@ -4,3 +4,5 @@ analyzer:
   errors:
     invalid_use_of_internal_member: error
     unawaited_futures: error
+  exclude:
+    - lib/src/protocol/**

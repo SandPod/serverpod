@@ -1,1 +1,6 @@
 include: package:serverpod_lints/internal.yaml
+
+analyzer:
+  exclude:
+    - lib/src/generated/**
+    - test/integration/test_tools/serverpod_test_tools.dart
