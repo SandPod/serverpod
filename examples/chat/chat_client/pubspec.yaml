@@ -12,6 +12,9 @@ dependencies:
   serverpod_auth_client: 3.0.0-alpha.3
   serverpod_chat_client: 3.0.0-alpha.3
 
+dev_dependencies:
+  serverpod_lints: 3.0.0-alpha.3
+
 dependency_overrides:
   serverpod_client:
     path: ../../../packages/serverpod_client
@@ -21,3 +24,5 @@ dependency_overrides:
     path: ../../../modules/serverpod_chat/serverpod_chat_client
   serverpod_serialization:
     path: ../../../packages/serverpod_serialization
+  serverpod_lints:
+    path: ../../../packages/serverpod_lints

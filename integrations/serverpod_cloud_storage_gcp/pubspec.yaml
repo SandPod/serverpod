@@ -21,7 +21,7 @@ dependencies:
   xml2json: ^6.0.0
 
 dev_dependencies:
-  lints: '>=3.0.0 <7.0.0'
+  serverpod_lints: 3.0.0-alpha.3
 
 dependency_overrides:
   serverpod:
@@ -30,3 +30,5 @@ dependency_overrides:
     path: ../../packages/serverpod_serialization
   serverpod_shared:
     path: ../../packages/serverpod_shared
+  serverpod_lints:
+    path: ../../packages/serverpod_lints

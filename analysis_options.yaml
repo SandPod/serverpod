@@ -1,6 +1,5 @@
+include: package:serverpod_lints/public.yaml
+
 analyzer:
   exclude:
     - templates/**
-
-formatter:
-  trailing_commas: preserve

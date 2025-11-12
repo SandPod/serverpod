@@ -13,6 +13,9 @@ dependencies:
   serverpod_client: SERVERPOD_VERSION
   serverpod_auth_client: SERVERPOD_VERSION
 
+dev_dependencies:
+  serverpod_lints: SERVERPOD_VERSION
+
 dependency_overrides:
   serverpod_client:
     path: ../../../packages/serverpod_client
@@ -20,3 +23,5 @@ dependency_overrides:
     path: ../../serverpod_auth/serverpod_auth_client
   serverpod_serialization:
     path: ../../../packages/serverpod_serialization
+  serverpod_lints:
+    path: ../../../packages/serverpod_lints

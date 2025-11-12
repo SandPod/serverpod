@@ -4,6 +4,8 @@ environment:
   sdk: '^3.8.0'
 dev_dependencies:
   melos: ^6.1.0
+  serverpod_lints:
+    path: packages/serverpod_lints
 
 serverpod_cli:
   analyze_pubspecs:
