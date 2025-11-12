@@ -15,12 +15,7 @@ import '../models_with_list_relations/person.dart' as _i2;
 import '../models_with_list_relations/organization.dart' as _i3;
 
 abstract class City implements _i1.SerializableModel {
-  City._({
-    this.id,
-    required this.name,
-    this.citizens,
-    this.organizations,
-  });
+  City._({this.id, required this.name, this.citizens, this.organizations});
 
   factory City({
     int? id,
@@ -89,11 +84,11 @@ class _CityImpl extends City {
     List<_i2.Person>? citizens,
     List<_i3.Organization>? organizations,
   }) : super._(
-          id: id,
-          name: name,
-          citizens: citizens,
-          organizations: organizations,
-        );
+         id: id,
+         name: name,
+         citizens: citizens,
+         organizations: organizations,
+       );
 
   /// Returns a shallow copy of this [City]
   /// with some or all fields replaced by the given arguments.

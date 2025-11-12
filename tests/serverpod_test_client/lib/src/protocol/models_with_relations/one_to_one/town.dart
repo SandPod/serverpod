@@ -14,12 +14,7 @@ import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import '../../models_with_relations/one_to_one/citizen.dart' as _i2;
 
 abstract class Town implements _i1.SerializableModel {
-  Town._({
-    this.id,
-    required this.name,
-    this.mayorId,
-    this.mayor,
-  });
+  Town._({this.id, required this.name, this.mayorId, this.mayor});
 
   factory Town({
     int? id,
@@ -36,7 +31,8 @@ abstract class Town implements _i1.SerializableModel {
       mayor: jsonSerialization['mayor'] == null
           ? null
           : _i2.Citizen.fromJson(
-              (jsonSerialization['mayor'] as Map<String, dynamic>)),
+              (jsonSerialization['mayor'] as Map<String, dynamic>),
+            ),
     );
   }
 
@@ -54,12 +50,7 @@ abstract class Town implements _i1.SerializableModel {
   /// Returns a shallow copy of this [Town]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  Town copyWith({
-    int? id,
-    String? name,
-    int? mayorId,
-    _i2.Citizen? mayor,
-  });
+  Town copyWith({int? id, String? name, int? mayorId, _i2.Citizen? mayor});
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -79,17 +70,8 @@ abstract class Town implements _i1.SerializableModel {
 class _Undefined {}
 
 class _TownImpl extends Town {
-  _TownImpl({
-    int? id,
-    required String name,
-    int? mayorId,
-    _i2.Citizen? mayor,
-  }) : super._(
-          id: id,
-          name: name,
-          mayorId: mayorId,
-          mayor: mayor,
-        );
+  _TownImpl({int? id, required String name, int? mayorId, _i2.Citizen? mayor})
+    : super._(id: id, name: name, mayorId: mayorId, mayor: mayor);
 
   /// Returns a shallow copy of this [Town]
   /// with some or all fields replaced by the given arguments.

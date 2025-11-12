@@ -13,12 +13,9 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 
 abstract class DoubleDefault implements _i1.SerializableModel {
-  DoubleDefault._({
-    this.id,
-    double? doubleDefault,
-    double? doubleDefaultNull,
-  })  : doubleDefault = doubleDefault ?? 10.5,
-        doubleDefaultNull = doubleDefaultNull ?? 20.5;
+  DoubleDefault._({this.id, double? doubleDefault, double? doubleDefaultNull})
+    : doubleDefault = doubleDefault ?? 10.5,
+      doubleDefaultNull = doubleDefaultNull ?? 20.5;
 
   factory DoubleDefault({
     int? id,
@@ -30,8 +27,8 @@ abstract class DoubleDefault implements _i1.SerializableModel {
     return DoubleDefault(
       id: jsonSerialization['id'] as int?,
       doubleDefault: (jsonSerialization['doubleDefault'] as num).toDouble(),
-      doubleDefaultNull:
-          (jsonSerialization['doubleDefaultNull'] as num?)?.toDouble(),
+      doubleDefaultNull: (jsonSerialization['doubleDefaultNull'] as num?)
+          ?.toDouble(),
     );
   }
 
@@ -75,10 +72,10 @@ class _DoubleDefaultImpl extends DoubleDefault {
     double? doubleDefault,
     double? doubleDefaultNull,
   }) : super._(
-          id: id,
-          doubleDefault: doubleDefault,
-          doubleDefaultNull: doubleDefaultNull,
-        );
+         id: id,
+         doubleDefault: doubleDefault,
+         doubleDefaultNull: doubleDefaultNull,
+       );
 
   /// Returns a shallow copy of this [DoubleDefault]
   /// with some or all fields replaced by the given arguments.

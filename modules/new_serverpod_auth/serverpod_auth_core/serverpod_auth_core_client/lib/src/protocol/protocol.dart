@@ -47,10 +47,7 @@ class Protocol extends _i1.SerializationManager {
   static final Protocol _instance = Protocol._();
 
   @override
-  T deserialize<T>(
-    dynamic data, [
-    Type? t,
-  ]) {
+  T deserialize<T>(dynamic data, [Type? t]) {
     t ??= T;
     if (t == _i2.AuthUserBlockedException) {
       return _i2.AuthUserBlockedException.fromJson(data) as T;
@@ -100,8 +97,9 @@ class Protocol extends _i1.SerializationManager {
     }
     if (t == _i1.getType<_i4.AuthUserNotFoundException?>()) {
       return (data != null
-          ? _i4.AuthUserNotFoundException.fromJson(data)
-          : null) as T;
+              ? _i4.AuthUserNotFoundException.fromJson(data)
+              : null)
+          as T;
     }
     if (t == _i1.getType<_i5.AuthStrategy?>()) {
       return (data != null ? _i5.AuthStrategy.fromJson(data) : null) as T;
@@ -115,23 +113,27 @@ class Protocol extends _i1.SerializationManager {
     }
     if (t == _i1.getType<_i8.RefreshTokenExpiredException?>()) {
       return (data != null
-          ? _i8.RefreshTokenExpiredException.fromJson(data)
-          : null) as T;
+              ? _i8.RefreshTokenExpiredException.fromJson(data)
+              : null)
+          as T;
     }
     if (t == _i1.getType<_i9.RefreshTokenInvalidSecretException?>()) {
       return (data != null
-          ? _i9.RefreshTokenInvalidSecretException.fromJson(data)
-          : null) as T;
+              ? _i9.RefreshTokenInvalidSecretException.fromJson(data)
+              : null)
+          as T;
     }
     if (t == _i1.getType<_i10.RefreshTokenMalformedException?>()) {
       return (data != null
-          ? _i10.RefreshTokenMalformedException.fromJson(data)
-          : null) as T;
+              ? _i10.RefreshTokenMalformedException.fromJson(data)
+              : null)
+          as T;
     }
     if (t == _i1.getType<_i11.RefreshTokenNotFoundException?>()) {
       return (data != null
-          ? _i11.RefreshTokenNotFoundException.fromJson(data)
-          : null) as T;
+              ? _i11.RefreshTokenNotFoundException.fromJson(data)
+              : null)
+          as T;
     }
     if (t == _i1.getType<_i12.TokenPair?>()) {
       return (data != null ? _i12.TokenPair.fromJson(data) : null) as T;

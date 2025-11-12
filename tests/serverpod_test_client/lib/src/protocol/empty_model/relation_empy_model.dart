@@ -14,10 +14,7 @@ import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import '../empty_model/empty_model_relation_item.dart' as _i2;
 
 abstract class RelationEmptyModel implements _i1.SerializableModel {
-  RelationEmptyModel._({
-    this.id,
-    this.items,
-  });
+  RelationEmptyModel._({this.id, this.items});
 
   factory RelationEmptyModel({
     int? id,
@@ -28,8 +25,11 @@ abstract class RelationEmptyModel implements _i1.SerializableModel {
     return RelationEmptyModel(
       id: jsonSerialization['id'] as int?,
       items: (jsonSerialization['items'] as List?)
-          ?.map((e) =>
-              _i2.EmptyModelRelationItem.fromJson((e as Map<String, dynamic>)))
+          ?.map(
+            (e) => _i2.EmptyModelRelationItem.fromJson(
+              (e as Map<String, dynamic>),
+            ),
+          )
           .toList(),
     );
   }
@@ -65,13 +65,8 @@ abstract class RelationEmptyModel implements _i1.SerializableModel {
 class _Undefined {}
 
 class _RelationEmptyModelImpl extends RelationEmptyModel {
-  _RelationEmptyModelImpl({
-    int? id,
-    List<_i2.EmptyModelRelationItem>? items,
-  }) : super._(
-          id: id,
-          items: items,
-        );
+  _RelationEmptyModelImpl({int? id, List<_i2.EmptyModelRelationItem>? items})
+    : super._(id: id, items: items);
 
   /// Returns a shallow copy of this [RelationEmptyModel]
   /// with some or all fields replaced by the given arguments.

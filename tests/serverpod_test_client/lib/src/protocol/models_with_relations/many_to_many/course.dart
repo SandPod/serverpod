@@ -14,11 +14,7 @@ import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import '../../models_with_relations/many_to_many/enrollment.dart' as _i2;
 
 abstract class Course implements _i1.SerializableModel {
-  Course._({
-    this.id,
-    required this.name,
-    this.enrollments,
-  });
+  Course._({this.id, required this.name, this.enrollments});
 
   factory Course({
     int? id,
@@ -48,11 +44,7 @@ abstract class Course implements _i1.SerializableModel {
   /// Returns a shallow copy of this [Course]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  Course copyWith({
-    int? id,
-    String? name,
-    List<_i2.Enrollment>? enrollments,
-  });
+  Course copyWith({int? id, String? name, List<_i2.Enrollment>? enrollments});
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -76,11 +68,7 @@ class _CourseImpl extends Course {
     int? id,
     required String name,
     List<_i2.Enrollment>? enrollments,
-  }) : super._(
-          id: id,
-          name: name,
-          enrollments: enrollments,
-        );
+  }) : super._(id: id, name: name, enrollments: enrollments);
 
   /// Returns a shallow copy of this [Course]
   /// with some or all fields replaced by the given arguments.

@@ -23,12 +23,8 @@ class EndpointGreeting extends _i1.EndpointRef {
   @override
   String get name => 'greeting';
 
-  _i2.Future<_i3.Greeting> hello(String name) =>
-      caller.callServerEndpoint<_i3.Greeting>(
-        'greeting',
-        'hello',
-        {'name': name},
-      );
+  _i2.Future<_i3.Greeting> hello(String name) => caller
+      .callServerEndpoint<_i3.Greeting>('greeting', 'hello', {'name': name});
 }
 
 class Client extends _i1.ServerpodClientShared {
@@ -38,25 +34,21 @@ class Client extends _i1.ServerpodClientShared {
     _i1.AuthenticationKeyManager? authenticationKeyManager,
     Duration? streamingConnectionTimeout,
     Duration? connectionTimeout,
-    Function(
-      _i1.MethodCallContext,
-      Object,
-      StackTrace,
-    )? onFailedCall,
+    Function(_i1.MethodCallContext, Object, StackTrace)? onFailedCall,
     Function(_i1.MethodCallContext)? onSucceededCall,
     bool? disconnectStreamsOnLostInternetConnection,
   }) : super(
-          host,
-          _i4.Protocol(),
-          securityContext: securityContext,
-          authenticationKeyManager: authenticationKeyManager,
-          streamingConnectionTimeout: streamingConnectionTimeout,
-          connectionTimeout: connectionTimeout,
-          onFailedCall: onFailedCall,
-          onSucceededCall: onSucceededCall,
-          disconnectStreamsOnLostInternetConnection:
-              disconnectStreamsOnLostInternetConnection,
-        ) {
+         host,
+         _i4.Protocol(),
+         securityContext: securityContext,
+         authenticationKeyManager: authenticationKeyManager,
+         streamingConnectionTimeout: streamingConnectionTimeout,
+         connectionTimeout: connectionTimeout,
+         onFailedCall: onFailedCall,
+         onSucceededCall: onSucceededCall,
+         disconnectStreamsOnLostInternetConnection:
+             disconnectStreamsOnLostInternetConnection,
+       ) {
     greeting = EndpointGreeting(this);
   }
 

@@ -13,6 +13,5 @@ class FreezedCustomClass with _$FreezedCustomClass {
 
   factory FreezedCustomClass.fromJson(
     Map<String, Object?> json,
-  ) =>
-      _$FreezedCustomClassFromJson(json);
+  ) => _$FreezedCustomClassFromJson(json);
 }

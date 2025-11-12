@@ -33,8 +33,9 @@ abstract class Greeting implements _i1.SerializableModel {
       id: jsonSerialization['id'] as int?,
       message: jsonSerialization['message'] as String,
       author: jsonSerialization['author'] as String,
-      timestamp:
-          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['timestamp']),
+      timestamp: _i1.DateTimeJsonExtension.fromJson(
+        jsonSerialization['timestamp'],
+      ),
     );
   }
 
@@ -85,12 +86,7 @@ class _GreetingImpl extends Greeting {
     required String message,
     required String author,
     required DateTime timestamp,
-  }) : super._(
-          id: id,
-          message: message,
-          author: author,
-          timestamp: timestamp,
-        );
+  }) : super._(id: id, message: message, author: author, timestamp: timestamp);
 
   /// Returns a shallow copy of this [Greeting]
   /// with some or all fields replaced by the given arguments.

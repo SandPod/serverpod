@@ -15,13 +15,7 @@ import '../../models_with_relations/nested_one_to_many/arena.dart' as _i2;
 import '../../models_with_relations/nested_one_to_many/player.dart' as _i3;
 
 abstract class Team implements _i1.SerializableModel {
-  Team._({
-    this.id,
-    required this.name,
-    this.arenaId,
-    this.arena,
-    this.players,
-  });
+  Team._({this.id, required this.name, this.arenaId, this.arena, this.players});
 
   factory Team({
     int? id,
@@ -39,7 +33,8 @@ abstract class Team implements _i1.SerializableModel {
       arena: jsonSerialization['arena'] == null
           ? null
           : _i2.Arena.fromJson(
-              (jsonSerialization['arena'] as Map<String, dynamic>)),
+              (jsonSerialization['arena'] as Map<String, dynamic>),
+            ),
       players: (jsonSerialization['players'] as List?)
           ?.map((e) => _i3.Player.fromJson((e as Map<String, dynamic>)))
           .toList(),
@@ -97,12 +92,12 @@ class _TeamImpl extends Team {
     _i2.Arena? arena,
     List<_i3.Player>? players,
   }) : super._(
-          id: id,
-          name: name,
-          arenaId: arenaId,
-          arena: arena,
-          players: players,
-        );
+         id: id,
+         name: name,
+         arenaId: arenaId,
+         arena: arena,
+         players: players,
+       );
 
   /// Returns a shallow copy of this [Team]
   /// with some or all fields replaced by the given arguments.

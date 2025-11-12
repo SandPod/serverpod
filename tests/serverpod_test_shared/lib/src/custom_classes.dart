@@ -35,9 +35,9 @@ class CustomClassWithoutProtocolSerialization {
   });
 
   Map<String, dynamic> toJson() => {
-        'serverSideValue': serverSideValue,
-        'value': value,
-      };
+    'serverSideValue': serverSideValue,
+    'value': value,
+  };
 
   CustomClassWithoutProtocolSerialization copyWith() => this;
 
@@ -61,9 +61,9 @@ class CustomClassWithProtocolSerialization implements ProtocolSerialization {
   });
 
   Map<String, dynamic> toJson() => {
-        'serverSideValue': serverSideValue,
-        'value': value,
-      };
+    'serverSideValue': serverSideValue,
+    'value': value,
+  };
 
   @override
   Map<String, dynamic> toJsonForProtocol() => {'value': value};
@@ -92,9 +92,9 @@ class CustomClassWithProtocolSerializationMethod {
   });
 
   Map<String, dynamic> toJson() => {
-        'serverSideValue': serverSideValue,
-        'value': value,
-      };
+    'serverSideValue': serverSideValue,
+    'value': value,
+  };
 
   Map<String, dynamic> toJsonForProtocol() => {'value': value};
 

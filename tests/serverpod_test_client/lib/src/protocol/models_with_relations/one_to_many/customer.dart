@@ -14,17 +14,10 @@ import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import '../../models_with_relations/one_to_many/order.dart' as _i2;
 
 abstract class Customer implements _i1.SerializableModel {
-  Customer._({
-    this.id,
-    required this.name,
-    this.orders,
-  });
+  Customer._({this.id, required this.name, this.orders});
 
-  factory Customer({
-    int? id,
-    required String name,
-    List<_i2.Order>? orders,
-  }) = _CustomerImpl;
+  factory Customer({int? id, required String name, List<_i2.Order>? orders}) =
+      _CustomerImpl;
 
   factory Customer.fromJson(Map<String, dynamic> jsonSerialization) {
     return Customer(
@@ -48,11 +41,7 @@ abstract class Customer implements _i1.SerializableModel {
   /// Returns a shallow copy of this [Customer]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  Customer copyWith({
-    int? id,
-    String? name,
-    List<_i2.Order>? orders,
-  });
+  Customer copyWith({int? id, String? name, List<_i2.Order>? orders});
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -72,15 +61,8 @@ abstract class Customer implements _i1.SerializableModel {
 class _Undefined {}
 
 class _CustomerImpl extends Customer {
-  _CustomerImpl({
-    int? id,
-    required String name,
-    List<_i2.Order>? orders,
-  }) : super._(
-          id: id,
-          name: name,
-          orders: orders,
-        );
+  _CustomerImpl({int? id, required String name, List<_i2.Order>? orders})
+    : super._(id: id, name: name, orders: orders);
 
   /// Returns a shallow copy of this [Customer]
   /// with some or all fields replaced by the given arguments.

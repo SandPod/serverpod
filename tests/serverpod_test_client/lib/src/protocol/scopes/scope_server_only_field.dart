@@ -15,22 +15,22 @@ import '../types.dart' as _i2;
 import '../scopes/scope_server_only_field.dart' as _i3;
 
 class ScopeServerOnlyField implements _i1.SerializableModel {
-  ScopeServerOnlyField({
-    this.allScope,
-    this.nested,
-  });
+  ScopeServerOnlyField({this.allScope, this.nested});
 
   factory ScopeServerOnlyField.fromJson(
-      Map<String, dynamic> jsonSerialization) {
+    Map<String, dynamic> jsonSerialization,
+  ) {
     return ScopeServerOnlyField(
       allScope: jsonSerialization['allScope'] == null
           ? null
           : _i2.Types.fromJson(
-              (jsonSerialization['allScope'] as Map<String, dynamic>)),
+              (jsonSerialization['allScope'] as Map<String, dynamic>),
+            ),
       nested: jsonSerialization['nested'] == null
           ? null
           : _i3.ScopeServerOnlyField.fromJson(
-              (jsonSerialization['nested'] as Map<String, dynamic>)),
+              (jsonSerialization['nested'] as Map<String, dynamic>),
+            ),
     );
   }
 
