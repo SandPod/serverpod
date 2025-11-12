@@ -15,6 +15,9 @@ dependencies:
   serverpod_auth_migration_client: 3.0.0-alpha.3
   serverpod_auth_idp_client: 3.0.0-alpha.3
 
+dev_dependencies:
+  serverpod_lints: 3.0.0-alpha.3
+
 dependency_overrides:
   serverpod_client:
     path: ../../../packages/serverpod_client
@@ -30,3 +33,5 @@ dependency_overrides:
     path: ../../../modules/new_serverpod_auth/serverpod_auth_migration/serverpod_auth_migration_client
   serverpod_auth_core_client:
     path: ../../../modules/new_serverpod_auth/serverpod_auth_core/serverpod_auth_core_client
+  serverpod_lints:
+    path: ../../../packages/serverpod_lints

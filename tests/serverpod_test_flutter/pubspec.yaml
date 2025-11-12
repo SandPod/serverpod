@@ -25,6 +25,7 @@ dev_dependencies:
     path: ../serverpod_test_client
   serverpod_auth_shared_flutter:
     path: ../../modules/serverpod_auth/serverpod_auth_shared_flutter
+  serverpod_lints: 3.0.0-alpha.3
 
 dependency_overrides:
   serverpod_auth_client:
@@ -33,6 +34,8 @@ dependency_overrides:
     path: ../../packages/serverpod_client
   serverpod_serialization:
     path: ../../packages/serverpod_serialization
+  serverpod_lints:
+    path: ../../packages/serverpod_lints
 
 flutter:
   uses-material-design: true

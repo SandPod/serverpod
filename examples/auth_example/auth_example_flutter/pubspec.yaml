@@ -41,9 +41,9 @@ dependencies:
   cupertino_icons: ^1.0.5
 
 dev_dependencies:
-  serverpod_lints: 3.0.0-alpha.3
   flutter_test:
     sdk: flutter
+  serverpod_lints: 3.0.0-alpha.3
 
 dependency_overrides:
   serverpod_flutter:
@@ -64,6 +64,7 @@ dependency_overrides:
     path: ../../../packages/serverpod_serialization
   serverpod_lints:
     path: ../../../packages/serverpod_lints
+    
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
