@@ -22,16 +22,16 @@ abstract class ChatMessageChunk implements _i1.SerializableModel {
   });
 
   factory ChatMessageChunk({
-    required final String channel,
-    required final List<_i2.ChatMessage> messages,
-    required final bool hasOlderMessages,
+    required String channel,
+    required List<_i2.ChatMessage> messages,
+    required bool hasOlderMessages,
   }) = _ChatMessageChunkImpl;
 
-  factory ChatMessageChunk.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory ChatMessageChunk.fromJson(Map<String, dynamic> jsonSerialization) {
     return ChatMessageChunk(
       channel: jsonSerialization['channel'] as String,
       messages: (jsonSerialization['messages'] as List)
-          .map((final e) => _i2.ChatMessage.fromJson((e as Map<String, dynamic>)))
+          .map((e) => _i2.ChatMessage.fromJson((e as Map<String, dynamic>)))
           .toList(),
       hasOlderMessages: jsonSerialization['hasOlderMessages'] as bool,
     );
@@ -50,15 +50,15 @@ abstract class ChatMessageChunk implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ChatMessageChunk copyWith({
-    final String? channel,
-    final List<_i2.ChatMessage>? messages,
-    final bool? hasOlderMessages,
+    String? channel,
+    List<_i2.ChatMessage>? messages,
+    bool? hasOlderMessages,
   });
   @override
   Map<String, dynamic> toJson() {
     return {
       'channel': channel,
-      'messages': messages.toJson(valueToJson: (final v) => v.toJson()),
+      'messages': messages.toJson(valueToJson: (v) => v.toJson()),
       'hasOlderMessages': hasOlderMessages,
     };
   }
@@ -71,27 +71,27 @@ abstract class ChatMessageChunk implements _i1.SerializableModel {
 
 class _ChatMessageChunkImpl extends ChatMessageChunk {
   _ChatMessageChunkImpl({
-    required final String channel,
-    required final List<_i2.ChatMessage> messages,
-    required final bool hasOlderMessages,
+    required String channel,
+    required List<_i2.ChatMessage> messages,
+    required bool hasOlderMessages,
   }) : super._(
-         channel: channel,
-         messages: messages,
-         hasOlderMessages: hasOlderMessages,
-       );
+          channel: channel,
+          messages: messages,
+          hasOlderMessages: hasOlderMessages,
+        );
 
   /// Returns a shallow copy of this [ChatMessageChunk]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   ChatMessageChunk copyWith({
-    final String? channel,
-    final List<_i2.ChatMessage>? messages,
-    final bool? hasOlderMessages,
+    String? channel,
+    List<_i2.ChatMessage>? messages,
+    bool? hasOlderMessages,
   }) {
     return ChatMessageChunk(
       channel: channel ?? this.channel,
-      messages: messages ?? this.messages.map((final e0) => e0.copyWith()).toList(),
+      messages: messages ?? this.messages.map((e0) => e0.copyWith()).toList(),
       hasOlderMessages: hasOlderMessages ?? this.hasOlderMessages,
     );
   }

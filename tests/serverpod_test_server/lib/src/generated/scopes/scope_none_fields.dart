@@ -15,19 +15,20 @@ import '../simple_data.dart' as _i2;
 
 abstract class ScopeNoneFields
     implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
-  ScopeNoneFields._({this.id}) : _name = null, _object = null;
+  ScopeNoneFields._({this.id})
+      : _name = null,
+        _object = null;
 
-  factory ScopeNoneFields({final int? id}) = _ScopeNoneFieldsImpl;
+  factory ScopeNoneFields({int? id}) = _ScopeNoneFieldsImpl;
 
-  factory ScopeNoneFields.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory ScopeNoneFields.fromJson(Map<String, dynamic> jsonSerialization) {
     return ScopeNoneFieldsImplicit._(
       id: jsonSerialization['id'] as int?,
       $name: jsonSerialization['name'] as String?,
       $object: jsonSerialization['object'] == null
           ? null
           : _i2.SimpleData.fromJson(
-              (jsonSerialization['object'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['object'] as Map<String, dynamic>)),
     );
   }
 
@@ -48,7 +49,7 @@ abstract class ScopeNoneFields
   /// Returns a shallow copy of this [ScopeNoneFields]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  ScopeNoneFields copyWith({final int? id});
+  ScopeNoneFields copyWith({int? id});
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -68,13 +69,13 @@ abstract class ScopeNoneFields
   }
 
   static ScopeNoneFieldsIncludeList includeList({
-    final _i1.WhereExpressionBuilder<ScopeNoneFieldsTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ScopeNoneFieldsTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ScopeNoneFieldsTable>? orderByList,
-    final ScopeNoneFieldsInclude? include,
+    _i1.WhereExpressionBuilder<ScopeNoneFieldsTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ScopeNoneFieldsTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ScopeNoneFieldsTable>? orderByList,
+    ScopeNoneFieldsInclude? include,
   }) {
     return ScopeNoneFieldsIncludeList._(
       where: where,
@@ -96,34 +97,34 @@ abstract class ScopeNoneFields
 class _Undefined {}
 
 class _ScopeNoneFieldsImpl extends ScopeNoneFields {
-  _ScopeNoneFieldsImpl({final int? id}) : super._(id: id);
+  _ScopeNoneFieldsImpl({int? id}) : super._(id: id);
 
   /// Returns a shallow copy of this [ScopeNoneFields]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  ScopeNoneFields copyWith({final Object? id = _Undefined}) {
+  ScopeNoneFields copyWith({Object? id = _Undefined}) {
     return ScopeNoneFieldsImplicit._(
       id: id is int? ? id : this.id,
-      $name: _name,
-      $object: _object?.copyWith(),
+      $name: this._name,
+      $object: this._object?.copyWith(),
     );
   }
 }
 
 class ScopeNoneFieldsImplicit extends _ScopeNoneFieldsImpl {
   ScopeNoneFieldsImplicit._({
-    final int? id,
-    final String? $name,
-    final _i2.SimpleData? $object,
-  }) : _name = $name,
-       _object = $object,
-       super(id: id);
+    int? id,
+    String? $name,
+    _i2.SimpleData? $object,
+  })  : _name = $name,
+        _object = $object,
+        super(id: id);
 
   factory ScopeNoneFieldsImplicit(
-    final ScopeNoneFields scopeNoneFields, {
-    final String? $name,
-    final _i2.SimpleData? $object,
+    ScopeNoneFields scopeNoneFields, {
+    String? $name,
+    _i2.SimpleData? $object,
   }) {
     return ScopeNoneFieldsImplicit._(
       id: scopeNoneFields.id,
@@ -142,22 +143,22 @@ class ScopeNoneFieldsImplicit extends _ScopeNoneFieldsImpl {
 class ScopeNoneFieldsUpdateTable extends _i1.UpdateTable<ScopeNoneFieldsTable> {
   ScopeNoneFieldsUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> $name(final String? value) => _i1.ColumnValue(
-    table.$name,
-    value,
-  );
+  _i1.ColumnValue<String, String> $name(String? value) => _i1.ColumnValue(
+        table.$name,
+        value,
+      );
 
   _i1.ColumnValue<_i2.SimpleData, _i2.SimpleData> $object(
-    final _i2.SimpleData? value,
-  ) => _i1.ColumnValue(
-    table.$object,
-    value,
-  );
+          _i2.SimpleData? value) =>
+      _i1.ColumnValue(
+        table.$object,
+        value,
+      );
 }
 
 class ScopeNoneFieldsTable extends _i1.Table<int?> {
   ScopeNoneFieldsTable({super.tableRelation})
-    : super(tableName: 'scope_none_fields') {
+      : super(tableName: 'scope_none_fields') {
     updateTable = ScopeNoneFieldsUpdateTable(this);
     $name = _i1.ColumnString(
       'name',
@@ -177,10 +178,10 @@ class ScopeNoneFieldsTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    $name,
-    $object,
-  ];
+        id,
+        $name,
+        $object,
+      ];
 
   @override
   List<_i1.Column> get managedColumns => [id];
@@ -198,7 +199,7 @@ class ScopeNoneFieldsInclude extends _i1.IncludeObject {
 
 class ScopeNoneFieldsIncludeList extends _i1.IncludeList {
   ScopeNoneFieldsIncludeList._({
-    final _i1.WhereExpressionBuilder<ScopeNoneFieldsTable>? where,
+    _i1.WhereExpressionBuilder<ScopeNoneFieldsTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -242,14 +243,14 @@ class ScopeNoneFieldsRepository {
   /// );
   /// ```
   Future<List<ScopeNoneFields>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ScopeNoneFieldsTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ScopeNoneFieldsTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ScopeNoneFieldsTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ScopeNoneFieldsTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ScopeNoneFieldsTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ScopeNoneFieldsTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<ScopeNoneFields>(
       where: where?.call(ScopeNoneFields.t),
@@ -280,13 +281,13 @@ class ScopeNoneFieldsRepository {
   /// );
   /// ```
   Future<ScopeNoneFields?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ScopeNoneFieldsTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<ScopeNoneFieldsTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ScopeNoneFieldsTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ScopeNoneFieldsTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<ScopeNoneFieldsTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ScopeNoneFieldsTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<ScopeNoneFields>(
       where: where?.call(ScopeNoneFields.t),
@@ -300,9 +301,9 @@ class ScopeNoneFieldsRepository {
 
   /// Finds a single [ScopeNoneFields] by its [id] or null if no such row exists.
   Future<ScopeNoneFields?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<ScopeNoneFields>(
       id,
@@ -317,9 +318,9 @@ class ScopeNoneFieldsRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<ScopeNoneFields>> insert(
-    final _i1.Session session,
-    final List<ScopeNoneFields> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ScopeNoneFields> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<ScopeNoneFields>(
       rows,
@@ -331,9 +332,9 @@ class ScopeNoneFieldsRepository {
   ///
   /// The returned [ScopeNoneFields] will have its `id` field set.
   Future<ScopeNoneFields> insertRow(
-    final _i1.Session session,
-    final ScopeNoneFields row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ScopeNoneFields row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<ScopeNoneFields>(
       row,
@@ -347,10 +348,10 @@ class ScopeNoneFieldsRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<ScopeNoneFields>> update(
-    final _i1.Session session,
-    final List<ScopeNoneFields> rows, {
-    final _i1.ColumnSelections<ScopeNoneFieldsTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ScopeNoneFields> rows, {
+    _i1.ColumnSelections<ScopeNoneFieldsTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<ScopeNoneFields>(
       rows,
@@ -363,10 +364,10 @@ class ScopeNoneFieldsRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<ScopeNoneFields> updateRow(
-    final _i1.Session session,
-    final ScopeNoneFields row, {
-    final _i1.ColumnSelections<ScopeNoneFieldsTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ScopeNoneFields row, {
+    _i1.ColumnSelections<ScopeNoneFieldsTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<ScopeNoneFields>(
       row,
@@ -378,11 +379,11 @@ class ScopeNoneFieldsRepository {
   /// Updates a single [ScopeNoneFields] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<ScopeNoneFields?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<ScopeNoneFieldsUpdateTable>
-    columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<ScopeNoneFieldsUpdateTable>
+        columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<ScopeNoneFields>(
       id,
@@ -394,16 +395,16 @@ class ScopeNoneFieldsRepository {
   /// Updates all [ScopeNoneFields]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<ScopeNoneFields>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<ScopeNoneFieldsUpdateTable>
-    columnValues,
-    required final _i1.WhereExpressionBuilder<ScopeNoneFieldsTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ScopeNoneFieldsTable>? orderBy,
-    final _i1.OrderByListBuilder<ScopeNoneFieldsTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<ScopeNoneFieldsUpdateTable>
+        columnValues,
+    required _i1.WhereExpressionBuilder<ScopeNoneFieldsTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ScopeNoneFieldsTable>? orderBy,
+    _i1.OrderByListBuilder<ScopeNoneFieldsTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<ScopeNoneFields>(
       columnValues: columnValues(ScopeNoneFields.t.updateTable),
@@ -421,9 +422,9 @@ class ScopeNoneFieldsRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<ScopeNoneFields>> delete(
-    final _i1.Session session,
-    final List<ScopeNoneFields> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ScopeNoneFields> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<ScopeNoneFields>(
       rows,
@@ -433,9 +434,9 @@ class ScopeNoneFieldsRepository {
 
   /// Deletes a single [ScopeNoneFields].
   Future<ScopeNoneFields> deleteRow(
-    final _i1.Session session,
-    final ScopeNoneFields row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ScopeNoneFields row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<ScopeNoneFields>(
       row,
@@ -445,9 +446,9 @@ class ScopeNoneFieldsRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<ScopeNoneFields>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<ScopeNoneFieldsTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<ScopeNoneFieldsTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<ScopeNoneFields>(
       where: where(ScopeNoneFields.t),
@@ -458,10 +459,10 @@ class ScopeNoneFieldsRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ScopeNoneFieldsTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ScopeNoneFieldsTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<ScopeNoneFields>(
       where: where?.call(ScopeNoneFields.t),

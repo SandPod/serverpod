@@ -9,14 +9,12 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
-import 'dart:typed_data' as _i2;
-
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-import 'package:serverpod_test_server/src/generated/protocol.dart' as _i5;
-
+import 'dart:typed_data' as _i2;
 import 'test_enum.dart' as _i3;
 import 'test_enum_stringified.dart' as _i4;
+import 'package:serverpod_test_server/src/generated/protocol.dart' as _i5;
 
 abstract class Types implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   Types._({
@@ -44,30 +42,30 @@ abstract class Types implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   });
 
   factory Types({
-    final int? id,
-    final int? anInt,
-    final bool? aBool,
-    final double? aDouble,
-    final DateTime? aDateTime,
-    final String? aString,
-    final _i2.ByteData? aByteData,
-    final Duration? aDuration,
-    final _i1.UuidValue? aUuid,
-    final Uri? aUri,
-    final BigInt? aBigInt,
-    final _i1.Vector? aVector,
-    final _i1.HalfVector? aHalfVector,
-    final _i1.SparseVector? aSparseVector,
-    final _i1.Bit? aBit,
-    final _i3.TestEnum? anEnum,
-    final _i4.TestEnumStringified? aStringifiedEnum,
-    final List<int>? aList,
-    final Map<int, int>? aMap,
-    final Set<int>? aSet,
-    final (String, {Uri? optionalUri})? aRecord,
+    int? id,
+    int? anInt,
+    bool? aBool,
+    double? aDouble,
+    DateTime? aDateTime,
+    String? aString,
+    _i2.ByteData? aByteData,
+    Duration? aDuration,
+    _i1.UuidValue? aUuid,
+    Uri? aUri,
+    BigInt? aBigInt,
+    _i1.Vector? aVector,
+    _i1.HalfVector? aHalfVector,
+    _i1.SparseVector? aSparseVector,
+    _i1.Bit? aBit,
+    _i3.TestEnum? anEnum,
+    _i4.TestEnumStringified? aStringifiedEnum,
+    List<int>? aList,
+    Map<int, int>? aMap,
+    Set<int>? aSet,
+    (String, {Uri? optionalUri})? aRecord,
   }) = _TypesImpl;
 
-  factory Types.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory Types.fromJson(Map<String, dynamic> jsonSerialization) {
     return Types(
       id: jsonSerialization['id'] as int?,
       anInt: jsonSerialization['anInt'] as int?,
@@ -98,13 +96,11 @@ abstract class Types implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
       aHalfVector: jsonSerialization['aHalfVector'] == null
           ? null
           : _i1.HalfVectorJsonExtension.fromJson(
-              jsonSerialization['aHalfVector'],
-            ),
+              jsonSerialization['aHalfVector']),
       aSparseVector: jsonSerialization['aSparseVector'] == null
           ? null
           : _i1.SparseVectorJsonExtension.fromJson(
-              jsonSerialization['aSparseVector'],
-            ),
+              jsonSerialization['aSparseVector']),
       aBit: jsonSerialization['aBit'] == null
           ? null
           : _i1.BitJsonExtension.fromJson(jsonSerialization['aBit']),
@@ -114,26 +110,19 @@ abstract class Types implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
       aStringifiedEnum: jsonSerialization['aStringifiedEnum'] == null
           ? null
           : _i4.TestEnumStringified.fromJson(
-              (jsonSerialization['aStringifiedEnum'] as String),
-            ),
-      aList: (jsonSerialization['aList'] as List?)
-          ?.map((final e) => e as int)
-          .toList(),
+              (jsonSerialization['aStringifiedEnum'] as String)),
+      aList:
+          (jsonSerialization['aList'] as List?)?.map((e) => e as int).toList(),
       aMap: (jsonSerialization['aMap'] as List?)?.fold<Map<int, int>>(
-        {},
-        (final t, final e) => {...t, e['k'] as int: e['v'] as int},
-      ),
+          {}, (t, e) => {...t, e['k'] as int: e['v'] as int}),
       aSet: jsonSerialization['aSet'] == null
           ? null
-          : _i1.SetJsonExtension.fromJson(
-              (jsonSerialization['aSet'] as List),
-              itemFromJson: (final e) => e as int,
-            ),
+          : _i1.SetJsonExtension.fromJson((jsonSerialization['aSet'] as List),
+              itemFromJson: (e) => e as int),
       aRecord: jsonSerialization['aRecord'] == null
           ? null
           : _i5.Protocol().deserialize<(String, {Uri? optionalUri})?>(
-              (jsonSerialization['aRecord'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['aRecord'] as Map<String, dynamic>)),
     );
   }
 
@@ -191,27 +180,27 @@ abstract class Types implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   Types copyWith({
-    final int? id,
-    final int? anInt,
-    final bool? aBool,
-    final double? aDouble,
-    final DateTime? aDateTime,
-    final String? aString,
-    final _i2.ByteData? aByteData,
-    final Duration? aDuration,
-    final _i1.UuidValue? aUuid,
-    final Uri? aUri,
-    final BigInt? aBigInt,
-    final _i1.Vector? aVector,
-    final _i1.HalfVector? aHalfVector,
-    final _i1.SparseVector? aSparseVector,
-    final _i1.Bit? aBit,
-    final _i3.TestEnum? anEnum,
-    final _i4.TestEnumStringified? aStringifiedEnum,
-    final List<int>? aList,
-    final Map<int, int>? aMap,
-    final Set<int>? aSet,
-    final (String, {Uri? optionalUri})? aRecord,
+    int? id,
+    int? anInt,
+    bool? aBool,
+    double? aDouble,
+    DateTime? aDateTime,
+    String? aString,
+    _i2.ByteData? aByteData,
+    Duration? aDuration,
+    _i1.UuidValue? aUuid,
+    Uri? aUri,
+    BigInt? aBigInt,
+    _i1.Vector? aVector,
+    _i1.HalfVector? aHalfVector,
+    _i1.SparseVector? aSparseVector,
+    _i1.Bit? aBit,
+    _i3.TestEnum? anEnum,
+    _i4.TestEnumStringified? aStringifiedEnum,
+    List<int>? aList,
+    Map<int, int>? aMap,
+    Set<int>? aSet,
+    (String, {Uri? optionalUri})? aRecord,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -274,13 +263,13 @@ abstract class Types implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   }
 
   static TypesIncludeList includeList({
-    final _i1.WhereExpressionBuilder<TypesTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<TypesTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<TypesTable>? orderByList,
-    final TypesInclude? include,
+    _i1.WhereExpressionBuilder<TypesTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<TypesTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<TypesTable>? orderByList,
+    TypesInclude? include,
   }) {
     return TypesIncludeList._(
       where: where,
@@ -303,77 +292,77 @@ class _Undefined {}
 
 class _TypesImpl extends Types {
   _TypesImpl({
-    final int? id,
-    final int? anInt,
-    final bool? aBool,
-    final double? aDouble,
-    final DateTime? aDateTime,
-    final String? aString,
-    final _i2.ByteData? aByteData,
-    final Duration? aDuration,
-    final _i1.UuidValue? aUuid,
-    final Uri? aUri,
-    final BigInt? aBigInt,
-    final _i1.Vector? aVector,
-    final _i1.HalfVector? aHalfVector,
-    final _i1.SparseVector? aSparseVector,
-    final _i1.Bit? aBit,
-    final _i3.TestEnum? anEnum,
-    final _i4.TestEnumStringified? aStringifiedEnum,
-    final List<int>? aList,
-    final Map<int, int>? aMap,
-    final Set<int>? aSet,
-    final (String, {Uri? optionalUri})? aRecord,
+    int? id,
+    int? anInt,
+    bool? aBool,
+    double? aDouble,
+    DateTime? aDateTime,
+    String? aString,
+    _i2.ByteData? aByteData,
+    Duration? aDuration,
+    _i1.UuidValue? aUuid,
+    Uri? aUri,
+    BigInt? aBigInt,
+    _i1.Vector? aVector,
+    _i1.HalfVector? aHalfVector,
+    _i1.SparseVector? aSparseVector,
+    _i1.Bit? aBit,
+    _i3.TestEnum? anEnum,
+    _i4.TestEnumStringified? aStringifiedEnum,
+    List<int>? aList,
+    Map<int, int>? aMap,
+    Set<int>? aSet,
+    (String, {Uri? optionalUri})? aRecord,
   }) : super._(
-         id: id,
-         anInt: anInt,
-         aBool: aBool,
-         aDouble: aDouble,
-         aDateTime: aDateTime,
-         aString: aString,
-         aByteData: aByteData,
-         aDuration: aDuration,
-         aUuid: aUuid,
-         aUri: aUri,
-         aBigInt: aBigInt,
-         aVector: aVector,
-         aHalfVector: aHalfVector,
-         aSparseVector: aSparseVector,
-         aBit: aBit,
-         anEnum: anEnum,
-         aStringifiedEnum: aStringifiedEnum,
-         aList: aList,
-         aMap: aMap,
-         aSet: aSet,
-         aRecord: aRecord,
-       );
+          id: id,
+          anInt: anInt,
+          aBool: aBool,
+          aDouble: aDouble,
+          aDateTime: aDateTime,
+          aString: aString,
+          aByteData: aByteData,
+          aDuration: aDuration,
+          aUuid: aUuid,
+          aUri: aUri,
+          aBigInt: aBigInt,
+          aVector: aVector,
+          aHalfVector: aHalfVector,
+          aSparseVector: aSparseVector,
+          aBit: aBit,
+          anEnum: anEnum,
+          aStringifiedEnum: aStringifiedEnum,
+          aList: aList,
+          aMap: aMap,
+          aSet: aSet,
+          aRecord: aRecord,
+        );
 
   /// Returns a shallow copy of this [Types]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   Types copyWith({
-    final Object? id = _Undefined,
-    final Object? anInt = _Undefined,
-    final Object? aBool = _Undefined,
-    final Object? aDouble = _Undefined,
-    final Object? aDateTime = _Undefined,
-    final Object? aString = _Undefined,
-    final Object? aByteData = _Undefined,
-    final Object? aDuration = _Undefined,
-    final Object? aUuid = _Undefined,
-    final Object? aUri = _Undefined,
-    final Object? aBigInt = _Undefined,
-    final Object? aVector = _Undefined,
-    final Object? aHalfVector = _Undefined,
-    final Object? aSparseVector = _Undefined,
-    final Object? aBit = _Undefined,
-    final Object? anEnum = _Undefined,
-    final Object? aStringifiedEnum = _Undefined,
-    final Object? aList = _Undefined,
-    final Object? aMap = _Undefined,
-    final Object? aSet = _Undefined,
-    final Object? aRecord = _Undefined,
+    Object? id = _Undefined,
+    Object? anInt = _Undefined,
+    Object? aBool = _Undefined,
+    Object? aDouble = _Undefined,
+    Object? aDateTime = _Undefined,
+    Object? aString = _Undefined,
+    Object? aByteData = _Undefined,
+    Object? aDuration = _Undefined,
+    Object? aUuid = _Undefined,
+    Object? aUri = _Undefined,
+    Object? aBigInt = _Undefined,
+    Object? aVector = _Undefined,
+    Object? aHalfVector = _Undefined,
+    Object? aSparseVector = _Undefined,
+    Object? aBit = _Undefined,
+    Object? anEnum = _Undefined,
+    Object? aStringifiedEnum = _Undefined,
+    Object? aList = _Undefined,
+    Object? aMap = _Undefined,
+    Object? aSet = _Undefined,
+    Object? aRecord = _Undefined,
   }) {
     return Types(
       id: id is int? ? id : this.id,
@@ -382,9 +371,8 @@ class _TypesImpl extends Types {
       aDouble: aDouble is double? ? aDouble : this.aDouble,
       aDateTime: aDateTime is DateTime? ? aDateTime : this.aDateTime,
       aString: aString is String? ? aString : this.aString,
-      aByteData: aByteData is _i2.ByteData?
-          ? aByteData
-          : this.aByteData?.clone(),
+      aByteData:
+          aByteData is _i2.ByteData? ? aByteData : this.aByteData?.clone(),
       aDuration: aDuration is Duration? ? aDuration : this.aDuration,
       aUuid: aUuid is _i1.UuidValue? ? aUuid : this.aUuid,
       aUri: aUri is Uri? ? aUri : this.aUri,
@@ -401,27 +389,26 @@ class _TypesImpl extends Types {
       aStringifiedEnum: aStringifiedEnum is _i4.TestEnumStringified?
           ? aStringifiedEnum
           : this.aStringifiedEnum,
-      aList: aList is List<int>? ? aList : this.aList?.map((final e0) => e0).toList(),
+      aList: aList is List<int>? ? aList : this.aList?.map((e0) => e0).toList(),
       aMap: aMap is Map<int, int>?
           ? aMap
-          : this.aMap?.map(
-              (
-                final key0,
-                final value0,
-              ) => MapEntry(
+          : this.aMap?.map((
                 key0,
                 value0,
-              ),
-            ),
-      aSet: aSet is Set<int>? ? aSet : this.aSet?.map((final e0) => e0).toSet(),
+              ) =>
+                  MapEntry(
+                    key0,
+                    value0,
+                  )),
+      aSet: aSet is Set<int>? ? aSet : this.aSet?.map((e0) => e0).toSet(),
       aRecord: aRecord is (String, {Uri? optionalUri})?
           ? aRecord
           : this.aRecord == null
-          ? null
-          : (
-              this.aRecord!.$1,
-              optionalUri: this.aRecord!.optionalUri,
-            ),
+              ? null
+              : (
+                  this.aRecord!.$1,
+                  optionalUri: this.aRecord!.optionalUri,
+                ),
     );
   }
 }
@@ -429,120 +416,120 @@ class _TypesImpl extends Types {
 class TypesUpdateTable extends _i1.UpdateTable<TypesTable> {
   TypesUpdateTable(super.table);
 
-  _i1.ColumnValue<int, int> anInt(final int? value) => _i1.ColumnValue(
-    table.anInt,
-    value,
-  );
+  _i1.ColumnValue<int, int> anInt(int? value) => _i1.ColumnValue(
+        table.anInt,
+        value,
+      );
 
-  _i1.ColumnValue<bool, bool> aBool(final bool? value) => _i1.ColumnValue(
-    table.aBool,
-    value,
-  );
+  _i1.ColumnValue<bool, bool> aBool(bool? value) => _i1.ColumnValue(
+        table.aBool,
+        value,
+      );
 
-  _i1.ColumnValue<double, double> aDouble(final double? value) => _i1.ColumnValue(
-    table.aDouble,
-    value,
-  );
+  _i1.ColumnValue<double, double> aDouble(double? value) => _i1.ColumnValue(
+        table.aDouble,
+        value,
+      );
 
-  _i1.ColumnValue<DateTime, DateTime> aDateTime(final DateTime? value) =>
+  _i1.ColumnValue<DateTime, DateTime> aDateTime(DateTime? value) =>
       _i1.ColumnValue(
         table.aDateTime,
         value,
       );
 
-  _i1.ColumnValue<String, String> aString(final String? value) => _i1.ColumnValue(
-    table.aString,
-    value,
-  );
+  _i1.ColumnValue<String, String> aString(String? value) => _i1.ColumnValue(
+        table.aString,
+        value,
+      );
 
-  _i1.ColumnValue<_i2.ByteData, _i2.ByteData> aByteData(final _i2.ByteData? value) =>
+  _i1.ColumnValue<_i2.ByteData, _i2.ByteData> aByteData(_i2.ByteData? value) =>
       _i1.ColumnValue(
         table.aByteData,
         value,
       );
 
-  _i1.ColumnValue<Duration, Duration> aDuration(final Duration? value) =>
+  _i1.ColumnValue<Duration, Duration> aDuration(Duration? value) =>
       _i1.ColumnValue(
         table.aDuration,
         value,
       );
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> aUuid(final _i1.UuidValue? value) =>
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> aUuid(_i1.UuidValue? value) =>
       _i1.ColumnValue(
         table.aUuid,
         value,
       );
 
-  _i1.ColumnValue<Uri, Uri> aUri(final Uri? value) => _i1.ColumnValue(
-    table.aUri,
-    value,
-  );
+  _i1.ColumnValue<Uri, Uri> aUri(Uri? value) => _i1.ColumnValue(
+        table.aUri,
+        value,
+      );
 
-  _i1.ColumnValue<BigInt, BigInt> aBigInt(final BigInt? value) => _i1.ColumnValue(
-    table.aBigInt,
-    value,
-  );
+  _i1.ColumnValue<BigInt, BigInt> aBigInt(BigInt? value) => _i1.ColumnValue(
+        table.aBigInt,
+        value,
+      );
 
-  _i1.ColumnValue<_i1.Vector, _i1.Vector> aVector(final _i1.Vector? value) =>
+  _i1.ColumnValue<_i1.Vector, _i1.Vector> aVector(_i1.Vector? value) =>
       _i1.ColumnValue(
         table.aVector,
         value,
       );
 
   _i1.ColumnValue<_i1.HalfVector, _i1.HalfVector> aHalfVector(
-    final _i1.HalfVector? value,
-  ) => _i1.ColumnValue(
-    table.aHalfVector,
-    value,
-  );
+          _i1.HalfVector? value) =>
+      _i1.ColumnValue(
+        table.aHalfVector,
+        value,
+      );
 
   _i1.ColumnValue<_i1.SparseVector, _i1.SparseVector> aSparseVector(
-    final _i1.SparseVector? value,
-  ) => _i1.ColumnValue(
-    table.aSparseVector,
-    value,
-  );
+          _i1.SparseVector? value) =>
+      _i1.ColumnValue(
+        table.aSparseVector,
+        value,
+      );
 
-  _i1.ColumnValue<_i1.Bit, _i1.Bit> aBit(final _i1.Bit? value) => _i1.ColumnValue(
-    table.aBit,
-    value,
-  );
+  _i1.ColumnValue<_i1.Bit, _i1.Bit> aBit(_i1.Bit? value) => _i1.ColumnValue(
+        table.aBit,
+        value,
+      );
 
-  _i1.ColumnValue<_i3.TestEnum, _i3.TestEnum> anEnum(final _i3.TestEnum? value) =>
+  _i1.ColumnValue<_i3.TestEnum, _i3.TestEnum> anEnum(_i3.TestEnum? value) =>
       _i1.ColumnValue(
         table.anEnum,
         value,
       );
 
   _i1.ColumnValue<_i4.TestEnumStringified, _i4.TestEnumStringified>
-  aStringifiedEnum(final _i4.TestEnumStringified? value) => _i1.ColumnValue(
-    table.aStringifiedEnum,
-    value,
-  );
+      aStringifiedEnum(_i4.TestEnumStringified? value) => _i1.ColumnValue(
+            table.aStringifiedEnum,
+            value,
+          );
 
-  _i1.ColumnValue<List<int>, List<int>> aList(final List<int>? value) =>
+  _i1.ColumnValue<List<int>, List<int>> aList(List<int>? value) =>
       _i1.ColumnValue(
         table.aList,
         value,
       );
 
-  _i1.ColumnValue<Map<int, int>, Map<int, int>> aMap(final Map<int, int>? value) =>
+  _i1.ColumnValue<Map<int, int>, Map<int, int>> aMap(Map<int, int>? value) =>
       _i1.ColumnValue(
         table.aMap,
         value,
       );
 
-  _i1.ColumnValue<Set<int>, Set<int>> aSet(final Set<int>? value) => _i1.ColumnValue(
-    table.aSet,
-    value,
-  );
+  _i1.ColumnValue<Set<int>, Set<int>> aSet(Set<int>? value) => _i1.ColumnValue(
+        table.aSet,
+        value,
+      );
 
   _i1.ColumnValue<(String, {Uri? optionalUri}), Map<String, dynamic>?> aRecord(
-    final (String, {Uri? optionalUri})? value,
-  ) => _i1.ColumnValue(
-    table.aRecord,
-    _i5.mapRecordToJson(value),
-  );
+          (String, {Uri? optionalUri})? value) =>
+      _i1.ColumnValue(
+        table.aRecord,
+        _i5.mapRecordToJson(value),
+      );
 }
 
 class TypesTable extends _i1.Table<int?> {
@@ -680,28 +667,28 @@ class TypesTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    anInt,
-    aBool,
-    aDouble,
-    aDateTime,
-    aString,
-    aByteData,
-    aDuration,
-    aUuid,
-    aUri,
-    aBigInt,
-    aVector,
-    aHalfVector,
-    aSparseVector,
-    aBit,
-    anEnum,
-    aStringifiedEnum,
-    aList,
-    aMap,
-    aSet,
-    aRecord,
-  ];
+        id,
+        anInt,
+        aBool,
+        aDouble,
+        aDateTime,
+        aString,
+        aByteData,
+        aDuration,
+        aUuid,
+        aUri,
+        aBigInt,
+        aVector,
+        aHalfVector,
+        aSparseVector,
+        aBit,
+        anEnum,
+        aStringifiedEnum,
+        aList,
+        aMap,
+        aSet,
+        aRecord,
+      ];
 }
 
 class TypesInclude extends _i1.IncludeObject {
@@ -716,7 +703,7 @@ class TypesInclude extends _i1.IncludeObject {
 
 class TypesIncludeList extends _i1.IncludeList {
   TypesIncludeList._({
-    final _i1.WhereExpressionBuilder<TypesTable>? where,
+    _i1.WhereExpressionBuilder<TypesTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -760,14 +747,14 @@ class TypesRepository {
   /// );
   /// ```
   Future<List<Types>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<TypesTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<TypesTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<TypesTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<TypesTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<TypesTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<TypesTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<Types>(
       where: where?.call(Types.t),
@@ -798,13 +785,13 @@ class TypesRepository {
   /// );
   /// ```
   Future<Types?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<TypesTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<TypesTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<TypesTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<TypesTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<TypesTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<TypesTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<Types>(
       where: where?.call(Types.t),
@@ -818,9 +805,9 @@ class TypesRepository {
 
   /// Finds a single [Types] by its [id] or null if no such row exists.
   Future<Types?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<Types>(
       id,
@@ -835,9 +822,9 @@ class TypesRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<Types>> insert(
-    final _i1.Session session,
-    final List<Types> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Types> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<Types>(
       rows,
@@ -849,9 +836,9 @@ class TypesRepository {
   ///
   /// The returned [Types] will have its `id` field set.
   Future<Types> insertRow(
-    final _i1.Session session,
-    final Types row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Types row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<Types>(
       row,
@@ -865,10 +852,10 @@ class TypesRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<Types>> update(
-    final _i1.Session session,
-    final List<Types> rows, {
-    final _i1.ColumnSelections<TypesTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Types> rows, {
+    _i1.ColumnSelections<TypesTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<Types>(
       rows,
@@ -881,10 +868,10 @@ class TypesRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<Types> updateRow(
-    final _i1.Session session,
-    final Types row, {
-    final _i1.ColumnSelections<TypesTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Types row, {
+    _i1.ColumnSelections<TypesTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<Types>(
       row,
@@ -896,10 +883,10 @@ class TypesRepository {
   /// Updates a single [Types] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<Types?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<TypesUpdateTable> columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<TypesUpdateTable> columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<Types>(
       id,
@@ -911,15 +898,15 @@ class TypesRepository {
   /// Updates all [Types]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<Types>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<TypesUpdateTable> columnValues,
-    required final _i1.WhereExpressionBuilder<TypesTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<TypesTable>? orderBy,
-    final _i1.OrderByListBuilder<TypesTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<TypesUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<TypesTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<TypesTable>? orderBy,
+    _i1.OrderByListBuilder<TypesTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<Types>(
       columnValues: columnValues(Types.t.updateTable),
@@ -937,9 +924,9 @@ class TypesRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<Types>> delete(
-    final _i1.Session session,
-    final List<Types> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Types> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<Types>(
       rows,
@@ -949,9 +936,9 @@ class TypesRepository {
 
   /// Deletes a single [Types].
   Future<Types> deleteRow(
-    final _i1.Session session,
-    final Types row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Types row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<Types>(
       row,
@@ -961,9 +948,9 @@ class TypesRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<Types>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<TypesTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<TypesTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<Types>(
       where: where(Types.t),
@@ -974,10 +961,10 @@ class TypesRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<TypesTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<TypesTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<Types>(
       where: where?.call(Types.t),

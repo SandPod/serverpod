@@ -20,16 +20,15 @@ abstract class ObjectWithDuration
   });
 
   factory ObjectWithDuration({
-    final int? id,
-    required final Duration duration,
+    int? id,
+    required Duration duration,
   }) = _ObjectWithDurationImpl;
 
-  factory ObjectWithDuration.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory ObjectWithDuration.fromJson(Map<String, dynamic> jsonSerialization) {
     return ObjectWithDuration(
       id: jsonSerialization['id'] as int?,
-      duration: _i1.DurationJsonExtension.fromJson(
-        jsonSerialization['duration'],
-      ),
+      duration:
+          _i1.DurationJsonExtension.fromJson(jsonSerialization['duration']),
     );
   }
 
@@ -49,8 +48,8 @@ abstract class ObjectWithDuration
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ObjectWithDuration copyWith({
-    final int? id,
-    final Duration? duration,
+    int? id,
+    Duration? duration,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -73,13 +72,13 @@ abstract class ObjectWithDuration
   }
 
   static ObjectWithDurationIncludeList includeList({
-    final _i1.WhereExpressionBuilder<ObjectWithDurationTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectWithDurationTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ObjectWithDurationTable>? orderByList,
-    final ObjectWithDurationInclude? include,
+    _i1.WhereExpressionBuilder<ObjectWithDurationTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ObjectWithDurationTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ObjectWithDurationTable>? orderByList,
+    ObjectWithDurationInclude? include,
   }) {
     return ObjectWithDurationIncludeList._(
       where: where,
@@ -102,20 +101,20 @@ class _Undefined {}
 
 class _ObjectWithDurationImpl extends ObjectWithDuration {
   _ObjectWithDurationImpl({
-    final int? id,
-    required final Duration duration,
+    int? id,
+    required Duration duration,
   }) : super._(
-         id: id,
-         duration: duration,
-       );
+          id: id,
+          duration: duration,
+        );
 
   /// Returns a shallow copy of this [ObjectWithDuration]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   ObjectWithDuration copyWith({
-    final Object? id = _Undefined,
-    final Duration? duration,
+    Object? id = _Undefined,
+    Duration? duration,
   }) {
     return ObjectWithDuration(
       id: id is int? ? id : this.id,
@@ -128,7 +127,7 @@ class ObjectWithDurationUpdateTable
     extends _i1.UpdateTable<ObjectWithDurationTable> {
   ObjectWithDurationUpdateTable(super.table);
 
-  _i1.ColumnValue<Duration, Duration> duration(final Duration value) =>
+  _i1.ColumnValue<Duration, Duration> duration(Duration value) =>
       _i1.ColumnValue(
         table.duration,
         value,
@@ -137,7 +136,7 @@ class ObjectWithDurationUpdateTable
 
 class ObjectWithDurationTable extends _i1.Table<int?> {
   ObjectWithDurationTable({super.tableRelation})
-    : super(tableName: 'object_with_duration') {
+      : super(tableName: 'object_with_duration') {
     updateTable = ObjectWithDurationUpdateTable(this);
     duration = _i1.ColumnDuration(
       'duration',
@@ -151,9 +150,9 @@ class ObjectWithDurationTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    duration,
-  ];
+        id,
+        duration,
+      ];
 }
 
 class ObjectWithDurationInclude extends _i1.IncludeObject {
@@ -168,7 +167,7 @@ class ObjectWithDurationInclude extends _i1.IncludeObject {
 
 class ObjectWithDurationIncludeList extends _i1.IncludeList {
   ObjectWithDurationIncludeList._({
-    final _i1.WhereExpressionBuilder<ObjectWithDurationTable>? where,
+    _i1.WhereExpressionBuilder<ObjectWithDurationTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -212,14 +211,14 @@ class ObjectWithDurationRepository {
   /// );
   /// ```
   Future<List<ObjectWithDuration>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ObjectWithDurationTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectWithDurationTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ObjectWithDurationTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ObjectWithDurationTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ObjectWithDurationTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ObjectWithDurationTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<ObjectWithDuration>(
       where: where?.call(ObjectWithDuration.t),
@@ -250,13 +249,13 @@ class ObjectWithDurationRepository {
   /// );
   /// ```
   Future<ObjectWithDuration?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ObjectWithDurationTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectWithDurationTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ObjectWithDurationTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ObjectWithDurationTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<ObjectWithDurationTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ObjectWithDurationTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<ObjectWithDuration>(
       where: where?.call(ObjectWithDuration.t),
@@ -270,9 +269,9 @@ class ObjectWithDurationRepository {
 
   /// Finds a single [ObjectWithDuration] by its [id] or null if no such row exists.
   Future<ObjectWithDuration?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<ObjectWithDuration>(
       id,
@@ -287,9 +286,9 @@ class ObjectWithDurationRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<ObjectWithDuration>> insert(
-    final _i1.Session session,
-    final List<ObjectWithDuration> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ObjectWithDuration> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<ObjectWithDuration>(
       rows,
@@ -301,9 +300,9 @@ class ObjectWithDurationRepository {
   ///
   /// The returned [ObjectWithDuration] will have its `id` field set.
   Future<ObjectWithDuration> insertRow(
-    final _i1.Session session,
-    final ObjectWithDuration row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ObjectWithDuration row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<ObjectWithDuration>(
       row,
@@ -317,10 +316,10 @@ class ObjectWithDurationRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<ObjectWithDuration>> update(
-    final _i1.Session session,
-    final List<ObjectWithDuration> rows, {
-    final _i1.ColumnSelections<ObjectWithDurationTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ObjectWithDuration> rows, {
+    _i1.ColumnSelections<ObjectWithDurationTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<ObjectWithDuration>(
       rows,
@@ -333,10 +332,10 @@ class ObjectWithDurationRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<ObjectWithDuration> updateRow(
-    final _i1.Session session,
-    final ObjectWithDuration row, {
-    final _i1.ColumnSelections<ObjectWithDurationTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ObjectWithDuration row, {
+    _i1.ColumnSelections<ObjectWithDurationTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<ObjectWithDuration>(
       row,
@@ -348,11 +347,11 @@ class ObjectWithDurationRepository {
   /// Updates a single [ObjectWithDuration] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<ObjectWithDuration?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<ObjectWithDurationUpdateTable>
-    columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<ObjectWithDurationUpdateTable>
+        columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<ObjectWithDuration>(
       id,
@@ -364,16 +363,16 @@ class ObjectWithDurationRepository {
   /// Updates all [ObjectWithDuration]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<ObjectWithDuration>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<ObjectWithDurationUpdateTable>
-    columnValues,
-    required final _i1.WhereExpressionBuilder<ObjectWithDurationTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectWithDurationTable>? orderBy,
-    final _i1.OrderByListBuilder<ObjectWithDurationTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<ObjectWithDurationUpdateTable>
+        columnValues,
+    required _i1.WhereExpressionBuilder<ObjectWithDurationTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ObjectWithDurationTable>? orderBy,
+    _i1.OrderByListBuilder<ObjectWithDurationTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<ObjectWithDuration>(
       columnValues: columnValues(ObjectWithDuration.t.updateTable),
@@ -391,9 +390,9 @@ class ObjectWithDurationRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<ObjectWithDuration>> delete(
-    final _i1.Session session,
-    final List<ObjectWithDuration> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ObjectWithDuration> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<ObjectWithDuration>(
       rows,
@@ -403,9 +402,9 @@ class ObjectWithDurationRepository {
 
   /// Deletes a single [ObjectWithDuration].
   Future<ObjectWithDuration> deleteRow(
-    final _i1.Session session,
-    final ObjectWithDuration row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ObjectWithDuration row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<ObjectWithDuration>(
       row,
@@ -415,9 +414,9 @@ class ObjectWithDurationRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<ObjectWithDuration>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<ObjectWithDurationTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<ObjectWithDurationTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<ObjectWithDuration>(
       where: where(ObjectWithDuration.t),
@@ -428,10 +427,10 @@ class ObjectWithDurationRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ObjectWithDurationTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ObjectWithDurationTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<ObjectWithDuration>(
       where: where?.call(ObjectWithDuration.t),

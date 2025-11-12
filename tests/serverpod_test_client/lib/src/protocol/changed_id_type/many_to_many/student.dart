@@ -14,7 +14,11 @@ import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import '../../changed_id_type/many_to_many/enrollment.dart' as _i2;
 
 abstract class StudentUuid implements _i1.SerializableModel {
-  StudentUuid._({this.id, required this.name, this.enrollments});
+  StudentUuid._({
+    this.id,
+    required this.name,
+    this.enrollments,
+  });
 
   factory StudentUuid({
     _i1.UuidValue? id,
@@ -74,7 +78,11 @@ class _StudentUuidImpl extends StudentUuid {
     _i1.UuidValue? id,
     required String name,
     List<_i2.EnrollmentInt>? enrollments,
-  }) : super._(id: id, name: name, enrollments: enrollments);
+  }) : super._(
+          id: id,
+          name: name,
+          enrollments: enrollments,
+        );
 
   /// Returns a shallow copy of this [StudentUuid]
   /// with some or all fields replaced by the given arguments.

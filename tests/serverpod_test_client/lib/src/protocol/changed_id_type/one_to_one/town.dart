@@ -14,7 +14,12 @@ import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import '../../changed_id_type/one_to_one/citizen.dart' as _i2;
 
 abstract class TownInt implements _i1.SerializableModel {
-  TownInt._({this.id, required this.name, this.mayorId, this.mayor});
+  TownInt._({
+    this.id,
+    required this.name,
+    this.mayorId,
+    this.mayor,
+  });
 
   factory TownInt({
     int? id,
@@ -31,8 +36,7 @@ abstract class TownInt implements _i1.SerializableModel {
       mayor: jsonSerialization['mayor'] == null
           ? null
           : _i2.CitizenInt.fromJson(
-              (jsonSerialization['mayor'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['mayor'] as Map<String, dynamic>)),
     );
   }
 
@@ -80,7 +84,12 @@ class _TownIntImpl extends TownInt {
     required String name,
     int? mayorId,
     _i2.CitizenInt? mayor,
-  }) : super._(id: id, name: name, mayorId: mayorId, mayor: mayor);
+  }) : super._(
+          id: id,
+          name: name,
+          mayorId: mayorId,
+          mayor: mayor,
+        );
 
   /// Returns a shallow copy of this [TownInt]
   /// with some or all fields replaced by the given arguments.

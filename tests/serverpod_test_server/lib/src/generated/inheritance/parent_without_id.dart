@@ -9,10 +9,9 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
-import 'package:serverpod/serverpod.dart' as _i2;
-
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import '../protocol.dart' as _i1;
+import 'package:serverpod/serverpod.dart' as _i2;
 
 class ParentClassWithoutId extends _i1.GrandparentClassWithId
     implements _i2.SerializableModel, _i2.ProtocolSerialization {
@@ -23,8 +22,7 @@ class ParentClassWithoutId extends _i1.GrandparentClassWithId
   });
 
   factory ParentClassWithoutId.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ParentClassWithoutId(
       id: jsonSerialization['id'] == null
           ? null
@@ -38,12 +36,11 @@ class ParentClassWithoutId extends _i1.GrandparentClassWithId
 
   /// Returns a shallow copy of this [ParentClassWithoutId]
   /// with some or all fields replaced by the given arguments.
-  @override
   @_i2.useResult
   ParentClassWithoutId copyWith({
-    final Object? id = _Undefined,
-    final String? grandParentField,
-    final String? parentField,
+    Object? id = _Undefined,
+    String? grandParentField,
+    String? parentField,
   }) {
     return ParentClassWithoutId(
       id: id is _i2.UuidValue? ? id : this.id,

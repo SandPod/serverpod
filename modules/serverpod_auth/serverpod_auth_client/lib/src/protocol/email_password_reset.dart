@@ -20,11 +20,11 @@ abstract class EmailPasswordReset implements _i1.SerializableModel {
   });
 
   factory EmailPasswordReset({
-    final String? userName,
-    required final String email,
+    String? userName,
+    required String email,
   }) = _EmailPasswordResetImpl;
 
-  factory EmailPasswordReset.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory EmailPasswordReset.fromJson(Map<String, dynamic> jsonSerialization) {
     return EmailPasswordReset(
       userName: jsonSerialization['userName'] as String?,
       email: jsonSerialization['email'] as String,
@@ -41,8 +41,8 @@ abstract class EmailPasswordReset implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   EmailPasswordReset copyWith({
-    final String? userName,
-    final String? email,
+    String? userName,
+    String? email,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -62,20 +62,20 @@ class _Undefined {}
 
 class _EmailPasswordResetImpl extends EmailPasswordReset {
   _EmailPasswordResetImpl({
-    final String? userName,
-    required final String email,
+    String? userName,
+    required String email,
   }) : super._(
-         userName: userName,
-         email: email,
-       );
+          userName: userName,
+          email: email,
+        );
 
   /// Returns a shallow copy of this [EmailPasswordReset]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   EmailPasswordReset copyWith({
-    final Object? userName = _Undefined,
-    final String? email,
+    Object? userName = _Undefined,
+    String? email,
   }) {
     return EmailPasswordReset(
       userName: userName is String? ? userName : this.userName,

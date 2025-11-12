@@ -33,43 +33,57 @@ class EndpointAuthTest extends _i1.EndpointRef {
   String get name => 'authTest';
 
   /// Creates a new test user.
-  _i2.Future<_i1.UuidValue> createTestUser() => caller
-      .callServerEndpoint<_i1.UuidValue>('authTest', 'createTestUser', {});
+  _i2.Future<_i1.UuidValue> createTestUser() =>
+      caller.callServerEndpoint<_i1.UuidValue>(
+        'authTest',
+        'createTestUser',
+        {},
+      );
 
   /// Creates a new session authentication for the test user.
   _i2.Future<_i3.AuthSuccess> createSasToken(_i1.UuidValue authUserId) =>
-      caller.callServerEndpoint<_i3.AuthSuccess>('authTest', 'createSasToken', {
-        'authUserId': authUserId,
-      });
+      caller.callServerEndpoint<_i3.AuthSuccess>(
+        'authTest',
+        'createSasToken',
+        {'authUserId': authUserId},
+      );
 
   _i2.Future<void> deleteSasTokens(_i1.UuidValue authUserId) =>
-      caller.callServerEndpoint<void>('authTest', 'deleteSasTokens', {
-        'authUserId': authUserId,
-      });
+      caller.callServerEndpoint<void>(
+        'authTest',
+        'deleteSasTokens',
+        {'authUserId': authUserId},
+      );
 
   /// Creates a new JWT token for the test user.
   _i2.Future<_i3.AuthSuccess> createJwtToken(_i1.UuidValue authUserId) =>
-      caller.callServerEndpoint<_i3.AuthSuccess>('authTest', 'createJwtToken', {
-        'authUserId': authUserId,
-      });
+      caller.callServerEndpoint<_i3.AuthSuccess>(
+        'authTest',
+        'createJwtToken',
+        {'authUserId': authUserId},
+      );
 
   /// Deletes all refresh tokens for the test user.
   _i2.Future<void> deleteJwtRefreshTokens(_i1.UuidValue authUserId) =>
-      caller.callServerEndpoint<void>('authTest', 'deleteJwtRefreshTokens', {
-        'authUserId': authUserId,
-      });
+      caller.callServerEndpoint<void>(
+        'authTest',
+        'deleteJwtRefreshTokens',
+        {'authUserId': authUserId},
+      );
 
   /// Checks if the session is authenticated for the test user.
   _i2.Future<bool> checkSession(_i1.UuidValue authUserId) =>
-      caller.callServerEndpoint<bool>('authTest', 'checkSession', {
-        'authUserId': authUserId,
-      });
+      caller.callServerEndpoint<bool>(
+        'authTest',
+        'checkSession',
+        {'authUserId': authUserId},
+      );
 }
 
 /// {@category Endpoint}
 class EndpointEmailAccountBackwardsCompatibilityTest extends _i1.EndpointRef {
   EndpointEmailAccountBackwardsCompatibilityTest(_i1.EndpointCaller caller)
-    : super(caller);
+      : super(caller);
 
   @override
   String get name => 'emailAccountBackwardsCompatibilityTest';
@@ -77,26 +91,40 @@ class EndpointEmailAccountBackwardsCompatibilityTest extends _i1.EndpointRef {
   _i2.Future<int> createLegacyUser({
     required String email,
     required String password,
-  }) => caller.callServerEndpoint<int>(
-    'emailAccountBackwardsCompatibilityTest',
-    'createLegacyUser',
-    {'email': email, 'password': password},
-  );
+  }) =>
+      caller.callServerEndpoint<int>(
+        'emailAccountBackwardsCompatibilityTest',
+        'createLegacyUser',
+        {
+          'email': email,
+          'password': password,
+        },
+      );
 
   _i2.Future<_i4.AuthKey> createLegacySession({
     required int userId,
     required Set<String> scopes,
-  }) => caller.callServerEndpoint<_i4.AuthKey>(
-    'emailAccountBackwardsCompatibilityTest',
-    'createLegacySession',
-    {'userId': userId, 'scopes': scopes},
-  );
+  }) =>
+      caller.callServerEndpoint<_i4.AuthKey>(
+        'emailAccountBackwardsCompatibilityTest',
+        'createLegacySession',
+        {
+          'userId': userId,
+          'scopes': scopes,
+        },
+      );
 
-  _i2.Future<void> migrateUser({required int legacyUserId, String? password}) =>
+  _i2.Future<void> migrateUser({
+    required int legacyUserId,
+    String? password,
+  }) =>
       caller.callServerEndpoint<void>(
         'emailAccountBackwardsCompatibilityTest',
         'migrateUser',
-        {'legacyUserId': legacyUserId, 'password': password},
+        {
+          'legacyUserId': legacyUserId,
+          'password': password,
+        },
       );
 
   /// Returns the new auth user ID.
@@ -130,11 +158,15 @@ class EndpointEmailAccountBackwardsCompatibilityTest extends _i1.EndpointRef {
   _i2.Future<bool> checkLegacyPassword({
     required String email,
     required String password,
-  }) => caller.callServerEndpoint<bool>(
-    'emailAccountBackwardsCompatibilityTest',
-    'checkLegacyPassword',
-    {'email': email, 'password': password},
-  );
+  }) =>
+      caller.callServerEndpoint<bool>(
+        'emailAccountBackwardsCompatibilityTest',
+        'checkLegacyPassword',
+        {
+          'email': email,
+          'password': password,
+        },
+      );
 }
 
 /// Endpoint for email-based authentication.
@@ -158,10 +190,15 @@ class EndpointEmailAccount extends _i5.EndpointEmailIDPBase {
   _i2.Future<_i3.AuthSuccess> login({
     required String email,
     required String password,
-  }) => caller.callServerEndpoint<_i3.AuthSuccess>('emailAccount', 'login', {
-    'email': email,
-    'password': password,
-  });
+  }) =>
+      caller.callServerEndpoint<_i3.AuthSuccess>(
+        'emailAccount',
+        'login',
+        {
+          'email': email,
+          'password': password,
+        },
+      );
 
   /// Starts the registration for a new user account with an email-based login
   /// associated to it.
@@ -195,14 +232,15 @@ class EndpointEmailAccount extends _i5.EndpointEmailIDPBase {
   _i2.Future<String> verifyRegistrationCode({
     required _i1.UuidValue accountRequestId,
     required String verificationCode,
-  }) => caller.callServerEndpoint<String>(
-    'emailAccount',
-    'verifyRegistrationCode',
-    {
-      'accountRequestId': accountRequestId,
-      'verificationCode': verificationCode,
-    },
-  );
+  }) =>
+      caller.callServerEndpoint<String>(
+        'emailAccount',
+        'verifyRegistrationCode',
+        {
+          'accountRequestId': accountRequestId,
+          'verificationCode': verificationCode,
+        },
+      );
 
   /// Completes a new account registration, creating a new auth user with a
   /// profile and attaching the given email account to it.
@@ -223,11 +261,15 @@ class EndpointEmailAccount extends _i5.EndpointEmailIDPBase {
   _i2.Future<_i3.AuthSuccess> finishRegistration({
     required String registrationToken,
     required String password,
-  }) => caller.callServerEndpoint<_i3.AuthSuccess>(
-    'emailAccount',
-    'finishRegistration',
-    {'registrationToken': registrationToken, 'password': password},
-  );
+  }) =>
+      caller.callServerEndpoint<_i3.AuthSuccess>(
+        'emailAccount',
+        'finishRegistration',
+        {
+          'registrationToken': registrationToken,
+          'password': password,
+        },
+      );
 
   /// Requests a password reset for [email].
   ///
@@ -268,11 +310,15 @@ class EndpointEmailAccount extends _i5.EndpointEmailIDPBase {
   _i2.Future<String> verifyPasswordResetCode({
     required _i1.UuidValue passwordResetRequestId,
     required String verificationCode,
-  }) => caller
-      .callServerEndpoint<String>('emailAccount', 'verifyPasswordResetCode', {
-        'passwordResetRequestId': passwordResetRequestId,
-        'verificationCode': verificationCode,
-      });
+  }) =>
+      caller.callServerEndpoint<String>(
+        'emailAccount',
+        'verifyPasswordResetCode',
+        {
+          'passwordResetRequestId': passwordResetRequestId,
+          'verificationCode': verificationCode,
+        },
+      );
 
   /// Completes a password reset request by setting a new password.
   ///
@@ -292,10 +338,15 @@ class EndpointEmailAccount extends _i5.EndpointEmailIDPBase {
   _i2.Future<void> finishPasswordReset({
     required String finishPasswordResetToken,
     required String newPassword,
-  }) => caller.callServerEndpoint<void>('emailAccount', 'finishPasswordReset', {
-    'finishPasswordResetToken': finishPasswordResetToken,
-    'newPassword': newPassword,
-  });
+  }) =>
+      caller.callServerEndpoint<void>(
+        'emailAccount',
+        'finishPasswordReset',
+        {
+          'finishPasswordResetToken': finishPasswordResetToken,
+          'newPassword': newPassword,
+        },
+      );
 }
 
 /// Endpoint for Google-based authentication, which automatically imports legacy
@@ -304,7 +355,7 @@ class EndpointEmailAccount extends _i5.EndpointEmailIDPBase {
 class EndpointGoogleAccountBackwardsCompatibilityTest
     extends _i5.EndpointGoogleIDPBase {
   EndpointGoogleAccountBackwardsCompatibilityTest(_i1.EndpointCaller caller)
-    : super(caller);
+      : super(caller);
 
   @override
   String get name => 'googleAccountBackwardsCompatibilityTest';
@@ -313,11 +364,15 @@ class EndpointGoogleAccountBackwardsCompatibilityTest
   _i2.Future<_i3.AuthSuccess> login({
     required String idToken,
     required String? accessToken,
-  }) => caller.callServerEndpoint<_i3.AuthSuccess>(
-    'googleAccountBackwardsCompatibilityTest',
-    'login',
-    {'idToken': idToken, 'accessToken': accessToken},
-  );
+  }) =>
+      caller.callServerEndpoint<_i3.AuthSuccess>(
+        'googleAccountBackwardsCompatibilityTest',
+        'login',
+        {
+          'idToken': idToken,
+          'accessToken': accessToken,
+        },
+      );
 }
 
 /// Endpoint for Google-based authentication.
@@ -336,10 +391,15 @@ class EndpointGoogleAccount extends _i5.EndpointGoogleIDPBase {
   _i2.Future<_i3.AuthSuccess> login({
     required String idToken,
     required String? accessToken,
-  }) => caller.callServerEndpoint<_i3.AuthSuccess>('googleAccount', 'login', {
-    'idToken': idToken,
-    'accessToken': accessToken,
-  });
+  }) =>
+      caller.callServerEndpoint<_i3.AuthSuccess>(
+        'googleAccount',
+        'login',
+        {
+          'idToken': idToken,
+          'accessToken': accessToken,
+        },
+      );
 }
 
 /// {@category Endpoint}
@@ -368,21 +428,21 @@ class EndpointJwtRefresh extends _i3.EndpointRefreshJwtTokens {
   /// This endpoint is unauthenticated, meaning the client won't include any
   /// authentication information with the call.
   @override
-  _i2.Future<_i3.AuthSuccess> refreshAccessToken({
-    required String refreshToken,
-  }) => caller.callServerEndpoint<_i3.AuthSuccess>(
-    'jwtRefresh',
-    'refreshAccessToken',
-    {'refreshToken': refreshToken},
-    authenticated: false,
-  );
+  _i2.Future<_i3.AuthSuccess> refreshAccessToken(
+          {required String refreshToken}) =>
+      caller.callServerEndpoint<_i3.AuthSuccess>(
+        'jwtRefresh',
+        'refreshAccessToken',
+        {'refreshToken': refreshToken},
+        authenticated: false,
+      );
 }
 
 /// Endpoint for email-based authentication which imports the legacy passwords.
 /// {@category Endpoint}
 class EndpointPasswordImportingEmailAccount extends _i5.EndpointEmailIDPBase {
   EndpointPasswordImportingEmailAccount(_i1.EndpointCaller caller)
-    : super(caller);
+      : super(caller);
 
   @override
   String get name => 'passwordImportingEmailAccount';
@@ -394,11 +454,15 @@ class EndpointPasswordImportingEmailAccount extends _i5.EndpointEmailIDPBase {
   _i2.Future<_i3.AuthSuccess> login({
     required String email,
     required String password,
-  }) => caller.callServerEndpoint<_i3.AuthSuccess>(
-    'passwordImportingEmailAccount',
-    'login',
-    {'email': email, 'password': password},
-  );
+  }) =>
+      caller.callServerEndpoint<_i3.AuthSuccess>(
+        'passwordImportingEmailAccount',
+        'login',
+        {
+          'email': email,
+          'password': password,
+        },
+      );
 
   /// Starts the registration for a new user account with an email-based login
   /// associated to it.
@@ -432,14 +496,15 @@ class EndpointPasswordImportingEmailAccount extends _i5.EndpointEmailIDPBase {
   _i2.Future<String> verifyRegistrationCode({
     required _i1.UuidValue accountRequestId,
     required String verificationCode,
-  }) => caller.callServerEndpoint<String>(
-    'passwordImportingEmailAccount',
-    'verifyRegistrationCode',
-    {
-      'accountRequestId': accountRequestId,
-      'verificationCode': verificationCode,
-    },
-  );
+  }) =>
+      caller.callServerEndpoint<String>(
+        'passwordImportingEmailAccount',
+        'verifyRegistrationCode',
+        {
+          'accountRequestId': accountRequestId,
+          'verificationCode': verificationCode,
+        },
+      );
 
   /// Completes a new account registration, creating a new auth user with a
   /// profile and attaching the given email account to it.
@@ -460,11 +525,15 @@ class EndpointPasswordImportingEmailAccount extends _i5.EndpointEmailIDPBase {
   _i2.Future<_i3.AuthSuccess> finishRegistration({
     required String registrationToken,
     required String password,
-  }) => caller.callServerEndpoint<_i3.AuthSuccess>(
-    'passwordImportingEmailAccount',
-    'finishRegistration',
-    {'registrationToken': registrationToken, 'password': password},
-  );
+  }) =>
+      caller.callServerEndpoint<_i3.AuthSuccess>(
+        'passwordImportingEmailAccount',
+        'finishRegistration',
+        {
+          'registrationToken': registrationToken,
+          'password': password,
+        },
+      );
 
   /// Requests a password reset for [email].
   ///
@@ -505,14 +574,15 @@ class EndpointPasswordImportingEmailAccount extends _i5.EndpointEmailIDPBase {
   _i2.Future<String> verifyPasswordResetCode({
     required _i1.UuidValue passwordResetRequestId,
     required String verificationCode,
-  }) => caller.callServerEndpoint<String>(
-    'passwordImportingEmailAccount',
-    'verifyPasswordResetCode',
-    {
-      'passwordResetRequestId': passwordResetRequestId,
-      'verificationCode': verificationCode,
-    },
-  );
+  }) =>
+      caller.callServerEndpoint<String>(
+        'passwordImportingEmailAccount',
+        'verifyPasswordResetCode',
+        {
+          'passwordResetRequestId': passwordResetRequestId,
+          'verificationCode': verificationCode,
+        },
+      );
 
   /// Completes a password reset request by setting a new password.
   ///
@@ -532,14 +602,15 @@ class EndpointPasswordImportingEmailAccount extends _i5.EndpointEmailIDPBase {
   _i2.Future<void> finishPasswordReset({
     required String finishPasswordResetToken,
     required String newPassword,
-  }) => caller.callServerEndpoint<void>(
-    'passwordImportingEmailAccount',
-    'finishPasswordReset',
-    {
-      'finishPasswordResetToken': finishPasswordResetToken,
-      'newPassword': newPassword,
-    },
-  );
+  }) =>
+      caller.callServerEndpoint<void>(
+        'passwordImportingEmailAccount',
+        'finishPasswordReset',
+        {
+          'finishPasswordResetToken': finishPasswordResetToken,
+          'newPassword': newPassword,
+        },
+      );
 }
 
 /// Endpoint to view and edit one's profile.
@@ -591,7 +662,11 @@ class EndpointUserProfile extends _i3.EndpointUserProfileEditBase {
   /// Returns the user profile of the current user.
   @override
   _i2.Future<_i3.UserProfileModel> get() =>
-      caller.callServerEndpoint<_i3.UserProfileModel>('userProfile', 'get', {});
+      caller.callServerEndpoint<_i3.UserProfileModel>(
+        'userProfile',
+        'get',
+        {},
+      );
 }
 
 class Modules {
@@ -621,21 +696,25 @@ class Client extends _i1.ServerpodClientShared {
     _i1.AuthenticationKeyManager? authenticationKeyManager,
     Duration? streamingConnectionTimeout,
     Duration? connectionTimeout,
-    Function(_i1.MethodCallContext, Object, StackTrace)? onFailedCall,
+    Function(
+      _i1.MethodCallContext,
+      Object,
+      StackTrace,
+    )? onFailedCall,
     Function(_i1.MethodCallContext)? onSucceededCall,
     bool? disconnectStreamsOnLostInternetConnection,
   }) : super(
-         host,
-         _i9.Protocol(),
-         securityContext: securityContext,
-         authenticationKeyManager: authenticationKeyManager,
-         streamingConnectionTimeout: streamingConnectionTimeout,
-         connectionTimeout: connectionTimeout,
-         onFailedCall: onFailedCall,
-         onSucceededCall: onSucceededCall,
-         disconnectStreamsOnLostInternetConnection:
-             disconnectStreamsOnLostInternetConnection,
-       ) {
+          host,
+          _i9.Protocol(),
+          securityContext: securityContext,
+          authenticationKeyManager: authenticationKeyManager,
+          streamingConnectionTimeout: streamingConnectionTimeout,
+          connectionTimeout: connectionTimeout,
+          onFailedCall: onFailedCall,
+          onSucceededCall: onSucceededCall,
+          disconnectStreamsOnLostInternetConnection:
+              disconnectStreamsOnLostInternetConnection,
+        ) {
     authTest = EndpointAuthTest(this);
     emailAccountBackwardsCompatibilityTest =
         EndpointEmailAccountBackwardsCompatibilityTest(this);
@@ -652,19 +731,19 @@ class Client extends _i1.ServerpodClientShared {
   late final EndpointAuthTest authTest;
 
   late final EndpointEmailAccountBackwardsCompatibilityTest
-  emailAccountBackwardsCompatibilityTest;
+      emailAccountBackwardsCompatibilityTest;
 
   late final EndpointEmailAccount emailAccount;
 
   late final EndpointGoogleAccountBackwardsCompatibilityTest
-  googleAccountBackwardsCompatibilityTest;
+      googleAccountBackwardsCompatibilityTest;
 
   late final EndpointGoogleAccount googleAccount;
 
   late final EndpointJwtRefresh jwtRefresh;
 
   late final EndpointPasswordImportingEmailAccount
-  passwordImportingEmailAccount;
+      passwordImportingEmailAccount;
 
   late final EndpointUserProfile userProfile;
 
@@ -672,24 +751,24 @@ class Client extends _i1.ServerpodClientShared {
 
   @override
   Map<String, _i1.EndpointRef> get endpointRefLookup => {
-    'authTest': authTest,
-    'emailAccountBackwardsCompatibilityTest':
-        emailAccountBackwardsCompatibilityTest,
-    'emailAccount': emailAccount,
-    'googleAccountBackwardsCompatibilityTest':
-        googleAccountBackwardsCompatibilityTest,
-    'googleAccount': googleAccount,
-    'jwtRefresh': jwtRefresh,
-    'passwordImportingEmailAccount': passwordImportingEmailAccount,
-    'userProfile': userProfile,
-  };
+        'authTest': authTest,
+        'emailAccountBackwardsCompatibilityTest':
+            emailAccountBackwardsCompatibilityTest,
+        'emailAccount': emailAccount,
+        'googleAccountBackwardsCompatibilityTest':
+            googleAccountBackwardsCompatibilityTest,
+        'googleAccount': googleAccount,
+        'jwtRefresh': jwtRefresh,
+        'passwordImportingEmailAccount': passwordImportingEmailAccount,
+        'userProfile': userProfile,
+      };
 
   @override
   Map<String, _i1.ModuleEndpointCaller> get moduleLookup => {
-    'serverpod_auth_bridge': modules.serverpod_auth_bridge,
-    'serverpod_auth_core': modules.serverpod_auth_core,
-    'serverpod_auth_idp': modules.serverpod_auth_idp,
-    'serverpod_auth_migration': modules.serverpod_auth_migration,
-    'auth': modules.auth,
-  };
+        'serverpod_auth_bridge': modules.serverpod_auth_bridge,
+        'serverpod_auth_core': modules.serverpod_auth_core,
+        'serverpod_auth_idp': modules.serverpod_auth_idp,
+        'serverpod_auth_migration': modules.serverpod_auth_migration,
+        'auth': modules.auth,
+      };
 }

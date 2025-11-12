@@ -2,12 +2,12 @@ import 'package:serverpod_test_client/serverpod_test_client.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var client = Client('http://localhost:8080/');
+  final client = Client('http://localhost:8080/');
 
   group('Given a client with multiple endpoints', () {
     test('when getEndpointOfType is called with a unique endpoint type '
         'then it returns the correct endpoint.', () {
-      var endpoint = client.getEndpointOfType<EndpointIndependent>();
+      final endpoint = client.getEndpointOfType<EndpointIndependent>();
       expect(endpoint, isA<EndpointIndependent>());
       expect(endpoint.name, 'independent');
     });
@@ -26,7 +26,7 @@ void main() {
         () => client.getEndpointOfType<NonExistentEndpoint>(),
         throwsA(
           isA<ServerpodClientEndpointNotFound>().having(
-            (e) => e.message,
+            (final e) => e.message,
             'message',
             'No endpoint of type "NonExistentEndpoint" found.',
           ),
@@ -40,7 +40,7 @@ void main() {
       'when getEndpointOfType is called with an abstract base type that has a single subclass '
       'then it returns the correct endpoint.',
       () {
-        var endpoint = client.getEndpointOfType<EndpointAbstractSubClass>();
+        final endpoint = client.getEndpointOfType<EndpointAbstractSubClass>();
         expect(endpoint, isA<EndpointConcreteSubClass>());
         expect(endpoint.name, 'concreteSubClass');
       },
@@ -50,7 +50,7 @@ void main() {
       'when getEndpointOfType is called with a concrete subclass type that has no subclasses '
       'then it returns the correct endpoint.',
       () {
-        var endpoint = client.getEndpointOfType<EndpointConcreteSubClass>();
+        final endpoint = client.getEndpointOfType<EndpointConcreteSubClass>();
         expect(endpoint, isA<EndpointConcreteSubClass>());
         expect(endpoint.name, 'concreteSubClass');
       },
@@ -64,7 +64,7 @@ void main() {
           () => client.getEndpointOfType<EndpointAbstractBase>(),
           throwsA(
             isA<ServerpodClientMultipleEndpointsFound>().having(
-              (e) => e.message,
+              (final e) => e.message,
               'message',
               'Found 2 endpoints of type "EndpointAbstractBase": "concreteBase", '
                   '"concreteSubClass". Use the name parameter to disambiguate.',
@@ -78,7 +78,7 @@ void main() {
       'when getEndpointOfType is called with a valid name and an abstract base type that has multiple subclasses '
       'then it returns the correct endpoint.',
       () {
-        var endpoint = client.getEndpointOfType<EndpointAbstractBase>(
+        final endpoint = client.getEndpointOfType<EndpointAbstractBase>(
           'concreteBase',
         );
         expect(endpoint, isA<EndpointConcreteBase>());
@@ -90,7 +90,7 @@ void main() {
       'when getEndpointOfType is called with valid name and a concrete base type that has multiple subclasses '
       'then it returns the correct endpoint.',
       () {
-        var endpoint = client.getEndpointOfType<EndpointConcreteBase>(
+        final endpoint = client.getEndpointOfType<EndpointConcreteBase>(
           'concreteBase',
         );
         expect(endpoint, isA<EndpointConcreteBase>());

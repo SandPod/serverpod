@@ -20,11 +20,11 @@ abstract class ChatJoinChannel implements _i1.SerializableModel {
   });
 
   factory ChatJoinChannel({
-    required final String channel,
-    final String? userName,
+    required String channel,
+    String? userName,
   }) = _ChatJoinChannelImpl;
 
-  factory ChatJoinChannel.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory ChatJoinChannel.fromJson(Map<String, dynamic> jsonSerialization) {
     return ChatJoinChannel(
       channel: jsonSerialization['channel'] as String,
       userName: jsonSerialization['userName'] as String?,
@@ -41,8 +41,8 @@ abstract class ChatJoinChannel implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ChatJoinChannel copyWith({
-    final String? channel,
-    final String? userName,
+    String? channel,
+    String? userName,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -62,20 +62,20 @@ class _Undefined {}
 
 class _ChatJoinChannelImpl extends ChatJoinChannel {
   _ChatJoinChannelImpl({
-    required final String channel,
-    final String? userName,
+    required String channel,
+    String? userName,
   }) : super._(
-         channel: channel,
-         userName: userName,
-       );
+          channel: channel,
+          userName: userName,
+        );
 
   /// Returns a shallow copy of this [ChatJoinChannel]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   ChatJoinChannel copyWith({
-    final String? channel,
-    final Object? userName = _Undefined,
+    String? channel,
+    Object? userName = _Undefined,
   }) {
     return ChatJoinChannel(
       channel: channel ?? this.channel,

@@ -16,15 +16,13 @@ abstract class TypesSetRequired
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
   TypesSetRequired._({required this.anInt});
 
-  factory TypesSetRequired({required final Set<int> anInt}) = _TypesSetRequiredImpl;
+  factory TypesSetRequired({required Set<int> anInt}) = _TypesSetRequiredImpl;
 
-  factory TypesSetRequired.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory TypesSetRequired.fromJson(Map<String, dynamic> jsonSerialization) {
     return TypesSetRequired(
-      anInt: _i1.SetJsonExtension.fromJson(
-        (jsonSerialization['anInt'] as List),
-        itemFromJson: (final e) => e as int,
-      )!,
-    );
+        anInt: _i1.SetJsonExtension.fromJson(
+            (jsonSerialization['anInt'] as List),
+            itemFromJson: (e) => e as int)!);
   }
 
   Set<int> anInt;
@@ -32,7 +30,7 @@ abstract class TypesSetRequired
   /// Returns a shallow copy of this [TypesSetRequired]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  TypesSetRequired copyWith({final Set<int>? anInt});
+  TypesSetRequired copyWith({Set<int>? anInt});
   @override
   Map<String, dynamic> toJson() {
     return {'anInt': anInt.toJson()};
@@ -50,13 +48,13 @@ abstract class TypesSetRequired
 }
 
 class _TypesSetRequiredImpl extends TypesSetRequired {
-  _TypesSetRequiredImpl({required final Set<int> anInt}) : super._(anInt: anInt);
+  _TypesSetRequiredImpl({required Set<int> anInt}) : super._(anInt: anInt);
 
   /// Returns a shallow copy of this [TypesSetRequired]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  TypesSetRequired copyWith({final Set<int>? anInt}) {
-    return TypesSetRequired(anInt: anInt ?? this.anInt.map((final e0) => e0).toSet());
+  TypesSetRequired copyWith({Set<int>? anInt}) {
+    return TypesSetRequired(anInt: anInt ?? this.anInt.map((e0) => e0).toSet());
   }
 }

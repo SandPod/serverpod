@@ -22,20 +22,19 @@ abstract class EmailReset implements _i1.SerializableModel {
   });
 
   factory EmailReset({
-    final int? id,
-    required final int userId,
-    required final String verificationCode,
-    required final DateTime expiration,
+    int? id,
+    required int userId,
+    required String verificationCode,
+    required DateTime expiration,
   }) = _EmailResetImpl;
 
-  factory EmailReset.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory EmailReset.fromJson(Map<String, dynamic> jsonSerialization) {
     return EmailReset(
       id: jsonSerialization['id'] as int?,
       userId: jsonSerialization['userId'] as int,
       verificationCode: jsonSerialization['verificationCode'] as String,
-      expiration: _i1.DateTimeJsonExtension.fromJson(
-        jsonSerialization['expiration'],
-      ),
+      expiration:
+          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['expiration']),
     );
   }
 
@@ -57,10 +56,10 @@ abstract class EmailReset implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   EmailReset copyWith({
-    final int? id,
-    final int? userId,
-    final String? verificationCode,
-    final DateTime? expiration,
+    int? id,
+    int? userId,
+    String? verificationCode,
+    DateTime? expiration,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -82,26 +81,26 @@ class _Undefined {}
 
 class _EmailResetImpl extends EmailReset {
   _EmailResetImpl({
-    final int? id,
-    required final int userId,
-    required final String verificationCode,
-    required final DateTime expiration,
+    int? id,
+    required int userId,
+    required String verificationCode,
+    required DateTime expiration,
   }) : super._(
-         id: id,
-         userId: userId,
-         verificationCode: verificationCode,
-         expiration: expiration,
-       );
+          id: id,
+          userId: userId,
+          verificationCode: verificationCode,
+          expiration: expiration,
+        );
 
   /// Returns a shallow copy of this [EmailReset]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   EmailReset copyWith({
-    final Object? id = _Undefined,
-    final int? userId,
-    final String? verificationCode,
-    final DateTime? expiration,
+    Object? id = _Undefined,
+    int? userId,
+    String? verificationCode,
+    DateTime? expiration,
   }) {
     return EmailReset(
       id: id is int? ? id : this.id,

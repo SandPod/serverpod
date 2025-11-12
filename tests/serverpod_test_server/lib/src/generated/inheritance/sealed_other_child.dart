@@ -20,12 +20,12 @@ abstract class SealedOtherChild extends _i1.SealedParent
   });
 
   factory SealedOtherChild({
-    required final int sealedInt,
-    required final String sealedString,
-    required final int sealedOtherChildField,
+    required int sealedInt,
+    required String sealedString,
+    required int sealedOtherChildField,
   }) = _SealedOtherChildImpl;
 
-  factory SealedOtherChild.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory SealedOtherChild.fromJson(Map<String, dynamic> jsonSerialization) {
     return SealedOtherChild(
       sealedInt: jsonSerialization['sealedInt'] as int,
       sealedString: jsonSerialization['sealedString'] as String,
@@ -39,9 +39,9 @@ abstract class SealedOtherChild extends _i1.SealedParent
   /// with some or all fields replaced by the given arguments.
   @_i2.useResult
   SealedOtherChild copyWith({
-    final int? sealedInt,
-    final String? sealedString,
-    final int? sealedOtherChildField,
+    int? sealedInt,
+    String? sealedString,
+    int? sealedOtherChildField,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -69,23 +69,23 @@ abstract class SealedOtherChild extends _i1.SealedParent
 
 class _SealedOtherChildImpl extends SealedOtherChild {
   _SealedOtherChildImpl({
-    required final int sealedInt,
-    required final String sealedString,
-    required final int sealedOtherChildField,
+    required int sealedInt,
+    required String sealedString,
+    required int sealedOtherChildField,
   }) : super._(
-         sealedInt: sealedInt,
-         sealedString: sealedString,
-         sealedOtherChildField: sealedOtherChildField,
-       );
+          sealedInt: sealedInt,
+          sealedString: sealedString,
+          sealedOtherChildField: sealedOtherChildField,
+        );
 
   /// Returns a shallow copy of this [SealedOtherChild]
   /// with some or all fields replaced by the given arguments.
   @_i2.useResult
   @override
   SealedOtherChild copyWith({
-    final int? sealedInt,
-    final String? sealedString,
-    final int? sealedOtherChildField,
+    int? sealedInt,
+    String? sealedString,
+    int? sealedOtherChildField,
   }) {
     return SealedOtherChild(
       sealedInt: sealedInt ?? this.sealedInt,

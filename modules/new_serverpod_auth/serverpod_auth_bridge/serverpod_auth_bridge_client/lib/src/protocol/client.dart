@@ -40,7 +40,6 @@ class Caller extends _i1.ModuleEndpointCaller {
   late final EndpointSessionMigration sessionMigration;
 
   @override
-  Map<String, _i1.EndpointRef> get endpointRefLookup => {
-    'serverpod_auth_bridge.sessionMigration': sessionMigration,
-  };
+  Map<String, _i1.EndpointRef> get endpointRefLookup =>
+      {'serverpod_auth_bridge.sessionMigration': sessionMigration};
 }

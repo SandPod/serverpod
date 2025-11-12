@@ -21,12 +21,12 @@ abstract class Channel implements _i1.SerializableModel {
   });
 
   factory Channel({
-    final int? id,
-    required final String name,
-    required final String channel,
+    int? id,
+    required String name,
+    required String channel,
   }) = _ChannelImpl;
 
-  factory Channel.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory Channel.fromJson(Map<String, dynamic> jsonSerialization) {
     return Channel(
       id: jsonSerialization['id'] as int?,
       name: jsonSerialization['name'] as String,
@@ -49,9 +49,9 @@ abstract class Channel implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   Channel copyWith({
-    final int? id,
-    final String? name,
-    final String? channel,
+    int? id,
+    String? name,
+    String? channel,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -72,23 +72,23 @@ class _Undefined {}
 
 class _ChannelImpl extends Channel {
   _ChannelImpl({
-    final int? id,
-    required final String name,
-    required final String channel,
+    int? id,
+    required String name,
+    required String channel,
   }) : super._(
-         id: id,
-         name: name,
-         channel: channel,
-       );
+          id: id,
+          name: name,
+          channel: channel,
+        );
 
   /// Returns a shallow copy of this [Channel]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   Channel copyWith({
-    final Object? id = _Undefined,
-    final String? name,
-    final String? channel,
+    Object? id = _Undefined,
+    String? name,
+    String? channel,
   }) {
     return Channel(
       id: id is int? ? id : this.id,

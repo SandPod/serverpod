@@ -51,8 +51,7 @@ enum ForeignKeyAction implements _i1.SerializableModel {
         return ForeignKeyAction.cascade;
       default:
         throw ArgumentError(
-          'Value "$index" cannot be converted to "ForeignKeyAction"',
-        );
+            'Value "$index" cannot be converted to "ForeignKeyAction"');
     }
   }
 

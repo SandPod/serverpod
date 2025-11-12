@@ -20,13 +20,12 @@ abstract class ChatRequestMessageChunk implements _i1.SerializableModel {
   });
 
   factory ChatRequestMessageChunk({
-    required final String channel,
-    required final int lastMessageId,
+    required String channel,
+    required int lastMessageId,
   }) = _ChatRequestMessageChunkImpl;
 
   factory ChatRequestMessageChunk.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ChatRequestMessageChunk(
       channel: jsonSerialization['channel'] as String,
       lastMessageId: jsonSerialization['lastMessageId'] as int,
@@ -43,8 +42,8 @@ abstract class ChatRequestMessageChunk implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ChatRequestMessageChunk copyWith({
-    final String? channel,
-    final int? lastMessageId,
+    String? channel,
+    int? lastMessageId,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -62,20 +61,20 @@ abstract class ChatRequestMessageChunk implements _i1.SerializableModel {
 
 class _ChatRequestMessageChunkImpl extends ChatRequestMessageChunk {
   _ChatRequestMessageChunkImpl({
-    required final String channel,
-    required final int lastMessageId,
+    required String channel,
+    required int lastMessageId,
   }) : super._(
-         channel: channel,
-         lastMessageId: lastMessageId,
-       );
+          channel: channel,
+          lastMessageId: lastMessageId,
+        );
 
   /// Returns a shallow copy of this [ChatRequestMessageChunk]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   ChatRequestMessageChunk copyWith({
-    final String? channel,
-    final int? lastMessageId,
+    String? channel,
+    int? lastMessageId,
   }) {
     return ChatRequestMessageChunk(
       channel: channel ?? this.channel,

@@ -19,8 +19,7 @@ abstract class RefreshTokenNotFoundException
   factory RefreshTokenNotFoundException() = _RefreshTokenNotFoundExceptionImpl;
 
   factory RefreshTokenNotFoundException.fromJson(
-    Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return RefreshTokenNotFoundException();
   }
 

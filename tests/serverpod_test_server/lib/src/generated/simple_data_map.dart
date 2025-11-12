@@ -17,18 +17,15 @@ abstract class SimpleDataMap
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
   SimpleDataMap._({required this.data});
 
-  factory SimpleDataMap({required final Map<String, _i2.SimpleData> data}) =
+  factory SimpleDataMap({required Map<String, _i2.SimpleData> data}) =
       _SimpleDataMapImpl;
 
-  factory SimpleDataMap.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory SimpleDataMap.fromJson(Map<String, dynamic> jsonSerialization) {
     return SimpleDataMap(
-      data: (jsonSerialization['data'] as Map).map(
-        (final k, final v) => MapEntry(
-          k as String,
-          _i2.SimpleData.fromJson((v as Map<String, dynamic>)),
-        ),
-      ),
-    );
+        data: (jsonSerialization['data'] as Map).map((k, v) => MapEntry(
+              k as String,
+              _i2.SimpleData.fromJson((v as Map<String, dynamic>)),
+            )));
   }
 
   Map<String, _i2.SimpleData> data;
@@ -36,15 +33,15 @@ abstract class SimpleDataMap
   /// Returns a shallow copy of this [SimpleDataMap]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  SimpleDataMap copyWith({final Map<String, _i2.SimpleData>? data});
+  SimpleDataMap copyWith({Map<String, _i2.SimpleData>? data});
   @override
   Map<String, dynamic> toJson() {
-    return {'data': data.toJson(valueToJson: (final v) => v.toJson())};
+    return {'data': data.toJson(valueToJson: (v) => v.toJson())};
   }
 
   @override
   Map<String, dynamic> toJsonForProtocol() {
-    return {'data': data.toJson(valueToJson: (final v) => v.toJsonForProtocol())};
+    return {'data': data.toJson(valueToJson: (v) => v.toJsonForProtocol())};
   }
 
   @override
@@ -54,26 +51,23 @@ abstract class SimpleDataMap
 }
 
 class _SimpleDataMapImpl extends SimpleDataMap {
-  _SimpleDataMapImpl({required final Map<String, _i2.SimpleData> data})
-    : super._(data: data);
+  _SimpleDataMapImpl({required Map<String, _i2.SimpleData> data})
+      : super._(data: data);
 
   /// Returns a shallow copy of this [SimpleDataMap]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  SimpleDataMap copyWith({final Map<String, _i2.SimpleData>? data}) {
+  SimpleDataMap copyWith({Map<String, _i2.SimpleData>? data}) {
     return SimpleDataMap(
-      data:
-          data ??
-          this.data.map(
-            (
-              final key0,
-              final value0,
-            ) => MapEntry(
-              key0,
-              value0.copyWith(),
-            ),
-          ),
-    );
+        data: data ??
+            this.data.map((
+                  key0,
+                  value0,
+                ) =>
+                    MapEntry(
+                      key0,
+                      value0.copyWith(),
+                    )));
   }
 }

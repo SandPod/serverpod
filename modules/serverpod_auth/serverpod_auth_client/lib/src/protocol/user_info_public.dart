@@ -23,14 +23,14 @@ abstract class UserInfoPublic implements _i1.SerializableModel {
   });
 
   factory UserInfoPublic({
-    final int? id,
-    final String? userName,
-    final String? fullName,
-    required final DateTime created,
-    final String? imageUrl,
+    int? id,
+    String? userName,
+    String? fullName,
+    required DateTime created,
+    String? imageUrl,
   }) = _UserInfoPublicImpl;
 
-  factory UserInfoPublic.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory UserInfoPublic.fromJson(Map<String, dynamic> jsonSerialization) {
     return UserInfoPublic(
       id: jsonSerialization['id'] as int?,
       userName: jsonSerialization['userName'] as String?,
@@ -59,11 +59,11 @@ abstract class UserInfoPublic implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   UserInfoPublic copyWith({
-    final int? id,
-    final String? userName,
-    final String? fullName,
-    final DateTime? created,
-    final String? imageUrl,
+    int? id,
+    String? userName,
+    String? fullName,
+    DateTime? created,
+    String? imageUrl,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -86,29 +86,29 @@ class _Undefined {}
 
 class _UserInfoPublicImpl extends UserInfoPublic {
   _UserInfoPublicImpl({
-    final int? id,
-    final String? userName,
-    final String? fullName,
-    required final DateTime created,
-    final String? imageUrl,
+    int? id,
+    String? userName,
+    String? fullName,
+    required DateTime created,
+    String? imageUrl,
   }) : super._(
-         id: id,
-         userName: userName,
-         fullName: fullName,
-         created: created,
-         imageUrl: imageUrl,
-       );
+          id: id,
+          userName: userName,
+          fullName: fullName,
+          created: created,
+          imageUrl: imageUrl,
+        );
 
   /// Returns a shallow copy of this [UserInfoPublic]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   UserInfoPublic copyWith({
-    final Object? id = _Undefined,
-    final Object? userName = _Undefined,
-    final Object? fullName = _Undefined,
-    final DateTime? created,
-    final Object? imageUrl = _Undefined,
+    Object? id = _Undefined,
+    Object? userName = _Undefined,
+    Object? fullName = _Undefined,
+    DateTime? created,
+    Object? imageUrl = _Undefined,
   }) {
     return UserInfoPublic(
       id: id is int? ? id : this.id,

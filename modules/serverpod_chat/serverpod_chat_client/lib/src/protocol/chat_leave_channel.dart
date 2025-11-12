@@ -16,9 +16,9 @@ import 'package:serverpod_client/serverpod_client.dart' as _i1;
 abstract class ChatLeaveChannel implements _i1.SerializableModel {
   ChatLeaveChannel._({required this.channel});
 
-  factory ChatLeaveChannel({required final String channel}) = _ChatLeaveChannelImpl;
+  factory ChatLeaveChannel({required String channel}) = _ChatLeaveChannelImpl;
 
-  factory ChatLeaveChannel.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory ChatLeaveChannel.fromJson(Map<String, dynamic> jsonSerialization) {
     return ChatLeaveChannel(channel: jsonSerialization['channel'] as String);
   }
 
@@ -28,7 +28,7 @@ abstract class ChatLeaveChannel implements _i1.SerializableModel {
   /// Returns a shallow copy of this [ChatLeaveChannel]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  ChatLeaveChannel copyWith({final String? channel});
+  ChatLeaveChannel copyWith({String? channel});
   @override
   Map<String, dynamic> toJson() {
     return {'channel': channel};
@@ -41,13 +41,13 @@ abstract class ChatLeaveChannel implements _i1.SerializableModel {
 }
 
 class _ChatLeaveChannelImpl extends ChatLeaveChannel {
-  _ChatLeaveChannelImpl({required final String channel}) : super._(channel: channel);
+  _ChatLeaveChannelImpl({required String channel}) : super._(channel: channel);
 
   /// Returns a shallow copy of this [ChatLeaveChannel]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  ChatLeaveChannel copyWith({final String? channel}) {
+  ChatLeaveChannel copyWith({String? channel}) {
     return ChatLeaveChannel(channel: channel ?? this.channel);
   }
 }

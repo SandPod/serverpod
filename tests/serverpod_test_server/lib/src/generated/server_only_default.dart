@@ -16,18 +16,18 @@ abstract class ServerOnlyDefault
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
   ServerOnlyDefault._({
     required this.normalField,
-    final int? serverOnlyField,
-    final String? serverOnlyStringField,
-  }) : serverOnlyField = serverOnlyField ?? -1,
-       serverOnlyStringField = serverOnlyStringField ?? 'Server only message';
+    int? serverOnlyField,
+    String? serverOnlyStringField,
+  })  : serverOnlyField = serverOnlyField ?? -1,
+        serverOnlyStringField = serverOnlyStringField ?? 'Server only message';
 
   factory ServerOnlyDefault({
-    required final String normalField,
-    final int? serverOnlyField,
-    final String? serverOnlyStringField,
+    required String normalField,
+    int? serverOnlyField,
+    String? serverOnlyStringField,
   }) = _ServerOnlyDefaultImpl;
 
-  factory ServerOnlyDefault.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory ServerOnlyDefault.fromJson(Map<String, dynamic> jsonSerialization) {
     return ServerOnlyDefault(
       normalField: jsonSerialization['normalField'] as String,
       serverOnlyField: jsonSerialization['serverOnlyField'] as int?,
@@ -46,9 +46,9 @@ abstract class ServerOnlyDefault
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ServerOnlyDefault copyWith({
-    final String? normalField,
-    final int? serverOnlyField,
-    final String? serverOnlyStringField,
+    String? normalField,
+    int? serverOnlyField,
+    String? serverOnlyStringField,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -75,29 +75,28 @@ class _Undefined {}
 
 class _ServerOnlyDefaultImpl extends ServerOnlyDefault {
   _ServerOnlyDefaultImpl({
-    required final String normalField,
-    final int? serverOnlyField,
-    final String? serverOnlyStringField,
+    required String normalField,
+    int? serverOnlyField,
+    String? serverOnlyStringField,
   }) : super._(
-         normalField: normalField,
-         serverOnlyField: serverOnlyField,
-         serverOnlyStringField: serverOnlyStringField,
-       );
+          normalField: normalField,
+          serverOnlyField: serverOnlyField,
+          serverOnlyStringField: serverOnlyStringField,
+        );
 
   /// Returns a shallow copy of this [ServerOnlyDefault]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   ServerOnlyDefault copyWith({
-    final String? normalField,
-    final Object? serverOnlyField = _Undefined,
-    final Object? serverOnlyStringField = _Undefined,
+    String? normalField,
+    Object? serverOnlyField = _Undefined,
+    Object? serverOnlyStringField = _Undefined,
   }) {
     return ServerOnlyDefault(
       normalField: normalField ?? this.normalField,
-      serverOnlyField: serverOnlyField is int?
-          ? serverOnlyField
-          : this.serverOnlyField,
+      serverOnlyField:
+          serverOnlyField is int? ? serverOnlyField : this.serverOnlyField,
       serverOnlyStringField: serverOnlyStringField is String?
           ? serverOnlyStringField
           : this.serverOnlyStringField,

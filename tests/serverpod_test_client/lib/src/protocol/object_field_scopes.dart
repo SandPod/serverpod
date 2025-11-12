@@ -13,10 +13,17 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 
 abstract class ObjectFieldScopes implements _i1.SerializableModel {
-  ObjectFieldScopes._({this.id, required this.normal, this.api});
+  ObjectFieldScopes._({
+    this.id,
+    required this.normal,
+    this.api,
+  });
 
-  factory ObjectFieldScopes({int? id, required String normal, String? api}) =
-      _ObjectFieldScopesImpl;
+  factory ObjectFieldScopes({
+    int? id,
+    required String normal,
+    String? api,
+  }) = _ObjectFieldScopesImpl;
 
   factory ObjectFieldScopes.fromJson(Map<String, dynamic> jsonSerialization) {
     return ObjectFieldScopes(
@@ -38,7 +45,11 @@ abstract class ObjectFieldScopes implements _i1.SerializableModel {
   /// Returns a shallow copy of this [ObjectFieldScopes]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  ObjectFieldScopes copyWith({int? id, String? normal, String? api});
+  ObjectFieldScopes copyWith({
+    int? id,
+    String? normal,
+    String? api,
+  });
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -57,8 +68,15 @@ abstract class ObjectFieldScopes implements _i1.SerializableModel {
 class _Undefined {}
 
 class _ObjectFieldScopesImpl extends ObjectFieldScopes {
-  _ObjectFieldScopesImpl({int? id, required String normal, String? api})
-    : super._(id: id, normal: normal, api: api);
+  _ObjectFieldScopesImpl({
+    int? id,
+    required String normal,
+    String? api,
+  }) : super._(
+          id: id,
+          normal: normal,
+          api: api,
+        );
 
   /// Returns a shallow copy of this [ObjectFieldScopes]
   /// with some or all fields replaced by the given arguments.

@@ -23,8 +23,7 @@ abstract class RefreshTokenMalformedException
       _RefreshTokenMalformedExceptionImpl;
 
   factory RefreshTokenMalformedException.fromJson(
-    Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return RefreshTokenMalformedException();
   }
 

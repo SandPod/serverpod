@@ -16,7 +16,7 @@ enum ByIndexEnum implements _i1.SerializableModel {
   byIndex1,
   byIndex2;
 
-  static ByIndexEnum fromJson(final int index) {
+  static ByIndexEnum fromJson(int index) {
     switch (index) {
       case 0:
         return ByIndexEnum.byIndex1;
@@ -24,8 +24,7 @@ enum ByIndexEnum implements _i1.SerializableModel {
         return ByIndexEnum.byIndex2;
       default:
         throw ArgumentError(
-          'Value "$index" cannot be converted to "ByIndexEnum"',
-        );
+            'Value "$index" cannot be converted to "ByIndexEnum"');
     }
   }
 

@@ -28,36 +28,39 @@ abstract class StringDefaultPersist
   });
 
   factory StringDefaultPersist({
-    final int? id,
-    final String? stringDefaultPersist,
-    final String? stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote,
-    final String? stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote,
-    final String? stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote,
-    final String? stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote,
-    final String? stringDefaultPersistSingleQuoteWithOneDoubleQuote,
-    final String? stringDefaultPersistSingleQuoteWithTwoDoubleQuote,
-    final String? stringDefaultPersistDoubleQuoteWithOneSingleQuote,
-    final String? stringDefaultPersistDoubleQuoteWithTwoSingleQuote,
+    int? id,
+    String? stringDefaultPersist,
+    String? stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote,
+    String? stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote,
+    String? stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote,
+    String? stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote,
+    String? stringDefaultPersistSingleQuoteWithOneDoubleQuote,
+    String? stringDefaultPersistSingleQuoteWithTwoDoubleQuote,
+    String? stringDefaultPersistDoubleQuoteWithOneSingleQuote,
+    String? stringDefaultPersistDoubleQuoteWithTwoSingleQuote,
   }) = _StringDefaultPersistImpl;
 
   factory StringDefaultPersist.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return StringDefaultPersist(
       id: jsonSerialization['id'] as int?,
       stringDefaultPersist:
           jsonSerialization['stringDefaultPersist'] as String?,
       stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote:
-          jsonSerialization['stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote']
+          jsonSerialization[
+                  'stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote']
               as String?,
       stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote:
-          jsonSerialization['stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote']
+          jsonSerialization[
+                  'stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote']
               as String?,
       stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote:
-          jsonSerialization['stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote']
+          jsonSerialization[
+                  'stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote']
               as String?,
       stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote:
-          jsonSerialization['stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote']
+          jsonSerialization[
+                  'stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote']
               as String?,
       stringDefaultPersistSingleQuoteWithOneDoubleQuote:
           jsonSerialization['stringDefaultPersistSingleQuoteWithOneDoubleQuote']
@@ -106,16 +109,16 @@ abstract class StringDefaultPersist
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   StringDefaultPersist copyWith({
-    final int? id,
-    final String? stringDefaultPersist,
-    final String? stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote,
-    final String? stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote,
-    final String? stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote,
-    final String? stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote,
-    final String? stringDefaultPersistSingleQuoteWithOneDoubleQuote,
-    final String? stringDefaultPersistSingleQuoteWithTwoDoubleQuote,
-    final String? stringDefaultPersistDoubleQuoteWithOneSingleQuote,
-    final String? stringDefaultPersistDoubleQuoteWithTwoSingleQuote,
+    int? id,
+    String? stringDefaultPersist,
+    String? stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote,
+    String? stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote,
+    String? stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote,
+    String? stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote,
+    String? stringDefaultPersistSingleQuoteWithOneDoubleQuote,
+    String? stringDefaultPersistSingleQuoteWithTwoDoubleQuote,
+    String? stringDefaultPersistDoubleQuoteWithOneSingleQuote,
+    String? stringDefaultPersistDoubleQuoteWithTwoSingleQuote,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -188,13 +191,13 @@ abstract class StringDefaultPersist
   }
 
   static StringDefaultPersistIncludeList includeList({
-    final _i1.WhereExpressionBuilder<StringDefaultPersistTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<StringDefaultPersistTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<StringDefaultPersistTable>? orderByList,
-    final StringDefaultPersistInclude? include,
+    _i1.WhereExpressionBuilder<StringDefaultPersistTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<StringDefaultPersistTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<StringDefaultPersistTable>? orderByList,
+    StringDefaultPersistInclude? include,
   }) {
     return StringDefaultPersistIncludeList._(
       where: where,
@@ -217,56 +220,56 @@ class _Undefined {}
 
 class _StringDefaultPersistImpl extends StringDefaultPersist {
   _StringDefaultPersistImpl({
-    final int? id,
-    final String? stringDefaultPersist,
-    final String? stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote,
-    final String? stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote,
-    final String? stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote,
-    final String? stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote,
-    final String? stringDefaultPersistSingleQuoteWithOneDoubleQuote,
-    final String? stringDefaultPersistSingleQuoteWithTwoDoubleQuote,
-    final String? stringDefaultPersistDoubleQuoteWithOneSingleQuote,
-    final String? stringDefaultPersistDoubleQuoteWithTwoSingleQuote,
+    int? id,
+    String? stringDefaultPersist,
+    String? stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote,
+    String? stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote,
+    String? stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote,
+    String? stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote,
+    String? stringDefaultPersistSingleQuoteWithOneDoubleQuote,
+    String? stringDefaultPersistSingleQuoteWithTwoDoubleQuote,
+    String? stringDefaultPersistDoubleQuoteWithOneSingleQuote,
+    String? stringDefaultPersistDoubleQuoteWithTwoSingleQuote,
   }) : super._(
-         id: id,
-         stringDefaultPersist: stringDefaultPersist,
-         stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote:
-             stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote,
-         stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote:
-             stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote,
-         stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote:
-             stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote,
-         stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote:
-             stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote,
-         stringDefaultPersistSingleQuoteWithOneDoubleQuote:
-             stringDefaultPersistSingleQuoteWithOneDoubleQuote,
-         stringDefaultPersistSingleQuoteWithTwoDoubleQuote:
-             stringDefaultPersistSingleQuoteWithTwoDoubleQuote,
-         stringDefaultPersistDoubleQuoteWithOneSingleQuote:
-             stringDefaultPersistDoubleQuoteWithOneSingleQuote,
-         stringDefaultPersistDoubleQuoteWithTwoSingleQuote:
-             stringDefaultPersistDoubleQuoteWithTwoSingleQuote,
-       );
+          id: id,
+          stringDefaultPersist: stringDefaultPersist,
+          stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote:
+              stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote,
+          stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote:
+              stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote,
+          stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote:
+              stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote,
+          stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote:
+              stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote,
+          stringDefaultPersistSingleQuoteWithOneDoubleQuote:
+              stringDefaultPersistSingleQuoteWithOneDoubleQuote,
+          stringDefaultPersistSingleQuoteWithTwoDoubleQuote:
+              stringDefaultPersistSingleQuoteWithTwoDoubleQuote,
+          stringDefaultPersistDoubleQuoteWithOneSingleQuote:
+              stringDefaultPersistDoubleQuoteWithOneSingleQuote,
+          stringDefaultPersistDoubleQuoteWithTwoSingleQuote:
+              stringDefaultPersistDoubleQuoteWithTwoSingleQuote,
+        );
 
   /// Returns a shallow copy of this [StringDefaultPersist]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   StringDefaultPersist copyWith({
-    final Object? id = _Undefined,
-    final Object? stringDefaultPersist = _Undefined,
-    final Object? stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote =
+    Object? id = _Undefined,
+    Object? stringDefaultPersist = _Undefined,
+    Object? stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote =
         _Undefined,
-    final Object? stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote =
+    Object? stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote =
         _Undefined,
-    final Object? stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote =
+    Object? stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote =
         _Undefined,
-    final Object? stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote =
+    Object? stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote =
         _Undefined,
-    final Object? stringDefaultPersistSingleQuoteWithOneDoubleQuote = _Undefined,
-    final Object? stringDefaultPersistSingleQuoteWithTwoDoubleQuote = _Undefined,
-    final Object? stringDefaultPersistDoubleQuoteWithOneSingleQuote = _Undefined,
-    final Object? stringDefaultPersistDoubleQuoteWithTwoSingleQuote = _Undefined,
+    Object? stringDefaultPersistSingleQuoteWithOneDoubleQuote = _Undefined,
+    Object? stringDefaultPersistSingleQuoteWithTwoDoubleQuote = _Undefined,
+    Object? stringDefaultPersistDoubleQuoteWithOneSingleQuote = _Undefined,
+    Object? stringDefaultPersistDoubleQuoteWithTwoSingleQuote = _Undefined,
   }) {
     return StringDefaultPersist(
       id: id is int? ? id : this.id,
@@ -275,36 +278,36 @@ class _StringDefaultPersistImpl extends StringDefaultPersist {
           : this.stringDefaultPersist,
       stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote:
           stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote is String?
-          ? stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote
-          : this.stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote,
+              ? stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote
+              : this.stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote,
       stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote:
           stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote is String?
-          ? stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote
-          : this.stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote,
+              ? stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote
+              : this.stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote,
       stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote:
           stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote is String?
-          ? stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote
-          : this.stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote,
+              ? stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote
+              : this.stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote,
       stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote:
           stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote is String?
-          ? stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote
-          : this.stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote,
+              ? stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote
+              : this.stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote,
       stringDefaultPersistSingleQuoteWithOneDoubleQuote:
           stringDefaultPersistSingleQuoteWithOneDoubleQuote is String?
-          ? stringDefaultPersistSingleQuoteWithOneDoubleQuote
-          : this.stringDefaultPersistSingleQuoteWithOneDoubleQuote,
+              ? stringDefaultPersistSingleQuoteWithOneDoubleQuote
+              : this.stringDefaultPersistSingleQuoteWithOneDoubleQuote,
       stringDefaultPersistSingleQuoteWithTwoDoubleQuote:
           stringDefaultPersistSingleQuoteWithTwoDoubleQuote is String?
-          ? stringDefaultPersistSingleQuoteWithTwoDoubleQuote
-          : this.stringDefaultPersistSingleQuoteWithTwoDoubleQuote,
+              ? stringDefaultPersistSingleQuoteWithTwoDoubleQuote
+              : this.stringDefaultPersistSingleQuoteWithTwoDoubleQuote,
       stringDefaultPersistDoubleQuoteWithOneSingleQuote:
           stringDefaultPersistDoubleQuoteWithOneSingleQuote is String?
-          ? stringDefaultPersistDoubleQuoteWithOneSingleQuote
-          : this.stringDefaultPersistDoubleQuoteWithOneSingleQuote,
+              ? stringDefaultPersistDoubleQuoteWithOneSingleQuote
+              : this.stringDefaultPersistDoubleQuoteWithOneSingleQuote,
       stringDefaultPersistDoubleQuoteWithTwoSingleQuote:
           stringDefaultPersistDoubleQuoteWithTwoSingleQuote is String?
-          ? stringDefaultPersistDoubleQuoteWithTwoSingleQuote
-          : this.stringDefaultPersistDoubleQuoteWithTwoSingleQuote,
+              ? stringDefaultPersistDoubleQuoteWithTwoSingleQuote
+              : this.stringDefaultPersistDoubleQuoteWithTwoSingleQuote,
     );
   }
 }
@@ -313,72 +316,72 @@ class StringDefaultPersistUpdateTable
     extends _i1.UpdateTable<StringDefaultPersistTable> {
   StringDefaultPersistUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> stringDefaultPersist(final String? value) =>
+  _i1.ColumnValue<String, String> stringDefaultPersist(String? value) =>
       _i1.ColumnValue(
         table.stringDefaultPersist,
         value,
       );
 
   _i1.ColumnValue<String, String>
-  stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote(final String? value) =>
-      _i1.ColumnValue(
-        table.stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote,
-        value,
-      );
+      stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote(String? value) =>
+          _i1.ColumnValue(
+            table.stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote,
+            value,
+          );
 
   _i1.ColumnValue<String, String>
-  stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote(final String? value) =>
-      _i1.ColumnValue(
-        table.stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote,
-        value,
-      );
+      stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote(String? value) =>
+          _i1.ColumnValue(
+            table.stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote,
+            value,
+          );
 
   _i1.ColumnValue<String, String>
-  stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote(final String? value) =>
-      _i1.ColumnValue(
-        table.stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote,
-        value,
-      );
+      stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote(String? value) =>
+          _i1.ColumnValue(
+            table.stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote,
+            value,
+          );
 
   _i1.ColumnValue<String, String>
-  stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote(final String? value) =>
-      _i1.ColumnValue(
-        table.stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote,
-        value,
-      );
+      stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote(String? value) =>
+          _i1.ColumnValue(
+            table.stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote,
+            value,
+          );
 
   _i1.ColumnValue<String, String>
-  stringDefaultPersistSingleQuoteWithOneDoubleQuote(final String? value) =>
-      _i1.ColumnValue(
-        table.stringDefaultPersistSingleQuoteWithOneDoubleQuote,
-        value,
-      );
+      stringDefaultPersistSingleQuoteWithOneDoubleQuote(String? value) =>
+          _i1.ColumnValue(
+            table.stringDefaultPersistSingleQuoteWithOneDoubleQuote,
+            value,
+          );
 
   _i1.ColumnValue<String, String>
-  stringDefaultPersistSingleQuoteWithTwoDoubleQuote(final String? value) =>
-      _i1.ColumnValue(
-        table.stringDefaultPersistSingleQuoteWithTwoDoubleQuote,
-        value,
-      );
+      stringDefaultPersistSingleQuoteWithTwoDoubleQuote(String? value) =>
+          _i1.ColumnValue(
+            table.stringDefaultPersistSingleQuoteWithTwoDoubleQuote,
+            value,
+          );
 
   _i1.ColumnValue<String, String>
-  stringDefaultPersistDoubleQuoteWithOneSingleQuote(final String? value) =>
-      _i1.ColumnValue(
-        table.stringDefaultPersistDoubleQuoteWithOneSingleQuote,
-        value,
-      );
+      stringDefaultPersistDoubleQuoteWithOneSingleQuote(String? value) =>
+          _i1.ColumnValue(
+            table.stringDefaultPersistDoubleQuoteWithOneSingleQuote,
+            value,
+          );
 
   _i1.ColumnValue<String, String>
-  stringDefaultPersistDoubleQuoteWithTwoSingleQuote(final String? value) =>
-      _i1.ColumnValue(
-        table.stringDefaultPersistDoubleQuoteWithTwoSingleQuote,
-        value,
-      );
+      stringDefaultPersistDoubleQuoteWithTwoSingleQuote(String? value) =>
+          _i1.ColumnValue(
+            table.stringDefaultPersistDoubleQuoteWithTwoSingleQuote,
+            value,
+          );
 }
 
 class StringDefaultPersistTable extends _i1.Table<int?> {
   StringDefaultPersistTable({super.tableRelation})
-    : super(tableName: 'string_default_persist') {
+      : super(tableName: 'string_default_persist') {
     updateTable = StringDefaultPersistUpdateTable(this);
     stringDefaultPersist = _i1.ColumnString(
       'stringDefaultPersist',
@@ -432,16 +435,16 @@ class StringDefaultPersistTable extends _i1.Table<int?> {
   late final _i1.ColumnString stringDefaultPersist;
 
   late final _i1.ColumnString
-  stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote;
+      stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote;
 
   late final _i1.ColumnString
-  stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote;
+      stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote;
 
   late final _i1.ColumnString
-  stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote;
+      stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote;
 
   late final _i1.ColumnString
-  stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote;
+      stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote;
 
   late final _i1.ColumnString stringDefaultPersistSingleQuoteWithOneDoubleQuote;
 
@@ -453,17 +456,17 @@ class StringDefaultPersistTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    stringDefaultPersist,
-    stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote,
-    stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote,
-    stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote,
-    stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote,
-    stringDefaultPersistSingleQuoteWithOneDoubleQuote,
-    stringDefaultPersistSingleQuoteWithTwoDoubleQuote,
-    stringDefaultPersistDoubleQuoteWithOneSingleQuote,
-    stringDefaultPersistDoubleQuoteWithTwoSingleQuote,
-  ];
+        id,
+        stringDefaultPersist,
+        stringDefaultPersistSingleQuoteWithOneSingleEscapeQuote,
+        stringDefaultPersistSingleQuoteWithTwoSingleEscapeQuote,
+        stringDefaultPersistDoubleQuoteWithOneDoubleEscapeQuote,
+        stringDefaultPersistDoubleQuoteWithTwoDoubleEscapeQuote,
+        stringDefaultPersistSingleQuoteWithOneDoubleQuote,
+        stringDefaultPersistSingleQuoteWithTwoDoubleQuote,
+        stringDefaultPersistDoubleQuoteWithOneSingleQuote,
+        stringDefaultPersistDoubleQuoteWithTwoSingleQuote,
+      ];
 }
 
 class StringDefaultPersistInclude extends _i1.IncludeObject {
@@ -478,7 +481,7 @@ class StringDefaultPersistInclude extends _i1.IncludeObject {
 
 class StringDefaultPersistIncludeList extends _i1.IncludeList {
   StringDefaultPersistIncludeList._({
-    final _i1.WhereExpressionBuilder<StringDefaultPersistTable>? where,
+    _i1.WhereExpressionBuilder<StringDefaultPersistTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -522,14 +525,14 @@ class StringDefaultPersistRepository {
   /// );
   /// ```
   Future<List<StringDefaultPersist>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<StringDefaultPersistTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<StringDefaultPersistTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<StringDefaultPersistTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<StringDefaultPersistTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<StringDefaultPersistTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<StringDefaultPersistTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<StringDefaultPersist>(
       where: where?.call(StringDefaultPersist.t),
@@ -560,13 +563,13 @@ class StringDefaultPersistRepository {
   /// );
   /// ```
   Future<StringDefaultPersist?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<StringDefaultPersistTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<StringDefaultPersistTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<StringDefaultPersistTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<StringDefaultPersistTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<StringDefaultPersistTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<StringDefaultPersistTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<StringDefaultPersist>(
       where: where?.call(StringDefaultPersist.t),
@@ -580,9 +583,9 @@ class StringDefaultPersistRepository {
 
   /// Finds a single [StringDefaultPersist] by its [id] or null if no such row exists.
   Future<StringDefaultPersist?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<StringDefaultPersist>(
       id,
@@ -597,9 +600,9 @@ class StringDefaultPersistRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<StringDefaultPersist>> insert(
-    final _i1.Session session,
-    final List<StringDefaultPersist> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<StringDefaultPersist> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<StringDefaultPersist>(
       rows,
@@ -611,9 +614,9 @@ class StringDefaultPersistRepository {
   ///
   /// The returned [StringDefaultPersist] will have its `id` field set.
   Future<StringDefaultPersist> insertRow(
-    final _i1.Session session,
-    final StringDefaultPersist row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    StringDefaultPersist row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<StringDefaultPersist>(
       row,
@@ -627,10 +630,10 @@ class StringDefaultPersistRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<StringDefaultPersist>> update(
-    final _i1.Session session,
-    final List<StringDefaultPersist> rows, {
-    final _i1.ColumnSelections<StringDefaultPersistTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<StringDefaultPersist> rows, {
+    _i1.ColumnSelections<StringDefaultPersistTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<StringDefaultPersist>(
       rows,
@@ -643,10 +646,10 @@ class StringDefaultPersistRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<StringDefaultPersist> updateRow(
-    final _i1.Session session,
-    final StringDefaultPersist row, {
-    final _i1.ColumnSelections<StringDefaultPersistTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    StringDefaultPersist row, {
+    _i1.ColumnSelections<StringDefaultPersistTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<StringDefaultPersist>(
       row,
@@ -658,11 +661,11 @@ class StringDefaultPersistRepository {
   /// Updates a single [StringDefaultPersist] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<StringDefaultPersist?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<StringDefaultPersistUpdateTable>
-    columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<StringDefaultPersistUpdateTable>
+        columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<StringDefaultPersist>(
       id,
@@ -674,16 +677,16 @@ class StringDefaultPersistRepository {
   /// Updates all [StringDefaultPersist]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<StringDefaultPersist>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<StringDefaultPersistUpdateTable>
-    columnValues,
-    required final _i1.WhereExpressionBuilder<StringDefaultPersistTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<StringDefaultPersistTable>? orderBy,
-    final _i1.OrderByListBuilder<StringDefaultPersistTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<StringDefaultPersistUpdateTable>
+        columnValues,
+    required _i1.WhereExpressionBuilder<StringDefaultPersistTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<StringDefaultPersistTable>? orderBy,
+    _i1.OrderByListBuilder<StringDefaultPersistTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<StringDefaultPersist>(
       columnValues: columnValues(StringDefaultPersist.t.updateTable),
@@ -701,9 +704,9 @@ class StringDefaultPersistRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<StringDefaultPersist>> delete(
-    final _i1.Session session,
-    final List<StringDefaultPersist> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<StringDefaultPersist> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<StringDefaultPersist>(
       rows,
@@ -713,9 +716,9 @@ class StringDefaultPersistRepository {
 
   /// Deletes a single [StringDefaultPersist].
   Future<StringDefaultPersist> deleteRow(
-    final _i1.Session session,
-    final StringDefaultPersist row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    StringDefaultPersist row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<StringDefaultPersist>(
       row,
@@ -725,9 +728,9 @@ class StringDefaultPersistRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<StringDefaultPersist>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<StringDefaultPersistTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<StringDefaultPersistTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<StringDefaultPersist>(
       where: where(StringDefaultPersist.t),
@@ -738,10 +741,10 @@ class StringDefaultPersistRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<StringDefaultPersistTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<StringDefaultPersistTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<StringDefaultPersist>(
       where: where?.call(StringDefaultPersist.t),

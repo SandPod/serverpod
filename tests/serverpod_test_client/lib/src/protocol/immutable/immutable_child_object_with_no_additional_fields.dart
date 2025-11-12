@@ -15,20 +15,17 @@ import '../protocol.dart' as _i2;
 
 @_i1.immutable
 abstract class ImmutableChildObjectWithNoAdditionalFields
-    extends _i2.ImmutableObject
-    implements _i1.SerializableModel {
+    extends _i2.ImmutableObject implements _i1.SerializableModel {
   const ImmutableChildObjectWithNoAdditionalFields._({required super.variable});
 
-  const factory ImmutableChildObjectWithNoAdditionalFields({
-    required String variable,
-  }) = _ImmutableChildObjectWithNoAdditionalFieldsImpl;
+  const factory ImmutableChildObjectWithNoAdditionalFields(
+          {required String variable}) =
+      _ImmutableChildObjectWithNoAdditionalFieldsImpl;
 
   factory ImmutableChildObjectWithNoAdditionalFields.fromJson(
-    Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ImmutableChildObjectWithNoAdditionalFields(
-      variable: jsonSerialization['variable'] as String,
-    );
+        variable: jsonSerialization['variable'] as String);
   }
 
   /// Returns a shallow copy of this [ImmutableChildObjectWithNoAdditionalFields]
@@ -38,15 +35,25 @@ abstract class ImmutableChildObjectWithNoAdditionalFields
   ImmutableChildObjectWithNoAdditionalFields copyWith({String? variable});
   @override
   bool operator ==(Object other) {
-    return identical(other, this) ||
+    return identical(
+          other,
+          this,
+        ) ||
         other.runtimeType == runtimeType &&
             other is ImmutableChildObjectWithNoAdditionalFields &&
-            (identical(other.variable, variable) || other.variable == variable);
+            (identical(
+                  other.variable,
+                  variable,
+                ) ||
+                other.variable == variable);
   }
 
   @override
   int get hashCode {
-    return Object.hash(runtimeType, variable);
+    return Object.hash(
+      runtimeType,
+      variable,
+    );
   }
 
   @override
@@ -62,9 +69,9 @@ abstract class ImmutableChildObjectWithNoAdditionalFields
 
 class _ImmutableChildObjectWithNoAdditionalFieldsImpl
     extends ImmutableChildObjectWithNoAdditionalFields {
-  const _ImmutableChildObjectWithNoAdditionalFieldsImpl({
-    required String variable,
-  }) : super._(variable: variable);
+  const _ImmutableChildObjectWithNoAdditionalFieldsImpl(
+      {required String variable})
+      : super._(variable: variable);
 
   /// Returns a shallow copy of this [ImmutableChildObjectWithNoAdditionalFields]
   /// with some or all fields replaced by the given arguments.
@@ -72,7 +79,6 @@ class _ImmutableChildObjectWithNoAdditionalFieldsImpl
   @override
   ImmutableChildObjectWithNoAdditionalFields copyWith({String? variable}) {
     return ImmutableChildObjectWithNoAdditionalFields(
-      variable: variable ?? this.variable,
-    );
+        variable: variable ?? this.variable);
   }
 }

@@ -11,39 +11,36 @@
 
 // ignore_for_file: unnecessary_null_comparison
 
-import 'package:serverpod/serverpod.dart' as _i2;
-
-import '../inheritance/child_with_inherited_id.dart' as _i3;
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import '../protocol.dart' as _i1;
+import 'package:serverpod/serverpod.dart' as _i2;
+import '../inheritance/child_with_inherited_id.dart' as _i3;
 
 abstract class ChildWithInheritedId extends _i1.ParentWithChangedId
     implements _i2.TableRow<_i2.UuidValue>, _i2.ProtocolSerialization {
   ChildWithInheritedId._({
-    final _i2.UuidValue? id,
+    _i2.UuidValue? id,
     required this.name,
     this.parent,
     this.parentId,
-  }) : id = id ?? const _i2.Uuid().v7obj();
+  }) : id = id ?? _i2.Uuid().v7obj();
 
   factory ChildWithInheritedId({
-    final _i2.UuidValue? id,
-    required final String name,
-    final _i3.ChildWithInheritedId? parent,
-    final _i2.UuidValue? parentId,
+    _i2.UuidValue? id,
+    required String name,
+    _i3.ChildWithInheritedId? parent,
+    _i2.UuidValue? parentId,
   }) = _ChildWithInheritedIdImpl;
 
   factory ChildWithInheritedId.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ChildWithInheritedId(
       id: _i2.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       name: jsonSerialization['name'] as String,
       parent: jsonSerialization['parent'] == null
           ? null
           : _i3.ChildWithInheritedId.fromJson(
-              (jsonSerialization['parent'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['parent'] as Map<String, dynamic>)),
       parentId: jsonSerialization['parentId'] == null
           ? null
           : _i2.UuidValueJsonExtension.fromJson(jsonSerialization['parentId']),
@@ -71,10 +68,10 @@ abstract class ChildWithInheritedId extends _i1.ParentWithChangedId
   @override
   @_i2.useResult
   ChildWithInheritedId copyWith({
-    final _i2.UuidValue? id,
-    final String? name,
-    final _i3.ChildWithInheritedId? parent,
-    final _i2.UuidValue? parentId,
+    _i2.UuidValue? id,
+    String? name,
+    _i3.ChildWithInheritedId? parent,
+    _i2.UuidValue? parentId,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -91,20 +88,19 @@ abstract class ChildWithInheritedId extends _i1.ParentWithChangedId
     return {};
   }
 
-  static ChildWithInheritedIdInclude include({
-    final _i3.ChildWithInheritedIdInclude? parent,
-  }) {
+  static ChildWithInheritedIdInclude include(
+      {_i3.ChildWithInheritedIdInclude? parent}) {
     return ChildWithInheritedIdInclude._(parent: parent);
   }
 
   static ChildWithInheritedIdIncludeList includeList({
-    final _i2.WhereExpressionBuilder<ChildWithInheritedIdTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i2.OrderByBuilder<ChildWithInheritedIdTable>? orderBy,
-    final bool orderDescending = false,
-    final _i2.OrderByListBuilder<ChildWithInheritedIdTable>? orderByList,
-    final ChildWithInheritedIdInclude? include,
+    _i2.WhereExpressionBuilder<ChildWithInheritedIdTable>? where,
+    int? limit,
+    int? offset,
+    _i2.OrderByBuilder<ChildWithInheritedIdTable>? orderBy,
+    bool orderDescending = false,
+    _i2.OrderByListBuilder<ChildWithInheritedIdTable>? orderByList,
+    ChildWithInheritedIdInclude? include,
   }) {
     return ChildWithInheritedIdIncludeList._(
       where: where,
@@ -127,26 +123,26 @@ class _Undefined {}
 
 class _ChildWithInheritedIdImpl extends ChildWithInheritedId {
   _ChildWithInheritedIdImpl({
-    final _i2.UuidValue? id,
-    required final String name,
-    final _i3.ChildWithInheritedId? parent,
-    final _i2.UuidValue? parentId,
+    _i2.UuidValue? id,
+    required String name,
+    _i3.ChildWithInheritedId? parent,
+    _i2.UuidValue? parentId,
   }) : super._(
-         id: id,
-         name: name,
-         parent: parent,
-         parentId: parentId,
-       );
+          id: id,
+          name: name,
+          parent: parent,
+          parentId: parentId,
+        );
 
   /// Returns a shallow copy of this [ChildWithInheritedId]
   /// with some or all fields replaced by the given arguments.
   @_i2.useResult
   @override
   ChildWithInheritedId copyWith({
-    final _i2.UuidValue? id,
-    final String? name,
-    final Object? parent = _Undefined,
-    final Object? parentId = _Undefined,
+    _i2.UuidValue? id,
+    String? name,
+    Object? parent = _Undefined,
+    Object? parentId = _Undefined,
   }) {
     return ChildWithInheritedId(
       id: id ?? this.id,
@@ -163,22 +159,22 @@ class ChildWithInheritedIdUpdateTable
     extends _i2.UpdateTable<ChildWithInheritedIdTable> {
   ChildWithInheritedIdUpdateTable(super.table);
 
-  _i2.ColumnValue<String, String> name(final String value) => _i2.ColumnValue(
-    table.name,
-    value,
-  );
+  _i2.ColumnValue<String, String> name(String value) => _i2.ColumnValue(
+        table.name,
+        value,
+      );
 
   _i2.ColumnValue<_i2.UuidValue, _i2.UuidValue> parentId(
-    final _i2.UuidValue? value,
-  ) => _i2.ColumnValue(
-    table.parentId,
-    value,
-  );
+          _i2.UuidValue? value) =>
+      _i2.ColumnValue(
+        table.parentId,
+        value,
+      );
 }
 
 class ChildWithInheritedIdTable extends _i2.Table<_i2.UuidValue> {
   ChildWithInheritedIdTable({super.tableRelation})
-    : super(tableName: 'child_with_inherited_id') {
+      : super(tableName: 'child_with_inherited_id') {
     updateTable = ChildWithInheritedIdUpdateTable(this);
     name = _i2.ColumnString(
       'name',
@@ -205,7 +201,7 @@ class ChildWithInheritedIdTable extends _i2.Table<_i2.UuidValue> {
       field: ChildWithInheritedId.t.parentId,
       foreignField: _i3.ChildWithInheritedId.t.id,
       tableRelation: tableRelation,
-      createTable: (final foreignTableRelation) =>
+      createTable: (foreignTableRelation) =>
           _i3.ChildWithInheritedIdTable(tableRelation: foreignTableRelation),
     );
     return _parent!;
@@ -213,13 +209,13 @@ class ChildWithInheritedIdTable extends _i2.Table<_i2.UuidValue> {
 
   @override
   List<_i2.Column> get columns => [
-    id,
-    name,
-    parentId,
-  ];
+        id,
+        name,
+        parentId,
+      ];
 
   @override
-  _i2.Table? getRelationTable(final String relationField) {
+  _i2.Table? getRelationTable(String relationField) {
     if (relationField == 'parent') {
       return parent;
     }
@@ -228,7 +224,7 @@ class ChildWithInheritedIdTable extends _i2.Table<_i2.UuidValue> {
 }
 
 class ChildWithInheritedIdInclude extends _i2.IncludeObject {
-  ChildWithInheritedIdInclude._({final _i3.ChildWithInheritedIdInclude? parent}) {
+  ChildWithInheritedIdInclude._({_i3.ChildWithInheritedIdInclude? parent}) {
     _parent = parent;
   }
 
@@ -243,7 +239,7 @@ class ChildWithInheritedIdInclude extends _i2.IncludeObject {
 
 class ChildWithInheritedIdIncludeList extends _i2.IncludeList {
   ChildWithInheritedIdIncludeList._({
-    final _i2.WhereExpressionBuilder<ChildWithInheritedIdTable>? where,
+    _i2.WhereExpressionBuilder<ChildWithInheritedIdTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -291,15 +287,15 @@ class ChildWithInheritedIdRepository {
   /// );
   /// ```
   Future<List<ChildWithInheritedId>> find(
-    final _i2.Session session, {
-    final _i2.WhereExpressionBuilder<ChildWithInheritedIdTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i2.OrderByBuilder<ChildWithInheritedIdTable>? orderBy,
-    final bool orderDescending = false,
-    final _i2.OrderByListBuilder<ChildWithInheritedIdTable>? orderByList,
-    final _i2.Transaction? transaction,
-    final ChildWithInheritedIdInclude? include,
+    _i2.Session session, {
+    _i2.WhereExpressionBuilder<ChildWithInheritedIdTable>? where,
+    int? limit,
+    int? offset,
+    _i2.OrderByBuilder<ChildWithInheritedIdTable>? orderBy,
+    bool orderDescending = false,
+    _i2.OrderByListBuilder<ChildWithInheritedIdTable>? orderByList,
+    _i2.Transaction? transaction,
+    ChildWithInheritedIdInclude? include,
   }) async {
     return session.db.find<ChildWithInheritedId>(
       where: where?.call(ChildWithInheritedId.t),
@@ -331,14 +327,14 @@ class ChildWithInheritedIdRepository {
   /// );
   /// ```
   Future<ChildWithInheritedId?> findFirstRow(
-    final _i2.Session session, {
-    final _i2.WhereExpressionBuilder<ChildWithInheritedIdTable>? where,
-    final int? offset,
-    final _i2.OrderByBuilder<ChildWithInheritedIdTable>? orderBy,
-    final bool orderDescending = false,
-    final _i2.OrderByListBuilder<ChildWithInheritedIdTable>? orderByList,
-    final _i2.Transaction? transaction,
-    final ChildWithInheritedIdInclude? include,
+    _i2.Session session, {
+    _i2.WhereExpressionBuilder<ChildWithInheritedIdTable>? where,
+    int? offset,
+    _i2.OrderByBuilder<ChildWithInheritedIdTable>? orderBy,
+    bool orderDescending = false,
+    _i2.OrderByListBuilder<ChildWithInheritedIdTable>? orderByList,
+    _i2.Transaction? transaction,
+    ChildWithInheritedIdInclude? include,
   }) async {
     return session.db.findFirstRow<ChildWithInheritedId>(
       where: where?.call(ChildWithInheritedId.t),
@@ -353,10 +349,10 @@ class ChildWithInheritedIdRepository {
 
   /// Finds a single [ChildWithInheritedId] by its [id] or null if no such row exists.
   Future<ChildWithInheritedId?> findById(
-    final _i2.Session session,
-    final _i2.UuidValue id, {
-    final _i2.Transaction? transaction,
-    final ChildWithInheritedIdInclude? include,
+    _i2.Session session,
+    _i2.UuidValue id, {
+    _i2.Transaction? transaction,
+    ChildWithInheritedIdInclude? include,
   }) async {
     return session.db.findById<ChildWithInheritedId>(
       id,
@@ -372,9 +368,9 @@ class ChildWithInheritedIdRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<ChildWithInheritedId>> insert(
-    final _i2.Session session,
-    final List<ChildWithInheritedId> rows, {
-    final _i2.Transaction? transaction,
+    _i2.Session session,
+    List<ChildWithInheritedId> rows, {
+    _i2.Transaction? transaction,
   }) async {
     return session.db.insert<ChildWithInheritedId>(
       rows,
@@ -386,9 +382,9 @@ class ChildWithInheritedIdRepository {
   ///
   /// The returned [ChildWithInheritedId] will have its `id` field set.
   Future<ChildWithInheritedId> insertRow(
-    final _i2.Session session,
-    final ChildWithInheritedId row, {
-    final _i2.Transaction? transaction,
+    _i2.Session session,
+    ChildWithInheritedId row, {
+    _i2.Transaction? transaction,
   }) async {
     return session.db.insertRow<ChildWithInheritedId>(
       row,
@@ -402,10 +398,10 @@ class ChildWithInheritedIdRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<ChildWithInheritedId>> update(
-    final _i2.Session session,
-    final List<ChildWithInheritedId> rows, {
-    final _i2.ColumnSelections<ChildWithInheritedIdTable>? columns,
-    final _i2.Transaction? transaction,
+    _i2.Session session,
+    List<ChildWithInheritedId> rows, {
+    _i2.ColumnSelections<ChildWithInheritedIdTable>? columns,
+    _i2.Transaction? transaction,
   }) async {
     return session.db.update<ChildWithInheritedId>(
       rows,
@@ -418,10 +414,10 @@ class ChildWithInheritedIdRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<ChildWithInheritedId> updateRow(
-    final _i2.Session session,
-    final ChildWithInheritedId row, {
-    final _i2.ColumnSelections<ChildWithInheritedIdTable>? columns,
-    final _i2.Transaction? transaction,
+    _i2.Session session,
+    ChildWithInheritedId row, {
+    _i2.ColumnSelections<ChildWithInheritedIdTable>? columns,
+    _i2.Transaction? transaction,
   }) async {
     return session.db.updateRow<ChildWithInheritedId>(
       row,
@@ -433,11 +429,11 @@ class ChildWithInheritedIdRepository {
   /// Updates a single [ChildWithInheritedId] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<ChildWithInheritedId?> updateById(
-    final _i2.Session session,
-    final _i2.UuidValue id, {
-    required final _i2.ColumnValueListBuilder<ChildWithInheritedIdUpdateTable>
-    columnValues,
-    final _i2.Transaction? transaction,
+    _i2.Session session,
+    _i2.UuidValue id, {
+    required _i2.ColumnValueListBuilder<ChildWithInheritedIdUpdateTable>
+        columnValues,
+    _i2.Transaction? transaction,
   }) async {
     return session.db.updateById<ChildWithInheritedId>(
       id,
@@ -449,16 +445,16 @@ class ChildWithInheritedIdRepository {
   /// Updates all [ChildWithInheritedId]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<ChildWithInheritedId>> updateWhere(
-    final _i2.Session session, {
-    required final _i2.ColumnValueListBuilder<ChildWithInheritedIdUpdateTable>
-    columnValues,
-    required final _i2.WhereExpressionBuilder<ChildWithInheritedIdTable> where,
-    final int? limit,
-    final int? offset,
-    final _i2.OrderByBuilder<ChildWithInheritedIdTable>? orderBy,
-    final _i2.OrderByListBuilder<ChildWithInheritedIdTable>? orderByList,
-    final bool orderDescending = false,
-    final _i2.Transaction? transaction,
+    _i2.Session session, {
+    required _i2.ColumnValueListBuilder<ChildWithInheritedIdUpdateTable>
+        columnValues,
+    required _i2.WhereExpressionBuilder<ChildWithInheritedIdTable> where,
+    int? limit,
+    int? offset,
+    _i2.OrderByBuilder<ChildWithInheritedIdTable>? orderBy,
+    _i2.OrderByListBuilder<ChildWithInheritedIdTable>? orderByList,
+    bool orderDescending = false,
+    _i2.Transaction? transaction,
   }) async {
     return session.db.updateWhere<ChildWithInheritedId>(
       columnValues: columnValues(ChildWithInheritedId.t.updateTable),
@@ -476,9 +472,9 @@ class ChildWithInheritedIdRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<ChildWithInheritedId>> delete(
-    final _i2.Session session,
-    final List<ChildWithInheritedId> rows, {
-    final _i2.Transaction? transaction,
+    _i2.Session session,
+    List<ChildWithInheritedId> rows, {
+    _i2.Transaction? transaction,
   }) async {
     return session.db.delete<ChildWithInheritedId>(
       rows,
@@ -488,9 +484,9 @@ class ChildWithInheritedIdRepository {
 
   /// Deletes a single [ChildWithInheritedId].
   Future<ChildWithInheritedId> deleteRow(
-    final _i2.Session session,
-    final ChildWithInheritedId row, {
-    final _i2.Transaction? transaction,
+    _i2.Session session,
+    ChildWithInheritedId row, {
+    _i2.Transaction? transaction,
   }) async {
     return session.db.deleteRow<ChildWithInheritedId>(
       row,
@@ -500,9 +496,9 @@ class ChildWithInheritedIdRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<ChildWithInheritedId>> deleteWhere(
-    final _i2.Session session, {
-    required final _i2.WhereExpressionBuilder<ChildWithInheritedIdTable> where,
-    final _i2.Transaction? transaction,
+    _i2.Session session, {
+    required _i2.WhereExpressionBuilder<ChildWithInheritedIdTable> where,
+    _i2.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<ChildWithInheritedId>(
       where: where(ChildWithInheritedId.t),
@@ -513,10 +509,10 @@ class ChildWithInheritedIdRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i2.Session session, {
-    final _i2.WhereExpressionBuilder<ChildWithInheritedIdTable>? where,
-    final int? limit,
-    final _i2.Transaction? transaction,
+    _i2.Session session, {
+    _i2.WhereExpressionBuilder<ChildWithInheritedIdTable>? where,
+    int? limit,
+    _i2.Transaction? transaction,
   }) async {
     return session.db.count<ChildWithInheritedId>(
       where: where?.call(ChildWithInheritedId.t),
@@ -532,10 +528,10 @@ class ChildWithInheritedIdAttachRowRepository {
   /// Creates a relation between the given [ChildWithInheritedId] and [ChildWithInheritedId]
   /// by setting the [ChildWithInheritedId]'s foreign key `parentId` to refer to the [ChildWithInheritedId].
   Future<void> parent(
-    final _i2.Session session,
-    final ChildWithInheritedId childWithInheritedId,
-    final _i3.ChildWithInheritedId parent, {
-    final _i2.Transaction? transaction,
+    _i2.Session session,
+    ChildWithInheritedId childWithInheritedId,
+    _i3.ChildWithInheritedId parent, {
+    _i2.Transaction? transaction,
   }) async {
     if (childWithInheritedId.id == null) {
       throw ArgumentError.notNull('childWithInheritedId.id');
@@ -544,9 +540,8 @@ class ChildWithInheritedIdAttachRowRepository {
       throw ArgumentError.notNull('parent.id');
     }
 
-    final $childWithInheritedId = childWithInheritedId.copyWith(
-      parentId: parent.id,
-    );
+    var $childWithInheritedId =
+        childWithInheritedId.copyWith(parentId: parent.id);
     await session.db.updateRow<ChildWithInheritedId>(
       $childWithInheritedId,
       columns: [ChildWithInheritedId.t.parentId],
@@ -564,15 +559,15 @@ class ChildWithInheritedIdDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> parent(
-    final _i2.Session session,
-    final ChildWithInheritedId childWithInheritedId, {
-    final _i2.Transaction? transaction,
+    _i2.Session session,
+    ChildWithInheritedId childWithInheritedId, {
+    _i2.Transaction? transaction,
   }) async {
     if (childWithInheritedId.id == null) {
       throw ArgumentError.notNull('childWithInheritedId.id');
     }
 
-    final $childWithInheritedId = childWithInheritedId.copyWith(parentId: null);
+    var $childWithInheritedId = childWithInheritedId.copyWith(parentId: null);
     await session.db.updateRow<ChildWithInheritedId>(
       $childWithInheritedId,
       columns: [ChildWithInheritedId.t.parentId],

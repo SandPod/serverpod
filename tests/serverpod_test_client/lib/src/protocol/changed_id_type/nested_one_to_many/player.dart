@@ -14,7 +14,12 @@ import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import '../../changed_id_type/nested_one_to_many/team.dart' as _i2;
 
 abstract class PlayerUuid implements _i1.SerializableModel {
-  PlayerUuid._({this.id, required this.name, this.teamId, this.team});
+  PlayerUuid._({
+    this.id,
+    required this.name,
+    this.teamId,
+    this.team,
+  });
 
   factory PlayerUuid({
     _i1.UuidValue? id,
@@ -33,8 +38,7 @@ abstract class PlayerUuid implements _i1.SerializableModel {
       team: jsonSerialization['team'] == null
           ? null
           : _i2.TeamInt.fromJson(
-              (jsonSerialization['team'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['team'] as Map<String, dynamic>)),
     );
   }
 
@@ -82,7 +86,12 @@ class _PlayerUuidImpl extends PlayerUuid {
     required String name,
     int? teamId,
     _i2.TeamInt? team,
-  }) : super._(id: id, name: name, teamId: teamId, team: team);
+  }) : super._(
+          id: id,
+          name: name,
+          teamId: teamId,
+          team: team,
+        );
 
   /// Returns a shallow copy of this [PlayerUuid]
   /// with some or all fields replaced by the given arguments.

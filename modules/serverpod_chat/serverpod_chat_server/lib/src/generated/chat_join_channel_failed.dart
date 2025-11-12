@@ -26,8 +26,7 @@ abstract class ChatJoinChannelFailed
   }) = _ChatJoinChannelFailedImpl;
 
   factory ChatJoinChannelFailed.fromJson(
-    Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ChatJoinChannelFailed(
       channel: jsonSerialization['channel'] as String,
       reason: jsonSerialization['reason'] as String,
@@ -74,9 +73,9 @@ class _ChatJoinChannelFailedImpl extends ChatJoinChannelFailed {
     required String channel,
     required String reason,
   }) : super._(
-         channel: channel,
-         reason: reason,
-       );
+          channel: channel,
+          reason: reason,
+        );
 
   /// Returns a shallow copy of this [ChatJoinChannelFailed]
   /// with some or all fields replaced by the given arguments.

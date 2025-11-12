@@ -9,13 +9,11 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
-import 'package:serverpod/protocol.dart' as _i2;
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-
+import 'package:serverpod/protocol.dart' as _i2;
 import 'module_class.dart' as _i3;
 import 'module_feature/models/my_feature_model.dart' as _i4;
-
 export 'module_class.dart';
 export 'module_feature/models/my_feature_model.dart';
 
@@ -30,7 +28,7 @@ class Protocol extends _i1.SerializationManagerServer {
 
   @override
   T deserialize<T>(
-    final dynamic data, [
+    dynamic data, [
     Type? t,
   ]) {
     t ??= T;
@@ -64,7 +62,7 @@ class Protocol extends _i1.SerializationManagerServer {
   }
 
   @override
-  String? getClassNameForObject(final Object? data) {
+  String? getClassNameForObject(Object? data) {
     String? className = super.getClassNameForObject(data);
     if (className != null) return className;
     switch (data) {
@@ -81,8 +79,8 @@ class Protocol extends _i1.SerializationManagerServer {
   }
 
   @override
-  dynamic deserializeByClassName(final Map<String, dynamic> data) {
-    final dataClassName = data['className'];
+  dynamic deserializeByClassName(Map<String, dynamic> data) {
+    var dataClassName = data['className'];
     if (dataClassName is! String) {
       return super.deserializeByClassName(data);
     }
@@ -100,9 +98,9 @@ class Protocol extends _i1.SerializationManagerServer {
   }
 
   @override
-  _i1.Table? getTableForType(final Type t) {
+  _i1.Table? getTableForType(Type t) {
     {
-      final table = _i2.Protocol().getTableForType(t);
+      var table = _i2.Protocol().getTableForType(t);
       if (table != null) {
         return table;
       }
@@ -123,13 +121,13 @@ class Protocol extends _i1.SerializationManagerServer {
 /// Throws in case the record type is not known.
 ///
 /// This method will return `null` (only) for `null` inputs.
-Map<String, dynamic>? mapRecordToJson(final Record? record) {
+Map<String, dynamic>? mapRecordToJson(Record? record) {
   if (record == null) {
     return null;
   }
   if (record is (bool,)) {
     return {
-      'p': [
+      "p": [
         record.$1,
       ],
     };
@@ -148,7 +146,7 @@ Map<String, dynamic>? mapRecordToJson(final Record? record) {
 /// Returns either a `List<dynamic>` (for List, Sets, and Maps with
 /// non-String keys) or a `Map<String, dynamic>` in case the input was
 /// a `Map<String, …>`.
-Object? mapContainerToJson(final Object obj) {
+Object? mapContainerToJson(Object obj) {
   if (obj is! Iterable && obj is! Map) {
     throw ArgumentError.value(
       obj,
@@ -157,32 +155,32 @@ Object? mapContainerToJson(final Object obj) {
     );
   }
 
-  dynamic mapIfNeeded(final Object? obj) {
+  dynamic mapIfNeeded(Object? obj) {
     return switch (obj) {
-      final Record record => mapRecordToJson(record),
-      final Iterable iterable => mapContainerToJson(iterable),
-      final Map map => mapContainerToJson(map),
-      final Object? value => value,
+      Record record => mapRecordToJson(record),
+      Iterable iterable => mapContainerToJson(iterable),
+      Map map => mapContainerToJson(map),
+      Object? value => value,
     };
   }
 
   switch (obj) {
     case Map<String, dynamic>():
       return {
-        for (final entry in obj.entries) entry.key: mapIfNeeded(entry.value),
+        for (var entry in obj.entries) entry.key: mapIfNeeded(entry.value),
       };
     case Map():
       return [
-        for (final entry in obj.entries)
+        for (var entry in obj.entries)
           {
             'k': mapIfNeeded(entry.key),
             'v': mapIfNeeded(entry.value),
-          },
+          }
       ];
 
     case Iterable():
       return [
-        for (final e in obj) mapIfNeeded(e),
+        for (var e in obj) mapIfNeeded(e),
       ];
   }
 

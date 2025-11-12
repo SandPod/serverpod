@@ -14,7 +14,12 @@ import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'simple_data.dart' as _i2;
 
 abstract class ObjectFieldPersist implements _i1.SerializableModel {
-  ObjectFieldPersist._({this.id, required this.normal, this.api, this.data});
+  ObjectFieldPersist._({
+    this.id,
+    required this.normal,
+    this.api,
+    this.data,
+  });
 
   factory ObjectFieldPersist({
     int? id,
@@ -31,8 +36,7 @@ abstract class ObjectFieldPersist implements _i1.SerializableModel {
       data: jsonSerialization['data'] == null
           ? null
           : _i2.SimpleData.fromJson(
-              (jsonSerialization['data'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['data'] as Map<String, dynamic>)),
     );
   }
 
@@ -80,7 +84,12 @@ class _ObjectFieldPersistImpl extends ObjectFieldPersist {
     required String normal,
     String? api,
     _i2.SimpleData? data,
-  }) : super._(id: id, normal: normal, api: api, data: data);
+  }) : super._(
+          id: id,
+          normal: normal,
+          api: api,
+          data: data,
+        );
 
   /// Returns a shallow copy of this [ObjectFieldPersist]
   /// with some or all fields replaced by the given arguments.

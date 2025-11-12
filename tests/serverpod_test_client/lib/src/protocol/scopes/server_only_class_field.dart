@@ -18,8 +18,7 @@ abstract class ServerOnlyClassField implements _i1.SerializableModel {
   factory ServerOnlyClassField() = _ServerOnlyClassFieldImpl;
 
   factory ServerOnlyClassField.fromJson(
-    Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ServerOnlyClassField();
   }
 

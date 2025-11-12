@@ -13,9 +13,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-
-import '../../models_with_relations/one_to_many/comment.dart' as _i3;
 import '../../models_with_relations/one_to_many/customer.dart' as _i2;
+import '../../models_with_relations/one_to_many/comment.dart' as _i3;
 
 abstract class Order implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   Order._({
@@ -27,14 +26,14 @@ abstract class Order implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   });
 
   factory Order({
-    final int? id,
-    required final String description,
-    required final int customerId,
-    final _i2.Customer? customer,
-    final List<_i3.Comment>? comments,
+    int? id,
+    required String description,
+    required int customerId,
+    _i2.Customer? customer,
+    List<_i3.Comment>? comments,
   }) = _OrderImpl;
 
-  factory Order.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory Order.fromJson(Map<String, dynamic> jsonSerialization) {
     return Order(
       id: jsonSerialization['id'] as int?,
       description: jsonSerialization['description'] as String,
@@ -42,10 +41,9 @@ abstract class Order implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
       customer: jsonSerialization['customer'] == null
           ? null
           : _i2.Customer.fromJson(
-              (jsonSerialization['customer'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['customer'] as Map<String, dynamic>)),
       comments: (jsonSerialization['comments'] as List?)
-          ?.map((final e) => _i3.Comment.fromJson((e as Map<String, dynamic>)))
+          ?.map((e) => _i3.Comment.fromJson((e as Map<String, dynamic>)))
           .toList(),
     );
   }
@@ -72,11 +70,11 @@ abstract class Order implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   Order copyWith({
-    final int? id,
-    final String? description,
-    final int? customerId,
-    final _i2.Customer? customer,
-    final List<_i3.Comment>? comments,
+    int? id,
+    String? description,
+    int? customerId,
+    _i2.Customer? customer,
+    List<_i3.Comment>? comments,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -86,7 +84,7 @@ abstract class Order implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
       'customerId': customerId,
       if (customer != null) 'customer': customer?.toJson(),
       if (comments != null)
-        'comments': comments?.toJson(valueToJson: (final v) => v.toJson()),
+        'comments': comments?.toJson(valueToJson: (v) => v.toJson()),
     };
   }
 
@@ -98,13 +96,13 @@ abstract class Order implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
       'customerId': customerId,
       if (customer != null) 'customer': customer?.toJsonForProtocol(),
       if (comments != null)
-        'comments': comments?.toJson(valueToJson: (final v) => v.toJsonForProtocol()),
+        'comments': comments?.toJson(valueToJson: (v) => v.toJsonForProtocol()),
     };
   }
 
   static OrderInclude include({
-    final _i2.CustomerInclude? customer,
-    final _i3.CommentIncludeList? comments,
+    _i2.CustomerInclude? customer,
+    _i3.CommentIncludeList? comments,
   }) {
     return OrderInclude._(
       customer: customer,
@@ -113,13 +111,13 @@ abstract class Order implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   }
 
   static OrderIncludeList includeList({
-    final _i1.WhereExpressionBuilder<OrderTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<OrderTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<OrderTable>? orderByList,
-    final OrderInclude? include,
+    _i1.WhereExpressionBuilder<OrderTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<OrderTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<OrderTable>? orderByList,
+    OrderInclude? include,
   }) {
     return OrderIncludeList._(
       where: where,
@@ -142,40 +140,39 @@ class _Undefined {}
 
 class _OrderImpl extends Order {
   _OrderImpl({
-    final int? id,
-    required final String description,
-    required final int customerId,
-    final _i2.Customer? customer,
-    final List<_i3.Comment>? comments,
+    int? id,
+    required String description,
+    required int customerId,
+    _i2.Customer? customer,
+    List<_i3.Comment>? comments,
   }) : super._(
-         id: id,
-         description: description,
-         customerId: customerId,
-         customer: customer,
-         comments: comments,
-       );
+          id: id,
+          description: description,
+          customerId: customerId,
+          customer: customer,
+          comments: comments,
+        );
 
   /// Returns a shallow copy of this [Order]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   Order copyWith({
-    final Object? id = _Undefined,
-    final String? description,
-    final int? customerId,
-    final Object? customer = _Undefined,
-    final Object? comments = _Undefined,
+    Object? id = _Undefined,
+    String? description,
+    int? customerId,
+    Object? customer = _Undefined,
+    Object? comments = _Undefined,
   }) {
     return Order(
       id: id is int? ? id : this.id,
       description: description ?? this.description,
       customerId: customerId ?? this.customerId,
-      customer: customer is _i2.Customer?
-          ? customer
-          : this.customer?.copyWith(),
+      customer:
+          customer is _i2.Customer? ? customer : this.customer?.copyWith(),
       comments: comments is List<_i3.Comment>?
           ? comments
-          : this.comments?.map((final e0) => e0.copyWith()).toList(),
+          : this.comments?.map((e0) => e0.copyWith()).toList(),
     );
   }
 }
@@ -183,15 +180,15 @@ class _OrderImpl extends Order {
 class OrderUpdateTable extends _i1.UpdateTable<OrderTable> {
   OrderUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> description(final String value) => _i1.ColumnValue(
-    table.description,
-    value,
-  );
+  _i1.ColumnValue<String, String> description(String value) => _i1.ColumnValue(
+        table.description,
+        value,
+      );
 
-  _i1.ColumnValue<int, int> customerId(final int value) => _i1.ColumnValue(
-    table.customerId,
-    value,
-  );
+  _i1.ColumnValue<int, int> customerId(int value) => _i1.ColumnValue(
+        table.customerId,
+        value,
+      );
 }
 
 class OrderTable extends _i1.Table<int?> {
@@ -226,7 +223,7 @@ class OrderTable extends _i1.Table<int?> {
       field: Order.t.customerId,
       foreignField: _i2.Customer.t.id,
       tableRelation: tableRelation,
-      createTable: (final foreignTableRelation) =>
+      createTable: (foreignTableRelation) =>
           _i2.CustomerTable(tableRelation: foreignTableRelation),
     );
     return _customer!;
@@ -239,7 +236,7 @@ class OrderTable extends _i1.Table<int?> {
       field: Order.t.id,
       foreignField: _i3.Comment.t.orderId,
       tableRelation: tableRelation,
-      createTable: (final foreignTableRelation) =>
+      createTable: (foreignTableRelation) =>
           _i3.CommentTable(tableRelation: foreignTableRelation),
     );
     return ___comments!;
@@ -247,32 +244,31 @@ class OrderTable extends _i1.Table<int?> {
 
   _i1.ManyRelation<_i3.CommentTable> get comments {
     if (_comments != null) return _comments!;
-    final relationTable = _i1.createRelationTable(
+    var relationTable = _i1.createRelationTable(
       relationFieldName: 'comments',
       field: Order.t.id,
       foreignField: _i3.Comment.t.orderId,
       tableRelation: tableRelation,
-      createTable: (final foreignTableRelation) =>
+      createTable: (foreignTableRelation) =>
           _i3.CommentTable(tableRelation: foreignTableRelation),
     );
     _comments = _i1.ManyRelation<_i3.CommentTable>(
       tableWithRelations: relationTable,
       table: _i3.CommentTable(
-        tableRelation: relationTable.tableRelation!.lastRelation,
-      ),
+          tableRelation: relationTable.tableRelation!.lastRelation),
     );
     return _comments!;
   }
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    description,
-    customerId,
-  ];
+        id,
+        description,
+        customerId,
+      ];
 
   @override
-  _i1.Table? getRelationTable(final String relationField) {
+  _i1.Table? getRelationTable(String relationField) {
     if (relationField == 'customer') {
       return customer;
     }
@@ -285,8 +281,8 @@ class OrderTable extends _i1.Table<int?> {
 
 class OrderInclude extends _i1.IncludeObject {
   OrderInclude._({
-    final _i2.CustomerInclude? customer,
-    final _i3.CommentIncludeList? comments,
+    _i2.CustomerInclude? customer,
+    _i3.CommentIncludeList? comments,
   }) {
     _customer = customer;
     _comments = comments;
@@ -298,9 +294,9 @@ class OrderInclude extends _i1.IncludeObject {
 
   @override
   Map<String, _i1.Include?> get includes => {
-    'customer': _customer,
-    'comments': _comments,
-  };
+        'customer': _customer,
+        'comments': _comments,
+      };
 
   @override
   _i1.Table<int?> get table => Order.t;
@@ -308,7 +304,7 @@ class OrderInclude extends _i1.IncludeObject {
 
 class OrderIncludeList extends _i1.IncludeList {
   OrderIncludeList._({
-    final _i1.WhereExpressionBuilder<OrderTable>? where,
+    _i1.WhereExpressionBuilder<OrderTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -356,15 +352,15 @@ class OrderRepository {
   /// );
   /// ```
   Future<List<Order>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<OrderTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<OrderTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<OrderTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final OrderInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<OrderTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<OrderTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<OrderTable>? orderByList,
+    _i1.Transaction? transaction,
+    OrderInclude? include,
   }) async {
     return session.db.find<Order>(
       where: where?.call(Order.t),
@@ -396,14 +392,14 @@ class OrderRepository {
   /// );
   /// ```
   Future<Order?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<OrderTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<OrderTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<OrderTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final OrderInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<OrderTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<OrderTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<OrderTable>? orderByList,
+    _i1.Transaction? transaction,
+    OrderInclude? include,
   }) async {
     return session.db.findFirstRow<Order>(
       where: where?.call(Order.t),
@@ -418,10 +414,10 @@ class OrderRepository {
 
   /// Finds a single [Order] by its [id] or null if no such row exists.
   Future<Order?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
-    final OrderInclude? include,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
+    OrderInclude? include,
   }) async {
     return session.db.findById<Order>(
       id,
@@ -437,9 +433,9 @@ class OrderRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<Order>> insert(
-    final _i1.Session session,
-    final List<Order> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Order> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<Order>(
       rows,
@@ -451,9 +447,9 @@ class OrderRepository {
   ///
   /// The returned [Order] will have its `id` field set.
   Future<Order> insertRow(
-    final _i1.Session session,
-    final Order row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Order row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<Order>(
       row,
@@ -467,10 +463,10 @@ class OrderRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<Order>> update(
-    final _i1.Session session,
-    final List<Order> rows, {
-    final _i1.ColumnSelections<OrderTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Order> rows, {
+    _i1.ColumnSelections<OrderTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<Order>(
       rows,
@@ -483,10 +479,10 @@ class OrderRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<Order> updateRow(
-    final _i1.Session session,
-    final Order row, {
-    final _i1.ColumnSelections<OrderTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Order row, {
+    _i1.ColumnSelections<OrderTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<Order>(
       row,
@@ -498,10 +494,10 @@ class OrderRepository {
   /// Updates a single [Order] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<Order?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<OrderUpdateTable> columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<OrderUpdateTable> columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<Order>(
       id,
@@ -513,15 +509,15 @@ class OrderRepository {
   /// Updates all [Order]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<Order>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<OrderUpdateTable> columnValues,
-    required final _i1.WhereExpressionBuilder<OrderTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<OrderTable>? orderBy,
-    final _i1.OrderByListBuilder<OrderTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<OrderUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<OrderTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<OrderTable>? orderBy,
+    _i1.OrderByListBuilder<OrderTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<Order>(
       columnValues: columnValues(Order.t.updateTable),
@@ -539,9 +535,9 @@ class OrderRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<Order>> delete(
-    final _i1.Session session,
-    final List<Order> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Order> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<Order>(
       rows,
@@ -551,9 +547,9 @@ class OrderRepository {
 
   /// Deletes a single [Order].
   Future<Order> deleteRow(
-    final _i1.Session session,
-    final Order row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Order row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<Order>(
       row,
@@ -563,9 +559,9 @@ class OrderRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<Order>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<OrderTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<OrderTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<Order>(
       where: where(Order.t),
@@ -576,10 +572,10 @@ class OrderRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<OrderTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<OrderTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<Order>(
       where: where?.call(Order.t),
@@ -595,19 +591,19 @@ class OrderAttachRepository {
   /// Creates a relation between this [Order] and the given [Comment]s
   /// by setting each [Comment]'s foreign key `orderId` to refer to this [Order].
   Future<void> comments(
-    final _i1.Session session,
-    final Order order,
-    final List<_i3.Comment> comment, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Order order,
+    List<_i3.Comment> comment, {
+    _i1.Transaction? transaction,
   }) async {
-    if (comment.any((final e) => e.id == null)) {
+    if (comment.any((e) => e.id == null)) {
       throw ArgumentError.notNull('comment.id');
     }
     if (order.id == null) {
       throw ArgumentError.notNull('order.id');
     }
 
-    final $comment = comment.map((final e) => e.copyWith(orderId: order.id)).toList();
+    var $comment = comment.map((e) => e.copyWith(orderId: order.id)).toList();
     await session.db.update<_i3.Comment>(
       $comment,
       columns: [_i3.Comment.t.orderId],
@@ -622,10 +618,10 @@ class OrderAttachRowRepository {
   /// Creates a relation between the given [Order] and [Customer]
   /// by setting the [Order]'s foreign key `customerId` to refer to the [Customer].
   Future<void> customer(
-    final _i1.Session session,
-    final Order order,
-    final _i2.Customer customer, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Order order,
+    _i2.Customer customer, {
+    _i1.Transaction? transaction,
   }) async {
     if (order.id == null) {
       throw ArgumentError.notNull('order.id');
@@ -634,7 +630,7 @@ class OrderAttachRowRepository {
       throw ArgumentError.notNull('customer.id');
     }
 
-    final $order = order.copyWith(customerId: customer.id);
+    var $order = order.copyWith(customerId: customer.id);
     await session.db.updateRow<Order>(
       $order,
       columns: [Order.t.customerId],
@@ -645,10 +641,10 @@ class OrderAttachRowRepository {
   /// Creates a relation between this [Order] and the given [Comment]
   /// by setting the [Comment]'s foreign key `orderId` to refer to this [Order].
   Future<void> comments(
-    final _i1.Session session,
-    final Order order,
-    final _i3.Comment comment, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Order order,
+    _i3.Comment comment, {
+    _i1.Transaction? transaction,
   }) async {
     if (comment.id == null) {
       throw ArgumentError.notNull('comment.id');
@@ -657,7 +653,7 @@ class OrderAttachRowRepository {
       throw ArgumentError.notNull('order.id');
     }
 
-    final $comment = comment.copyWith(orderId: order.id);
+    var $comment = comment.copyWith(orderId: order.id);
     await session.db.updateRow<_i3.Comment>(
       $comment,
       columns: [_i3.Comment.t.orderId],

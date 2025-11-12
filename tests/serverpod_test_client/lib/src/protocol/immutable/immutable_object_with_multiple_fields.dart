@@ -32,8 +32,7 @@ abstract class ImmutableObjectWithMultipleFields
   }) = _ImmutableObjectWithMultipleFieldsImpl;
 
   factory ImmutableObjectWithMultipleFields.fromJson(
-    Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ImmutableObjectWithMultipleFields(
       anInt: jsonSerialization['anInt'] as int?,
       aBool: jsonSerialization['aBool'] as bool?,
@@ -67,20 +66,49 @@ abstract class ImmutableObjectWithMultipleFields
   });
   @override
   bool operator ==(Object other) {
-    return identical(other, this) ||
+    return identical(
+          other,
+          this,
+        ) ||
         other.runtimeType == runtimeType &&
             other is ImmutableObjectWithMultipleFields &&
-            (identical(other.anInt, anInt) || other.anInt == anInt) &&
-            (identical(other.aBool, aBool) || other.aBool == aBool) &&
-            (identical(other.aDouble, aDouble) || other.aDouble == aDouble) &&
-            (identical(other.aDateTime, aDateTime) ||
+            (identical(
+                  other.anInt,
+                  anInt,
+                ) ||
+                other.anInt == anInt) &&
+            (identical(
+                  other.aBool,
+                  aBool,
+                ) ||
+                other.aBool == aBool) &&
+            (identical(
+                  other.aDouble,
+                  aDouble,
+                ) ||
+                other.aDouble == aDouble) &&
+            (identical(
+                  other.aDateTime,
+                  aDateTime,
+                ) ||
                 other.aDateTime == aDateTime) &&
-            (identical(other.aString, aString) || other.aString == aString);
+            (identical(
+                  other.aString,
+                  aString,
+                ) ||
+                other.aString == aString);
   }
 
   @override
   int get hashCode {
-    return Object.hash(runtimeType, anInt, aBool, aDouble, aDateTime, aString);
+    return Object.hash(
+      runtimeType,
+      anInt,
+      aBool,
+      aDouble,
+      aDateTime,
+      aString,
+    );
   }
 
   @override
@@ -111,12 +139,12 @@ class _ImmutableObjectWithMultipleFieldsImpl
     DateTime? aDateTime,
     String? aString,
   }) : super._(
-         anInt: anInt,
-         aBool: aBool,
-         aDouble: aDouble,
-         aDateTime: aDateTime,
-         aString: aString,
-       );
+          anInt: anInt,
+          aBool: aBool,
+          aDouble: aDouble,
+          aDateTime: aDateTime,
+          aString: aString,
+        );
 
   /// Returns a shallow copy of this [ImmutableObjectWithMultipleFields]
   /// with some or all fields replaced by the given arguments.

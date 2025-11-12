@@ -30,8 +30,7 @@ enum DatabaseMigrationWarningType implements _i1.SerializableModel {
         return DatabaseMigrationWarningType.uniqueIndexCreated;
       default:
         throw ArgumentError(
-          'Value "$name" cannot be converted to "DatabaseMigrationWarningType"',
-        );
+            'Value "$name" cannot be converted to "DatabaseMigrationWarningType"');
     }
   }
 

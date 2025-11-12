@@ -9,10 +9,8 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i13;
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
-
 import 'chat_join_channel.dart' as _i2;
 import 'chat_join_channel_failed.dart' as _i3;
 import 'chat_joined_channel.dart' as _i4;
@@ -24,7 +22,7 @@ import 'chat_message_chunk.dart' as _i9;
 import 'chat_message_post.dart' as _i10;
 import 'chat_read_message.dart' as _i11;
 import 'chat_request_message_chunk.dart' as _i12;
-
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i13;
 export 'chat_join_channel.dart';
 export 'chat_join_channel_failed.dart';
 export 'chat_joined_channel.dart';
@@ -47,7 +45,7 @@ class Protocol extends _i1.SerializationManager {
 
   @override
   T deserialize<T>(
-    final dynamic data, [
+    dynamic data, [
     Type? t,
   ]) {
     t ??= T;
@@ -106,9 +104,8 @@ class Protocol extends _i1.SerializationManager {
     }
     if (t == _i1.getType<_i8.ChatMessageAttachmentUploadDescription?>()) {
       return (data != null
-              ? _i8.ChatMessageAttachmentUploadDescription.fromJson(data)
-              : null)
-          as T;
+          ? _i8.ChatMessageAttachmentUploadDescription.fromJson(data)
+          : null) as T;
     }
     if (t == _i1.getType<_i9.ChatMessageChunk?>()) {
       return (data != null ? _i9.ChatMessageChunk.fromJson(data) : null) as T;
@@ -125,23 +122,21 @@ class Protocol extends _i1.SerializationManager {
     }
     if (t == _i1.getType<List<_i7.ChatMessageAttachment>?>()) {
       return (data != null
-              ? (data as List)
-                    .map((final e) => deserialize<_i7.ChatMessageAttachment>(e))
-                    .toList()
-              : null)
-          as T;
+          ? (data as List)
+              .map((e) => deserialize<_i7.ChatMessageAttachment>(e))
+              .toList()
+          : null) as T;
     }
     if (t == List<_i6.ChatMessage>) {
-      return (data as List).map((final e) => deserialize<_i6.ChatMessage>(e)).toList()
+      return (data as List).map((e) => deserialize<_i6.ChatMessage>(e)).toList()
           as T;
     }
     if (t == _i1.getType<List<_i7.ChatMessageAttachment>?>()) {
       return (data != null
-              ? (data as List)
-                    .map((final e) => deserialize<_i7.ChatMessageAttachment>(e))
-                    .toList()
-              : null)
-          as T;
+          ? (data as List)
+              .map((e) => deserialize<_i7.ChatMessageAttachment>(e))
+              .toList()
+          : null) as T;
     }
     try {
       return _i13.Protocol().deserialize<T>(data, t);
@@ -150,7 +145,7 @@ class Protocol extends _i1.SerializationManager {
   }
 
   @override
-  String? getClassNameForObject(final Object? data) {
+  String? getClassNameForObject(Object? data) {
     String? className = super.getClassNameForObject(data);
     if (className != null) return className;
     switch (data) {
@@ -185,8 +180,8 @@ class Protocol extends _i1.SerializationManager {
   }
 
   @override
-  dynamic deserializeByClassName(final Map<String, dynamic> data) {
-    final dataClassName = data['className'];
+  dynamic deserializeByClassName(Map<String, dynamic> data) {
+    var dataClassName = data['className'];
     if (dataClassName is! String) {
       return super.deserializeByClassName(data);
     }
@@ -210,8 +205,7 @@ class Protocol extends _i1.SerializationManager {
     }
     if (dataClassName == 'ChatMessageAttachmentUploadDescription') {
       return deserialize<_i8.ChatMessageAttachmentUploadDescription>(
-        data['data'],
-      );
+          data['data']);
     }
     if (dataClassName == 'ChatMessageChunk') {
       return deserialize<_i9.ChatMessageChunk>(data['data']);

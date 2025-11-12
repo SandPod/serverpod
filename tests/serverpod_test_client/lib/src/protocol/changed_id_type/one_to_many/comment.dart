@@ -32,14 +32,12 @@ abstract class CommentInt implements _i1.SerializableModel {
     return CommentInt(
       id: jsonSerialization['id'] as int?,
       description: jsonSerialization['description'] as String,
-      orderId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['orderId'],
-      ),
+      orderId:
+          _i1.UuidValueJsonExtension.fromJson(jsonSerialization['orderId']),
       order: jsonSerialization['order'] == null
           ? null
           : _i2.OrderUuid.fromJson(
-              (jsonSerialization['order'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['order'] as Map<String, dynamic>)),
     );
   }
 
@@ -88,11 +86,11 @@ class _CommentIntImpl extends CommentInt {
     required _i1.UuidValue orderId,
     _i2.OrderUuid? order,
   }) : super._(
-         id: id,
-         description: description,
-         orderId: orderId,
-         order: order,
-       );
+          id: id,
+          description: description,
+          orderId: orderId,
+          order: order,
+        );
 
   /// Returns a shallow copy of this [CommentInt]
   /// with some or all fields replaced by the given arguments.

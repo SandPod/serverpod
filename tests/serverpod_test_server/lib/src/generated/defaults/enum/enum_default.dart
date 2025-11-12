@@ -11,52 +11,47 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-
-import '../../defaults/enum/enums/by_index_enum.dart' as _i3;
 import '../../defaults/enum/enums/by_name_enum.dart' as _i2;
+import '../../defaults/enum/enums/by_index_enum.dart' as _i3;
 
 abstract class EnumDefault
     implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   EnumDefault._({
     this.id,
-    final _i2.ByNameEnum? byNameEnumDefault,
-    final _i2.ByNameEnum? byNameEnumDefaultNull,
-    final _i3.ByIndexEnum? byIndexEnumDefault,
-    final _i3.ByIndexEnum? byIndexEnumDefaultNull,
-  }) : byNameEnumDefault = byNameEnumDefault ?? _i2.ByNameEnum.byName1,
-       byNameEnumDefaultNull = byNameEnumDefaultNull ?? _i2.ByNameEnum.byName2,
-       byIndexEnumDefault = byIndexEnumDefault ?? _i3.ByIndexEnum.byIndex1,
-       byIndexEnumDefaultNull =
-           byIndexEnumDefaultNull ?? _i3.ByIndexEnum.byIndex2;
+    _i2.ByNameEnum? byNameEnumDefault,
+    _i2.ByNameEnum? byNameEnumDefaultNull,
+    _i3.ByIndexEnum? byIndexEnumDefault,
+    _i3.ByIndexEnum? byIndexEnumDefaultNull,
+  })  : byNameEnumDefault = byNameEnumDefault ?? _i2.ByNameEnum.byName1,
+        byNameEnumDefaultNull = byNameEnumDefaultNull ?? _i2.ByNameEnum.byName2,
+        byIndexEnumDefault = byIndexEnumDefault ?? _i3.ByIndexEnum.byIndex1,
+        byIndexEnumDefaultNull =
+            byIndexEnumDefaultNull ?? _i3.ByIndexEnum.byIndex2;
 
   factory EnumDefault({
-    final int? id,
-    final _i2.ByNameEnum? byNameEnumDefault,
-    final _i2.ByNameEnum? byNameEnumDefaultNull,
-    final _i3.ByIndexEnum? byIndexEnumDefault,
-    final _i3.ByIndexEnum? byIndexEnumDefaultNull,
+    int? id,
+    _i2.ByNameEnum? byNameEnumDefault,
+    _i2.ByNameEnum? byNameEnumDefaultNull,
+    _i3.ByIndexEnum? byIndexEnumDefault,
+    _i3.ByIndexEnum? byIndexEnumDefaultNull,
   }) = _EnumDefaultImpl;
 
-  factory EnumDefault.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory EnumDefault.fromJson(Map<String, dynamic> jsonSerialization) {
     return EnumDefault(
       id: jsonSerialization['id'] as int?,
       byNameEnumDefault: _i2.ByNameEnum.fromJson(
-        (jsonSerialization['byNameEnumDefault'] as String),
-      ),
+          (jsonSerialization['byNameEnumDefault'] as String)),
       byNameEnumDefaultNull: jsonSerialization['byNameEnumDefaultNull'] == null
           ? null
           : _i2.ByNameEnum.fromJson(
-              (jsonSerialization['byNameEnumDefaultNull'] as String),
-            ),
+              (jsonSerialization['byNameEnumDefaultNull'] as String)),
       byIndexEnumDefault: _i3.ByIndexEnum.fromJson(
-        (jsonSerialization['byIndexEnumDefault'] as int),
-      ),
+          (jsonSerialization['byIndexEnumDefault'] as int)),
       byIndexEnumDefaultNull:
           jsonSerialization['byIndexEnumDefaultNull'] == null
-          ? null
-          : _i3.ByIndexEnum.fromJson(
-              (jsonSerialization['byIndexEnumDefaultNull'] as int),
-            ),
+              ? null
+              : _i3.ByIndexEnum.fromJson(
+                  (jsonSerialization['byIndexEnumDefaultNull'] as int)),
     );
   }
 
@@ -82,11 +77,11 @@ abstract class EnumDefault
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   EnumDefault copyWith({
-    final int? id,
-    final _i2.ByNameEnum? byNameEnumDefault,
-    final _i2.ByNameEnum? byNameEnumDefaultNull,
-    final _i3.ByIndexEnum? byIndexEnumDefault,
-    final _i3.ByIndexEnum? byIndexEnumDefaultNull,
+    int? id,
+    _i2.ByNameEnum? byNameEnumDefault,
+    _i2.ByNameEnum? byNameEnumDefaultNull,
+    _i3.ByIndexEnum? byIndexEnumDefault,
+    _i3.ByIndexEnum? byIndexEnumDefaultNull,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -119,13 +114,13 @@ abstract class EnumDefault
   }
 
   static EnumDefaultIncludeList includeList({
-    final _i1.WhereExpressionBuilder<EnumDefaultTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<EnumDefaultTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<EnumDefaultTable>? orderByList,
-    final EnumDefaultInclude? include,
+    _i1.WhereExpressionBuilder<EnumDefaultTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<EnumDefaultTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<EnumDefaultTable>? orderByList,
+    EnumDefaultInclude? include,
   }) {
     return EnumDefaultIncludeList._(
       where: where,
@@ -148,29 +143,29 @@ class _Undefined {}
 
 class _EnumDefaultImpl extends EnumDefault {
   _EnumDefaultImpl({
-    final int? id,
-    final _i2.ByNameEnum? byNameEnumDefault,
-    final _i2.ByNameEnum? byNameEnumDefaultNull,
-    final _i3.ByIndexEnum? byIndexEnumDefault,
-    final _i3.ByIndexEnum? byIndexEnumDefaultNull,
+    int? id,
+    _i2.ByNameEnum? byNameEnumDefault,
+    _i2.ByNameEnum? byNameEnumDefaultNull,
+    _i3.ByIndexEnum? byIndexEnumDefault,
+    _i3.ByIndexEnum? byIndexEnumDefaultNull,
   }) : super._(
-         id: id,
-         byNameEnumDefault: byNameEnumDefault,
-         byNameEnumDefaultNull: byNameEnumDefaultNull,
-         byIndexEnumDefault: byIndexEnumDefault,
-         byIndexEnumDefaultNull: byIndexEnumDefaultNull,
-       );
+          id: id,
+          byNameEnumDefault: byNameEnumDefault,
+          byNameEnumDefaultNull: byNameEnumDefaultNull,
+          byIndexEnumDefault: byIndexEnumDefault,
+          byIndexEnumDefaultNull: byIndexEnumDefaultNull,
+        );
 
   /// Returns a shallow copy of this [EnumDefault]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   EnumDefault copyWith({
-    final Object? id = _Undefined,
-    final _i2.ByNameEnum? byNameEnumDefault,
-    final Object? byNameEnumDefaultNull = _Undefined,
-    final _i3.ByIndexEnum? byIndexEnumDefault,
-    final Object? byIndexEnumDefaultNull = _Undefined,
+    Object? id = _Undefined,
+    _i2.ByNameEnum? byNameEnumDefault,
+    Object? byNameEnumDefaultNull = _Undefined,
+    _i3.ByIndexEnum? byIndexEnumDefault,
+    Object? byIndexEnumDefaultNull = _Undefined,
   }) {
     return EnumDefault(
       id: id is int? ? id : this.id,
@@ -190,32 +185,32 @@ class EnumDefaultUpdateTable extends _i1.UpdateTable<EnumDefaultTable> {
   EnumDefaultUpdateTable(super.table);
 
   _i1.ColumnValue<_i2.ByNameEnum, _i2.ByNameEnum> byNameEnumDefault(
-    final _i2.ByNameEnum value,
-  ) => _i1.ColumnValue(
-    table.byNameEnumDefault,
-    value,
-  );
+          _i2.ByNameEnum value) =>
+      _i1.ColumnValue(
+        table.byNameEnumDefault,
+        value,
+      );
 
   _i1.ColumnValue<_i2.ByNameEnum, _i2.ByNameEnum> byNameEnumDefaultNull(
-    final _i2.ByNameEnum? value,
-  ) => _i1.ColumnValue(
-    table.byNameEnumDefaultNull,
-    value,
-  );
+          _i2.ByNameEnum? value) =>
+      _i1.ColumnValue(
+        table.byNameEnumDefaultNull,
+        value,
+      );
 
   _i1.ColumnValue<_i3.ByIndexEnum, _i3.ByIndexEnum> byIndexEnumDefault(
-    final _i3.ByIndexEnum value,
-  ) => _i1.ColumnValue(
-    table.byIndexEnumDefault,
-    value,
-  );
+          _i3.ByIndexEnum value) =>
+      _i1.ColumnValue(
+        table.byIndexEnumDefault,
+        value,
+      );
 
   _i1.ColumnValue<_i3.ByIndexEnum, _i3.ByIndexEnum> byIndexEnumDefaultNull(
-    final _i3.ByIndexEnum? value,
-  ) => _i1.ColumnValue(
-    table.byIndexEnumDefaultNull,
-    value,
-  );
+          _i3.ByIndexEnum? value) =>
+      _i1.ColumnValue(
+        table.byIndexEnumDefaultNull,
+        value,
+      );
 }
 
 class EnumDefaultTable extends _i1.Table<int?> {
@@ -259,12 +254,12 @@ class EnumDefaultTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    byNameEnumDefault,
-    byNameEnumDefaultNull,
-    byIndexEnumDefault,
-    byIndexEnumDefaultNull,
-  ];
+        id,
+        byNameEnumDefault,
+        byNameEnumDefaultNull,
+        byIndexEnumDefault,
+        byIndexEnumDefaultNull,
+      ];
 }
 
 class EnumDefaultInclude extends _i1.IncludeObject {
@@ -279,7 +274,7 @@ class EnumDefaultInclude extends _i1.IncludeObject {
 
 class EnumDefaultIncludeList extends _i1.IncludeList {
   EnumDefaultIncludeList._({
-    final _i1.WhereExpressionBuilder<EnumDefaultTable>? where,
+    _i1.WhereExpressionBuilder<EnumDefaultTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -323,14 +318,14 @@ class EnumDefaultRepository {
   /// );
   /// ```
   Future<List<EnumDefault>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<EnumDefaultTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<EnumDefaultTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<EnumDefaultTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<EnumDefaultTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<EnumDefaultTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<EnumDefaultTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<EnumDefault>(
       where: where?.call(EnumDefault.t),
@@ -361,13 +356,13 @@ class EnumDefaultRepository {
   /// );
   /// ```
   Future<EnumDefault?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<EnumDefaultTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<EnumDefaultTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<EnumDefaultTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<EnumDefaultTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<EnumDefaultTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<EnumDefaultTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<EnumDefault>(
       where: where?.call(EnumDefault.t),
@@ -381,9 +376,9 @@ class EnumDefaultRepository {
 
   /// Finds a single [EnumDefault] by its [id] or null if no such row exists.
   Future<EnumDefault?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<EnumDefault>(
       id,
@@ -398,9 +393,9 @@ class EnumDefaultRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<EnumDefault>> insert(
-    final _i1.Session session,
-    final List<EnumDefault> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<EnumDefault> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<EnumDefault>(
       rows,
@@ -412,9 +407,9 @@ class EnumDefaultRepository {
   ///
   /// The returned [EnumDefault] will have its `id` field set.
   Future<EnumDefault> insertRow(
-    final _i1.Session session,
-    final EnumDefault row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    EnumDefault row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<EnumDefault>(
       row,
@@ -428,10 +423,10 @@ class EnumDefaultRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<EnumDefault>> update(
-    final _i1.Session session,
-    final List<EnumDefault> rows, {
-    final _i1.ColumnSelections<EnumDefaultTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<EnumDefault> rows, {
+    _i1.ColumnSelections<EnumDefaultTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<EnumDefault>(
       rows,
@@ -444,10 +439,10 @@ class EnumDefaultRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<EnumDefault> updateRow(
-    final _i1.Session session,
-    final EnumDefault row, {
-    final _i1.ColumnSelections<EnumDefaultTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    EnumDefault row, {
+    _i1.ColumnSelections<EnumDefaultTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<EnumDefault>(
       row,
@@ -459,10 +454,10 @@ class EnumDefaultRepository {
   /// Updates a single [EnumDefault] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<EnumDefault?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<EnumDefaultUpdateTable> columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<EnumDefaultUpdateTable> columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<EnumDefault>(
       id,
@@ -474,15 +469,15 @@ class EnumDefaultRepository {
   /// Updates all [EnumDefault]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<EnumDefault>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<EnumDefaultUpdateTable> columnValues,
-    required final _i1.WhereExpressionBuilder<EnumDefaultTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<EnumDefaultTable>? orderBy,
-    final _i1.OrderByListBuilder<EnumDefaultTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<EnumDefaultUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<EnumDefaultTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<EnumDefaultTable>? orderBy,
+    _i1.OrderByListBuilder<EnumDefaultTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<EnumDefault>(
       columnValues: columnValues(EnumDefault.t.updateTable),
@@ -500,9 +495,9 @@ class EnumDefaultRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<EnumDefault>> delete(
-    final _i1.Session session,
-    final List<EnumDefault> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<EnumDefault> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<EnumDefault>(
       rows,
@@ -512,9 +507,9 @@ class EnumDefaultRepository {
 
   /// Deletes a single [EnumDefault].
   Future<EnumDefault> deleteRow(
-    final _i1.Session session,
-    final EnumDefault row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    EnumDefault row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<EnumDefault>(
       row,
@@ -524,9 +519,9 @@ class EnumDefaultRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<EnumDefault>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<EnumDefaultTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<EnumDefaultTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<EnumDefault>(
       where: where(EnumDefault.t),
@@ -537,10 +532,10 @@ class EnumDefaultRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<EnumDefaultTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<EnumDefaultTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<EnumDefault>(
       where: where?.call(EnumDefault.t),

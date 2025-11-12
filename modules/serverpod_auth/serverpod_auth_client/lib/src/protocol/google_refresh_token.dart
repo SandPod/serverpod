@@ -21,12 +21,12 @@ abstract class GoogleRefreshToken implements _i1.SerializableModel {
   });
 
   factory GoogleRefreshToken({
-    final int? id,
-    required final int userId,
-    required final String refreshToken,
+    int? id,
+    required int userId,
+    required String refreshToken,
   }) = _GoogleRefreshTokenImpl;
 
-  factory GoogleRefreshToken.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory GoogleRefreshToken.fromJson(Map<String, dynamic> jsonSerialization) {
     return GoogleRefreshToken(
       id: jsonSerialization['id'] as int?,
       userId: jsonSerialization['userId'] as int,
@@ -49,9 +49,9 @@ abstract class GoogleRefreshToken implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   GoogleRefreshToken copyWith({
-    final int? id,
-    final int? userId,
-    final String? refreshToken,
+    int? id,
+    int? userId,
+    String? refreshToken,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -72,23 +72,23 @@ class _Undefined {}
 
 class _GoogleRefreshTokenImpl extends GoogleRefreshToken {
   _GoogleRefreshTokenImpl({
-    final int? id,
-    required final int userId,
-    required final String refreshToken,
+    int? id,
+    required int userId,
+    required String refreshToken,
   }) : super._(
-         id: id,
-         userId: userId,
-         refreshToken: refreshToken,
-       );
+          id: id,
+          userId: userId,
+          refreshToken: refreshToken,
+        );
 
   /// Returns a shallow copy of this [GoogleRefreshToken]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   GoogleRefreshToken copyWith({
-    final Object? id = _Undefined,
-    final int? userId,
-    final String? refreshToken,
+    Object? id = _Undefined,
+    int? userId,
+    String? refreshToken,
   }) {
     return GoogleRefreshToken(
       id: id is int? ? id : this.id,

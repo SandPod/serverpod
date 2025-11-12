@@ -21,10 +21,9 @@ abstract class LogResult implements _i1.SerializableModel {
 
   factory LogResult.fromJson(Map<String, dynamic> jsonSerialization) {
     return LogResult(
-      entries: (jsonSerialization['entries'] as List)
-          .map((e) => _i2.LogEntry.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-    );
+        entries: (jsonSerialization['entries'] as List)
+            .map((e) => _i2.LogEntry.fromJson((e as Map<String, dynamic>)))
+            .toList());
   }
 
   /// The log entries in this result.
@@ -47,7 +46,7 @@ abstract class LogResult implements _i1.SerializableModel {
 
 class _LogResultImpl extends LogResult {
   _LogResultImpl({required List<_i2.LogEntry> entries})
-    : super._(entries: entries);
+      : super._(entries: entries);
 
   /// Returns a shallow copy of this [LogResult]
   /// with some or all fields replaced by the given arguments.
@@ -55,7 +54,6 @@ class _LogResultImpl extends LogResult {
   @override
   LogResult copyWith({List<_i2.LogEntry>? entries}) {
     return LogResult(
-      entries: entries ?? this.entries.map((e0) => e0.copyWith()).toList(),
-    );
+        entries: entries ?? this.entries.map((e0) => e0.copyWith()).toList());
   }
 }

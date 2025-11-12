@@ -24,15 +24,15 @@ abstract class AppleAuthInfo implements _i1.SerializableModel {
   });
 
   factory AppleAuthInfo({
-    required final String userIdentifier,
-    final String? email,
-    required final String fullName,
-    required final String nickname,
-    required final String identityToken,
-    required final String authorizationCode,
+    required String userIdentifier,
+    String? email,
+    required String fullName,
+    required String nickname,
+    required String identityToken,
+    required String authorizationCode,
   }) = _AppleAuthInfoImpl;
 
-  factory AppleAuthInfo.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory AppleAuthInfo.fromJson(Map<String, dynamic> jsonSerialization) {
     return AppleAuthInfo(
       userIdentifier: jsonSerialization['userIdentifier'] as String,
       email: jsonSerialization['email'] as String?,
@@ -65,12 +65,12 @@ abstract class AppleAuthInfo implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   AppleAuthInfo copyWith({
-    final String? userIdentifier,
-    final String? email,
-    final String? fullName,
-    final String? nickname,
-    final String? identityToken,
-    final String? authorizationCode,
+    String? userIdentifier,
+    String? email,
+    String? fullName,
+    String? nickname,
+    String? identityToken,
+    String? authorizationCode,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -94,32 +94,32 @@ class _Undefined {}
 
 class _AppleAuthInfoImpl extends AppleAuthInfo {
   _AppleAuthInfoImpl({
-    required final String userIdentifier,
-    final String? email,
-    required final String fullName,
-    required final String nickname,
-    required final String identityToken,
-    required final String authorizationCode,
+    required String userIdentifier,
+    String? email,
+    required String fullName,
+    required String nickname,
+    required String identityToken,
+    required String authorizationCode,
   }) : super._(
-         userIdentifier: userIdentifier,
-         email: email,
-         fullName: fullName,
-         nickname: nickname,
-         identityToken: identityToken,
-         authorizationCode: authorizationCode,
-       );
+          userIdentifier: userIdentifier,
+          email: email,
+          fullName: fullName,
+          nickname: nickname,
+          identityToken: identityToken,
+          authorizationCode: authorizationCode,
+        );
 
   /// Returns a shallow copy of this [AppleAuthInfo]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   AppleAuthInfo copyWith({
-    final String? userIdentifier,
-    final Object? email = _Undefined,
-    final String? fullName,
-    final String? nickname,
-    final String? identityToken,
-    final String? authorizationCode,
+    String? userIdentifier,
+    Object? email = _Undefined,
+    String? fullName,
+    String? nickname,
+    String? identityToken,
+    String? authorizationCode,
   }) {
     return AppleAuthInfo(
       userIdentifier: userIdentifier ?? this.userIdentifier,

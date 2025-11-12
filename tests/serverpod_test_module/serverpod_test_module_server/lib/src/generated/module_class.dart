@@ -23,20 +23,19 @@ abstract class ModuleClass
   });
 
   factory ModuleClass({
-    required final String name,
-    required final int data,
-    final (bool,)? record,
+    required String name,
+    required int data,
+    (bool,)? record,
   }) = _ModuleClassImpl;
 
-  factory ModuleClass.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory ModuleClass.fromJson(Map<String, dynamic> jsonSerialization) {
     return ModuleClass(
       name: jsonSerialization['name'] as String,
       data: jsonSerialization['data'] as int,
       record: jsonSerialization['record'] == null
           ? null
           : _i2.Protocol().deserialize<(bool,)?>(
-              (jsonSerialization['record'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['record'] as Map<String, dynamic>)),
     );
   }
 
@@ -50,9 +49,9 @@ abstract class ModuleClass
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ModuleClass copyWith({
-    final String? name,
-    final int? data,
-    final (bool,)? record,
+    String? name,
+    int? data,
+    (bool,)? record,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -82,23 +81,23 @@ class _Undefined {}
 
 class _ModuleClassImpl extends ModuleClass {
   _ModuleClassImpl({
-    required final String name,
-    required final int data,
-    final (bool,)? record,
+    required String name,
+    required int data,
+    (bool,)? record,
   }) : super._(
-         name: name,
-         data: data,
-         record: record,
-       );
+          name: name,
+          data: data,
+          record: record,
+        );
 
   /// Returns a shallow copy of this [ModuleClass]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   ModuleClass copyWith({
-    final String? name,
-    final int? data,
-    final Object? record = _Undefined,
+    String? name,
+    int? data,
+    Object? record = _Undefined,
   }) {
     return ModuleClass(
       name: name ?? this.name,
@@ -106,8 +105,8 @@ class _ModuleClassImpl extends ModuleClass {
       record: record is (bool,)?
           ? record
           : this.record == null
-          ? null
-          : (this.record!.$1,),
+              ? null
+              : (this.record!.$1,),
     );
   }
 }

@@ -9,10 +9,9 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
-import 'package:serverpod/serverpod.dart' as _i2;
-
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import '../protocol.dart' as _i1;
+import 'package:serverpod/serverpod.dart' as _i2;
 
 abstract class ChildWithDefault extends _i1.ParentWithDefault
     implements _i2.SerializableModel, _i2.ProtocolSerialization {
@@ -20,17 +19,17 @@ abstract class ChildWithDefault extends _i1.ParentWithDefault
     required super.name,
     super.parentDefault,
     required this.age,
-    final int? childDefault,
+    int? childDefault,
   }) : childDefault = childDefault ?? -1;
 
   factory ChildWithDefault({
-    required final String name,
-    final int? parentDefault,
-    required final int age,
-    final int? childDefault,
+    required String name,
+    int? parentDefault,
+    required int age,
+    int? childDefault,
   }) = _ChildWithDefaultImpl;
 
-  factory ChildWithDefault.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory ChildWithDefault.fromJson(Map<String, dynamic> jsonSerialization) {
     return ChildWithDefault(
       name: jsonSerialization['name'] as String,
       parentDefault: jsonSerialization['parentDefault'] as int,
@@ -48,10 +47,10 @@ abstract class ChildWithDefault extends _i1.ParentWithDefault
   @override
   @_i2.useResult
   ChildWithDefault copyWith({
-    final String? name,
-    final int? parentDefault,
-    final int? age,
-    final int? childDefault,
+    String? name,
+    int? parentDefault,
+    int? age,
+    int? childDefault,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -81,26 +80,26 @@ abstract class ChildWithDefault extends _i1.ParentWithDefault
 
 class _ChildWithDefaultImpl extends ChildWithDefault {
   _ChildWithDefaultImpl({
-    required final String name,
-    final int? parentDefault,
-    required final int age,
-    final int? childDefault,
+    required String name,
+    int? parentDefault,
+    required int age,
+    int? childDefault,
   }) : super._(
-         name: name,
-         parentDefault: parentDefault,
-         age: age,
-         childDefault: childDefault,
-       );
+          name: name,
+          parentDefault: parentDefault,
+          age: age,
+          childDefault: childDefault,
+        );
 
   /// Returns a shallow copy of this [ChildWithDefault]
   /// with some or all fields replaced by the given arguments.
   @_i2.useResult
   @override
   ChildWithDefault copyWith({
-    final String? name,
-    final int? parentDefault,
-    final int? age,
-    final int? childDefault,
+    String? name,
+    int? parentDefault,
+    int? age,
+    int? childDefault,
   }) {
     return ChildWithDefault(
       name: name ?? this.name,

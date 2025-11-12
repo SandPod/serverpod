@@ -37,14 +37,12 @@ abstract class ServerHealthConnectionInfo implements _i1.SerializableModel {
   }) = _ServerHealthConnectionInfoImpl;
 
   factory ServerHealthConnectionInfo.fromJson(
-    Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ServerHealthConnectionInfo(
       id: jsonSerialization['id'] as int?,
       serverId: jsonSerialization['serverId'] as String,
-      timestamp: _i1.DateTimeJsonExtension.fromJson(
-        jsonSerialization['timestamp'],
-      ),
+      timestamp:
+          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['timestamp']),
       active: jsonSerialization['active'] as int,
       closing: jsonSerialization['closing'] as int,
       idle: jsonSerialization['idle'] as int,
@@ -119,14 +117,14 @@ class _ServerHealthConnectionInfoImpl extends ServerHealthConnectionInfo {
     required int idle,
     required int granularity,
   }) : super._(
-         id: id,
-         serverId: serverId,
-         timestamp: timestamp,
-         active: active,
-         closing: closing,
-         idle: idle,
-         granularity: granularity,
-       );
+          id: id,
+          serverId: serverId,
+          timestamp: timestamp,
+          active: active,
+          closing: closing,
+          idle: idle,
+          granularity: granularity,
+        );
 
   /// Returns a shallow copy of this [ServerHealthConnectionInfo]
   /// with some or all fields replaced by the given arguments.

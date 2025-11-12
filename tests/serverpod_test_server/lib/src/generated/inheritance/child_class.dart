@@ -9,10 +9,9 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
-import 'package:serverpod/serverpod.dart' as _i2;
-
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import '../protocol.dart' as _i1;
+import 'package:serverpod/serverpod.dart' as _i2;
 
 abstract class ChildClass extends _i1.ParentClass
     implements _i2.SerializableModel, _i2.ProtocolSerialization {
@@ -24,13 +23,13 @@ abstract class ChildClass extends _i1.ParentClass
   });
 
   factory ChildClass({
-    final int? id,
-    required final String grandParentField,
-    required final String parentField,
-    required final int childField,
+    int? id,
+    required String grandParentField,
+    required String parentField,
+    required int childField,
   }) = _ChildClassImpl;
 
-  factory ChildClass.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory ChildClass.fromJson(Map<String, dynamic> jsonSerialization) {
     return ChildClass(
       id: jsonSerialization['id'] as int?,
       grandParentField: jsonSerialization['grandParentField'] as String,
@@ -46,10 +45,10 @@ abstract class ChildClass extends _i1.ParentClass
   @override
   @_i2.useResult
   ChildClass copyWith({
-    final Object? id,
-    final String? grandParentField,
-    final String? parentField,
-    final int? childField,
+    Object? id,
+    String? grandParentField,
+    String? parentField,
+    int? childField,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -81,26 +80,26 @@ class _Undefined {}
 
 class _ChildClassImpl extends ChildClass {
   _ChildClassImpl({
-    final int? id,
-    required final String grandParentField,
-    required final String parentField,
-    required final int childField,
+    int? id,
+    required String grandParentField,
+    required String parentField,
+    required int childField,
   }) : super._(
-         id: id,
-         grandParentField: grandParentField,
-         parentField: parentField,
-         childField: childField,
-       );
+          id: id,
+          grandParentField: grandParentField,
+          parentField: parentField,
+          childField: childField,
+        );
 
   /// Returns a shallow copy of this [ChildClass]
   /// with some or all fields replaced by the given arguments.
   @_i2.useResult
   @override
   ChildClass copyWith({
-    final Object? id = _Undefined,
-    final String? grandParentField,
-    final String? parentField,
-    final int? childField,
+    Object? id = _Undefined,
+    String? grandParentField,
+    String? parentField,
+    int? childField,
   }) {
     return ChildClass(
       id: id is int? ? id : this.id,

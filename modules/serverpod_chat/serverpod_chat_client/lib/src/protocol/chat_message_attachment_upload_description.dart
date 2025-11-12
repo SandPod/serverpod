@@ -21,13 +21,12 @@ abstract class ChatMessageAttachmentUploadDescription
   });
 
   factory ChatMessageAttachmentUploadDescription({
-    required final String filePath,
-    required final String uploadDescription,
+    required String filePath,
+    required String uploadDescription,
   }) = _ChatMessageAttachmentUploadDescriptionImpl;
 
   factory ChatMessageAttachmentUploadDescription.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ChatMessageAttachmentUploadDescription(
       filePath: jsonSerialization['filePath'] as String,
       uploadDescription: jsonSerialization['uploadDescription'] as String,
@@ -45,8 +44,8 @@ abstract class ChatMessageAttachmentUploadDescription
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ChatMessageAttachmentUploadDescription copyWith({
-    final String? filePath,
-    final String? uploadDescription,
+    String? filePath,
+    String? uploadDescription,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -65,20 +64,20 @@ abstract class ChatMessageAttachmentUploadDescription
 class _ChatMessageAttachmentUploadDescriptionImpl
     extends ChatMessageAttachmentUploadDescription {
   _ChatMessageAttachmentUploadDescriptionImpl({
-    required final String filePath,
-    required final String uploadDescription,
+    required String filePath,
+    required String uploadDescription,
   }) : super._(
-         filePath: filePath,
-         uploadDescription: uploadDescription,
-       );
+          filePath: filePath,
+          uploadDescription: uploadDescription,
+        );
 
   /// Returns a shallow copy of this [ChatMessageAttachmentUploadDescription]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   ChatMessageAttachmentUploadDescription copyWith({
-    final String? filePath,
-    final String? uploadDescription,
+    String? filePath,
+    String? uploadDescription,
   }) {
     return ChatMessageAttachmentUploadDescription(
       filePath: filePath ?? this.filePath,

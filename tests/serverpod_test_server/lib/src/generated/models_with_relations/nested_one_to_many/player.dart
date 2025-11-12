@@ -24,13 +24,13 @@ abstract class Player implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   });
 
   factory Player({
-    final int? id,
-    required final String name,
-    final int? teamId,
-    final _i2.Team? team,
+    int? id,
+    required String name,
+    int? teamId,
+    _i2.Team? team,
   }) = _PlayerImpl;
 
-  factory Player.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory Player.fromJson(Map<String, dynamic> jsonSerialization) {
     return Player(
       id: jsonSerialization['id'] as int?,
       name: jsonSerialization['name'] as String,
@@ -38,8 +38,7 @@ abstract class Player implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
       team: jsonSerialization['team'] == null
           ? null
           : _i2.Team.fromJson(
-              (jsonSerialization['team'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['team'] as Map<String, dynamic>)),
     );
   }
 
@@ -63,10 +62,10 @@ abstract class Player implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   Player copyWith({
-    final int? id,
-    final String? name,
-    final int? teamId,
-    final _i2.Team? team,
+    int? id,
+    String? name,
+    int? teamId,
+    _i2.Team? team,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -88,18 +87,18 @@ abstract class Player implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
     };
   }
 
-  static PlayerInclude include({final _i2.TeamInclude? team}) {
+  static PlayerInclude include({_i2.TeamInclude? team}) {
     return PlayerInclude._(team: team);
   }
 
   static PlayerIncludeList includeList({
-    final _i1.WhereExpressionBuilder<PlayerTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<PlayerTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<PlayerTable>? orderByList,
-    final PlayerInclude? include,
+    _i1.WhereExpressionBuilder<PlayerTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<PlayerTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<PlayerTable>? orderByList,
+    PlayerInclude? include,
   }) {
     return PlayerIncludeList._(
       where: where,
@@ -122,26 +121,26 @@ class _Undefined {}
 
 class _PlayerImpl extends Player {
   _PlayerImpl({
-    final int? id,
-    required final String name,
-    final int? teamId,
-    final _i2.Team? team,
+    int? id,
+    required String name,
+    int? teamId,
+    _i2.Team? team,
   }) : super._(
-         id: id,
-         name: name,
-         teamId: teamId,
-         team: team,
-       );
+          id: id,
+          name: name,
+          teamId: teamId,
+          team: team,
+        );
 
   /// Returns a shallow copy of this [Player]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   Player copyWith({
-    final Object? id = _Undefined,
-    final String? name,
-    final Object? teamId = _Undefined,
-    final Object? team = _Undefined,
+    Object? id = _Undefined,
+    String? name,
+    Object? teamId = _Undefined,
+    Object? team = _Undefined,
   }) {
     return Player(
       id: id is int? ? id : this.id,
@@ -155,15 +154,15 @@ class _PlayerImpl extends Player {
 class PlayerUpdateTable extends _i1.UpdateTable<PlayerTable> {
   PlayerUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> name(final String value) => _i1.ColumnValue(
-    table.name,
-    value,
-  );
+  _i1.ColumnValue<String, String> name(String value) => _i1.ColumnValue(
+        table.name,
+        value,
+      );
 
-  _i1.ColumnValue<int, int> teamId(final int? value) => _i1.ColumnValue(
-    table.teamId,
-    value,
-  );
+  _i1.ColumnValue<int, int> teamId(int? value) => _i1.ColumnValue(
+        table.teamId,
+        value,
+      );
 }
 
 class PlayerTable extends _i1.Table<int?> {
@@ -194,7 +193,7 @@ class PlayerTable extends _i1.Table<int?> {
       field: Player.t.teamId,
       foreignField: _i2.Team.t.id,
       tableRelation: tableRelation,
-      createTable: (final foreignTableRelation) =>
+      createTable: (foreignTableRelation) =>
           _i2.TeamTable(tableRelation: foreignTableRelation),
     );
     return _team!;
@@ -202,13 +201,13 @@ class PlayerTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    name,
-    teamId,
-  ];
+        id,
+        name,
+        teamId,
+      ];
 
   @override
-  _i1.Table? getRelationTable(final String relationField) {
+  _i1.Table? getRelationTable(String relationField) {
     if (relationField == 'team') {
       return team;
     }
@@ -217,7 +216,7 @@ class PlayerTable extends _i1.Table<int?> {
 }
 
 class PlayerInclude extends _i1.IncludeObject {
-  PlayerInclude._({final _i2.TeamInclude? team}) {
+  PlayerInclude._({_i2.TeamInclude? team}) {
     _team = team;
   }
 
@@ -232,7 +231,7 @@ class PlayerInclude extends _i1.IncludeObject {
 
 class PlayerIncludeList extends _i1.IncludeList {
   PlayerIncludeList._({
-    final _i1.WhereExpressionBuilder<PlayerTable>? where,
+    _i1.WhereExpressionBuilder<PlayerTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -280,15 +279,15 @@ class PlayerRepository {
   /// );
   /// ```
   Future<List<Player>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<PlayerTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<PlayerTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<PlayerTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final PlayerInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<PlayerTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<PlayerTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<PlayerTable>? orderByList,
+    _i1.Transaction? transaction,
+    PlayerInclude? include,
   }) async {
     return session.db.find<Player>(
       where: where?.call(Player.t),
@@ -320,14 +319,14 @@ class PlayerRepository {
   /// );
   /// ```
   Future<Player?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<PlayerTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<PlayerTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<PlayerTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final PlayerInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<PlayerTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<PlayerTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<PlayerTable>? orderByList,
+    _i1.Transaction? transaction,
+    PlayerInclude? include,
   }) async {
     return session.db.findFirstRow<Player>(
       where: where?.call(Player.t),
@@ -342,10 +341,10 @@ class PlayerRepository {
 
   /// Finds a single [Player] by its [id] or null if no such row exists.
   Future<Player?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
-    final PlayerInclude? include,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
+    PlayerInclude? include,
   }) async {
     return session.db.findById<Player>(
       id,
@@ -361,9 +360,9 @@ class PlayerRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<Player>> insert(
-    final _i1.Session session,
-    final List<Player> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Player> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<Player>(
       rows,
@@ -375,9 +374,9 @@ class PlayerRepository {
   ///
   /// The returned [Player] will have its `id` field set.
   Future<Player> insertRow(
-    final _i1.Session session,
-    final Player row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Player row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<Player>(
       row,
@@ -391,10 +390,10 @@ class PlayerRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<Player>> update(
-    final _i1.Session session,
-    final List<Player> rows, {
-    final _i1.ColumnSelections<PlayerTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Player> rows, {
+    _i1.ColumnSelections<PlayerTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<Player>(
       rows,
@@ -407,10 +406,10 @@ class PlayerRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<Player> updateRow(
-    final _i1.Session session,
-    final Player row, {
-    final _i1.ColumnSelections<PlayerTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Player row, {
+    _i1.ColumnSelections<PlayerTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<Player>(
       row,
@@ -422,10 +421,10 @@ class PlayerRepository {
   /// Updates a single [Player] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<Player?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<PlayerUpdateTable> columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<PlayerUpdateTable> columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<Player>(
       id,
@@ -437,15 +436,15 @@ class PlayerRepository {
   /// Updates all [Player]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<Player>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<PlayerUpdateTable> columnValues,
-    required final _i1.WhereExpressionBuilder<PlayerTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<PlayerTable>? orderBy,
-    final _i1.OrderByListBuilder<PlayerTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<PlayerUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<PlayerTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<PlayerTable>? orderBy,
+    _i1.OrderByListBuilder<PlayerTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<Player>(
       columnValues: columnValues(Player.t.updateTable),
@@ -463,9 +462,9 @@ class PlayerRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<Player>> delete(
-    final _i1.Session session,
-    final List<Player> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Player> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<Player>(
       rows,
@@ -475,9 +474,9 @@ class PlayerRepository {
 
   /// Deletes a single [Player].
   Future<Player> deleteRow(
-    final _i1.Session session,
-    final Player row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Player row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<Player>(
       row,
@@ -487,9 +486,9 @@ class PlayerRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<Player>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<PlayerTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<PlayerTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<Player>(
       where: where(Player.t),
@@ -500,10 +499,10 @@ class PlayerRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<PlayerTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<PlayerTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<Player>(
       where: where?.call(Player.t),
@@ -519,10 +518,10 @@ class PlayerAttachRowRepository {
   /// Creates a relation between the given [Player] and [Team]
   /// by setting the [Player]'s foreign key `teamId` to refer to the [Team].
   Future<void> team(
-    final _i1.Session session,
-    final Player player,
-    final _i2.Team team, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Player player,
+    _i2.Team team, {
+    _i1.Transaction? transaction,
   }) async {
     if (player.id == null) {
       throw ArgumentError.notNull('player.id');
@@ -531,7 +530,7 @@ class PlayerAttachRowRepository {
       throw ArgumentError.notNull('team.id');
     }
 
-    final $player = player.copyWith(teamId: team.id);
+    var $player = player.copyWith(teamId: team.id);
     await session.db.updateRow<Player>(
       $player,
       columns: [Player.t.teamId],
@@ -549,15 +548,15 @@ class PlayerDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> team(
-    final _i1.Session session,
-    final Player player, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Player player, {
+    _i1.Transaction? transaction,
   }) async {
     if (player.id == null) {
       throw ArgumentError.notNull('player.id');
     }
 
-    final $player = player.copyWith(teamId: null);
+    var $player = player.copyWith(teamId: null);
     await session.db.updateRow<Player>(
       $player,
       columns: [Player.t.teamId],

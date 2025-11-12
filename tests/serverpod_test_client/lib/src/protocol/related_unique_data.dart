@@ -35,8 +35,7 @@ abstract class RelatedUniqueData implements _i1.SerializableModel {
       uniqueData: jsonSerialization['uniqueData'] == null
           ? null
           : _i2.UniqueData.fromJson(
-              (jsonSerialization['uniqueData'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['uniqueData'] as Map<String, dynamic>)),
       number: jsonSerialization['number'] as int,
     );
   }
@@ -86,11 +85,11 @@ class _RelatedUniqueDataImpl extends RelatedUniqueData {
     _i2.UniqueData? uniqueData,
     required int number,
   }) : super._(
-         id: id,
-         uniqueDataId: uniqueDataId,
-         uniqueData: uniqueData,
-         number: number,
-       );
+          id: id,
+          uniqueDataId: uniqueDataId,
+          uniqueData: uniqueData,
+          number: number,
+        );
 
   /// Returns a shallow copy of this [RelatedUniqueData]
   /// with some or all fields replaced by the given arguments.

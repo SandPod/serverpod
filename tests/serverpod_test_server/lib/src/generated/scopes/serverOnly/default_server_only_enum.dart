@@ -16,7 +16,7 @@ enum DefaultServerOnlyEnum implements _i1.SerializableModel {
   foo,
   bar;
 
-  static DefaultServerOnlyEnum fromJson(final int index) {
+  static DefaultServerOnlyEnum fromJson(int index) {
     switch (index) {
       case 0:
         return DefaultServerOnlyEnum.foo;
@@ -24,8 +24,7 @@ enum DefaultServerOnlyEnum implements _i1.SerializableModel {
         return DefaultServerOnlyEnum.bar;
       default:
         throw ArgumentError(
-          'Value "$index" cannot be converted to "DefaultServerOnlyEnum"',
-        );
+            'Value "$index" cannot be converted to "DefaultServerOnlyEnum"');
     }
   }
 

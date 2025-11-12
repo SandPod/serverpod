@@ -24,14 +24,13 @@ abstract class ExceptionWithRequiredField
   });
 
   factory ExceptionWithRequiredField({
-    required final String name,
-    required final String? email,
-    final String? phone,
+    required String name,
+    required String? email,
+    String? phone,
   }) = _ExceptionWithRequiredFieldImpl;
 
   factory ExceptionWithRequiredField.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ExceptionWithRequiredField(
       name: jsonSerialization['name'] as String,
       email: jsonSerialization['email'] as String?,
@@ -49,9 +48,9 @@ abstract class ExceptionWithRequiredField
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ExceptionWithRequiredField copyWith({
-    final String? name,
-    final String? email,
-    final String? phone,
+    String? name,
+    String? email,
+    String? phone,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -81,23 +80,23 @@ class _Undefined {}
 
 class _ExceptionWithRequiredFieldImpl extends ExceptionWithRequiredField {
   _ExceptionWithRequiredFieldImpl({
-    required final String name,
-    required final String? email,
-    final String? phone,
+    required String name,
+    required String? email,
+    String? phone,
   }) : super._(
-         name: name,
-         email: email,
-         phone: phone,
-       );
+          name: name,
+          email: email,
+          phone: phone,
+        );
 
   /// Returns a shallow copy of this [ExceptionWithRequiredField]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   ExceptionWithRequiredField copyWith({
-    final String? name,
-    final Object? email = _Undefined,
-    final Object? phone = _Undefined,
+    String? name,
+    Object? email = _Undefined,
+    Object? phone = _Undefined,
   }) {
     return ExceptionWithRequiredField(
       name: name ?? this.name,

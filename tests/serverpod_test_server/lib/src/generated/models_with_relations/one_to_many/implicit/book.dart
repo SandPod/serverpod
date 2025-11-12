@@ -24,17 +24,17 @@ abstract class Book implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   });
 
   factory Book({
-    final int? id,
-    required final String title,
-    final List<_i2.Chapter>? chapters,
+    int? id,
+    required String title,
+    List<_i2.Chapter>? chapters,
   }) = _BookImpl;
 
-  factory Book.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory Book.fromJson(Map<String, dynamic> jsonSerialization) {
     return Book(
       id: jsonSerialization['id'] as int?,
       title: jsonSerialization['title'] as String,
       chapters: (jsonSerialization['chapters'] as List?)
-          ?.map((final e) => _i2.Chapter.fromJson((e as Map<String, dynamic>)))
+          ?.map((e) => _i2.Chapter.fromJson((e as Map<String, dynamic>)))
           .toList(),
     );
   }
@@ -57,9 +57,9 @@ abstract class Book implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   Book copyWith({
-    final int? id,
-    final String? title,
-    final List<_i2.Chapter>? chapters,
+    int? id,
+    String? title,
+    List<_i2.Chapter>? chapters,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -67,7 +67,7 @@ abstract class Book implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
       if (id != null) 'id': id,
       'title': title,
       if (chapters != null)
-        'chapters': chapters?.toJson(valueToJson: (final v) => v.toJson()),
+        'chapters': chapters?.toJson(valueToJson: (v) => v.toJson()),
     };
   }
 
@@ -77,22 +77,22 @@ abstract class Book implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
       if (id != null) 'id': id,
       'title': title,
       if (chapters != null)
-        'chapters': chapters?.toJson(valueToJson: (final v) => v.toJsonForProtocol()),
+        'chapters': chapters?.toJson(valueToJson: (v) => v.toJsonForProtocol()),
     };
   }
 
-  static BookInclude include({final _i2.ChapterIncludeList? chapters}) {
+  static BookInclude include({_i2.ChapterIncludeList? chapters}) {
     return BookInclude._(chapters: chapters);
   }
 
   static BookIncludeList includeList({
-    final _i1.WhereExpressionBuilder<BookTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<BookTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<BookTable>? orderByList,
-    final BookInclude? include,
+    _i1.WhereExpressionBuilder<BookTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<BookTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<BookTable>? orderByList,
+    BookInclude? include,
   }) {
     return BookIncludeList._(
       where: where,
@@ -115,30 +115,30 @@ class _Undefined {}
 
 class _BookImpl extends Book {
   _BookImpl({
-    final int? id,
-    required final String title,
-    final List<_i2.Chapter>? chapters,
+    int? id,
+    required String title,
+    List<_i2.Chapter>? chapters,
   }) : super._(
-         id: id,
-         title: title,
-         chapters: chapters,
-       );
+          id: id,
+          title: title,
+          chapters: chapters,
+        );
 
   /// Returns a shallow copy of this [Book]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   Book copyWith({
-    final Object? id = _Undefined,
-    final String? title,
-    final Object? chapters = _Undefined,
+    Object? id = _Undefined,
+    String? title,
+    Object? chapters = _Undefined,
   }) {
     return Book(
       id: id is int? ? id : this.id,
       title: title ?? this.title,
       chapters: chapters is List<_i2.Chapter>?
           ? chapters
-          : this.chapters?.map((final e0) => e0.copyWith()).toList(),
+          : this.chapters?.map((e0) => e0.copyWith()).toList(),
     );
   }
 }
@@ -146,10 +146,10 @@ class _BookImpl extends Book {
 class BookUpdateTable extends _i1.UpdateTable<BookTable> {
   BookUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> title(final String value) => _i1.ColumnValue(
-    table.title,
-    value,
-  );
+  _i1.ColumnValue<String, String> title(String value) => _i1.ColumnValue(
+        table.title,
+        value,
+      );
 }
 
 class BookTable extends _i1.Table<int?> {
@@ -176,7 +176,7 @@ class BookTable extends _i1.Table<int?> {
       field: Book.t.id,
       foreignField: _i2.Chapter.t.$_bookChaptersBookId,
       tableRelation: tableRelation,
-      createTable: (final foreignTableRelation) =>
+      createTable: (foreignTableRelation) =>
           _i2.ChapterTable(tableRelation: foreignTableRelation),
     );
     return ___chapters!;
@@ -184,31 +184,30 @@ class BookTable extends _i1.Table<int?> {
 
   _i1.ManyRelation<_i2.ChapterTable> get chapters {
     if (_chapters != null) return _chapters!;
-    final relationTable = _i1.createRelationTable(
+    var relationTable = _i1.createRelationTable(
       relationFieldName: 'chapters',
       field: Book.t.id,
       foreignField: _i2.Chapter.t.$_bookChaptersBookId,
       tableRelation: tableRelation,
-      createTable: (final foreignTableRelation) =>
+      createTable: (foreignTableRelation) =>
           _i2.ChapterTable(tableRelation: foreignTableRelation),
     );
     _chapters = _i1.ManyRelation<_i2.ChapterTable>(
       tableWithRelations: relationTable,
       table: _i2.ChapterTable(
-        tableRelation: relationTable.tableRelation!.lastRelation,
-      ),
+          tableRelation: relationTable.tableRelation!.lastRelation),
     );
     return _chapters!;
   }
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    title,
-  ];
+        id,
+        title,
+      ];
 
   @override
-  _i1.Table? getRelationTable(final String relationField) {
+  _i1.Table? getRelationTable(String relationField) {
     if (relationField == 'chapters') {
       return __chapters;
     }
@@ -217,7 +216,7 @@ class BookTable extends _i1.Table<int?> {
 }
 
 class BookInclude extends _i1.IncludeObject {
-  BookInclude._({final _i2.ChapterIncludeList? chapters}) {
+  BookInclude._({_i2.ChapterIncludeList? chapters}) {
     _chapters = chapters;
   }
 
@@ -232,7 +231,7 @@ class BookInclude extends _i1.IncludeObject {
 
 class BookIncludeList extends _i1.IncludeList {
   BookIncludeList._({
-    final _i1.WhereExpressionBuilder<BookTable>? where,
+    _i1.WhereExpressionBuilder<BookTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -284,15 +283,15 @@ class BookRepository {
   /// );
   /// ```
   Future<List<Book>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<BookTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<BookTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<BookTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final BookInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<BookTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<BookTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<BookTable>? orderByList,
+    _i1.Transaction? transaction,
+    BookInclude? include,
   }) async {
     return session.db.find<Book>(
       where: where?.call(Book.t),
@@ -324,14 +323,14 @@ class BookRepository {
   /// );
   /// ```
   Future<Book?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<BookTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<BookTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<BookTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final BookInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<BookTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<BookTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<BookTable>? orderByList,
+    _i1.Transaction? transaction,
+    BookInclude? include,
   }) async {
     return session.db.findFirstRow<Book>(
       where: where?.call(Book.t),
@@ -346,10 +345,10 @@ class BookRepository {
 
   /// Finds a single [Book] by its [id] or null if no such row exists.
   Future<Book?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
-    final BookInclude? include,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
+    BookInclude? include,
   }) async {
     return session.db.findById<Book>(
       id,
@@ -365,9 +364,9 @@ class BookRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<Book>> insert(
-    final _i1.Session session,
-    final List<Book> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Book> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<Book>(
       rows,
@@ -379,9 +378,9 @@ class BookRepository {
   ///
   /// The returned [Book] will have its `id` field set.
   Future<Book> insertRow(
-    final _i1.Session session,
-    final Book row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Book row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<Book>(
       row,
@@ -395,10 +394,10 @@ class BookRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<Book>> update(
-    final _i1.Session session,
-    final List<Book> rows, {
-    final _i1.ColumnSelections<BookTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Book> rows, {
+    _i1.ColumnSelections<BookTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<Book>(
       rows,
@@ -411,10 +410,10 @@ class BookRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<Book> updateRow(
-    final _i1.Session session,
-    final Book row, {
-    final _i1.ColumnSelections<BookTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Book row, {
+    _i1.ColumnSelections<BookTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<Book>(
       row,
@@ -426,10 +425,10 @@ class BookRepository {
   /// Updates a single [Book] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<Book?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<BookUpdateTable> columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<BookUpdateTable> columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<Book>(
       id,
@@ -441,15 +440,15 @@ class BookRepository {
   /// Updates all [Book]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<Book>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<BookUpdateTable> columnValues,
-    required final _i1.WhereExpressionBuilder<BookTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<BookTable>? orderBy,
-    final _i1.OrderByListBuilder<BookTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<BookUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<BookTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<BookTable>? orderBy,
+    _i1.OrderByListBuilder<BookTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<Book>(
       columnValues: columnValues(Book.t.updateTable),
@@ -467,9 +466,9 @@ class BookRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<Book>> delete(
-    final _i1.Session session,
-    final List<Book> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Book> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<Book>(
       rows,
@@ -479,9 +478,9 @@ class BookRepository {
 
   /// Deletes a single [Book].
   Future<Book> deleteRow(
-    final _i1.Session session,
-    final Book row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Book row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<Book>(
       row,
@@ -491,9 +490,9 @@ class BookRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<Book>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<BookTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<BookTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<Book>(
       where: where(Book.t),
@@ -504,10 +503,10 @@ class BookRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<BookTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<BookTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<Book>(
       where: where?.call(Book.t),
@@ -523,25 +522,23 @@ class BookAttachRepository {
   /// Creates a relation between this [Book] and the given [Chapter]s
   /// by setting each [Chapter]'s foreign key `_bookChaptersBookId` to refer to this [Book].
   Future<void> chapters(
-    final _i1.Session session,
-    final Book book,
-    final List<_i2.Chapter> chapter, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Book book,
+    List<_i2.Chapter> chapter, {
+    _i1.Transaction? transaction,
   }) async {
-    if (chapter.any((final e) => e.id == null)) {
+    if (chapter.any((e) => e.id == null)) {
       throw ArgumentError.notNull('chapter.id');
     }
     if (book.id == null) {
       throw ArgumentError.notNull('book.id');
     }
 
-    final $chapter = chapter
-        .map(
-          (final e) => _i2.ChapterImplicit(
-            e,
-            $_bookChaptersBookId: book.id,
-          ),
-        )
+    var $chapter = chapter
+        .map((e) => _i2.ChapterImplicit(
+              e,
+              $_bookChaptersBookId: book.id,
+            ))
         .toList();
     await session.db.update<_i2.Chapter>(
       $chapter,
@@ -557,10 +554,10 @@ class BookAttachRowRepository {
   /// Creates a relation between this [Book] and the given [Chapter]
   /// by setting the [Chapter]'s foreign key `_bookChaptersBookId` to refer to this [Book].
   Future<void> chapters(
-    final _i1.Session session,
-    final Book book,
-    final _i2.Chapter chapter, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Book book,
+    _i2.Chapter chapter, {
+    _i1.Transaction? transaction,
   }) async {
     if (chapter.id == null) {
       throw ArgumentError.notNull('chapter.id');
@@ -569,7 +566,7 @@ class BookAttachRowRepository {
       throw ArgumentError.notNull('book.id');
     }
 
-    final $chapter = _i2.ChapterImplicit(
+    var $chapter = _i2.ChapterImplicit(
       chapter,
       $_bookChaptersBookId: book.id,
     );
@@ -590,21 +587,19 @@ class BookDetachRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> chapters(
-    final _i1.Session session,
-    final List<_i2.Chapter> chapter, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<_i2.Chapter> chapter, {
+    _i1.Transaction? transaction,
   }) async {
-    if (chapter.any((final e) => e.id == null)) {
+    if (chapter.any((e) => e.id == null)) {
       throw ArgumentError.notNull('chapter.id');
     }
 
-    final $chapter = chapter
-        .map(
-          (final e) => _i2.ChapterImplicit(
-            e,
-            $_bookChaptersBookId: null,
-          ),
-        )
+    var $chapter = chapter
+        .map((e) => _i2.ChapterImplicit(
+              e,
+              $_bookChaptersBookId: null,
+            ))
         .toList();
     await session.db.update<_i2.Chapter>(
       $chapter,
@@ -623,15 +618,15 @@ class BookDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> chapters(
-    final _i1.Session session,
-    final _i2.Chapter chapter, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    _i2.Chapter chapter, {
+    _i1.Transaction? transaction,
   }) async {
     if (chapter.id == null) {
       throw ArgumentError.notNull('chapter.id');
     }
 
-    final $chapter = _i2.ChapterImplicit(
+    var $chapter = _i2.ChapterImplicit(
       chapter,
       $_bookChaptersBookId: null,
     );

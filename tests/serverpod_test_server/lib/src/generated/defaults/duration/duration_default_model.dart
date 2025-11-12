@@ -16,47 +16,42 @@ abstract class DurationDefaultModel
     implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   DurationDefaultModel._({
     this.id,
-    final Duration? durationDefaultModel,
-    final Duration? durationDefaultModelNull,
-  }) : durationDefaultModel =
-           durationDefaultModel ??
-           const Duration(
-             days: 1,
-             hours: 2,
-             minutes: 10,
-             seconds: 30,
-             milliseconds: 100,
-           ),
-       durationDefaultModelNull =
-           durationDefaultModelNull ??
-           const Duration(
-             days: 2,
-             hours: 1,
-             minutes: 20,
-             seconds: 40,
-             milliseconds: 100,
-           );
+    Duration? durationDefaultModel,
+    Duration? durationDefaultModelNull,
+  })  : durationDefaultModel = durationDefaultModel ??
+            Duration(
+              days: 1,
+              hours: 2,
+              minutes: 10,
+              seconds: 30,
+              milliseconds: 100,
+            ),
+        durationDefaultModelNull = durationDefaultModelNull ??
+            Duration(
+              days: 2,
+              hours: 1,
+              minutes: 20,
+              seconds: 40,
+              milliseconds: 100,
+            );
 
   factory DurationDefaultModel({
-    final int? id,
-    final Duration? durationDefaultModel,
-    final Duration? durationDefaultModelNull,
+    int? id,
+    Duration? durationDefaultModel,
+    Duration? durationDefaultModelNull,
   }) = _DurationDefaultModelImpl;
 
   factory DurationDefaultModel.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return DurationDefaultModel(
       id: jsonSerialization['id'] as int?,
       durationDefaultModel: _i1.DurationJsonExtension.fromJson(
-        jsonSerialization['durationDefaultModel'],
-      ),
+          jsonSerialization['durationDefaultModel']),
       durationDefaultModelNull:
           jsonSerialization['durationDefaultModelNull'] == null
-          ? null
-          : _i1.DurationJsonExtension.fromJson(
-              jsonSerialization['durationDefaultModelNull'],
-            ),
+              ? null
+              : _i1.DurationJsonExtension.fromJson(
+                  jsonSerialization['durationDefaultModelNull']),
     );
   }
 
@@ -78,9 +73,9 @@ abstract class DurationDefaultModel
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   DurationDefaultModel copyWith({
-    final int? id,
-    final Duration? durationDefaultModel,
-    final Duration? durationDefaultModelNull,
+    int? id,
+    Duration? durationDefaultModel,
+    Duration? durationDefaultModelNull,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -107,13 +102,13 @@ abstract class DurationDefaultModel
   }
 
   static DurationDefaultModelIncludeList includeList({
-    final _i1.WhereExpressionBuilder<DurationDefaultModelTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<DurationDefaultModelTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<DurationDefaultModelTable>? orderByList,
-    final DurationDefaultModelInclude? include,
+    _i1.WhereExpressionBuilder<DurationDefaultModelTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<DurationDefaultModelTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<DurationDefaultModelTable>? orderByList,
+    DurationDefaultModelInclude? include,
   }) {
     return DurationDefaultModelIncludeList._(
       where: where,
@@ -136,23 +131,23 @@ class _Undefined {}
 
 class _DurationDefaultModelImpl extends DurationDefaultModel {
   _DurationDefaultModelImpl({
-    final int? id,
-    final Duration? durationDefaultModel,
-    final Duration? durationDefaultModelNull,
+    int? id,
+    Duration? durationDefaultModel,
+    Duration? durationDefaultModelNull,
   }) : super._(
-         id: id,
-         durationDefaultModel: durationDefaultModel,
-         durationDefaultModelNull: durationDefaultModelNull,
-       );
+          id: id,
+          durationDefaultModel: durationDefaultModel,
+          durationDefaultModelNull: durationDefaultModelNull,
+        );
 
   /// Returns a shallow copy of this [DurationDefaultModel]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   DurationDefaultModel copyWith({
-    final Object? id = _Undefined,
-    final Duration? durationDefaultModel,
-    final Object? durationDefaultModelNull = _Undefined,
+    Object? id = _Undefined,
+    Duration? durationDefaultModel,
+    Object? durationDefaultModelNull = _Undefined,
   }) {
     return DurationDefaultModel(
       id: id is int? ? id : this.id,
@@ -168,23 +163,23 @@ class DurationDefaultModelUpdateTable
     extends _i1.UpdateTable<DurationDefaultModelTable> {
   DurationDefaultModelUpdateTable(super.table);
 
-  _i1.ColumnValue<Duration, Duration> durationDefaultModel(final Duration value) =>
+  _i1.ColumnValue<Duration, Duration> durationDefaultModel(Duration value) =>
       _i1.ColumnValue(
         table.durationDefaultModel,
         value,
       );
 
   _i1.ColumnValue<Duration, Duration> durationDefaultModelNull(
-    final Duration? value,
-  ) => _i1.ColumnValue(
-    table.durationDefaultModelNull,
-    value,
-  );
+          Duration? value) =>
+      _i1.ColumnValue(
+        table.durationDefaultModelNull,
+        value,
+      );
 }
 
 class DurationDefaultModelTable extends _i1.Table<int?> {
   DurationDefaultModelTable({super.tableRelation})
-    : super(tableName: 'duration_default_model') {
+      : super(tableName: 'duration_default_model') {
     updateTable = DurationDefaultModelUpdateTable(this);
     durationDefaultModel = _i1.ColumnDuration(
       'durationDefaultModel',
@@ -204,10 +199,10 @@ class DurationDefaultModelTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    durationDefaultModel,
-    durationDefaultModelNull,
-  ];
+        id,
+        durationDefaultModel,
+        durationDefaultModelNull,
+      ];
 }
 
 class DurationDefaultModelInclude extends _i1.IncludeObject {
@@ -222,7 +217,7 @@ class DurationDefaultModelInclude extends _i1.IncludeObject {
 
 class DurationDefaultModelIncludeList extends _i1.IncludeList {
   DurationDefaultModelIncludeList._({
-    final _i1.WhereExpressionBuilder<DurationDefaultModelTable>? where,
+    _i1.WhereExpressionBuilder<DurationDefaultModelTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -266,14 +261,14 @@ class DurationDefaultModelRepository {
   /// );
   /// ```
   Future<List<DurationDefaultModel>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<DurationDefaultModelTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<DurationDefaultModelTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<DurationDefaultModelTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<DurationDefaultModelTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<DurationDefaultModelTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<DurationDefaultModelTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<DurationDefaultModel>(
       where: where?.call(DurationDefaultModel.t),
@@ -304,13 +299,13 @@ class DurationDefaultModelRepository {
   /// );
   /// ```
   Future<DurationDefaultModel?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<DurationDefaultModelTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<DurationDefaultModelTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<DurationDefaultModelTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<DurationDefaultModelTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<DurationDefaultModelTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<DurationDefaultModelTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<DurationDefaultModel>(
       where: where?.call(DurationDefaultModel.t),
@@ -324,9 +319,9 @@ class DurationDefaultModelRepository {
 
   /// Finds a single [DurationDefaultModel] by its [id] or null if no such row exists.
   Future<DurationDefaultModel?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<DurationDefaultModel>(
       id,
@@ -341,9 +336,9 @@ class DurationDefaultModelRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<DurationDefaultModel>> insert(
-    final _i1.Session session,
-    final List<DurationDefaultModel> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<DurationDefaultModel> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<DurationDefaultModel>(
       rows,
@@ -355,9 +350,9 @@ class DurationDefaultModelRepository {
   ///
   /// The returned [DurationDefaultModel] will have its `id` field set.
   Future<DurationDefaultModel> insertRow(
-    final _i1.Session session,
-    final DurationDefaultModel row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    DurationDefaultModel row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<DurationDefaultModel>(
       row,
@@ -371,10 +366,10 @@ class DurationDefaultModelRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<DurationDefaultModel>> update(
-    final _i1.Session session,
-    final List<DurationDefaultModel> rows, {
-    final _i1.ColumnSelections<DurationDefaultModelTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<DurationDefaultModel> rows, {
+    _i1.ColumnSelections<DurationDefaultModelTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<DurationDefaultModel>(
       rows,
@@ -387,10 +382,10 @@ class DurationDefaultModelRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<DurationDefaultModel> updateRow(
-    final _i1.Session session,
-    final DurationDefaultModel row, {
-    final _i1.ColumnSelections<DurationDefaultModelTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    DurationDefaultModel row, {
+    _i1.ColumnSelections<DurationDefaultModelTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<DurationDefaultModel>(
       row,
@@ -402,11 +397,11 @@ class DurationDefaultModelRepository {
   /// Updates a single [DurationDefaultModel] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<DurationDefaultModel?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<DurationDefaultModelUpdateTable>
-    columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<DurationDefaultModelUpdateTable>
+        columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<DurationDefaultModel>(
       id,
@@ -418,16 +413,16 @@ class DurationDefaultModelRepository {
   /// Updates all [DurationDefaultModel]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<DurationDefaultModel>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<DurationDefaultModelUpdateTable>
-    columnValues,
-    required final _i1.WhereExpressionBuilder<DurationDefaultModelTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<DurationDefaultModelTable>? orderBy,
-    final _i1.OrderByListBuilder<DurationDefaultModelTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<DurationDefaultModelUpdateTable>
+        columnValues,
+    required _i1.WhereExpressionBuilder<DurationDefaultModelTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<DurationDefaultModelTable>? orderBy,
+    _i1.OrderByListBuilder<DurationDefaultModelTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<DurationDefaultModel>(
       columnValues: columnValues(DurationDefaultModel.t.updateTable),
@@ -445,9 +440,9 @@ class DurationDefaultModelRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<DurationDefaultModel>> delete(
-    final _i1.Session session,
-    final List<DurationDefaultModel> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<DurationDefaultModel> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<DurationDefaultModel>(
       rows,
@@ -457,9 +452,9 @@ class DurationDefaultModelRepository {
 
   /// Deletes a single [DurationDefaultModel].
   Future<DurationDefaultModel> deleteRow(
-    final _i1.Session session,
-    final DurationDefaultModel row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    DurationDefaultModel row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<DurationDefaultModel>(
       row,
@@ -469,9 +464,9 @@ class DurationDefaultModelRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<DurationDefaultModel>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<DurationDefaultModelTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<DurationDefaultModelTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<DurationDefaultModel>(
       where: where(DurationDefaultModel.t),
@@ -482,10 +477,10 @@ class DurationDefaultModelRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<DurationDefaultModelTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<DurationDefaultModelTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<DurationDefaultModel>(
       where: where?.call(DurationDefaultModel.t),

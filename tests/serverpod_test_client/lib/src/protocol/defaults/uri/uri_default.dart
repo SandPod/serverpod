@@ -13,20 +13,25 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 
 abstract class UriDefault implements _i1.SerializableModel {
-  UriDefault._({this.id, Uri? uriDefault, Uri? uriDefaultNull})
-    : uriDefault = uriDefault ?? Uri.parse('https://serverpod.dev/default'),
-      uriDefaultNull =
-          uriDefaultNull ?? Uri.parse('https://serverpod.dev/default');
+  UriDefault._({
+    this.id,
+    Uri? uriDefault,
+    Uri? uriDefaultNull,
+  })  : uriDefault = uriDefault ?? Uri.parse('https://serverpod.dev/default'),
+        uriDefaultNull =
+            uriDefaultNull ?? Uri.parse('https://serverpod.dev/default');
 
-  factory UriDefault({int? id, Uri? uriDefault, Uri? uriDefaultNull}) =
-      _UriDefaultImpl;
+  factory UriDefault({
+    int? id,
+    Uri? uriDefault,
+    Uri? uriDefaultNull,
+  }) = _UriDefaultImpl;
 
   factory UriDefault.fromJson(Map<String, dynamic> jsonSerialization) {
     return UriDefault(
       id: jsonSerialization['id'] as int?,
-      uriDefault: _i1.UriJsonExtension.fromJson(
-        jsonSerialization['uriDefault'],
-      ),
+      uriDefault:
+          _i1.UriJsonExtension.fromJson(jsonSerialization['uriDefault']),
       uriDefaultNull: jsonSerialization['uriDefaultNull'] == null
           ? null
           : _i1.UriJsonExtension.fromJson(jsonSerialization['uriDefaultNull']),
@@ -45,7 +50,11 @@ abstract class UriDefault implements _i1.SerializableModel {
   /// Returns a shallow copy of this [UriDefault]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  UriDefault copyWith({int? id, Uri? uriDefault, Uri? uriDefaultNull});
+  UriDefault copyWith({
+    int? id,
+    Uri? uriDefault,
+    Uri? uriDefaultNull,
+  });
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -64,8 +73,15 @@ abstract class UriDefault implements _i1.SerializableModel {
 class _Undefined {}
 
 class _UriDefaultImpl extends UriDefault {
-  _UriDefaultImpl({int? id, Uri? uriDefault, Uri? uriDefaultNull})
-    : super._(id: id, uriDefault: uriDefault, uriDefaultNull: uriDefaultNull);
+  _UriDefaultImpl({
+    int? id,
+    Uri? uriDefault,
+    Uri? uriDefaultNull,
+  }) : super._(
+          id: id,
+          uriDefault: uriDefault,
+          uriDefaultNull: uriDefaultNull,
+        );
 
   /// Returns a shallow copy of this [UriDefault]
   /// with some or all fields replaced by the given arguments.
@@ -79,9 +95,8 @@ class _UriDefaultImpl extends UriDefault {
     return UriDefault(
       id: id is int? ? id : this.id,
       uriDefault: uriDefault ?? this.uriDefault,
-      uriDefaultNull: uriDefaultNull is Uri?
-          ? uriDefaultNull
-          : this.uriDefaultNull,
+      uriDefaultNull:
+          uriDefaultNull is Uri? ? uriDefaultNull : this.uriDefaultNull,
     );
   }
 }

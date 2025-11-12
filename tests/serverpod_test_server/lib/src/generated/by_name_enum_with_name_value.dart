@@ -16,7 +16,7 @@ enum ByNameEnumWithNameValue implements _i1.SerializableModel {
   type,
   name;
 
-  static ByNameEnumWithNameValue fromJson(final String name) {
+  static ByNameEnumWithNameValue fromJson(String name) {
     switch (name) {
       case 'type':
         return ByNameEnumWithNameValue.type;
@@ -24,8 +24,7 @@ enum ByNameEnumWithNameValue implements _i1.SerializableModel {
         return ByNameEnumWithNameValue.name;
       default:
         throw ArgumentError(
-          'Value "$name" cannot be converted to "ByNameEnumWithNameValue"',
-        );
+            'Value "$name" cannot be converted to "ByNameEnumWithNameValue"');
     }
   }
 

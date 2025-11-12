@@ -25,13 +25,13 @@ abstract class CompanyUuid
   });
 
   factory CompanyUuid({
-    final _i1.UuidValue? id,
-    required final String name,
-    required final int townId,
-    final _i2.TownInt? town,
+    _i1.UuidValue? id,
+    required String name,
+    required int townId,
+    _i2.TownInt? town,
   }) = _CompanyUuidImpl;
 
-  factory CompanyUuid.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory CompanyUuid.fromJson(Map<String, dynamic> jsonSerialization) {
     return CompanyUuid(
       id: jsonSerialization['id'] == null
           ? null
@@ -41,8 +41,7 @@ abstract class CompanyUuid
       town: jsonSerialization['town'] == null
           ? null
           : _i2.TownInt.fromJson(
-              (jsonSerialization['town'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['town'] as Map<String, dynamic>)),
     );
   }
 
@@ -66,10 +65,10 @@ abstract class CompanyUuid
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   CompanyUuid copyWith({
-    final _i1.UuidValue? id,
-    final String? name,
-    final int? townId,
-    final _i2.TownInt? town,
+    _i1.UuidValue? id,
+    String? name,
+    int? townId,
+    _i2.TownInt? town,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -91,18 +90,18 @@ abstract class CompanyUuid
     };
   }
 
-  static CompanyUuidInclude include({final _i2.TownIntInclude? town}) {
+  static CompanyUuidInclude include({_i2.TownIntInclude? town}) {
     return CompanyUuidInclude._(town: town);
   }
 
   static CompanyUuidIncludeList includeList({
-    final _i1.WhereExpressionBuilder<CompanyUuidTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<CompanyUuidTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<CompanyUuidTable>? orderByList,
-    final CompanyUuidInclude? include,
+    _i1.WhereExpressionBuilder<CompanyUuidTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<CompanyUuidTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<CompanyUuidTable>? orderByList,
+    CompanyUuidInclude? include,
   }) {
     return CompanyUuidIncludeList._(
       where: where,
@@ -125,26 +124,26 @@ class _Undefined {}
 
 class _CompanyUuidImpl extends CompanyUuid {
   _CompanyUuidImpl({
-    final _i1.UuidValue? id,
-    required final String name,
-    required final int townId,
-    final _i2.TownInt? town,
+    _i1.UuidValue? id,
+    required String name,
+    required int townId,
+    _i2.TownInt? town,
   }) : super._(
-         id: id,
-         name: name,
-         townId: townId,
-         town: town,
-       );
+          id: id,
+          name: name,
+          townId: townId,
+          town: town,
+        );
 
   /// Returns a shallow copy of this [CompanyUuid]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   CompanyUuid copyWith({
-    final Object? id = _Undefined,
-    final String? name,
-    final int? townId,
-    final Object? town = _Undefined,
+    Object? id = _Undefined,
+    String? name,
+    int? townId,
+    Object? town = _Undefined,
   }) {
     return CompanyUuid(
       id: id is _i1.UuidValue? ? id : this.id,
@@ -158,15 +157,15 @@ class _CompanyUuidImpl extends CompanyUuid {
 class CompanyUuidUpdateTable extends _i1.UpdateTable<CompanyUuidTable> {
   CompanyUuidUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> name(final String value) => _i1.ColumnValue(
-    table.name,
-    value,
-  );
+  _i1.ColumnValue<String, String> name(String value) => _i1.ColumnValue(
+        table.name,
+        value,
+      );
 
-  _i1.ColumnValue<int, int> townId(final int value) => _i1.ColumnValue(
-    table.townId,
-    value,
-  );
+  _i1.ColumnValue<int, int> townId(int value) => _i1.ColumnValue(
+        table.townId,
+        value,
+      );
 }
 
 class CompanyUuidTable extends _i1.Table<_i1.UuidValue?> {
@@ -197,7 +196,7 @@ class CompanyUuidTable extends _i1.Table<_i1.UuidValue?> {
       field: CompanyUuid.t.townId,
       foreignField: _i2.TownInt.t.id,
       tableRelation: tableRelation,
-      createTable: (final foreignTableRelation) =>
+      createTable: (foreignTableRelation) =>
           _i2.TownIntTable(tableRelation: foreignTableRelation),
     );
     return _town!;
@@ -205,13 +204,13 @@ class CompanyUuidTable extends _i1.Table<_i1.UuidValue?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    name,
-    townId,
-  ];
+        id,
+        name,
+        townId,
+      ];
 
   @override
-  _i1.Table? getRelationTable(final String relationField) {
+  _i1.Table? getRelationTable(String relationField) {
     if (relationField == 'town') {
       return town;
     }
@@ -220,7 +219,7 @@ class CompanyUuidTable extends _i1.Table<_i1.UuidValue?> {
 }
 
 class CompanyUuidInclude extends _i1.IncludeObject {
-  CompanyUuidInclude._({final _i2.TownIntInclude? town}) {
+  CompanyUuidInclude._({_i2.TownIntInclude? town}) {
     _town = town;
   }
 
@@ -235,7 +234,7 @@ class CompanyUuidInclude extends _i1.IncludeObject {
 
 class CompanyUuidIncludeList extends _i1.IncludeList {
   CompanyUuidIncludeList._({
-    final _i1.WhereExpressionBuilder<CompanyUuidTable>? where,
+    _i1.WhereExpressionBuilder<CompanyUuidTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -281,15 +280,15 @@ class CompanyUuidRepository {
   /// );
   /// ```
   Future<List<CompanyUuid>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<CompanyUuidTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<CompanyUuidTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<CompanyUuidTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final CompanyUuidInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<CompanyUuidTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<CompanyUuidTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<CompanyUuidTable>? orderByList,
+    _i1.Transaction? transaction,
+    CompanyUuidInclude? include,
   }) async {
     return session.db.find<CompanyUuid>(
       where: where?.call(CompanyUuid.t),
@@ -321,14 +320,14 @@ class CompanyUuidRepository {
   /// );
   /// ```
   Future<CompanyUuid?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<CompanyUuidTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<CompanyUuidTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<CompanyUuidTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final CompanyUuidInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<CompanyUuidTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<CompanyUuidTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<CompanyUuidTable>? orderByList,
+    _i1.Transaction? transaction,
+    CompanyUuidInclude? include,
   }) async {
     return session.db.findFirstRow<CompanyUuid>(
       where: where?.call(CompanyUuid.t),
@@ -343,10 +342,10 @@ class CompanyUuidRepository {
 
   /// Finds a single [CompanyUuid] by its [id] or null if no such row exists.
   Future<CompanyUuid?> findById(
-    final _i1.Session session,
-    final _i1.UuidValue id, {
-    final _i1.Transaction? transaction,
-    final CompanyUuidInclude? include,
+    _i1.Session session,
+    _i1.UuidValue id, {
+    _i1.Transaction? transaction,
+    CompanyUuidInclude? include,
   }) async {
     return session.db.findById<CompanyUuid>(
       id,
@@ -362,9 +361,9 @@ class CompanyUuidRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<CompanyUuid>> insert(
-    final _i1.Session session,
-    final List<CompanyUuid> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<CompanyUuid> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<CompanyUuid>(
       rows,
@@ -376,9 +375,9 @@ class CompanyUuidRepository {
   ///
   /// The returned [CompanyUuid] will have its `id` field set.
   Future<CompanyUuid> insertRow(
-    final _i1.Session session,
-    final CompanyUuid row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    CompanyUuid row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<CompanyUuid>(
       row,
@@ -392,10 +391,10 @@ class CompanyUuidRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<CompanyUuid>> update(
-    final _i1.Session session,
-    final List<CompanyUuid> rows, {
-    final _i1.ColumnSelections<CompanyUuidTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<CompanyUuid> rows, {
+    _i1.ColumnSelections<CompanyUuidTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<CompanyUuid>(
       rows,
@@ -408,10 +407,10 @@ class CompanyUuidRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<CompanyUuid> updateRow(
-    final _i1.Session session,
-    final CompanyUuid row, {
-    final _i1.ColumnSelections<CompanyUuidTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    CompanyUuid row, {
+    _i1.ColumnSelections<CompanyUuidTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<CompanyUuid>(
       row,
@@ -423,10 +422,10 @@ class CompanyUuidRepository {
   /// Updates a single [CompanyUuid] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<CompanyUuid?> updateById(
-    final _i1.Session session,
-    final _i1.UuidValue id, {
-    required final _i1.ColumnValueListBuilder<CompanyUuidUpdateTable> columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    _i1.UuidValue id, {
+    required _i1.ColumnValueListBuilder<CompanyUuidUpdateTable> columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<CompanyUuid>(
       id,
@@ -438,15 +437,15 @@ class CompanyUuidRepository {
   /// Updates all [CompanyUuid]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<CompanyUuid>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<CompanyUuidUpdateTable> columnValues,
-    required final _i1.WhereExpressionBuilder<CompanyUuidTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<CompanyUuidTable>? orderBy,
-    final _i1.OrderByListBuilder<CompanyUuidTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<CompanyUuidUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<CompanyUuidTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<CompanyUuidTable>? orderBy,
+    _i1.OrderByListBuilder<CompanyUuidTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<CompanyUuid>(
       columnValues: columnValues(CompanyUuid.t.updateTable),
@@ -464,9 +463,9 @@ class CompanyUuidRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<CompanyUuid>> delete(
-    final _i1.Session session,
-    final List<CompanyUuid> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<CompanyUuid> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<CompanyUuid>(
       rows,
@@ -476,9 +475,9 @@ class CompanyUuidRepository {
 
   /// Deletes a single [CompanyUuid].
   Future<CompanyUuid> deleteRow(
-    final _i1.Session session,
-    final CompanyUuid row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    CompanyUuid row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<CompanyUuid>(
       row,
@@ -488,9 +487,9 @@ class CompanyUuidRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<CompanyUuid>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<CompanyUuidTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<CompanyUuidTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<CompanyUuid>(
       where: where(CompanyUuid.t),
@@ -501,10 +500,10 @@ class CompanyUuidRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<CompanyUuidTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<CompanyUuidTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<CompanyUuid>(
       where: where?.call(CompanyUuid.t),
@@ -520,10 +519,10 @@ class CompanyUuidAttachRowRepository {
   /// Creates a relation between the given [CompanyUuid] and [TownInt]
   /// by setting the [CompanyUuid]'s foreign key `townId` to refer to the [TownInt].
   Future<void> town(
-    final _i1.Session session,
-    final CompanyUuid companyUuid,
-    final _i2.TownInt town, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    CompanyUuid companyUuid,
+    _i2.TownInt town, {
+    _i1.Transaction? transaction,
   }) async {
     if (companyUuid.id == null) {
       throw ArgumentError.notNull('companyUuid.id');
@@ -532,7 +531,7 @@ class CompanyUuidAttachRowRepository {
       throw ArgumentError.notNull('town.id');
     }
 
-    final $companyUuid = companyUuid.copyWith(townId: town.id);
+    var $companyUuid = companyUuid.copyWith(townId: town.id);
     await session.db.updateRow<CompanyUuid>(
       $companyUuid,
       columns: [CompanyUuid.t.townId],

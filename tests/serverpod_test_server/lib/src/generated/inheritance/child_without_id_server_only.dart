@@ -9,10 +9,9 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
-import 'package:serverpod/serverpod.dart' as _i2;
-
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import '../protocol.dart' as _i1;
+import 'package:serverpod/serverpod.dart' as _i2;
 
 abstract class ServerOnlyChildClassWithoutId extends _i1.ParentClassWithoutId
     implements _i2.SerializableModel, _i2.ProtocolSerialization {
@@ -24,15 +23,14 @@ abstract class ServerOnlyChildClassWithoutId extends _i1.ParentClassWithoutId
   });
 
   factory ServerOnlyChildClassWithoutId({
-    final _i2.UuidValue? id,
-    required final String grandParentField,
-    required final String parentField,
-    required final String childField,
+    _i2.UuidValue? id,
+    required String grandParentField,
+    required String parentField,
+    required String childField,
   }) = _ServerOnlyChildClassWithoutIdImpl;
 
   factory ServerOnlyChildClassWithoutId.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ServerOnlyChildClassWithoutId(
       id: jsonSerialization['id'] == null
           ? null
@@ -50,10 +48,10 @@ abstract class ServerOnlyChildClassWithoutId extends _i1.ParentClassWithoutId
   @override
   @_i2.useResult
   ServerOnlyChildClassWithoutId copyWith({
-    final Object? id,
-    final String? grandParentField,
-    final String? parentField,
-    final String? childField,
+    Object? id,
+    String? grandParentField,
+    String? parentField,
+    String? childField,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -80,26 +78,26 @@ class _Undefined {}
 
 class _ServerOnlyChildClassWithoutIdImpl extends ServerOnlyChildClassWithoutId {
   _ServerOnlyChildClassWithoutIdImpl({
-    final _i2.UuidValue? id,
-    required final String grandParentField,
-    required final String parentField,
-    required final String childField,
+    _i2.UuidValue? id,
+    required String grandParentField,
+    required String parentField,
+    required String childField,
   }) : super._(
-         id: id,
-         grandParentField: grandParentField,
-         parentField: parentField,
-         childField: childField,
-       );
+          id: id,
+          grandParentField: grandParentField,
+          parentField: parentField,
+          childField: childField,
+        );
 
   /// Returns a shallow copy of this [ServerOnlyChildClassWithoutId]
   /// with some or all fields replaced by the given arguments.
   @_i2.useResult
   @override
   ServerOnlyChildClassWithoutId copyWith({
-    final Object? id = _Undefined,
-    final String? grandParentField,
-    final String? parentField,
-    final String? childField,
+    Object? id = _Undefined,
+    String? grandParentField,
+    String? parentField,
+    String? childField,
   }) {
     return ServerOnlyChildClassWithoutId(
       id: id is _i2.UuidValue? ? id : this.id,

@@ -24,8 +24,7 @@ enum NotServerOnlyEnum implements _i1.SerializableModel {
         return NotServerOnlyEnum.bar;
       default:
         throw ArgumentError(
-          'Value "$index" cannot be converted to "NotServerOnlyEnum"',
-        );
+            'Value "$index" cannot be converted to "NotServerOnlyEnum"');
     }
   }
 

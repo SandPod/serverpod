@@ -11,9 +11,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
-
-import 'authentication_fail_reason.dart' as _i3;
 import 'user_info.dart' as _i2;
+import 'authentication_fail_reason.dart' as _i3;
 
 /// Provides a response to an authentication attempt.
 abstract class AuthenticationResponse implements _i1.SerializableModel {
@@ -26,16 +25,15 @@ abstract class AuthenticationResponse implements _i1.SerializableModel {
   });
 
   factory AuthenticationResponse({
-    required final bool success,
-    final String? key,
-    final int? keyId,
-    final _i2.UserInfo? userInfo,
-    final _i3.AuthenticationFailReason? failReason,
+    required bool success,
+    String? key,
+    int? keyId,
+    _i2.UserInfo? userInfo,
+    _i3.AuthenticationFailReason? failReason,
   }) = _AuthenticationResponseImpl;
 
   factory AuthenticationResponse.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return AuthenticationResponse(
       success: jsonSerialization['success'] as bool,
       key: jsonSerialization['key'] as String?,
@@ -43,13 +41,11 @@ abstract class AuthenticationResponse implements _i1.SerializableModel {
       userInfo: jsonSerialization['userInfo'] == null
           ? null
           : _i2.UserInfo.fromJson(
-              (jsonSerialization['userInfo'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['userInfo'] as Map<String, dynamic>)),
       failReason: jsonSerialization['failReason'] == null
           ? null
           : _i3.AuthenticationFailReason.fromJson(
-              (jsonSerialization['failReason'] as int),
-            ),
+              (jsonSerialization['failReason'] as int)),
     );
   }
 
@@ -74,11 +70,11 @@ abstract class AuthenticationResponse implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   AuthenticationResponse copyWith({
-    final bool? success,
-    final String? key,
-    final int? keyId,
-    final _i2.UserInfo? userInfo,
-    final _i3.AuthenticationFailReason? failReason,
+    bool? success,
+    String? key,
+    int? keyId,
+    _i2.UserInfo? userInfo,
+    _i3.AuthenticationFailReason? failReason,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -101,37 +97,36 @@ class _Undefined {}
 
 class _AuthenticationResponseImpl extends AuthenticationResponse {
   _AuthenticationResponseImpl({
-    required final bool success,
-    final String? key,
-    final int? keyId,
-    final _i2.UserInfo? userInfo,
-    final _i3.AuthenticationFailReason? failReason,
+    required bool success,
+    String? key,
+    int? keyId,
+    _i2.UserInfo? userInfo,
+    _i3.AuthenticationFailReason? failReason,
   }) : super._(
-         success: success,
-         key: key,
-         keyId: keyId,
-         userInfo: userInfo,
-         failReason: failReason,
-       );
+          success: success,
+          key: key,
+          keyId: keyId,
+          userInfo: userInfo,
+          failReason: failReason,
+        );
 
   /// Returns a shallow copy of this [AuthenticationResponse]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   AuthenticationResponse copyWith({
-    final bool? success,
-    final Object? key = _Undefined,
-    final Object? keyId = _Undefined,
-    final Object? userInfo = _Undefined,
-    final Object? failReason = _Undefined,
+    bool? success,
+    Object? key = _Undefined,
+    Object? keyId = _Undefined,
+    Object? userInfo = _Undefined,
+    Object? failReason = _Undefined,
   }) {
     return AuthenticationResponse(
       success: success ?? this.success,
       key: key is String? ? key : this.key,
       keyId: keyId is int? ? keyId : this.keyId,
-      userInfo: userInfo is _i2.UserInfo?
-          ? userInfo
-          : this.userInfo?.copyWith(),
+      userInfo:
+          userInfo is _i2.UserInfo? ? userInfo : this.userInfo?.copyWith(),
       failReason: failReason is _i3.AuthenticationFailReason?
           ? failReason
           : this.failReason,

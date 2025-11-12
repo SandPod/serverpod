@@ -27,28 +27,26 @@ abstract class Blocking
   });
 
   factory Blocking({
-    final int? id,
-    required final int blockedId,
-    final _i2.Member? blocked,
-    required final int blockedById,
-    final _i2.Member? blockedBy,
+    int? id,
+    required int blockedId,
+    _i2.Member? blocked,
+    required int blockedById,
+    _i2.Member? blockedBy,
   }) = _BlockingImpl;
 
-  factory Blocking.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory Blocking.fromJson(Map<String, dynamic> jsonSerialization) {
     return Blocking(
       id: jsonSerialization['id'] as int?,
       blockedId: jsonSerialization['blockedId'] as int,
       blocked: jsonSerialization['blocked'] == null
           ? null
           : _i2.Member.fromJson(
-              (jsonSerialization['blocked'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['blocked'] as Map<String, dynamic>)),
       blockedById: jsonSerialization['blockedById'] as int,
       blockedBy: jsonSerialization['blockedBy'] == null
           ? null
           : _i2.Member.fromJson(
-              (jsonSerialization['blockedBy'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['blockedBy'] as Map<String, dynamic>)),
     );
   }
 
@@ -74,11 +72,11 @@ abstract class Blocking
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   Blocking copyWith({
-    final int? id,
-    final int? blockedId,
-    final _i2.Member? blocked,
-    final int? blockedById,
-    final _i2.Member? blockedBy,
+    int? id,
+    int? blockedId,
+    _i2.Member? blocked,
+    int? blockedById,
+    _i2.Member? blockedBy,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -103,8 +101,8 @@ abstract class Blocking
   }
 
   static BlockingInclude include({
-    final _i2.MemberInclude? blocked,
-    final _i2.MemberInclude? blockedBy,
+    _i2.MemberInclude? blocked,
+    _i2.MemberInclude? blockedBy,
   }) {
     return BlockingInclude._(
       blocked: blocked,
@@ -113,13 +111,13 @@ abstract class Blocking
   }
 
   static BlockingIncludeList includeList({
-    final _i1.WhereExpressionBuilder<BlockingTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<BlockingTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<BlockingTable>? orderByList,
-    final BlockingInclude? include,
+    _i1.WhereExpressionBuilder<BlockingTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<BlockingTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<BlockingTable>? orderByList,
+    BlockingInclude? include,
   }) {
     return BlockingIncludeList._(
       where: where,
@@ -142,38 +140,37 @@ class _Undefined {}
 
 class _BlockingImpl extends Blocking {
   _BlockingImpl({
-    final int? id,
-    required final int blockedId,
-    final _i2.Member? blocked,
-    required final int blockedById,
-    final _i2.Member? blockedBy,
+    int? id,
+    required int blockedId,
+    _i2.Member? blocked,
+    required int blockedById,
+    _i2.Member? blockedBy,
   }) : super._(
-         id: id,
-         blockedId: blockedId,
-         blocked: blocked,
-         blockedById: blockedById,
-         blockedBy: blockedBy,
-       );
+          id: id,
+          blockedId: blockedId,
+          blocked: blocked,
+          blockedById: blockedById,
+          blockedBy: blockedBy,
+        );
 
   /// Returns a shallow copy of this [Blocking]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   Blocking copyWith({
-    final Object? id = _Undefined,
-    final int? blockedId,
-    final Object? blocked = _Undefined,
-    final int? blockedById,
-    final Object? blockedBy = _Undefined,
+    Object? id = _Undefined,
+    int? blockedId,
+    Object? blocked = _Undefined,
+    int? blockedById,
+    Object? blockedBy = _Undefined,
   }) {
     return Blocking(
       id: id is int? ? id : this.id,
       blockedId: blockedId ?? this.blockedId,
       blocked: blocked is _i2.Member? ? blocked : this.blocked?.copyWith(),
       blockedById: blockedById ?? this.blockedById,
-      blockedBy: blockedBy is _i2.Member?
-          ? blockedBy
-          : this.blockedBy?.copyWith(),
+      blockedBy:
+          blockedBy is _i2.Member? ? blockedBy : this.blockedBy?.copyWith(),
     );
   }
 }
@@ -181,15 +178,15 @@ class _BlockingImpl extends Blocking {
 class BlockingUpdateTable extends _i1.UpdateTable<BlockingTable> {
   BlockingUpdateTable(super.table);
 
-  _i1.ColumnValue<int, int> blockedId(final int value) => _i1.ColumnValue(
-    table.blockedId,
-    value,
-  );
+  _i1.ColumnValue<int, int> blockedId(int value) => _i1.ColumnValue(
+        table.blockedId,
+        value,
+      );
 
-  _i1.ColumnValue<int, int> blockedById(final int value) => _i1.ColumnValue(
-    table.blockedById,
-    value,
-  );
+  _i1.ColumnValue<int, int> blockedById(int value) => _i1.ColumnValue(
+        table.blockedById,
+        value,
+      );
 }
 
 class BlockingTable extends _i1.Table<int?> {
@@ -222,7 +219,7 @@ class BlockingTable extends _i1.Table<int?> {
       field: Blocking.t.blockedId,
       foreignField: _i2.Member.t.id,
       tableRelation: tableRelation,
-      createTable: (final foreignTableRelation) =>
+      createTable: (foreignTableRelation) =>
           _i2.MemberTable(tableRelation: foreignTableRelation),
     );
     return _blocked!;
@@ -235,7 +232,7 @@ class BlockingTable extends _i1.Table<int?> {
       field: Blocking.t.blockedById,
       foreignField: _i2.Member.t.id,
       tableRelation: tableRelation,
-      createTable: (final foreignTableRelation) =>
+      createTable: (foreignTableRelation) =>
           _i2.MemberTable(tableRelation: foreignTableRelation),
     );
     return _blockedBy!;
@@ -243,13 +240,13 @@ class BlockingTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    blockedId,
-    blockedById,
-  ];
+        id,
+        blockedId,
+        blockedById,
+      ];
 
   @override
-  _i1.Table? getRelationTable(final String relationField) {
+  _i1.Table? getRelationTable(String relationField) {
     if (relationField == 'blocked') {
       return blocked;
     }
@@ -262,8 +259,8 @@ class BlockingTable extends _i1.Table<int?> {
 
 class BlockingInclude extends _i1.IncludeObject {
   BlockingInclude._({
-    final _i2.MemberInclude? blocked,
-    final _i2.MemberInclude? blockedBy,
+    _i2.MemberInclude? blocked,
+    _i2.MemberInclude? blockedBy,
   }) {
     _blocked = blocked;
     _blockedBy = blockedBy;
@@ -275,9 +272,9 @@ class BlockingInclude extends _i1.IncludeObject {
 
   @override
   Map<String, _i1.Include?> get includes => {
-    'blocked': _blocked,
-    'blockedBy': _blockedBy,
-  };
+        'blocked': _blocked,
+        'blockedBy': _blockedBy,
+      };
 
   @override
   _i1.Table<int?> get table => Blocking.t;
@@ -285,7 +282,7 @@ class BlockingInclude extends _i1.IncludeObject {
 
 class BlockingIncludeList extends _i1.IncludeList {
   BlockingIncludeList._({
-    final _i1.WhereExpressionBuilder<BlockingTable>? where,
+    _i1.WhereExpressionBuilder<BlockingTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -331,15 +328,15 @@ class BlockingRepository {
   /// );
   /// ```
   Future<List<Blocking>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<BlockingTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<BlockingTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<BlockingTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final BlockingInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<BlockingTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<BlockingTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<BlockingTable>? orderByList,
+    _i1.Transaction? transaction,
+    BlockingInclude? include,
   }) async {
     return session.db.find<Blocking>(
       where: where?.call(Blocking.t),
@@ -371,14 +368,14 @@ class BlockingRepository {
   /// );
   /// ```
   Future<Blocking?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<BlockingTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<BlockingTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<BlockingTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final BlockingInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<BlockingTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<BlockingTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<BlockingTable>? orderByList,
+    _i1.Transaction? transaction,
+    BlockingInclude? include,
   }) async {
     return session.db.findFirstRow<Blocking>(
       where: where?.call(Blocking.t),
@@ -393,10 +390,10 @@ class BlockingRepository {
 
   /// Finds a single [Blocking] by its [id] or null if no such row exists.
   Future<Blocking?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
-    final BlockingInclude? include,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
+    BlockingInclude? include,
   }) async {
     return session.db.findById<Blocking>(
       id,
@@ -412,9 +409,9 @@ class BlockingRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<Blocking>> insert(
-    final _i1.Session session,
-    final List<Blocking> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Blocking> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<Blocking>(
       rows,
@@ -426,9 +423,9 @@ class BlockingRepository {
   ///
   /// The returned [Blocking] will have its `id` field set.
   Future<Blocking> insertRow(
-    final _i1.Session session,
-    final Blocking row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Blocking row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<Blocking>(
       row,
@@ -442,10 +439,10 @@ class BlockingRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<Blocking>> update(
-    final _i1.Session session,
-    final List<Blocking> rows, {
-    final _i1.ColumnSelections<BlockingTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Blocking> rows, {
+    _i1.ColumnSelections<BlockingTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<Blocking>(
       rows,
@@ -458,10 +455,10 @@ class BlockingRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<Blocking> updateRow(
-    final _i1.Session session,
-    final Blocking row, {
-    final _i1.ColumnSelections<BlockingTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Blocking row, {
+    _i1.ColumnSelections<BlockingTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<Blocking>(
       row,
@@ -473,10 +470,10 @@ class BlockingRepository {
   /// Updates a single [Blocking] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<Blocking?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<BlockingUpdateTable> columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<BlockingUpdateTable> columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<Blocking>(
       id,
@@ -488,15 +485,15 @@ class BlockingRepository {
   /// Updates all [Blocking]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<Blocking>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<BlockingUpdateTable> columnValues,
-    required final _i1.WhereExpressionBuilder<BlockingTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<BlockingTable>? orderBy,
-    final _i1.OrderByListBuilder<BlockingTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<BlockingUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<BlockingTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<BlockingTable>? orderBy,
+    _i1.OrderByListBuilder<BlockingTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<Blocking>(
       columnValues: columnValues(Blocking.t.updateTable),
@@ -514,9 +511,9 @@ class BlockingRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<Blocking>> delete(
-    final _i1.Session session,
-    final List<Blocking> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Blocking> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<Blocking>(
       rows,
@@ -526,9 +523,9 @@ class BlockingRepository {
 
   /// Deletes a single [Blocking].
   Future<Blocking> deleteRow(
-    final _i1.Session session,
-    final Blocking row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Blocking row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<Blocking>(
       row,
@@ -538,9 +535,9 @@ class BlockingRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<Blocking>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<BlockingTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<BlockingTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<Blocking>(
       where: where(Blocking.t),
@@ -551,10 +548,10 @@ class BlockingRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<BlockingTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<BlockingTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<Blocking>(
       where: where?.call(Blocking.t),
@@ -570,10 +567,10 @@ class BlockingAttachRowRepository {
   /// Creates a relation between the given [Blocking] and [Member]
   /// by setting the [Blocking]'s foreign key `blockedId` to refer to the [Member].
   Future<void> blocked(
-    final _i1.Session session,
-    final Blocking blocking,
-    final _i2.Member blocked, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Blocking blocking,
+    _i2.Member blocked, {
+    _i1.Transaction? transaction,
   }) async {
     if (blocking.id == null) {
       throw ArgumentError.notNull('blocking.id');
@@ -582,7 +579,7 @@ class BlockingAttachRowRepository {
       throw ArgumentError.notNull('blocked.id');
     }
 
-    final $blocking = blocking.copyWith(blockedId: blocked.id);
+    var $blocking = blocking.copyWith(blockedId: blocked.id);
     await session.db.updateRow<Blocking>(
       $blocking,
       columns: [Blocking.t.blockedId],
@@ -593,10 +590,10 @@ class BlockingAttachRowRepository {
   /// Creates a relation between the given [Blocking] and [Member]
   /// by setting the [Blocking]'s foreign key `blockedById` to refer to the [Member].
   Future<void> blockedBy(
-    final _i1.Session session,
-    final Blocking blocking,
-    final _i2.Member blockedBy, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Blocking blocking,
+    _i2.Member blockedBy, {
+    _i1.Transaction? transaction,
   }) async {
     if (blocking.id == null) {
       throw ArgumentError.notNull('blocking.id');
@@ -605,7 +602,7 @@ class BlockingAttachRowRepository {
       throw ArgumentError.notNull('blockedBy.id');
     }
 
-    final $blocking = blocking.copyWith(blockedById: blockedBy.id);
+    var $blocking = blocking.copyWith(blockedById: blockedBy.id);
     await session.db.updateRow<Blocking>(
       $blocking,
       columns: [Blocking.t.blockedById],

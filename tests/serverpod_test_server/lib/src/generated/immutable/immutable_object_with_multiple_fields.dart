@@ -24,16 +24,15 @@ abstract class ImmutableObjectWithMultipleFields
   });
 
   const factory ImmutableObjectWithMultipleFields({
-    final int? anInt,
-    final bool? aBool,
-    final double? aDouble,
-    final DateTime? aDateTime,
-    final String? aString,
+    int? anInt,
+    bool? aBool,
+    double? aDouble,
+    DateTime? aDateTime,
+    String? aString,
   }) = _ImmutableObjectWithMultipleFieldsImpl;
 
   factory ImmutableObjectWithMultipleFields.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ImmutableObjectWithMultipleFields(
       anInt: jsonSerialization['anInt'] as int?,
       aBool: jsonSerialization['aBool'] as bool?,
@@ -59,14 +58,14 @@ abstract class ImmutableObjectWithMultipleFields
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ImmutableObjectWithMultipleFields copyWith({
-    final int? anInt,
-    final bool? aBool,
-    final double? aDouble,
-    final DateTime? aDateTime,
-    final String? aString,
+    int? anInt,
+    bool? aBool,
+    double? aDouble,
+    DateTime? aDateTime,
+    String? aString,
   });
   @override
-  bool operator ==(final Object other) {
+  bool operator ==(Object other) {
     return identical(
           other,
           this,
@@ -145,29 +144,29 @@ class _Undefined {}
 class _ImmutableObjectWithMultipleFieldsImpl
     extends ImmutableObjectWithMultipleFields {
   const _ImmutableObjectWithMultipleFieldsImpl({
-    final int? anInt,
-    final bool? aBool,
-    final double? aDouble,
-    final DateTime? aDateTime,
-    final String? aString,
+    int? anInt,
+    bool? aBool,
+    double? aDouble,
+    DateTime? aDateTime,
+    String? aString,
   }) : super._(
-         anInt: anInt,
-         aBool: aBool,
-         aDouble: aDouble,
-         aDateTime: aDateTime,
-         aString: aString,
-       );
+          anInt: anInt,
+          aBool: aBool,
+          aDouble: aDouble,
+          aDateTime: aDateTime,
+          aString: aString,
+        );
 
   /// Returns a shallow copy of this [ImmutableObjectWithMultipleFields]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   ImmutableObjectWithMultipleFields copyWith({
-    final Object? anInt = _Undefined,
-    final Object? aBool = _Undefined,
-    final Object? aDouble = _Undefined,
-    final Object? aDateTime = _Undefined,
-    final Object? aString = _Undefined,
+    Object? anInt = _Undefined,
+    Object? aBool = _Undefined,
+    Object? aDouble = _Undefined,
+    Object? aDateTime = _Undefined,
+    Object? aString = _Undefined,
   }) {
     return ImmutableObjectWithMultipleFields(
       anInt: anInt is int? ? anInt : this.anInt,

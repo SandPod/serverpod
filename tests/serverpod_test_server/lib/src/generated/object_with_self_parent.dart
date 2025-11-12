@@ -20,13 +20,12 @@ abstract class ObjectWithSelfParent
   });
 
   factory ObjectWithSelfParent({
-    final int? id,
-    final int? other,
+    int? id,
+    int? other,
   }) = _ObjectWithSelfParentImpl;
 
   factory ObjectWithSelfParent.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ObjectWithSelfParent(
       id: jsonSerialization['id'] as int?,
       other: jsonSerialization['other'] as int?,
@@ -49,8 +48,8 @@ abstract class ObjectWithSelfParent
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ObjectWithSelfParent copyWith({
-    final int? id,
-    final int? other,
+    int? id,
+    int? other,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -73,13 +72,13 @@ abstract class ObjectWithSelfParent
   }
 
   static ObjectWithSelfParentIncludeList includeList({
-    final _i1.WhereExpressionBuilder<ObjectWithSelfParentTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectWithSelfParentTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ObjectWithSelfParentTable>? orderByList,
-    final ObjectWithSelfParentInclude? include,
+    _i1.WhereExpressionBuilder<ObjectWithSelfParentTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ObjectWithSelfParentTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ObjectWithSelfParentTable>? orderByList,
+    ObjectWithSelfParentInclude? include,
   }) {
     return ObjectWithSelfParentIncludeList._(
       where: where,
@@ -102,20 +101,20 @@ class _Undefined {}
 
 class _ObjectWithSelfParentImpl extends ObjectWithSelfParent {
   _ObjectWithSelfParentImpl({
-    final int? id,
-    final int? other,
+    int? id,
+    int? other,
   }) : super._(
-         id: id,
-         other: other,
-       );
+          id: id,
+          other: other,
+        );
 
   /// Returns a shallow copy of this [ObjectWithSelfParent]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   ObjectWithSelfParent copyWith({
-    final Object? id = _Undefined,
-    final Object? other = _Undefined,
+    Object? id = _Undefined,
+    Object? other = _Undefined,
   }) {
     return ObjectWithSelfParent(
       id: id is int? ? id : this.id,
@@ -128,15 +127,15 @@ class ObjectWithSelfParentUpdateTable
     extends _i1.UpdateTable<ObjectWithSelfParentTable> {
   ObjectWithSelfParentUpdateTable(super.table);
 
-  _i1.ColumnValue<int, int> other(final int? value) => _i1.ColumnValue(
-    table.other,
-    value,
-  );
+  _i1.ColumnValue<int, int> other(int? value) => _i1.ColumnValue(
+        table.other,
+        value,
+      );
 }
 
 class ObjectWithSelfParentTable extends _i1.Table<int?> {
   ObjectWithSelfParentTable({super.tableRelation})
-    : super(tableName: 'object_with_self_parent') {
+      : super(tableName: 'object_with_self_parent') {
     updateTable = ObjectWithSelfParentUpdateTable(this);
     other = _i1.ColumnInt(
       'other',
@@ -150,9 +149,9 @@ class ObjectWithSelfParentTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    other,
-  ];
+        id,
+        other,
+      ];
 }
 
 class ObjectWithSelfParentInclude extends _i1.IncludeObject {
@@ -167,7 +166,7 @@ class ObjectWithSelfParentInclude extends _i1.IncludeObject {
 
 class ObjectWithSelfParentIncludeList extends _i1.IncludeList {
   ObjectWithSelfParentIncludeList._({
-    final _i1.WhereExpressionBuilder<ObjectWithSelfParentTable>? where,
+    _i1.WhereExpressionBuilder<ObjectWithSelfParentTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -211,14 +210,14 @@ class ObjectWithSelfParentRepository {
   /// );
   /// ```
   Future<List<ObjectWithSelfParent>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ObjectWithSelfParentTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectWithSelfParentTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ObjectWithSelfParentTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ObjectWithSelfParentTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ObjectWithSelfParentTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ObjectWithSelfParentTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<ObjectWithSelfParent>(
       where: where?.call(ObjectWithSelfParent.t),
@@ -249,13 +248,13 @@ class ObjectWithSelfParentRepository {
   /// );
   /// ```
   Future<ObjectWithSelfParent?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ObjectWithSelfParentTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectWithSelfParentTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ObjectWithSelfParentTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ObjectWithSelfParentTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<ObjectWithSelfParentTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ObjectWithSelfParentTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<ObjectWithSelfParent>(
       where: where?.call(ObjectWithSelfParent.t),
@@ -269,9 +268,9 @@ class ObjectWithSelfParentRepository {
 
   /// Finds a single [ObjectWithSelfParent] by its [id] or null if no such row exists.
   Future<ObjectWithSelfParent?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<ObjectWithSelfParent>(
       id,
@@ -286,9 +285,9 @@ class ObjectWithSelfParentRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<ObjectWithSelfParent>> insert(
-    final _i1.Session session,
-    final List<ObjectWithSelfParent> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ObjectWithSelfParent> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<ObjectWithSelfParent>(
       rows,
@@ -300,9 +299,9 @@ class ObjectWithSelfParentRepository {
   ///
   /// The returned [ObjectWithSelfParent] will have its `id` field set.
   Future<ObjectWithSelfParent> insertRow(
-    final _i1.Session session,
-    final ObjectWithSelfParent row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ObjectWithSelfParent row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<ObjectWithSelfParent>(
       row,
@@ -316,10 +315,10 @@ class ObjectWithSelfParentRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<ObjectWithSelfParent>> update(
-    final _i1.Session session,
-    final List<ObjectWithSelfParent> rows, {
-    final _i1.ColumnSelections<ObjectWithSelfParentTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ObjectWithSelfParent> rows, {
+    _i1.ColumnSelections<ObjectWithSelfParentTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<ObjectWithSelfParent>(
       rows,
@@ -332,10 +331,10 @@ class ObjectWithSelfParentRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<ObjectWithSelfParent> updateRow(
-    final _i1.Session session,
-    final ObjectWithSelfParent row, {
-    final _i1.ColumnSelections<ObjectWithSelfParentTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ObjectWithSelfParent row, {
+    _i1.ColumnSelections<ObjectWithSelfParentTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<ObjectWithSelfParent>(
       row,
@@ -347,11 +346,11 @@ class ObjectWithSelfParentRepository {
   /// Updates a single [ObjectWithSelfParent] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<ObjectWithSelfParent?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<ObjectWithSelfParentUpdateTable>
-    columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<ObjectWithSelfParentUpdateTable>
+        columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<ObjectWithSelfParent>(
       id,
@@ -363,16 +362,16 @@ class ObjectWithSelfParentRepository {
   /// Updates all [ObjectWithSelfParent]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<ObjectWithSelfParent>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<ObjectWithSelfParentUpdateTable>
-    columnValues,
-    required final _i1.WhereExpressionBuilder<ObjectWithSelfParentTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectWithSelfParentTable>? orderBy,
-    final _i1.OrderByListBuilder<ObjectWithSelfParentTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<ObjectWithSelfParentUpdateTable>
+        columnValues,
+    required _i1.WhereExpressionBuilder<ObjectWithSelfParentTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ObjectWithSelfParentTable>? orderBy,
+    _i1.OrderByListBuilder<ObjectWithSelfParentTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<ObjectWithSelfParent>(
       columnValues: columnValues(ObjectWithSelfParent.t.updateTable),
@@ -390,9 +389,9 @@ class ObjectWithSelfParentRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<ObjectWithSelfParent>> delete(
-    final _i1.Session session,
-    final List<ObjectWithSelfParent> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ObjectWithSelfParent> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<ObjectWithSelfParent>(
       rows,
@@ -402,9 +401,9 @@ class ObjectWithSelfParentRepository {
 
   /// Deletes a single [ObjectWithSelfParent].
   Future<ObjectWithSelfParent> deleteRow(
-    final _i1.Session session,
-    final ObjectWithSelfParent row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ObjectWithSelfParent row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<ObjectWithSelfParent>(
       row,
@@ -414,9 +413,9 @@ class ObjectWithSelfParentRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<ObjectWithSelfParent>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<ObjectWithSelfParentTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<ObjectWithSelfParentTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<ObjectWithSelfParent>(
       where: where(ObjectWithSelfParent.t),
@@ -427,10 +426,10 @@ class ObjectWithSelfParentRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ObjectWithSelfParentTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ObjectWithSelfParentTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<ObjectWithSelfParent>(
       where: where?.call(ObjectWithSelfParent.t),

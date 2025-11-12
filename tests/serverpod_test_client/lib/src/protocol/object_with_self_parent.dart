@@ -13,14 +13,18 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 
 abstract class ObjectWithSelfParent implements _i1.SerializableModel {
-  ObjectWithSelfParent._({this.id, this.other});
+  ObjectWithSelfParent._({
+    this.id,
+    this.other,
+  });
 
-  factory ObjectWithSelfParent({int? id, int? other}) =
-      _ObjectWithSelfParentImpl;
+  factory ObjectWithSelfParent({
+    int? id,
+    int? other,
+  }) = _ObjectWithSelfParentImpl;
 
   factory ObjectWithSelfParent.fromJson(
-    Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ObjectWithSelfParent(
       id: jsonSerialization['id'] as int?,
       other: jsonSerialization['other'] as int?,
@@ -37,10 +41,16 @@ abstract class ObjectWithSelfParent implements _i1.SerializableModel {
   /// Returns a shallow copy of this [ObjectWithSelfParent]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  ObjectWithSelfParent copyWith({int? id, int? other});
+  ObjectWithSelfParent copyWith({
+    int? id,
+    int? other,
+  });
   @override
   Map<String, dynamic> toJson() {
-    return {if (id != null) 'id': id, if (other != null) 'other': other};
+    return {
+      if (id != null) 'id': id,
+      if (other != null) 'other': other,
+    };
   }
 
   @override
@@ -52,8 +62,13 @@ abstract class ObjectWithSelfParent implements _i1.SerializableModel {
 class _Undefined {}
 
 class _ObjectWithSelfParentImpl extends ObjectWithSelfParent {
-  _ObjectWithSelfParentImpl({int? id, int? other})
-    : super._(id: id, other: other);
+  _ObjectWithSelfParentImpl({
+    int? id,
+    int? other,
+  }) : super._(
+          id: id,
+          other: other,
+        );
 
   /// Returns a shallow copy of this [ObjectWithSelfParent]
   /// with some or all fields replaced by the given arguments.

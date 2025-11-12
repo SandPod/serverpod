@@ -32,15 +32,13 @@ abstract class CloudStorageDirectUploadEntry
   }) = _CloudStorageDirectUploadEntryImpl;
 
   factory CloudStorageDirectUploadEntry.fromJson(
-    Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return CloudStorageDirectUploadEntry(
       id: jsonSerialization['id'] as int?,
       storageId: jsonSerialization['storageId'] as String,
       path: jsonSerialization['path'] as String,
-      expiration: _i1.DateTimeJsonExtension.fromJson(
-        jsonSerialization['expiration'],
-      ),
+      expiration:
+          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['expiration']),
       authKey: jsonSerialization['authKey'] as String,
     );
   }
@@ -139,12 +137,12 @@ class _CloudStorageDirectUploadEntryImpl extends CloudStorageDirectUploadEntry {
     required DateTime expiration,
     required String authKey,
   }) : super._(
-         id: id,
-         storageId: storageId,
-         path: path,
-         expiration: expiration,
-         authKey: authKey,
-       );
+          id: id,
+          storageId: storageId,
+          path: path,
+          expiration: expiration,
+          authKey: authKey,
+        );
 
   /// Returns a shallow copy of this [CloudStorageDirectUploadEntry]
   /// with some or all fields replaced by the given arguments.
@@ -172,14 +170,14 @@ class CloudStorageDirectUploadEntryUpdateTable
   CloudStorageDirectUploadEntryUpdateTable(super.table);
 
   _i1.ColumnValue<String, String> storageId(String value) => _i1.ColumnValue(
-    table.storageId,
-    value,
-  );
+        table.storageId,
+        value,
+      );
 
   _i1.ColumnValue<String, String> path(String value) => _i1.ColumnValue(
-    table.path,
-    value,
-  );
+        table.path,
+        value,
+      );
 
   _i1.ColumnValue<DateTime, DateTime> expiration(DateTime value) =>
       _i1.ColumnValue(
@@ -188,14 +186,14 @@ class CloudStorageDirectUploadEntryUpdateTable
       );
 
   _i1.ColumnValue<String, String> authKey(String value) => _i1.ColumnValue(
-    table.authKey,
-    value,
-  );
+        table.authKey,
+        value,
+      );
 }
 
 class CloudStorageDirectUploadEntryTable extends _i1.Table<int?> {
   CloudStorageDirectUploadEntryTable({super.tableRelation})
-    : super(tableName: 'serverpod_cloud_storage_direct_upload') {
+      : super(tableName: 'serverpod_cloud_storage_direct_upload') {
     updateTable = CloudStorageDirectUploadEntryUpdateTable(this);
     storageId = _i1.ColumnString(
       'storageId',
@@ -231,12 +229,12 @@ class CloudStorageDirectUploadEntryTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    storageId,
-    path,
-    expiration,
-    authKey,
-  ];
+        id,
+        storageId,
+        path,
+        expiration,
+        authKey,
+      ];
 }
 
 class CloudStorageDirectUploadEntryInclude extends _i1.IncludeObject {
@@ -433,10 +431,9 @@ class CloudStorageDirectUploadEntryRepository {
   Future<CloudStorageDirectUploadEntry?> updateById(
     _i1.Session session,
     int id, {
-    required _i1.ColumnValueListBuilder<
-      CloudStorageDirectUploadEntryUpdateTable
-    >
-    columnValues,
+    required _i1
+        .ColumnValueListBuilder<CloudStorageDirectUploadEntryUpdateTable>
+        columnValues,
     _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<CloudStorageDirectUploadEntry>(
@@ -450,12 +447,11 @@ class CloudStorageDirectUploadEntryRepository {
   /// Returns the list of updated rows.
   Future<List<CloudStorageDirectUploadEntry>> updateWhere(
     _i1.Session session, {
-    required _i1.ColumnValueListBuilder<
-      CloudStorageDirectUploadEntryUpdateTable
-    >
-    columnValues,
+    required _i1
+        .ColumnValueListBuilder<CloudStorageDirectUploadEntryUpdateTable>
+        columnValues,
     required _i1.WhereExpressionBuilder<CloudStorageDirectUploadEntryTable>
-    where,
+        where,
     int? limit,
     int? offset,
     _i1.OrderByBuilder<CloudStorageDirectUploadEntryTable>? orderBy,
@@ -505,7 +501,7 @@ class CloudStorageDirectUploadEntryRepository {
   Future<List<CloudStorageDirectUploadEntry>> deleteWhere(
     _i1.Session session, {
     required _i1.WhereExpressionBuilder<CloudStorageDirectUploadEntryTable>
-    where,
+        where,
     _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<CloudStorageDirectUploadEntry>(

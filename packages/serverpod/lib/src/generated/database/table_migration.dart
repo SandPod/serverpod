@@ -57,8 +57,7 @@ abstract class TableMigration
       schema: jsonSerialization['schema'] as String,
       addColumns: (jsonSerialization['addColumns'] as List)
           .map(
-            (e) => _i2.ColumnDefinition.fromJson((e as Map<String, dynamic>)),
-          )
+              (e) => _i2.ColumnDefinition.fromJson((e as Map<String, dynamic>)))
           .toList(),
       deleteColumns: (jsonSerialization['deleteColumns'] as List)
           .map((e) => e as String)
@@ -73,20 +72,15 @@ abstract class TableMigration
           .map((e) => e as String)
           .toList(),
       addForeignKeys: (jsonSerialization['addForeignKeys'] as List)
-          .map(
-            (e) =>
-                _i5.ForeignKeyDefinition.fromJson((e as Map<String, dynamic>)),
-          )
+          .map((e) =>
+              _i5.ForeignKeyDefinition.fromJson((e as Map<String, dynamic>)))
           .toList(),
       deleteForeignKeys: (jsonSerialization['deleteForeignKeys'] as List)
           .map((e) => e as String)
           .toList(),
       warnings: (jsonSerialization['warnings'] as List)
-          .map(
-            (e) => _i6.DatabaseMigrationWarning.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
+          .map((e) => _i6.DatabaseMigrationWarning.fromJson(
+              (e as Map<String, dynamic>)))
           .toList(),
     );
   }
@@ -157,20 +151,16 @@ abstract class TableMigration
       if (dartName != null) 'dartName': dartName,
       if (module != null) 'module': module,
       'schema': schema,
-      'addColumns': addColumns.toJson(
-        valueToJson: (v) => v.toJsonForProtocol(),
-      ),
+      'addColumns':
+          addColumns.toJson(valueToJson: (v) => v.toJsonForProtocol()),
       'deleteColumns': deleteColumns.toJson(),
-      'modifyColumns': modifyColumns.toJson(
-        valueToJson: (v) => v.toJsonForProtocol(),
-      ),
-      'addIndexes': addIndexes.toJson(
-        valueToJson: (v) => v.toJsonForProtocol(),
-      ),
+      'modifyColumns':
+          modifyColumns.toJson(valueToJson: (v) => v.toJsonForProtocol()),
+      'addIndexes':
+          addIndexes.toJson(valueToJson: (v) => v.toJsonForProtocol()),
       'deleteIndexes': deleteIndexes.toJson(),
-      'addForeignKeys': addForeignKeys.toJson(
-        valueToJson: (v) => v.toJsonForProtocol(),
-      ),
+      'addForeignKeys':
+          addForeignKeys.toJson(valueToJson: (v) => v.toJsonForProtocol()),
       'deleteForeignKeys': deleteForeignKeys.toJson(),
       'warnings': warnings.toJson(valueToJson: (v) => v.toJsonForProtocol()),
     };
@@ -199,19 +189,19 @@ class _TableMigrationImpl extends TableMigration {
     required List<String> deleteForeignKeys,
     required List<_i6.DatabaseMigrationWarning> warnings,
   }) : super._(
-         name: name,
-         dartName: dartName,
-         module: module,
-         schema: schema,
-         addColumns: addColumns,
-         deleteColumns: deleteColumns,
-         modifyColumns: modifyColumns,
-         addIndexes: addIndexes,
-         deleteIndexes: deleteIndexes,
-         addForeignKeys: addForeignKeys,
-         deleteForeignKeys: deleteForeignKeys,
-         warnings: warnings,
-       );
+          name: name,
+          dartName: dartName,
+          module: module,
+          schema: schema,
+          addColumns: addColumns,
+          deleteColumns: deleteColumns,
+          modifyColumns: modifyColumns,
+          addIndexes: addIndexes,
+          deleteIndexes: deleteIndexes,
+          addForeignKeys: addForeignKeys,
+          deleteForeignKeys: deleteForeignKeys,
+          warnings: warnings,
+        );
 
   /// Returns a shallow copy of this [TableMigration]
   /// with some or all fields replaced by the given arguments.
@@ -240,15 +230,13 @@ class _TableMigrationImpl extends TableMigration {
           addColumns ?? this.addColumns.map((e0) => e0.copyWith()).toList(),
       deleteColumns:
           deleteColumns ?? this.deleteColumns.map((e0) => e0).toList(),
-      modifyColumns:
-          modifyColumns ??
+      modifyColumns: modifyColumns ??
           this.modifyColumns.map((e0) => e0.copyWith()).toList(),
       addIndexes:
           addIndexes ?? this.addIndexes.map((e0) => e0.copyWith()).toList(),
       deleteIndexes:
           deleteIndexes ?? this.deleteIndexes.map((e0) => e0).toList(),
-      addForeignKeys:
-          addForeignKeys ??
+      addForeignKeys: addForeignKeys ??
           this.addForeignKeys.map((e0) => e0.copyWith()).toList(),
       deleteForeignKeys:
           deleteForeignKeys ?? this.deleteForeignKeys.map((e0) => e0).toList(),

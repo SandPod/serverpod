@@ -9,10 +9,9 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
-import 'package:serverpod/serverpod.dart' as _i2;
-
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import '../protocol.dart' as _i1;
+import 'package:serverpod/serverpod.dart' as _i2;
 
 abstract class ChildClassWithoutId extends _i1.ParentClassWithoutId
     implements _i2.TableRow<_i2.UuidValue?>, _i2.ProtocolSerialization {
@@ -24,13 +23,13 @@ abstract class ChildClassWithoutId extends _i1.ParentClassWithoutId
   });
 
   factory ChildClassWithoutId({
-    final _i2.UuidValue? id,
-    required final String grandParentField,
-    required final String parentField,
-    required final String childField,
+    _i2.UuidValue? id,
+    required String grandParentField,
+    required String parentField,
+    required String childField,
   }) = _ChildClassWithoutIdImpl;
 
-  factory ChildClassWithoutId.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory ChildClassWithoutId.fromJson(Map<String, dynamic> jsonSerialization) {
     return ChildClassWithoutId(
       id: jsonSerialization['id'] == null
           ? null
@@ -58,10 +57,10 @@ abstract class ChildClassWithoutId extends _i1.ParentClassWithoutId
   @override
   @_i2.useResult
   ChildClassWithoutId copyWith({
-    final Object? id,
-    final String? grandParentField,
-    final String? parentField,
-    final String? childField,
+    Object? id,
+    String? grandParentField,
+    String? parentField,
+    String? childField,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -88,13 +87,13 @@ abstract class ChildClassWithoutId extends _i1.ParentClassWithoutId
   }
 
   static ChildClassWithoutIdIncludeList includeList({
-    final _i2.WhereExpressionBuilder<ChildClassWithoutIdTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i2.OrderByBuilder<ChildClassWithoutIdTable>? orderBy,
-    final bool orderDescending = false,
-    final _i2.OrderByListBuilder<ChildClassWithoutIdTable>? orderByList,
-    final ChildClassWithoutIdInclude? include,
+    _i2.WhereExpressionBuilder<ChildClassWithoutIdTable>? where,
+    int? limit,
+    int? offset,
+    _i2.OrderByBuilder<ChildClassWithoutIdTable>? orderBy,
+    bool orderDescending = false,
+    _i2.OrderByListBuilder<ChildClassWithoutIdTable>? orderByList,
+    ChildClassWithoutIdInclude? include,
   }) {
     return ChildClassWithoutIdIncludeList._(
       where: where,
@@ -117,26 +116,26 @@ class _Undefined {}
 
 class _ChildClassWithoutIdImpl extends ChildClassWithoutId {
   _ChildClassWithoutIdImpl({
-    final _i2.UuidValue? id,
-    required final String grandParentField,
-    required final String parentField,
-    required final String childField,
+    _i2.UuidValue? id,
+    required String grandParentField,
+    required String parentField,
+    required String childField,
   }) : super._(
-         id: id,
-         grandParentField: grandParentField,
-         parentField: parentField,
-         childField: childField,
-       );
+          id: id,
+          grandParentField: grandParentField,
+          parentField: parentField,
+          childField: childField,
+        );
 
   /// Returns a shallow copy of this [ChildClassWithoutId]
   /// with some or all fields replaced by the given arguments.
   @_i2.useResult
   @override
   ChildClassWithoutId copyWith({
-    final Object? id = _Undefined,
-    final String? grandParentField,
-    final String? parentField,
-    final String? childField,
+    Object? id = _Undefined,
+    String? grandParentField,
+    String? parentField,
+    String? childField,
   }) {
     return ChildClassWithoutId(
       id: id is _i2.UuidValue? ? id : this.id,
@@ -151,26 +150,26 @@ class ChildClassWithoutIdUpdateTable
     extends _i2.UpdateTable<ChildClassWithoutIdTable> {
   ChildClassWithoutIdUpdateTable(super.table);
 
-  _i2.ColumnValue<String, String> grandParentField(final String value) =>
+  _i2.ColumnValue<String, String> grandParentField(String value) =>
       _i2.ColumnValue(
         table.grandParentField,
         value,
       );
 
-  _i2.ColumnValue<String, String> parentField(final String value) => _i2.ColumnValue(
-    table.parentField,
-    value,
-  );
+  _i2.ColumnValue<String, String> parentField(String value) => _i2.ColumnValue(
+        table.parentField,
+        value,
+      );
 
-  _i2.ColumnValue<String, String> childField(final String value) => _i2.ColumnValue(
-    table.childField,
-    value,
-  );
+  _i2.ColumnValue<String, String> childField(String value) => _i2.ColumnValue(
+        table.childField,
+        value,
+      );
 }
 
 class ChildClassWithoutIdTable extends _i2.Table<_i2.UuidValue?> {
   ChildClassWithoutIdTable({super.tableRelation})
-    : super(tableName: 'child_table_with_inherited_id') {
+      : super(tableName: 'child_table_with_inherited_id') {
     updateTable = ChildClassWithoutIdUpdateTable(this);
     grandParentField = _i2.ColumnString(
       'grandParentField',
@@ -196,11 +195,11 @@ class ChildClassWithoutIdTable extends _i2.Table<_i2.UuidValue?> {
 
   @override
   List<_i2.Column> get columns => [
-    id,
-    grandParentField,
-    parentField,
-    childField,
-  ];
+        id,
+        grandParentField,
+        parentField,
+        childField,
+      ];
 }
 
 class ChildClassWithoutIdInclude extends _i2.IncludeObject {
@@ -215,7 +214,7 @@ class ChildClassWithoutIdInclude extends _i2.IncludeObject {
 
 class ChildClassWithoutIdIncludeList extends _i2.IncludeList {
   ChildClassWithoutIdIncludeList._({
-    final _i2.WhereExpressionBuilder<ChildClassWithoutIdTable>? where,
+    _i2.WhereExpressionBuilder<ChildClassWithoutIdTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -259,14 +258,14 @@ class ChildClassWithoutIdRepository {
   /// );
   /// ```
   Future<List<ChildClassWithoutId>> find(
-    final _i2.Session session, {
-    final _i2.WhereExpressionBuilder<ChildClassWithoutIdTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i2.OrderByBuilder<ChildClassWithoutIdTable>? orderBy,
-    final bool orderDescending = false,
-    final _i2.OrderByListBuilder<ChildClassWithoutIdTable>? orderByList,
-    final _i2.Transaction? transaction,
+    _i2.Session session, {
+    _i2.WhereExpressionBuilder<ChildClassWithoutIdTable>? where,
+    int? limit,
+    int? offset,
+    _i2.OrderByBuilder<ChildClassWithoutIdTable>? orderBy,
+    bool orderDescending = false,
+    _i2.OrderByListBuilder<ChildClassWithoutIdTable>? orderByList,
+    _i2.Transaction? transaction,
   }) async {
     return session.db.find<ChildClassWithoutId>(
       where: where?.call(ChildClassWithoutId.t),
@@ -297,13 +296,13 @@ class ChildClassWithoutIdRepository {
   /// );
   /// ```
   Future<ChildClassWithoutId?> findFirstRow(
-    final _i2.Session session, {
-    final _i2.WhereExpressionBuilder<ChildClassWithoutIdTable>? where,
-    final int? offset,
-    final _i2.OrderByBuilder<ChildClassWithoutIdTable>? orderBy,
-    final bool orderDescending = false,
-    final _i2.OrderByListBuilder<ChildClassWithoutIdTable>? orderByList,
-    final _i2.Transaction? transaction,
+    _i2.Session session, {
+    _i2.WhereExpressionBuilder<ChildClassWithoutIdTable>? where,
+    int? offset,
+    _i2.OrderByBuilder<ChildClassWithoutIdTable>? orderBy,
+    bool orderDescending = false,
+    _i2.OrderByListBuilder<ChildClassWithoutIdTable>? orderByList,
+    _i2.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<ChildClassWithoutId>(
       where: where?.call(ChildClassWithoutId.t),
@@ -317,9 +316,9 @@ class ChildClassWithoutIdRepository {
 
   /// Finds a single [ChildClassWithoutId] by its [id] or null if no such row exists.
   Future<ChildClassWithoutId?> findById(
-    final _i2.Session session,
-    final _i2.UuidValue id, {
-    final _i2.Transaction? transaction,
+    _i2.Session session,
+    _i2.UuidValue id, {
+    _i2.Transaction? transaction,
   }) async {
     return session.db.findById<ChildClassWithoutId>(
       id,
@@ -334,9 +333,9 @@ class ChildClassWithoutIdRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<ChildClassWithoutId>> insert(
-    final _i2.Session session,
-    final List<ChildClassWithoutId> rows, {
-    final _i2.Transaction? transaction,
+    _i2.Session session,
+    List<ChildClassWithoutId> rows, {
+    _i2.Transaction? transaction,
   }) async {
     return session.db.insert<ChildClassWithoutId>(
       rows,
@@ -348,9 +347,9 @@ class ChildClassWithoutIdRepository {
   ///
   /// The returned [ChildClassWithoutId] will have its `id` field set.
   Future<ChildClassWithoutId> insertRow(
-    final _i2.Session session,
-    final ChildClassWithoutId row, {
-    final _i2.Transaction? transaction,
+    _i2.Session session,
+    ChildClassWithoutId row, {
+    _i2.Transaction? transaction,
   }) async {
     return session.db.insertRow<ChildClassWithoutId>(
       row,
@@ -364,10 +363,10 @@ class ChildClassWithoutIdRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<ChildClassWithoutId>> update(
-    final _i2.Session session,
-    final List<ChildClassWithoutId> rows, {
-    final _i2.ColumnSelections<ChildClassWithoutIdTable>? columns,
-    final _i2.Transaction? transaction,
+    _i2.Session session,
+    List<ChildClassWithoutId> rows, {
+    _i2.ColumnSelections<ChildClassWithoutIdTable>? columns,
+    _i2.Transaction? transaction,
   }) async {
     return session.db.update<ChildClassWithoutId>(
       rows,
@@ -380,10 +379,10 @@ class ChildClassWithoutIdRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<ChildClassWithoutId> updateRow(
-    final _i2.Session session,
-    final ChildClassWithoutId row, {
-    final _i2.ColumnSelections<ChildClassWithoutIdTable>? columns,
-    final _i2.Transaction? transaction,
+    _i2.Session session,
+    ChildClassWithoutId row, {
+    _i2.ColumnSelections<ChildClassWithoutIdTable>? columns,
+    _i2.Transaction? transaction,
   }) async {
     return session.db.updateRow<ChildClassWithoutId>(
       row,
@@ -395,11 +394,11 @@ class ChildClassWithoutIdRepository {
   /// Updates a single [ChildClassWithoutId] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<ChildClassWithoutId?> updateById(
-    final _i2.Session session,
-    final _i2.UuidValue id, {
-    required final _i2.ColumnValueListBuilder<ChildClassWithoutIdUpdateTable>
-    columnValues,
-    final _i2.Transaction? transaction,
+    _i2.Session session,
+    _i2.UuidValue id, {
+    required _i2.ColumnValueListBuilder<ChildClassWithoutIdUpdateTable>
+        columnValues,
+    _i2.Transaction? transaction,
   }) async {
     return session.db.updateById<ChildClassWithoutId>(
       id,
@@ -411,16 +410,16 @@ class ChildClassWithoutIdRepository {
   /// Updates all [ChildClassWithoutId]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<ChildClassWithoutId>> updateWhere(
-    final _i2.Session session, {
-    required final _i2.ColumnValueListBuilder<ChildClassWithoutIdUpdateTable>
-    columnValues,
-    required final _i2.WhereExpressionBuilder<ChildClassWithoutIdTable> where,
-    final int? limit,
-    final int? offset,
-    final _i2.OrderByBuilder<ChildClassWithoutIdTable>? orderBy,
-    final _i2.OrderByListBuilder<ChildClassWithoutIdTable>? orderByList,
-    final bool orderDescending = false,
-    final _i2.Transaction? transaction,
+    _i2.Session session, {
+    required _i2.ColumnValueListBuilder<ChildClassWithoutIdUpdateTable>
+        columnValues,
+    required _i2.WhereExpressionBuilder<ChildClassWithoutIdTable> where,
+    int? limit,
+    int? offset,
+    _i2.OrderByBuilder<ChildClassWithoutIdTable>? orderBy,
+    _i2.OrderByListBuilder<ChildClassWithoutIdTable>? orderByList,
+    bool orderDescending = false,
+    _i2.Transaction? transaction,
   }) async {
     return session.db.updateWhere<ChildClassWithoutId>(
       columnValues: columnValues(ChildClassWithoutId.t.updateTable),
@@ -438,9 +437,9 @@ class ChildClassWithoutIdRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<ChildClassWithoutId>> delete(
-    final _i2.Session session,
-    final List<ChildClassWithoutId> rows, {
-    final _i2.Transaction? transaction,
+    _i2.Session session,
+    List<ChildClassWithoutId> rows, {
+    _i2.Transaction? transaction,
   }) async {
     return session.db.delete<ChildClassWithoutId>(
       rows,
@@ -450,9 +449,9 @@ class ChildClassWithoutIdRepository {
 
   /// Deletes a single [ChildClassWithoutId].
   Future<ChildClassWithoutId> deleteRow(
-    final _i2.Session session,
-    final ChildClassWithoutId row, {
-    final _i2.Transaction? transaction,
+    _i2.Session session,
+    ChildClassWithoutId row, {
+    _i2.Transaction? transaction,
   }) async {
     return session.db.deleteRow<ChildClassWithoutId>(
       row,
@@ -462,9 +461,9 @@ class ChildClassWithoutIdRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<ChildClassWithoutId>> deleteWhere(
-    final _i2.Session session, {
-    required final _i2.WhereExpressionBuilder<ChildClassWithoutIdTable> where,
-    final _i2.Transaction? transaction,
+    _i2.Session session, {
+    required _i2.WhereExpressionBuilder<ChildClassWithoutIdTable> where,
+    _i2.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<ChildClassWithoutId>(
       where: where(ChildClassWithoutId.t),
@@ -475,10 +474,10 @@ class ChildClassWithoutIdRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i2.Session session, {
-    final _i2.WhereExpressionBuilder<ChildClassWithoutIdTable>? where,
-    final int? limit,
-    final _i2.Transaction? transaction,
+    _i2.Session session, {
+    _i2.WhereExpressionBuilder<ChildClassWithoutIdTable>? where,
+    int? limit,
+    _i2.Transaction? transaction,
   }) async {
     return session.db.count<ChildClassWithoutId>(
       where: where?.call(ChildClassWithoutId.t),

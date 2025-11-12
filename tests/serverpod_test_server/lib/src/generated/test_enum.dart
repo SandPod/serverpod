@@ -23,7 +23,7 @@ enum TestEnum implements _i1.SerializableModel {
   two,
   three;
 
-  static TestEnum fromJson(final int index) {
+  static TestEnum fromJson(int index) {
     switch (index) {
       case 0:
         return TestEnum.one;

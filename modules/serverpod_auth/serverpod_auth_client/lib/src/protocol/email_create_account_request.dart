@@ -24,16 +24,15 @@ abstract class EmailCreateAccountRequest implements _i1.SerializableModel {
   });
 
   factory EmailCreateAccountRequest({
-    final int? id,
-    required final String userName,
-    required final String email,
-    required final String hash,
-    required final String verificationCode,
+    int? id,
+    required String userName,
+    required String email,
+    required String hash,
+    required String verificationCode,
   }) = _EmailCreateAccountRequestImpl;
 
   factory EmailCreateAccountRequest.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return EmailCreateAccountRequest(
       id: jsonSerialization['id'] as int?,
       userName: jsonSerialization['userName'] as String,
@@ -64,11 +63,11 @@ abstract class EmailCreateAccountRequest implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   EmailCreateAccountRequest copyWith({
-    final int? id,
-    final String? userName,
-    final String? email,
-    final String? hash,
-    final String? verificationCode,
+    int? id,
+    String? userName,
+    String? email,
+    String? hash,
+    String? verificationCode,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -91,29 +90,29 @@ class _Undefined {}
 
 class _EmailCreateAccountRequestImpl extends EmailCreateAccountRequest {
   _EmailCreateAccountRequestImpl({
-    final int? id,
-    required final String userName,
-    required final String email,
-    required final String hash,
-    required final String verificationCode,
+    int? id,
+    required String userName,
+    required String email,
+    required String hash,
+    required String verificationCode,
   }) : super._(
-         id: id,
-         userName: userName,
-         email: email,
-         hash: hash,
-         verificationCode: verificationCode,
-       );
+          id: id,
+          userName: userName,
+          email: email,
+          hash: hash,
+          verificationCode: verificationCode,
+        );
 
   /// Returns a shallow copy of this [EmailCreateAccountRequest]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   EmailCreateAccountRequest copyWith({
-    final Object? id = _Undefined,
-    final String? userName,
-    final String? email,
-    final String? hash,
-    final String? verificationCode,
+    Object? id = _Undefined,
+    String? userName,
+    String? email,
+    String? hash,
+    String? verificationCode,
   }) {
     return EmailCreateAccountRequest(
       id: id is int? ? id : this.id,

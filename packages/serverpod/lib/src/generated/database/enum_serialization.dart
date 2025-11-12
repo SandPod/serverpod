@@ -24,8 +24,7 @@ enum EnumSerialization implements _i1.SerializableModel {
         return EnumSerialization.byIndex;
       default:
         throw ArgumentError(
-          'Value "$index" cannot be converted to "EnumSerialization"',
-        );
+            'Value "$index" cannot be converted to "EnumSerialization"');
     }
   }
 

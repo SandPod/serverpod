@@ -13,10 +13,15 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 
 abstract class IntDefaultPersist implements _i1.SerializableModel {
-  IntDefaultPersist._({this.id, this.intDefaultPersist});
+  IntDefaultPersist._({
+    this.id,
+    this.intDefaultPersist,
+  });
 
-  factory IntDefaultPersist({int? id, int? intDefaultPersist}) =
-      _IntDefaultPersistImpl;
+  factory IntDefaultPersist({
+    int? id,
+    int? intDefaultPersist,
+  }) = _IntDefaultPersistImpl;
 
   factory IntDefaultPersist.fromJson(Map<String, dynamic> jsonSerialization) {
     return IntDefaultPersist(
@@ -35,7 +40,10 @@ abstract class IntDefaultPersist implements _i1.SerializableModel {
   /// Returns a shallow copy of this [IntDefaultPersist]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  IntDefaultPersist copyWith({int? id, int? intDefaultPersist});
+  IntDefaultPersist copyWith({
+    int? id,
+    int? intDefaultPersist,
+  });
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -53,8 +61,13 @@ abstract class IntDefaultPersist implements _i1.SerializableModel {
 class _Undefined {}
 
 class _IntDefaultPersistImpl extends IntDefaultPersist {
-  _IntDefaultPersistImpl({int? id, int? intDefaultPersist})
-    : super._(id: id, intDefaultPersist: intDefaultPersist);
+  _IntDefaultPersistImpl({
+    int? id,
+    int? intDefaultPersist,
+  }) : super._(
+          id: id,
+          intDefaultPersist: intDefaultPersist,
+        );
 
   /// Returns a shallow copy of this [IntDefaultPersist]
   /// with some or all fields replaced by the given arguments.

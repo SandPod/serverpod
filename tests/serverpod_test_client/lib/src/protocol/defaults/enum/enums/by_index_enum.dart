@@ -24,8 +24,7 @@ enum ByIndexEnum implements _i1.SerializableModel {
         return ByIndexEnum.byIndex2;
       default:
         throw ArgumentError(
-          'Value "$index" cannot be converted to "ByIndexEnum"',
-        );
+            'Value "$index" cannot be converted to "ByIndexEnum"');
     }
   }
 

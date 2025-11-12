@@ -16,23 +16,23 @@ abstract class DoubleDefault
     implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   DoubleDefault._({
     this.id,
-    final double? doubleDefault,
-    final double? doubleDefaultNull,
-  }) : doubleDefault = doubleDefault ?? 10.5,
-       doubleDefaultNull = doubleDefaultNull ?? 20.5;
+    double? doubleDefault,
+    double? doubleDefaultNull,
+  })  : doubleDefault = doubleDefault ?? 10.5,
+        doubleDefaultNull = doubleDefaultNull ?? 20.5;
 
   factory DoubleDefault({
-    final int? id,
-    final double? doubleDefault,
-    final double? doubleDefaultNull,
+    int? id,
+    double? doubleDefault,
+    double? doubleDefaultNull,
   }) = _DoubleDefaultImpl;
 
-  factory DoubleDefault.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory DoubleDefault.fromJson(Map<String, dynamic> jsonSerialization) {
     return DoubleDefault(
       id: jsonSerialization['id'] as int?,
       doubleDefault: (jsonSerialization['doubleDefault'] as num).toDouble(),
-      doubleDefaultNull: (jsonSerialization['doubleDefaultNull'] as num?)
-          ?.toDouble(),
+      doubleDefaultNull:
+          (jsonSerialization['doubleDefaultNull'] as num?)?.toDouble(),
     );
   }
 
@@ -54,9 +54,9 @@ abstract class DoubleDefault
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   DoubleDefault copyWith({
-    final int? id,
-    final double? doubleDefault,
-    final double? doubleDefaultNull,
+    int? id,
+    double? doubleDefault,
+    double? doubleDefaultNull,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -81,13 +81,13 @@ abstract class DoubleDefault
   }
 
   static DoubleDefaultIncludeList includeList({
-    final _i1.WhereExpressionBuilder<DoubleDefaultTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<DoubleDefaultTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<DoubleDefaultTable>? orderByList,
-    final DoubleDefaultInclude? include,
+    _i1.WhereExpressionBuilder<DoubleDefaultTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<DoubleDefaultTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<DoubleDefaultTable>? orderByList,
+    DoubleDefaultInclude? include,
   }) {
     return DoubleDefaultIncludeList._(
       where: where,
@@ -110,23 +110,23 @@ class _Undefined {}
 
 class _DoubleDefaultImpl extends DoubleDefault {
   _DoubleDefaultImpl({
-    final int? id,
-    final double? doubleDefault,
-    final double? doubleDefaultNull,
+    int? id,
+    double? doubleDefault,
+    double? doubleDefaultNull,
   }) : super._(
-         id: id,
-         doubleDefault: doubleDefault,
-         doubleDefaultNull: doubleDefaultNull,
-       );
+          id: id,
+          doubleDefault: doubleDefault,
+          doubleDefaultNull: doubleDefaultNull,
+        );
 
   /// Returns a shallow copy of this [DoubleDefault]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   DoubleDefault copyWith({
-    final Object? id = _Undefined,
-    final double? doubleDefault,
-    final Object? doubleDefaultNull = _Undefined,
+    Object? id = _Undefined,
+    double? doubleDefault,
+    Object? doubleDefaultNull = _Undefined,
   }) {
     return DoubleDefault(
       id: id is int? ? id : this.id,
@@ -141,13 +141,13 @@ class _DoubleDefaultImpl extends DoubleDefault {
 class DoubleDefaultUpdateTable extends _i1.UpdateTable<DoubleDefaultTable> {
   DoubleDefaultUpdateTable(super.table);
 
-  _i1.ColumnValue<double, double> doubleDefault(final double value) =>
+  _i1.ColumnValue<double, double> doubleDefault(double value) =>
       _i1.ColumnValue(
         table.doubleDefault,
         value,
       );
 
-  _i1.ColumnValue<double, double> doubleDefaultNull(final double? value) =>
+  _i1.ColumnValue<double, double> doubleDefaultNull(double? value) =>
       _i1.ColumnValue(
         table.doubleDefaultNull,
         value,
@@ -156,7 +156,7 @@ class DoubleDefaultUpdateTable extends _i1.UpdateTable<DoubleDefaultTable> {
 
 class DoubleDefaultTable extends _i1.Table<int?> {
   DoubleDefaultTable({super.tableRelation})
-    : super(tableName: 'double_default') {
+      : super(tableName: 'double_default') {
     updateTable = DoubleDefaultUpdateTable(this);
     doubleDefault = _i1.ColumnDouble(
       'doubleDefault',
@@ -178,10 +178,10 @@ class DoubleDefaultTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    doubleDefault,
-    doubleDefaultNull,
-  ];
+        id,
+        doubleDefault,
+        doubleDefaultNull,
+      ];
 }
 
 class DoubleDefaultInclude extends _i1.IncludeObject {
@@ -196,7 +196,7 @@ class DoubleDefaultInclude extends _i1.IncludeObject {
 
 class DoubleDefaultIncludeList extends _i1.IncludeList {
   DoubleDefaultIncludeList._({
-    final _i1.WhereExpressionBuilder<DoubleDefaultTable>? where,
+    _i1.WhereExpressionBuilder<DoubleDefaultTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -240,14 +240,14 @@ class DoubleDefaultRepository {
   /// );
   /// ```
   Future<List<DoubleDefault>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<DoubleDefaultTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<DoubleDefaultTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<DoubleDefaultTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<DoubleDefaultTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<DoubleDefaultTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<DoubleDefaultTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<DoubleDefault>(
       where: where?.call(DoubleDefault.t),
@@ -278,13 +278,13 @@ class DoubleDefaultRepository {
   /// );
   /// ```
   Future<DoubleDefault?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<DoubleDefaultTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<DoubleDefaultTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<DoubleDefaultTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<DoubleDefaultTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<DoubleDefaultTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<DoubleDefaultTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<DoubleDefault>(
       where: where?.call(DoubleDefault.t),
@@ -298,9 +298,9 @@ class DoubleDefaultRepository {
 
   /// Finds a single [DoubleDefault] by its [id] or null if no such row exists.
   Future<DoubleDefault?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<DoubleDefault>(
       id,
@@ -315,9 +315,9 @@ class DoubleDefaultRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<DoubleDefault>> insert(
-    final _i1.Session session,
-    final List<DoubleDefault> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<DoubleDefault> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<DoubleDefault>(
       rows,
@@ -329,9 +329,9 @@ class DoubleDefaultRepository {
   ///
   /// The returned [DoubleDefault] will have its `id` field set.
   Future<DoubleDefault> insertRow(
-    final _i1.Session session,
-    final DoubleDefault row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    DoubleDefault row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<DoubleDefault>(
       row,
@@ -345,10 +345,10 @@ class DoubleDefaultRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<DoubleDefault>> update(
-    final _i1.Session session,
-    final List<DoubleDefault> rows, {
-    final _i1.ColumnSelections<DoubleDefaultTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<DoubleDefault> rows, {
+    _i1.ColumnSelections<DoubleDefaultTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<DoubleDefault>(
       rows,
@@ -361,10 +361,10 @@ class DoubleDefaultRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<DoubleDefault> updateRow(
-    final _i1.Session session,
-    final DoubleDefault row, {
-    final _i1.ColumnSelections<DoubleDefaultTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    DoubleDefault row, {
+    _i1.ColumnSelections<DoubleDefaultTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<DoubleDefault>(
       row,
@@ -376,10 +376,10 @@ class DoubleDefaultRepository {
   /// Updates a single [DoubleDefault] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<DoubleDefault?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<DoubleDefaultUpdateTable> columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<DoubleDefaultUpdateTable> columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<DoubleDefault>(
       id,
@@ -391,15 +391,15 @@ class DoubleDefaultRepository {
   /// Updates all [DoubleDefault]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<DoubleDefault>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<DoubleDefaultUpdateTable> columnValues,
-    required final _i1.WhereExpressionBuilder<DoubleDefaultTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<DoubleDefaultTable>? orderBy,
-    final _i1.OrderByListBuilder<DoubleDefaultTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<DoubleDefaultUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<DoubleDefaultTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<DoubleDefaultTable>? orderBy,
+    _i1.OrderByListBuilder<DoubleDefaultTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<DoubleDefault>(
       columnValues: columnValues(DoubleDefault.t.updateTable),
@@ -417,9 +417,9 @@ class DoubleDefaultRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<DoubleDefault>> delete(
-    final _i1.Session session,
-    final List<DoubleDefault> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<DoubleDefault> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<DoubleDefault>(
       rows,
@@ -429,9 +429,9 @@ class DoubleDefaultRepository {
 
   /// Deletes a single [DoubleDefault].
   Future<DoubleDefault> deleteRow(
-    final _i1.Session session,
-    final DoubleDefault row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    DoubleDefault row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<DoubleDefault>(
       row,
@@ -441,9 +441,9 @@ class DoubleDefaultRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<DoubleDefault>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<DoubleDefaultTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<DoubleDefaultTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<DoubleDefault>(
       where: where(DoubleDefault.t),
@@ -454,10 +454,10 @@ class DoubleDefaultRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<DoubleDefaultTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<DoubleDefaultTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<DoubleDefault>(
       where: where?.call(DoubleDefault.t),

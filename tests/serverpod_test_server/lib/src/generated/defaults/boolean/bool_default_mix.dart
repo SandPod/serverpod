@@ -16,22 +16,22 @@ abstract class BoolDefaultMix
     implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   BoolDefaultMix._({
     this.id,
-    final bool? boolDefaultAndDefaultModel,
-    final bool? boolDefaultAndDefaultPersist,
-    final bool? boolDefaultModelAndDefaultPersist,
-  }) : boolDefaultAndDefaultModel = boolDefaultAndDefaultModel ?? false,
-       boolDefaultAndDefaultPersist = boolDefaultAndDefaultPersist ?? true,
-       boolDefaultModelAndDefaultPersist =
-           boolDefaultModelAndDefaultPersist ?? true;
+    bool? boolDefaultAndDefaultModel,
+    bool? boolDefaultAndDefaultPersist,
+    bool? boolDefaultModelAndDefaultPersist,
+  })  : boolDefaultAndDefaultModel = boolDefaultAndDefaultModel ?? false,
+        boolDefaultAndDefaultPersist = boolDefaultAndDefaultPersist ?? true,
+        boolDefaultModelAndDefaultPersist =
+            boolDefaultModelAndDefaultPersist ?? true;
 
   factory BoolDefaultMix({
-    final int? id,
-    final bool? boolDefaultAndDefaultModel,
-    final bool? boolDefaultAndDefaultPersist,
-    final bool? boolDefaultModelAndDefaultPersist,
+    int? id,
+    bool? boolDefaultAndDefaultModel,
+    bool? boolDefaultAndDefaultPersist,
+    bool? boolDefaultModelAndDefaultPersist,
   }) = _BoolDefaultMixImpl;
 
-  factory BoolDefaultMix.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory BoolDefaultMix.fromJson(Map<String, dynamic> jsonSerialization) {
     return BoolDefaultMix(
       id: jsonSerialization['id'] as int?,
       boolDefaultAndDefaultModel:
@@ -63,10 +63,10 @@ abstract class BoolDefaultMix
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   BoolDefaultMix copyWith({
-    final int? id,
-    final bool? boolDefaultAndDefaultModel,
-    final bool? boolDefaultAndDefaultPersist,
-    final bool? boolDefaultModelAndDefaultPersist,
+    int? id,
+    bool? boolDefaultAndDefaultModel,
+    bool? boolDefaultAndDefaultPersist,
+    bool? boolDefaultModelAndDefaultPersist,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -93,13 +93,13 @@ abstract class BoolDefaultMix
   }
 
   static BoolDefaultMixIncludeList includeList({
-    final _i1.WhereExpressionBuilder<BoolDefaultMixTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<BoolDefaultMixTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<BoolDefaultMixTable>? orderByList,
-    final BoolDefaultMixInclude? include,
+    _i1.WhereExpressionBuilder<BoolDefaultMixTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<BoolDefaultMixTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<BoolDefaultMixTable>? orderByList,
+    BoolDefaultMixInclude? include,
   }) {
     return BoolDefaultMixIncludeList._(
       where: where,
@@ -122,26 +122,26 @@ class _Undefined {}
 
 class _BoolDefaultMixImpl extends BoolDefaultMix {
   _BoolDefaultMixImpl({
-    final int? id,
-    final bool? boolDefaultAndDefaultModel,
-    final bool? boolDefaultAndDefaultPersist,
-    final bool? boolDefaultModelAndDefaultPersist,
+    int? id,
+    bool? boolDefaultAndDefaultModel,
+    bool? boolDefaultAndDefaultPersist,
+    bool? boolDefaultModelAndDefaultPersist,
   }) : super._(
-         id: id,
-         boolDefaultAndDefaultModel: boolDefaultAndDefaultModel,
-         boolDefaultAndDefaultPersist: boolDefaultAndDefaultPersist,
-         boolDefaultModelAndDefaultPersist: boolDefaultModelAndDefaultPersist,
-       );
+          id: id,
+          boolDefaultAndDefaultModel: boolDefaultAndDefaultModel,
+          boolDefaultAndDefaultPersist: boolDefaultAndDefaultPersist,
+          boolDefaultModelAndDefaultPersist: boolDefaultModelAndDefaultPersist,
+        );
 
   /// Returns a shallow copy of this [BoolDefaultMix]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   BoolDefaultMix copyWith({
-    final Object? id = _Undefined,
-    final bool? boolDefaultAndDefaultModel,
-    final bool? boolDefaultAndDefaultPersist,
-    final bool? boolDefaultModelAndDefaultPersist,
+    Object? id = _Undefined,
+    bool? boolDefaultAndDefaultModel,
+    bool? boolDefaultAndDefaultPersist,
+    bool? boolDefaultModelAndDefaultPersist,
   }) {
     return BoolDefaultMix(
       id: id is int? ? id : this.id,
@@ -149,8 +149,7 @@ class _BoolDefaultMixImpl extends BoolDefaultMix {
           boolDefaultAndDefaultModel ?? this.boolDefaultAndDefaultModel,
       boolDefaultAndDefaultPersist:
           boolDefaultAndDefaultPersist ?? this.boolDefaultAndDefaultPersist,
-      boolDefaultModelAndDefaultPersist:
-          boolDefaultModelAndDefaultPersist ??
+      boolDefaultModelAndDefaultPersist: boolDefaultModelAndDefaultPersist ??
           this.boolDefaultModelAndDefaultPersist,
     );
   }
@@ -159,19 +158,19 @@ class _BoolDefaultMixImpl extends BoolDefaultMix {
 class BoolDefaultMixUpdateTable extends _i1.UpdateTable<BoolDefaultMixTable> {
   BoolDefaultMixUpdateTable(super.table);
 
-  _i1.ColumnValue<bool, bool> boolDefaultAndDefaultModel(final bool value) =>
+  _i1.ColumnValue<bool, bool> boolDefaultAndDefaultModel(bool value) =>
       _i1.ColumnValue(
         table.boolDefaultAndDefaultModel,
         value,
       );
 
-  _i1.ColumnValue<bool, bool> boolDefaultAndDefaultPersist(final bool value) =>
+  _i1.ColumnValue<bool, bool> boolDefaultAndDefaultPersist(bool value) =>
       _i1.ColumnValue(
         table.boolDefaultAndDefaultPersist,
         value,
       );
 
-  _i1.ColumnValue<bool, bool> boolDefaultModelAndDefaultPersist(final bool value) =>
+  _i1.ColumnValue<bool, bool> boolDefaultModelAndDefaultPersist(bool value) =>
       _i1.ColumnValue(
         table.boolDefaultModelAndDefaultPersist,
         value,
@@ -180,7 +179,7 @@ class BoolDefaultMixUpdateTable extends _i1.UpdateTable<BoolDefaultMixTable> {
 
 class BoolDefaultMixTable extends _i1.Table<int?> {
   BoolDefaultMixTable({super.tableRelation})
-    : super(tableName: 'bool_default_mix') {
+      : super(tableName: 'bool_default_mix') {
     updateTable = BoolDefaultMixUpdateTable(this);
     boolDefaultAndDefaultModel = _i1.ColumnBool(
       'boolDefaultAndDefaultModel',
@@ -209,11 +208,11 @@ class BoolDefaultMixTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    boolDefaultAndDefaultModel,
-    boolDefaultAndDefaultPersist,
-    boolDefaultModelAndDefaultPersist,
-  ];
+        id,
+        boolDefaultAndDefaultModel,
+        boolDefaultAndDefaultPersist,
+        boolDefaultModelAndDefaultPersist,
+      ];
 }
 
 class BoolDefaultMixInclude extends _i1.IncludeObject {
@@ -228,7 +227,7 @@ class BoolDefaultMixInclude extends _i1.IncludeObject {
 
 class BoolDefaultMixIncludeList extends _i1.IncludeList {
   BoolDefaultMixIncludeList._({
-    final _i1.WhereExpressionBuilder<BoolDefaultMixTable>? where,
+    _i1.WhereExpressionBuilder<BoolDefaultMixTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -272,14 +271,14 @@ class BoolDefaultMixRepository {
   /// );
   /// ```
   Future<List<BoolDefaultMix>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<BoolDefaultMixTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<BoolDefaultMixTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<BoolDefaultMixTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<BoolDefaultMixTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<BoolDefaultMixTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<BoolDefaultMixTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<BoolDefaultMix>(
       where: where?.call(BoolDefaultMix.t),
@@ -310,13 +309,13 @@ class BoolDefaultMixRepository {
   /// );
   /// ```
   Future<BoolDefaultMix?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<BoolDefaultMixTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<BoolDefaultMixTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<BoolDefaultMixTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<BoolDefaultMixTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<BoolDefaultMixTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<BoolDefaultMixTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<BoolDefaultMix>(
       where: where?.call(BoolDefaultMix.t),
@@ -330,9 +329,9 @@ class BoolDefaultMixRepository {
 
   /// Finds a single [BoolDefaultMix] by its [id] or null if no such row exists.
   Future<BoolDefaultMix?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<BoolDefaultMix>(
       id,
@@ -347,9 +346,9 @@ class BoolDefaultMixRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<BoolDefaultMix>> insert(
-    final _i1.Session session,
-    final List<BoolDefaultMix> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<BoolDefaultMix> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<BoolDefaultMix>(
       rows,
@@ -361,9 +360,9 @@ class BoolDefaultMixRepository {
   ///
   /// The returned [BoolDefaultMix] will have its `id` field set.
   Future<BoolDefaultMix> insertRow(
-    final _i1.Session session,
-    final BoolDefaultMix row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    BoolDefaultMix row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<BoolDefaultMix>(
       row,
@@ -377,10 +376,10 @@ class BoolDefaultMixRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<BoolDefaultMix>> update(
-    final _i1.Session session,
-    final List<BoolDefaultMix> rows, {
-    final _i1.ColumnSelections<BoolDefaultMixTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<BoolDefaultMix> rows, {
+    _i1.ColumnSelections<BoolDefaultMixTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<BoolDefaultMix>(
       rows,
@@ -393,10 +392,10 @@ class BoolDefaultMixRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<BoolDefaultMix> updateRow(
-    final _i1.Session session,
-    final BoolDefaultMix row, {
-    final _i1.ColumnSelections<BoolDefaultMixTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    BoolDefaultMix row, {
+    _i1.ColumnSelections<BoolDefaultMixTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<BoolDefaultMix>(
       row,
@@ -408,10 +407,10 @@ class BoolDefaultMixRepository {
   /// Updates a single [BoolDefaultMix] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<BoolDefaultMix?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<BoolDefaultMixUpdateTable> columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<BoolDefaultMixUpdateTable> columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<BoolDefaultMix>(
       id,
@@ -423,15 +422,15 @@ class BoolDefaultMixRepository {
   /// Updates all [BoolDefaultMix]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<BoolDefaultMix>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<BoolDefaultMixUpdateTable> columnValues,
-    required final _i1.WhereExpressionBuilder<BoolDefaultMixTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<BoolDefaultMixTable>? orderBy,
-    final _i1.OrderByListBuilder<BoolDefaultMixTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<BoolDefaultMixUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<BoolDefaultMixTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<BoolDefaultMixTable>? orderBy,
+    _i1.OrderByListBuilder<BoolDefaultMixTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<BoolDefaultMix>(
       columnValues: columnValues(BoolDefaultMix.t.updateTable),
@@ -449,9 +448,9 @@ class BoolDefaultMixRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<BoolDefaultMix>> delete(
-    final _i1.Session session,
-    final List<BoolDefaultMix> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<BoolDefaultMix> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<BoolDefaultMix>(
       rows,
@@ -461,9 +460,9 @@ class BoolDefaultMixRepository {
 
   /// Deletes a single [BoolDefaultMix].
   Future<BoolDefaultMix> deleteRow(
-    final _i1.Session session,
-    final BoolDefaultMix row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    BoolDefaultMix row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<BoolDefaultMix>(
       row,
@@ -473,9 +472,9 @@ class BoolDefaultMixRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<BoolDefaultMix>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<BoolDefaultMixTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<BoolDefaultMixTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<BoolDefaultMix>(
       where: where(BoolDefaultMix.t),
@@ -486,10 +485,10 @@ class BoolDefaultMixRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<BoolDefaultMixTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<BoolDefaultMixTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<BoolDefaultMix>(
       where: where?.call(BoolDefaultMix.t),

@@ -58,7 +58,10 @@ class Protocol extends _i1.SerializationManager {
   static final Protocol _instance = Protocol._();
 
   @override
-  T deserialize<T>(dynamic data, [Type? t]) {
+  T deserialize<T>(
+    dynamic data, [
+    Type? t,
+  ]) {
     t ??= T;
     if (t == _i2.EmailAccountLoginException) {
       return _i2.EmailAccountLoginException.fromJson(data) as T;
@@ -98,57 +101,48 @@ class Protocol extends _i1.SerializationManager {
     }
     if (t == _i1.getType<_i2.EmailAccountLoginException?>()) {
       return (data != null
-              ? _i2.EmailAccountLoginException.fromJson(data)
-              : null)
-          as T;
+          ? _i2.EmailAccountLoginException.fromJson(data)
+          : null) as T;
     }
     if (t == _i1.getType<_i3.EmailAccountLoginExceptionReason?>()) {
       return (data != null
-              ? _i3.EmailAccountLoginExceptionReason.fromJson(data)
-              : null)
-          as T;
+          ? _i3.EmailAccountLoginExceptionReason.fromJson(data)
+          : null) as T;
     }
     if (t == _i1.getType<_i4.EmailAccountPasswordResetException?>()) {
       return (data != null
-              ? _i4.EmailAccountPasswordResetException.fromJson(data)
-              : null)
-          as T;
+          ? _i4.EmailAccountPasswordResetException.fromJson(data)
+          : null) as T;
     }
     if (t == _i1.getType<_i5.EmailAccountPasswordResetExceptionReason?>()) {
       return (data != null
-              ? _i5.EmailAccountPasswordResetExceptionReason.fromJson(data)
-              : null)
-          as T;
+          ? _i5.EmailAccountPasswordResetExceptionReason.fromJson(data)
+          : null) as T;
     }
     if (t == _i1.getType<_i6.EmailAccountRequestException?>()) {
       return (data != null
-              ? _i6.EmailAccountRequestException.fromJson(data)
-              : null)
-          as T;
+          ? _i6.EmailAccountRequestException.fromJson(data)
+          : null) as T;
     }
     if (t == _i1.getType<_i7.EmailAccountRequestExceptionReason?>()) {
       return (data != null
-              ? _i7.EmailAccountRequestExceptionReason.fromJson(data)
-              : null)
-          as T;
+          ? _i7.EmailAccountRequestExceptionReason.fromJson(data)
+          : null) as T;
     }
     if (t == _i1.getType<_i8.GoogleIdTokenVerificationException?>()) {
       return (data != null
-              ? _i8.GoogleIdTokenVerificationException.fromJson(data)
-              : null)
-          as T;
+          ? _i8.GoogleIdTokenVerificationException.fromJson(data)
+          : null) as T;
     }
     if (t == _i1.getType<_i9.PasskeyChallengeExpiredException?>()) {
       return (data != null
-              ? _i9.PasskeyChallengeExpiredException.fromJson(data)
-              : null)
-          as T;
+          ? _i9.PasskeyChallengeExpiredException.fromJson(data)
+          : null) as T;
     }
     if (t == _i1.getType<_i10.PasskeyChallengeNotFoundException?>()) {
       return (data != null
-              ? _i10.PasskeyChallengeNotFoundException.fromJson(data)
-              : null)
-          as T;
+          ? _i10.PasskeyChallengeNotFoundException.fromJson(data)
+          : null) as T;
     }
     if (t == _i1.getType<_i11.PasskeyLoginRequest?>()) {
       return (data != null ? _i11.PasskeyLoginRequest.fromJson(data) : null)
@@ -156,24 +150,20 @@ class Protocol extends _i1.SerializationManager {
     }
     if (t == _i1.getType<_i12.PasskeyPublicKeyNotFoundException?>()) {
       return (data != null
-              ? _i12.PasskeyPublicKeyNotFoundException.fromJson(data)
-              : null)
-          as T;
+          ? _i12.PasskeyPublicKeyNotFoundException.fromJson(data)
+          : null) as T;
     }
     if (t == _i1.getType<_i13.PasskeyRegistrationRequest?>()) {
       return (data != null
-              ? _i13.PasskeyRegistrationRequest.fromJson(data)
-              : null)
-          as T;
+          ? _i13.PasskeyRegistrationRequest.fromJson(data)
+          : null) as T;
     }
     if (t == _i1.getType<({_i14.ByteData challenge, _i1.UuidValue id})>()) {
       return (
-            challenge: deserialize<_i14.ByteData>(
-              ((data as Map)['n'] as Map)['challenge'],
-            ),
-            id: deserialize<_i1.UuidValue>(data['n']['id']),
-          )
-          as T;
+        challenge: deserialize<_i14.ByteData>(
+            ((data as Map)['n'] as Map)['challenge']),
+        id: deserialize<_i1.UuidValue>(data['n']['id']),
+      ) as T;
     }
     try {
       return _i15.Protocol().deserialize<T>(data, t);
@@ -235,8 +225,7 @@ class Protocol extends _i1.SerializationManager {
     }
     if (dataClassName == 'EmailAccountPasswordResetExceptionReason') {
       return deserialize<_i5.EmailAccountPasswordResetExceptionReason>(
-        data['data'],
-      );
+          data['data']);
     }
     if (dataClassName == 'EmailAccountRequestException') {
       return deserialize<_i6.EmailAccountRequestException>(data['data']);
@@ -281,7 +270,10 @@ Map<String, dynamic>? mapRecordToJson(Record? record) {
   }
   if (record is ({_i14.ByteData challenge, _i1.UuidValue id})) {
     return {
-      "n": {"challenge": record.challenge, "id": record.id},
+      "n": {
+        "challenge": record.challenge,
+        "id": record.id,
+      },
     };
   }
   throw Exception('Unsupported record type ${record.runtimeType}');
@@ -324,11 +316,16 @@ Object? mapContainerToJson(Object obj) {
     case Map():
       return [
         for (var entry in obj.entries)
-          {'k': mapIfNeeded(entry.key), 'v': mapIfNeeded(entry.value)},
+          {
+            'k': mapIfNeeded(entry.key),
+            'v': mapIfNeeded(entry.value),
+          }
       ];
 
     case Iterable():
-      return [for (var e in obj) mapIfNeeded(e)];
+      return [
+        for (var e in obj) mapIfNeeded(e),
+      ];
   }
 
   return obj;

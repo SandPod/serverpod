@@ -24,8 +24,7 @@ enum ByIndexEnumWithNameValue implements _i1.SerializableModel {
         return ByIndexEnumWithNameValue.name;
       default:
         throw ArgumentError(
-          'Value "$index" cannot be converted to "ByIndexEnumWithNameValue"',
-        );
+            'Value "$index" cannot be converted to "ByIndexEnumWithNameValue"');
     }
   }
 

@@ -5,12 +5,12 @@ class ProtocolCustomClass implements SerializableModel {
 
   ProtocolCustomClass({required this.value});
 
-  factory ProtocolCustomClass.fromJson(Map<String, dynamic> json) {
-    return ProtocolCustomClass(value: json["value"] as String?);
+  factory ProtocolCustomClass.fromJson(final Map<String, dynamic> json) {
+    return ProtocolCustomClass(value: json['value'] as String?);
   }
 
   @override
   Map<String, dynamic> toJson() {
-    return {"value": value};
+    return {'value': value};
   }
 }

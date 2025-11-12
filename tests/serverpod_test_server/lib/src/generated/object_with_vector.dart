@@ -25,36 +25,31 @@ abstract class ObjectWithVector
   });
 
   factory ObjectWithVector({
-    final int? id,
-    required final _i1.Vector vector,
-    final _i1.Vector? vectorNullable,
-    required final _i1.Vector vectorIndexedHnsw,
-    required final _i1.Vector vectorIndexedHnswWithParams,
-    required final _i1.Vector vectorIndexedIvfflat,
-    required final _i1.Vector vectorIndexedIvfflatWithParams,
+    int? id,
+    required _i1.Vector vector,
+    _i1.Vector? vectorNullable,
+    required _i1.Vector vectorIndexedHnsw,
+    required _i1.Vector vectorIndexedHnswWithParams,
+    required _i1.Vector vectorIndexedIvfflat,
+    required _i1.Vector vectorIndexedIvfflatWithParams,
   }) = _ObjectWithVectorImpl;
 
-  factory ObjectWithVector.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory ObjectWithVector.fromJson(Map<String, dynamic> jsonSerialization) {
     return ObjectWithVector(
       id: jsonSerialization['id'] as int?,
       vector: _i1.VectorJsonExtension.fromJson(jsonSerialization['vector']),
       vectorNullable: jsonSerialization['vectorNullable'] == null
           ? null
           : _i1.VectorJsonExtension.fromJson(
-              jsonSerialization['vectorNullable'],
-            ),
+              jsonSerialization['vectorNullable']),
       vectorIndexedHnsw: _i1.VectorJsonExtension.fromJson(
-        jsonSerialization['vectorIndexedHnsw'],
-      ),
+          jsonSerialization['vectorIndexedHnsw']),
       vectorIndexedHnswWithParams: _i1.VectorJsonExtension.fromJson(
-        jsonSerialization['vectorIndexedHnswWithParams'],
-      ),
+          jsonSerialization['vectorIndexedHnswWithParams']),
       vectorIndexedIvfflat: _i1.VectorJsonExtension.fromJson(
-        jsonSerialization['vectorIndexedIvfflat'],
-      ),
+          jsonSerialization['vectorIndexedIvfflat']),
       vectorIndexedIvfflatWithParams: _i1.VectorJsonExtension.fromJson(
-        jsonSerialization['vectorIndexedIvfflatWithParams'],
-      ),
+          jsonSerialization['vectorIndexedIvfflatWithParams']),
     );
   }
 
@@ -84,13 +79,13 @@ abstract class ObjectWithVector
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ObjectWithVector copyWith({
-    final int? id,
-    final _i1.Vector? vector,
-    final _i1.Vector? vectorNullable,
-    final _i1.Vector? vectorIndexedHnsw,
-    final _i1.Vector? vectorIndexedHnswWithParams,
-    final _i1.Vector? vectorIndexedIvfflat,
-    final _i1.Vector? vectorIndexedIvfflatWithParams,
+    int? id,
+    _i1.Vector? vector,
+    _i1.Vector? vectorNullable,
+    _i1.Vector? vectorIndexedHnsw,
+    _i1.Vector? vectorIndexedHnswWithParams,
+    _i1.Vector? vectorIndexedIvfflat,
+    _i1.Vector? vectorIndexedIvfflatWithParams,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -123,13 +118,13 @@ abstract class ObjectWithVector
   }
 
   static ObjectWithVectorIncludeList includeList({
-    final _i1.WhereExpressionBuilder<ObjectWithVectorTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectWithVectorTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ObjectWithVectorTable>? orderByList,
-    final ObjectWithVectorInclude? include,
+    _i1.WhereExpressionBuilder<ObjectWithVectorTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ObjectWithVectorTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ObjectWithVectorTable>? orderByList,
+    ObjectWithVectorInclude? include,
   }) {
     return ObjectWithVectorIncludeList._(
       where: where,
@@ -152,35 +147,35 @@ class _Undefined {}
 
 class _ObjectWithVectorImpl extends ObjectWithVector {
   _ObjectWithVectorImpl({
-    final int? id,
-    required final _i1.Vector vector,
-    final _i1.Vector? vectorNullable,
-    required final _i1.Vector vectorIndexedHnsw,
-    required final _i1.Vector vectorIndexedHnswWithParams,
-    required final _i1.Vector vectorIndexedIvfflat,
-    required final _i1.Vector vectorIndexedIvfflatWithParams,
+    int? id,
+    required _i1.Vector vector,
+    _i1.Vector? vectorNullable,
+    required _i1.Vector vectorIndexedHnsw,
+    required _i1.Vector vectorIndexedHnswWithParams,
+    required _i1.Vector vectorIndexedIvfflat,
+    required _i1.Vector vectorIndexedIvfflatWithParams,
   }) : super._(
-         id: id,
-         vector: vector,
-         vectorNullable: vectorNullable,
-         vectorIndexedHnsw: vectorIndexedHnsw,
-         vectorIndexedHnswWithParams: vectorIndexedHnswWithParams,
-         vectorIndexedIvfflat: vectorIndexedIvfflat,
-         vectorIndexedIvfflatWithParams: vectorIndexedIvfflatWithParams,
-       );
+          id: id,
+          vector: vector,
+          vectorNullable: vectorNullable,
+          vectorIndexedHnsw: vectorIndexedHnsw,
+          vectorIndexedHnswWithParams: vectorIndexedHnswWithParams,
+          vectorIndexedIvfflat: vectorIndexedIvfflat,
+          vectorIndexedIvfflatWithParams: vectorIndexedIvfflatWithParams,
+        );
 
   /// Returns a shallow copy of this [ObjectWithVector]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   ObjectWithVector copyWith({
-    final Object? id = _Undefined,
-    final _i1.Vector? vector,
-    final Object? vectorNullable = _Undefined,
-    final _i1.Vector? vectorIndexedHnsw,
-    final _i1.Vector? vectorIndexedHnswWithParams,
-    final _i1.Vector? vectorIndexedIvfflat,
-    final _i1.Vector? vectorIndexedIvfflatWithParams,
+    Object? id = _Undefined,
+    _i1.Vector? vector,
+    Object? vectorNullable = _Undefined,
+    _i1.Vector? vectorIndexedHnsw,
+    _i1.Vector? vectorIndexedHnswWithParams,
+    _i1.Vector? vectorIndexedIvfflat,
+    _i1.Vector? vectorIndexedIvfflatWithParams,
   }) {
     return ObjectWithVector(
       id: id is int? ? id : this.id,
@@ -189,13 +184,11 @@ class _ObjectWithVectorImpl extends ObjectWithVector {
           ? vectorNullable
           : this.vectorNullable?.clone(),
       vectorIndexedHnsw: vectorIndexedHnsw ?? this.vectorIndexedHnsw.clone(),
-      vectorIndexedHnswWithParams:
-          vectorIndexedHnswWithParams ??
+      vectorIndexedHnswWithParams: vectorIndexedHnswWithParams ??
           this.vectorIndexedHnswWithParams.clone(),
       vectorIndexedIvfflat:
           vectorIndexedIvfflat ?? this.vectorIndexedIvfflat.clone(),
-      vectorIndexedIvfflatWithParams:
-          vectorIndexedIvfflatWithParams ??
+      vectorIndexedIvfflatWithParams: vectorIndexedIvfflatWithParams ??
           this.vectorIndexedIvfflatWithParams.clone(),
     );
   }
@@ -205,49 +198,49 @@ class ObjectWithVectorUpdateTable
     extends _i1.UpdateTable<ObjectWithVectorTable> {
   ObjectWithVectorUpdateTable(super.table);
 
-  _i1.ColumnValue<_i1.Vector, _i1.Vector> vector(final _i1.Vector value) =>
+  _i1.ColumnValue<_i1.Vector, _i1.Vector> vector(_i1.Vector value) =>
       _i1.ColumnValue(
         table.vector,
         value,
       );
 
-  _i1.ColumnValue<_i1.Vector, _i1.Vector> vectorNullable(final _i1.Vector? value) =>
+  _i1.ColumnValue<_i1.Vector, _i1.Vector> vectorNullable(_i1.Vector? value) =>
       _i1.ColumnValue(
         table.vectorNullable,
         value,
       );
 
-  _i1.ColumnValue<_i1.Vector, _i1.Vector> vectorIndexedHnsw(final _i1.Vector value) =>
+  _i1.ColumnValue<_i1.Vector, _i1.Vector> vectorIndexedHnsw(_i1.Vector value) =>
       _i1.ColumnValue(
         table.vectorIndexedHnsw,
         value,
       );
 
   _i1.ColumnValue<_i1.Vector, _i1.Vector> vectorIndexedHnswWithParams(
-    final _i1.Vector value,
-  ) => _i1.ColumnValue(
-    table.vectorIndexedHnswWithParams,
-    value,
-  );
+          _i1.Vector value) =>
+      _i1.ColumnValue(
+        table.vectorIndexedHnswWithParams,
+        value,
+      );
 
   _i1.ColumnValue<_i1.Vector, _i1.Vector> vectorIndexedIvfflat(
-    final _i1.Vector value,
-  ) => _i1.ColumnValue(
-    table.vectorIndexedIvfflat,
-    value,
-  );
+          _i1.Vector value) =>
+      _i1.ColumnValue(
+        table.vectorIndexedIvfflat,
+        value,
+      );
 
   _i1.ColumnValue<_i1.Vector, _i1.Vector> vectorIndexedIvfflatWithParams(
-    final _i1.Vector value,
-  ) => _i1.ColumnValue(
-    table.vectorIndexedIvfflatWithParams,
-    value,
-  );
+          _i1.Vector value) =>
+      _i1.ColumnValue(
+        table.vectorIndexedIvfflatWithParams,
+        value,
+      );
 }
 
 class ObjectWithVectorTable extends _i1.Table<int?> {
   ObjectWithVectorTable({super.tableRelation})
-    : super(tableName: 'object_with_vector') {
+      : super(tableName: 'object_with_vector') {
     updateTable = ObjectWithVectorUpdateTable(this);
     vector = _i1.ColumnVector(
       'vector',
@@ -297,14 +290,14 @@ class ObjectWithVectorTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    vector,
-    vectorNullable,
-    vectorIndexedHnsw,
-    vectorIndexedHnswWithParams,
-    vectorIndexedIvfflat,
-    vectorIndexedIvfflatWithParams,
-  ];
+        id,
+        vector,
+        vectorNullable,
+        vectorIndexedHnsw,
+        vectorIndexedHnswWithParams,
+        vectorIndexedIvfflat,
+        vectorIndexedIvfflatWithParams,
+      ];
 }
 
 class ObjectWithVectorInclude extends _i1.IncludeObject {
@@ -319,7 +312,7 @@ class ObjectWithVectorInclude extends _i1.IncludeObject {
 
 class ObjectWithVectorIncludeList extends _i1.IncludeList {
   ObjectWithVectorIncludeList._({
-    final _i1.WhereExpressionBuilder<ObjectWithVectorTable>? where,
+    _i1.WhereExpressionBuilder<ObjectWithVectorTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -363,14 +356,14 @@ class ObjectWithVectorRepository {
   /// );
   /// ```
   Future<List<ObjectWithVector>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ObjectWithVectorTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectWithVectorTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ObjectWithVectorTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ObjectWithVectorTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ObjectWithVectorTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ObjectWithVectorTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<ObjectWithVector>(
       where: where?.call(ObjectWithVector.t),
@@ -401,13 +394,13 @@ class ObjectWithVectorRepository {
   /// );
   /// ```
   Future<ObjectWithVector?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ObjectWithVectorTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectWithVectorTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ObjectWithVectorTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ObjectWithVectorTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<ObjectWithVectorTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ObjectWithVectorTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<ObjectWithVector>(
       where: where?.call(ObjectWithVector.t),
@@ -421,9 +414,9 @@ class ObjectWithVectorRepository {
 
   /// Finds a single [ObjectWithVector] by its [id] or null if no such row exists.
   Future<ObjectWithVector?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<ObjectWithVector>(
       id,
@@ -438,9 +431,9 @@ class ObjectWithVectorRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<ObjectWithVector>> insert(
-    final _i1.Session session,
-    final List<ObjectWithVector> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ObjectWithVector> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<ObjectWithVector>(
       rows,
@@ -452,9 +445,9 @@ class ObjectWithVectorRepository {
   ///
   /// The returned [ObjectWithVector] will have its `id` field set.
   Future<ObjectWithVector> insertRow(
-    final _i1.Session session,
-    final ObjectWithVector row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ObjectWithVector row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<ObjectWithVector>(
       row,
@@ -468,10 +461,10 @@ class ObjectWithVectorRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<ObjectWithVector>> update(
-    final _i1.Session session,
-    final List<ObjectWithVector> rows, {
-    final _i1.ColumnSelections<ObjectWithVectorTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ObjectWithVector> rows, {
+    _i1.ColumnSelections<ObjectWithVectorTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<ObjectWithVector>(
       rows,
@@ -484,10 +477,10 @@ class ObjectWithVectorRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<ObjectWithVector> updateRow(
-    final _i1.Session session,
-    final ObjectWithVector row, {
-    final _i1.ColumnSelections<ObjectWithVectorTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ObjectWithVector row, {
+    _i1.ColumnSelections<ObjectWithVectorTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<ObjectWithVector>(
       row,
@@ -499,11 +492,11 @@ class ObjectWithVectorRepository {
   /// Updates a single [ObjectWithVector] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<ObjectWithVector?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<ObjectWithVectorUpdateTable>
-    columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<ObjectWithVectorUpdateTable>
+        columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<ObjectWithVector>(
       id,
@@ -515,16 +508,16 @@ class ObjectWithVectorRepository {
   /// Updates all [ObjectWithVector]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<ObjectWithVector>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<ObjectWithVectorUpdateTable>
-    columnValues,
-    required final _i1.WhereExpressionBuilder<ObjectWithVectorTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectWithVectorTable>? orderBy,
-    final _i1.OrderByListBuilder<ObjectWithVectorTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<ObjectWithVectorUpdateTable>
+        columnValues,
+    required _i1.WhereExpressionBuilder<ObjectWithVectorTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ObjectWithVectorTable>? orderBy,
+    _i1.OrderByListBuilder<ObjectWithVectorTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<ObjectWithVector>(
       columnValues: columnValues(ObjectWithVector.t.updateTable),
@@ -542,9 +535,9 @@ class ObjectWithVectorRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<ObjectWithVector>> delete(
-    final _i1.Session session,
-    final List<ObjectWithVector> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ObjectWithVector> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<ObjectWithVector>(
       rows,
@@ -554,9 +547,9 @@ class ObjectWithVectorRepository {
 
   /// Deletes a single [ObjectWithVector].
   Future<ObjectWithVector> deleteRow(
-    final _i1.Session session,
-    final ObjectWithVector row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ObjectWithVector row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<ObjectWithVector>(
       row,
@@ -566,9 +559,9 @@ class ObjectWithVectorRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<ObjectWithVector>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<ObjectWithVectorTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<ObjectWithVectorTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<ObjectWithVector>(
       where: where(ObjectWithVector.t),
@@ -579,10 +572,10 @@ class ObjectWithVectorRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ObjectWithVectorTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ObjectWithVectorTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<ObjectWithVector>(
       where: where?.call(ObjectWithVector.t),

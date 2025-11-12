@@ -16,38 +16,32 @@ abstract class UriDefaultMix
     implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   UriDefaultMix._({
     this.id,
-    final Uri? uriDefaultAndDefaultModel,
-    final Uri? uriDefaultAndDefaultPersist,
-    final Uri? uriDefaultModelAndDefaultPersist,
-  }) : uriDefaultAndDefaultModel =
-           uriDefaultAndDefaultModel ??
-           Uri.parse('https://serverpod.dev/defaultModel'),
-       uriDefaultAndDefaultPersist =
-           uriDefaultAndDefaultPersist ??
-           Uri.parse('https://serverpod.dev/default'),
-       uriDefaultModelAndDefaultPersist =
-           uriDefaultModelAndDefaultPersist ??
-           Uri.parse('https://serverpod.dev/defaultModel');
+    Uri? uriDefaultAndDefaultModel,
+    Uri? uriDefaultAndDefaultPersist,
+    Uri? uriDefaultModelAndDefaultPersist,
+  })  : uriDefaultAndDefaultModel = uriDefaultAndDefaultModel ??
+            Uri.parse('https://serverpod.dev/defaultModel'),
+        uriDefaultAndDefaultPersist = uriDefaultAndDefaultPersist ??
+            Uri.parse('https://serverpod.dev/default'),
+        uriDefaultModelAndDefaultPersist = uriDefaultModelAndDefaultPersist ??
+            Uri.parse('https://serverpod.dev/defaultModel');
 
   factory UriDefaultMix({
-    final int? id,
-    final Uri? uriDefaultAndDefaultModel,
-    final Uri? uriDefaultAndDefaultPersist,
-    final Uri? uriDefaultModelAndDefaultPersist,
+    int? id,
+    Uri? uriDefaultAndDefaultModel,
+    Uri? uriDefaultAndDefaultPersist,
+    Uri? uriDefaultModelAndDefaultPersist,
   }) = _UriDefaultMixImpl;
 
-  factory UriDefaultMix.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory UriDefaultMix.fromJson(Map<String, dynamic> jsonSerialization) {
     return UriDefaultMix(
       id: jsonSerialization['id'] as int?,
       uriDefaultAndDefaultModel: _i1.UriJsonExtension.fromJson(
-        jsonSerialization['uriDefaultAndDefaultModel'],
-      ),
+          jsonSerialization['uriDefaultAndDefaultModel']),
       uriDefaultAndDefaultPersist: _i1.UriJsonExtension.fromJson(
-        jsonSerialization['uriDefaultAndDefaultPersist'],
-      ),
+          jsonSerialization['uriDefaultAndDefaultPersist']),
       uriDefaultModelAndDefaultPersist: _i1.UriJsonExtension.fromJson(
-        jsonSerialization['uriDefaultModelAndDefaultPersist'],
-      ),
+          jsonSerialization['uriDefaultModelAndDefaultPersist']),
     );
   }
 
@@ -71,10 +65,10 @@ abstract class UriDefaultMix
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   UriDefaultMix copyWith({
-    final int? id,
-    final Uri? uriDefaultAndDefaultModel,
-    final Uri? uriDefaultAndDefaultPersist,
-    final Uri? uriDefaultModelAndDefaultPersist,
+    int? id,
+    Uri? uriDefaultAndDefaultModel,
+    Uri? uriDefaultAndDefaultPersist,
+    Uri? uriDefaultModelAndDefaultPersist,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -82,8 +76,8 @@ abstract class UriDefaultMix
       if (id != null) 'id': id,
       'uriDefaultAndDefaultModel': uriDefaultAndDefaultModel.toJson(),
       'uriDefaultAndDefaultPersist': uriDefaultAndDefaultPersist.toJson(),
-      'uriDefaultModelAndDefaultPersist': uriDefaultModelAndDefaultPersist
-          .toJson(),
+      'uriDefaultModelAndDefaultPersist':
+          uriDefaultModelAndDefaultPersist.toJson(),
     };
   }
 
@@ -93,8 +87,8 @@ abstract class UriDefaultMix
       if (id != null) 'id': id,
       'uriDefaultAndDefaultModel': uriDefaultAndDefaultModel.toJson(),
       'uriDefaultAndDefaultPersist': uriDefaultAndDefaultPersist.toJson(),
-      'uriDefaultModelAndDefaultPersist': uriDefaultModelAndDefaultPersist
-          .toJson(),
+      'uriDefaultModelAndDefaultPersist':
+          uriDefaultModelAndDefaultPersist.toJson(),
     };
   }
 
@@ -103,13 +97,13 @@ abstract class UriDefaultMix
   }
 
   static UriDefaultMixIncludeList includeList({
-    final _i1.WhereExpressionBuilder<UriDefaultMixTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<UriDefaultMixTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<UriDefaultMixTable>? orderByList,
-    final UriDefaultMixInclude? include,
+    _i1.WhereExpressionBuilder<UriDefaultMixTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<UriDefaultMixTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<UriDefaultMixTable>? orderByList,
+    UriDefaultMixInclude? include,
   }) {
     return UriDefaultMixIncludeList._(
       where: where,
@@ -132,26 +126,26 @@ class _Undefined {}
 
 class _UriDefaultMixImpl extends UriDefaultMix {
   _UriDefaultMixImpl({
-    final int? id,
-    final Uri? uriDefaultAndDefaultModel,
-    final Uri? uriDefaultAndDefaultPersist,
-    final Uri? uriDefaultModelAndDefaultPersist,
+    int? id,
+    Uri? uriDefaultAndDefaultModel,
+    Uri? uriDefaultAndDefaultPersist,
+    Uri? uriDefaultModelAndDefaultPersist,
   }) : super._(
-         id: id,
-         uriDefaultAndDefaultModel: uriDefaultAndDefaultModel,
-         uriDefaultAndDefaultPersist: uriDefaultAndDefaultPersist,
-         uriDefaultModelAndDefaultPersist: uriDefaultModelAndDefaultPersist,
-       );
+          id: id,
+          uriDefaultAndDefaultModel: uriDefaultAndDefaultModel,
+          uriDefaultAndDefaultPersist: uriDefaultAndDefaultPersist,
+          uriDefaultModelAndDefaultPersist: uriDefaultModelAndDefaultPersist,
+        );
 
   /// Returns a shallow copy of this [UriDefaultMix]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   UriDefaultMix copyWith({
-    final Object? id = _Undefined,
-    final Uri? uriDefaultAndDefaultModel,
-    final Uri? uriDefaultAndDefaultPersist,
-    final Uri? uriDefaultModelAndDefaultPersist,
+    Object? id = _Undefined,
+    Uri? uriDefaultAndDefaultModel,
+    Uri? uriDefaultAndDefaultPersist,
+    Uri? uriDefaultModelAndDefaultPersist,
   }) {
     return UriDefaultMix(
       id: id is int? ? id : this.id,
@@ -159,8 +153,7 @@ class _UriDefaultMixImpl extends UriDefaultMix {
           uriDefaultAndDefaultModel ?? this.uriDefaultAndDefaultModel,
       uriDefaultAndDefaultPersist:
           uriDefaultAndDefaultPersist ?? this.uriDefaultAndDefaultPersist,
-      uriDefaultModelAndDefaultPersist:
-          uriDefaultModelAndDefaultPersist ??
+      uriDefaultModelAndDefaultPersist: uriDefaultModelAndDefaultPersist ??
           this.uriDefaultModelAndDefaultPersist,
     );
   }
@@ -169,19 +162,19 @@ class _UriDefaultMixImpl extends UriDefaultMix {
 class UriDefaultMixUpdateTable extends _i1.UpdateTable<UriDefaultMixTable> {
   UriDefaultMixUpdateTable(super.table);
 
-  _i1.ColumnValue<Uri, Uri> uriDefaultAndDefaultModel(final Uri value) =>
+  _i1.ColumnValue<Uri, Uri> uriDefaultAndDefaultModel(Uri value) =>
       _i1.ColumnValue(
         table.uriDefaultAndDefaultModel,
         value,
       );
 
-  _i1.ColumnValue<Uri, Uri> uriDefaultAndDefaultPersist(final Uri value) =>
+  _i1.ColumnValue<Uri, Uri> uriDefaultAndDefaultPersist(Uri value) =>
       _i1.ColumnValue(
         table.uriDefaultAndDefaultPersist,
         value,
       );
 
-  _i1.ColumnValue<Uri, Uri> uriDefaultModelAndDefaultPersist(final Uri value) =>
+  _i1.ColumnValue<Uri, Uri> uriDefaultModelAndDefaultPersist(Uri value) =>
       _i1.ColumnValue(
         table.uriDefaultModelAndDefaultPersist,
         value,
@@ -190,7 +183,7 @@ class UriDefaultMixUpdateTable extends _i1.UpdateTable<UriDefaultMixTable> {
 
 class UriDefaultMixTable extends _i1.Table<int?> {
   UriDefaultMixTable({super.tableRelation})
-    : super(tableName: 'uri_default_mix') {
+      : super(tableName: 'uri_default_mix') {
     updateTable = UriDefaultMixUpdateTable(this);
     uriDefaultAndDefaultModel = _i1.ColumnUri(
       'uriDefaultAndDefaultModel',
@@ -219,11 +212,11 @@ class UriDefaultMixTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    uriDefaultAndDefaultModel,
-    uriDefaultAndDefaultPersist,
-    uriDefaultModelAndDefaultPersist,
-  ];
+        id,
+        uriDefaultAndDefaultModel,
+        uriDefaultAndDefaultPersist,
+        uriDefaultModelAndDefaultPersist,
+      ];
 }
 
 class UriDefaultMixInclude extends _i1.IncludeObject {
@@ -238,7 +231,7 @@ class UriDefaultMixInclude extends _i1.IncludeObject {
 
 class UriDefaultMixIncludeList extends _i1.IncludeList {
   UriDefaultMixIncludeList._({
-    final _i1.WhereExpressionBuilder<UriDefaultMixTable>? where,
+    _i1.WhereExpressionBuilder<UriDefaultMixTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -282,14 +275,14 @@ class UriDefaultMixRepository {
   /// );
   /// ```
   Future<List<UriDefaultMix>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<UriDefaultMixTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<UriDefaultMixTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<UriDefaultMixTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<UriDefaultMixTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<UriDefaultMixTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<UriDefaultMixTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<UriDefaultMix>(
       where: where?.call(UriDefaultMix.t),
@@ -320,13 +313,13 @@ class UriDefaultMixRepository {
   /// );
   /// ```
   Future<UriDefaultMix?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<UriDefaultMixTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<UriDefaultMixTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<UriDefaultMixTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<UriDefaultMixTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<UriDefaultMixTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<UriDefaultMixTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<UriDefaultMix>(
       where: where?.call(UriDefaultMix.t),
@@ -340,9 +333,9 @@ class UriDefaultMixRepository {
 
   /// Finds a single [UriDefaultMix] by its [id] or null if no such row exists.
   Future<UriDefaultMix?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<UriDefaultMix>(
       id,
@@ -357,9 +350,9 @@ class UriDefaultMixRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<UriDefaultMix>> insert(
-    final _i1.Session session,
-    final List<UriDefaultMix> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<UriDefaultMix> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<UriDefaultMix>(
       rows,
@@ -371,9 +364,9 @@ class UriDefaultMixRepository {
   ///
   /// The returned [UriDefaultMix] will have its `id` field set.
   Future<UriDefaultMix> insertRow(
-    final _i1.Session session,
-    final UriDefaultMix row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    UriDefaultMix row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<UriDefaultMix>(
       row,
@@ -387,10 +380,10 @@ class UriDefaultMixRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<UriDefaultMix>> update(
-    final _i1.Session session,
-    final List<UriDefaultMix> rows, {
-    final _i1.ColumnSelections<UriDefaultMixTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<UriDefaultMix> rows, {
+    _i1.ColumnSelections<UriDefaultMixTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<UriDefaultMix>(
       rows,
@@ -403,10 +396,10 @@ class UriDefaultMixRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<UriDefaultMix> updateRow(
-    final _i1.Session session,
-    final UriDefaultMix row, {
-    final _i1.ColumnSelections<UriDefaultMixTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    UriDefaultMix row, {
+    _i1.ColumnSelections<UriDefaultMixTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<UriDefaultMix>(
       row,
@@ -418,10 +411,10 @@ class UriDefaultMixRepository {
   /// Updates a single [UriDefaultMix] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<UriDefaultMix?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<UriDefaultMixUpdateTable> columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<UriDefaultMixUpdateTable> columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<UriDefaultMix>(
       id,
@@ -433,15 +426,15 @@ class UriDefaultMixRepository {
   /// Updates all [UriDefaultMix]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<UriDefaultMix>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<UriDefaultMixUpdateTable> columnValues,
-    required final _i1.WhereExpressionBuilder<UriDefaultMixTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<UriDefaultMixTable>? orderBy,
-    final _i1.OrderByListBuilder<UriDefaultMixTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<UriDefaultMixUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<UriDefaultMixTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<UriDefaultMixTable>? orderBy,
+    _i1.OrderByListBuilder<UriDefaultMixTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<UriDefaultMix>(
       columnValues: columnValues(UriDefaultMix.t.updateTable),
@@ -459,9 +452,9 @@ class UriDefaultMixRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<UriDefaultMix>> delete(
-    final _i1.Session session,
-    final List<UriDefaultMix> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<UriDefaultMix> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<UriDefaultMix>(
       rows,
@@ -471,9 +464,9 @@ class UriDefaultMixRepository {
 
   /// Deletes a single [UriDefaultMix].
   Future<UriDefaultMix> deleteRow(
-    final _i1.Session session,
-    final UriDefaultMix row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    UriDefaultMix row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<UriDefaultMix>(
       row,
@@ -483,9 +476,9 @@ class UriDefaultMixRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<UriDefaultMix>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<UriDefaultMixTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<UriDefaultMixTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<UriDefaultMix>(
       where: where(UriDefaultMix.t),
@@ -496,10 +489,10 @@ class UriDefaultMixRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<UriDefaultMixTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<UriDefaultMixTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<UriDefaultMix>(
       where: where?.call(UriDefaultMix.t),

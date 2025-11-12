@@ -15,7 +15,12 @@ import '../../../models_with_relations/self_relation/many_to_many/blocking.dart'
     as _i2;
 
 abstract class Member implements _i1.SerializableModel {
-  Member._({this.id, required this.name, this.blocking, this.blockedBy});
+  Member._({
+    this.id,
+    required this.name,
+    this.blocking,
+    this.blockedBy,
+  });
 
   factory Member({
     int? id,
@@ -83,7 +88,12 @@ class _MemberImpl extends Member {
     required String name,
     List<_i2.Blocking>? blocking,
     List<_i2.Blocking>? blockedBy,
-  }) : super._(id: id, name: name, blocking: blocking, blockedBy: blockedBy);
+  }) : super._(
+          id: id,
+          name: name,
+          blocking: blocking,
+          blockedBy: blockedBy,
+        );
 
   /// Returns a shallow copy of this [Member]
   /// with some or all fields replaced by the given arguments.

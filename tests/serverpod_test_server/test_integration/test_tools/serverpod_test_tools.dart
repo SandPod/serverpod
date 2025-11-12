@@ -11,48 +11,46 @@
 
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
-import 'dart:async' as _i3;
-import 'dart:convert' as _i21;
-import 'dart:typed_data' as _i5;
-
-import 'package:serverpod/serverpod.dart' as _i2;
-import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i4;
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_test/serverpod_test.dart' as _i1;
-import 'package:serverpod_test_module_server/serverpod_test_module_server.dart'
-    as _i19;
-import 'package:serverpod_test_server/src/generated/endpoints.dart';
-import 'package:serverpod_test_server/src/generated/module_datatype.dart'
-    as _i20;
-import 'package:serverpod_test_server/src/generated/my_feature/models/my_feature_model.dart'
-    as _i26;
-import 'package:serverpod_test_server/src/generated/object_field_scopes.dart'
-    as _i16;
+import 'package:serverpod/serverpod.dart' as _i2;
+import 'dart:async' as _i3;
+import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i4;
+import 'dart:typed_data' as _i5;
+import 'package:serverpod_test_shared/src/protocol_custom_classes.dart' as _i6;
+import 'package:serverpod_test_shared/src/custom_classes.dart' as _i7;
+import 'package:serverpod_test_shared/src/external_custom_class.dart' as _i8;
+import 'package:serverpod_test_shared/src/freezed_custom_class.dart' as _i9;
+import 'package:serverpod_test_server/src/generated/simple_data.dart' as _i10;
+import 'package:serverpod_test_server/src/generated/simple_data_list.dart'
+    as _i11;
+import 'package:serverpod_test_server/src/generated/types.dart' as _i12;
 import 'package:serverpod_test_server/src/generated/object_with_enum.dart'
     as _i13;
 import 'package:serverpod_test_server/src/generated/object_with_object.dart'
     as _i14;
-import 'package:serverpod_test_server/src/generated/protocol.dart' as _i17;
-import 'package:serverpod_test_server/src/generated/protocol.dart';
 import 'package:serverpod_test_server/src/generated/required/model_with_required_field.dart'
     as _i15;
+import 'package:serverpod_test_server/src/generated/object_field_scopes.dart'
+    as _i16;
+import 'package:serverpod_test_server/src/generated/protocol.dart' as _i17;
+import 'package:serverpod_test_server/src/generated/test_enum.dart' as _i18;
+import 'package:serverpod_test_module_server/serverpod_test_module_server.dart'
+    as _i19;
+import 'package:serverpod_test_server/src/generated/module_datatype.dart'
+    as _i20;
+import 'dart:convert' as _i21;
+import 'package:serverpod_test_server/src/generated/types_record.dart' as _i22;
 import 'package:serverpod_test_server/src/generated/scopes/scope_server_only_field.dart'
     as _i23;
 import 'package:serverpod_test_server/src/generated/scopes/scope_server_only_field_child.dart'
     as _i24;
 import 'package:serverpod_test_server/src/generated/session_auth_info.dart'
     as _i25;
-import 'package:serverpod_test_server/src/generated/simple_data.dart' as _i10;
-import 'package:serverpod_test_server/src/generated/simple_data_list.dart'
-    as _i11;
-import 'package:serverpod_test_server/src/generated/test_enum.dart' as _i18;
-import 'package:serverpod_test_server/src/generated/types.dart' as _i12;
-import 'package:serverpod_test_server/src/generated/types_record.dart' as _i22;
-import 'package:serverpod_test_shared/src/custom_classes.dart' as _i7;
-import 'package:serverpod_test_shared/src/external_custom_class.dart' as _i8;
-import 'package:serverpod_test_shared/src/freezed_custom_class.dart' as _i9;
-import 'package:serverpod_test_shared/src/protocol_custom_classes.dart' as _i6;
-
+import 'package:serverpod_test_server/src/generated/my_feature/models/my_feature_model.dart'
+    as _i26;
+import 'package:serverpod_test_server/src/generated/protocol.dart';
+import 'package:serverpod_test_server/src/generated/endpoints.dart';
 export 'package:serverpod_test/serverpod_test_public_exports.dart';
 
 /// Creates a new test group that takes a callback that can be used to write tests.
@@ -122,18 +120,18 @@ export 'package:serverpod_test/serverpod_test_public_exports.dart';
 /// [experimentalFeatures] Optionally specify experimental features. See [Serverpod] for more information.
 @_i1.isTestGroup
 void withServerpod(
-  final String testGroupName,
-  final _i1.TestClosure<TestEndpoints> testClosure, {
-  final bool? applyMigrations,
-  final bool? enableSessionLogging,
-  final _i2.ExperimentalFeatures? experimentalFeatures,
-  final _i1.RollbackDatabase? rollbackDatabase,
-  final String? runMode,
-  final _i2.RuntimeParametersListBuilder? runtimeParametersBuilder,
-  final _i2.ServerpodLoggingMode? serverpodLoggingMode,
-  final Duration? serverpodStartTimeout,
-  final List<String>? testGroupTagsOverride,
-  final _i1.TestServerOutputMode? testServerOutputMode,
+  String testGroupName,
+  _i1.TestClosure<TestEndpoints> testClosure, {
+  bool? applyMigrations,
+  bool? enableSessionLogging,
+  _i2.ExperimentalFeatures? experimentalFeatures,
+  _i1.RollbackDatabase? rollbackDatabase,
+  String? runMode,
+  _i2.RuntimeParametersListBuilder? runtimeParametersBuilder,
+  _i2.ServerpodLoggingMode? serverpodLoggingMode,
+  Duration? serverpodStartTimeout,
+  List<String>? testGroupTagsOverride,
+  _i1.TestServerOutputMode? testServerOutputMode,
 }) {
   _i1.buildWithServerpod<_InternalTestEndpoints>(
     testGroupName,
@@ -195,7 +193,7 @@ class TestEndpoints {
   late final _IndependentEndpoint independent;
 
   late final _ConcreteFromModuleAbstractBaseEndpoint
-  concreteFromModuleAbstractBase;
+      concreteFromModuleAbstractBase;
 
   late final _ConcreteModuleBaseEndpoint concreteModuleBase;
 
@@ -256,12 +254,12 @@ class TestEndpoints {
   late final _ServerOnlyScopedFieldModelEndpoint serverOnlyScopedFieldModel;
 
   late final _ServerOnlyScopedFieldChildModelEndpoint
-  serverOnlyScopedFieldChildModel;
+      serverOnlyScopedFieldChildModel;
 
   late final _SessionAuthenticationEndpoint sessionAuthentication;
 
   late final _SessionAuthenticationStreamingEndpoint
-  sessionAuthenticationStreaming;
+      sessionAuthenticationStreaming;
 
   late final _SetParametersEndpoint setParameters;
 
@@ -300,8 +298,8 @@ class _InternalTestEndpoints extends TestEndpoints
     implements _i1.InternalTestEndpoints {
   @override
   void initialize(
-    final _i2.SerializationManager serializationManager,
-    final _i2.EndpointDispatch endpoints,
+    _i2.SerializationManager serializationManager,
+    _i2.EndpointDispatch endpoints,
   ) {
     asyncTasks = _AsyncTasksEndpoint(
       endpoints,
@@ -585,18 +583,18 @@ class _AsyncTasksEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<void> insertRowToSimpleDataAfterDelay(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int num,
-    final int seconds,
+    _i1.TestSessionBuilder sessionBuilder,
+    int num,
+    int seconds,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'asyncTasks',
-            method: 'insertRowToSimpleDataAfterDelay',
-          );
+        endpoint: 'asyncTasks',
+        method: 'insertRowToSimpleDataAfterDelay',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'asyncTasks',
           methodName: 'insertRowToSimpleDataAfterDelay',
@@ -606,12 +604,10 @@ class _AsyncTasksEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -620,29 +616,27 @@ class _AsyncTasksEndpoint {
   }
 
   _i3.Future<void> throwExceptionAfterDelay(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int seconds,
+    _i1.TestSessionBuilder sessionBuilder,
+    int seconds,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'asyncTasks',
-            method: 'throwExceptionAfterDelay',
-          );
+        endpoint: 'asyncTasks',
+        method: 'throwExceptionAfterDelay',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'asyncTasks',
           methodName: 'throwExceptionAfterDelay',
           parameters: _i1.testObjectToJson({'seconds': seconds}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -661,27 +655,25 @@ class _AuthenticationEndpoint {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Future<void> removeAllUsers(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<void> removeAllUsers(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'authentication',
-            method: 'removeAllUsers',
-          );
+        endpoint: 'authentication',
+        method: 'removeAllUsers',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'authentication',
           methodName: 'removeAllUsers',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -689,27 +681,25 @@ class _AuthenticationEndpoint {
     });
   }
 
-  _i3.Future<int> countUsers(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<int> countUsers(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'authentication',
-            method: 'countUsers',
-          );
+        endpoint: 'authentication',
+        method: 'countUsers',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'authentication',
           methodName: 'countUsers',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<int>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<int>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -718,18 +708,18 @@ class _AuthenticationEndpoint {
   }
 
   _i3.Future<void> createUser(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String email,
-    final String password,
+    _i1.TestSessionBuilder sessionBuilder,
+    String email,
+    String password,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'authentication',
-            method: 'createUser',
-          );
+        endpoint: 'authentication',
+        method: 'createUser',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'authentication',
           methodName: 'createUser',
@@ -739,12 +729,10 @@ class _AuthenticationEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -753,19 +741,19 @@ class _AuthenticationEndpoint {
   }
 
   _i3.Future<_i4.AuthenticationResponse> authenticate(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String email,
-    final String password, [
-    final List<String>? scopes,
+    _i1.TestSessionBuilder sessionBuilder,
+    String email,
+    String password, [
+    List<String>? scopes,
   ]) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'authentication',
-            method: 'authenticate',
-          );
+        endpoint: 'authentication',
+        method: 'authenticate',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'authentication',
           methodName: 'authenticate',
@@ -776,12 +764,10 @@ class _AuthenticationEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i4.AuthenticationResponse>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i4.AuthenticationResponse>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -789,27 +775,25 @@ class _AuthenticationEndpoint {
     });
   }
 
-  _i3.Future<void> signOut(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<void> signOut(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'authentication',
-            method: 'signOut',
-          );
+        endpoint: 'authentication',
+        method: 'signOut',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'authentication',
           methodName: 'signOut',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -818,18 +802,18 @@ class _AuthenticationEndpoint {
   }
 
   _i3.Future<void> updateScopes(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int userId,
-    final List<String> scopes,
+    _i1.TestSessionBuilder sessionBuilder,
+    int userId,
+    List<String> scopes,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'authentication',
-            method: 'updateScopes',
-          );
+        endpoint: 'authentication',
+        method: 'updateScopes',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'authentication',
           methodName: 'updateScopes',
@@ -839,12 +823,10 @@ class _AuthenticationEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -864,29 +846,27 @@ class _BasicTypesEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<int?> testInt(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int? value,
+    _i1.TestSessionBuilder sessionBuilder,
+    int? value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicTypes',
-            method: 'testInt',
-          );
+        endpoint: 'basicTypes',
+        method: 'testInt',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicTypes',
           methodName: 'testInt',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<int?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<int?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -895,29 +875,27 @@ class _BasicTypesEndpoint {
   }
 
   _i3.Future<double?> testDouble(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final double? value,
+    _i1.TestSessionBuilder sessionBuilder,
+    double? value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicTypes',
-            method: 'testDouble',
-          );
+        endpoint: 'basicTypes',
+        method: 'testDouble',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicTypes',
           methodName: 'testDouble',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<double?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<double?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -926,29 +904,27 @@ class _BasicTypesEndpoint {
   }
 
   _i3.Future<bool?> testBool(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final bool? value,
+    _i1.TestSessionBuilder sessionBuilder,
+    bool? value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicTypes',
-            method: 'testBool',
-          );
+        endpoint: 'basicTypes',
+        method: 'testBool',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicTypes',
           methodName: 'testBool',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -957,29 +933,27 @@ class _BasicTypesEndpoint {
   }
 
   _i3.Future<DateTime?> testDateTime(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final DateTime? dateTime,
+    _i1.TestSessionBuilder sessionBuilder,
+    DateTime? dateTime,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicTypes',
-            method: 'testDateTime',
-          );
+        endpoint: 'basicTypes',
+        method: 'testDateTime',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicTypes',
           methodName: 'testDateTime',
           parameters: _i1.testObjectToJson({'dateTime': dateTime}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<DateTime?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<DateTime?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -988,29 +962,27 @@ class _BasicTypesEndpoint {
   }
 
   _i3.Future<String?> testString(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String? value,
+    _i1.TestSessionBuilder sessionBuilder,
+    String? value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicTypes',
-            method: 'testString',
-          );
+        endpoint: 'basicTypes',
+        method: 'testString',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicTypes',
           methodName: 'testString',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1019,29 +991,27 @@ class _BasicTypesEndpoint {
   }
 
   _i3.Future<_i5.ByteData?> testByteData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i5.ByteData? value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i5.ByteData? value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicTypes',
-            method: 'testByteData',
-          );
+        endpoint: 'basicTypes',
+        method: 'testByteData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicTypes',
           methodName: 'testByteData',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i5.ByteData?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i5.ByteData?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1050,29 +1020,27 @@ class _BasicTypesEndpoint {
   }
 
   _i3.Future<Duration?> testDuration(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Duration? value,
+    _i1.TestSessionBuilder sessionBuilder,
+    Duration? value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicTypes',
-            method: 'testDuration',
-          );
+        endpoint: 'basicTypes',
+        method: 'testDuration',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicTypes',
           methodName: 'testDuration',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Duration?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Duration?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1081,29 +1049,27 @@ class _BasicTypesEndpoint {
   }
 
   _i3.Future<_i2.UuidValue?> testUuid(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i2.UuidValue? value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i2.UuidValue? value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicTypes',
-            method: 'testUuid',
-          );
+        endpoint: 'basicTypes',
+        method: 'testUuid',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicTypes',
           methodName: 'testUuid',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i2.UuidValue?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i2.UuidValue?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1112,29 +1078,27 @@ class _BasicTypesEndpoint {
   }
 
   _i3.Future<Uri?> testUri(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Uri? value,
+    _i1.TestSessionBuilder sessionBuilder,
+    Uri? value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicTypes',
-            method: 'testUri',
-          );
+        endpoint: 'basicTypes',
+        method: 'testUri',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicTypes',
           methodName: 'testUri',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Uri?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Uri?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1143,29 +1107,27 @@ class _BasicTypesEndpoint {
   }
 
   _i3.Future<BigInt?> testBigInt(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final BigInt? value,
+    _i1.TestSessionBuilder sessionBuilder,
+    BigInt? value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicTypes',
-            method: 'testBigInt',
-          );
+        endpoint: 'basicTypes',
+        method: 'testBigInt',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicTypes',
           methodName: 'testBigInt',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<BigInt?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<BigInt?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1185,26 +1147,26 @@ class _BasicTypesStreamingEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Stream<int?> testInt(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int?> value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int?> value,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int?>();
+    var _localTestStreamManager = _i1.TestStreamManager<int?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'basicTypesStreaming',
-              method: 'testInt',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'basicTypesStreaming',
-              methodName: 'testInt',
-              arguments: {},
-              requestedInputStreams: ['value'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'basicTypesStreaming',
+          method: 'testInt',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'basicTypesStreaming',
+          methodName: 'testInt',
+          arguments: {},
+          requestedInputStreams: ['value'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -1217,26 +1179,26 @@ class _BasicTypesStreamingEndpoint {
   }
 
   _i3.Stream<double?> testDouble(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<double?> value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<double?> value,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<double?>();
+    var _localTestStreamManager = _i1.TestStreamManager<double?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'basicTypesStreaming',
-              method: 'testDouble',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'basicTypesStreaming',
-              methodName: 'testDouble',
-              arguments: {},
-              requestedInputStreams: ['value'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'basicTypesStreaming',
+          method: 'testDouble',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'basicTypesStreaming',
+          methodName: 'testDouble',
+          arguments: {},
+          requestedInputStreams: ['value'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -1249,26 +1211,26 @@ class _BasicTypesStreamingEndpoint {
   }
 
   _i3.Stream<bool?> testBool(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<bool?> value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<bool?> value,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<bool?>();
+    var _localTestStreamManager = _i1.TestStreamManager<bool?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'basicTypesStreaming',
-              method: 'testBool',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'basicTypesStreaming',
-              methodName: 'testBool',
-              arguments: {},
-              requestedInputStreams: ['value'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'basicTypesStreaming',
+          method: 'testBool',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'basicTypesStreaming',
+          methodName: 'testBool',
+          arguments: {},
+          requestedInputStreams: ['value'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -1281,26 +1243,26 @@ class _BasicTypesStreamingEndpoint {
   }
 
   _i3.Stream<DateTime?> testDateTime(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<DateTime?> value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<DateTime?> value,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<DateTime?>();
+    var _localTestStreamManager = _i1.TestStreamManager<DateTime?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'basicTypesStreaming',
-              method: 'testDateTime',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'basicTypesStreaming',
-              methodName: 'testDateTime',
-              arguments: {},
-              requestedInputStreams: ['value'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'basicTypesStreaming',
+          method: 'testDateTime',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'basicTypesStreaming',
+          methodName: 'testDateTime',
+          arguments: {},
+          requestedInputStreams: ['value'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -1313,26 +1275,26 @@ class _BasicTypesStreamingEndpoint {
   }
 
   _i3.Stream<String?> testString(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<String?> value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<String?> value,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<String?>();
+    var _localTestStreamManager = _i1.TestStreamManager<String?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'basicTypesStreaming',
-              method: 'testString',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'basicTypesStreaming',
-              methodName: 'testString',
-              arguments: {},
-              requestedInputStreams: ['value'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'basicTypesStreaming',
+          method: 'testString',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'basicTypesStreaming',
+          methodName: 'testString',
+          arguments: {},
+          requestedInputStreams: ['value'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -1345,26 +1307,26 @@ class _BasicTypesStreamingEndpoint {
   }
 
   _i3.Stream<_i5.ByteData?> testByteData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<_i5.ByteData?> value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<_i5.ByteData?> value,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<_i5.ByteData?>();
+    var _localTestStreamManager = _i1.TestStreamManager<_i5.ByteData?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'basicTypesStreaming',
-              method: 'testByteData',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'basicTypesStreaming',
-              methodName: 'testByteData',
-              arguments: {},
-              requestedInputStreams: ['value'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'basicTypesStreaming',
+          method: 'testByteData',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'basicTypesStreaming',
+          methodName: 'testByteData',
+          arguments: {},
+          requestedInputStreams: ['value'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -1377,26 +1339,26 @@ class _BasicTypesStreamingEndpoint {
   }
 
   _i3.Stream<Duration?> testDuration(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<Duration?> value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<Duration?> value,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<Duration?>();
+    var _localTestStreamManager = _i1.TestStreamManager<Duration?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'basicTypesStreaming',
-              method: 'testDuration',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'basicTypesStreaming',
-              methodName: 'testDuration',
-              arguments: {},
-              requestedInputStreams: ['value'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'basicTypesStreaming',
+          method: 'testDuration',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'basicTypesStreaming',
+          methodName: 'testDuration',
+          arguments: {},
+          requestedInputStreams: ['value'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -1409,26 +1371,26 @@ class _BasicTypesStreamingEndpoint {
   }
 
   _i3.Stream<_i2.UuidValue?> testUuid(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<_i2.UuidValue?> value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<_i2.UuidValue?> value,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<_i2.UuidValue?>();
+    var _localTestStreamManager = _i1.TestStreamManager<_i2.UuidValue?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'basicTypesStreaming',
-              method: 'testUuid',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'basicTypesStreaming',
-              methodName: 'testUuid',
-              arguments: {},
-              requestedInputStreams: ['value'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'basicTypesStreaming',
+          method: 'testUuid',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'basicTypesStreaming',
+          methodName: 'testUuid',
+          arguments: {},
+          requestedInputStreams: ['value'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -1441,26 +1403,26 @@ class _BasicTypesStreamingEndpoint {
   }
 
   _i3.Stream<Uri?> testUri(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<Uri?> value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<Uri?> value,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<Uri?>();
+    var _localTestStreamManager = _i1.TestStreamManager<Uri?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'basicTypesStreaming',
-              method: 'testUri',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'basicTypesStreaming',
-              methodName: 'testUri',
-              arguments: {},
-              requestedInputStreams: ['value'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'basicTypesStreaming',
+          method: 'testUri',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'basicTypesStreaming',
+          methodName: 'testUri',
+          arguments: {},
+          requestedInputStreams: ['value'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -1473,26 +1435,26 @@ class _BasicTypesStreamingEndpoint {
   }
 
   _i3.Stream<BigInt?> testBigInt(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<BigInt?> value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<BigInt?> value,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<BigInt?>();
+    var _localTestStreamManager = _i1.TestStreamManager<BigInt?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'basicTypesStreaming',
-              method: 'testBigInt',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'basicTypesStreaming',
-              methodName: 'testBigInt',
-              arguments: {},
-              requestedInputStreams: ['value'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'basicTypesStreaming',
+          method: 'testBigInt',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'basicTypesStreaming',
+          methodName: 'testBigInt',
+          arguments: {},
+          requestedInputStreams: ['value'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -1515,27 +1477,25 @@ class _CloudStorageEndpoint {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Future<void> reset(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<void> reset(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'cloudStorage',
-            method: 'reset',
-          );
+        endpoint: 'cloudStorage',
+        method: 'reset',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'cloudStorage',
           methodName: 'reset',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1544,18 +1504,18 @@ class _CloudStorageEndpoint {
   }
 
   _i3.Future<void> storePublicFile(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String path,
-    final _i5.ByteData byteData,
+    _i1.TestSessionBuilder sessionBuilder,
+    String path,
+    _i5.ByteData byteData,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'cloudStorage',
-            method: 'storePublicFile',
-          );
+        endpoint: 'cloudStorage',
+        method: 'storePublicFile',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'cloudStorage',
           methodName: 'storePublicFile',
@@ -1565,12 +1525,10 @@ class _CloudStorageEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1579,29 +1537,27 @@ class _CloudStorageEndpoint {
   }
 
   _i3.Future<_i5.ByteData?> retrievePublicFile(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String path,
+    _i1.TestSessionBuilder sessionBuilder,
+    String path,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'cloudStorage',
-            method: 'retrievePublicFile',
-          );
+        endpoint: 'cloudStorage',
+        method: 'retrievePublicFile',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'cloudStorage',
           methodName: 'retrievePublicFile',
           parameters: _i1.testObjectToJson({'path': path}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i5.ByteData?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i5.ByteData?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1610,29 +1566,27 @@ class _CloudStorageEndpoint {
   }
 
   _i3.Future<bool?> existsPublicFile(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String path,
+    _i1.TestSessionBuilder sessionBuilder,
+    String path,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'cloudStorage',
-            method: 'existsPublicFile',
-          );
+        endpoint: 'cloudStorage',
+        method: 'existsPublicFile',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'cloudStorage',
           methodName: 'existsPublicFile',
           parameters: _i1.testObjectToJson({'path': path}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1641,29 +1595,27 @@ class _CloudStorageEndpoint {
   }
 
   _i3.Future<void> deletePublicFile(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String path,
+    _i1.TestSessionBuilder sessionBuilder,
+    String path,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'cloudStorage',
-            method: 'deletePublicFile',
-          );
+        endpoint: 'cloudStorage',
+        method: 'deletePublicFile',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'cloudStorage',
           methodName: 'deletePublicFile',
           parameters: _i1.testObjectToJson({'path': path}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1672,29 +1624,27 @@ class _CloudStorageEndpoint {
   }
 
   _i3.Future<String?> getPublicUrlForFile(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String path,
+    _i1.TestSessionBuilder sessionBuilder,
+    String path,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'cloudStorage',
-            method: 'getPublicUrlForFile',
-          );
+        endpoint: 'cloudStorage',
+        method: 'getPublicUrlForFile',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'cloudStorage',
           methodName: 'getPublicUrlForFile',
           parameters: _i1.testObjectToJson({'path': path}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1703,29 +1653,27 @@ class _CloudStorageEndpoint {
   }
 
   _i3.Future<String?> getDirectFilePostUrl(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String path,
+    _i1.TestSessionBuilder sessionBuilder,
+    String path,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'cloudStorage',
-            method: 'getDirectFilePostUrl',
-          );
+        endpoint: 'cloudStorage',
+        method: 'getDirectFilePostUrl',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'cloudStorage',
           methodName: 'getDirectFilePostUrl',
           parameters: _i1.testObjectToJson({'path': path}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1734,29 +1682,27 @@ class _CloudStorageEndpoint {
   }
 
   _i3.Future<bool> verifyDirectFileUpload(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String path,
+    _i1.TestSessionBuilder sessionBuilder,
+    String path,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'cloudStorage',
-            method: 'verifyDirectFileUpload',
-          );
+        endpoint: 'cloudStorage',
+        method: 'verifyDirectFileUpload',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'cloudStorage',
           methodName: 'verifyDirectFileUpload',
           parameters: _i1.testObjectToJson({'path': path}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1776,18 +1722,18 @@ class _S3CloudStorageEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<void> storePublicFile(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String path,
-    final _i5.ByteData byteData,
+    _i1.TestSessionBuilder sessionBuilder,
+    String path,
+    _i5.ByteData byteData,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 's3CloudStorage',
-            method: 'storePublicFile',
-          );
+        endpoint: 's3CloudStorage',
+        method: 'storePublicFile',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 's3CloudStorage',
           methodName: 'storePublicFile',
@@ -1797,12 +1743,10 @@ class _S3CloudStorageEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1811,29 +1755,27 @@ class _S3CloudStorageEndpoint {
   }
 
   _i3.Future<_i5.ByteData?> retrievePublicFile(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String path,
+    _i1.TestSessionBuilder sessionBuilder,
+    String path,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 's3CloudStorage',
-            method: 'retrievePublicFile',
-          );
+        endpoint: 's3CloudStorage',
+        method: 'retrievePublicFile',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 's3CloudStorage',
           methodName: 'retrievePublicFile',
           parameters: _i1.testObjectToJson({'path': path}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i5.ByteData?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i5.ByteData?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1842,29 +1784,27 @@ class _S3CloudStorageEndpoint {
   }
 
   _i3.Future<bool?> existsPublicFile(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String path,
+    _i1.TestSessionBuilder sessionBuilder,
+    String path,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 's3CloudStorage',
-            method: 'existsPublicFile',
-          );
+        endpoint: 's3CloudStorage',
+        method: 'existsPublicFile',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 's3CloudStorage',
           methodName: 'existsPublicFile',
           parameters: _i1.testObjectToJson({'path': path}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1873,29 +1813,27 @@ class _S3CloudStorageEndpoint {
   }
 
   _i3.Future<void> deletePublicFile(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String path,
+    _i1.TestSessionBuilder sessionBuilder,
+    String path,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 's3CloudStorage',
-            method: 'deletePublicFile',
-          );
+        endpoint: 's3CloudStorage',
+        method: 'deletePublicFile',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 's3CloudStorage',
           methodName: 'deletePublicFile',
           parameters: _i1.testObjectToJson({'path': path}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1904,29 +1842,27 @@ class _S3CloudStorageEndpoint {
   }
 
   _i3.Future<String?> getPublicUrlForFile(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String path,
+    _i1.TestSessionBuilder sessionBuilder,
+    String path,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 's3CloudStorage',
-            method: 'getPublicUrlForFile',
-          );
+        endpoint: 's3CloudStorage',
+        method: 'getPublicUrlForFile',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 's3CloudStorage',
           methodName: 'getPublicUrlForFile',
           parameters: _i1.testObjectToJson({'path': path}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1935,29 +1871,27 @@ class _S3CloudStorageEndpoint {
   }
 
   _i3.Future<String?> getDirectFilePostUrl(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String path,
+    _i1.TestSessionBuilder sessionBuilder,
+    String path,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 's3CloudStorage',
-            method: 'getDirectFilePostUrl',
-          );
+        endpoint: 's3CloudStorage',
+        method: 'getDirectFilePostUrl',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 's3CloudStorage',
           methodName: 'getDirectFilePostUrl',
           parameters: _i1.testObjectToJson({'path': path}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1966,29 +1900,27 @@ class _S3CloudStorageEndpoint {
   }
 
   _i3.Future<bool> verifyDirectFileUpload(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String path,
+    _i1.TestSessionBuilder sessionBuilder,
+    String path,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 's3CloudStorage',
-            method: 'verifyDirectFileUpload',
-          );
+        endpoint: 's3CloudStorage',
+        method: 'verifyDirectFileUpload',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 's3CloudStorage',
           methodName: 'verifyDirectFileUpload',
           parameters: _i1.testObjectToJson({'path': path}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2008,28 +1940,25 @@ class _CustomClassProtocolEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<_i6.ProtocolCustomClass> getProtocolField(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'customClassProtocol',
-            method: 'getProtocolField',
-          );
+        endpoint: 'customClassProtocol',
+        method: 'getProtocolField',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'customClassProtocol',
           methodName: 'getProtocolField',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i6.ProtocolCustomClass>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i6.ProtocolCustomClass>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2049,29 +1978,27 @@ class _CustomTypesEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<_i7.CustomClass> returnCustomClass(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i7.CustomClass data,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i7.CustomClass data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'customTypes',
-            method: 'returnCustomClass',
-          );
+        endpoint: 'customTypes',
+        method: 'returnCustomClass',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'customTypes',
           methodName: 'returnCustomClass',
           parameters: _i1.testObjectToJson({'data': data}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i7.CustomClass>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i7.CustomClass>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2080,29 +2007,27 @@ class _CustomTypesEndpoint {
   }
 
   _i3.Future<_i7.CustomClass?> returnCustomClassNullable(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i7.CustomClass? data,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i7.CustomClass? data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'customTypes',
-            method: 'returnCustomClassNullable',
-          );
+        endpoint: 'customTypes',
+        method: 'returnCustomClassNullable',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'customTypes',
           methodName: 'returnCustomClassNullable',
           parameters: _i1.testObjectToJson({'data': data}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i7.CustomClass?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i7.CustomClass?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2111,29 +2036,27 @@ class _CustomTypesEndpoint {
   }
 
   _i3.Future<_i7.CustomClass2> returnCustomClass2(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i7.CustomClass2 data,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i7.CustomClass2 data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'customTypes',
-            method: 'returnCustomClass2',
-          );
+        endpoint: 'customTypes',
+        method: 'returnCustomClass2',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'customTypes',
           methodName: 'returnCustomClass2',
           parameters: _i1.testObjectToJson({'data': data}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i7.CustomClass2>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i7.CustomClass2>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2142,29 +2065,27 @@ class _CustomTypesEndpoint {
   }
 
   _i3.Future<_i7.CustomClass2?> returnCustomClass2Nullable(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i7.CustomClass2? data,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i7.CustomClass2? data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'customTypes',
-            method: 'returnCustomClass2Nullable',
-          );
+        endpoint: 'customTypes',
+        method: 'returnCustomClass2Nullable',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'customTypes',
           methodName: 'returnCustomClass2Nullable',
           parameters: _i1.testObjectToJson({'data': data}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i7.CustomClass2?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i7.CustomClass2?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2173,29 +2094,27 @@ class _CustomTypesEndpoint {
   }
 
   _i3.Future<_i8.ExternalCustomClass> returnExternalCustomClass(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i8.ExternalCustomClass data,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i8.ExternalCustomClass data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'customTypes',
-            method: 'returnExternalCustomClass',
-          );
+        endpoint: 'customTypes',
+        method: 'returnExternalCustomClass',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'customTypes',
           methodName: 'returnExternalCustomClass',
           parameters: _i1.testObjectToJson({'data': data}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i8.ExternalCustomClass>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i8.ExternalCustomClass>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2204,29 +2123,27 @@ class _CustomTypesEndpoint {
   }
 
   _i3.Future<_i8.ExternalCustomClass?> returnExternalCustomClassNullable(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i8.ExternalCustomClass? data,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i8.ExternalCustomClass? data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'customTypes',
-            method: 'returnExternalCustomClassNullable',
-          );
+        endpoint: 'customTypes',
+        method: 'returnExternalCustomClassNullable',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'customTypes',
           methodName: 'returnExternalCustomClassNullable',
           parameters: _i1.testObjectToJson({'data': data}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i8.ExternalCustomClass?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i8.ExternalCustomClass?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2235,29 +2152,27 @@ class _CustomTypesEndpoint {
   }
 
   _i3.Future<_i9.FreezedCustomClass> returnFreezedCustomClass(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i9.FreezedCustomClass data,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i9.FreezedCustomClass data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'customTypes',
-            method: 'returnFreezedCustomClass',
-          );
+        endpoint: 'customTypes',
+        method: 'returnFreezedCustomClass',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'customTypes',
           methodName: 'returnFreezedCustomClass',
           parameters: _i1.testObjectToJson({'data': data}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i9.FreezedCustomClass>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i9.FreezedCustomClass>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2266,29 +2181,27 @@ class _CustomTypesEndpoint {
   }
 
   _i3.Future<_i9.FreezedCustomClass?> returnFreezedCustomClassNullable(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i9.FreezedCustomClass? data,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i9.FreezedCustomClass? data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'customTypes',
-            method: 'returnFreezedCustomClassNullable',
-          );
+        endpoint: 'customTypes',
+        method: 'returnFreezedCustomClassNullable',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'customTypes',
           methodName: 'returnFreezedCustomClassNullable',
           parameters: _i1.testObjectToJson({'data': data}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i9.FreezedCustomClass?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i9.FreezedCustomClass?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2297,30 +2210,28 @@ class _CustomTypesEndpoint {
   }
 
   _i3.Future<_i7.CustomClassWithoutProtocolSerialization>
-  returnCustomClassWithoutProtocolSerialization(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i7.CustomClassWithoutProtocolSerialization data,
+      returnCustomClassWithoutProtocolSerialization(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i7.CustomClassWithoutProtocolSerialization data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'customTypes',
-            method: 'returnCustomClassWithoutProtocolSerialization',
-          );
+        endpoint: 'customTypes',
+        method: 'returnCustomClassWithoutProtocolSerialization',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'customTypes',
           methodName: 'returnCustomClassWithoutProtocolSerialization',
           parameters: _i1.testObjectToJson({'data': data}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i7.CustomClassWithoutProtocolSerialization>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i7.CustomClassWithoutProtocolSerialization>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2329,30 +2240,28 @@ class _CustomTypesEndpoint {
   }
 
   _i3.Future<_i7.CustomClassWithProtocolSerialization>
-  returnCustomClassWithProtocolSerialization(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i7.CustomClassWithProtocolSerialization data,
+      returnCustomClassWithProtocolSerialization(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i7.CustomClassWithProtocolSerialization data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'customTypes',
-            method: 'returnCustomClassWithProtocolSerialization',
-          );
+        endpoint: 'customTypes',
+        method: 'returnCustomClassWithProtocolSerialization',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'customTypes',
           methodName: 'returnCustomClassWithProtocolSerialization',
           parameters: _i1.testObjectToJson({'data': data}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i7.CustomClassWithProtocolSerialization>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i7.CustomClassWithProtocolSerialization>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2361,30 +2270,28 @@ class _CustomTypesEndpoint {
   }
 
   _i3.Future<_i7.CustomClassWithProtocolSerializationMethod>
-  returnCustomClassWithProtocolSerializationMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i7.CustomClassWithProtocolSerializationMethod data,
+      returnCustomClassWithProtocolSerializationMethod(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i7.CustomClassWithProtocolSerializationMethod data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'customTypes',
-            method: 'returnCustomClassWithProtocolSerializationMethod',
-          );
+        endpoint: 'customTypes',
+        method: 'returnCustomClassWithProtocolSerializationMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'customTypes',
           methodName: 'returnCustomClassWithProtocolSerializationMethod',
           parameters: _i1.testObjectToJson({'data': data}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i7.CustomClassWithProtocolSerializationMethod>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i7.CustomClassWithProtocolSerializationMethod>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2404,28 +2311,25 @@ class _BasicDatabase {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<void> deleteAllSimpleTestData(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'deleteAllSimpleTestData',
-          );
+        endpoint: 'basicDatabase',
+        method: 'deleteAllSimpleTestData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'deleteAllSimpleTestData',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2434,29 +2338,27 @@ class _BasicDatabase {
   }
 
   _i3.Future<void> deleteSimpleTestDataLessThan(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int num,
+    _i1.TestSessionBuilder sessionBuilder,
+    int num,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'deleteSimpleTestDataLessThan',
-          );
+        endpoint: 'basicDatabase',
+        method: 'deleteSimpleTestDataLessThan',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'deleteSimpleTestDataLessThan',
           parameters: _i1.testObjectToJson({'num': num}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2465,29 +2367,27 @@ class _BasicDatabase {
   }
 
   _i3.Future<void> findAndDeleteSimpleTestData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int num,
+    _i1.TestSessionBuilder sessionBuilder,
+    int num,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'findAndDeleteSimpleTestData',
-          );
+        endpoint: 'basicDatabase',
+        method: 'findAndDeleteSimpleTestData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'findAndDeleteSimpleTestData',
           parameters: _i1.testObjectToJson({'num': num}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2496,29 +2396,27 @@ class _BasicDatabase {
   }
 
   _i3.Future<void> createSimpleTestData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int numRows,
+    _i1.TestSessionBuilder sessionBuilder,
+    int numRows,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'createSimpleTestData',
-          );
+        endpoint: 'basicDatabase',
+        method: 'createSimpleTestData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'createSimpleTestData',
           parameters: _i1.testObjectToJson({'numRows': numRows}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2527,18 +2425,18 @@ class _BasicDatabase {
   }
 
   _i3.Future<List<_i10.SimpleData>> findSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder, {
-    required final int limit,
-    required final int offset,
+    _i1.TestSessionBuilder sessionBuilder, {
+    required int limit,
+    required int offset,
   }) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'findSimpleData',
-          );
+        endpoint: 'basicDatabase',
+        method: 'findSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'findSimpleData',
@@ -2548,12 +2446,10 @@ class _BasicDatabase {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<_i10.SimpleData>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<_i10.SimpleData>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2562,29 +2458,27 @@ class _BasicDatabase {
   }
 
   _i3.Future<_i10.SimpleData?> findFirstRowSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int num,
+    _i1.TestSessionBuilder sessionBuilder,
+    int num,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'findFirstRowSimpleData',
-          );
+        endpoint: 'basicDatabase',
+        method: 'findFirstRowSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'findFirstRowSimpleData',
           parameters: _i1.testObjectToJson({'num': num}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i10.SimpleData?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i10.SimpleData?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2593,29 +2487,27 @@ class _BasicDatabase {
   }
 
   _i3.Future<_i10.SimpleData?> findByIdSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int id,
+    _i1.TestSessionBuilder sessionBuilder,
+    int id,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'findByIdSimpleData',
-          );
+        endpoint: 'basicDatabase',
+        method: 'findByIdSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'findByIdSimpleData',
           parameters: _i1.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i10.SimpleData?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i10.SimpleData?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2624,20 +2516,20 @@ class _BasicDatabase {
   }
 
   _i3.Future<_i11.SimpleDataList?> findSimpleDataRowsLessThan(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int num,
-    final int offset,
-    final int limit,
-    final bool descending,
+    _i1.TestSessionBuilder sessionBuilder,
+    int num,
+    int offset,
+    int limit,
+    bool descending,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'findSimpleDataRowsLessThan',
-          );
+        endpoint: 'basicDatabase',
+        method: 'findSimpleDataRowsLessThan',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'findSimpleDataRowsLessThan',
@@ -2649,12 +2541,10 @@ class _BasicDatabase {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i11.SimpleDataList?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i11.SimpleDataList?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2663,29 +2553,27 @@ class _BasicDatabase {
   }
 
   _i3.Future<_i10.SimpleData> insertRowSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i10.SimpleData simpleData,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i10.SimpleData simpleData,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'insertRowSimpleData',
-          );
+        endpoint: 'basicDatabase',
+        method: 'insertRowSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'insertRowSimpleData',
           parameters: _i1.testObjectToJson({'simpleData': simpleData}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i10.SimpleData>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i10.SimpleData>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2694,29 +2582,27 @@ class _BasicDatabase {
   }
 
   _i3.Future<_i10.SimpleData> updateRowSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i10.SimpleData simpleData,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i10.SimpleData simpleData,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'updateRowSimpleData',
-          );
+        endpoint: 'basicDatabase',
+        method: 'updateRowSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'updateRowSimpleData',
           parameters: _i1.testObjectToJson({'simpleData': simpleData}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i10.SimpleData>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i10.SimpleData>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2725,29 +2611,27 @@ class _BasicDatabase {
   }
 
   _i3.Future<int> deleteRowSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i10.SimpleData simpleData,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i10.SimpleData simpleData,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'deleteRowSimpleData',
-          );
+        endpoint: 'basicDatabase',
+        method: 'deleteRowSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'deleteRowSimpleData',
           parameters: _i1.testObjectToJson({'simpleData': simpleData}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<int>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<int>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2756,28 +2640,25 @@ class _BasicDatabase {
   }
 
   _i3.Future<List<int>> deleteWhereSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'deleteWhereSimpleData',
-          );
+        endpoint: 'basicDatabase',
+        method: 'deleteWhereSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'deleteWhereSimpleData',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<int>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<int>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2785,27 +2666,25 @@ class _BasicDatabase {
     });
   }
 
-  _i3.Future<int> countSimpleData(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<int> countSimpleData(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'countSimpleData',
-          );
+        endpoint: 'basicDatabase',
+        method: 'countSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'countSimpleData',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<int>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<int>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2814,29 +2693,27 @@ class _BasicDatabase {
   }
 
   _i3.Future<_i12.Types> insertTypes(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i12.Types value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i12.Types value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'insertTypes',
-          );
+        endpoint: 'basicDatabase',
+        method: 'insertTypes',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'insertTypes',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i12.Types>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i12.Types>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2845,29 +2722,27 @@ class _BasicDatabase {
   }
 
   _i3.Future<_i12.Types> updateTypes(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i12.Types value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i12.Types value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'updateTypes',
-          );
+        endpoint: 'basicDatabase',
+        method: 'updateTypes',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'updateTypes',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i12.Types>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i12.Types>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2875,27 +2750,25 @@ class _BasicDatabase {
     });
   }
 
-  _i3.Future<int?> countTypesRows(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<int?> countTypesRows(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'countTypesRows',
-          );
+        endpoint: 'basicDatabase',
+        method: 'countTypesRows',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'countTypesRows',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<int?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<int?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2904,28 +2777,25 @@ class _BasicDatabase {
   }
 
   _i3.Future<List<int>> deleteAllInTypes(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'deleteAllInTypes',
-          );
+        endpoint: 'basicDatabase',
+        method: 'deleteAllInTypes',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'deleteAllInTypes',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<int>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<int>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2934,29 +2804,27 @@ class _BasicDatabase {
   }
 
   _i3.Future<_i12.Types?> getTypes(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int id,
+    _i1.TestSessionBuilder sessionBuilder,
+    int id,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'getTypes',
-          );
+        endpoint: 'basicDatabase',
+        method: 'getTypes',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'getTypes',
           parameters: _i1.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i12.Types?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i12.Types?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2965,29 +2833,27 @@ class _BasicDatabase {
   }
 
   _i3.Future<int?> getTypesRawQuery(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int id,
+    _i1.TestSessionBuilder sessionBuilder,
+    int id,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'getTypesRawQuery',
-          );
+        endpoint: 'basicDatabase',
+        method: 'getTypesRawQuery',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'getTypesRawQuery',
           parameters: _i1.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<int?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<int?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2996,29 +2862,27 @@ class _BasicDatabase {
   }
 
   _i3.Future<_i13.ObjectWithEnum> storeObjectWithEnum(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i13.ObjectWithEnum object,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i13.ObjectWithEnum object,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'storeObjectWithEnum',
-          );
+        endpoint: 'basicDatabase',
+        method: 'storeObjectWithEnum',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'storeObjectWithEnum',
           parameters: _i1.testObjectToJson({'object': object}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i13.ObjectWithEnum>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i13.ObjectWithEnum>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3027,29 +2891,27 @@ class _BasicDatabase {
   }
 
   _i3.Future<_i13.ObjectWithEnum?> getObjectWithEnum(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int id,
+    _i1.TestSessionBuilder sessionBuilder,
+    int id,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'getObjectWithEnum',
-          );
+        endpoint: 'basicDatabase',
+        method: 'getObjectWithEnum',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'getObjectWithEnum',
           parameters: _i1.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i13.ObjectWithEnum?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i13.ObjectWithEnum?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3058,29 +2920,27 @@ class _BasicDatabase {
   }
 
   _i3.Future<_i14.ObjectWithObject> storeObjectWithObject(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i14.ObjectWithObject object,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i14.ObjectWithObject object,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'storeObjectWithObject',
-          );
+        endpoint: 'basicDatabase',
+        method: 'storeObjectWithObject',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'storeObjectWithObject',
           parameters: _i1.testObjectToJson({'object': object}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i14.ObjectWithObject>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i14.ObjectWithObject>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3089,29 +2949,27 @@ class _BasicDatabase {
   }
 
   _i3.Future<_i14.ObjectWithObject?> getObjectWithObject(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int id,
+    _i1.TestSessionBuilder sessionBuilder,
+    int id,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'getObjectWithObject',
-          );
+        endpoint: 'basicDatabase',
+        method: 'getObjectWithObject',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'getObjectWithObject',
           parameters: _i1.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i14.ObjectWithObject?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i14.ObjectWithObject?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3119,27 +2977,25 @@ class _BasicDatabase {
     });
   }
 
-  _i3.Future<int> deleteAll(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<int> deleteAll(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'deleteAll',
-          );
+        endpoint: 'basicDatabase',
+        method: 'deleteAll',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'deleteAll',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<int>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<int>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3148,28 +3004,25 @@ class _BasicDatabase {
   }
 
   _i3.Future<bool> testByteDataStore(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'basicDatabase',
-            method: 'testByteDataStore',
-          );
+        endpoint: 'basicDatabase',
+        method: 'testByteDataStore',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'basicDatabase',
           methodName: 'testByteDataStore',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3189,29 +3042,27 @@ class _TransactionsDatabaseEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<void> removeRow(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int num,
+    _i1.TestSessionBuilder sessionBuilder,
+    int num,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'transactionsDatabase',
-            method: 'removeRow',
-          );
+        endpoint: 'transactionsDatabase',
+        method: 'removeRow',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'transactionsDatabase',
           methodName: 'removeRow',
           parameters: _i1.testObjectToJson({'num': num}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3220,19 +3071,19 @@ class _TransactionsDatabaseEndpoint {
   }
 
   _i3.Future<bool> updateInsertDelete(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int numUpdate,
-    final int numInsert,
-    final int numDelete,
+    _i1.TestSessionBuilder sessionBuilder,
+    int numUpdate,
+    int numInsert,
+    int numDelete,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'transactionsDatabase',
-            method: 'updateInsertDelete',
-          );
+        endpoint: 'transactionsDatabase',
+        method: 'updateInsertDelete',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'transactionsDatabase',
           methodName: 'updateInsertDelete',
@@ -3243,12 +3094,10 @@ class _TransactionsDatabaseEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3269,29 +3118,27 @@ class _DeprecationEndpoint {
 
   @deprecated
   _i3.Future<void> setGlobalDouble(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final double? value,
+    _i1.TestSessionBuilder sessionBuilder,
+    double? value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'deprecation',
-            method: 'setGlobalDouble',
-          );
+        endpoint: 'deprecation',
+        method: 'setGlobalDouble',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'deprecation',
           methodName: 'setGlobalDouble',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3301,28 +3148,25 @@ class _DeprecationEndpoint {
 
   @Deprecated('Marking endpoint method as deprecated')
   _i3.Future<double> getGlobalDouble(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'deprecation',
-            method: 'getGlobalDouble',
-          );
+        endpoint: 'deprecation',
+        method: 'getGlobalDouble',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'deprecation',
           methodName: 'getGlobalDouble',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<double>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<double>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3342,28 +3186,25 @@ class _DiagnosticEventTestEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String> submitExceptionEvent(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'diagnosticEventTest',
-            method: 'submitExceptionEvent',
-          );
+        endpoint: 'diagnosticEventTest',
+        method: 'submitExceptionEvent',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'diagnosticEventTest',
           methodName: 'submitExceptionEvent',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3383,28 +3224,25 @@ class _EchoRequestEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String?> echoAuthenticationKey(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'echoRequest',
-            method: 'echoAuthenticationKey',
-          );
+        endpoint: 'echoRequest',
+        method: 'echoAuthenticationKey',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'echoRequest',
           methodName: 'echoAuthenticationKey',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3413,29 +3251,27 @@ class _EchoRequestEndpoint {
   }
 
   _i3.Future<List<String>?> echoHttpHeader(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String headerName,
+    _i1.TestSessionBuilder sessionBuilder,
+    String headerName,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'echoRequest',
-            method: 'echoHttpHeader',
-          );
+        endpoint: 'echoRequest',
+        method: 'echoHttpHeader',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'echoRequest',
           methodName: 'echoHttpHeader',
           parameters: _i1.testObjectToJson({'headerName': headerName}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<String>?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<String>?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3455,29 +3291,27 @@ class _EchoRequiredFieldEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<_i15.ModelWithRequiredField> echoModel(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i15.ModelWithRequiredField model,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i15.ModelWithRequiredField model,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'echoRequiredField',
-            method: 'echoModel',
-          );
+        endpoint: 'echoRequiredField',
+        method: 'echoModel',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'echoRequiredField',
           methodName: 'echoModel',
           parameters: _i1.testObjectToJson({'model': model}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i15.ModelWithRequiredField>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i15.ModelWithRequiredField>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3485,27 +3319,25 @@ class _EchoRequiredFieldEndpoint {
     });
   }
 
-  _i3.Future<void> throwException(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<void> throwException(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'echoRequiredField',
-            method: 'throwException',
-          );
+        endpoint: 'echoRequiredField',
+        method: 'throwException',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'echoRequiredField',
           methodName: 'throwException',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3525,18 +3357,18 @@ class _EmailAuthTestMethods {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String?> findVerificationCode(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String userName,
-    final String email,
+    _i1.TestSessionBuilder sessionBuilder,
+    String userName,
+    String email,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'emailAuthTestMethods',
-            method: 'findVerificationCode',
-          );
+        endpoint: 'emailAuthTestMethods',
+        method: 'findVerificationCode',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'emailAuthTestMethods',
           methodName: 'findVerificationCode',
@@ -3546,12 +3378,10 @@ class _EmailAuthTestMethods {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3560,29 +3390,27 @@ class _EmailAuthTestMethods {
   }
 
   _i3.Future<String?> findResetCode(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String email,
+    _i1.TestSessionBuilder sessionBuilder,
+    String email,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'emailAuthTestMethods',
-            method: 'findResetCode',
-          );
+        endpoint: 'emailAuthTestMethods',
+        method: 'findResetCode',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'emailAuthTestMethods',
           methodName: 'findResetCode',
           parameters: _i1.testObjectToJson({'email': email}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3590,27 +3418,25 @@ class _EmailAuthTestMethods {
     });
   }
 
-  _i3.Future<void> tearDown(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<void> tearDown(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'emailAuthTestMethods',
-            method: 'tearDown',
-          );
+        endpoint: 'emailAuthTestMethods',
+        method: 'tearDown',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'emailAuthTestMethods',
           methodName: 'tearDown',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3619,19 +3445,19 @@ class _EmailAuthTestMethods {
   }
 
   _i3.Future<bool> createUser(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String userName,
-    final String email,
-    final String password,
+    _i1.TestSessionBuilder sessionBuilder,
+    String userName,
+    String email,
+    String password,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'emailAuthTestMethods',
-            method: 'createUser',
-          );
+        endpoint: 'emailAuthTestMethods',
+        method: 'createUser',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'emailAuthTestMethods',
           methodName: 'createUser',
@@ -3642,12 +3468,10 @@ class _EmailAuthTestMethods {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3667,28 +3491,25 @@ class _ConcreteBaseEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String> virtualMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'concreteBase',
-            method: 'virtualMethod',
-          );
+        endpoint: 'concreteBase',
+        method: 'virtualMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'concreteBase',
           methodName: 'virtualMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3697,28 +3518,25 @@ class _ConcreteBaseEndpoint {
   }
 
   _i3.Future<String> concreteMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'concreteBase',
-            method: 'concreteMethod',
-          );
+        endpoint: 'concreteBase',
+        method: 'concreteMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'concreteBase',
           methodName: 'concreteMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3727,28 +3545,25 @@ class _ConcreteBaseEndpoint {
   }
 
   _i3.Future<String> abstractBaseMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'concreteBase',
-            method: 'abstractBaseMethod',
-          );
+        endpoint: 'concreteBase',
+        method: 'abstractBaseMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'concreteBase',
           methodName: 'abstractBaseMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3757,25 +3572,24 @@ class _ConcreteBaseEndpoint {
   }
 
   _i3.Stream<String> abstractBaseStreamMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<String>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<String>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'concreteBase',
-              method: 'abstractBaseStreamMethod',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'concreteBase',
-              methodName: 'abstractBaseStreamMethod',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'concreteBase',
+          method: 'abstractBaseStreamMethod',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'concreteBase',
+          methodName: 'abstractBaseStreamMethod',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -3799,28 +3613,25 @@ class _ConcreteSubClassEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String> subClassVirtualMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'concreteSubClass',
-            method: 'subClassVirtualMethod',
-          );
+        endpoint: 'concreteSubClass',
+        method: 'subClassVirtualMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'concreteSubClass',
           methodName: 'subClassVirtualMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3829,28 +3640,25 @@ class _ConcreteSubClassEndpoint {
   }
 
   _i3.Future<String> virtualMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'concreteSubClass',
-            method: 'virtualMethod',
-          );
+        endpoint: 'concreteSubClass',
+        method: 'virtualMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'concreteSubClass',
           methodName: 'virtualMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3859,28 +3667,25 @@ class _ConcreteSubClassEndpoint {
   }
 
   _i3.Future<String> concreteMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'concreteSubClass',
-            method: 'concreteMethod',
-          );
+        endpoint: 'concreteSubClass',
+        method: 'concreteMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'concreteSubClass',
           methodName: 'concreteMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3889,28 +3694,25 @@ class _ConcreteSubClassEndpoint {
   }
 
   _i3.Future<String> abstractBaseMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'concreteSubClass',
-            method: 'abstractBaseMethod',
-          );
+        endpoint: 'concreteSubClass',
+        method: 'abstractBaseMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'concreteSubClass',
           methodName: 'abstractBaseMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3919,25 +3721,24 @@ class _ConcreteSubClassEndpoint {
   }
 
   _i3.Stream<String> abstractBaseStreamMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<String>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<String>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'concreteSubClass',
-              method: 'abstractBaseStreamMethod',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'concreteSubClass',
-              methodName: 'abstractBaseStreamMethod',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'concreteSubClass',
+          method: 'abstractBaseStreamMethod',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'concreteSubClass',
+          methodName: 'abstractBaseStreamMethod',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -3961,28 +3762,25 @@ class _IndependentEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String> subClassVirtualMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'independent',
-            method: 'subClassVirtualMethod',
-          );
+        endpoint: 'independent',
+        method: 'subClassVirtualMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'independent',
           methodName: 'subClassVirtualMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3991,28 +3789,25 @@ class _IndependentEndpoint {
   }
 
   _i3.Future<String> virtualMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'independent',
-            method: 'virtualMethod',
-          );
+        endpoint: 'independent',
+        method: 'virtualMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'independent',
           methodName: 'virtualMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4021,28 +3816,25 @@ class _IndependentEndpoint {
   }
 
   _i3.Future<String> concreteMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'independent',
-            method: 'concreteMethod',
-          );
+        endpoint: 'independent',
+        method: 'concreteMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'independent',
           methodName: 'concreteMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4051,28 +3843,25 @@ class _IndependentEndpoint {
   }
 
   _i3.Future<String> abstractBaseMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'independent',
-            method: 'abstractBaseMethod',
-          );
+        endpoint: 'independent',
+        method: 'abstractBaseMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'independent',
           methodName: 'abstractBaseMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4081,25 +3870,24 @@ class _IndependentEndpoint {
   }
 
   _i3.Stream<String> abstractBaseStreamMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<String>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<String>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'independent',
-              method: 'abstractBaseStreamMethod',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'independent',
-              methodName: 'abstractBaseStreamMethod',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'independent',
+          method: 'abstractBaseStreamMethod',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'independent',
+          methodName: 'abstractBaseStreamMethod',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -4123,28 +3911,25 @@ class _ConcreteFromModuleAbstractBaseEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String> virtualMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'concreteFromModuleAbstractBase',
-            method: 'virtualMethod',
-          );
+        endpoint: 'concreteFromModuleAbstractBase',
+        method: 'virtualMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'concreteFromModuleAbstractBase',
           methodName: 'virtualMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4153,28 +3938,25 @@ class _ConcreteFromModuleAbstractBaseEndpoint {
   }
 
   _i3.Future<String> abstractBaseMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'concreteFromModuleAbstractBase',
-            method: 'abstractBaseMethod',
-          );
+        endpoint: 'concreteFromModuleAbstractBase',
+        method: 'abstractBaseMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'concreteFromModuleAbstractBase',
           methodName: 'abstractBaseMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4194,28 +3976,25 @@ class _ConcreteModuleBaseEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String> virtualMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'concreteModuleBase',
-            method: 'virtualMethod',
-          );
+        endpoint: 'concreteModuleBase',
+        method: 'virtualMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'concreteModuleBase',
           methodName: 'virtualMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4224,28 +4003,25 @@ class _ConcreteModuleBaseEndpoint {
   }
 
   _i3.Future<String> concreteMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'concreteModuleBase',
-            method: 'concreteMethod',
-          );
+        endpoint: 'concreteModuleBase',
+        method: 'concreteMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'concreteModuleBase',
           methodName: 'concreteMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4254,28 +4030,25 @@ class _ConcreteModuleBaseEndpoint {
   }
 
   _i3.Future<String> abstractBaseMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'concreteModuleBase',
-            method: 'abstractBaseMethod',
-          );
+        endpoint: 'concreteModuleBase',
+        method: 'abstractBaseMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'concreteModuleBase',
           methodName: 'abstractBaseMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4286,8 +4059,8 @@ class _ConcreteModuleBaseEndpoint {
 
 class _LoggedInEndpoint {
   _LoggedInEndpoint(
-    final _endpointDispatch,
-    final _serializationManager,
+    _endpointDispatch,
+    _serializationManager,
   );
 }
 
@@ -4302,29 +4075,27 @@ class _MyLoggedInEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String> echo(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String value,
+    _i1.TestSessionBuilder sessionBuilder,
+    String value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'myLoggedIn',
-            method: 'echo',
-          );
+        endpoint: 'myLoggedIn',
+        method: 'echo',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'myLoggedIn',
           methodName: 'echo',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4335,8 +4106,8 @@ class _MyLoggedInEndpoint {
 
 class _AdminEndpoint {
   _AdminEndpoint(
-    final _endpointDispatch,
-    final _serializationManager,
+    _endpointDispatch,
+    _serializationManager,
   );
 }
 
@@ -4351,29 +4122,27 @@ class _MyAdminEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String> echo(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String value,
+    _i1.TestSessionBuilder sessionBuilder,
+    String value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'myAdmin',
-            method: 'echo',
-          );
+        endpoint: 'myAdmin',
+        method: 'echo',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'myAdmin',
           methodName: 'echo',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4393,29 +4162,27 @@ class _MyConcreteAdminEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String> echo(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String value,
+    _i1.TestSessionBuilder sessionBuilder,
+    String value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'myConcreteAdmin',
-            method: 'echo',
-          );
+        endpoint: 'myConcreteAdmin',
+        method: 'echo',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'myConcreteAdmin',
           methodName: 'echo',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4435,28 +4202,25 @@ class _ExceptionTestEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String> throwNormalException(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'exceptionTest',
-            method: 'throwNormalException',
-          );
+        endpoint: 'exceptionTest',
+        method: 'throwNormalException',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'exceptionTest',
           methodName: 'throwNormalException',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4465,28 +4229,25 @@ class _ExceptionTestEndpoint {
   }
 
   _i3.Future<String> throwExceptionWithData(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'exceptionTest',
-            method: 'throwExceptionWithData',
-          );
+        endpoint: 'exceptionTest',
+        method: 'throwExceptionWithData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'exceptionTest',
           methodName: 'throwExceptionWithData',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4495,28 +4256,25 @@ class _ExceptionTestEndpoint {
   }
 
   _i3.Future<String> workingWithoutException(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'exceptionTest',
-            method: 'workingWithoutException',
-          );
+        endpoint: 'exceptionTest',
+        method: 'workingWithoutException',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'exceptionTest',
           methodName: 'workingWithoutException',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4535,27 +4293,25 @@ class _FailedCallsEndpoint {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Future<void> failedCall(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<void> failedCall(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'failedCalls',
-            method: 'failedCall',
-          );
+        endpoint: 'failedCalls',
+        method: 'failedCall',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'failedCalls',
           methodName: 'failedCall',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4564,28 +4320,25 @@ class _FailedCallsEndpoint {
   }
 
   _i3.Future<void> failedDatabaseQuery(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'failedCalls',
-            method: 'failedDatabaseQuery',
-          );
+        endpoint: 'failedCalls',
+        method: 'failedDatabaseQuery',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'failedCalls',
           methodName: 'failedDatabaseQuery',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4594,28 +4347,25 @@ class _FailedCallsEndpoint {
   }
 
   _i3.Future<bool> failedDatabaseQueryCaughtException(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'failedCalls',
-            method: 'failedDatabaseQueryCaughtException',
-          );
+        endpoint: 'failedCalls',
+        method: 'failedDatabaseQueryCaughtException',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'failedCalls',
           methodName: 'failedDatabaseQueryCaughtException',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4623,27 +4373,25 @@ class _FailedCallsEndpoint {
     });
   }
 
-  _i3.Future<void> slowCall(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<void> slowCall(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'failedCalls',
-            method: 'slowCall',
-          );
+        endpoint: 'failedCalls',
+        method: 'slowCall',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'failedCalls',
           methodName: 'slowCall',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4652,28 +4400,25 @@ class _FailedCallsEndpoint {
   }
 
   _i3.Future<void> caughtException(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'failedCalls',
-            method: 'caughtException',
-          );
+        endpoint: 'failedCalls',
+        method: 'caughtException',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'failedCalls',
           methodName: 'caughtException',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4693,29 +4438,27 @@ class _FieldScopesEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<void> storeObject(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i16.ObjectFieldScopes object,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i16.ObjectFieldScopes object,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'fieldScopes',
-            method: 'storeObject',
-          );
+        endpoint: 'fieldScopes',
+        method: 'storeObject',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'fieldScopes',
           methodName: 'storeObject',
           parameters: _i1.testObjectToJson({'object': object}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4724,28 +4467,25 @@ class _FieldScopesEndpoint {
   }
 
   _i3.Future<_i16.ObjectFieldScopes?> retrieveObject(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'fieldScopes',
-            method: 'retrieveObject',
-          );
+        endpoint: 'fieldScopes',
+        method: 'retrieveObject',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'fieldScopes',
           methodName: 'retrieveObject',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i16.ObjectFieldScopes?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i16.ObjectFieldScopes?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4765,29 +4505,27 @@ class _FutureCallsEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<void> makeFutureCall(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i10.SimpleData? data,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i10.SimpleData? data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'futureCalls',
-            method: 'makeFutureCall',
-          );
+        endpoint: 'futureCalls',
+        method: 'makeFutureCall',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'futureCalls',
           methodName: 'makeFutureCall',
           parameters: _i1.testObjectToJson({'data': data}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4796,29 +4534,27 @@ class _FutureCallsEndpoint {
   }
 
   _i3.Future<void> makeFutureCallThatThrows(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i10.SimpleData? data,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i10.SimpleData? data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'futureCalls',
-            method: 'makeFutureCallThatThrows',
-          );
+        endpoint: 'futureCalls',
+        method: 'makeFutureCallThatThrows',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'futureCalls',
           methodName: 'makeFutureCallThatThrows',
           parameters: _i1.testObjectToJson({'data': data}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4838,29 +4574,27 @@ class _ListParametersEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<List<int>> returnIntList(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<int> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<int> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnIntList',
-          );
+        endpoint: 'listParameters',
+        method: 'returnIntList',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnIntList',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<int>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<int>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4869,29 +4603,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<List<int>>> returnIntListList(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<List<int>> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<List<int>> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnIntListList',
-          );
+        endpoint: 'listParameters',
+        method: 'returnIntListList',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnIntListList',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<List<int>>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<List<int>>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4900,29 +4632,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<int>?> returnIntListNullable(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<int>? list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<int>? list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnIntListNullable',
-          );
+        endpoint: 'listParameters',
+        method: 'returnIntListNullable',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnIntListNullable',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<int>?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<int>?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4931,29 +4661,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<List<int>?>> returnIntListNullableList(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<List<int>?> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<List<int>?> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnIntListNullableList',
-          );
+        endpoint: 'listParameters',
+        method: 'returnIntListNullableList',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnIntListNullableList',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<List<int>?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<List<int>?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4962,29 +4690,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<List<int>>?> returnIntListListNullable(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<List<int>>? list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<List<int>>? list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnIntListListNullable',
-          );
+        endpoint: 'listParameters',
+        method: 'returnIntListListNullable',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnIntListListNullable',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<List<int>>?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<List<int>>?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4993,29 +4719,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<int?>> returnIntListNullableInts(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<int?> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<int?> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnIntListNullableInts',
-          );
+        endpoint: 'listParameters',
+        method: 'returnIntListNullableInts',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnIntListNullableInts',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<int?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<int?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5024,29 +4748,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<int?>?> returnNullableIntListNullableInts(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<int?>? list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<int?>? list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnNullableIntListNullableInts',
-          );
+        endpoint: 'listParameters',
+        method: 'returnNullableIntListNullableInts',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnNullableIntListNullableInts',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<int?>?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<int?>?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5055,29 +4777,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<double>> returnDoubleList(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<double> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<double> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnDoubleList',
-          );
+        endpoint: 'listParameters',
+        method: 'returnDoubleList',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnDoubleList',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<double>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<double>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5086,29 +4806,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<double?>> returnDoubleListNullableDoubles(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<double?> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<double?> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnDoubleListNullableDoubles',
-          );
+        endpoint: 'listParameters',
+        method: 'returnDoubleListNullableDoubles',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnDoubleListNullableDoubles',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<double?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<double?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5117,29 +4835,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<bool>> returnBoolList(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<bool> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<bool> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnBoolList',
-          );
+        endpoint: 'listParameters',
+        method: 'returnBoolList',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnBoolList',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<bool>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<bool>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5148,29 +4864,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<bool?>> returnBoolListNullableBools(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<bool?> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<bool?> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnBoolListNullableBools',
-          );
+        endpoint: 'listParameters',
+        method: 'returnBoolListNullableBools',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnBoolListNullableBools',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<bool?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<bool?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5179,29 +4893,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<String>> returnStringList(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<String> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<String> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnStringList',
-          );
+        endpoint: 'listParameters',
+        method: 'returnStringList',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnStringList',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<String>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<String>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5210,29 +4922,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<String?>> returnStringListNullableStrings(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<String?> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<String?> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnStringListNullableStrings',
-          );
+        endpoint: 'listParameters',
+        method: 'returnStringListNullableStrings',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnStringListNullableStrings',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<String?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<String?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5241,29 +4951,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<DateTime>> returnDateTimeList(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<DateTime> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<DateTime> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnDateTimeList',
-          );
+        endpoint: 'listParameters',
+        method: 'returnDateTimeList',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnDateTimeList',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<DateTime>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<DateTime>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5272,29 +4980,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<DateTime?>> returnDateTimeListNullableDateTimes(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<DateTime?> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<DateTime?> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnDateTimeListNullableDateTimes',
-          );
+        endpoint: 'listParameters',
+        method: 'returnDateTimeListNullableDateTimes',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnDateTimeListNullableDateTimes',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<DateTime?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<DateTime?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5303,29 +5009,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<_i5.ByteData>> returnByteDataList(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<_i5.ByteData> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<_i5.ByteData> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnByteDataList',
-          );
+        endpoint: 'listParameters',
+        method: 'returnByteDataList',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnByteDataList',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<_i5.ByteData>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<_i5.ByteData>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5334,29 +5038,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<_i5.ByteData?>> returnByteDataListNullableByteDatas(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<_i5.ByteData?> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<_i5.ByteData?> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnByteDataListNullableByteDatas',
-          );
+        endpoint: 'listParameters',
+        method: 'returnByteDataListNullableByteDatas',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnByteDataListNullableByteDatas',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<_i5.ByteData?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<_i5.ByteData?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5365,29 +5067,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<_i10.SimpleData>> returnSimpleDataList(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<_i10.SimpleData> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<_i10.SimpleData> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnSimpleDataList',
-          );
+        endpoint: 'listParameters',
+        method: 'returnSimpleDataList',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnSimpleDataList',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<_i10.SimpleData>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<_i10.SimpleData>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5396,29 +5096,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<_i10.SimpleData?>> returnSimpleDataListNullableSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<_i10.SimpleData?> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<_i10.SimpleData?> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnSimpleDataListNullableSimpleData',
-          );
+        endpoint: 'listParameters',
+        method: 'returnSimpleDataListNullableSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnSimpleDataListNullableSimpleData',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<_i10.SimpleData?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<_i10.SimpleData?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5427,29 +5125,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<_i10.SimpleData>?> returnSimpleDataListNullable(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<_i10.SimpleData>? list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<_i10.SimpleData>? list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnSimpleDataListNullable',
-          );
+        endpoint: 'listParameters',
+        method: 'returnSimpleDataListNullable',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnSimpleDataListNullable',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<_i10.SimpleData>?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<_i10.SimpleData>?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5458,30 +5154,28 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<_i10.SimpleData?>?>
-  returnNullableSimpleDataListNullableSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<_i10.SimpleData?>? list,
+      returnNullableSimpleDataListNullableSimpleData(
+    _i1.TestSessionBuilder sessionBuilder,
+    List<_i10.SimpleData?>? list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnNullableSimpleDataListNullableSimpleData',
-          );
+        endpoint: 'listParameters',
+        method: 'returnNullableSimpleDataListNullableSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnNullableSimpleDataListNullableSimpleData',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<_i10.SimpleData?>?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<_i10.SimpleData?>?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5490,29 +5184,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<Duration>> returnDurationList(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<Duration> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<Duration> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnDurationList',
-          );
+        endpoint: 'listParameters',
+        method: 'returnDurationList',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnDurationList',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<Duration>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<Duration>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5521,29 +5213,27 @@ class _ListParametersEndpoint {
   }
 
   _i3.Future<List<Duration?>> returnDurationListNullableDurations(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<Duration?> list,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<Duration?> list,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'listParameters',
-            method: 'returnDurationListNullableDurations',
-          );
+        endpoint: 'listParameters',
+        method: 'returnDurationListNullableDurations',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'listParameters',
           methodName: 'returnDurationListNullableDurations',
           parameters: _i1.testObjectToJson({'list': list}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<Duration?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<Duration?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5563,29 +5253,27 @@ class _LoggingEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<void> slowQueryMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int seconds,
+    _i1.TestSessionBuilder sessionBuilder,
+    int seconds,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'logging',
-            method: 'slowQueryMethod',
-          );
+        endpoint: 'logging',
+        method: 'slowQueryMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'logging',
           methodName: 'slowQueryMethod',
           parameters: _i1.testObjectToJson({'seconds': seconds}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5594,29 +5282,27 @@ class _LoggingEndpoint {
   }
 
   _i3.Future<void> queryMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int queries,
+    _i1.TestSessionBuilder sessionBuilder,
+    int queries,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'logging',
-            method: 'queryMethod',
-          );
+        endpoint: 'logging',
+        method: 'queryMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'logging',
           methodName: 'queryMethod',
           parameters: _i1.testObjectToJson({'queries': queries}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5625,28 +5311,25 @@ class _LoggingEndpoint {
   }
 
   _i3.Future<void> failedQueryMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'logging',
-            method: 'failedQueryMethod',
-          );
+        endpoint: 'logging',
+        method: 'failedQueryMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'logging',
           methodName: 'failedQueryMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5655,29 +5338,27 @@ class _LoggingEndpoint {
   }
 
   _i3.Future<void> slowMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int delayMillis,
+    _i1.TestSessionBuilder sessionBuilder,
+    int delayMillis,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'logging',
-            method: 'slowMethod',
-          );
+        endpoint: 'logging',
+        method: 'slowMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'logging',
           methodName: 'slowMethod',
           parameters: _i1.testObjectToJson({'delayMillis': delayMillis}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5685,27 +5366,25 @@ class _LoggingEndpoint {
     });
   }
 
-  _i3.Future<void> failingMethod(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<void> failingMethod(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'logging',
-            method: 'failingMethod',
-          );
+        endpoint: 'logging',
+        method: 'failingMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'logging',
           methodName: 'failingMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5713,27 +5392,25 @@ class _LoggingEndpoint {
     });
   }
 
-  _i3.Future<void> emptyMethod(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<void> emptyMethod(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'logging',
-            method: 'emptyMethod',
-          );
+        endpoint: 'logging',
+        method: 'emptyMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'logging',
           methodName: 'emptyMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5742,18 +5419,18 @@ class _LoggingEndpoint {
   }
 
   _i3.Future<void> log(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String message,
-    final List<int> logLevels,
+    _i1.TestSessionBuilder sessionBuilder,
+    String message,
+    List<int> logLevels,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'logging',
-            method: 'log',
-          );
+        endpoint: 'logging',
+        method: 'log',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'logging',
           methodName: 'log',
@@ -5763,12 +5440,10 @@ class _LoggingEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5777,29 +5452,27 @@ class _LoggingEndpoint {
   }
 
   _i3.Future<void> logInfo(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String message,
+    _i1.TestSessionBuilder sessionBuilder,
+    String message,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'logging',
-            method: 'logInfo',
-          );
+        endpoint: 'logging',
+        method: 'logInfo',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'logging',
           methodName: 'logInfo',
           parameters: _i1.testObjectToJson({'message': message}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5808,19 +5481,19 @@ class _LoggingEndpoint {
   }
 
   _i3.Future<void> logDebugAndInfoAndError(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String debug,
-    final String info,
-    final String error,
+    _i1.TestSessionBuilder sessionBuilder,
+    String debug,
+    String info,
+    String error,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'logging',
-            method: 'logDebugAndInfoAndError',
-          );
+        endpoint: 'logging',
+        method: 'logDebugAndInfoAndError',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'logging',
           methodName: 'logDebugAndInfoAndError',
@@ -5831,12 +5504,10 @@ class _LoggingEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5844,27 +5515,25 @@ class _LoggingEndpoint {
     });
   }
 
-  _i3.Future<void> twoQueries(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<void> twoQueries(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'logging',
-            method: 'twoQueries',
-          );
+        endpoint: 'logging',
+        method: 'twoQueries',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'logging',
           methodName: 'twoQueries',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5873,26 +5542,26 @@ class _LoggingEndpoint {
   }
 
   _i3.Stream<int> streamEmpty(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> input,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> input,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'logging',
-              method: 'streamEmpty',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'logging',
-              methodName: 'streamEmpty',
-              arguments: {},
-              requestedInputStreams: ['input'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'logging',
+          method: 'streamEmpty',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'logging',
+          methodName: 'streamEmpty',
+          arguments: {},
+          requestedInputStreams: ['input'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -5905,26 +5574,26 @@ class _LoggingEndpoint {
   }
 
   _i3.Stream<int> streamLogging(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> input,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> input,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'logging',
-              method: 'streamLogging',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'logging',
-              methodName: 'streamLogging',
-              arguments: {},
-              requestedInputStreams: ['input'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'logging',
+          method: 'streamLogging',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'logging',
+          methodName: 'streamLogging',
+          arguments: {},
+          requestedInputStreams: ['input'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -5937,26 +5606,26 @@ class _LoggingEndpoint {
   }
 
   _i3.Stream<int> streamQueryLogging(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> input,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> input,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'logging',
-              method: 'streamQueryLogging',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'logging',
-              methodName: 'streamQueryLogging',
-              arguments: {},
-              requestedInputStreams: ['input'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'logging',
+          method: 'streamQueryLogging',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'logging',
+          methodName: 'streamQueryLogging',
+          arguments: {},
+          requestedInputStreams: ['input'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -5968,24 +5637,24 @@ class _LoggingEndpoint {
     return _localTestStreamManager.outputStreamController.stream;
   }
 
-  _i3.Stream<int> streamException(final _i1.TestSessionBuilder sessionBuilder) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+  _i3.Stream<int> streamException(_i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'logging',
-              method: 'streamException',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'logging',
-              methodName: 'streamException',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'logging',
+          method: 'streamException',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'logging',
+          methodName: 'streamException',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -6000,15 +5669,15 @@ class _LoggingEndpoint {
 
 class _StreamLogging {
   _StreamLogging(
-    final _endpointDispatch,
-    final _serializationManager,
+    _endpointDispatch,
+    _serializationManager,
   );
 }
 
 class _StreamQueryLogging {
   _StreamQueryLogging(
-    final _endpointDispatch,
-    final _serializationManager,
+    _endpointDispatch,
+    _serializationManager,
   );
 }
 
@@ -6023,29 +5692,27 @@ class _LoggingDisabledEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<void> logInfo(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String message,
+    _i1.TestSessionBuilder sessionBuilder,
+    String message,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'loggingDisabled',
-            method: 'logInfo',
-          );
+        endpoint: 'loggingDisabled',
+        method: 'logInfo',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'loggingDisabled',
           methodName: 'logInfo',
           parameters: _i1.testObjectToJson({'message': message}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6065,29 +5732,27 @@ class _MapParametersEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<Map<String, int>> returnIntMap(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, int> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, int> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnIntMap',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnIntMap',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnIntMap',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, int>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, int>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6096,29 +5761,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, int>?> returnIntMapNullable(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, int>? map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, int>? map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnIntMapNullable',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnIntMapNullable',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnIntMapNullable',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, int>?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, int>?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6127,29 +5790,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, Map<String, int>>> returnNestedIntMap(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, Map<String, int>> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, Map<String, int>> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnNestedIntMap',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnNestedIntMap',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnNestedIntMap',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, Map<String, int>>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, Map<String, int>>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6158,29 +5819,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, int?>> returnIntMapNullableInts(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, int?> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, int?> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnIntMapNullableInts',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnIntMapNullableInts',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnIntMapNullableInts',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, int?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, int?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6189,29 +5848,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, int?>?> returnNullableIntMapNullableInts(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, int?>? map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, int?>? map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnNullableIntMapNullableInts',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnNullableIntMapNullableInts',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnNullableIntMapNullableInts',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, int?>?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, int?>?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6220,31 +5877,30 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<int, int>> returnIntIntMap(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<int, int> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<int, int> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnIntIntMap',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnIntIntMap',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnIntIntMap',
-          parameters: _i1.testObjectToJson({
-            'map': _i17.mapContainerToJson(map),
-          }),
+          parameters:
+              _i1.testObjectToJson({'map': _i17.mapContainerToJson(map)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then((final map) => _i17.Protocol().deserialize<Map<int, int>>(map));
+            .then((map) => _i17.Protocol().deserialize<Map<int, int>>(map));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6253,31 +5909,28 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, Map<int, int>>> returnNestedIntIntMap(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, Map<int, int>> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, Map<int, int>> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnNestedIntIntMap',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnNestedIntIntMap',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnNestedIntIntMap',
-          parameters: _i1.testObjectToJson({
-            'map': _i17.mapContainerToJson(map),
-          }),
+          parameters:
+              _i1.testObjectToJson({'map': _i17.mapContainerToJson(map)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, Map<int, int>>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, Map<int, int>>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6286,34 +5939,31 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<_i18.TestEnum, int>> returnEnumIntMap(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<_i18.TestEnum, int> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<_i18.TestEnum, int> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnEnumIntMap',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnEnumIntMap',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnEnumIntMap',
-          parameters: _i1.testObjectToJson({
-            'map': _i17.mapContainerToJson(map),
-          }),
+          parameters:
+              _i1.testObjectToJson({'map': _i17.mapContainerToJson(map)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final map) =>
-                  _i17.Protocol().deserialize<Map<_i18.TestEnum, int>>(map),
-            );
+            .then((map) =>
+                _i17.Protocol().deserialize<Map<_i18.TestEnum, int>>(map));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6322,29 +5972,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, _i18.TestEnum>> returnEnumMap(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, _i18.TestEnum> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, _i18.TestEnum> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnEnumMap',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnEnumMap',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnEnumMap',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, _i18.TestEnum>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, _i18.TestEnum>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6353,29 +6001,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, double>> returnDoubleMap(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, double> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, double> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnDoubleMap',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnDoubleMap',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnDoubleMap',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, double>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, double>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6384,29 +6030,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, double?>> returnDoubleMapNullableDoubles(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, double?> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, double?> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnDoubleMapNullableDoubles',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnDoubleMapNullableDoubles',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnDoubleMapNullableDoubles',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, double?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, double?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6415,29 +6059,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, bool>> returnBoolMap(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, bool> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, bool> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnBoolMap',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnBoolMap',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnBoolMap',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, bool>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, bool>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6446,29 +6088,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, bool?>> returnBoolMapNullableBools(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, bool?> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, bool?> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnBoolMapNullableBools',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnBoolMapNullableBools',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnBoolMapNullableBools',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, bool?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, bool?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6477,29 +6117,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, String>> returnStringMap(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, String> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, String> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnStringMap',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnStringMap',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnStringMap',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, String>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, String>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6508,29 +6146,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, String?>> returnStringMapNullableStrings(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, String?> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, String?> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnStringMapNullableStrings',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnStringMapNullableStrings',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnStringMapNullableStrings',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, String?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, String?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6539,29 +6175,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, DateTime>> returnDateTimeMap(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, DateTime> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, DateTime> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnDateTimeMap',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnDateTimeMap',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnDateTimeMap',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, DateTime>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, DateTime>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6570,29 +6204,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, DateTime?>> returnDateTimeMapNullableDateTimes(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, DateTime?> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, DateTime?> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnDateTimeMapNullableDateTimes',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnDateTimeMapNullableDateTimes',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnDateTimeMapNullableDateTimes',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, DateTime?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, DateTime?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6601,29 +6233,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, _i5.ByteData>> returnByteDataMap(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, _i5.ByteData> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, _i5.ByteData> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnByteDataMap',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnByteDataMap',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnByteDataMap',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, _i5.ByteData>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, _i5.ByteData>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6632,29 +6262,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, _i5.ByteData?>> returnByteDataMapNullableByteDatas(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, _i5.ByteData?> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, _i5.ByteData?> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnByteDataMapNullableByteDatas',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnByteDataMapNullableByteDatas',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnByteDataMapNullableByteDatas',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, _i5.ByteData?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, _i5.ByteData?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6663,29 +6291,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, _i10.SimpleData>> returnSimpleDataMap(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, _i10.SimpleData> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, _i10.SimpleData> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnSimpleDataMap',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnSimpleDataMap',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnSimpleDataMap',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, _i10.SimpleData>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, _i10.SimpleData>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6694,30 +6320,28 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, _i10.SimpleData?>>
-  returnSimpleDataMapNullableSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, _i10.SimpleData?> map,
+      returnSimpleDataMapNullableSimpleData(
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, _i10.SimpleData?> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnSimpleDataMapNullableSimpleData',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnSimpleDataMapNullableSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnSimpleDataMapNullableSimpleData',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, _i10.SimpleData?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, _i10.SimpleData?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6726,29 +6350,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, _i10.SimpleData>?> returnSimpleDataMapNullable(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, _i10.SimpleData>? map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, _i10.SimpleData>? map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnSimpleDataMapNullable',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnSimpleDataMapNullable',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnSimpleDataMapNullable',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, _i10.SimpleData>?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, _i10.SimpleData>?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6757,30 +6379,28 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, _i10.SimpleData?>?>
-  returnNullableSimpleDataMapNullableSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, _i10.SimpleData?>? map,
+      returnNullableSimpleDataMapNullableSimpleData(
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, _i10.SimpleData?>? map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnNullableSimpleDataMapNullableSimpleData',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnNullableSimpleDataMapNullableSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnNullableSimpleDataMapNullableSimpleData',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, _i10.SimpleData?>?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, _i10.SimpleData?>?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6789,29 +6409,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, Duration>> returnDurationMap(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, Duration> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, Duration> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnDurationMap',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnDurationMap',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnDurationMap',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, Duration>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, Duration>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6820,29 +6438,27 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, Duration?>> returnDurationMapNullableDurations(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, Duration?> map,
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, Duration?> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnDurationMapNullableDurations',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnDurationMapNullableDurations',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnDurationMapNullableDurations',
           parameters: _i1.testObjectToJson({'map': map}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Map<String, Duration?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Map<String, Duration?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6851,35 +6467,32 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<(Map<int, String>, String), String>>
-  returnNestedNonStringKeyedMapInsideRecordInsideMap(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<(Map<int, String>, String), String> map,
+      returnNestedNonStringKeyedMapInsideRecordInsideMap(
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<(Map<int, String>, String), String> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnNestedNonStringKeyedMapInsideRecordInsideMap',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnNestedNonStringKeyedMapInsideRecordInsideMap',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName: 'returnNestedNonStringKeyedMapInsideRecordInsideMap',
-          parameters: _i1.testObjectToJson({
-            'map': _i17.mapContainerToJson(map),
-          }),
+          parameters:
+              _i1.testObjectToJson({'map': _i17.mapContainerToJson(map)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<Map<(Map<int, String>, String), String>>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<Map<(Map<int, String>, String), String>>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6888,36 +6501,33 @@ class _MapParametersEndpoint {
   }
 
   _i3.Future<Map<String, (Map<int, int>,)>>
-  returnDeeplyNestedNonStringKeyedMapInsideRecordInsideMap(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, (Map<int, int>,)> map,
+      returnDeeplyNestedNonStringKeyedMapInsideRecordInsideMap(
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, (Map<int, int>,)> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'mapParameters',
-            method: 'returnDeeplyNestedNonStringKeyedMapInsideRecordInsideMap',
-          );
+        endpoint: 'mapParameters',
+        method: 'returnDeeplyNestedNonStringKeyedMapInsideRecordInsideMap',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'mapParameters',
           methodName:
               'returnDeeplyNestedNonStringKeyedMapInsideRecordInsideMap',
-          parameters: _i1.testObjectToJson({
-            'map': _i17.mapContainerToJson(map),
-          }),
+          parameters:
+              _i1.testObjectToJson({'map': _i17.mapContainerToJson(map)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<Map<String, (Map<int, int>,)>>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<Map<String, (Map<int, int>,)>>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6937,29 +6547,27 @@ class _MethodSignaturePermutationsEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String> echoPositionalArg(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String string,
+    _i1.TestSessionBuilder sessionBuilder,
+    String string,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'methodSignaturePermutations',
-            method: 'echoPositionalArg',
-          );
+        endpoint: 'methodSignaturePermutations',
+        method: 'echoPositionalArg',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'methodSignaturePermutations',
           methodName: 'echoPositionalArg',
           parameters: _i1.testObjectToJson({'string': string}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6968,29 +6576,27 @@ class _MethodSignaturePermutationsEndpoint {
   }
 
   _i3.Future<String> echoNamedArg(
-    final _i1.TestSessionBuilder sessionBuilder, {
-    required final String string,
+    _i1.TestSessionBuilder sessionBuilder, {
+    required String string,
   }) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'methodSignaturePermutations',
-            method: 'echoNamedArg',
-          );
+        endpoint: 'methodSignaturePermutations',
+        method: 'echoNamedArg',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'methodSignaturePermutations',
           methodName: 'echoNamedArg',
           parameters: _i1.testObjectToJson({'string': string}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -6999,29 +6605,27 @@ class _MethodSignaturePermutationsEndpoint {
   }
 
   _i3.Future<String?> echoNullableNamedArg(
-    final _i1.TestSessionBuilder sessionBuilder, {
-    final String? string,
+    _i1.TestSessionBuilder sessionBuilder, {
+    String? string,
   }) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'methodSignaturePermutations',
-            method: 'echoNullableNamedArg',
-          );
+        endpoint: 'methodSignaturePermutations',
+        method: 'echoNullableNamedArg',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'methodSignaturePermutations',
           methodName: 'echoNullableNamedArg',
           parameters: _i1.testObjectToJson({'string': string}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -7030,29 +6634,27 @@ class _MethodSignaturePermutationsEndpoint {
   }
 
   _i3.Future<String?> echoOptionalArg(
-    final _i1.TestSessionBuilder sessionBuilder, [
-    final String? string,
+    _i1.TestSessionBuilder sessionBuilder, [
+    String? string,
   ]) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'methodSignaturePermutations',
-            method: 'echoOptionalArg',
-          );
+        endpoint: 'methodSignaturePermutations',
+        method: 'echoOptionalArg',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'methodSignaturePermutations',
           methodName: 'echoOptionalArg',
           parameters: _i1.testObjectToJson({'string': string}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -7061,18 +6663,18 @@ class _MethodSignaturePermutationsEndpoint {
   }
 
   _i3.Future<List<String?>> echoPositionalAndNamedArgs(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String string1, {
-    required final String string2,
+    _i1.TestSessionBuilder sessionBuilder,
+    String string1, {
+    required String string2,
   }) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'methodSignaturePermutations',
-            method: 'echoPositionalAndNamedArgs',
-          );
+        endpoint: 'methodSignaturePermutations',
+        method: 'echoPositionalAndNamedArgs',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'methodSignaturePermutations',
           methodName: 'echoPositionalAndNamedArgs',
@@ -7082,12 +6684,10 @@ class _MethodSignaturePermutationsEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<String?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<String?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -7096,18 +6696,18 @@ class _MethodSignaturePermutationsEndpoint {
   }
 
   _i3.Future<List<String?>> echoPositionalAndNullableNamedArgs(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String string1, {
-    final String? string2,
+    _i1.TestSessionBuilder sessionBuilder,
+    String string1, {
+    String? string2,
   }) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'methodSignaturePermutations',
-            method: 'echoPositionalAndNullableNamedArgs',
-          );
+        endpoint: 'methodSignaturePermutations',
+        method: 'echoPositionalAndNullableNamedArgs',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'methodSignaturePermutations',
           methodName: 'echoPositionalAndNullableNamedArgs',
@@ -7117,12 +6717,10 @@ class _MethodSignaturePermutationsEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<String?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<String?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -7131,18 +6729,18 @@ class _MethodSignaturePermutationsEndpoint {
   }
 
   _i3.Future<List<String?>> echoPositionalAndOptionalArgs(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String string1, [
-    final String? string2,
+    _i1.TestSessionBuilder sessionBuilder,
+    String string1, [
+    String? string2,
   ]) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'methodSignaturePermutations',
-            method: 'echoPositionalAndOptionalArgs',
-          );
+        endpoint: 'methodSignaturePermutations',
+        method: 'echoPositionalAndOptionalArgs',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'methodSignaturePermutations',
           methodName: 'echoPositionalAndOptionalArgs',
@@ -7152,12 +6750,10 @@ class _MethodSignaturePermutationsEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<String?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<String?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -7166,26 +6762,26 @@ class _MethodSignaturePermutationsEndpoint {
   }
 
   _i3.Stream<String> echoNamedArgStream(
-    final _i1.TestSessionBuilder sessionBuilder, {
-    required final _i3.Stream<String> strings,
+    _i1.TestSessionBuilder sessionBuilder, {
+    required _i3.Stream<String> strings,
   }) {
-    final _localTestStreamManager = _i1.TestStreamManager<String>();
+    var _localTestStreamManager = _i1.TestStreamManager<String>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodSignaturePermutations',
-              method: 'echoNamedArgStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodSignaturePermutations',
-              methodName: 'echoNamedArgStream',
-              arguments: {},
-              requestedInputStreams: ['strings'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodSignaturePermutations',
+          method: 'echoNamedArgStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodSignaturePermutations',
+          methodName: 'echoNamedArgStream',
+          arguments: {},
+          requestedInputStreams: ['strings'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -7198,57 +6794,56 @@ class _MethodSignaturePermutationsEndpoint {
   }
 
   _i3.Future<String> echoNamedArgStreamAsFuture(
-    final _i1.TestSessionBuilder sessionBuilder, {
-    required final _i3.Stream<String> strings,
+    _i1.TestSessionBuilder sessionBuilder, {
+    required _i3.Stream<String> strings,
   }) async {
-    final _localTestStreamManager = _i1.TestStreamManager<String>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodSignaturePermutations',
-              method: 'echoNamedArgStreamAsFuture',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodSignaturePermutations',
-              methodName: 'echoNamedArgStreamAsFuture',
-              arguments: {},
-              requestedInputStreams: ['strings'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'strings': strings},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<String>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodSignaturePermutations',
+        method: 'echoNamedArgStreamAsFuture',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodSignaturePermutations',
+        methodName: 'echoNamedArgStreamAsFuture',
+        arguments: {},
+        requestedInputStreams: ['strings'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'strings': strings},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
   _i3.Stream<String> echoPositionalArgStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<String> strings,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<String> strings,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<String>();
+    var _localTestStreamManager = _i1.TestStreamManager<String>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodSignaturePermutations',
-              method: 'echoPositionalArgStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodSignaturePermutations',
-              methodName: 'echoPositionalArgStream',
-              arguments: {},
-              requestedInputStreams: ['strings'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodSignaturePermutations',
+          method: 'echoPositionalArgStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodSignaturePermutations',
+          methodName: 'echoPositionalArgStream',
+          arguments: {},
+          requestedInputStreams: ['strings'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -7261,34 +6856,33 @@ class _MethodSignaturePermutationsEndpoint {
   }
 
   _i3.Future<String> echoPositionalArgStreamAsFuture(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<String> strings,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<String> strings,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<String>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodSignaturePermutations',
-              method: 'echoPositionalArgStreamAsFuture',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodSignaturePermutations',
-              methodName: 'echoPositionalArgStreamAsFuture',
-              arguments: {},
-              requestedInputStreams: ['strings'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'strings': strings},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<String>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodSignaturePermutations',
+        method: 'echoPositionalArgStreamAsFuture',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodSignaturePermutations',
+        methodName: 'echoPositionalArgStreamAsFuture',
+        arguments: {},
+        requestedInputStreams: ['strings'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'strings': strings},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 }
 
@@ -7302,24 +6896,24 @@ class _MethodStreaming {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Stream<int> simpleStream(final _i1.TestSessionBuilder sessionBuilder) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+  _i3.Stream<int> simpleStream(_i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'simpleStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'simpleStream',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'simpleStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'simpleStream',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -7332,26 +6926,26 @@ class _MethodStreaming {
   }
 
   _i3.Stream<int> neverEndingStreamWithDelay(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int millisecondsDelay,
+    _i1.TestSessionBuilder sessionBuilder,
+    int millisecondsDelay,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'neverEndingStreamWithDelay',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'neverEndingStreamWithDelay',
-              arguments: {'millisecondsDelay': millisecondsDelay},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'neverEndingStreamWithDelay',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'neverEndingStreamWithDelay',
+          arguments: {'millisecondsDelay': millisecondsDelay},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -7364,28 +6958,25 @@ class _MethodStreaming {
   }
 
   _i3.Future<void> methodCallEndpoint(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'methodStreaming',
-            method: 'methodCallEndpoint',
-          );
+        endpoint: 'methodStreaming',
+        method: 'methodCallEndpoint',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'methodStreaming',
           methodName: 'methodCallEndpoint',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -7394,85 +6985,83 @@ class _MethodStreaming {
   }
 
   _i3.Future<int> intReturnFromStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> stream,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'intReturnFromStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'intReturnFromStream',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'stream': stream},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodStreaming',
+        method: 'intReturnFromStream',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodStreaming',
+        methodName: 'intReturnFromStream',
+        arguments: {},
+        requestedInputStreams: ['stream'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'stream': stream},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
   _i3.Future<int?> nullableIntReturnFromStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int?> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int?> stream,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<int?>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'nullableIntReturnFromStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'nullableIntReturnFromStream',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'stream': stream},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<int?>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodStreaming',
+        method: 'nullableIntReturnFromStream',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodStreaming',
+        methodName: 'nullableIntReturnFromStream',
+        arguments: {},
+        requestedInputStreams: ['stream'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'stream': stream},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
-  _i3.Stream<int?> getBroadcastStream(final _i1.TestSessionBuilder sessionBuilder) {
-    final _localTestStreamManager = _i1.TestStreamManager<int?>();
+  _i3.Stream<int?> getBroadcastStream(_i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<int?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'getBroadcastStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'getBroadcastStream',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'getBroadcastStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'getBroadcastStream',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -7485,28 +7074,25 @@ class _MethodStreaming {
   }
 
   _i3.Future<bool> wasBroadcastStreamCanceled(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'methodStreaming',
-            method: 'wasBroadcastStreamCanceled',
-          );
+        endpoint: 'methodStreaming',
+        method: 'wasBroadcastStreamCanceled',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'methodStreaming',
           methodName: 'wasBroadcastStreamCanceled',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -7515,28 +7101,25 @@ class _MethodStreaming {
   }
 
   _i3.Future<bool> wasSessionWillCloseListenerCalled(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'methodStreaming',
-            method: 'wasSessionWillCloseListenerCalled',
-          );
+        endpoint: 'methodStreaming',
+        method: 'wasSessionWillCloseListenerCalled',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'methodStreaming',
           methodName: 'wasSessionWillCloseListenerCalled',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -7545,26 +7128,26 @@ class _MethodStreaming {
   }
 
   _i3.Stream<int> intStreamFromValue(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int value,
+    _i1.TestSessionBuilder sessionBuilder,
+    int value,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'intStreamFromValue',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'intStreamFromValue',
-              arguments: {'value': value},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'intStreamFromValue',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'intStreamFromValue',
+          arguments: {'value': value},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -7577,26 +7160,26 @@ class _MethodStreaming {
   }
 
   _i3.Stream<int> intEchoStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> stream,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'intEchoStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'intEchoStream',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'intEchoStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'intEchoStream',
+          arguments: {},
+          requestedInputStreams: ['stream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -7609,26 +7192,26 @@ class _MethodStreaming {
   }
 
   _i3.Stream<dynamic> dynamicEchoStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<dynamic> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<dynamic> stream,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<dynamic>();
+    var _localTestStreamManager = _i1.TestStreamManager<dynamic>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'dynamicEchoStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'dynamicEchoStream',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'dynamicEchoStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'dynamicEchoStream',
+          arguments: {},
+          requestedInputStreams: ['stream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -7641,26 +7224,26 @@ class _MethodStreaming {
   }
 
   _i3.Stream<int?> nullableIntEchoStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int?> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int?> stream,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int?>();
+    var _localTestStreamManager = _i1.TestStreamManager<int?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'nullableIntEchoStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'nullableIntEchoStream',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'nullableIntEchoStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'nullableIntEchoStream',
+          arguments: {},
+          requestedInputStreams: ['stream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -7673,61 +7256,60 @@ class _MethodStreaming {
   }
 
   _i3.Future<void> voidReturnAfterStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> stream,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<void>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'voidReturnAfterStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'voidReturnAfterStream',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'stream': stream},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<void>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodStreaming',
+        method: 'voidReturnAfterStream',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodStreaming',
+        methodName: 'voidReturnAfterStream',
+        arguments: {},
+        requestedInputStreams: ['stream'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'stream': stream},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
   _i3.Stream<int> multipleIntEchoStreams(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> stream1,
-    final _i3.Stream<int> stream2,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> stream1,
+    _i3.Stream<int> stream2,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'multipleIntEchoStreams',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'multipleIntEchoStreams',
-              arguments: {},
-              requestedInputStreams: [
-                'stream1',
-                'stream2',
-              ],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'multipleIntEchoStreams',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'multipleIntEchoStreams',
+          arguments: {},
+          requestedInputStreams: [
+            'stream1',
+            'stream2',
+          ],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -7743,119 +7325,116 @@ class _MethodStreaming {
   }
 
   _i3.Future<void> directVoidReturnWithStreamInput(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> stream,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<void>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'directVoidReturnWithStreamInput',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'directVoidReturnWithStreamInput',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'stream': stream},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<void>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodStreaming',
+        method: 'directVoidReturnWithStreamInput',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodStreaming',
+        methodName: 'directVoidReturnWithStreamInput',
+        arguments: {},
+        requestedInputStreams: ['stream'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'stream': stream},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
   _i3.Future<int> directOneIntReturnWithStreamInput(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> stream,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'directOneIntReturnWithStreamInput',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'directOneIntReturnWithStreamInput',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'stream': stream},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodStreaming',
+        method: 'directOneIntReturnWithStreamInput',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodStreaming',
+        methodName: 'directOneIntReturnWithStreamInput',
+        arguments: {},
+        requestedInputStreams: ['stream'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'stream': stream},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
   _i3.Future<int> simpleInputReturnStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> stream,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'simpleInputReturnStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'simpleInputReturnStream',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'stream': stream},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodStreaming',
+        method: 'simpleInputReturnStream',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodStreaming',
+        methodName: 'simpleInputReturnStream',
+        arguments: {},
+        requestedInputStreams: ['stream'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'stream': stream},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
   _i3.Stream<int> simpleStreamWithParameter(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int value,
+    _i1.TestSessionBuilder sessionBuilder,
+    int value,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'simpleStreamWithParameter',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'simpleStreamWithParameter',
-              arguments: {'value': value},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'simpleStreamWithParameter',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'simpleStreamWithParameter',
+          arguments: {'value': value},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -7868,26 +7447,26 @@ class _MethodStreaming {
   }
 
   _i3.Stream<_i10.SimpleData> simpleDataStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int value,
+    _i1.TestSessionBuilder sessionBuilder,
+    int value,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<_i10.SimpleData>();
+    var _localTestStreamManager = _i1.TestStreamManager<_i10.SimpleData>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'simpleDataStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'simpleDataStream',
-              arguments: {'value': value},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'simpleDataStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'simpleDataStream',
+          arguments: {'value': value},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -7900,26 +7479,26 @@ class _MethodStreaming {
   }
 
   _i3.Stream<_i10.SimpleData> simpleInOutDataStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<_i10.SimpleData> simpleDataStream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<_i10.SimpleData> simpleDataStream,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<_i10.SimpleData>();
+    var _localTestStreamManager = _i1.TestStreamManager<_i10.SimpleData>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'simpleInOutDataStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'simpleInOutDataStream',
-              arguments: {},
-              requestedInputStreams: ['simpleDataStream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'simpleInOutDataStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'simpleInOutDataStream',
+          arguments: {},
+          requestedInputStreams: ['simpleDataStream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -7932,26 +7511,26 @@ class _MethodStreaming {
   }
 
   _i3.Stream<List<int>> simpleListInOutIntStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<List<int>> simpleDataListStream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<List<int>> simpleDataListStream,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<List<int>>();
+    var _localTestStreamManager = _i1.TestStreamManager<List<int>>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'simpleListInOutIntStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'simpleListInOutIntStream',
-              arguments: {},
-              requestedInputStreams: ['simpleDataListStream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'simpleListInOutIntStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'simpleListInOutIntStream',
+          arguments: {},
+          requestedInputStreams: ['simpleDataListStream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -7964,27 +7543,27 @@ class _MethodStreaming {
   }
 
   _i3.Stream<List<_i10.SimpleData>> simpleListInOutDataStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<List<_i10.SimpleData>> simpleDataListStream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<List<_i10.SimpleData>> simpleDataListStream,
   ) {
-    final _localTestStreamManager =
+    var _localTestStreamManager =
         _i1.TestStreamManager<List<_i10.SimpleData>>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'simpleListInOutDataStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'simpleListInOutDataStream',
-              arguments: {},
-              requestedInputStreams: ['simpleDataListStream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'simpleListInOutDataStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'simpleListInOutDataStream',
+          arguments: {},
+          requestedInputStreams: ['simpleDataListStream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -7997,26 +7576,26 @@ class _MethodStreaming {
   }
 
   _i3.Stream<List<_i4.UserInfo>> simpleListInOutOtherModuleTypeStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<List<_i4.UserInfo>> userInfoListStream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<List<_i4.UserInfo>> userInfoListStream,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<List<_i4.UserInfo>>();
+    var _localTestStreamManager = _i1.TestStreamManager<List<_i4.UserInfo>>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'simpleListInOutOtherModuleTypeStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'simpleListInOutOtherModuleTypeStream',
-              arguments: {},
-              requestedInputStreams: ['userInfoListStream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'simpleListInOutOtherModuleTypeStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'simpleListInOutOtherModuleTypeStream',
+          arguments: {},
+          requestedInputStreams: ['userInfoListStream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -8029,27 +7608,27 @@ class _MethodStreaming {
   }
 
   _i3.Stream<List<_i10.SimpleData>?> simpleNullableListInOutNullableDataStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<List<_i10.SimpleData>?> simpleDataListStream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<List<_i10.SimpleData>?> simpleDataListStream,
   ) {
-    final _localTestStreamManager =
+    var _localTestStreamManager =
         _i1.TestStreamManager<List<_i10.SimpleData>?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'simpleNullableListInOutNullableDataStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'simpleNullableListInOutNullableDataStream',
-              arguments: {},
-              requestedInputStreams: ['simpleDataListStream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'simpleNullableListInOutNullableDataStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'simpleNullableListInOutNullableDataStream',
+          arguments: {},
+          requestedInputStreams: ['simpleDataListStream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -8062,27 +7641,27 @@ class _MethodStreaming {
   }
 
   _i3.Stream<List<_i10.SimpleData?>> simpleListInOutNullableDataStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<List<_i10.SimpleData?>> simpleDataListStream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<List<_i10.SimpleData?>> simpleDataListStream,
   ) {
-    final _localTestStreamManager =
+    var _localTestStreamManager =
         _i1.TestStreamManager<List<_i10.SimpleData?>>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'simpleListInOutNullableDataStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'simpleListInOutNullableDataStream',
-              arguments: {},
-              requestedInputStreams: ['simpleDataListStream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'simpleListInOutNullableDataStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'simpleListInOutNullableDataStream',
+          arguments: {},
+          requestedInputStreams: ['simpleDataListStream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -8095,26 +7674,26 @@ class _MethodStreaming {
   }
 
   _i3.Stream<Set<int>> simpleSetInOutIntStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<Set<int>> simpleDataSetStream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<Set<int>> simpleDataSetStream,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<Set<int>>();
+    var _localTestStreamManager = _i1.TestStreamManager<Set<int>>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'simpleSetInOutIntStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'simpleSetInOutIntStream',
-              arguments: {},
-              requestedInputStreams: ['simpleDataSetStream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'simpleSetInOutIntStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'simpleSetInOutIntStream',
+          arguments: {},
+          requestedInputStreams: ['simpleDataSetStream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -8127,26 +7706,26 @@ class _MethodStreaming {
   }
 
   _i3.Stream<Set<_i10.SimpleData>> simpleSetInOutDataStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<Set<_i10.SimpleData>> simpleDataSetStream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<Set<_i10.SimpleData>> simpleDataSetStream,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<Set<_i10.SimpleData>>();
+    var _localTestStreamManager = _i1.TestStreamManager<Set<_i10.SimpleData>>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'simpleSetInOutDataStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'simpleSetInOutDataStream',
-              arguments: {},
-              requestedInputStreams: ['simpleDataSetStream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'simpleSetInOutDataStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'simpleSetInOutDataStream',
+          arguments: {},
+          requestedInputStreams: ['simpleDataSetStream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -8159,26 +7738,26 @@ class _MethodStreaming {
   }
 
   _i3.Stream<Set<_i10.SimpleData>> nestedSetInListInOutDataStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<List<Set<_i10.SimpleData>>> simpleDataSetStream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<List<Set<_i10.SimpleData>>> simpleDataSetStream,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<Set<_i10.SimpleData>>();
+    var _localTestStreamManager = _i1.TestStreamManager<Set<_i10.SimpleData>>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'nestedSetInListInOutDataStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'nestedSetInListInOutDataStream',
-              arguments: {},
-              requestedInputStreams: ['simpleDataSetStream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'nestedSetInListInOutDataStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'nestedSetInListInOutDataStream',
+          arguments: {},
+          requestedInputStreams: ['simpleDataSetStream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -8190,27 +7769,25 @@ class _MethodStreaming {
     return _localTestStreamManager.outputStreamController.stream;
   }
 
-  _i3.Future<void> simpleEndpoint(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<void> simpleEndpoint(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'methodStreaming',
-            method: 'simpleEndpoint',
-          );
+        endpoint: 'methodStreaming',
+        method: 'simpleEndpoint',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'methodStreaming',
           methodName: 'simpleEndpoint',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -8219,29 +7796,27 @@ class _MethodStreaming {
   }
 
   _i3.Future<void> intParameter(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int value,
+    _i1.TestSessionBuilder sessionBuilder,
+    int value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'methodStreaming',
-            method: 'intParameter',
-          );
+        endpoint: 'methodStreaming',
+        method: 'intParameter',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'methodStreaming',
           methodName: 'intParameter',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -8250,29 +7825,27 @@ class _MethodStreaming {
   }
 
   _i3.Future<int> doubleInputValue(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int value,
+    _i1.TestSessionBuilder sessionBuilder,
+    int value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'methodStreaming',
-            method: 'doubleInputValue',
-          );
+        endpoint: 'methodStreaming',
+        method: 'doubleInputValue',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'methodStreaming',
           methodName: 'doubleInputValue',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<int>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<int>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -8281,29 +7854,27 @@ class _MethodStreaming {
   }
 
   _i3.Future<void> delayedResponse(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int delay,
+    _i1.TestSessionBuilder sessionBuilder,
+    int delay,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'methodStreaming',
-            method: 'delayedResponse',
-          );
+        endpoint: 'methodStreaming',
+        method: 'delayedResponse',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'methodStreaming',
           methodName: 'delayedResponse',
           parameters: _i1.testObjectToJson({'delay': delay}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -8312,26 +7883,26 @@ class _MethodStreaming {
   }
 
   _i3.Stream<int> delayedStreamResponse(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int delay,
+    _i1.TestSessionBuilder sessionBuilder,
+    int delay,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'delayedStreamResponse',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'delayedStreamResponse',
-              arguments: {'delay': delay},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'delayedStreamResponse',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'delayedStreamResponse',
+          arguments: {'delay': delay},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -8344,92 +7915,87 @@ class _MethodStreaming {
   }
 
   _i3.Future<void> delayedNeverListenedInputStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int delay,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    int delay,
+    _i3.Stream<int> stream,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<void>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'delayedNeverListenedInputStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'delayedNeverListenedInputStream',
-              arguments: {'delay': delay},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'stream': stream},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<void>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodStreaming',
+        method: 'delayedNeverListenedInputStream',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodStreaming',
+        methodName: 'delayedNeverListenedInputStream',
+        arguments: {'delay': delay},
+        requestedInputStreams: ['stream'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'stream': stream},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
   _i3.Future<void> delayedPausedInputStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int delay,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    int delay,
+    _i3.Stream<int> stream,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<void>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'delayedPausedInputStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'delayedPausedInputStream',
-              arguments: {'delay': delay},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'stream': stream},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<void>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodStreaming',
+        method: 'delayedPausedInputStream',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodStreaming',
+        methodName: 'delayedPausedInputStream',
+        arguments: {'delay': delay},
+        requestedInputStreams: ['stream'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'stream': stream},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
   _i3.Future<void> completeAllDelayedResponses(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'methodStreaming',
-            method: 'completeAllDelayedResponses',
-          );
+        endpoint: 'methodStreaming',
+        method: 'completeAllDelayedResponses',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'methodStreaming',
           methodName: 'completeAllDelayedResponses',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -8438,87 +8004,84 @@ class _MethodStreaming {
   }
 
   _i3.Future<void> inStreamThrowsException(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> stream,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<void>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'inStreamThrowsException',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'inStreamThrowsException',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'stream': stream},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<void>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodStreaming',
+        method: 'inStreamThrowsException',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodStreaming',
+        methodName: 'inStreamThrowsException',
+        arguments: {},
+        requestedInputStreams: ['stream'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'stream': stream},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
   _i3.Future<void> inStreamThrowsSerializableException(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> stream,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<void>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'inStreamThrowsSerializableException',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'inStreamThrowsSerializableException',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'stream': stream},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<void>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodStreaming',
+        method: 'inStreamThrowsSerializableException',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodStreaming',
+        methodName: 'inStreamThrowsSerializableException',
+        arguments: {},
+        requestedInputStreams: ['stream'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'stream': stream},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
   _i3.Stream<int> outStreamThrowsException(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'outStreamThrowsException',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'outStreamThrowsException',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'outStreamThrowsException',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'outStreamThrowsException',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -8531,25 +8094,24 @@ class _MethodStreaming {
   }
 
   _i3.Stream<int> outStreamThrowsSerializableException(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'outStreamThrowsSerializableException',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'outStreamThrowsSerializableException',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'outStreamThrowsSerializableException',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'outStreamThrowsSerializableException',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -8562,147 +8124,143 @@ class _MethodStreaming {
   }
 
   _i3.Future<void> throwsExceptionVoid(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> stream,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<void>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'throwsExceptionVoid',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'throwsExceptionVoid',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'stream': stream},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<void>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodStreaming',
+        method: 'throwsExceptionVoid',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodStreaming',
+        methodName: 'throwsExceptionVoid',
+        arguments: {},
+        requestedInputStreams: ['stream'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'stream': stream},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
   _i3.Future<void> throwsSerializableExceptionVoid(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> stream,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<void>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'throwsSerializableExceptionVoid',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'throwsSerializableExceptionVoid',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'stream': stream},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<void>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodStreaming',
+        method: 'throwsSerializableExceptionVoid',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodStreaming',
+        methodName: 'throwsSerializableExceptionVoid',
+        arguments: {},
+        requestedInputStreams: ['stream'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'stream': stream},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
   _i3.Future<int> throwsException(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> stream,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'throwsException',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'throwsException',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'stream': stream},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodStreaming',
+        method: 'throwsException',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodStreaming',
+        methodName: 'throwsException',
+        arguments: {},
+        requestedInputStreams: ['stream'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'stream': stream},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
   _i3.Future<int> throwsSerializableException(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> stream,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'throwsSerializableException',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'throwsSerializableException',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'stream': stream},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodStreaming',
+        method: 'throwsSerializableException',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodStreaming',
+        methodName: 'throwsSerializableException',
+        arguments: {},
+        requestedInputStreams: ['stream'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'stream': stream},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
-  _i3.Stream<int> throwsExceptionStream(final _i1.TestSessionBuilder sessionBuilder) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+  _i3.Stream<int> throwsExceptionStream(_i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'throwsExceptionStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'throwsExceptionStream',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'throwsExceptionStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'throwsExceptionStream',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -8715,25 +8273,24 @@ class _MethodStreaming {
   }
 
   _i3.Stream<int> exceptionThrownBeforeStreamReturn(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'exceptionThrownBeforeStreamReturn',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'exceptionThrownBeforeStreamReturn',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'exceptionThrownBeforeStreamReturn',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'exceptionThrownBeforeStreamReturn',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -8746,25 +8303,24 @@ class _MethodStreaming {
   }
 
   _i3.Stream<int> exceptionThrownInStreamReturn(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'exceptionThrownInStreamReturn',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'exceptionThrownInStreamReturn',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'exceptionThrownInStreamReturn',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'exceptionThrownInStreamReturn',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -8777,25 +8333,24 @@ class _MethodStreaming {
   }
 
   _i3.Stream<int> throwsSerializableExceptionStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'throwsSerializableExceptionStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'throwsSerializableExceptionStream',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'methodStreaming',
+          method: 'throwsSerializableExceptionStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'methodStreaming',
+          methodName: 'throwsSerializableExceptionStream',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -8808,65 +8363,63 @@ class _MethodStreaming {
   }
 
   _i3.Future<bool> didInputStreamHaveError(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> stream,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<bool>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'didInputStreamHaveError',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'didInputStreamHaveError',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'stream': stream},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<bool>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodStreaming',
+        method: 'didInputStreamHaveError',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodStreaming',
+        methodName: 'didInputStreamHaveError',
+        arguments: {},
+        requestedInputStreams: ['stream'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'stream': stream},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
   _i3.Future<bool> didInputStreamHaveSerializableExceptionError(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> stream,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<bool>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'methodStreaming',
-              method: 'didInputStreamHaveSerializableExceptionError',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'methodStreaming',
-              methodName: 'didInputStreamHaveSerializableExceptionError',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'stream': stream},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<bool>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'methodStreaming',
+        method: 'didInputStreamHaveSerializableExceptionError',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'methodStreaming',
+        methodName: 'didInputStreamHaveSerializableExceptionError',
+        arguments: {},
+        requestedInputStreams: ['stream'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'stream': stream},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 }
 
@@ -8880,24 +8433,24 @@ class _AuthenticatedMethodStreaming {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Stream<int> simpleStream(final _i1.TestSessionBuilder sessionBuilder) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+  _i3.Stream<int> simpleStream(_i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'authenticatedMethodStreaming',
-              method: 'simpleStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'authenticatedMethodStreaming',
-              methodName: 'simpleStream',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'authenticatedMethodStreaming',
+          method: 'simpleStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'authenticatedMethodStreaming',
+          methodName: 'simpleStream',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -8910,26 +8463,26 @@ class _AuthenticatedMethodStreaming {
   }
 
   _i3.Stream<int> intEchoStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> stream,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'authenticatedMethodStreaming',
-              method: 'intEchoStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'authenticatedMethodStreaming',
-              methodName: 'intEchoStream',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'authenticatedMethodStreaming',
+          method: 'intEchoStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'authenticatedMethodStreaming',
+          methodName: 'intEchoStream',
+          arguments: {},
+          requestedInputStreams: ['stream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -8953,29 +8506,27 @@ class _ModuleEndpointSubclass {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String> echoString(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String value,
+    _i1.TestSessionBuilder sessionBuilder,
+    String value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleEndpointSubclass',
-            method: 'echoString',
-          );
+        endpoint: 'moduleEndpointSubclass',
+        method: 'echoString',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleEndpointSubclass',
           methodName: 'echoString',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -8984,33 +8535,31 @@ class _ModuleEndpointSubclass {
   }
 
   _i3.Future<(int, BigInt)> echoRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (int, BigInt) value,
+    _i1.TestSessionBuilder sessionBuilder,
+    (int, BigInt) value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleEndpointSubclass',
-            method: 'echoRecord',
-          );
+        endpoint: 'moduleEndpointSubclass',
+        method: 'echoRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleEndpointSubclass',
           methodName: 'echoRecord',
-          parameters: _i1.testObjectToJson({
-            'value': _i17.mapRecordToJson(value),
-          }),
+          parameters:
+              _i1.testObjectToJson({'value': _i17.mapRecordToJson(value)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
             .then(
-              (final record) => _i17.Protocol().deserialize<(int, BigInt)>(record),
-            );
+                (record) => _i17.Protocol().deserialize<(int, BigInt)>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9019,29 +8568,27 @@ class _ModuleEndpointSubclass {
   }
 
   _i3.Future<Set<int>> echoContainer(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<int> value,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<int> value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleEndpointSubclass',
-            method: 'echoContainer',
-          );
+        endpoint: 'moduleEndpointSubclass',
+        method: 'echoContainer',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleEndpointSubclass',
           methodName: 'echoContainer',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<int>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<int>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9050,29 +8597,27 @@ class _ModuleEndpointSubclass {
   }
 
   _i3.Future<_i19.ModuleClass> echoModel(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i19.ModuleClass value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i19.ModuleClass value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleEndpointSubclass',
-            method: 'echoModel',
-          );
+        endpoint: 'moduleEndpointSubclass',
+        method: 'echoModel',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleEndpointSubclass',
           methodName: 'echoModel',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i19.ModuleClass>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i19.ModuleClass>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9092,29 +8637,27 @@ class _ModuleEndpointAdaptation {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String> echoString(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String value,
+    _i1.TestSessionBuilder sessionBuilder,
+    String value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleEndpointAdaptation',
-            method: 'echoString',
-          );
+        endpoint: 'moduleEndpointAdaptation',
+        method: 'echoString',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleEndpointAdaptation',
           methodName: 'echoString',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9123,18 +8666,18 @@ class _ModuleEndpointAdaptation {
   }
 
   _i3.Future<(int, BigInt)> echoRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (int, BigInt) value, [
-    final int? multiplier,
+    _i1.TestSessionBuilder sessionBuilder,
+    (int, BigInt) value, [
+    int? multiplier,
   ]) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleEndpointAdaptation',
-            method: 'echoRecord',
-          );
+        endpoint: 'moduleEndpointAdaptation',
+        method: 'echoRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleEndpointAdaptation',
           methodName: 'echoRecord',
@@ -9144,14 +8687,13 @@ class _ModuleEndpointAdaptation {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
             .then(
-              (final record) => _i17.Protocol().deserialize<(int, BigInt)>(record),
-            );
+                (record) => _i17.Protocol().deserialize<(int, BigInt)>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9160,29 +8702,27 @@ class _ModuleEndpointAdaptation {
   }
 
   _i3.Future<Set<int>> echoContainer(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<int> value,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<int> value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleEndpointAdaptation',
-            method: 'echoContainer',
-          );
+        endpoint: 'moduleEndpointAdaptation',
+        method: 'echoContainer',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleEndpointAdaptation',
           methodName: 'echoContainer',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<int>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<int>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9191,29 +8731,27 @@ class _ModuleEndpointAdaptation {
   }
 
   _i3.Future<_i19.ModuleClass> echoModel(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i19.ModuleClass value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i19.ModuleClass value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleEndpointAdaptation',
-            method: 'echoModel',
-          );
+        endpoint: 'moduleEndpointAdaptation',
+        method: 'echoModel',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleEndpointAdaptation',
           methodName: 'echoModel',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i19.ModuleClass>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i19.ModuleClass>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9233,33 +8771,31 @@ class _ModuleEndpointReduction {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<(int, BigInt)> echoRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (int, BigInt) value,
+    _i1.TestSessionBuilder sessionBuilder,
+    (int, BigInt) value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleEndpointReduction',
-            method: 'echoRecord',
-          );
+        endpoint: 'moduleEndpointReduction',
+        method: 'echoRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleEndpointReduction',
           methodName: 'echoRecord',
-          parameters: _i1.testObjectToJson({
-            'value': _i17.mapRecordToJson(value),
-          }),
+          parameters:
+              _i1.testObjectToJson({'value': _i17.mapRecordToJson(value)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
             .then(
-              (final record) => _i17.Protocol().deserialize<(int, BigInt)>(record),
-            );
+                (record) => _i17.Protocol().deserialize<(int, BigInt)>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9268,29 +8804,27 @@ class _ModuleEndpointReduction {
   }
 
   _i3.Future<Set<int>> echoContainer(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<int> value,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<int> value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleEndpointReduction',
-            method: 'echoContainer',
-          );
+        endpoint: 'moduleEndpointReduction',
+        method: 'echoContainer',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleEndpointReduction',
           methodName: 'echoContainer',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<int>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<int>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9299,29 +8833,27 @@ class _ModuleEndpointReduction {
   }
 
   _i3.Future<_i19.ModuleClass> echoModel(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i19.ModuleClass value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i19.ModuleClass value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleEndpointReduction',
-            method: 'echoModel',
-          );
+        endpoint: 'moduleEndpointReduction',
+        method: 'echoModel',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleEndpointReduction',
           methodName: 'echoModel',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i19.ModuleClass>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i19.ModuleClass>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9341,29 +8873,27 @@ class _ModuleEndpointExtension {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String> greet(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String name,
+    _i1.TestSessionBuilder sessionBuilder,
+    String name,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleEndpointExtension',
-            method: 'greet',
-          );
+        endpoint: 'moduleEndpointExtension',
+        method: 'greet',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleEndpointExtension',
           methodName: 'greet',
           parameters: _i1.testObjectToJson({'name': name}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9371,27 +8901,25 @@ class _ModuleEndpointExtension {
     });
   }
 
-  _i3.Future<void> ignoredMethod(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<void> ignoredMethod(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleEndpointExtension',
-            method: 'ignoredMethod',
-          );
+        endpoint: 'moduleEndpointExtension',
+        method: 'ignoredMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleEndpointExtension',
           methodName: 'ignoredMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9400,29 +8928,27 @@ class _ModuleEndpointExtension {
   }
 
   _i3.Future<String> echoString(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String value,
+    _i1.TestSessionBuilder sessionBuilder,
+    String value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleEndpointExtension',
-            method: 'echoString',
-          );
+        endpoint: 'moduleEndpointExtension',
+        method: 'echoString',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleEndpointExtension',
           methodName: 'echoString',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9431,33 +8957,31 @@ class _ModuleEndpointExtension {
   }
 
   _i3.Future<(int, BigInt)> echoRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (int, BigInt) value,
+    _i1.TestSessionBuilder sessionBuilder,
+    (int, BigInt) value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleEndpointExtension',
-            method: 'echoRecord',
-          );
+        endpoint: 'moduleEndpointExtension',
+        method: 'echoRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleEndpointExtension',
           methodName: 'echoRecord',
-          parameters: _i1.testObjectToJson({
-            'value': _i17.mapRecordToJson(value),
-          }),
+          parameters:
+              _i1.testObjectToJson({'value': _i17.mapRecordToJson(value)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
             .then(
-              (final record) => _i17.Protocol().deserialize<(int, BigInt)>(record),
-            );
+                (record) => _i17.Protocol().deserialize<(int, BigInt)>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9466,29 +8990,27 @@ class _ModuleEndpointExtension {
   }
 
   _i3.Future<Set<int>> echoContainer(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<int> value,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<int> value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleEndpointExtension',
-            method: 'echoContainer',
-          );
+        endpoint: 'moduleEndpointExtension',
+        method: 'echoContainer',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleEndpointExtension',
           methodName: 'echoContainer',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<int>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<int>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9497,29 +9019,27 @@ class _ModuleEndpointExtension {
   }
 
   _i3.Future<_i19.ModuleClass> echoModel(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i19.ModuleClass value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i19.ModuleClass value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleEndpointExtension',
-            method: 'echoModel',
-          );
+        endpoint: 'moduleEndpointExtension',
+        method: 'echoModel',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleEndpointExtension',
           methodName: 'echoModel',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i19.ModuleClass>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i19.ModuleClass>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9539,28 +9059,25 @@ class _ModuleSerializationEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<bool> serializeModuleObject(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleSerialization',
-            method: 'serializeModuleObject',
-          );
+        endpoint: 'moduleSerialization',
+        method: 'serializeModuleObject',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleSerialization',
           methodName: 'serializeModuleObject',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9569,29 +9086,27 @@ class _ModuleSerializationEndpoint {
   }
 
   _i3.Future<_i19.ModuleClass> modifyModuleObject(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i19.ModuleClass object,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i19.ModuleClass object,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleSerialization',
-            method: 'modifyModuleObject',
-          );
+        endpoint: 'moduleSerialization',
+        method: 'modifyModuleObject',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleSerialization',
           methodName: 'modifyModuleObject',
           parameters: _i1.testObjectToJson({'object': object}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i19.ModuleClass>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i19.ModuleClass>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9600,28 +9115,25 @@ class _ModuleSerializationEndpoint {
   }
 
   _i3.Future<_i20.ModuleDatatype> serializeNestedModuleObject(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'moduleSerialization',
-            method: 'serializeNestedModuleObject',
-          );
+        endpoint: 'moduleSerialization',
+        method: 'serializeNestedModuleObject',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'moduleSerialization',
           methodName: 'serializeNestedModuleObject',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i20.ModuleDatatype>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i20.ModuleDatatype>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9641,20 +9153,20 @@ class _NamedParametersEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<bool> namedParametersMethod(
-    final _i1.TestSessionBuilder sessionBuilder, {
-    required final int namedInt,
-    required final int intWithDefaultValue,
-    final int? nullableInt,
-    final int? nullableIntWithDefaultValue,
+    _i1.TestSessionBuilder sessionBuilder, {
+    required int namedInt,
+    required int intWithDefaultValue,
+    int? nullableInt,
+    int? nullableIntWithDefaultValue,
   }) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'namedParameters',
-            method: 'namedParametersMethod',
-          );
+        endpoint: 'namedParameters',
+        method: 'namedParametersMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'namedParameters',
           methodName: 'namedParametersMethod',
@@ -9666,12 +9178,10 @@ class _NamedParametersEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9680,18 +9190,18 @@ class _NamedParametersEndpoint {
   }
 
   _i3.Future<bool> namedParametersMethodEqualInts(
-    final _i1.TestSessionBuilder sessionBuilder, {
-    required final int namedInt,
-    final int? nullableInt,
+    _i1.TestSessionBuilder sessionBuilder, {
+    required int namedInt,
+    int? nullableInt,
   }) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'namedParameters',
-            method: 'namedParametersMethodEqualInts',
-          );
+        endpoint: 'namedParameters',
+        method: 'namedParametersMethodEqualInts',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'namedParameters',
           methodName: 'namedParametersMethodEqualInts',
@@ -9701,12 +9211,10 @@ class _NamedParametersEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9726,29 +9234,27 @@ class _OptionalParametersEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<int?> returnOptionalInt(
-    final _i1.TestSessionBuilder sessionBuilder, [
-    final int? optionalInt,
+    _i1.TestSessionBuilder sessionBuilder, [
+    int? optionalInt,
   ]) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'optionalParameters',
-            method: 'returnOptionalInt',
-          );
+        endpoint: 'optionalParameters',
+        method: 'returnOptionalInt',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'optionalParameters',
           methodName: 'returnOptionalInt',
           parameters: _i1.testObjectToJson({'optionalInt': optionalInt}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<int?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<int?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9768,31 +9274,30 @@ class _RecordParametersEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<(int,)> returnRecordOfInt(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (int,) record,
+    _i1.TestSessionBuilder sessionBuilder,
+    (int,) record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnRecordOfInt',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnRecordOfInt',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnRecordOfInt',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then((final record) => _i17.Protocol().deserialize<(int,)>(record));
+            .then((record) => _i17.Protocol().deserialize<(int,)>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9801,31 +9306,30 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<(int,)?> returnNullableRecordOfInt(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (int,)? record,
+    _i1.TestSessionBuilder sessionBuilder,
+    (int,)? record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnNullableRecordOfInt',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnNullableRecordOfInt',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnNullableRecordOfInt',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then((final record) => _i17.Protocol().deserialize<(int,)?>(record));
+            .then((record) => _i17.Protocol().deserialize<(int,)?>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9834,31 +9338,30 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<(int?,)> returnRecordOfNullableInt(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (int?,) record,
+    _i1.TestSessionBuilder sessionBuilder,
+    (int?,) record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnRecordOfNullableInt',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnRecordOfNullableInt',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnRecordOfNullableInt',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then((final record) => _i17.Protocol().deserialize<(int?,)>(record));
+            .then((record) => _i17.Protocol().deserialize<(int?,)>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9867,31 +9370,30 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<(int?,)?> returnNullableRecordOfNullableInt(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (int?,)? record,
+    _i1.TestSessionBuilder sessionBuilder,
+    (int?,)? record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnNullableRecordOfNullableInt',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnNullableRecordOfNullableInt',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnNullableRecordOfNullableInt',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then((final record) => _i17.Protocol().deserialize<(int?,)?>(record));
+            .then((record) => _i17.Protocol().deserialize<(int?,)?>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9900,26 +9402,26 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Stream<(int?,)?> streamNullableRecordOfNullableInt(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<(int?,)?> values,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<(int?,)?> values,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<(int?,)?>();
+    var _localTestStreamManager = _i1.TestStreamManager<(int?,)?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'recordParameters',
-              method: 'streamNullableRecordOfNullableInt',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'recordParameters',
-              methodName: 'streamNullableRecordOfNullableInt',
-              arguments: {},
-              requestedInputStreams: ['values'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'recordParameters',
+          method: 'streamNullableRecordOfNullableInt',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'recordParameters',
+          methodName: 'streamNullableRecordOfNullableInt',
+          arguments: {},
+          requestedInputStreams: ['values'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -9932,33 +9434,31 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<(int, String)> returnIntStringRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (int, String) record,
+    _i1.TestSessionBuilder sessionBuilder,
+    (int, String) record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnIntStringRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnIntStringRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnIntStringRecord',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
             .then(
-              (final record) => _i17.Protocol().deserialize<(int, String)>(record),
-            );
+                (record) => _i17.Protocol().deserialize<(int, String)>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -9967,33 +9467,31 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<(int, String)?> returnNullableIntStringRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (int, String)? record,
+    _i1.TestSessionBuilder sessionBuilder,
+    (int, String)? record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnNullableIntStringRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnNullableIntStringRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnNullableIntStringRecord',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol().deserialize<(int, String)?>(record),
-            );
+            .then((record) =>
+                _i17.Protocol().deserialize<(int, String)?>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10002,34 +9500,31 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<(int, _i10.SimpleData)> returnIntSimpleDataRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (int, _i10.SimpleData) record,
+    _i1.TestSessionBuilder sessionBuilder,
+    (int, _i10.SimpleData) record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnIntSimpleDataRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnIntSimpleDataRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnIntSimpleDataRecord',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) =>
-                  _i17.Protocol().deserialize<(int, _i10.SimpleData)>(record),
-            );
+            .then((record) =>
+                _i17.Protocol().deserialize<(int, _i10.SimpleData)>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10038,34 +9533,31 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<(int, _i10.SimpleData)?> returnNullableIntSimpleDataRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (int, _i10.SimpleData)? record,
+    _i1.TestSessionBuilder sessionBuilder,
+    (int, _i10.SimpleData)? record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnNullableIntSimpleDataRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnNullableIntSimpleDataRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnNullableIntSimpleDataRecord',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) =>
-                  _i17.Protocol().deserialize<(int, _i10.SimpleData)?>(record),
-            );
+            .then((record) =>
+                _i17.Protocol().deserialize<(int, _i10.SimpleData)?>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10074,34 +9566,31 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<(Map<String, int>,)> returnStringKeyedMapRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (Map<String, int>,) record,
+    _i1.TestSessionBuilder sessionBuilder,
+    (Map<String, int>,) record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnStringKeyedMapRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnStringKeyedMapRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnStringKeyedMapRecord',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) =>
-                  _i17.Protocol().deserialize<(Map<String, int>,)>(record),
-            );
+            .then((record) =>
+                _i17.Protocol().deserialize<(Map<String, int>,)>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10110,33 +9599,31 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<(Map<int, int>,)> returnNonStringKeyedMapRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (Map<int, int>,) record,
+    _i1.TestSessionBuilder sessionBuilder,
+    (Map<int, int>,) record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnNonStringKeyedMapRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnNonStringKeyedMapRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnNonStringKeyedMapRecord',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol().deserialize<(Map<int, int>,)>(record),
-            );
+            .then((record) =>
+                _i17.Protocol().deserialize<(Map<int, int>,)>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10145,33 +9632,31 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<(Set<(int,)>,)> returnSetWithNestedRecordRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (Set<(int,)>,) record,
+    _i1.TestSessionBuilder sessionBuilder,
+    (Set<(int,)>,) record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnSetWithNestedRecordRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnSetWithNestedRecordRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnSetWithNestedRecordRecord',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol().deserialize<(Set<(int,)>,)>(record),
-            );
+            .then((record) =>
+                _i17.Protocol().deserialize<(Set<(int,)>,)>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10180,34 +9665,31 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<({int number, String text})> returnNamedIntStringRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final ({int number, String text}) record,
+    _i1.TestSessionBuilder sessionBuilder,
+    ({int number, String text}) record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnNamedIntStringRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnNamedIntStringRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnNamedIntStringRecord',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<({int number, String text})>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<({int number, String text})>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10216,34 +9698,31 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<({int number, String text})?> returnNamedNullableIntStringRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final ({int number, String text})? record,
+    _i1.TestSessionBuilder sessionBuilder,
+    ({int number, String text})? record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnNamedNullableIntStringRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnNamedNullableIntStringRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnNamedNullableIntStringRecord',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<({int number, String text})?>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<({int number, String text})?>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10252,35 +9731,32 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<({_i10.SimpleData data, int number})>
-  returnRecordOfNamedIntAndObject(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final ({_i10.SimpleData data, int number}) record,
+      returnRecordOfNamedIntAndObject(
+    _i1.TestSessionBuilder sessionBuilder,
+    ({_i10.SimpleData data, int number}) record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnRecordOfNamedIntAndObject',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnRecordOfNamedIntAndObject',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnRecordOfNamedIntAndObject',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<({_i10.SimpleData data, int number})>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<({_i10.SimpleData data, int number})>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10289,35 +9765,32 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<({_i10.SimpleData data, int number})?>
-  returnNullableRecordOfNamedIntAndObject(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final ({_i10.SimpleData data, int number})? record,
+      returnNullableRecordOfNamedIntAndObject(
+    _i1.TestSessionBuilder sessionBuilder,
+    ({_i10.SimpleData data, int number})? record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnNullableRecordOfNamedIntAndObject',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnNullableRecordOfNamedIntAndObject',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnNullableRecordOfNamedIntAndObject',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<({_i10.SimpleData data, int number})?>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<({_i10.SimpleData data, int number})?>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10326,35 +9799,32 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<({_i10.SimpleData? data, int? number})>
-  returnRecordOfNamedNullableIntAndNullableObject(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final ({_i10.SimpleData? data, int? number}) record,
+      returnRecordOfNamedNullableIntAndNullableObject(
+    _i1.TestSessionBuilder sessionBuilder,
+    ({_i10.SimpleData? data, int? number}) record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnRecordOfNamedNullableIntAndNullableObject',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnRecordOfNamedNullableIntAndNullableObject',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnRecordOfNamedNullableIntAndNullableObject',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<({_i10.SimpleData? data, int? number})>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<({_i10.SimpleData? data, int? number})>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10363,34 +9833,31 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<({Map<int, int> intIntMap})> returnNamedNonStringKeyedMapRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final ({Map<int, int> intIntMap}) record,
+    _i1.TestSessionBuilder sessionBuilder,
+    ({Map<int, int> intIntMap}) record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnNamedNonStringKeyedMapRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnNamedNonStringKeyedMapRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnNamedNonStringKeyedMapRecord',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<({Map<int, int> intIntMap})>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<({Map<int, int> intIntMap})>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10399,34 +9866,31 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<({Set<(bool,)> boolSet})> returnNamedSetWithNestedRecordRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final ({Set<(bool,)> boolSet}) record,
+    _i1.TestSessionBuilder sessionBuilder,
+    ({Set<(bool,)> boolSet}) record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnNamedSetWithNestedRecordRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnNamedSetWithNestedRecordRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnNamedSetWithNestedRecordRecord',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) =>
-                  _i17.Protocol().deserialize<({Set<(bool,)> boolSet})>(record),
-            );
+            .then((record) =>
+                _i17.Protocol().deserialize<({Set<(bool,)> boolSet})>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10435,19 +9899,19 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<(Map<(Map<int, String>, String), String>,)>
-  returnNestedNonStringKeyedMapInsideRecordInsideMapInsideRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (Map<(Map<int, String>, String), String>,) map,
+      returnNestedNonStringKeyedMapInsideRecordInsideMapInsideRecord(
+    _i1.TestSessionBuilder sessionBuilder,
+    (Map<(Map<int, String>, String), String>,) map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method:
-                'returnNestedNonStringKeyedMapInsideRecordInsideMapInsideRecord',
-          );
+        endpoint: 'recordParameters',
+        method:
+            'returnNestedNonStringKeyedMapInsideRecordInsideMapInsideRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName:
@@ -10455,17 +9919,14 @@ class _RecordParametersEndpoint {
           parameters: _i1.testObjectToJson({'map': _i17.mapRecordToJson(map)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<(Map<(Map<int, String>, String), String>,)>(
-                    record,
-                  ),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<(Map<(Map<int, String>, String), String>,)>(
+                    record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10474,34 +9935,31 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<(int, {_i10.SimpleData data})> returnRecordTypedef(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (int, {_i10.SimpleData data}) record,
+    _i1.TestSessionBuilder sessionBuilder,
+    (int, {_i10.SimpleData data}) record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnRecordTypedef',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnRecordTypedef',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnRecordTypedef',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<(int, {_i10.SimpleData data})>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<(int, {_i10.SimpleData data})>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10510,34 +9968,31 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<(int, {_i10.SimpleData data})?> returnNullableRecordTypedef(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (int, {_i10.SimpleData data})? record,
+    _i1.TestSessionBuilder sessionBuilder,
+    (int, {_i10.SimpleData data})? record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnNullableRecordTypedef',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnNullableRecordTypedef',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnNullableRecordTypedef',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<(int, {_i10.SimpleData data})?>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<(int, {_i10.SimpleData data})?>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10546,34 +10001,31 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<List<(int, _i10.SimpleData)>> returnListOfIntSimpleDataRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<(int, _i10.SimpleData)> recordList,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<(int, _i10.SimpleData)> recordList,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnListOfIntSimpleDataRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnListOfIntSimpleDataRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnListOfIntSimpleDataRecord',
-          parameters: _i1.testObjectToJson({
-            'recordList': _i17.mapContainerToJson(recordList),
-          }),
+          parameters: _i1.testObjectToJson(
+              {'recordList': _i17.mapContainerToJson(recordList)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<List<(int, _i10.SimpleData)>>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<List<(int, _i10.SimpleData)>>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10582,35 +10034,32 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<List<(int, _i10.SimpleData)?>>
-  returnListOfNullableIntSimpleDataRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<(int, _i10.SimpleData)?> record,
+      returnListOfNullableIntSimpleDataRecord(
+    _i1.TestSessionBuilder sessionBuilder,
+    List<(int, _i10.SimpleData)?> record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnListOfNullableIntSimpleDataRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnListOfNullableIntSimpleDataRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnListOfNullableIntSimpleDataRecord',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapContainerToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapContainerToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<List<(int, _i10.SimpleData)?>>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<List<(int, _i10.SimpleData)?>>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10619,34 +10068,31 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<Set<(int, _i10.SimpleData)>> returnSetOfIntSimpleDataRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<(int, _i10.SimpleData)> recordSet,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<(int, _i10.SimpleData)> recordSet,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnSetOfIntSimpleDataRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnSetOfIntSimpleDataRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnSetOfIntSimpleDataRecord',
-          parameters: _i1.testObjectToJson({
-            'recordSet': _i17.mapContainerToJson(recordSet),
-          }),
+          parameters: _i1.testObjectToJson(
+              {'recordSet': _i17.mapContainerToJson(recordSet)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<Set<(int, _i10.SimpleData)>>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<Set<(int, _i10.SimpleData)>>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10655,35 +10101,32 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<Set<(int, _i10.SimpleData)?>>
-  returnSetOfNullableIntSimpleDataRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<(int, _i10.SimpleData)?> set,
+      returnSetOfNullableIntSimpleDataRecord(
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<(int, _i10.SimpleData)?> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnSetOfNullableIntSimpleDataRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnSetOfNullableIntSimpleDataRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnSetOfNullableIntSimpleDataRecord',
-          parameters: _i1.testObjectToJson({
-            'set': _i17.mapContainerToJson(set),
-          }),
+          parameters:
+              _i1.testObjectToJson({'set': _i17.mapContainerToJson(set)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<Set<(int, _i10.SimpleData)?>>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<Set<(int, _i10.SimpleData)?>>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10692,37 +10135,34 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<Set<(int, _i10.SimpleData)>?>
-  returnNullableSetOfIntSimpleDataRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<(int, _i10.SimpleData)>? recordSet,
+      returnNullableSetOfIntSimpleDataRecord(
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<(int, _i10.SimpleData)>? recordSet,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnNullableSetOfIntSimpleDataRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnNullableSetOfIntSimpleDataRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnNullableSetOfIntSimpleDataRecord',
           parameters: _i1.testObjectToJson({
-            'recordSet': recordSet == null
-                ? null
-                : _i17.mapContainerToJson(recordSet),
+            'recordSet':
+                recordSet == null ? null : _i17.mapContainerToJson(recordSet)
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<Set<(int, _i10.SimpleData)>?>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<Set<(int, _i10.SimpleData)>?>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10731,35 +10171,32 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<Map<String, (int, _i10.SimpleData)>>
-  returnStringMapOfIntSimpleDataRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, (int, _i10.SimpleData)> map,
+      returnStringMapOfIntSimpleDataRecord(
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, (int, _i10.SimpleData)> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnStringMapOfIntSimpleDataRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnStringMapOfIntSimpleDataRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnStringMapOfIntSimpleDataRecord',
-          parameters: _i1.testObjectToJson({
-            'map': _i17.mapContainerToJson(map),
-          }),
+          parameters:
+              _i1.testObjectToJson({'map': _i17.mapContainerToJson(map)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<Map<String, (int, _i10.SimpleData)>>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<Map<String, (int, _i10.SimpleData)>>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10768,35 +10205,32 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<Map<String, (int, _i10.SimpleData)?>>
-  returnStringMapOfNullableIntSimpleDataRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<String, (int, _i10.SimpleData)?> map,
+      returnStringMapOfNullableIntSimpleDataRecord(
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<String, (int, _i10.SimpleData)?> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnStringMapOfNullableIntSimpleDataRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnStringMapOfNullableIntSimpleDataRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnStringMapOfNullableIntSimpleDataRecord',
-          parameters: _i1.testObjectToJson({
-            'map': _i17.mapContainerToJson(map),
-          }),
+          parameters:
+              _i1.testObjectToJson({'map': _i17.mapContainerToJson(map)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<Map<String, (int, _i10.SimpleData)?>>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<Map<String, (int, _i10.SimpleData)?>>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10805,37 +10239,33 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<Map<(String, int), (int, _i10.SimpleData)>>
-  returnRecordMapOfIntSimpleDataRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Map<(String, int), (int, _i10.SimpleData)> map,
+      returnRecordMapOfIntSimpleDataRecord(
+    _i1.TestSessionBuilder sessionBuilder,
+    Map<(String, int), (int, _i10.SimpleData)> map,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnRecordMapOfIntSimpleDataRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnRecordMapOfIntSimpleDataRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnRecordMapOfIntSimpleDataRecord',
-          parameters: _i1.testObjectToJson({
-            'map': _i17.mapContainerToJson(map),
-          }),
+          parameters:
+              _i1.testObjectToJson({'map': _i17.mapContainerToJson(map)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<Map<(String, int), (int, _i10.SimpleData)>>(
-                    record,
-                  ),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<Map<(String, int), (int, _i10.SimpleData)>>(
+                    record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10844,34 +10274,31 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<Map<String, List<Set<(int,)>>>> returnStringMapOfListOfRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<List<Map<String, (int,)>>> input,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<List<Map<String, (int,)>>> input,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnStringMapOfListOfRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnStringMapOfListOfRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnStringMapOfListOfRecord',
-          parameters: _i1.testObjectToJson({
-            'input': _i17.mapContainerToJson(input),
-          }),
+          parameters:
+              _i1.testObjectToJson({'input': _i17.mapContainerToJson(input)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<Map<String, List<Set<(int,)>>>>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<Map<String, List<Set<(int,)>>>>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10880,37 +10307,33 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<({(_i10.SimpleData, double) namedSubRecord})>
-  returnNestedNamedRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final ({(_i10.SimpleData, double) namedSubRecord}) record,
+      returnNestedNamedRecord(
+    _i1.TestSessionBuilder sessionBuilder,
+    ({(_i10.SimpleData, double) namedSubRecord}) record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnNestedNamedRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnNestedNamedRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnNestedNamedRecord',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<({(_i10.SimpleData, double) namedSubRecord})>(
-                    record,
-                  ),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<({(_i10.SimpleData, double) namedSubRecord})>(
+                    record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10919,37 +10342,33 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<({(_i10.SimpleData, double)? namedSubRecord})>
-  returnNestedNullableNamedRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final ({(_i10.SimpleData, double)? namedSubRecord}) record,
+      returnNestedNullableNamedRecord(
+    _i1.TestSessionBuilder sessionBuilder,
+    ({(_i10.SimpleData, double)? namedSubRecord}) record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnNestedNullableNamedRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnNestedNullableNamedRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnNestedNullableNamedRecord',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<({(_i10.SimpleData, double)? namedSubRecord})>(
-                    record,
-                  ),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<({(_i10.SimpleData, double)? namedSubRecord})>(
+                    record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10958,37 +10377,35 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<((int, String), {(_i10.SimpleData, double) namedSubRecord})>
-  returnNestedPositionalAndNamedRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final ((int, String), {(_i10.SimpleData, double) namedSubRecord}) record,
+      returnNestedPositionalAndNamedRecord(
+    _i1.TestSessionBuilder sessionBuilder,
+    ((int, String), {(_i10.SimpleData, double) namedSubRecord}) record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnNestedPositionalAndNamedRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnNestedPositionalAndNamedRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnNestedPositionalAndNamedRecord',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) =>
-                  _i17.Protocol().deserialize<
-                    ((int, String), {(_i10.SimpleData, double) namedSubRecord})
-                  >(record),
-            );
+            .then((record) => _i17.Protocol().deserialize<
+                (
+                  (int, String), {
+                  (_i10.SimpleData, double) namedSubRecord
+                })>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -10997,43 +10414,37 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<List<((int, String), {(_i10.SimpleData, double) namedSubRecord})>>
-  returnListOfNestedPositionalAndNamedRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<((int, String), {(_i10.SimpleData, double) namedSubRecord})>
-    recordList,
+      returnListOfNestedPositionalAndNamedRecord(
+    _i1.TestSessionBuilder sessionBuilder,
+    List<((int, String), {(_i10.SimpleData, double) namedSubRecord})>
+        recordList,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'returnListOfNestedPositionalAndNamedRecord',
-          );
+        endpoint: 'recordParameters',
+        method: 'returnListOfNestedPositionalAndNamedRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'returnListOfNestedPositionalAndNamedRecord',
-          parameters: _i1.testObjectToJson({
-            'recordList': _i17.mapContainerToJson(recordList),
-          }),
+          parameters: _i1.testObjectToJson(
+              {'recordList': _i17.mapContainerToJson(recordList)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) =>
-                  _i17.Protocol().deserialize<
-                    List<
-                      (
-                        (int, String), {
-                        (_i10.SimpleData, double) namedSubRecord,
-                      })
-                    >
-                  >(record),
-            );
+            .then((record) => _i17.Protocol().deserialize<
+                List<
+                    (
+                      (int, String), {
+                      (_i10.SimpleData, double) namedSubRecord
+                    })>>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11042,47 +10453,39 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Stream<
+          List<((int, String), {(_i10.SimpleData, double) namedSubRecord})?>?>
+      streamNullableListOfNullableNestedPositionalAndNamedRecord(
+    _i1.TestSessionBuilder sessionBuilder,
     List<((int, String), {(_i10.SimpleData, double) namedSubRecord})?>?
-  >
-  streamNullableListOfNullableNestedPositionalAndNamedRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<((int, String), {(_i10.SimpleData, double) namedSubRecord})?>?
-    initialValue,
-    final _i3.Stream<
-      List<((int, String), {(_i10.SimpleData, double) namedSubRecord})?>?
-    >
-    values,
+        initialValue,
+    _i3.Stream<
+            List<((int, String), {(_i10.SimpleData, double) namedSubRecord})?>?>
+        values,
   ) {
-    final _localTestStreamManager =
-        _i1.TestStreamManager<
-          List<((int, String), {(_i10.SimpleData, double) namedSubRecord})?>?
-        >();
+    var _localTestStreamManager = _i1.TestStreamManager<
+        List<((int, String), {(_i10.SimpleData, double) namedSubRecord})?>?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'recordParameters',
-              method:
-                  'streamNullableListOfNullableNestedPositionalAndNamedRecord',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'recordParameters',
-              methodName:
-                  'streamNullableListOfNullableNestedPositionalAndNamedRecord',
-              arguments: {
-                'initialValue': initialValue == null
-                    ? null
-                    : _i21.jsonDecode(
-                        _i2.SerializationManager.encode(
-                          _i17.mapContainerToJson(initialValue),
-                        ),
-                      ),
-              },
-              requestedInputStreams: ['values'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'recordParameters',
+          method: 'streamNullableListOfNullableNestedPositionalAndNamedRecord',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'recordParameters',
+          methodName:
+              'streamNullableListOfNullableNestedPositionalAndNamedRecord',
+          arguments: {
+            'initialValue': initialValue == null
+                ? null
+                : _i21.jsonDecode(_i2.SerializationManager.encode(
+                    _i17.mapContainerToJson(initialValue)))
+          },
+          requestedInputStreams: ['values'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -11095,29 +10498,27 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<_i22.TypesRecord> echoModelClassWithRecordField(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i22.TypesRecord value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i22.TypesRecord value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'echoModelClassWithRecordField',
-          );
+        endpoint: 'recordParameters',
+        method: 'echoModelClassWithRecordField',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'echoModelClassWithRecordField',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i22.TypesRecord>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i22.TypesRecord>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11126,29 +10527,27 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<_i22.TypesRecord?> echoNullableModelClassWithRecordField(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i22.TypesRecord? value,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i22.TypesRecord? value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'echoNullableModelClassWithRecordField',
-          );
+        endpoint: 'recordParameters',
+        method: 'echoNullableModelClassWithRecordField',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'echoNullableModelClassWithRecordField',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i22.TypesRecord?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i22.TypesRecord?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11157,30 +10556,28 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<_i19.ModuleClass?>
-  echoNullableModelClassWithRecordFieldFromExternalModule(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i19.ModuleClass? value,
+      echoNullableModelClassWithRecordFieldFromExternalModule(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i19.ModuleClass? value,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'echoNullableModelClassWithRecordFieldFromExternalModule',
-          );
+        endpoint: 'recordParameters',
+        method: 'echoNullableModelClassWithRecordFieldFromExternalModule',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'echoNullableModelClassWithRecordFieldFromExternalModule',
           parameters: _i1.testObjectToJson({'value': value}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i19.ModuleClass?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i19.ModuleClass?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11189,31 +10586,30 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Stream<_i22.TypesRecord> streamOfModelClassWithRecordField(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i22.TypesRecord initialValue,
-    final _i3.Stream<_i22.TypesRecord> values,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i22.TypesRecord initialValue,
+    _i3.Stream<_i22.TypesRecord> values,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<_i22.TypesRecord>();
+    var _localTestStreamManager = _i1.TestStreamManager<_i22.TypesRecord>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'recordParameters',
-              method: 'streamOfModelClassWithRecordField',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'recordParameters',
-              methodName: 'streamOfModelClassWithRecordField',
-              arguments: {
-                'initialValue': _i21.jsonDecode(
-                  _i2.SerializationManager.encode(initialValue),
-                ),
-              },
-              requestedInputStreams: ['values'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'recordParameters',
+          method: 'streamOfModelClassWithRecordField',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'recordParameters',
+          methodName: 'streamOfModelClassWithRecordField',
+          arguments: {
+            'initialValue':
+                _i21.jsonDecode(_i2.SerializationManager.encode(initialValue))
+          },
+          requestedInputStreams: ['values'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -11226,31 +10622,30 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Stream<_i22.TypesRecord?> streamOfNullableModelClassWithRecordField(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i22.TypesRecord? initialValue,
-    final _i3.Stream<_i22.TypesRecord?> values,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i22.TypesRecord? initialValue,
+    _i3.Stream<_i22.TypesRecord?> values,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<_i22.TypesRecord?>();
+    var _localTestStreamManager = _i1.TestStreamManager<_i22.TypesRecord?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'recordParameters',
-              method: 'streamOfNullableModelClassWithRecordField',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'recordParameters',
-              methodName: 'streamOfNullableModelClassWithRecordField',
-              arguments: {
-                'initialValue': _i21.jsonDecode(
-                  _i2.SerializationManager.encode(initialValue),
-                ),
-              },
-              requestedInputStreams: ['values'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'recordParameters',
+          method: 'streamOfNullableModelClassWithRecordField',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'recordParameters',
+          methodName: 'streamOfNullableModelClassWithRecordField',
+          arguments: {
+            'initialValue':
+                _i21.jsonDecode(_i2.SerializationManager.encode(initialValue))
+          },
+          requestedInputStreams: ['values'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -11263,34 +10658,32 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Stream<_i19.ModuleClass?>
-  streamOfNullableModelClassWithRecordFieldFromExternalModule(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i19.ModuleClass? initialValue,
-    final _i3.Stream<_i19.ModuleClass?> values,
+      streamOfNullableModelClassWithRecordFieldFromExternalModule(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i19.ModuleClass? initialValue,
+    _i3.Stream<_i19.ModuleClass?> values,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<_i19.ModuleClass?>();
+    var _localTestStreamManager = _i1.TestStreamManager<_i19.ModuleClass?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'recordParameters',
-              method:
-                  'streamOfNullableModelClassWithRecordFieldFromExternalModule',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'recordParameters',
-              methodName:
-                  'streamOfNullableModelClassWithRecordFieldFromExternalModule',
-              arguments: {
-                'initialValue': _i21.jsonDecode(
-                  _i2.SerializationManager.encode(initialValue),
-                ),
-              },
-              requestedInputStreams: ['values'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'recordParameters',
+          method: 'streamOfNullableModelClassWithRecordFieldFromExternalModule',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'recordParameters',
+          methodName:
+              'streamOfNullableModelClassWithRecordFieldFromExternalModule',
+          arguments: {
+            'initialValue':
+                _i21.jsonDecode(_i2.SerializationManager.encode(initialValue))
+          },
+          requestedInputStreams: ['values'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -11303,18 +10696,18 @@ class _RecordParametersEndpoint {
   }
 
   _i3.Future<int> recordParametersWithCustomNames(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (int,) positionalRecord, {
-    required final (int,) namedRecord,
+    _i1.TestSessionBuilder sessionBuilder,
+    (int,) positionalRecord, {
+    required (int,) namedRecord,
   }) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'recordParameters',
-            method: 'recordParametersWithCustomNames',
-          );
+        endpoint: 'recordParameters',
+        method: 'recordParametersWithCustomNames',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'recordParameters',
           methodName: 'recordParametersWithCustomNames',
@@ -11324,12 +10717,10 @@ class _RecordParametersEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<int>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<int>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11349,18 +10740,18 @@ class _RedisEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<void> setSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String key,
-    final _i10.SimpleData data,
+    _i1.TestSessionBuilder sessionBuilder,
+    String key,
+    _i10.SimpleData data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'redis',
-            method: 'setSimpleData',
-          );
+        endpoint: 'redis',
+        method: 'setSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'redis',
           methodName: 'setSimpleData',
@@ -11370,12 +10761,10 @@ class _RedisEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11384,18 +10773,18 @@ class _RedisEndpoint {
   }
 
   _i3.Future<void> setSimpleDataWithLifetime(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String key,
-    final _i10.SimpleData data,
+    _i1.TestSessionBuilder sessionBuilder,
+    String key,
+    _i10.SimpleData data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'redis',
-            method: 'setSimpleDataWithLifetime',
-          );
+        endpoint: 'redis',
+        method: 'setSimpleDataWithLifetime',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'redis',
           methodName: 'setSimpleDataWithLifetime',
@@ -11405,12 +10794,10 @@ class _RedisEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11419,29 +10806,27 @@ class _RedisEndpoint {
   }
 
   _i3.Future<_i10.SimpleData?> getSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String key,
+    _i1.TestSessionBuilder sessionBuilder,
+    String key,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'redis',
-            method: 'getSimpleData',
-          );
+        endpoint: 'redis',
+        method: 'getSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'redis',
           methodName: 'getSimpleData',
           parameters: _i1.testObjectToJson({'key': key}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i10.SimpleData?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i10.SimpleData?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11450,29 +10835,27 @@ class _RedisEndpoint {
   }
 
   _i3.Future<void> deleteSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String key,
+    _i1.TestSessionBuilder sessionBuilder,
+    String key,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'redis',
-            method: 'deleteSimpleData',
-          );
+        endpoint: 'redis',
+        method: 'deleteSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'redis',
           methodName: 'deleteSimpleData',
           parameters: _i1.testObjectToJson({'key': key}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11481,28 +10864,25 @@ class _RedisEndpoint {
   }
 
   _i3.Future<void> resetMessageCentralTest(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'redis',
-            method: 'resetMessageCentralTest',
-          );
+        endpoint: 'redis',
+        method: 'resetMessageCentralTest',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'redis',
           methodName: 'resetMessageCentralTest',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11511,29 +10891,27 @@ class _RedisEndpoint {
   }
 
   _i3.Future<_i10.SimpleData?> listenToChannel(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String channel,
+    _i1.TestSessionBuilder sessionBuilder,
+    String channel,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'redis',
-            method: 'listenToChannel',
-          );
+        endpoint: 'redis',
+        method: 'listenToChannel',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'redis',
           methodName: 'listenToChannel',
           parameters: _i1.testObjectToJson({'channel': channel}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i10.SimpleData?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i10.SimpleData?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11542,18 +10920,18 @@ class _RedisEndpoint {
   }
 
   _i3.Future<void> postToChannel(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String channel,
-    final _i10.SimpleData data,
+    _i1.TestSessionBuilder sessionBuilder,
+    String channel,
+    _i10.SimpleData data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'redis',
-            method: 'postToChannel',
-          );
+        endpoint: 'redis',
+        method: 'postToChannel',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'redis',
           methodName: 'postToChannel',
@@ -11563,12 +10941,10 @@ class _RedisEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11577,28 +10953,25 @@ class _RedisEndpoint {
   }
 
   _i3.Future<int> countSubscribedChannels(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'redis',
-            method: 'countSubscribedChannels',
-          );
+        endpoint: 'redis',
+        method: 'countSubscribedChannels',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'redis',
           methodName: 'countSubscribedChannels',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<int>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<int>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11618,28 +10991,25 @@ class _ServerOnlyScopedFieldModelEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<_i23.ScopeServerOnlyField> getScopeServerOnlyField(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'serverOnlyScopedFieldModel',
-            method: 'getScopeServerOnlyField',
-          );
+        endpoint: 'serverOnlyScopedFieldModel',
+        method: 'getScopeServerOnlyField',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'serverOnlyScopedFieldModel',
           methodName: 'getScopeServerOnlyField',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i23.ScopeServerOnlyField>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i23.ScopeServerOnlyField>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11659,28 +11029,25 @@ class _ServerOnlyScopedFieldChildModelEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<_i24.ScopeServerOnlyFieldChild> getProtocolField(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'serverOnlyScopedFieldChildModel',
-            method: 'getProtocolField',
-          );
+        endpoint: 'serverOnlyScopedFieldChildModel',
+        method: 'getProtocolField',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'serverOnlyScopedFieldChildModel',
           methodName: 'getProtocolField',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i24.ScopeServerOnlyFieldChild>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i24.ScopeServerOnlyFieldChild>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11700,28 +11067,25 @@ class _SessionAuthenticationEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String?> getAuthenticatedUserId(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'sessionAuthentication',
-            method: 'getAuthenticatedUserId',
-          );
+        endpoint: 'sessionAuthentication',
+        method: 'getAuthenticatedUserId',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'sessionAuthentication',
           methodName: 'getAuthenticatedUserId',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11730,28 +11094,25 @@ class _SessionAuthenticationEndpoint {
   }
 
   _i3.Future<List<String>> getAuthenticatedScopes(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'sessionAuthentication',
-            method: 'getAuthenticatedScopes',
-          );
+        endpoint: 'sessionAuthentication',
+        method: 'getAuthenticatedScopes',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'sessionAuthentication',
           methodName: 'getAuthenticatedScopes',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<String>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<String>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11760,28 +11121,25 @@ class _SessionAuthenticationEndpoint {
   }
 
   _i3.Future<String?> getAuthenticatedAuthId(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'sessionAuthentication',
-            method: 'getAuthenticatedAuthId',
-          );
+        endpoint: 'sessionAuthentication',
+        method: 'getAuthenticatedAuthId',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'sessionAuthentication',
           methodName: 'getAuthenticatedAuthId',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11790,28 +11148,25 @@ class _SessionAuthenticationEndpoint {
   }
 
   _i3.Future<_i25.SessionAuthInfo> getAuthenticationInfo(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'sessionAuthentication',
-            method: 'getAuthenticationInfo',
-          );
+        endpoint: 'sessionAuthentication',
+        method: 'getAuthenticationInfo',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'sessionAuthentication',
           methodName: 'getAuthenticationInfo',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i25.SessionAuthInfo>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i25.SessionAuthInfo>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11820,28 +11175,25 @@ class _SessionAuthenticationEndpoint {
   }
 
   _i3.Future<bool> isAuthenticated(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'sessionAuthentication',
-            method: 'isAuthenticated',
-          );
+        endpoint: 'sessionAuthentication',
+        method: 'isAuthenticated',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'sessionAuthentication',
           methodName: 'isAuthenticated',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11850,25 +11202,24 @@ class _SessionAuthenticationEndpoint {
   }
 
   _i3.Stream<String?> streamAuthenticatedUserId(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<String?>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<String?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'sessionAuthentication',
-              method: 'streamAuthenticatedUserId',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'sessionAuthentication',
-              methodName: 'streamAuthenticatedUserId',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'sessionAuthentication',
+          method: 'streamAuthenticatedUserId',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'sessionAuthentication',
+          methodName: 'streamAuthenticatedUserId',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -11881,25 +11232,24 @@ class _SessionAuthenticationEndpoint {
   }
 
   _i3.Stream<bool> streamIsAuthenticated(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<bool>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<bool>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'sessionAuthentication',
-              method: 'streamIsAuthenticated',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'sessionAuthentication',
-              methodName: 'streamIsAuthenticated',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'sessionAuthentication',
+          method: 'streamIsAuthenticated',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'sessionAuthentication',
+          methodName: 'streamIsAuthenticated',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -11914,8 +11264,8 @@ class _SessionAuthenticationEndpoint {
 
 class _SessionAuthenticationStreamingEndpoint {
   _SessionAuthenticationStreamingEndpoint(
-    final _endpointDispatch,
-    final _serializationManager,
+    _endpointDispatch,
+    _serializationManager,
   );
 }
 
@@ -11930,29 +11280,27 @@ class _SetParametersEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<Set<int>> returnIntSet(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<int> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<int> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnIntSet',
-          );
+        endpoint: 'setParameters',
+        method: 'returnIntSet',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnIntSet',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<int>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<int>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11961,29 +11309,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<Set<int>>> returnIntSetSet(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<Set<int>> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<Set<int>> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnIntSetSet',
-          );
+        endpoint: 'setParameters',
+        method: 'returnIntSetSet',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnIntSetSet',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<Set<int>>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<Set<int>>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -11992,29 +11338,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<List<int>>> returnIntListSet(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<List<int>> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<List<int>> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnIntListSet',
-          );
+        endpoint: 'setParameters',
+        method: 'returnIntListSet',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnIntListSet',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<List<int>>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<List<int>>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12023,29 +11367,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<int>?> returnIntSetNullable(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<int>? set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<int>? set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnIntSetNullable',
-          );
+        endpoint: 'setParameters',
+        method: 'returnIntSetNullable',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnIntSetNullable',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<int>?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<int>?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12054,29 +11396,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<Set<int>?>> returnIntSetNullableSet(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<Set<int>?> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<Set<int>?> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnIntSetNullableSet',
-          );
+        endpoint: 'setParameters',
+        method: 'returnIntSetNullableSet',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnIntSetNullableSet',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<Set<int>?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<Set<int>?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12085,29 +11425,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<Set<int>>?> returnIntSetSetNullable(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<Set<int>>? set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<Set<int>>? set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnIntSetSetNullable',
-          );
+        endpoint: 'setParameters',
+        method: 'returnIntSetSetNullable',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnIntSetSetNullable',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<Set<int>>?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<Set<int>>?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12116,29 +11454,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<int?>> returnIntSetNullableInts(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<int?> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<int?> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnIntSetNullableInts',
-          );
+        endpoint: 'setParameters',
+        method: 'returnIntSetNullableInts',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnIntSetNullableInts',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<int?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<int?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12147,29 +11483,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<int?>?> returnNullableIntSetNullableInts(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<int?>? set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<int?>? set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnNullableIntSetNullableInts',
-          );
+        endpoint: 'setParameters',
+        method: 'returnNullableIntSetNullableInts',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnNullableIntSetNullableInts',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<int?>?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<int?>?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12178,29 +11512,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<double>> returnDoubleSet(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<double> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<double> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnDoubleSet',
-          );
+        endpoint: 'setParameters',
+        method: 'returnDoubleSet',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnDoubleSet',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<double>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<double>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12209,29 +11541,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<double?>> returnDoubleSetNullableDoubles(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<double?> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<double?> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnDoubleSetNullableDoubles',
-          );
+        endpoint: 'setParameters',
+        method: 'returnDoubleSetNullableDoubles',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnDoubleSetNullableDoubles',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<double?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<double?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12240,29 +11570,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<bool>> returnBoolSet(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<bool> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<bool> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnBoolSet',
-          );
+        endpoint: 'setParameters',
+        method: 'returnBoolSet',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnBoolSet',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<bool>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<bool>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12271,29 +11599,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<bool?>> returnBoolSetNullableBools(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<bool?> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<bool?> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnBoolSetNullableBools',
-          );
+        endpoint: 'setParameters',
+        method: 'returnBoolSetNullableBools',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnBoolSetNullableBools',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<bool?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<bool?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12302,29 +11628,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<String>> returnStringSet(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<String> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<String> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnStringSet',
-          );
+        endpoint: 'setParameters',
+        method: 'returnStringSet',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnStringSet',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<String>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<String>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12333,29 +11657,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<String?>> returnStringSetNullableStrings(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<String?> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<String?> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnStringSetNullableStrings',
-          );
+        endpoint: 'setParameters',
+        method: 'returnStringSetNullableStrings',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnStringSetNullableStrings',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<String?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<String?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12364,29 +11686,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<DateTime>> returnDateTimeSet(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<DateTime> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<DateTime> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnDateTimeSet',
-          );
+        endpoint: 'setParameters',
+        method: 'returnDateTimeSet',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnDateTimeSet',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<DateTime>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<DateTime>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12395,29 +11715,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<DateTime?>> returnDateTimeSetNullableDateTimes(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<DateTime?> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<DateTime?> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnDateTimeSetNullableDateTimes',
-          );
+        endpoint: 'setParameters',
+        method: 'returnDateTimeSetNullableDateTimes',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnDateTimeSetNullableDateTimes',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<DateTime?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<DateTime?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12426,29 +11744,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<_i5.ByteData>> returnByteDataSet(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<_i5.ByteData> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<_i5.ByteData> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnByteDataSet',
-          );
+        endpoint: 'setParameters',
+        method: 'returnByteDataSet',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnByteDataSet',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<_i5.ByteData>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<_i5.ByteData>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12457,29 +11773,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<_i5.ByteData?>> returnByteDataSetNullableByteDatas(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<_i5.ByteData?> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<_i5.ByteData?> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnByteDataSetNullableByteDatas',
-          );
+        endpoint: 'setParameters',
+        method: 'returnByteDataSetNullableByteDatas',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnByteDataSetNullableByteDatas',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<_i5.ByteData?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<_i5.ByteData?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12488,29 +11802,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<_i10.SimpleData>> returnSimpleDataSet(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<_i10.SimpleData> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<_i10.SimpleData> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnSimpleDataSet',
-          );
+        endpoint: 'setParameters',
+        method: 'returnSimpleDataSet',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnSimpleDataSet',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<_i10.SimpleData>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<_i10.SimpleData>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12519,29 +11831,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<_i10.SimpleData?>> returnSimpleDataSetNullableSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<_i10.SimpleData?> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<_i10.SimpleData?> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnSimpleDataSetNullableSimpleData',
-          );
+        endpoint: 'setParameters',
+        method: 'returnSimpleDataSetNullableSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnSimpleDataSetNullableSimpleData',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<_i10.SimpleData?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<_i10.SimpleData?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12550,29 +11860,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<Duration>> returnDurationSet(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<Duration> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<Duration> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnDurationSet',
-          );
+        endpoint: 'setParameters',
+        method: 'returnDurationSet',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnDurationSet',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<Duration>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<Duration>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12581,29 +11889,27 @@ class _SetParametersEndpoint {
   }
 
   _i3.Future<Set<Duration?>> returnDurationSetNullableDurations(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final Set<Duration?> set,
+    _i1.TestSessionBuilder sessionBuilder,
+    Set<Duration?> set,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'setParameters',
-            method: 'returnDurationSetNullableDurations',
-          );
+        endpoint: 'setParameters',
+        method: 'returnDurationSetNullableDurations',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'setParameters',
           methodName: 'returnDurationSetNullableDurations',
           parameters: _i1.testObjectToJson({'set': set}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<Set<Duration?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<Set<Duration?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12622,27 +11928,25 @@ class _SignInRequiredEndpoint {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Future<bool> testMethod(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<bool> testMethod(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'signInRequired',
-            method: 'testMethod',
-          );
+        endpoint: 'signInRequired',
+        method: 'testMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'signInRequired',
           methodName: 'testMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12661,27 +11965,25 @@ class _AdminScopeRequiredEndpoint {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Future<bool> testMethod(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<bool> testMethod(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'adminScopeRequired',
-            method: 'testMethod',
-          );
+        endpoint: 'adminScopeRequired',
+        method: 'testMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'adminScopeRequired',
           methodName: 'testMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12701,18 +12003,18 @@ class _SimpleEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<void> setGlobalInt(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int? value, [
-    final int? secondValue,
+    _i1.TestSessionBuilder sessionBuilder,
+    int? value, [
+    int? secondValue,
   ]) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'simple',
-            method: 'setGlobalInt',
-          );
+        endpoint: 'simple',
+        method: 'setGlobalInt',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'simple',
           methodName: 'setGlobalInt',
@@ -12722,12 +12024,10 @@ class _SimpleEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12735,27 +12035,25 @@ class _SimpleEndpoint {
     });
   }
 
-  _i3.Future<void> addToGlobalInt(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<void> addToGlobalInt(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'simple',
-            method: 'addToGlobalInt',
-          );
+        endpoint: 'simple',
+        method: 'addToGlobalInt',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'simple',
           methodName: 'addToGlobalInt',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12763,27 +12061,25 @@ class _SimpleEndpoint {
     });
   }
 
-  _i3.Future<int> getGlobalInt(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<int> getGlobalInt(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'simple',
-            method: 'getGlobalInt',
-          );
+        endpoint: 'simple',
+        method: 'getGlobalInt',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'simple',
           methodName: 'getGlobalInt',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<int>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<int>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12792,29 +12088,27 @@ class _SimpleEndpoint {
   }
 
   _i3.Future<String> hello(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String name,
+    _i1.TestSessionBuilder sessionBuilder,
+    String name,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'simple',
-            method: 'hello',
-          );
+        endpoint: 'simple',
+        method: 'hello',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'simple',
           methodName: 'hello',
           parameters: _i1.testObjectToJson({'name': name}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12825,15 +12119,15 @@ class _SimpleEndpoint {
 
 class _StreamingEndpoint {
   _StreamingEndpoint(
-    final _endpointDispatch,
-    final _serializationManager,
+    _endpointDispatch,
+    _serializationManager,
   );
 }
 
 class _StreamingLoggingEndpoint {
   _StreamingLoggingEndpoint(
-    final _endpointDispatch,
-    final _serializationManager,
+    _endpointDispatch,
+    _serializationManager,
   );
 }
 
@@ -12847,27 +12141,25 @@ class _SubSubDirTestEndpoint {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Future<String> testMethod(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<String> testMethod(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'subSubDirTest',
-            method: 'testMethod',
-          );
+        endpoint: 'subSubDirTest',
+        method: 'testMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'subSubDirTest',
           methodName: 'testMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12886,27 +12178,25 @@ class _SubDirTestEndpoint {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Future<String> testMethod(final _i1.TestSessionBuilder sessionBuilder) async {
+  _i3.Future<String> testMethod(_i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'subDirTest',
-            method: 'testMethod',
-          );
+        endpoint: 'subDirTest',
+        method: 'testMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'subDirTest',
           methodName: 'testMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12926,28 +12216,25 @@ class _TestToolsEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<_i2.UuidValue> returnsSessionId(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'returnsSessionId',
-          );
+        endpoint: 'testTools',
+        method: 'returnsSessionId',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'returnsSessionId',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i2.UuidValue>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i2.UuidValue>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12956,28 +12243,25 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<List<String?>> returnsSessionEndpointAndMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'returnsSessionEndpointAndMethod',
-          );
+        endpoint: 'testTools',
+        method: 'returnsSessionEndpointAndMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'returnsSessionEndpointAndMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<String?>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<String?>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -12986,25 +12270,24 @@ class _TestToolsEndpoint {
   }
 
   _i3.Stream<_i2.UuidValue> returnsSessionIdFromStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<_i2.UuidValue>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<_i2.UuidValue>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'testTools',
-              method: 'returnsSessionIdFromStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'testTools',
-              methodName: 'returnsSessionIdFromStream',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'testTools',
+          method: 'returnsSessionIdFromStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'testTools',
+          methodName: 'returnsSessionIdFromStream',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -13017,25 +12300,24 @@ class _TestToolsEndpoint {
   }
 
   _i3.Stream<String?> returnsSessionEndpointAndMethodFromStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<String?>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<String?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'testTools',
-              method: 'returnsSessionEndpointAndMethodFromStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'testTools',
-              methodName: 'returnsSessionEndpointAndMethodFromStream',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'testTools',
+          method: 'returnsSessionEndpointAndMethodFromStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'testTools',
+          methodName: 'returnsSessionEndpointAndMethodFromStream',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -13048,29 +12330,27 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<String> returnsString(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String string,
+    _i1.TestSessionBuilder sessionBuilder,
+    String string,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'returnsString',
-          );
+        endpoint: 'testTools',
+        method: 'returnsString',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'returnsString',
           parameters: _i1.testObjectToJson({'string': string}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -13079,26 +12359,26 @@ class _TestToolsEndpoint {
   }
 
   _i3.Stream<int> returnsStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int n,
+    _i1.TestSessionBuilder sessionBuilder,
+    int n,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'testTools',
-              method: 'returnsStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'testTools',
-              methodName: 'returnsStream',
-              arguments: {'n': n},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'testTools',
+          method: 'returnsStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'testTools',
+          methodName: 'returnsStream',
+          arguments: {'n': n},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -13111,89 +12391,87 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<List<int>> returnsListFromInputStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> numbers,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> numbers,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<List<int>>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'testTools',
-              method: 'returnsListFromInputStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'testTools',
-              methodName: 'returnsListFromInputStream',
-              arguments: {},
-              requestedInputStreams: ['numbers'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'numbers': numbers},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<List<int>>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'testTools',
+        method: 'returnsListFromInputStream',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'testTools',
+        methodName: 'returnsListFromInputStream',
+        arguments: {},
+        requestedInputStreams: ['numbers'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'numbers': numbers},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
   _i3.Future<List<_i10.SimpleData>> returnsSimpleDataListFromInputStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<_i10.SimpleData> simpleDatas,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<_i10.SimpleData> simpleDatas,
   ) async {
-    final _localTestStreamManager =
+    var _localTestStreamManager =
         _i1.TestStreamManager<List<_i10.SimpleData>>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'testTools',
-              method: 'returnsSimpleDataListFromInputStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'testTools',
-              methodName: 'returnsSimpleDataListFromInputStream',
-              arguments: {},
-              requestedInputStreams: ['simpleDatas'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'simpleDatas': simpleDatas},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'testTools',
+        method: 'returnsSimpleDataListFromInputStream',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'testTools',
+        methodName: 'returnsSimpleDataListFromInputStream',
+        arguments: {},
+        requestedInputStreams: ['simpleDatas'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'simpleDatas': simpleDatas},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
   _i3.Stream<int> returnsStreamFromInputStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> numbers,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> numbers,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'testTools',
-              method: 'returnsStreamFromInputStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'testTools',
-              methodName: 'returnsStreamFromInputStream',
-              arguments: {},
-              requestedInputStreams: ['numbers'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'testTools',
+          method: 'returnsStreamFromInputStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'testTools',
+          methodName: 'returnsStreamFromInputStream',
+          arguments: {},
+          requestedInputStreams: ['numbers'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -13206,26 +12484,26 @@ class _TestToolsEndpoint {
   }
 
   _i3.Stream<_i10.SimpleData> returnsSimpleDataStreamFromInputStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<_i10.SimpleData> simpleDatas,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<_i10.SimpleData> simpleDatas,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<_i10.SimpleData>();
+    var _localTestStreamManager = _i1.TestStreamManager<_i10.SimpleData>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'testTools',
-              method: 'returnsSimpleDataStreamFromInputStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'testTools',
-              methodName: 'returnsSimpleDataStreamFromInputStream',
-              arguments: {},
-              requestedInputStreams: ['simpleDatas'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'testTools',
+          method: 'returnsSimpleDataStreamFromInputStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'testTools',
+          methodName: 'returnsSimpleDataStreamFromInputStream',
+          arguments: {},
+          requestedInputStreams: ['simpleDatas'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -13238,29 +12516,27 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<void> postNumberToSharedStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int number,
+    _i1.TestSessionBuilder sessionBuilder,
+    int number,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'postNumberToSharedStream',
-          );
+        endpoint: 'testTools',
+        method: 'postNumberToSharedStream',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'postNumberToSharedStream',
           parameters: _i1.testObjectToJson({'number': number}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -13269,26 +12545,26 @@ class _TestToolsEndpoint {
   }
 
   _i3.Stream<int> postNumberToSharedStreamAndReturnStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int number,
+    _i1.TestSessionBuilder sessionBuilder,
+    int number,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'testTools',
-              method: 'postNumberToSharedStreamAndReturnStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'testTools',
-              methodName: 'postNumberToSharedStreamAndReturnStream',
-              arguments: {'number': number},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'testTools',
+          method: 'postNumberToSharedStreamAndReturnStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'testTools',
+          methodName: 'postNumberToSharedStreamAndReturnStream',
+          arguments: {'number': number},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -13301,25 +12577,24 @@ class _TestToolsEndpoint {
   }
 
   _i3.Stream<int> listenForNumbersOnSharedStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'testTools',
-              method: 'listenForNumbersOnSharedStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'testTools',
-              methodName: 'listenForNumbersOnSharedStream',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'testTools',
+          method: 'listenForNumbersOnSharedStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'testTools',
+          methodName: 'listenForNumbersOnSharedStream',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -13332,29 +12607,27 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<void> createSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int data,
+    _i1.TestSessionBuilder sessionBuilder,
+    int data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'createSimpleData',
-          );
+        endpoint: 'testTools',
+        method: 'createSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'createSimpleData',
           parameters: _i1.testObjectToJson({'data': data}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -13363,28 +12636,25 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<List<_i10.SimpleData>> getAllSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'getAllSimpleData',
-          );
+        endpoint: 'testTools',
+        method: 'getAllSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'getAllSimpleData',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<_i10.SimpleData>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<_i10.SimpleData>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -13393,29 +12663,27 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<void> createSimpleDatasInsideTransactions(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int data,
+    _i1.TestSessionBuilder sessionBuilder,
+    int data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'createSimpleDatasInsideTransactions',
-          );
+        endpoint: 'testTools',
+        method: 'createSimpleDatasInsideTransactions',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'createSimpleDatasInsideTransactions',
           parameters: _i1.testObjectToJson({'data': data}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -13424,29 +12692,27 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<void> createSimpleDataAndThrowInsideTransaction(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int data,
+    _i1.TestSessionBuilder sessionBuilder,
+    int data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'createSimpleDataAndThrowInsideTransaction',
-          );
+        endpoint: 'testTools',
+        method: 'createSimpleDataAndThrowInsideTransaction',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'createSimpleDataAndThrowInsideTransaction',
           parameters: _i1.testObjectToJson({'data': data}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -13455,28 +12721,25 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<void> createSimpleDatasInParallelTransactionCalls(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'createSimpleDatasInParallelTransactionCalls',
-          );
+        endpoint: 'testTools',
+        method: 'createSimpleDatasInParallelTransactionCalls',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'createSimpleDatasInParallelTransactionCalls',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -13485,29 +12748,27 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<_i10.SimpleData> echoSimpleData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i10.SimpleData simpleData,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i10.SimpleData simpleData,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'echoSimpleData',
-          );
+        endpoint: 'testTools',
+        method: 'echoSimpleData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'echoSimpleData',
           parameters: _i1.testObjectToJson({'simpleData': simpleData}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i10.SimpleData>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i10.SimpleData>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -13516,29 +12777,27 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<List<_i10.SimpleData>> echoSimpleDatas(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<_i10.SimpleData> simpleDatas,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<_i10.SimpleData> simpleDatas,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'echoSimpleDatas',
-          );
+        endpoint: 'testTools',
+        method: 'echoSimpleDatas',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'echoSimpleDatas',
           parameters: _i1.testObjectToJson({'simpleDatas': simpleDatas}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<_i10.SimpleData>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<_i10.SimpleData>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -13547,29 +12806,27 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<_i12.Types> echoTypes(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i12.Types typesModel,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i12.Types typesModel,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'echoTypes',
-          );
+        endpoint: 'testTools',
+        method: 'echoTypes',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'echoTypes',
           parameters: _i1.testObjectToJson({'typesModel': typesModel}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i12.Types>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i12.Types>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -13578,29 +12835,27 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<List<_i12.Types>> echoTypesList(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<_i12.Types> typesList,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<_i12.Types> typesList,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'echoTypesList',
-          );
+        endpoint: 'testTools',
+        method: 'echoTypesList',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'echoTypesList',
           parameters: _i1.testObjectToJson({'typesList': typesList}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<List<_i12.Types>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<_i12.Types>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -13609,29 +12864,27 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<_i20.ModuleDatatype> echoModuleDatatype(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i20.ModuleDatatype moduleDatatype,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i20.ModuleDatatype moduleDatatype,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'echoModuleDatatype',
-          );
+        endpoint: 'testTools',
+        method: 'echoModuleDatatype',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'echoModuleDatatype',
           parameters: _i1.testObjectToJson({'moduleDatatype': moduleDatatype}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i20.ModuleDatatype>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i20.ModuleDatatype>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -13640,31 +12893,30 @@ class _TestToolsEndpoint {
   }
 
   _i3.Stream<_i20.ModuleDatatype?> streamModuleDatatype(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i20.ModuleDatatype? initialValue,
-    final _i3.Stream<_i20.ModuleDatatype?> values,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i20.ModuleDatatype? initialValue,
+    _i3.Stream<_i20.ModuleDatatype?> values,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<_i20.ModuleDatatype?>();
+    var _localTestStreamManager = _i1.TestStreamManager<_i20.ModuleDatatype?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'testTools',
-              method: 'streamModuleDatatype',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'testTools',
-              methodName: 'streamModuleDatatype',
-              arguments: {
-                'initialValue': _i21.jsonDecode(
-                  _i2.SerializationManager.encode(initialValue),
-                ),
-              },
-              requestedInputStreams: ['values'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'testTools',
+          method: 'streamModuleDatatype',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'testTools',
+          methodName: 'streamModuleDatatype',
+          arguments: {
+            'initialValue':
+                _i21.jsonDecode(_i2.SerializationManager.encode(initialValue))
+          },
+          requestedInputStreams: ['values'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -13677,29 +12929,27 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<_i19.ModuleClass> echoModuleClass(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i19.ModuleClass moduleClass,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i19.ModuleClass moduleClass,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'echoModuleClass',
-          );
+        endpoint: 'testTools',
+        method: 'echoModuleClass',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'echoModuleClass',
           parameters: _i1.testObjectToJson({'moduleClass': moduleClass}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i19.ModuleClass>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i19.ModuleClass>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -13708,31 +12958,30 @@ class _TestToolsEndpoint {
   }
 
   _i3.Stream<_i19.ModuleClass?> streamModuleClass(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i19.ModuleClass? initialValue,
-    final _i3.Stream<_i19.ModuleClass?> values,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i19.ModuleClass? initialValue,
+    _i3.Stream<_i19.ModuleClass?> values,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<_i19.ModuleClass?>();
+    var _localTestStreamManager = _i1.TestStreamManager<_i19.ModuleClass?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'testTools',
-              method: 'streamModuleClass',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'testTools',
-              methodName: 'streamModuleClass',
-              arguments: {
-                'initialValue': _i21.jsonDecode(
-                  _i2.SerializationManager.encode(initialValue),
-                ),
-              },
-              requestedInputStreams: ['values'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'testTools',
+          method: 'streamModuleClass',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'testTools',
+          methodName: 'streamModuleClass',
+          arguments: {
+            'initialValue':
+                _i21.jsonDecode(_i2.SerializationManager.encode(initialValue))
+          },
+          requestedInputStreams: ['values'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -13745,34 +12994,31 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<(String, (int, bool))> echoRecord(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (String, (int, bool)) record,
+    _i1.TestSessionBuilder sessionBuilder,
+    (String, (int, bool)) record,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'echoRecord',
-          );
+        endpoint: 'testTools',
+        method: 'echoRecord',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'echoRecord',
-          parameters: _i1.testObjectToJson({
-            'record': _i17.mapRecordToJson(record),
-          }),
+          parameters:
+              _i1.testObjectToJson({'record': _i17.mapRecordToJson(record)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) =>
-                  _i17.Protocol().deserialize<(String, (int, bool))>(record),
-            );
+            .then((record) =>
+                _i17.Protocol().deserialize<(String, (int, bool))>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -13781,34 +13027,31 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<List<(String, (int, bool))>> echoRecords(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<(String, (int, bool))> records,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<(String, (int, bool))> records,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'echoRecords',
-          );
+        endpoint: 'testTools',
+        method: 'echoRecords',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'echoRecords',
-          parameters: _i1.testObjectToJson({
-            'records': _i17.mapContainerToJson(records),
-          }),
+          parameters: _i1
+              .testObjectToJson({'records': _i17.mapContainerToJson(records)}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue = await _localCallContext.method
+        var _localReturnValue = await _localCallContext.method
             .call(
               _localUniqueSession,
               _localCallContext.arguments,
             )
-            .then(
-              (final record) => _i17.Protocol()
-                  .deserialize<List<(String, (int, bool))>>(record),
-            );
+            .then((record) => _i17.Protocol()
+                .deserialize<List<(String, (int, bool))>>(record));
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -13817,43 +13060,44 @@ class _TestToolsEndpoint {
   }
 
   _i3.Stream<
-    (String, (Map<String, int>, {bool flag, _i10.SimpleData simpleData}))
-  >
-  recordEchoStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (String, (Map<String, int>, {bool flag, _i10.SimpleData simpleData}))
-    initialValue,
-    final _i3.Stream<
-      (String, (Map<String, int>, {bool flag, _i10.SimpleData simpleData}))
-    >
-    stream,
+          (String, (Map<String, int>, {bool flag, _i10.SimpleData simpleData}))>
+      recordEchoStream(
+    _i1.TestSessionBuilder sessionBuilder,
+    (
+      String,
+      (Map<String, int>, {bool flag, _i10.SimpleData simpleData})
+    ) initialValue,
+    _i3.Stream<
+            (
+              String,
+              (Map<String, int>, {bool flag, _i10.SimpleData simpleData})
+            )>
+        stream,
   ) {
-    final _localTestStreamManager =
-        _i1.TestStreamManager<
-          (String, (Map<String, int>, {bool flag, _i10.SimpleData simpleData}))
-        >();
+    var _localTestStreamManager = _i1.TestStreamManager<
+        (
+          String,
+          (Map<String, int>, {bool flag, _i10.SimpleData simpleData})
+        )>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'testTools',
-              method: 'recordEchoStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'testTools',
-              methodName: 'recordEchoStream',
-              arguments: {
-                'initialValue': _i21.jsonDecode(
-                  _i2.SerializationManager.encode(
-                    _i17.mapRecordToJson(initialValue),
-                  ),
-                ),
-              },
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'testTools',
+          method: 'recordEchoStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'testTools',
+          methodName: 'recordEchoStream',
+          arguments: {
+            'initialValue': _i21.jsonDecode(_i2.SerializationManager.encode(
+                _i17.mapRecordToJson(initialValue)))
+          },
+          requestedInputStreams: ['stream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -13866,33 +13110,30 @@ class _TestToolsEndpoint {
   }
 
   _i3.Stream<List<(String, int)>> listOfRecordEchoStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<(String, int)> initialValue,
-    final _i3.Stream<List<(String, int)>> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<(String, int)> initialValue,
+    _i3.Stream<List<(String, int)>> stream,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<List<(String, int)>>();
+    var _localTestStreamManager = _i1.TestStreamManager<List<(String, int)>>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'testTools',
-              method: 'listOfRecordEchoStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'testTools',
-              methodName: 'listOfRecordEchoStream',
-              arguments: {
-                'initialValue': _i21.jsonDecode(
-                  _i2.SerializationManager.encode(
-                    _i17.mapContainerToJson(initialValue),
-                  ),
-                ),
-              },
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'testTools',
+          method: 'listOfRecordEchoStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'testTools',
+          methodName: 'listOfRecordEchoStream',
+          arguments: {
+            'initialValue': _i21.jsonDecode(_i2.SerializationManager.encode(
+                _i17.mapContainerToJson(initialValue)))
+          },
+          requestedInputStreams: ['stream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -13905,43 +13146,46 @@ class _TestToolsEndpoint {
   }
 
   _i3.Stream<
-    (String, (Map<String, int>, {bool flag, _i10.SimpleData simpleData}))?
-  >
-  nullableRecordEchoStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final (String, (Map<String, int>, {bool flag, _i10.SimpleData simpleData}))?
-    initialValue,
-    final _i3.Stream<
-      (String, (Map<String, int>, {bool flag, _i10.SimpleData simpleData}))?
-    >
-    stream,
+      (
+        String,
+        (Map<String, int>, {bool flag, _i10.SimpleData simpleData})
+      )?> nullableRecordEchoStream(
+    _i1.TestSessionBuilder sessionBuilder,
+    (
+      String,
+      (Map<String, int>, {bool flag, _i10.SimpleData simpleData})
+    )? initialValue,
+    _i3.Stream<
+            (
+              String,
+              (Map<String, int>, {bool flag, _i10.SimpleData simpleData})
+            )?>
+        stream,
   ) {
-    final _localTestStreamManager =
-        _i1.TestStreamManager<
-          (String, (Map<String, int>, {bool flag, _i10.SimpleData simpleData}))?
-        >();
+    var _localTestStreamManager = _i1.TestStreamManager<
+        (
+          String,
+          (Map<String, int>, {bool flag, _i10.SimpleData simpleData})
+        )?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'testTools',
-              method: 'nullableRecordEchoStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'testTools',
-              methodName: 'nullableRecordEchoStream',
-              arguments: {
-                'initialValue': _i21.jsonDecode(
-                  _i2.SerializationManager.encode(
-                    _i17.mapRecordToJson(initialValue),
-                  ),
-                ),
-              },
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'testTools',
+          method: 'nullableRecordEchoStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'testTools',
+          methodName: 'nullableRecordEchoStream',
+          arguments: {
+            'initialValue': _i21.jsonDecode(_i2.SerializationManager.encode(
+                _i17.mapRecordToJson(initialValue)))
+          },
+          requestedInputStreams: ['stream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -13954,35 +13198,32 @@ class _TestToolsEndpoint {
   }
 
   _i3.Stream<List<(String, int)>?> nullableListOfRecordEchoStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final List<(String, int)>? initialValue,
-    final _i3.Stream<List<(String, int)>?> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    List<(String, int)>? initialValue,
+    _i3.Stream<List<(String, int)>?> stream,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<List<(String, int)>?>();
+    var _localTestStreamManager = _i1.TestStreamManager<List<(String, int)>?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'testTools',
-              method: 'nullableListOfRecordEchoStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'testTools',
-              methodName: 'nullableListOfRecordEchoStream',
-              arguments: {
-                'initialValue': initialValue == null
-                    ? null
-                    : _i21.jsonDecode(
-                        _i2.SerializationManager.encode(
-                          _i17.mapContainerToJson(initialValue),
-                        ),
-                      ),
-              },
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'testTools',
+          method: 'nullableListOfRecordEchoStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'testTools',
+          methodName: 'nullableListOfRecordEchoStream',
+          arguments: {
+            'initialValue': initialValue == null
+                ? null
+                : _i21.jsonDecode(_i2.SerializationManager.encode(
+                    _i17.mapContainerToJson(initialValue)))
+          },
+          requestedInputStreams: ['stream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -13995,31 +13236,30 @@ class _TestToolsEndpoint {
   }
 
   _i3.Stream<_i22.TypesRecord?> modelWithRecordsEchoStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i22.TypesRecord? initialValue,
-    final _i3.Stream<_i22.TypesRecord?> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i22.TypesRecord? initialValue,
+    _i3.Stream<_i22.TypesRecord?> stream,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<_i22.TypesRecord?>();
+    var _localTestStreamManager = _i1.TestStreamManager<_i22.TypesRecord?>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'testTools',
-              method: 'modelWithRecordsEchoStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'testTools',
-              methodName: 'modelWithRecordsEchoStream',
-              arguments: {
-                'initialValue': _i21.jsonDecode(
-                  _i2.SerializationManager.encode(initialValue),
-                ),
-              },
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'testTools',
+          method: 'modelWithRecordsEchoStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'testTools',
+          methodName: 'modelWithRecordsEchoStream',
+          arguments: {
+            'initialValue':
+                _i21.jsonDecode(_i2.SerializationManager.encode(initialValue))
+          },
+          requestedInputStreams: ['stream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -14032,28 +13272,25 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<void> logMessageWithSession(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'logMessageWithSession',
-          );
+        endpoint: 'testTools',
+        method: 'logMessageWithSession',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'logMessageWithSession',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -14062,28 +13299,25 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<void> addWillCloseListenerToSessionAndThrow(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'addWillCloseListenerToSessionAndThrow',
-          );
+        endpoint: 'testTools',
+        method: 'addWillCloseListenerToSessionAndThrow',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'addWillCloseListenerToSessionAndThrow',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -14092,26 +13326,24 @@ class _TestToolsEndpoint {
   }
 
   _i3.Stream<int> addWillCloseListenerToSessionIntStreamMethodAndThrow(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'testTools',
-              method: 'addWillCloseListenerToSessionIntStreamMethodAndThrow',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'testTools',
-              methodName:
-                  'addWillCloseListenerToSessionIntStreamMethodAndThrow',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'testTools',
+          method: 'addWillCloseListenerToSessionIntStreamMethodAndThrow',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'testTools',
+          methodName: 'addWillCloseListenerToSessionIntStreamMethodAndThrow',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -14124,18 +13356,18 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<void> putInLocalCache(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String key,
-    final _i10.SimpleData data,
+    _i1.TestSessionBuilder sessionBuilder,
+    String key,
+    _i10.SimpleData data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'putInLocalCache',
-          );
+        endpoint: 'testTools',
+        method: 'putInLocalCache',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'putInLocalCache',
@@ -14145,12 +13377,10 @@ class _TestToolsEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -14159,29 +13389,27 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<_i10.SimpleData?> getFromLocalCache(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String key,
+    _i1.TestSessionBuilder sessionBuilder,
+    String key,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'getFromLocalCache',
-          );
+        endpoint: 'testTools',
+        method: 'getFromLocalCache',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'getFromLocalCache',
           parameters: _i1.testObjectToJson({'key': key}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i10.SimpleData?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i10.SimpleData?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -14190,18 +13418,18 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<void> putInLocalPrioCache(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String key,
-    final _i10.SimpleData data,
+    _i1.TestSessionBuilder sessionBuilder,
+    String key,
+    _i10.SimpleData data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'putInLocalPrioCache',
-          );
+        endpoint: 'testTools',
+        method: 'putInLocalPrioCache',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'putInLocalPrioCache',
@@ -14211,12 +13439,10 @@ class _TestToolsEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -14225,29 +13451,27 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<_i10.SimpleData?> getFromLocalPrioCache(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String key,
+    _i1.TestSessionBuilder sessionBuilder,
+    String key,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'getFromLocalPrioCache',
-          );
+        endpoint: 'testTools',
+        method: 'getFromLocalPrioCache',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'getFromLocalPrioCache',
           parameters: _i1.testObjectToJson({'key': key}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i10.SimpleData?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i10.SimpleData?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -14256,18 +13480,18 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<void> putInQueryCache(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String key,
-    final _i10.SimpleData data,
+    _i1.TestSessionBuilder sessionBuilder,
+    String key,
+    _i10.SimpleData data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'putInQueryCache',
-          );
+        endpoint: 'testTools',
+        method: 'putInQueryCache',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'putInQueryCache',
@@ -14277,12 +13501,10 @@ class _TestToolsEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -14291,29 +13513,27 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<_i10.SimpleData?> getFromQueryCache(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String key,
+    _i1.TestSessionBuilder sessionBuilder,
+    String key,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'getFromQueryCache',
-          );
+        endpoint: 'testTools',
+        method: 'getFromQueryCache',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'getFromQueryCache',
           parameters: _i1.testObjectToJson({'key': key}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i10.SimpleData?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i10.SimpleData?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -14322,19 +13542,19 @@ class _TestToolsEndpoint {
   }
 
   _i3.Future<void> putInLocalCacheWithGroup(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String key,
-    final _i10.SimpleData data,
-    final String group,
+    _i1.TestSessionBuilder sessionBuilder,
+    String key,
+    _i10.SimpleData data,
+    String group,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'testTools',
-            method: 'putInLocalCacheWithGroup',
-          );
+        endpoint: 'testTools',
+        method: 'putInLocalCacheWithGroup',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'testTools',
           methodName: 'putInLocalCacheWithGroup',
@@ -14345,12 +13565,10 @@ class _TestToolsEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -14370,29 +13588,27 @@ class _AuthenticatedTestToolsEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String> returnsString(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String string,
+    _i1.TestSessionBuilder sessionBuilder,
+    String string,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'authenticatedTestTools',
-            method: 'returnsString',
-          );
+        endpoint: 'authenticatedTestTools',
+        method: 'returnsString',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'authenticatedTestTools',
           methodName: 'returnsString',
           parameters: _i1.testObjectToJson({'string': string}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -14401,26 +13617,26 @@ class _AuthenticatedTestToolsEndpoint {
   }
 
   _i3.Stream<int> returnsStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final int n,
+    _i1.TestSessionBuilder sessionBuilder,
+    int n,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'authenticatedTestTools',
-              method: 'returnsStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'authenticatedTestTools',
-              methodName: 'returnsStream',
-              arguments: {'n': n},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'authenticatedTestTools',
+          method: 'returnsStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'authenticatedTestTools',
+          methodName: 'returnsStream',
+          arguments: {'n': n},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -14433,57 +13649,56 @@ class _AuthenticatedTestToolsEndpoint {
   }
 
   _i3.Future<List<int>> returnsListFromInputStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> numbers,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> numbers,
   ) async {
-    final _localTestStreamManager = _i1.TestStreamManager<List<int>>();
-    return _i1.callAwaitableFunctionWithStreamInputAndHandleExceptions(
-      () async {
-        final _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'authenticatedTestTools',
-              method: 'returnsListFromInputStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'authenticatedTestTools',
-              methodName: 'returnsListFromInputStream',
-              arguments: {},
-              requestedInputStreams: ['numbers'],
-              serializationManager: _serializationManager,
-            );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {'numbers': numbers},
-        );
-        return _localTestStreamManager.outputStreamController.stream;
-      },
-    );
+    var _localTestStreamManager = _i1.TestStreamManager<List<int>>();
+    return _i1
+        .callAwaitableFunctionWithStreamInputAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'authenticatedTestTools',
+        method: 'returnsListFromInputStream',
+      );
+      var _localCallContext =
+          await _endpointDispatch.getMethodStreamCallContext(
+        createSessionCallback: (_) => _localUniqueSession,
+        endpointPath: 'authenticatedTestTools',
+        methodName: 'returnsListFromInputStream',
+        arguments: {},
+        requestedInputStreams: ['numbers'],
+        serializationManager: _serializationManager,
+      );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {'numbers': numbers},
+      );
+      return _localTestStreamManager.outputStreamController.stream;
+    });
   }
 
   _i3.Stream<int> intEchoStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final _i3.Stream<int> stream,
+    _i1.TestSessionBuilder sessionBuilder,
+    _i3.Stream<int> stream,
   ) {
-    final _localTestStreamManager = _i1.TestStreamManager<int>();
+    var _localTestStreamManager = _i1.TestStreamManager<int>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'authenticatedTestTools',
-              method: 'intEchoStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'authenticatedTestTools',
-              methodName: 'intEchoStream',
-              arguments: {},
-              requestedInputStreams: ['stream'],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'authenticatedTestTools',
+          method: 'intEchoStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'authenticatedTestTools',
+          methodName: 'intEchoStream',
+          arguments: {},
+          requestedInputStreams: ['stream'],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -14507,28 +13722,25 @@ class _UnauthenticatedEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<bool> unauthenticatedMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'unauthenticated',
-            method: 'unauthenticatedMethod',
-          );
+        endpoint: 'unauthenticated',
+        method: 'unauthenticatedMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'unauthenticated',
           methodName: 'unauthenticatedMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -14537,25 +13749,24 @@ class _UnauthenticatedEndpoint {
   }
 
   _i3.Stream<bool> unauthenticatedStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<bool>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<bool>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'unauthenticated',
-              method: 'unauthenticatedStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'unauthenticated',
-              methodName: 'unauthenticatedStream',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'unauthenticated',
+          method: 'unauthenticatedStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'unauthenticated',
+          methodName: 'unauthenticatedStream',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -14579,28 +13790,25 @@ class _PartiallyUnauthenticatedEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<bool> unauthenticatedMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'partiallyUnauthenticated',
-            method: 'unauthenticatedMethod',
-          );
+        endpoint: 'partiallyUnauthenticated',
+        method: 'unauthenticatedMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'partiallyUnauthenticated',
           methodName: 'unauthenticatedMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -14609,25 +13817,24 @@ class _PartiallyUnauthenticatedEndpoint {
   }
 
   _i3.Stream<bool> unauthenticatedStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<bool>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<bool>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'partiallyUnauthenticated',
-              method: 'unauthenticatedStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'partiallyUnauthenticated',
-              methodName: 'unauthenticatedStream',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'partiallyUnauthenticated',
+          method: 'unauthenticatedStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'partiallyUnauthenticated',
+          methodName: 'unauthenticatedStream',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -14640,28 +13847,25 @@ class _PartiallyUnauthenticatedEndpoint {
   }
 
   _i3.Future<bool> authenticatedMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'partiallyUnauthenticated',
-            method: 'authenticatedMethod',
-          );
+        endpoint: 'partiallyUnauthenticated',
+        method: 'authenticatedMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'partiallyUnauthenticated',
           methodName: 'authenticatedMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -14669,24 +13873,24 @@ class _PartiallyUnauthenticatedEndpoint {
     });
   }
 
-  _i3.Stream<bool> authenticatedStream(final _i1.TestSessionBuilder sessionBuilder) {
-    final _localTestStreamManager = _i1.TestStreamManager<bool>();
+  _i3.Stream<bool> authenticatedStream(_i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<bool>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'partiallyUnauthenticated',
-              method: 'authenticatedStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'partiallyUnauthenticated',
-              methodName: 'authenticatedStream',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'partiallyUnauthenticated',
+          method: 'authenticatedStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'partiallyUnauthenticated',
+          methodName: 'authenticatedStream',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -14710,28 +13914,25 @@ class _UnauthenticatedRequireLoginEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<bool> unauthenticatedMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'unauthenticatedRequireLogin',
-            method: 'unauthenticatedMethod',
-          );
+        endpoint: 'unauthenticatedRequireLogin',
+        method: 'unauthenticatedMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'unauthenticatedRequireLogin',
           methodName: 'unauthenticatedMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -14740,25 +13941,24 @@ class _UnauthenticatedRequireLoginEndpoint {
   }
 
   _i3.Stream<bool> unauthenticatedStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<bool>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<bool>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'unauthenticatedRequireLogin',
-              method: 'unauthenticatedStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'unauthenticatedRequireLogin',
-              methodName: 'unauthenticatedStream',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'unauthenticatedRequireLogin',
+          method: 'unauthenticatedStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'unauthenticatedRequireLogin',
+          methodName: 'unauthenticatedStream',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -14782,28 +13982,25 @@ class _RequireLoginEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<bool> unauthenticatedMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'requireLogin',
-            method: 'unauthenticatedMethod',
-          );
+        endpoint: 'requireLogin',
+        method: 'unauthenticatedMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'requireLogin',
           methodName: 'unauthenticatedMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -14812,25 +14009,24 @@ class _RequireLoginEndpoint {
   }
 
   _i3.Stream<bool> unauthenticatedStream(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) {
-    final _localTestStreamManager = _i1.TestStreamManager<bool>();
+      _i1.TestSessionBuilder sessionBuilder) {
+    var _localTestStreamManager = _i1.TestStreamManager<bool>();
     _i1.callStreamFunctionAndHandleExceptions(
       () async {
-        final _localUniqueSession =
+        var _localUniqueSession =
             (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-              endpoint: 'requireLogin',
-              method: 'unauthenticatedStream',
-            );
-        final _localCallContext = await _endpointDispatch
-            .getMethodStreamCallContext(
-              createSessionCallback: (_) => _localUniqueSession,
-              endpointPath: 'requireLogin',
-              methodName: 'unauthenticatedStream',
-              arguments: {},
-              requestedInputStreams: [],
-              serializationManager: _serializationManager,
-            );
+          endpoint: 'requireLogin',
+          method: 'unauthenticatedStream',
+        );
+        var _localCallContext =
+            await _endpointDispatch.getMethodStreamCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'requireLogin',
+          methodName: 'unauthenticatedStream',
+          arguments: {},
+          requestedInputStreams: [],
+          serializationManager: _serializationManager,
+        );
         await _localTestStreamManager.callStreamMethod(
           _localCallContext,
           _localUniqueSession,
@@ -14854,18 +14050,18 @@ class _UploadEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<bool> uploadByteData(
-    final _i1.TestSessionBuilder sessionBuilder,
-    final String path,
-    final _i5.ByteData data,
+    _i1.TestSessionBuilder sessionBuilder,
+    String path,
+    _i5.ByteData data,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'upload',
-            method: 'uploadByteData',
-          );
+        endpoint: 'upload',
+        method: 'uploadByteData',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'upload',
           methodName: 'uploadByteData',
@@ -14875,12 +14071,10 @@ class _UploadEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -14900,28 +14094,25 @@ class _MyFeatureEndpoint {
   final _i2.SerializationManager _serializationManager;
 
   _i3.Future<String> myFeatureMethod(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'myFeature',
-            method: 'myFeatureMethod',
-          );
+        endpoint: 'myFeature',
+        method: 'myFeatureMethod',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'myFeature',
           methodName: 'myFeatureMethod',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -14930,28 +14121,25 @@ class _MyFeatureEndpoint {
   }
 
   _i3.Future<_i26.MyFeatureModel> myFeatureModel(
-    final _i1.TestSessionBuilder sessionBuilder,
-  ) async {
+      _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      final _localUniqueSession =
+      var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'myFeature',
-            method: 'myFeatureModel',
-          );
+        endpoint: 'myFeature',
+        method: 'myFeatureModel',
+      );
       try {
-        final _localCallContext = await _endpointDispatch.getMethodCallContext(
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'myFeature',
           methodName: 'myFeatureModel',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        final _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i26.MyFeatureModel>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i26.MyFeatureModel>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();

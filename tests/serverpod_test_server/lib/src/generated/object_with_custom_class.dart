@@ -22,51 +22,47 @@ abstract class ObjectWithCustomClass
   });
 
   factory ObjectWithCustomClass({
-    required final _i2.CustomClassWithoutProtocolSerialization
-    customClassWithoutProtocolSerialization,
-    required final _i2.CustomClassWithProtocolSerialization
-    customClassWithProtocolSerialization,
-    required final _i2.CustomClassWithProtocolSerializationMethod
-    customClassWithProtocolSerializationMethod,
+    required _i2.CustomClassWithoutProtocolSerialization
+        customClassWithoutProtocolSerialization,
+    required _i2.CustomClassWithProtocolSerialization
+        customClassWithProtocolSerialization,
+    required _i2.CustomClassWithProtocolSerializationMethod
+        customClassWithProtocolSerializationMethod,
   }) = _ObjectWithCustomClassImpl;
 
   factory ObjectWithCustomClass.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ObjectWithCustomClass(
       customClassWithoutProtocolSerialization:
           _i2.CustomClassWithoutProtocolSerialization.fromJson(
-            jsonSerialization['customClassWithoutProtocolSerialization'],
-          ),
+              jsonSerialization['customClassWithoutProtocolSerialization']),
       customClassWithProtocolSerialization:
           _i2.CustomClassWithProtocolSerialization.fromJson(
-            jsonSerialization['customClassWithProtocolSerialization'],
-          ),
+              jsonSerialization['customClassWithProtocolSerialization']),
       customClassWithProtocolSerializationMethod:
           _i2.CustomClassWithProtocolSerializationMethod.fromJson(
-            jsonSerialization['customClassWithProtocolSerializationMethod'],
-          ),
+              jsonSerialization['customClassWithProtocolSerializationMethod']),
     );
   }
 
   _i2.CustomClassWithoutProtocolSerialization
-  customClassWithoutProtocolSerialization;
+      customClassWithoutProtocolSerialization;
 
   _i2.CustomClassWithProtocolSerialization customClassWithProtocolSerialization;
 
   _i2.CustomClassWithProtocolSerializationMethod
-  customClassWithProtocolSerializationMethod;
+      customClassWithProtocolSerializationMethod;
 
   /// Returns a shallow copy of this [ObjectWithCustomClass]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ObjectWithCustomClass copyWith({
-    final _i2.CustomClassWithoutProtocolSerialization?
-    customClassWithoutProtocolSerialization,
-    final _i2.CustomClassWithProtocolSerialization?
-    customClassWithProtocolSerialization,
-    final _i2.CustomClassWithProtocolSerializationMethod?
-    customClassWithProtocolSerializationMethod,
+    _i2.CustomClassWithoutProtocolSerialization?
+        customClassWithoutProtocolSerialization,
+    _i2.CustomClassWithProtocolSerialization?
+        customClassWithProtocolSerialization,
+    _i2.CustomClassWithProtocolSerializationMethod?
+        customClassWithProtocolSerializationMethod,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -84,26 +80,27 @@ abstract class ObjectWithCustomClass
   Map<String, dynamic> toJsonForProtocol() {
     return {
       'customClassWithoutProtocolSerialization':
-          // ignore: unnecessary_type_check
+// ignore: unnecessary_type_check
           customClassWithoutProtocolSerialization is _i1.ProtocolSerialization
-          ? (customClassWithoutProtocolSerialization
-                    as _i1.ProtocolSerialization)
-                .toJsonForProtocol()
-          : customClassWithoutProtocolSerialization.toJson(),
+              ? (customClassWithoutProtocolSerialization
+                      as _i1.ProtocolSerialization)
+                  .toJsonForProtocol()
+              : customClassWithoutProtocolSerialization.toJson(),
       'customClassWithProtocolSerialization':
-          // ignore: unnecessary_type_check
+// ignore: unnecessary_type_check
           customClassWithProtocolSerialization is _i1.ProtocolSerialization
-          ? (customClassWithProtocolSerialization as _i1.ProtocolSerialization)
-                .toJsonForProtocol()
-          : customClassWithProtocolSerialization.toJson(),
+              ? (customClassWithProtocolSerialization
+                      as _i1.ProtocolSerialization)
+                  .toJsonForProtocol()
+              : customClassWithProtocolSerialization.toJson(),
       'customClassWithProtocolSerializationMethod':
-          // ignore: unnecessary_type_check
+// ignore: unnecessary_type_check
           customClassWithProtocolSerializationMethod
-              is _i1.ProtocolSerialization
-          ? (customClassWithProtocolSerializationMethod
-                    as _i1.ProtocolSerialization)
-                .toJsonForProtocol()
-          : customClassWithProtocolSerializationMethod.toJson(),
+                  is _i1.ProtocolSerialization
+              ? (customClassWithProtocolSerializationMethod
+                      as _i1.ProtocolSerialization)
+                  .toJsonForProtocol()
+              : customClassWithProtocolSerializationMethod.toJson(),
     };
   }
 
@@ -115,43 +112,43 @@ abstract class ObjectWithCustomClass
 
 class _ObjectWithCustomClassImpl extends ObjectWithCustomClass {
   _ObjectWithCustomClassImpl({
-    required final _i2.CustomClassWithoutProtocolSerialization
-    customClassWithoutProtocolSerialization,
-    required final _i2.CustomClassWithProtocolSerialization
-    customClassWithProtocolSerialization,
-    required final _i2.CustomClassWithProtocolSerializationMethod
-    customClassWithProtocolSerializationMethod,
+    required _i2.CustomClassWithoutProtocolSerialization
+        customClassWithoutProtocolSerialization,
+    required _i2.CustomClassWithProtocolSerialization
+        customClassWithProtocolSerialization,
+    required _i2.CustomClassWithProtocolSerializationMethod
+        customClassWithProtocolSerializationMethod,
   }) : super._(
-         customClassWithoutProtocolSerialization:
-             customClassWithoutProtocolSerialization,
-         customClassWithProtocolSerialization:
-             customClassWithProtocolSerialization,
-         customClassWithProtocolSerializationMethod:
-             customClassWithProtocolSerializationMethod,
-       );
+          customClassWithoutProtocolSerialization:
+              customClassWithoutProtocolSerialization,
+          customClassWithProtocolSerialization:
+              customClassWithProtocolSerialization,
+          customClassWithProtocolSerializationMethod:
+              customClassWithProtocolSerializationMethod,
+        );
 
   /// Returns a shallow copy of this [ObjectWithCustomClass]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   ObjectWithCustomClass copyWith({
-    final _i2.CustomClassWithoutProtocolSerialization?
-    customClassWithoutProtocolSerialization,
-    final _i2.CustomClassWithProtocolSerialization?
-    customClassWithProtocolSerialization,
-    final _i2.CustomClassWithProtocolSerializationMethod?
-    customClassWithProtocolSerializationMethod,
+    _i2.CustomClassWithoutProtocolSerialization?
+        customClassWithoutProtocolSerialization,
+    _i2.CustomClassWithProtocolSerialization?
+        customClassWithProtocolSerialization,
+    _i2.CustomClassWithProtocolSerializationMethod?
+        customClassWithProtocolSerializationMethod,
   }) {
     return ObjectWithCustomClass(
       customClassWithoutProtocolSerialization:
           customClassWithoutProtocolSerialization ??
-          this.customClassWithoutProtocolSerialization.copyWith(),
+              this.customClassWithoutProtocolSerialization.copyWith(),
       customClassWithProtocolSerialization:
           customClassWithProtocolSerialization ??
-          this.customClassWithProtocolSerialization.copyWith(),
+              this.customClassWithProtocolSerialization.copyWith(),
       customClassWithProtocolSerializationMethod:
           customClassWithProtocolSerializationMethod ??
-          this.customClassWithProtocolSerializationMethod.copyWith(),
+              this.customClassWithProtocolSerializationMethod.copyWith(),
     );
   }
 }

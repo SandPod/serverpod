@@ -16,10 +16,9 @@ class GrandparentClass
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
   GrandparentClass({required this.grandParentField});
 
-  factory GrandparentClass.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory GrandparentClass.fromJson(Map<String, dynamic> jsonSerialization) {
     return GrandparentClass(
-      grandParentField: jsonSerialization['grandParentField'] as String,
-    );
+        grandParentField: jsonSerialization['grandParentField'] as String);
   }
 
   String grandParentField;
@@ -27,10 +26,9 @@ class GrandparentClass
   /// Returns a shallow copy of this [GrandparentClass]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  GrandparentClass copyWith({final String? grandParentField}) {
+  GrandparentClass copyWith({String? grandParentField}) {
     return GrandparentClass(
-      grandParentField: grandParentField ?? this.grandParentField,
-    );
+        grandParentField: grandParentField ?? this.grandParentField);
   }
 
   @override

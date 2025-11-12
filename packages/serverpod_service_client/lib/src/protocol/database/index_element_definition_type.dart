@@ -31,8 +31,7 @@ enum IndexElementDefinitionType implements _i1.SerializableModel {
         return IndexElementDefinitionType.expression;
       default:
         throw ArgumentError(
-          'Value "$index" cannot be converted to "IndexElementDefinitionType"',
-        );
+            'Value "$index" cannot be converted to "IndexElementDefinitionType"');
     }
   }
 

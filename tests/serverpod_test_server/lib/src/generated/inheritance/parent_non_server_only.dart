@@ -17,11 +17,9 @@ class NonServerOnlyParentClass
   NonServerOnlyParentClass({required this.parentField});
 
   factory NonServerOnlyParentClass.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return NonServerOnlyParentClass(
-      parentField: jsonSerialization['parentField'] as String,
-    );
+        parentField: jsonSerialization['parentField'] as String);
   }
 
   String parentField;
@@ -29,10 +27,9 @@ class NonServerOnlyParentClass
   /// Returns a shallow copy of this [NonServerOnlyParentClass]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  NonServerOnlyParentClass copyWith({final String? parentField}) {
+  NonServerOnlyParentClass copyWith({String? parentField}) {
     return NonServerOnlyParentClass(
-      parentField: parentField ?? this.parentField,
-    );
+        parentField: parentField ?? this.parentField);
   }
 
   @override

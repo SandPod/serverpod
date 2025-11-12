@@ -16,10 +16,10 @@ class ParentWithDefault
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
   ParentWithDefault({
     required this.name,
-    final int? parentDefault,
+    int? parentDefault,
   }) : parentDefault = parentDefault ?? 0;
 
-  factory ParentWithDefault.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory ParentWithDefault.fromJson(Map<String, dynamic> jsonSerialization) {
     return ParentWithDefault(
       name: jsonSerialization['name'] as String,
       parentDefault: jsonSerialization['parentDefault'] as int,
@@ -34,8 +34,8 @@ class ParentWithDefault
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ParentWithDefault copyWith({
-    final String? name,
-    final int? parentDefault,
+    String? name,
+    int? parentDefault,
   }) {
     return ParentWithDefault(
       name: name ?? this.name,

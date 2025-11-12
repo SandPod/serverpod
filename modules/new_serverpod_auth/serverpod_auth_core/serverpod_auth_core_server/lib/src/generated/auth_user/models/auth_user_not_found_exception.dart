@@ -22,8 +22,7 @@ abstract class AuthUserNotFoundException
   factory AuthUserNotFoundException() = _AuthUserNotFoundExceptionImpl;
 
   factory AuthUserNotFoundException.fromJson(
-    Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return AuthUserNotFoundException();
   }
 

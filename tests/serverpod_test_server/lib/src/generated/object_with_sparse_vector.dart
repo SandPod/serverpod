@@ -23,32 +23,27 @@ abstract class ObjectWithSparseVector
   });
 
   factory ObjectWithSparseVector({
-    final int? id,
-    required final _i1.SparseVector sparseVector,
-    final _i1.SparseVector? sparseVectorNullable,
-    required final _i1.SparseVector sparseVectorIndexedHnsw,
-    required final _i1.SparseVector sparseVectorIndexedHnswWithParams,
+    int? id,
+    required _i1.SparseVector sparseVector,
+    _i1.SparseVector? sparseVectorNullable,
+    required _i1.SparseVector sparseVectorIndexedHnsw,
+    required _i1.SparseVector sparseVectorIndexedHnswWithParams,
   }) = _ObjectWithSparseVectorImpl;
 
   factory ObjectWithSparseVector.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ObjectWithSparseVector(
       id: jsonSerialization['id'] as int?,
       sparseVector: _i1.SparseVectorJsonExtension.fromJson(
-        jsonSerialization['sparseVector'],
-      ),
+          jsonSerialization['sparseVector']),
       sparseVectorNullable: jsonSerialization['sparseVectorNullable'] == null
           ? null
           : _i1.SparseVectorJsonExtension.fromJson(
-              jsonSerialization['sparseVectorNullable'],
-            ),
+              jsonSerialization['sparseVectorNullable']),
       sparseVectorIndexedHnsw: _i1.SparseVectorJsonExtension.fromJson(
-        jsonSerialization['sparseVectorIndexedHnsw'],
-      ),
+          jsonSerialization['sparseVectorIndexedHnsw']),
       sparseVectorIndexedHnswWithParams: _i1.SparseVectorJsonExtension.fromJson(
-        jsonSerialization['sparseVectorIndexedHnswWithParams'],
-      ),
+          jsonSerialization['sparseVectorIndexedHnswWithParams']),
     );
   }
 
@@ -74,11 +69,11 @@ abstract class ObjectWithSparseVector
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ObjectWithSparseVector copyWith({
-    final int? id,
-    final _i1.SparseVector? sparseVector,
-    final _i1.SparseVector? sparseVectorNullable,
-    final _i1.SparseVector? sparseVectorIndexedHnsw,
-    final _i1.SparseVector? sparseVectorIndexedHnswWithParams,
+    int? id,
+    _i1.SparseVector? sparseVector,
+    _i1.SparseVector? sparseVectorNullable,
+    _i1.SparseVector? sparseVectorIndexedHnsw,
+    _i1.SparseVector? sparseVectorIndexedHnswWithParams,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -88,8 +83,8 @@ abstract class ObjectWithSparseVector
       if (sparseVectorNullable != null)
         'sparseVectorNullable': sparseVectorNullable?.toJson(),
       'sparseVectorIndexedHnsw': sparseVectorIndexedHnsw.toJson(),
-      'sparseVectorIndexedHnswWithParams': sparseVectorIndexedHnswWithParams
-          .toJson(),
+      'sparseVectorIndexedHnswWithParams':
+          sparseVectorIndexedHnswWithParams.toJson(),
     };
   }
 
@@ -101,8 +96,8 @@ abstract class ObjectWithSparseVector
       if (sparseVectorNullable != null)
         'sparseVectorNullable': sparseVectorNullable?.toJson(),
       'sparseVectorIndexedHnsw': sparseVectorIndexedHnsw.toJson(),
-      'sparseVectorIndexedHnswWithParams': sparseVectorIndexedHnswWithParams
-          .toJson(),
+      'sparseVectorIndexedHnswWithParams':
+          sparseVectorIndexedHnswWithParams.toJson(),
     };
   }
 
@@ -111,13 +106,13 @@ abstract class ObjectWithSparseVector
   }
 
   static ObjectWithSparseVectorIncludeList includeList({
-    final _i1.WhereExpressionBuilder<ObjectWithSparseVectorTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectWithSparseVectorTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ObjectWithSparseVectorTable>? orderByList,
-    final ObjectWithSparseVectorInclude? include,
+    _i1.WhereExpressionBuilder<ObjectWithSparseVectorTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ObjectWithSparseVectorTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ObjectWithSparseVectorTable>? orderByList,
+    ObjectWithSparseVectorInclude? include,
   }) {
     return ObjectWithSparseVectorIncludeList._(
       where: where,
@@ -140,29 +135,29 @@ class _Undefined {}
 
 class _ObjectWithSparseVectorImpl extends ObjectWithSparseVector {
   _ObjectWithSparseVectorImpl({
-    final int? id,
-    required final _i1.SparseVector sparseVector,
-    final _i1.SparseVector? sparseVectorNullable,
-    required final _i1.SparseVector sparseVectorIndexedHnsw,
-    required final _i1.SparseVector sparseVectorIndexedHnswWithParams,
+    int? id,
+    required _i1.SparseVector sparseVector,
+    _i1.SparseVector? sparseVectorNullable,
+    required _i1.SparseVector sparseVectorIndexedHnsw,
+    required _i1.SparseVector sparseVectorIndexedHnswWithParams,
   }) : super._(
-         id: id,
-         sparseVector: sparseVector,
-         sparseVectorNullable: sparseVectorNullable,
-         sparseVectorIndexedHnsw: sparseVectorIndexedHnsw,
-         sparseVectorIndexedHnswWithParams: sparseVectorIndexedHnswWithParams,
-       );
+          id: id,
+          sparseVector: sparseVector,
+          sparseVectorNullable: sparseVectorNullable,
+          sparseVectorIndexedHnsw: sparseVectorIndexedHnsw,
+          sparseVectorIndexedHnswWithParams: sparseVectorIndexedHnswWithParams,
+        );
 
   /// Returns a shallow copy of this [ObjectWithSparseVector]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   ObjectWithSparseVector copyWith({
-    final Object? id = _Undefined,
-    final _i1.SparseVector? sparseVector,
-    final Object? sparseVectorNullable = _Undefined,
-    final _i1.SparseVector? sparseVectorIndexedHnsw,
-    final _i1.SparseVector? sparseVectorIndexedHnswWithParams,
+    Object? id = _Undefined,
+    _i1.SparseVector? sparseVector,
+    Object? sparseVectorNullable = _Undefined,
+    _i1.SparseVector? sparseVectorIndexedHnsw,
+    _i1.SparseVector? sparseVectorIndexedHnswWithParams,
   }) {
     return ObjectWithSparseVector(
       id: id is int? ? id : this.id,
@@ -172,8 +167,7 @@ class _ObjectWithSparseVectorImpl extends ObjectWithSparseVector {
           : this.sparseVectorNullable?.clone(),
       sparseVectorIndexedHnsw:
           sparseVectorIndexedHnsw ?? this.sparseVectorIndexedHnsw.clone(),
-      sparseVectorIndexedHnswWithParams:
-          sparseVectorIndexedHnswWithParams ??
+      sparseVectorIndexedHnswWithParams: sparseVectorIndexedHnswWithParams ??
           this.sparseVectorIndexedHnswWithParams.clone(),
     );
   }
@@ -184,36 +178,37 @@ class ObjectWithSparseVectorUpdateTable
   ObjectWithSparseVectorUpdateTable(super.table);
 
   _i1.ColumnValue<_i1.SparseVector, _i1.SparseVector> sparseVector(
-    final _i1.SparseVector value,
-  ) => _i1.ColumnValue(
-    table.sparseVector,
-    value,
-  );
+          _i1.SparseVector value) =>
+      _i1.ColumnValue(
+        table.sparseVector,
+        value,
+      );
 
   _i1.ColumnValue<_i1.SparseVector, _i1.SparseVector> sparseVectorNullable(
-    final _i1.SparseVector? value,
-  ) => _i1.ColumnValue(
-    table.sparseVectorNullable,
-    value,
-  );
+          _i1.SparseVector? value) =>
+      _i1.ColumnValue(
+        table.sparseVectorNullable,
+        value,
+      );
 
   _i1.ColumnValue<_i1.SparseVector, _i1.SparseVector> sparseVectorIndexedHnsw(
-    final _i1.SparseVector value,
-  ) => _i1.ColumnValue(
-    table.sparseVectorIndexedHnsw,
-    value,
-  );
+          _i1.SparseVector value) =>
+      _i1.ColumnValue(
+        table.sparseVectorIndexedHnsw,
+        value,
+      );
 
   _i1.ColumnValue<_i1.SparseVector, _i1.SparseVector>
-  sparseVectorIndexedHnswWithParams(final _i1.SparseVector value) => _i1.ColumnValue(
-    table.sparseVectorIndexedHnswWithParams,
-    value,
-  );
+      sparseVectorIndexedHnswWithParams(_i1.SparseVector value) =>
+          _i1.ColumnValue(
+            table.sparseVectorIndexedHnswWithParams,
+            value,
+          );
 }
 
 class ObjectWithSparseVectorTable extends _i1.Table<int?> {
   ObjectWithSparseVectorTable({super.tableRelation})
-    : super(tableName: 'object_with_sparse_vector') {
+      : super(tableName: 'object_with_sparse_vector') {
     updateTable = ObjectWithSparseVectorUpdateTable(this);
     sparseVector = _i1.ColumnSparseVector(
       'sparseVector',
@@ -249,12 +244,12 @@ class ObjectWithSparseVectorTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    sparseVector,
-    sparseVectorNullable,
-    sparseVectorIndexedHnsw,
-    sparseVectorIndexedHnswWithParams,
-  ];
+        id,
+        sparseVector,
+        sparseVectorNullable,
+        sparseVectorIndexedHnsw,
+        sparseVectorIndexedHnswWithParams,
+      ];
 }
 
 class ObjectWithSparseVectorInclude extends _i1.IncludeObject {
@@ -269,7 +264,7 @@ class ObjectWithSparseVectorInclude extends _i1.IncludeObject {
 
 class ObjectWithSparseVectorIncludeList extends _i1.IncludeList {
   ObjectWithSparseVectorIncludeList._({
-    final _i1.WhereExpressionBuilder<ObjectWithSparseVectorTable>? where,
+    _i1.WhereExpressionBuilder<ObjectWithSparseVectorTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -313,14 +308,14 @@ class ObjectWithSparseVectorRepository {
   /// );
   /// ```
   Future<List<ObjectWithSparseVector>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ObjectWithSparseVectorTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectWithSparseVectorTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ObjectWithSparseVectorTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ObjectWithSparseVectorTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ObjectWithSparseVectorTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ObjectWithSparseVectorTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<ObjectWithSparseVector>(
       where: where?.call(ObjectWithSparseVector.t),
@@ -351,13 +346,13 @@ class ObjectWithSparseVectorRepository {
   /// );
   /// ```
   Future<ObjectWithSparseVector?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ObjectWithSparseVectorTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectWithSparseVectorTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ObjectWithSparseVectorTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ObjectWithSparseVectorTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<ObjectWithSparseVectorTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ObjectWithSparseVectorTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<ObjectWithSparseVector>(
       where: where?.call(ObjectWithSparseVector.t),
@@ -371,9 +366,9 @@ class ObjectWithSparseVectorRepository {
 
   /// Finds a single [ObjectWithSparseVector] by its [id] or null if no such row exists.
   Future<ObjectWithSparseVector?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<ObjectWithSparseVector>(
       id,
@@ -388,9 +383,9 @@ class ObjectWithSparseVectorRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<ObjectWithSparseVector>> insert(
-    final _i1.Session session,
-    final List<ObjectWithSparseVector> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ObjectWithSparseVector> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<ObjectWithSparseVector>(
       rows,
@@ -402,9 +397,9 @@ class ObjectWithSparseVectorRepository {
   ///
   /// The returned [ObjectWithSparseVector] will have its `id` field set.
   Future<ObjectWithSparseVector> insertRow(
-    final _i1.Session session,
-    final ObjectWithSparseVector row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ObjectWithSparseVector row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<ObjectWithSparseVector>(
       row,
@@ -418,10 +413,10 @@ class ObjectWithSparseVectorRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<ObjectWithSparseVector>> update(
-    final _i1.Session session,
-    final List<ObjectWithSparseVector> rows, {
-    final _i1.ColumnSelections<ObjectWithSparseVectorTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ObjectWithSparseVector> rows, {
+    _i1.ColumnSelections<ObjectWithSparseVectorTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<ObjectWithSparseVector>(
       rows,
@@ -434,10 +429,10 @@ class ObjectWithSparseVectorRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<ObjectWithSparseVector> updateRow(
-    final _i1.Session session,
-    final ObjectWithSparseVector row, {
-    final _i1.ColumnSelections<ObjectWithSparseVectorTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ObjectWithSparseVector row, {
+    _i1.ColumnSelections<ObjectWithSparseVectorTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<ObjectWithSparseVector>(
       row,
@@ -449,11 +444,11 @@ class ObjectWithSparseVectorRepository {
   /// Updates a single [ObjectWithSparseVector] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<ObjectWithSparseVector?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<ObjectWithSparseVectorUpdateTable>
-    columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<ObjectWithSparseVectorUpdateTable>
+        columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<ObjectWithSparseVector>(
       id,
@@ -465,16 +460,16 @@ class ObjectWithSparseVectorRepository {
   /// Updates all [ObjectWithSparseVector]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<ObjectWithSparseVector>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<ObjectWithSparseVectorUpdateTable>
-    columnValues,
-    required final _i1.WhereExpressionBuilder<ObjectWithSparseVectorTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectWithSparseVectorTable>? orderBy,
-    final _i1.OrderByListBuilder<ObjectWithSparseVectorTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<ObjectWithSparseVectorUpdateTable>
+        columnValues,
+    required _i1.WhereExpressionBuilder<ObjectWithSparseVectorTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ObjectWithSparseVectorTable>? orderBy,
+    _i1.OrderByListBuilder<ObjectWithSparseVectorTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<ObjectWithSparseVector>(
       columnValues: columnValues(ObjectWithSparseVector.t.updateTable),
@@ -492,9 +487,9 @@ class ObjectWithSparseVectorRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<ObjectWithSparseVector>> delete(
-    final _i1.Session session,
-    final List<ObjectWithSparseVector> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ObjectWithSparseVector> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<ObjectWithSparseVector>(
       rows,
@@ -504,9 +499,9 @@ class ObjectWithSparseVectorRepository {
 
   /// Deletes a single [ObjectWithSparseVector].
   Future<ObjectWithSparseVector> deleteRow(
-    final _i1.Session session,
-    final ObjectWithSparseVector row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ObjectWithSparseVector row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<ObjectWithSparseVector>(
       row,
@@ -516,9 +511,9 @@ class ObjectWithSparseVectorRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<ObjectWithSparseVector>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<ObjectWithSparseVectorTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<ObjectWithSparseVectorTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<ObjectWithSparseVector>(
       where: where(ObjectWithSparseVector.t),
@@ -529,10 +524,10 @@ class ObjectWithSparseVectorRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ObjectWithSparseVectorTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ObjectWithSparseVectorTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<ObjectWithSparseVector>(
       where: where?.call(ObjectWithSparseVector.t),

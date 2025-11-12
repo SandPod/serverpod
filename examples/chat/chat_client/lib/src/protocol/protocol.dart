@@ -9,14 +9,12 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
+// ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:serverpod_client/serverpod_client.dart' as _i1;
+import 'channel.dart' as _i2;
 import 'package:chat_client/src/protocol/channel.dart' as _i3;
 import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i4;
 import 'package:serverpod_chat_client/serverpod_chat_client.dart' as _i5;
-// ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-
-import 'channel.dart' as _i2;
-
 export 'channel.dart';
 export 'client.dart';
 
@@ -29,7 +27,7 @@ class Protocol extends _i1.SerializationManager {
 
   @override
   T deserialize<T>(
-    final dynamic data, [
+    dynamic data, [
     Type? t,
   ]) {
     t ??= T;
@@ -40,7 +38,7 @@ class Protocol extends _i1.SerializationManager {
       return (data != null ? _i2.Channel.fromJson(data) : null) as T;
     }
     if (t == List<_i3.Channel>) {
-      return (data as List).map((final e) => deserialize<_i3.Channel>(e)).toList()
+      return (data as List).map((e) => deserialize<_i3.Channel>(e)).toList()
           as T;
     }
     try {
@@ -53,7 +51,7 @@ class Protocol extends _i1.SerializationManager {
   }
 
   @override
-  String? getClassNameForObject(final Object? data) {
+  String? getClassNameForObject(Object? data) {
     String? className = super.getClassNameForObject(data);
     if (className != null) return className;
     switch (data) {
@@ -72,8 +70,8 @@ class Protocol extends _i1.SerializationManager {
   }
 
   @override
-  dynamic deserializeByClassName(final Map<String, dynamic> data) {
-    final dataClassName = data['className'];
+  dynamic deserializeByClassName(Map<String, dynamic> data) {
+    var dataClassName = data['className'];
     if (dataClassName is! String) {
       return super.deserializeByClassName(data);
     }

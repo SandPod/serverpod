@@ -17,15 +17,13 @@ abstract class SimpleDataObject
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
   SimpleDataObject._({required this.object});
 
-  factory SimpleDataObject({required final _i2.SimpleData object}) =
+  factory SimpleDataObject({required _i2.SimpleData object}) =
       _SimpleDataObjectImpl;
 
-  factory SimpleDataObject.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory SimpleDataObject.fromJson(Map<String, dynamic> jsonSerialization) {
     return SimpleDataObject(
-      object: _i2.SimpleData.fromJson(
-        (jsonSerialization['object'] as Map<String, dynamic>),
-      ),
-    );
+        object: _i2.SimpleData.fromJson(
+            (jsonSerialization['object'] as Map<String, dynamic>)));
   }
 
   _i2.SimpleData object;
@@ -33,7 +31,7 @@ abstract class SimpleDataObject
   /// Returns a shallow copy of this [SimpleDataObject]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  SimpleDataObject copyWith({final _i2.SimpleData? object});
+  SimpleDataObject copyWith({_i2.SimpleData? object});
   @override
   Map<String, dynamic> toJson() {
     return {'object': object.toJson()};
@@ -51,14 +49,14 @@ abstract class SimpleDataObject
 }
 
 class _SimpleDataObjectImpl extends SimpleDataObject {
-  _SimpleDataObjectImpl({required final _i2.SimpleData object})
-    : super._(object: object);
+  _SimpleDataObjectImpl({required _i2.SimpleData object})
+      : super._(object: object);
 
   /// Returns a shallow copy of this [SimpleDataObject]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  SimpleDataObject copyWith({final _i2.SimpleData? object}) {
+  SimpleDataObject copyWith({_i2.SimpleData? object}) {
     return SimpleDataObject(object: object ?? this.object.copyWith());
   }
 }

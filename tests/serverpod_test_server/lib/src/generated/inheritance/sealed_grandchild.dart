@@ -21,13 +21,13 @@ abstract class SealedGrandChild extends _i1.SealedChild
   });
 
   factory SealedGrandChild({
-    required final int sealedInt,
-    required final String sealedString,
-    final int? nullableInt,
-    required final String sealedGrandchildField,
+    required int sealedInt,
+    required String sealedString,
+    int? nullableInt,
+    required String sealedGrandchildField,
   }) = _SealedGrandChildImpl;
 
-  factory SealedGrandChild.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory SealedGrandChild.fromJson(Map<String, dynamic> jsonSerialization) {
     return SealedGrandChild(
       sealedInt: jsonSerialization['sealedInt'] as int,
       sealedString: jsonSerialization['sealedString'] as String,
@@ -44,10 +44,10 @@ abstract class SealedGrandChild extends _i1.SealedChild
   @override
   @_i2.useResult
   SealedGrandChild copyWith({
-    final int? sealedInt,
-    final String? sealedString,
-    final Object? nullableInt,
-    final String? sealedGrandchildField,
+    int? sealedInt,
+    String? sealedString,
+    Object? nullableInt,
+    String? sealedGrandchildField,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -77,26 +77,26 @@ abstract class SealedGrandChild extends _i1.SealedChild
 
 class _SealedGrandChildImpl extends SealedGrandChild {
   _SealedGrandChildImpl({
-    required final int sealedInt,
-    required final String sealedString,
-    final int? nullableInt,
-    required final String sealedGrandchildField,
+    required int sealedInt,
+    required String sealedString,
+    int? nullableInt,
+    required String sealedGrandchildField,
   }) : super._(
-         sealedInt: sealedInt,
-         sealedString: sealedString,
-         nullableInt: nullableInt,
-         sealedGrandchildField: sealedGrandchildField,
-       );
+          sealedInt: sealedInt,
+          sealedString: sealedString,
+          nullableInt: nullableInt,
+          sealedGrandchildField: sealedGrandchildField,
+        );
 
   /// Returns a shallow copy of this [SealedGrandChild]
   /// with some or all fields replaced by the given arguments.
   @_i2.useResult
   @override
   SealedGrandChild copyWith({
-    final int? sealedInt,
-    final String? sealedString,
-    final Object? nullableInt = _Undefined,
-    final String? sealedGrandchildField,
+    int? sealedInt,
+    String? sealedString,
+    Object? nullableInt = _Undefined,
+    String? sealedGrandchildField,
   }) {
     return SealedGrandChild(
       sealedInt: sealedInt ?? this.sealedInt,

@@ -36,8 +36,7 @@ enum ForeignKeyMatchType implements _i1.SerializableModel {
         return ForeignKeyMatchType.simple;
       default:
         throw ArgumentError(
-          'Value "$index" cannot be converted to "ForeignKeyMatchType"',
-        );
+            'Value "$index" cannot be converted to "ForeignKeyMatchType"');
     }
   }
 

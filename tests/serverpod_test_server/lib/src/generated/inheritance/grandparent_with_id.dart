@@ -20,8 +20,7 @@ class GrandparentClassWithId
   });
 
   factory GrandparentClassWithId.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return GrandparentClassWithId(
       id: jsonSerialization['id'] == null
           ? null
@@ -38,8 +37,8 @@ class GrandparentClassWithId
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   GrandparentClassWithId copyWith({
-    final Object? id = _Undefined,
-    final String? grandParentField,
+    Object? id = _Undefined,
+    String? grandParentField,
   }) {
     return GrandparentClassWithId(
       id: id is _i1.UuidValue? ? id : this.id,

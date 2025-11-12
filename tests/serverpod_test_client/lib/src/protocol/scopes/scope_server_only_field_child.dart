@@ -30,19 +30,16 @@ abstract class ScopeServerOnlyFieldChild extends _i1.ScopeServerOnlyField
   }) = _ScopeServerOnlyFieldChildImpl;
 
   factory ScopeServerOnlyFieldChild.fromJson(
-    Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ScopeServerOnlyFieldChild(
       allScope: jsonSerialization['allScope'] == null
           ? null
           : _i3.Types.fromJson(
-              (jsonSerialization['allScope'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['allScope'] as Map<String, dynamic>)),
       nested: jsonSerialization['nested'] == null
           ? null
           : _i4.ScopeServerOnlyField.fromJson(
-              (jsonSerialization['nested'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['nested'] as Map<String, dynamic>)),
       childFoo: jsonSerialization['childFoo'] as String,
     );
   }
@@ -80,7 +77,11 @@ class _ScopeServerOnlyFieldChildImpl extends ScopeServerOnlyFieldChild {
     _i3.Types? allScope,
     _i4.ScopeServerOnlyField? nested,
     required String childFoo,
-  }) : super._(allScope: allScope, nested: nested, childFoo: childFoo);
+  }) : super._(
+          allScope: allScope,
+          nested: nested,
+          childFoo: childFoo,
+        );
 
   /// Returns a shallow copy of this [ScopeServerOnlyFieldChild]
   /// with some or all fields replaced by the given arguments.

@@ -6,8 +6,8 @@ void main() {
     test(
       'Given two identical immutable objects when comparing equality then equality comparison returns true',
       () {
-        final firstObject = ImmutableObject(variable: 'value');
-        final secondObject = ImmutableObject(variable: 'value');
+        const firstObject = ImmutableObject(variable: 'value');
+        const secondObject = ImmutableObject(variable: 'value');
         expect(firstObject, equals(secondObject));
       },
     );
@@ -15,8 +15,8 @@ void main() {
     test(
       'Given two immutable objects with different values when comparing equality then equality comparison returns false',
       () {
-        final firstObject = ImmutableObject(variable: 'value1');
-        final secondObject = ImmutableObject(variable: 'value2');
+        const firstObject = ImmutableObject(variable: 'value1');
+        const secondObject = ImmutableObject(variable: 'value2');
         expect(firstObject, isNot(equals(secondObject)));
       },
     );
@@ -24,10 +24,10 @@ void main() {
     test(
       'Given two immutable objects each containing identical lists when comparing equality then equality comparison returns true',
       () {
-        final firstObject = ImmutableObjectWithList(
+        const firstObject = ImmutableObjectWithList(
           listVariable: ['a', 'b', 'c'],
         );
-        final secondObject = ImmutableObjectWithList(
+        const secondObject = ImmutableObjectWithList(
           listVariable: ['a', 'b', 'c'],
         );
         expect(firstObject, equals(secondObject));
@@ -37,10 +37,10 @@ void main() {
     test(
       'Given two immutable objects each containing different lists when comparing equality then equality comparison returns false',
       () {
-        final firstObject = ImmutableObjectWithList(
+        const firstObject = ImmutableObjectWithList(
           listVariable: ['a', 'b', 'c'],
         );
-        final secondObject = ImmutableObjectWithList(
+        const secondObject = ImmutableObjectWithList(
           listVariable: ['a', 'b', 'd'],
         );
         expect(firstObject, isNot(equals(secondObject)));
@@ -50,10 +50,10 @@ void main() {
     test(
       'Given two immutable objects each containing identical maps when comparing equality then equality comparison returns true',
       () {
-        final firstObject = ImmutableObjectWithMap(
+        const firstObject = ImmutableObjectWithMap(
           mapVariable: {'k1': 'v1', 'k2': 'v2'},
         );
-        final secondObject = ImmutableObjectWithMap(
+        const secondObject = ImmutableObjectWithMap(
           mapVariable: {'k1': 'v1', 'k2': 'v2'},
         );
         expect(firstObject, equals(secondObject));
@@ -63,10 +63,10 @@ void main() {
     test(
       'Given two immutable objects each containing different maps when comparing equality then equality comparison returns false',
       () {
-        final firstObject = ImmutableObjectWithMap(
+        const firstObject = ImmutableObjectWithMap(
           mapVariable: {'k1': 'v1', 'k2': 'v2'},
         );
-        final secondObject = ImmutableObjectWithMap(
+        const secondObject = ImmutableObjectWithMap(
           mapVariable: {'k1': 'v1', 'k2': 'DIFFERENT'},
         );
         expect(firstObject, isNot(equals(secondObject)));
@@ -76,10 +76,10 @@ void main() {
     test(
       'Given two immutable objects each containing identical records when comparing equality then equality comparison returns true',
       () {
-        final firstObject = ImmutableObjectWithRecord(
+        const firstObject = ImmutableObjectWithRecord(
           recordVariable: (1, 'value'),
         );
-        final secondObject = ImmutableObjectWithRecord(
+        const secondObject = ImmutableObjectWithRecord(
           recordVariable: (1, 'value'),
         );
         expect(firstObject, equals(secondObject));
@@ -89,10 +89,10 @@ void main() {
     test(
       'Given two immutable objects each containing different records when comparing equality then equality comparison returns false',
       () {
-        final firstObject = ImmutableObjectWithRecord(
+        const firstObject = ImmutableObjectWithRecord(
           recordVariable: (1, 'value1'),
         );
-        final secondObject = ImmutableObjectWithRecord(
+        const secondObject = ImmutableObjectWithRecord(
           recordVariable: (1, 'value2'),
         );
         expect(firstObject, isNot(equals(secondObject)));
@@ -102,10 +102,10 @@ void main() {
     test(
       'Given two immutable objects containing identical immutable objects when comparing equality then equality comparison returns true',
       () {
-        final firstObject = ImmutableObjectWithImmutableObject(
+        const firstObject = ImmutableObjectWithImmutableObject(
           immutableVariable: ImmutableObject(variable: 'value'),
         );
-        final secondObject = ImmutableObjectWithImmutableObject(
+        const secondObject = ImmutableObjectWithImmutableObject(
           immutableVariable: ImmutableObject(variable: 'value'),
         );
         expect(firstObject, equals(secondObject));
@@ -115,10 +115,10 @@ void main() {
     test(
       'Given two immutable objects containing different immutable objects when comparing equality then equality comparison returns false',
       () {
-        final firstObject = ImmutableObjectWithImmutableObject(
+        const firstObject = ImmutableObjectWithImmutableObject(
           immutableVariable: ImmutableObject(variable: 'value1'),
         );
-        final secondObject = ImmutableObjectWithImmutableObject(
+        const secondObject = ImmutableObjectWithImmutableObject(
           immutableVariable: ImmutableObject(variable: 'value2'),
         );
         expect(firstObject, isNot(equals(secondObject)));
@@ -128,8 +128,8 @@ void main() {
     test(
       'Given two identical immutable objects with no fields when comparing equality then equality comparison returns true',
       () {
-        final firstObject = ImmutableObjectWithNoFields();
-        final secondObject = ImmutableObjectWithNoFields();
+        const firstObject = ImmutableObjectWithNoFields();
+        const secondObject = ImmutableObjectWithNoFields();
         expect(firstObject, equals(secondObject));
       },
     );
@@ -137,13 +137,13 @@ void main() {
     test(
       'Given two immutable objects with multiple identical fields when comparing equality then equality comparison returns true',
       () {
-        final firstObject = ImmutableObjectWithMultipleFields(
+        const firstObject = ImmutableObjectWithMultipleFields(
           anInt: 1,
           aString: 'value',
           aBool: true,
           aDouble: 1.0,
         );
-        final secondObject = ImmutableObjectWithMultipleFields(
+        const secondObject = ImmutableObjectWithMultipleFields(
           anInt: 1,
           aString: 'value',
           aBool: true,
@@ -156,13 +156,13 @@ void main() {
     test(
       'Given two immutable objects with multiple different fields when comparing equality then equality comparison returns false',
       () {
-        final firstObject = ImmutableObjectWithMultipleFields(
+        const firstObject = ImmutableObjectWithMultipleFields(
           anInt: 1,
           aString: 'value1',
           aBool: true,
           aDouble: 1.0,
         );
-        final secondObject = ImmutableObjectWithMultipleFields(
+        const secondObject = ImmutableObjectWithMultipleFields(
           anInt: 1,
           aString: 'value2',
           aBool: true,
@@ -175,11 +175,11 @@ void main() {
     test(
       'Given two immutable child objects with identical fields when comparing equality then equality comparison returns true',
       () {
-        final firstObject = ImmutableChildObject(
+        const firstObject = ImmutableChildObject(
           variable: 'value',
           childVariable: 'childValue',
         );
-        final secondObject = ImmutableChildObject(
+        const secondObject = ImmutableChildObject(
           variable: 'value',
           childVariable: 'childValue',
         );
@@ -190,11 +190,11 @@ void main() {
     test(
       'Given two immutable child objects with different fields when comparing equality then equality comparison returns false',
       () {
-        final firstObject = ImmutableChildObject(
+        const firstObject = ImmutableChildObject(
           variable: 'value1',
           childVariable: 'childValue',
         );
-        final secondObject = ImmutableChildObject(
+        const secondObject = ImmutableChildObject(
           variable: 'value2',
           childVariable: 'childValue',
         );
@@ -205,8 +205,8 @@ void main() {
     test(
       'Given an immutable object and a immutable child object with identical fields when comparing equality then equality comparison returns false',
       () {
-        final firstObject = ImmutableObject(variable: 'value');
-        final secondObject = ImmutableChildObjectWithNoAdditionalFields(
+        const firstObject = ImmutableObject(variable: 'value');
+        const secondObject = ImmutableChildObjectWithNoAdditionalFields(
           variable: 'value',
         );
         expect(firstObject, isNot(equals(secondObject)));
@@ -222,7 +222,7 @@ void main() {
         late ImmutableObject copy;
 
         setUp(() {
-          original = ImmutableObject(variable: 'original');
+          original = const ImmutableObject(variable: 'original');
           copy = original.copyWith(variable: 'updated');
         });
 
@@ -247,7 +247,7 @@ void main() {
         late ImmutableObjectWithList copy;
 
         setUp(() {
-          original = ImmutableObjectWithList(listVariable: ['a', 'b']);
+          original = const ImmutableObjectWithList(listVariable: ['a', 'b']);
           copy = original.copyWith(listVariable: ['x', 'y']);
         });
 
@@ -272,7 +272,7 @@ void main() {
         late ImmutableObjectWithMap copy;
 
         setUp(() {
-          original = ImmutableObjectWithMap(mapVariable: {'k': 'v'});
+          original = const ImmutableObjectWithMap(mapVariable: {'k': 'v'});
           copy = original.copyWith(mapVariable: {'k': 'new'});
         });
 
@@ -297,7 +297,7 @@ void main() {
         late ImmutableObjectWithRecord copy;
 
         setUp(() {
-          original = ImmutableObjectWithRecord(recordVariable: (1, 'a'));
+          original = const ImmutableObjectWithRecord(recordVariable: (1, 'a'));
           copy = original.copyWith(recordVariable: (2, 'b'));
         });
 
@@ -322,11 +322,11 @@ void main() {
         late ImmutableObjectWithImmutableObject copy;
 
         setUp(() {
-          original = ImmutableObjectWithImmutableObject(
+          original = const ImmutableObjectWithImmutableObject(
             immutableVariable: ImmutableObject(variable: 'original'),
           );
           copy = original.copyWith(
-            immutableVariable: ImmutableObject(variable: 'updated'),
+            immutableVariable: const ImmutableObject(variable: 'updated'),
           );
         });
 
@@ -351,7 +351,7 @@ void main() {
         late ImmutableObjectWithMultipleFields copy;
 
         setUp(() {
-          original = ImmutableObjectWithMultipleFields(
+          original = const ImmutableObjectWithMultipleFields(
             anInt: 1,
             aString: 'original',
             aBool: true,
@@ -387,7 +387,7 @@ void main() {
         late ImmutableChildObject copy;
 
         setUp(() {
-          original = ImmutableChildObject(
+          original = const ImmutableChildObject(
             variable: 'original',
             childVariable: 'childOriginal',
           );

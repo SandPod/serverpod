@@ -30,8 +30,7 @@ enum DatabaseMigrationActionType implements _i1.SerializableModel {
         return DatabaseMigrationActionType.alterTable;
       default:
         throw ArgumentError(
-          'Value "$name" cannot be converted to "DatabaseMigrationActionType"',
-        );
+            'Value "$name" cannot be converted to "DatabaseMigrationActionType"');
     }
   }
 

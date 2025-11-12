@@ -17,16 +17,14 @@ abstract class Record
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
   Record._({this.aBoolRecord});
 
-  factory Record({final (bool,)? aBoolRecord}) = _RecordImpl;
+  factory Record({(bool,)? aBoolRecord}) = _RecordImpl;
 
-  factory Record.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory Record.fromJson(Map<String, dynamic> jsonSerialization) {
     return Record(
-      aBoolRecord: jsonSerialization['aBoolRecord'] == null
-          ? null
-          : _i2.Protocol().deserialize<(bool,)?>(
-              (jsonSerialization['aBoolRecord'] as Map<String, dynamic>),
-            ),
-    );
+        aBoolRecord: jsonSerialization['aBoolRecord'] == null
+            ? null
+            : _i2.Protocol().deserialize<(bool,)?>(
+                (jsonSerialization['aBoolRecord'] as Map<String, dynamic>)));
   }
 
   (bool,)? aBoolRecord;
@@ -34,18 +32,18 @@ abstract class Record
   /// Returns a shallow copy of this [Record]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  Record copyWith({final (bool,)? aBoolRecord});
+  Record copyWith({(bool,)? aBoolRecord});
   @override
   Map<String, dynamic> toJson() {
     return {
-      if (aBoolRecord != null) 'aBoolRecord': _i2.mapRecordToJson(aBoolRecord),
+      if (aBoolRecord != null) 'aBoolRecord': _i2.mapRecordToJson(aBoolRecord)
     };
   }
 
   @override
   Map<String, dynamic> toJsonForProtocol() {
     return {
-      if (aBoolRecord != null) 'aBoolRecord': _i2.mapRecordToJson(aBoolRecord),
+      if (aBoolRecord != null) 'aBoolRecord': _i2.mapRecordToJson(aBoolRecord)
     };
   }
 
@@ -58,19 +56,18 @@ abstract class Record
 class _Undefined {}
 
 class _RecordImpl extends Record {
-  _RecordImpl({final (bool,)? aBoolRecord}) : super._(aBoolRecord: aBoolRecord);
+  _RecordImpl({(bool,)? aBoolRecord}) : super._(aBoolRecord: aBoolRecord);
 
   /// Returns a shallow copy of this [Record]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  Record copyWith({final Object? aBoolRecord = _Undefined}) {
+  Record copyWith({Object? aBoolRecord = _Undefined}) {
     return Record(
-      aBoolRecord: aBoolRecord is (bool,)?
-          ? aBoolRecord
-          : this.aBoolRecord == null
-          ? null
-          : (this.aBoolRecord!.$1,),
-    );
+        aBoolRecord: aBoolRecord is (bool,)?
+            ? aBoolRecord
+            : this.aBoolRecord == null
+                ? null
+                : (this.aBoolRecord!.$1,));
   }
 }

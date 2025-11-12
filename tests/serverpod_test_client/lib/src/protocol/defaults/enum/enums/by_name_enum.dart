@@ -24,8 +24,7 @@ enum ByNameEnum implements _i1.SerializableModel {
         return ByNameEnum.byName2;
       default:
         throw ArgumentError(
-          'Value "$name" cannot be converted to "ByNameEnum"',
-        );
+            'Value "$name" cannot be converted to "ByNameEnum"');
     }
   }
 

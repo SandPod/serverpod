@@ -16,11 +16,9 @@ class NonServerOnlyParentClass implements _i1.SerializableModel {
   NonServerOnlyParentClass({required this.parentField});
 
   factory NonServerOnlyParentClass.fromJson(
-    Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return NonServerOnlyParentClass(
-      parentField: jsonSerialization['parentField'] as String,
-    );
+        parentField: jsonSerialization['parentField'] as String);
   }
 
   String parentField;
@@ -30,8 +28,7 @@ class NonServerOnlyParentClass implements _i1.SerializableModel {
   @_i1.useResult
   NonServerOnlyParentClass copyWith({String? parentField}) {
     return NonServerOnlyParentClass(
-      parentField: parentField ?? this.parentField,
-    );
+        parentField: parentField ?? this.parentField);
   }
 
   @override

@@ -23,13 +23,13 @@ abstract class EmailFailedSignIn implements _i1.SerializableModel {
   });
 
   factory EmailFailedSignIn({
-    final int? id,
-    required final String email,
-    required final DateTime time,
-    required final String ipAddress,
+    int? id,
+    required String email,
+    required DateTime time,
+    required String ipAddress,
   }) = _EmailFailedSignInImpl;
 
-  factory EmailFailedSignIn.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory EmailFailedSignIn.fromJson(Map<String, dynamic> jsonSerialization) {
     return EmailFailedSignIn(
       id: jsonSerialization['id'] as int?,
       email: jsonSerialization['email'] as String,
@@ -56,10 +56,10 @@ abstract class EmailFailedSignIn implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   EmailFailedSignIn copyWith({
-    final int? id,
-    final String? email,
-    final DateTime? time,
-    final String? ipAddress,
+    int? id,
+    String? email,
+    DateTime? time,
+    String? ipAddress,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -81,26 +81,26 @@ class _Undefined {}
 
 class _EmailFailedSignInImpl extends EmailFailedSignIn {
   _EmailFailedSignInImpl({
-    final int? id,
-    required final String email,
-    required final DateTime time,
-    required final String ipAddress,
+    int? id,
+    required String email,
+    required DateTime time,
+    required String ipAddress,
   }) : super._(
-         id: id,
-         email: email,
-         time: time,
-         ipAddress: ipAddress,
-       );
+          id: id,
+          email: email,
+          time: time,
+          ipAddress: ipAddress,
+        );
 
   /// Returns a shallow copy of this [EmailFailedSignIn]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   EmailFailedSignIn copyWith({
-    final Object? id = _Undefined,
-    final String? email,
-    final DateTime? time,
-    final String? ipAddress,
+    Object? id = _Undefined,
+    String? email,
+    DateTime? time,
+    String? ipAddress,
   }) {
     return EmailFailedSignIn(
       id: id is int? ? id : this.id,

@@ -9,12 +9,10 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
-import 'package:serverpod/protocol.dart' as _i2;
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-
+import 'package:serverpod/protocol.dart' as _i2;
 import 'greeting.dart' as _i3;
-
 export 'greeting.dart';
 
 class Protocol extends _i1.SerializationManagerServer {
@@ -36,7 +34,7 @@ class Protocol extends _i1.SerializationManagerServer {
           columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'int?',
-          columnDefault: "nextval('greeting_id_seq'::regclass)",
+          columnDefault: 'nextval(\'greeting_id_seq\'::regclass)',
         ),
         _i2.ColumnDefinition(
           name: 'message',
@@ -66,12 +64,12 @@ class Protocol extends _i1.SerializationManagerServer {
             _i2.IndexElementDefinition(
               type: _i2.IndexElementDefinitionType.column,
               definition: 'id',
-            ),
+            )
           ],
           type: 'btree',
           isUnique: true,
           isPrimary: true,
-        ),
+        )
       ],
       managed: true,
     ),
@@ -80,7 +78,7 @@ class Protocol extends _i1.SerializationManagerServer {
 
   @override
   T deserialize<T>(
-    final dynamic data, [
+    dynamic data, [
     Type? t,
   ]) {
     t ??= T;
@@ -97,7 +95,7 @@ class Protocol extends _i1.SerializationManagerServer {
   }
 
   @override
-  String? getClassNameForObject(final Object? data) {
+  String? getClassNameForObject(Object? data) {
     String? className = super.getClassNameForObject(data);
     if (className != null) return className;
     switch (data) {
@@ -112,8 +110,8 @@ class Protocol extends _i1.SerializationManagerServer {
   }
 
   @override
-  dynamic deserializeByClassName(final Map<String, dynamic> data) {
-    final dataClassName = data['className'];
+  dynamic deserializeByClassName(Map<String, dynamic> data) {
+    var dataClassName = data['className'];
     if (dataClassName is! String) {
       return super.deserializeByClassName(data);
     }
@@ -128,9 +126,9 @@ class Protocol extends _i1.SerializationManagerServer {
   }
 
   @override
-  _i1.Table? getTableForType(final Type t) {
+  _i1.Table? getTableForType(Type t) {
     {
-      final table = _i2.Protocol().getTableForType(t);
+      var table = _i2.Protocol().getTableForType(t);
       if (table != null) {
         return table;
       }

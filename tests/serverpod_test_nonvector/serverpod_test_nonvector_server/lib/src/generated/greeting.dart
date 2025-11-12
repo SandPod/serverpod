@@ -23,20 +23,19 @@ abstract class Greeting
   });
 
   factory Greeting({
-    final int? id,
-    required final String message,
-    required final String author,
-    required final DateTime timestamp,
+    int? id,
+    required String message,
+    required String author,
+    required DateTime timestamp,
   }) = _GreetingImpl;
 
-  factory Greeting.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory Greeting.fromJson(Map<String, dynamic> jsonSerialization) {
     return Greeting(
       id: jsonSerialization['id'] as int?,
       message: jsonSerialization['message'] as String,
       author: jsonSerialization['author'] as String,
-      timestamp: _i1.DateTimeJsonExtension.fromJson(
-        jsonSerialization['timestamp'],
-      ),
+      timestamp:
+          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['timestamp']),
     );
   }
 
@@ -63,10 +62,10 @@ abstract class Greeting
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   Greeting copyWith({
-    final int? id,
-    final String? message,
-    final String? author,
-    final DateTime? timestamp,
+    int? id,
+    String? message,
+    String? author,
+    DateTime? timestamp,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -93,13 +92,13 @@ abstract class Greeting
   }
 
   static GreetingIncludeList includeList({
-    final _i1.WhereExpressionBuilder<GreetingTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<GreetingTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<GreetingTable>? orderByList,
-    final GreetingInclude? include,
+    _i1.WhereExpressionBuilder<GreetingTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<GreetingTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<GreetingTable>? orderByList,
+    GreetingInclude? include,
   }) {
     return GreetingIncludeList._(
       where: where,
@@ -122,26 +121,26 @@ class _Undefined {}
 
 class _GreetingImpl extends Greeting {
   _GreetingImpl({
-    final int? id,
-    required final String message,
-    required final String author,
-    required final DateTime timestamp,
+    int? id,
+    required String message,
+    required String author,
+    required DateTime timestamp,
   }) : super._(
-         id: id,
-         message: message,
-         author: author,
-         timestamp: timestamp,
-       );
+          id: id,
+          message: message,
+          author: author,
+          timestamp: timestamp,
+        );
 
   /// Returns a shallow copy of this [Greeting]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   Greeting copyWith({
-    final Object? id = _Undefined,
-    final String? message,
-    final String? author,
-    final DateTime? timestamp,
+    Object? id = _Undefined,
+    String? message,
+    String? author,
+    DateTime? timestamp,
   }) {
     return Greeting(
       id: id is int? ? id : this.id,
@@ -155,17 +154,17 @@ class _GreetingImpl extends Greeting {
 class GreetingUpdateTable extends _i1.UpdateTable<GreetingTable> {
   GreetingUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> message(final String value) => _i1.ColumnValue(
-    table.message,
-    value,
-  );
+  _i1.ColumnValue<String, String> message(String value) => _i1.ColumnValue(
+        table.message,
+        value,
+      );
 
-  _i1.ColumnValue<String, String> author(final String value) => _i1.ColumnValue(
-    table.author,
-    value,
-  );
+  _i1.ColumnValue<String, String> author(String value) => _i1.ColumnValue(
+        table.author,
+        value,
+      );
 
-  _i1.ColumnValue<DateTime, DateTime> timestamp(final DateTime value) =>
+  _i1.ColumnValue<DateTime, DateTime> timestamp(DateTime value) =>
       _i1.ColumnValue(
         table.timestamp,
         value,
@@ -202,11 +201,11 @@ class GreetingTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    message,
-    author,
-    timestamp,
-  ];
+        id,
+        message,
+        author,
+        timestamp,
+      ];
 }
 
 class GreetingInclude extends _i1.IncludeObject {
@@ -221,7 +220,7 @@ class GreetingInclude extends _i1.IncludeObject {
 
 class GreetingIncludeList extends _i1.IncludeList {
   GreetingIncludeList._({
-    final _i1.WhereExpressionBuilder<GreetingTable>? where,
+    _i1.WhereExpressionBuilder<GreetingTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -265,14 +264,14 @@ class GreetingRepository {
   /// );
   /// ```
   Future<List<Greeting>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<GreetingTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<GreetingTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<GreetingTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<GreetingTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<GreetingTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<GreetingTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<Greeting>(
       where: where?.call(Greeting.t),
@@ -303,13 +302,13 @@ class GreetingRepository {
   /// );
   /// ```
   Future<Greeting?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<GreetingTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<GreetingTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<GreetingTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<GreetingTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<GreetingTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<GreetingTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<Greeting>(
       where: where?.call(Greeting.t),
@@ -323,9 +322,9 @@ class GreetingRepository {
 
   /// Finds a single [Greeting] by its [id] or null if no such row exists.
   Future<Greeting?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<Greeting>(
       id,
@@ -340,9 +339,9 @@ class GreetingRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<Greeting>> insert(
-    final _i1.Session session,
-    final List<Greeting> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Greeting> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<Greeting>(
       rows,
@@ -354,9 +353,9 @@ class GreetingRepository {
   ///
   /// The returned [Greeting] will have its `id` field set.
   Future<Greeting> insertRow(
-    final _i1.Session session,
-    final Greeting row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Greeting row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<Greeting>(
       row,
@@ -370,10 +369,10 @@ class GreetingRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<Greeting>> update(
-    final _i1.Session session,
-    final List<Greeting> rows, {
-    final _i1.ColumnSelections<GreetingTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Greeting> rows, {
+    _i1.ColumnSelections<GreetingTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<Greeting>(
       rows,
@@ -386,10 +385,10 @@ class GreetingRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<Greeting> updateRow(
-    final _i1.Session session,
-    final Greeting row, {
-    final _i1.ColumnSelections<GreetingTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Greeting row, {
+    _i1.ColumnSelections<GreetingTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<Greeting>(
       row,
@@ -401,10 +400,10 @@ class GreetingRepository {
   /// Updates a single [Greeting] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<Greeting?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<GreetingUpdateTable> columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<GreetingUpdateTable> columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<Greeting>(
       id,
@@ -416,15 +415,15 @@ class GreetingRepository {
   /// Updates all [Greeting]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<Greeting>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<GreetingUpdateTable> columnValues,
-    required final _i1.WhereExpressionBuilder<GreetingTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<GreetingTable>? orderBy,
-    final _i1.OrderByListBuilder<GreetingTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<GreetingUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<GreetingTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<GreetingTable>? orderBy,
+    _i1.OrderByListBuilder<GreetingTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<Greeting>(
       columnValues: columnValues(Greeting.t.updateTable),
@@ -442,9 +441,9 @@ class GreetingRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<Greeting>> delete(
-    final _i1.Session session,
-    final List<Greeting> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Greeting> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<Greeting>(
       rows,
@@ -454,9 +453,9 @@ class GreetingRepository {
 
   /// Deletes a single [Greeting].
   Future<Greeting> deleteRow(
-    final _i1.Session session,
-    final Greeting row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Greeting row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<Greeting>(
       row,
@@ -466,9 +465,9 @@ class GreetingRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<Greeting>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<GreetingTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<GreetingTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<Greeting>(
       where: where(Greeting.t),
@@ -479,10 +478,10 @@ class GreetingRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<GreetingTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<GreetingTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<Greeting>(
       where: where?.call(Greeting.t),

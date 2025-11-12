@@ -21,13 +21,12 @@ abstract class ImmutableObjectWithTable
   });
 
   const factory ImmutableObjectWithTable({
-    final int? id,
-    required final String variable,
+    int? id,
+    required String variable,
   }) = _ImmutableObjectWithTableImpl;
 
   factory ImmutableObjectWithTable.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ImmutableObjectWithTable(
       id: jsonSerialization['id'] as int?,
       variable: jsonSerialization['variable'] as String,
@@ -50,11 +49,11 @@ abstract class ImmutableObjectWithTable
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ImmutableObjectWithTable copyWith({
-    final int? id,
-    final String? variable,
+    int? id,
+    String? variable,
   });
   @override
-  bool operator ==(final Object other) {
+  bool operator ==(Object other) {
     return identical(
           other,
           this,
@@ -103,13 +102,13 @@ abstract class ImmutableObjectWithTable
   }
 
   static ImmutableObjectWithTableIncludeList includeList({
-    final _i1.WhereExpressionBuilder<ImmutableObjectWithTableTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ImmutableObjectWithTableTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ImmutableObjectWithTableTable>? orderByList,
-    final ImmutableObjectWithTableInclude? include,
+    _i1.WhereExpressionBuilder<ImmutableObjectWithTableTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ImmutableObjectWithTableTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ImmutableObjectWithTableTable>? orderByList,
+    ImmutableObjectWithTableInclude? include,
   }) {
     return ImmutableObjectWithTableIncludeList._(
       where: where,
@@ -132,20 +131,20 @@ class _Undefined {}
 
 class _ImmutableObjectWithTableImpl extends ImmutableObjectWithTable {
   const _ImmutableObjectWithTableImpl({
-    final int? id,
-    required final String variable,
+    int? id,
+    required String variable,
   }) : super._(
-         id: id,
-         variable: variable,
-       );
+          id: id,
+          variable: variable,
+        );
 
   /// Returns a shallow copy of this [ImmutableObjectWithTable]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   ImmutableObjectWithTable copyWith({
-    final Object? id = _Undefined,
-    final String? variable,
+    Object? id = _Undefined,
+    String? variable,
   }) {
     return ImmutableObjectWithTable(
       id: id is int? ? id : this.id,
@@ -158,15 +157,15 @@ class ImmutableObjectWithTableUpdateTable
     extends _i1.UpdateTable<ImmutableObjectWithTableTable> {
   ImmutableObjectWithTableUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> variable(final String value) => _i1.ColumnValue(
-    table.variable,
-    value,
-  );
+  _i1.ColumnValue<String, String> variable(String value) => _i1.ColumnValue(
+        table.variable,
+        value,
+      );
 }
 
 class ImmutableObjectWithTableTable extends _i1.Table<int?> {
   ImmutableObjectWithTableTable({super.tableRelation})
-    : super(tableName: 'immutable_object_with_table') {
+      : super(tableName: 'immutable_object_with_table') {
     updateTable = ImmutableObjectWithTableUpdateTable(this);
     variable = _i1.ColumnString(
       'variable',
@@ -180,9 +179,9 @@ class ImmutableObjectWithTableTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    variable,
-  ];
+        id,
+        variable,
+      ];
 }
 
 class ImmutableObjectWithTableInclude extends _i1.IncludeObject {
@@ -197,7 +196,7 @@ class ImmutableObjectWithTableInclude extends _i1.IncludeObject {
 
 class ImmutableObjectWithTableIncludeList extends _i1.IncludeList {
   ImmutableObjectWithTableIncludeList._({
-    final _i1.WhereExpressionBuilder<ImmutableObjectWithTableTable>? where,
+    _i1.WhereExpressionBuilder<ImmutableObjectWithTableTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -241,14 +240,14 @@ class ImmutableObjectWithTableRepository {
   /// );
   /// ```
   Future<List<ImmutableObjectWithTable>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ImmutableObjectWithTableTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ImmutableObjectWithTableTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ImmutableObjectWithTableTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ImmutableObjectWithTableTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ImmutableObjectWithTableTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ImmutableObjectWithTableTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<ImmutableObjectWithTable>(
       where: where?.call(ImmutableObjectWithTable.t),
@@ -279,13 +278,13 @@ class ImmutableObjectWithTableRepository {
   /// );
   /// ```
   Future<ImmutableObjectWithTable?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ImmutableObjectWithTableTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<ImmutableObjectWithTableTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ImmutableObjectWithTableTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ImmutableObjectWithTableTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<ImmutableObjectWithTableTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ImmutableObjectWithTableTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<ImmutableObjectWithTable>(
       where: where?.call(ImmutableObjectWithTable.t),
@@ -299,9 +298,9 @@ class ImmutableObjectWithTableRepository {
 
   /// Finds a single [ImmutableObjectWithTable] by its [id] or null if no such row exists.
   Future<ImmutableObjectWithTable?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<ImmutableObjectWithTable>(
       id,
@@ -316,9 +315,9 @@ class ImmutableObjectWithTableRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<ImmutableObjectWithTable>> insert(
-    final _i1.Session session,
-    final List<ImmutableObjectWithTable> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ImmutableObjectWithTable> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<ImmutableObjectWithTable>(
       rows,
@@ -330,9 +329,9 @@ class ImmutableObjectWithTableRepository {
   ///
   /// The returned [ImmutableObjectWithTable] will have its `id` field set.
   Future<ImmutableObjectWithTable> insertRow(
-    final _i1.Session session,
-    final ImmutableObjectWithTable row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ImmutableObjectWithTable row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<ImmutableObjectWithTable>(
       row,
@@ -346,10 +345,10 @@ class ImmutableObjectWithTableRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<ImmutableObjectWithTable>> update(
-    final _i1.Session session,
-    final List<ImmutableObjectWithTable> rows, {
-    final _i1.ColumnSelections<ImmutableObjectWithTableTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ImmutableObjectWithTable> rows, {
+    _i1.ColumnSelections<ImmutableObjectWithTableTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<ImmutableObjectWithTable>(
       rows,
@@ -362,10 +361,10 @@ class ImmutableObjectWithTableRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<ImmutableObjectWithTable> updateRow(
-    final _i1.Session session,
-    final ImmutableObjectWithTable row, {
-    final _i1.ColumnSelections<ImmutableObjectWithTableTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ImmutableObjectWithTable row, {
+    _i1.ColumnSelections<ImmutableObjectWithTableTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<ImmutableObjectWithTable>(
       row,
@@ -377,11 +376,11 @@ class ImmutableObjectWithTableRepository {
   /// Updates a single [ImmutableObjectWithTable] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<ImmutableObjectWithTable?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<ImmutableObjectWithTableUpdateTable>
-    columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<ImmutableObjectWithTableUpdateTable>
+        columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<ImmutableObjectWithTable>(
       id,
@@ -393,16 +392,16 @@ class ImmutableObjectWithTableRepository {
   /// Updates all [ImmutableObjectWithTable]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<ImmutableObjectWithTable>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<ImmutableObjectWithTableUpdateTable>
-    columnValues,
-    required final _i1.WhereExpressionBuilder<ImmutableObjectWithTableTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ImmutableObjectWithTableTable>? orderBy,
-    final _i1.OrderByListBuilder<ImmutableObjectWithTableTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<ImmutableObjectWithTableUpdateTable>
+        columnValues,
+    required _i1.WhereExpressionBuilder<ImmutableObjectWithTableTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ImmutableObjectWithTableTable>? orderBy,
+    _i1.OrderByListBuilder<ImmutableObjectWithTableTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<ImmutableObjectWithTable>(
       columnValues: columnValues(ImmutableObjectWithTable.t.updateTable),
@@ -420,9 +419,9 @@ class ImmutableObjectWithTableRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<ImmutableObjectWithTable>> delete(
-    final _i1.Session session,
-    final List<ImmutableObjectWithTable> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ImmutableObjectWithTable> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<ImmutableObjectWithTable>(
       rows,
@@ -432,9 +431,9 @@ class ImmutableObjectWithTableRepository {
 
   /// Deletes a single [ImmutableObjectWithTable].
   Future<ImmutableObjectWithTable> deleteRow(
-    final _i1.Session session,
-    final ImmutableObjectWithTable row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ImmutableObjectWithTable row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<ImmutableObjectWithTable>(
       row,
@@ -444,9 +443,9 @@ class ImmutableObjectWithTableRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<ImmutableObjectWithTable>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<ImmutableObjectWithTableTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<ImmutableObjectWithTableTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<ImmutableObjectWithTable>(
       where: where(ImmutableObjectWithTable.t),
@@ -457,10 +456,10 @@ class ImmutableObjectWithTableRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ImmutableObjectWithTableTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ImmutableObjectWithTableTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<ImmutableObjectWithTable>(
       where: where?.call(ImmutableObjectWithTable.t),

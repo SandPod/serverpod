@@ -17,17 +17,15 @@ abstract class ImmutableObjectWithList
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
   const ImmutableObjectWithList._({required this.listVariable});
 
-  const factory ImmutableObjectWithList({required final List<String> listVariable}) =
+  const factory ImmutableObjectWithList({required List<String> listVariable}) =
       _ImmutableObjectWithListImpl;
 
   factory ImmutableObjectWithList.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ImmutableObjectWithList(
-      listVariable: (jsonSerialization['listVariable'] as List)
-          .map((final e) => e as String)
-          .toList(),
-    );
+        listVariable: (jsonSerialization['listVariable'] as List)
+            .map((e) => e as String)
+            .toList());
   }
 
   final List<String> listVariable;
@@ -35,9 +33,9 @@ abstract class ImmutableObjectWithList
   /// Returns a shallow copy of this [ImmutableObjectWithList]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  ImmutableObjectWithList copyWith({final List<String>? listVariable});
+  ImmutableObjectWithList copyWith({List<String>? listVariable});
   @override
-  bool operator ==(final Object other) {
+  bool operator ==(Object other) {
     return identical(
           other,
           this,
@@ -75,16 +73,16 @@ abstract class ImmutableObjectWithList
 }
 
 class _ImmutableObjectWithListImpl extends ImmutableObjectWithList {
-  const _ImmutableObjectWithListImpl({required final List<String> listVariable})
-    : super._(listVariable: listVariable);
+  const _ImmutableObjectWithListImpl({required List<String> listVariable})
+      : super._(listVariable: listVariable);
 
   /// Returns a shallow copy of this [ImmutableObjectWithList]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  ImmutableObjectWithList copyWith({final List<String>? listVariable}) {
+  ImmutableObjectWithList copyWith({List<String>? listVariable}) {
     return ImmutableObjectWithList(
-      listVariable: listVariable ?? this.listVariable.map((final e0) => e0).toList(),
-    );
+        listVariable:
+            listVariable ?? this.listVariable.map((e0) => e0).toList());
   }
 }

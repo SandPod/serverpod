@@ -17,21 +17,17 @@ abstract class ImmutableObjectWithMap
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
   const ImmutableObjectWithMap._({required this.mapVariable});
 
-  const factory ImmutableObjectWithMap({
-    required final Map<String, String> mapVariable,
-  }) = _ImmutableObjectWithMapImpl;
+  const factory ImmutableObjectWithMap(
+      {required Map<String, String> mapVariable}) = _ImmutableObjectWithMapImpl;
 
   factory ImmutableObjectWithMap.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ImmutableObjectWithMap(
-      mapVariable: (jsonSerialization['mapVariable'] as Map).map(
-        (final k, final v) => MapEntry(
-          k as String,
-          v as String,
-        ),
-      ),
-    );
+        mapVariable:
+            (jsonSerialization['mapVariable'] as Map).map((k, v) => MapEntry(
+                  k as String,
+                  v as String,
+                )));
   }
 
   final Map<String, String> mapVariable;
@@ -39,9 +35,9 @@ abstract class ImmutableObjectWithMap
   /// Returns a shallow copy of this [ImmutableObjectWithMap]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  ImmutableObjectWithMap copyWith({final Map<String, String>? mapVariable});
+  ImmutableObjectWithMap copyWith({Map<String, String>? mapVariable});
   @override
-  bool operator ==(final Object other) {
+  bool operator ==(Object other) {
     return identical(
           other,
           this,
@@ -79,26 +75,23 @@ abstract class ImmutableObjectWithMap
 }
 
 class _ImmutableObjectWithMapImpl extends ImmutableObjectWithMap {
-  const _ImmutableObjectWithMapImpl({required final Map<String, String> mapVariable})
-    : super._(mapVariable: mapVariable);
+  const _ImmutableObjectWithMapImpl({required Map<String, String> mapVariable})
+      : super._(mapVariable: mapVariable);
 
   /// Returns a shallow copy of this [ImmutableObjectWithMap]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  ImmutableObjectWithMap copyWith({final Map<String, String>? mapVariable}) {
+  ImmutableObjectWithMap copyWith({Map<String, String>? mapVariable}) {
     return ImmutableObjectWithMap(
-      mapVariable:
-          mapVariable ??
-          this.mapVariable.map(
-            (
-              final key0,
-              final value0,
-            ) => MapEntry(
-              key0,
-              value0,
-            ),
-          ),
-    );
+        mapVariable: mapVariable ??
+            this.mapVariable.map((
+                  key0,
+                  value0,
+                ) =>
+                    MapEntry(
+                      key0,
+                      value0,
+                    )));
   }
 }

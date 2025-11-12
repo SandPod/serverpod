@@ -18,20 +18,20 @@ import '../../changed_id_type/one_to_one/citizen.dart' as _i2;
 abstract class AddressUuid
     implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   AddressUuid._({
-    final _i1.UuidValue? id,
+    _i1.UuidValue? id,
     required this.street,
     this.inhabitantId,
     this.inhabitant,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? _i1.Uuid().v4obj();
 
   factory AddressUuid({
-    final _i1.UuidValue? id,
-    required final String street,
-    final int? inhabitantId,
-    final _i2.CitizenInt? inhabitant,
+    _i1.UuidValue? id,
+    required String street,
+    int? inhabitantId,
+    _i2.CitizenInt? inhabitant,
   }) = _AddressUuidImpl;
 
-  factory AddressUuid.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory AddressUuid.fromJson(Map<String, dynamic> jsonSerialization) {
     return AddressUuid(
       id: _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       street: jsonSerialization['street'] as String,
@@ -39,8 +39,7 @@ abstract class AddressUuid
       inhabitant: jsonSerialization['inhabitant'] == null
           ? null
           : _i2.CitizenInt.fromJson(
-              (jsonSerialization['inhabitant'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['inhabitant'] as Map<String, dynamic>)),
     );
   }
 
@@ -64,10 +63,10 @@ abstract class AddressUuid
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   AddressUuid copyWith({
-    final _i1.UuidValue? id,
-    final String? street,
-    final int? inhabitantId,
-    final _i2.CitizenInt? inhabitant,
+    _i1.UuidValue? id,
+    String? street,
+    int? inhabitantId,
+    _i2.CitizenInt? inhabitant,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -89,18 +88,18 @@ abstract class AddressUuid
     };
   }
 
-  static AddressUuidInclude include({final _i2.CitizenIntInclude? inhabitant}) {
+  static AddressUuidInclude include({_i2.CitizenIntInclude? inhabitant}) {
     return AddressUuidInclude._(inhabitant: inhabitant);
   }
 
   static AddressUuidIncludeList includeList({
-    final _i1.WhereExpressionBuilder<AddressUuidTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<AddressUuidTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<AddressUuidTable>? orderByList,
-    final AddressUuidInclude? include,
+    _i1.WhereExpressionBuilder<AddressUuidTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<AddressUuidTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<AddressUuidTable>? orderByList,
+    AddressUuidInclude? include,
   }) {
     return AddressUuidIncludeList._(
       where: where,
@@ -123,26 +122,26 @@ class _Undefined {}
 
 class _AddressUuidImpl extends AddressUuid {
   _AddressUuidImpl({
-    final _i1.UuidValue? id,
-    required final String street,
-    final int? inhabitantId,
-    final _i2.CitizenInt? inhabitant,
+    _i1.UuidValue? id,
+    required String street,
+    int? inhabitantId,
+    _i2.CitizenInt? inhabitant,
   }) : super._(
-         id: id,
-         street: street,
-         inhabitantId: inhabitantId,
-         inhabitant: inhabitant,
-       );
+          id: id,
+          street: street,
+          inhabitantId: inhabitantId,
+          inhabitant: inhabitant,
+        );
 
   /// Returns a shallow copy of this [AddressUuid]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   AddressUuid copyWith({
-    final _i1.UuidValue? id,
-    final String? street,
-    final Object? inhabitantId = _Undefined,
-    final Object? inhabitant = _Undefined,
+    _i1.UuidValue? id,
+    String? street,
+    Object? inhabitantId = _Undefined,
+    Object? inhabitant = _Undefined,
   }) {
     return AddressUuid(
       id: id ?? this.id,
@@ -158,15 +157,15 @@ class _AddressUuidImpl extends AddressUuid {
 class AddressUuidUpdateTable extends _i1.UpdateTable<AddressUuidTable> {
   AddressUuidUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> street(final String value) => _i1.ColumnValue(
-    table.street,
-    value,
-  );
+  _i1.ColumnValue<String, String> street(String value) => _i1.ColumnValue(
+        table.street,
+        value,
+      );
 
-  _i1.ColumnValue<int, int> inhabitantId(final int? value) => _i1.ColumnValue(
-    table.inhabitantId,
-    value,
-  );
+  _i1.ColumnValue<int, int> inhabitantId(int? value) => _i1.ColumnValue(
+        table.inhabitantId,
+        value,
+      );
 }
 
 class AddressUuidTable extends _i1.Table<_i1.UuidValue> {
@@ -197,7 +196,7 @@ class AddressUuidTable extends _i1.Table<_i1.UuidValue> {
       field: AddressUuid.t.inhabitantId,
       foreignField: _i2.CitizenInt.t.id,
       tableRelation: tableRelation,
-      createTable: (final foreignTableRelation) =>
+      createTable: (foreignTableRelation) =>
           _i2.CitizenIntTable(tableRelation: foreignTableRelation),
     );
     return _inhabitant!;
@@ -205,13 +204,13 @@ class AddressUuidTable extends _i1.Table<_i1.UuidValue> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    street,
-    inhabitantId,
-  ];
+        id,
+        street,
+        inhabitantId,
+      ];
 
   @override
-  _i1.Table? getRelationTable(final String relationField) {
+  _i1.Table? getRelationTable(String relationField) {
     if (relationField == 'inhabitant') {
       return inhabitant;
     }
@@ -220,7 +219,7 @@ class AddressUuidTable extends _i1.Table<_i1.UuidValue> {
 }
 
 class AddressUuidInclude extends _i1.IncludeObject {
-  AddressUuidInclude._({final _i2.CitizenIntInclude? inhabitant}) {
+  AddressUuidInclude._({_i2.CitizenIntInclude? inhabitant}) {
     _inhabitant = inhabitant;
   }
 
@@ -235,7 +234,7 @@ class AddressUuidInclude extends _i1.IncludeObject {
 
 class AddressUuidIncludeList extends _i1.IncludeList {
   AddressUuidIncludeList._({
-    final _i1.WhereExpressionBuilder<AddressUuidTable>? where,
+    _i1.WhereExpressionBuilder<AddressUuidTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -283,15 +282,15 @@ class AddressUuidRepository {
   /// );
   /// ```
   Future<List<AddressUuid>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<AddressUuidTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<AddressUuidTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<AddressUuidTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final AddressUuidInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<AddressUuidTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<AddressUuidTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<AddressUuidTable>? orderByList,
+    _i1.Transaction? transaction,
+    AddressUuidInclude? include,
   }) async {
     return session.db.find<AddressUuid>(
       where: where?.call(AddressUuid.t),
@@ -323,14 +322,14 @@ class AddressUuidRepository {
   /// );
   /// ```
   Future<AddressUuid?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<AddressUuidTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<AddressUuidTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<AddressUuidTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final AddressUuidInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<AddressUuidTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<AddressUuidTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<AddressUuidTable>? orderByList,
+    _i1.Transaction? transaction,
+    AddressUuidInclude? include,
   }) async {
     return session.db.findFirstRow<AddressUuid>(
       where: where?.call(AddressUuid.t),
@@ -345,10 +344,10 @@ class AddressUuidRepository {
 
   /// Finds a single [AddressUuid] by its [id] or null if no such row exists.
   Future<AddressUuid?> findById(
-    final _i1.Session session,
-    final _i1.UuidValue id, {
-    final _i1.Transaction? transaction,
-    final AddressUuidInclude? include,
+    _i1.Session session,
+    _i1.UuidValue id, {
+    _i1.Transaction? transaction,
+    AddressUuidInclude? include,
   }) async {
     return session.db.findById<AddressUuid>(
       id,
@@ -364,9 +363,9 @@ class AddressUuidRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<AddressUuid>> insert(
-    final _i1.Session session,
-    final List<AddressUuid> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<AddressUuid> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<AddressUuid>(
       rows,
@@ -378,9 +377,9 @@ class AddressUuidRepository {
   ///
   /// The returned [AddressUuid] will have its `id` field set.
   Future<AddressUuid> insertRow(
-    final _i1.Session session,
-    final AddressUuid row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    AddressUuid row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<AddressUuid>(
       row,
@@ -394,10 +393,10 @@ class AddressUuidRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<AddressUuid>> update(
-    final _i1.Session session,
-    final List<AddressUuid> rows, {
-    final _i1.ColumnSelections<AddressUuidTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<AddressUuid> rows, {
+    _i1.ColumnSelections<AddressUuidTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<AddressUuid>(
       rows,
@@ -410,10 +409,10 @@ class AddressUuidRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<AddressUuid> updateRow(
-    final _i1.Session session,
-    final AddressUuid row, {
-    final _i1.ColumnSelections<AddressUuidTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    AddressUuid row, {
+    _i1.ColumnSelections<AddressUuidTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<AddressUuid>(
       row,
@@ -425,10 +424,10 @@ class AddressUuidRepository {
   /// Updates a single [AddressUuid] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<AddressUuid?> updateById(
-    final _i1.Session session,
-    final _i1.UuidValue id, {
-    required final _i1.ColumnValueListBuilder<AddressUuidUpdateTable> columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    _i1.UuidValue id, {
+    required _i1.ColumnValueListBuilder<AddressUuidUpdateTable> columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<AddressUuid>(
       id,
@@ -440,15 +439,15 @@ class AddressUuidRepository {
   /// Updates all [AddressUuid]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<AddressUuid>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<AddressUuidUpdateTable> columnValues,
-    required final _i1.WhereExpressionBuilder<AddressUuidTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<AddressUuidTable>? orderBy,
-    final _i1.OrderByListBuilder<AddressUuidTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<AddressUuidUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<AddressUuidTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<AddressUuidTable>? orderBy,
+    _i1.OrderByListBuilder<AddressUuidTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<AddressUuid>(
       columnValues: columnValues(AddressUuid.t.updateTable),
@@ -466,9 +465,9 @@ class AddressUuidRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<AddressUuid>> delete(
-    final _i1.Session session,
-    final List<AddressUuid> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<AddressUuid> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<AddressUuid>(
       rows,
@@ -478,9 +477,9 @@ class AddressUuidRepository {
 
   /// Deletes a single [AddressUuid].
   Future<AddressUuid> deleteRow(
-    final _i1.Session session,
-    final AddressUuid row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    AddressUuid row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<AddressUuid>(
       row,
@@ -490,9 +489,9 @@ class AddressUuidRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<AddressUuid>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<AddressUuidTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<AddressUuidTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<AddressUuid>(
       where: where(AddressUuid.t),
@@ -503,10 +502,10 @@ class AddressUuidRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<AddressUuidTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<AddressUuidTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<AddressUuid>(
       where: where?.call(AddressUuid.t),
@@ -522,10 +521,10 @@ class AddressUuidAttachRowRepository {
   /// Creates a relation between the given [AddressUuid] and [CitizenInt]
   /// by setting the [AddressUuid]'s foreign key `inhabitantId` to refer to the [CitizenInt].
   Future<void> inhabitant(
-    final _i1.Session session,
-    final AddressUuid addressUuid,
-    final _i2.CitizenInt inhabitant, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    AddressUuid addressUuid,
+    _i2.CitizenInt inhabitant, {
+    _i1.Transaction? transaction,
   }) async {
     if (addressUuid.id == null) {
       throw ArgumentError.notNull('addressUuid.id');
@@ -534,7 +533,7 @@ class AddressUuidAttachRowRepository {
       throw ArgumentError.notNull('inhabitant.id');
     }
 
-    final $addressUuid = addressUuid.copyWith(inhabitantId: inhabitant.id);
+    var $addressUuid = addressUuid.copyWith(inhabitantId: inhabitant.id);
     await session.db.updateRow<AddressUuid>(
       $addressUuid,
       columns: [AddressUuid.t.inhabitantId],
@@ -552,15 +551,15 @@ class AddressUuidDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> inhabitant(
-    final _i1.Session session,
-    final AddressUuid addressUuid, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    AddressUuid addressUuid, {
+    _i1.Transaction? transaction,
   }) async {
     if (addressUuid.id == null) {
       throw ArgumentError.notNull('addressUuid.id');
     }
 
-    final $addressUuid = addressUuid.copyWith(inhabitantId: null);
+    var $addressUuid = addressUuid.copyWith(inhabitantId: null);
     await session.db.updateRow<AddressUuid>(
       $addressUuid,
       columns: [AddressUuid.t.inhabitantId],

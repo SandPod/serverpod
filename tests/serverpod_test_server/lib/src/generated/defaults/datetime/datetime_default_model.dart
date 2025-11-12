@@ -16,41 +16,35 @@ abstract class DateTimeDefaultModel
     implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   DateTimeDefaultModel._({
     this.id,
-    final DateTime? dateTimeDefaultModelNow,
-    final DateTime? dateTimeDefaultModelStr,
-    final DateTime? dateTimeDefaultModelStrNull,
-  }) : dateTimeDefaultModelNow = dateTimeDefaultModelNow ?? DateTime.now(),
-       dateTimeDefaultModelStr =
-           dateTimeDefaultModelStr ??
-           DateTime.parse('2024-05-24T22:00:00.000Z'),
-       dateTimeDefaultModelStrNull =
-           dateTimeDefaultModelStrNull ??
-           DateTime.parse('2024-05-24T22:00:00.000Z');
+    DateTime? dateTimeDefaultModelNow,
+    DateTime? dateTimeDefaultModelStr,
+    DateTime? dateTimeDefaultModelStrNull,
+  })  : dateTimeDefaultModelNow = dateTimeDefaultModelNow ?? DateTime.now(),
+        dateTimeDefaultModelStr = dateTimeDefaultModelStr ??
+            DateTime.parse('2024-05-24T22:00:00.000Z'),
+        dateTimeDefaultModelStrNull = dateTimeDefaultModelStrNull ??
+            DateTime.parse('2024-05-24T22:00:00.000Z');
 
   factory DateTimeDefaultModel({
-    final int? id,
-    final DateTime? dateTimeDefaultModelNow,
-    final DateTime? dateTimeDefaultModelStr,
-    final DateTime? dateTimeDefaultModelStrNull,
+    int? id,
+    DateTime? dateTimeDefaultModelNow,
+    DateTime? dateTimeDefaultModelStr,
+    DateTime? dateTimeDefaultModelStrNull,
   }) = _DateTimeDefaultModelImpl;
 
   factory DateTimeDefaultModel.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return DateTimeDefaultModel(
       id: jsonSerialization['id'] as int?,
       dateTimeDefaultModelNow: _i1.DateTimeJsonExtension.fromJson(
-        jsonSerialization['dateTimeDefaultModelNow'],
-      ),
+          jsonSerialization['dateTimeDefaultModelNow']),
       dateTimeDefaultModelStr: _i1.DateTimeJsonExtension.fromJson(
-        jsonSerialization['dateTimeDefaultModelStr'],
-      ),
+          jsonSerialization['dateTimeDefaultModelStr']),
       dateTimeDefaultModelStrNull:
           jsonSerialization['dateTimeDefaultModelStrNull'] == null
-          ? null
-          : _i1.DateTimeJsonExtension.fromJson(
-              jsonSerialization['dateTimeDefaultModelStrNull'],
-            ),
+              ? null
+              : _i1.DateTimeJsonExtension.fromJson(
+                  jsonSerialization['dateTimeDefaultModelStrNull']),
     );
   }
 
@@ -74,10 +68,10 @@ abstract class DateTimeDefaultModel
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   DateTimeDefaultModel copyWith({
-    final int? id,
-    final DateTime? dateTimeDefaultModelNow,
-    final DateTime? dateTimeDefaultModelStr,
-    final DateTime? dateTimeDefaultModelStrNull,
+    int? id,
+    DateTime? dateTimeDefaultModelNow,
+    DateTime? dateTimeDefaultModelStr,
+    DateTime? dateTimeDefaultModelStrNull,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -106,13 +100,13 @@ abstract class DateTimeDefaultModel
   }
 
   static DateTimeDefaultModelIncludeList includeList({
-    final _i1.WhereExpressionBuilder<DateTimeDefaultModelTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<DateTimeDefaultModelTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<DateTimeDefaultModelTable>? orderByList,
-    final DateTimeDefaultModelInclude? include,
+    _i1.WhereExpressionBuilder<DateTimeDefaultModelTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<DateTimeDefaultModelTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<DateTimeDefaultModelTable>? orderByList,
+    DateTimeDefaultModelInclude? include,
   }) {
     return DateTimeDefaultModelIncludeList._(
       where: where,
@@ -135,26 +129,26 @@ class _Undefined {}
 
 class _DateTimeDefaultModelImpl extends DateTimeDefaultModel {
   _DateTimeDefaultModelImpl({
-    final int? id,
-    final DateTime? dateTimeDefaultModelNow,
-    final DateTime? dateTimeDefaultModelStr,
-    final DateTime? dateTimeDefaultModelStrNull,
+    int? id,
+    DateTime? dateTimeDefaultModelNow,
+    DateTime? dateTimeDefaultModelStr,
+    DateTime? dateTimeDefaultModelStrNull,
   }) : super._(
-         id: id,
-         dateTimeDefaultModelNow: dateTimeDefaultModelNow,
-         dateTimeDefaultModelStr: dateTimeDefaultModelStr,
-         dateTimeDefaultModelStrNull: dateTimeDefaultModelStrNull,
-       );
+          id: id,
+          dateTimeDefaultModelNow: dateTimeDefaultModelNow,
+          dateTimeDefaultModelStr: dateTimeDefaultModelStr,
+          dateTimeDefaultModelStrNull: dateTimeDefaultModelStrNull,
+        );
 
   /// Returns a shallow copy of this [DateTimeDefaultModel]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   DateTimeDefaultModel copyWith({
-    final Object? id = _Undefined,
-    final DateTime? dateTimeDefaultModelNow,
-    final DateTime? dateTimeDefaultModelStr,
-    final Object? dateTimeDefaultModelStrNull = _Undefined,
+    Object? id = _Undefined,
+    DateTime? dateTimeDefaultModelNow,
+    DateTime? dateTimeDefaultModelStr,
+    Object? dateTimeDefaultModelStrNull = _Undefined,
   }) {
     return DateTimeDefaultModel(
       id: id is int? ? id : this.id,
@@ -173,29 +167,29 @@ class DateTimeDefaultModelUpdateTable
     extends _i1.UpdateTable<DateTimeDefaultModelTable> {
   DateTimeDefaultModelUpdateTable(super.table);
 
-  _i1.ColumnValue<DateTime, DateTime> dateTimeDefaultModelNow(final DateTime value) =>
+  _i1.ColumnValue<DateTime, DateTime> dateTimeDefaultModelNow(DateTime value) =>
       _i1.ColumnValue(
         table.dateTimeDefaultModelNow,
         value,
       );
 
-  _i1.ColumnValue<DateTime, DateTime> dateTimeDefaultModelStr(final DateTime value) =>
+  _i1.ColumnValue<DateTime, DateTime> dateTimeDefaultModelStr(DateTime value) =>
       _i1.ColumnValue(
         table.dateTimeDefaultModelStr,
         value,
       );
 
   _i1.ColumnValue<DateTime, DateTime> dateTimeDefaultModelStrNull(
-    final DateTime? value,
-  ) => _i1.ColumnValue(
-    table.dateTimeDefaultModelStrNull,
-    value,
-  );
+          DateTime? value) =>
+      _i1.ColumnValue(
+        table.dateTimeDefaultModelStrNull,
+        value,
+      );
 }
 
 class DateTimeDefaultModelTable extends _i1.Table<int?> {
   DateTimeDefaultModelTable({super.tableRelation})
-    : super(tableName: 'datetime_default_model') {
+      : super(tableName: 'datetime_default_model') {
     updateTable = DateTimeDefaultModelUpdateTable(this);
     dateTimeDefaultModelNow = _i1.ColumnDateTime(
       'dateTimeDefaultModelNow',
@@ -221,11 +215,11 @@ class DateTimeDefaultModelTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    dateTimeDefaultModelNow,
-    dateTimeDefaultModelStr,
-    dateTimeDefaultModelStrNull,
-  ];
+        id,
+        dateTimeDefaultModelNow,
+        dateTimeDefaultModelStr,
+        dateTimeDefaultModelStrNull,
+      ];
 }
 
 class DateTimeDefaultModelInclude extends _i1.IncludeObject {
@@ -240,7 +234,7 @@ class DateTimeDefaultModelInclude extends _i1.IncludeObject {
 
 class DateTimeDefaultModelIncludeList extends _i1.IncludeList {
   DateTimeDefaultModelIncludeList._({
-    final _i1.WhereExpressionBuilder<DateTimeDefaultModelTable>? where,
+    _i1.WhereExpressionBuilder<DateTimeDefaultModelTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -284,14 +278,14 @@ class DateTimeDefaultModelRepository {
   /// );
   /// ```
   Future<List<DateTimeDefaultModel>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<DateTimeDefaultModelTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<DateTimeDefaultModelTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<DateTimeDefaultModelTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<DateTimeDefaultModelTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<DateTimeDefaultModelTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<DateTimeDefaultModelTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<DateTimeDefaultModel>(
       where: where?.call(DateTimeDefaultModel.t),
@@ -322,13 +316,13 @@ class DateTimeDefaultModelRepository {
   /// );
   /// ```
   Future<DateTimeDefaultModel?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<DateTimeDefaultModelTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<DateTimeDefaultModelTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<DateTimeDefaultModelTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<DateTimeDefaultModelTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<DateTimeDefaultModelTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<DateTimeDefaultModelTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<DateTimeDefaultModel>(
       where: where?.call(DateTimeDefaultModel.t),
@@ -342,9 +336,9 @@ class DateTimeDefaultModelRepository {
 
   /// Finds a single [DateTimeDefaultModel] by its [id] or null if no such row exists.
   Future<DateTimeDefaultModel?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<DateTimeDefaultModel>(
       id,
@@ -359,9 +353,9 @@ class DateTimeDefaultModelRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<DateTimeDefaultModel>> insert(
-    final _i1.Session session,
-    final List<DateTimeDefaultModel> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<DateTimeDefaultModel> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<DateTimeDefaultModel>(
       rows,
@@ -373,9 +367,9 @@ class DateTimeDefaultModelRepository {
   ///
   /// The returned [DateTimeDefaultModel] will have its `id` field set.
   Future<DateTimeDefaultModel> insertRow(
-    final _i1.Session session,
-    final DateTimeDefaultModel row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    DateTimeDefaultModel row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<DateTimeDefaultModel>(
       row,
@@ -389,10 +383,10 @@ class DateTimeDefaultModelRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<DateTimeDefaultModel>> update(
-    final _i1.Session session,
-    final List<DateTimeDefaultModel> rows, {
-    final _i1.ColumnSelections<DateTimeDefaultModelTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<DateTimeDefaultModel> rows, {
+    _i1.ColumnSelections<DateTimeDefaultModelTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<DateTimeDefaultModel>(
       rows,
@@ -405,10 +399,10 @@ class DateTimeDefaultModelRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<DateTimeDefaultModel> updateRow(
-    final _i1.Session session,
-    final DateTimeDefaultModel row, {
-    final _i1.ColumnSelections<DateTimeDefaultModelTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    DateTimeDefaultModel row, {
+    _i1.ColumnSelections<DateTimeDefaultModelTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<DateTimeDefaultModel>(
       row,
@@ -420,11 +414,11 @@ class DateTimeDefaultModelRepository {
   /// Updates a single [DateTimeDefaultModel] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<DateTimeDefaultModel?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<DateTimeDefaultModelUpdateTable>
-    columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<DateTimeDefaultModelUpdateTable>
+        columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<DateTimeDefaultModel>(
       id,
@@ -436,16 +430,16 @@ class DateTimeDefaultModelRepository {
   /// Updates all [DateTimeDefaultModel]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<DateTimeDefaultModel>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<DateTimeDefaultModelUpdateTable>
-    columnValues,
-    required final _i1.WhereExpressionBuilder<DateTimeDefaultModelTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<DateTimeDefaultModelTable>? orderBy,
-    final _i1.OrderByListBuilder<DateTimeDefaultModelTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<DateTimeDefaultModelUpdateTable>
+        columnValues,
+    required _i1.WhereExpressionBuilder<DateTimeDefaultModelTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<DateTimeDefaultModelTable>? orderBy,
+    _i1.OrderByListBuilder<DateTimeDefaultModelTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<DateTimeDefaultModel>(
       columnValues: columnValues(DateTimeDefaultModel.t.updateTable),
@@ -463,9 +457,9 @@ class DateTimeDefaultModelRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<DateTimeDefaultModel>> delete(
-    final _i1.Session session,
-    final List<DateTimeDefaultModel> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<DateTimeDefaultModel> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<DateTimeDefaultModel>(
       rows,
@@ -475,9 +469,9 @@ class DateTimeDefaultModelRepository {
 
   /// Deletes a single [DateTimeDefaultModel].
   Future<DateTimeDefaultModel> deleteRow(
-    final _i1.Session session,
-    final DateTimeDefaultModel row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    DateTimeDefaultModel row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<DateTimeDefaultModel>(
       row,
@@ -487,9 +481,9 @@ class DateTimeDefaultModelRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<DateTimeDefaultModel>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<DateTimeDefaultModelTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<DateTimeDefaultModelTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<DateTimeDefaultModel>(
       where: where(DateTimeDefaultModel.t),
@@ -500,10 +494,10 @@ class DateTimeDefaultModelRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<DateTimeDefaultModelTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<DateTimeDefaultModelTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<DateTimeDefaultModel>(
       where: where?.call(DateTimeDefaultModel.t),

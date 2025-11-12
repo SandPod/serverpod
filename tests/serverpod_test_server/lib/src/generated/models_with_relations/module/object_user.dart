@@ -25,13 +25,13 @@ abstract class ObjectUser
   });
 
   factory ObjectUser({
-    final int? id,
-    final String? name,
-    required final int userInfoId,
-    final _i2.UserInfo? userInfo,
+    int? id,
+    String? name,
+    required int userInfoId,
+    _i2.UserInfo? userInfo,
   }) = _ObjectUserImpl;
 
-  factory ObjectUser.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory ObjectUser.fromJson(Map<String, dynamic> jsonSerialization) {
     return ObjectUser(
       id: jsonSerialization['id'] as int?,
       name: jsonSerialization['name'] as String?,
@@ -39,8 +39,7 @@ abstract class ObjectUser
       userInfo: jsonSerialization['userInfo'] == null
           ? null
           : _i2.UserInfo.fromJson(
-              (jsonSerialization['userInfo'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['userInfo'] as Map<String, dynamic>)),
     );
   }
 
@@ -64,10 +63,10 @@ abstract class ObjectUser
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ObjectUser copyWith({
-    final int? id,
-    final String? name,
-    final int? userInfoId,
-    final _i2.UserInfo? userInfo,
+    int? id,
+    String? name,
+    int? userInfoId,
+    _i2.UserInfo? userInfo,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -89,18 +88,18 @@ abstract class ObjectUser
     };
   }
 
-  static ObjectUserInclude include({final _i2.UserInfoInclude? userInfo}) {
+  static ObjectUserInclude include({_i2.UserInfoInclude? userInfo}) {
     return ObjectUserInclude._(userInfo: userInfo);
   }
 
   static ObjectUserIncludeList includeList({
-    final _i1.WhereExpressionBuilder<ObjectUserTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectUserTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ObjectUserTable>? orderByList,
-    final ObjectUserInclude? include,
+    _i1.WhereExpressionBuilder<ObjectUserTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ObjectUserTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ObjectUserTable>? orderByList,
+    ObjectUserInclude? include,
   }) {
     return ObjectUserIncludeList._(
       where: where,
@@ -123,34 +122,33 @@ class _Undefined {}
 
 class _ObjectUserImpl extends ObjectUser {
   _ObjectUserImpl({
-    final int? id,
-    final String? name,
-    required final int userInfoId,
-    final _i2.UserInfo? userInfo,
+    int? id,
+    String? name,
+    required int userInfoId,
+    _i2.UserInfo? userInfo,
   }) : super._(
-         id: id,
-         name: name,
-         userInfoId: userInfoId,
-         userInfo: userInfo,
-       );
+          id: id,
+          name: name,
+          userInfoId: userInfoId,
+          userInfo: userInfo,
+        );
 
   /// Returns a shallow copy of this [ObjectUser]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   ObjectUser copyWith({
-    final Object? id = _Undefined,
-    final Object? name = _Undefined,
-    final int? userInfoId,
-    final Object? userInfo = _Undefined,
+    Object? id = _Undefined,
+    Object? name = _Undefined,
+    int? userInfoId,
+    Object? userInfo = _Undefined,
   }) {
     return ObjectUser(
       id: id is int? ? id : this.id,
       name: name is String? ? name : this.name,
       userInfoId: userInfoId ?? this.userInfoId,
-      userInfo: userInfo is _i2.UserInfo?
-          ? userInfo
-          : this.userInfo?.copyWith(),
+      userInfo:
+          userInfo is _i2.UserInfo? ? userInfo : this.userInfo?.copyWith(),
     );
   }
 }
@@ -158,15 +156,15 @@ class _ObjectUserImpl extends ObjectUser {
 class ObjectUserUpdateTable extends _i1.UpdateTable<ObjectUserTable> {
   ObjectUserUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> name(final String? value) => _i1.ColumnValue(
-    table.name,
-    value,
-  );
+  _i1.ColumnValue<String, String> name(String? value) => _i1.ColumnValue(
+        table.name,
+        value,
+      );
 
-  _i1.ColumnValue<int, int> userInfoId(final int value) => _i1.ColumnValue(
-    table.userInfoId,
-    value,
-  );
+  _i1.ColumnValue<int, int> userInfoId(int value) => _i1.ColumnValue(
+        table.userInfoId,
+        value,
+      );
 }
 
 class ObjectUserTable extends _i1.Table<int?> {
@@ -197,7 +195,7 @@ class ObjectUserTable extends _i1.Table<int?> {
       field: ObjectUser.t.userInfoId,
       foreignField: _i2.UserInfo.t.id,
       tableRelation: tableRelation,
-      createTable: (final foreignTableRelation) =>
+      createTable: (foreignTableRelation) =>
           _i2.UserInfoTable(tableRelation: foreignTableRelation),
     );
     return _userInfo!;
@@ -205,13 +203,13 @@ class ObjectUserTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    name,
-    userInfoId,
-  ];
+        id,
+        name,
+        userInfoId,
+      ];
 
   @override
-  _i1.Table? getRelationTable(final String relationField) {
+  _i1.Table? getRelationTable(String relationField) {
     if (relationField == 'userInfo') {
       return userInfo;
     }
@@ -220,7 +218,7 @@ class ObjectUserTable extends _i1.Table<int?> {
 }
 
 class ObjectUserInclude extends _i1.IncludeObject {
-  ObjectUserInclude._({final _i2.UserInfoInclude? userInfo}) {
+  ObjectUserInclude._({_i2.UserInfoInclude? userInfo}) {
     _userInfo = userInfo;
   }
 
@@ -235,7 +233,7 @@ class ObjectUserInclude extends _i1.IncludeObject {
 
 class ObjectUserIncludeList extends _i1.IncludeList {
   ObjectUserIncludeList._({
-    final _i1.WhereExpressionBuilder<ObjectUserTable>? where,
+    _i1.WhereExpressionBuilder<ObjectUserTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -281,15 +279,15 @@ class ObjectUserRepository {
   /// );
   /// ```
   Future<List<ObjectUser>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ObjectUserTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectUserTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ObjectUserTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final ObjectUserInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ObjectUserTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ObjectUserTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ObjectUserTable>? orderByList,
+    _i1.Transaction? transaction,
+    ObjectUserInclude? include,
   }) async {
     return session.db.find<ObjectUser>(
       where: where?.call(ObjectUser.t),
@@ -321,14 +319,14 @@ class ObjectUserRepository {
   /// );
   /// ```
   Future<ObjectUser?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ObjectUserTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectUserTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ObjectUserTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final ObjectUserInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ObjectUserTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<ObjectUserTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ObjectUserTable>? orderByList,
+    _i1.Transaction? transaction,
+    ObjectUserInclude? include,
   }) async {
     return session.db.findFirstRow<ObjectUser>(
       where: where?.call(ObjectUser.t),
@@ -343,10 +341,10 @@ class ObjectUserRepository {
 
   /// Finds a single [ObjectUser] by its [id] or null if no such row exists.
   Future<ObjectUser?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
-    final ObjectUserInclude? include,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
+    ObjectUserInclude? include,
   }) async {
     return session.db.findById<ObjectUser>(
       id,
@@ -362,9 +360,9 @@ class ObjectUserRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<ObjectUser>> insert(
-    final _i1.Session session,
-    final List<ObjectUser> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ObjectUser> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<ObjectUser>(
       rows,
@@ -376,9 +374,9 @@ class ObjectUserRepository {
   ///
   /// The returned [ObjectUser] will have its `id` field set.
   Future<ObjectUser> insertRow(
-    final _i1.Session session,
-    final ObjectUser row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ObjectUser row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<ObjectUser>(
       row,
@@ -392,10 +390,10 @@ class ObjectUserRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<ObjectUser>> update(
-    final _i1.Session session,
-    final List<ObjectUser> rows, {
-    final _i1.ColumnSelections<ObjectUserTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ObjectUser> rows, {
+    _i1.ColumnSelections<ObjectUserTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<ObjectUser>(
       rows,
@@ -408,10 +406,10 @@ class ObjectUserRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<ObjectUser> updateRow(
-    final _i1.Session session,
-    final ObjectUser row, {
-    final _i1.ColumnSelections<ObjectUserTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ObjectUser row, {
+    _i1.ColumnSelections<ObjectUserTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<ObjectUser>(
       row,
@@ -423,10 +421,10 @@ class ObjectUserRepository {
   /// Updates a single [ObjectUser] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<ObjectUser?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<ObjectUserUpdateTable> columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<ObjectUserUpdateTable> columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<ObjectUser>(
       id,
@@ -438,15 +436,15 @@ class ObjectUserRepository {
   /// Updates all [ObjectUser]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<ObjectUser>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<ObjectUserUpdateTable> columnValues,
-    required final _i1.WhereExpressionBuilder<ObjectUserTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ObjectUserTable>? orderBy,
-    final _i1.OrderByListBuilder<ObjectUserTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<ObjectUserUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<ObjectUserTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ObjectUserTable>? orderBy,
+    _i1.OrderByListBuilder<ObjectUserTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<ObjectUser>(
       columnValues: columnValues(ObjectUser.t.updateTable),
@@ -464,9 +462,9 @@ class ObjectUserRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<ObjectUser>> delete(
-    final _i1.Session session,
-    final List<ObjectUser> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<ObjectUser> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<ObjectUser>(
       rows,
@@ -476,9 +474,9 @@ class ObjectUserRepository {
 
   /// Deletes a single [ObjectUser].
   Future<ObjectUser> deleteRow(
-    final _i1.Session session,
-    final ObjectUser row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ObjectUser row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<ObjectUser>(
       row,
@@ -488,9 +486,9 @@ class ObjectUserRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<ObjectUser>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<ObjectUserTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<ObjectUserTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<ObjectUser>(
       where: where(ObjectUser.t),
@@ -501,10 +499,10 @@ class ObjectUserRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ObjectUserTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ObjectUserTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<ObjectUser>(
       where: where?.call(ObjectUser.t),
@@ -520,10 +518,10 @@ class ObjectUserAttachRowRepository {
   /// Creates a relation between the given [ObjectUser] and [UserInfo]
   /// by setting the [ObjectUser]'s foreign key `userInfoId` to refer to the [UserInfo].
   Future<void> userInfo(
-    final _i1.Session session,
-    final ObjectUser objectUser,
-    final _i2.UserInfo userInfo, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    ObjectUser objectUser,
+    _i2.UserInfo userInfo, {
+    _i1.Transaction? transaction,
   }) async {
     if (objectUser.id == null) {
       throw ArgumentError.notNull('objectUser.id');
@@ -532,7 +530,7 @@ class ObjectUserAttachRowRepository {
       throw ArgumentError.notNull('userInfo.id');
     }
 
-    final $objectUser = objectUser.copyWith(userInfoId: userInfo.id);
+    var $objectUser = objectUser.copyWith(userInfoId: userInfo.id);
     await session.db.updateRow<ObjectUser>(
       $objectUser,
       columns: [ObjectUser.t.userInfoId],

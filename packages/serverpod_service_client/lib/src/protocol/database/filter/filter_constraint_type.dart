@@ -60,8 +60,7 @@ enum FilterConstraintType implements _i1.SerializableModel {
         return FilterConstraintType.isNotNull;
       default:
         throw ArgumentError(
-          'Value "$index" cannot be converted to "FilterConstraintType"',
-        );
+            'Value "$index" cannot be converted to "FilterConstraintType"');
     }
   }
 

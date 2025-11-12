@@ -9,12 +9,11 @@
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
 
-import 'package:serverpod/serverpod.dart' as _i2;
-
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import '../protocol.dart' as _i1;
-import '../scopes/scope_server_only_field.dart' as _i4;
+import 'package:serverpod/serverpod.dart' as _i2;
 import '../types.dart' as _i3;
+import '../scopes/scope_server_only_field.dart' as _i4;
 
 abstract class ScopeServerOnlyFieldChild extends _i1.ScopeServerOnlyField
     implements _i2.SerializableModel, _i2.ProtocolSerialization {
@@ -26,31 +25,27 @@ abstract class ScopeServerOnlyFieldChild extends _i1.ScopeServerOnlyField
   });
 
   factory ScopeServerOnlyFieldChild({
-    final _i3.Types? allScope,
-    final _i3.Types? serverOnlyScope,
-    final _i4.ScopeServerOnlyField? nested,
-    required final String childFoo,
+    _i3.Types? allScope,
+    _i3.Types? serverOnlyScope,
+    _i4.ScopeServerOnlyField? nested,
+    required String childFoo,
   }) = _ScopeServerOnlyFieldChildImpl;
 
   factory ScopeServerOnlyFieldChild.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ScopeServerOnlyFieldChild(
       allScope: jsonSerialization['allScope'] == null
           ? null
           : _i3.Types.fromJson(
-              (jsonSerialization['allScope'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['allScope'] as Map<String, dynamic>)),
       serverOnlyScope: jsonSerialization['serverOnlyScope'] == null
           ? null
           : _i3.Types.fromJson(
-              (jsonSerialization['serverOnlyScope'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['serverOnlyScope'] as Map<String, dynamic>)),
       nested: jsonSerialization['nested'] == null
           ? null
           : _i4.ScopeServerOnlyField.fromJson(
-              (jsonSerialization['nested'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['nested'] as Map<String, dynamic>)),
       childFoo: jsonSerialization['childFoo'] as String,
     );
   }
@@ -62,10 +57,10 @@ abstract class ScopeServerOnlyFieldChild extends _i1.ScopeServerOnlyField
   @override
   @_i2.useResult
   ScopeServerOnlyFieldChild copyWith({
-    final Object? allScope,
-    final Object? serverOnlyScope,
-    final Object? nested,
-    final String? childFoo,
+    Object? allScope,
+    Object? serverOnlyScope,
+    Object? nested,
+    String? childFoo,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -96,26 +91,26 @@ class _Undefined {}
 
 class _ScopeServerOnlyFieldChildImpl extends ScopeServerOnlyFieldChild {
   _ScopeServerOnlyFieldChildImpl({
-    final _i3.Types? allScope,
-    final _i3.Types? serverOnlyScope,
-    final _i4.ScopeServerOnlyField? nested,
-    required final String childFoo,
+    _i3.Types? allScope,
+    _i3.Types? serverOnlyScope,
+    _i4.ScopeServerOnlyField? nested,
+    required String childFoo,
   }) : super._(
-         allScope: allScope,
-         serverOnlyScope: serverOnlyScope,
-         nested: nested,
-         childFoo: childFoo,
-       );
+          allScope: allScope,
+          serverOnlyScope: serverOnlyScope,
+          nested: nested,
+          childFoo: childFoo,
+        );
 
   /// Returns a shallow copy of this [ScopeServerOnlyFieldChild]
   /// with some or all fields replaced by the given arguments.
   @_i2.useResult
   @override
   ScopeServerOnlyFieldChild copyWith({
-    final Object? allScope = _Undefined,
-    final Object? serverOnlyScope = _Undefined,
-    final Object? nested = _Undefined,
-    final String? childFoo,
+    Object? allScope = _Undefined,
+    Object? serverOnlyScope = _Undefined,
+    Object? nested = _Undefined,
+    String? childFoo,
   }) {
     return ScopeServerOnlyFieldChild(
       allScope: allScope is _i3.Types? ? allScope : this.allScope?.copyWith(),

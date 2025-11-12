@@ -20,11 +20,11 @@ abstract class Chapter
   }) : _bookChaptersBookId = null;
 
   factory Chapter({
-    final int? id,
-    required final String title,
+    int? id,
+    required String title,
   }) = _ChapterImpl;
 
-  factory Chapter.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory Chapter.fromJson(Map<String, dynamic> jsonSerialization) {
     return ChapterImplicit._(
       id: jsonSerialization['id'] as int?,
       title: jsonSerialization['title'] as String,
@@ -50,8 +50,8 @@ abstract class Chapter
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   Chapter copyWith({
-    final int? id,
-    final String? title,
+    int? id,
+    String? title,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -76,13 +76,13 @@ abstract class Chapter
   }
 
   static ChapterIncludeList includeList({
-    final _i1.WhereExpressionBuilder<ChapterTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ChapterTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ChapterTable>? orderByList,
-    final ChapterInclude? include,
+    _i1.WhereExpressionBuilder<ChapterTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ChapterTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ChapterTable>? orderByList,
+    ChapterInclude? include,
   }) {
     return ChapterIncludeList._(
       where: where,
@@ -105,43 +105,43 @@ class _Undefined {}
 
 class _ChapterImpl extends Chapter {
   _ChapterImpl({
-    final int? id,
-    required final String title,
+    int? id,
+    required String title,
   }) : super._(
-         id: id,
-         title: title,
-       );
+          id: id,
+          title: title,
+        );
 
   /// Returns a shallow copy of this [Chapter]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   Chapter copyWith({
-    final Object? id = _Undefined,
-    final String? title,
+    Object? id = _Undefined,
+    String? title,
   }) {
     return ChapterImplicit._(
       id: id is int? ? id : this.id,
       title: title ?? this.title,
-      $_bookChaptersBookId: _bookChaptersBookId,
+      $_bookChaptersBookId: this._bookChaptersBookId,
     );
   }
 }
 
 class ChapterImplicit extends _ChapterImpl {
   ChapterImplicit._({
-    final int? id,
-    required final String title,
-    final int? $_bookChaptersBookId,
-  }) : _bookChaptersBookId = $_bookChaptersBookId,
-       super(
-         id: id,
-         title: title,
-       );
+    int? id,
+    required String title,
+    int? $_bookChaptersBookId,
+  })  : _bookChaptersBookId = $_bookChaptersBookId,
+        super(
+          id: id,
+          title: title,
+        );
 
   factory ChapterImplicit(
-    final Chapter chapter, {
-    final int? $_bookChaptersBookId,
+    Chapter chapter, {
+    int? $_bookChaptersBookId,
   }) {
     return ChapterImplicit._(
       id: chapter.id,
@@ -157,15 +157,15 @@ class ChapterImplicit extends _ChapterImpl {
 class ChapterUpdateTable extends _i1.UpdateTable<ChapterTable> {
   ChapterUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> title(final String value) => _i1.ColumnValue(
-    table.title,
-    value,
-  );
+  _i1.ColumnValue<String, String> title(String value) => _i1.ColumnValue(
+        table.title,
+        value,
+      );
 
-  _i1.ColumnValue<int, int> $_bookChaptersBookId(final int? value) => _i1.ColumnValue(
-    table.$_bookChaptersBookId,
-    value,
-  );
+  _i1.ColumnValue<int, int> $_bookChaptersBookId(int? value) => _i1.ColumnValue(
+        table.$_bookChaptersBookId,
+        value,
+      );
 }
 
 class ChapterTable extends _i1.Table<int?> {
@@ -189,16 +189,16 @@ class ChapterTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    title,
-    $_bookChaptersBookId,
-  ];
+        id,
+        title,
+        $_bookChaptersBookId,
+      ];
 
   @override
   List<_i1.Column> get managedColumns => [
-    id,
-    title,
-  ];
+        id,
+        title,
+      ];
 }
 
 class ChapterInclude extends _i1.IncludeObject {
@@ -213,7 +213,7 @@ class ChapterInclude extends _i1.IncludeObject {
 
 class ChapterIncludeList extends _i1.IncludeList {
   ChapterIncludeList._({
-    final _i1.WhereExpressionBuilder<ChapterTable>? where,
+    _i1.WhereExpressionBuilder<ChapterTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -257,14 +257,14 @@ class ChapterRepository {
   /// );
   /// ```
   Future<List<Chapter>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ChapterTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ChapterTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ChapterTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ChapterTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ChapterTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ChapterTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<Chapter>(
       where: where?.call(Chapter.t),
@@ -295,13 +295,13 @@ class ChapterRepository {
   /// );
   /// ```
   Future<Chapter?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ChapterTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<ChapterTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<ChapterTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ChapterTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<ChapterTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<ChapterTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<Chapter>(
       where: where?.call(Chapter.t),
@@ -315,9 +315,9 @@ class ChapterRepository {
 
   /// Finds a single [Chapter] by its [id] or null if no such row exists.
   Future<Chapter?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<Chapter>(
       id,
@@ -332,9 +332,9 @@ class ChapterRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<Chapter>> insert(
-    final _i1.Session session,
-    final List<Chapter> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Chapter> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<Chapter>(
       rows,
@@ -346,9 +346,9 @@ class ChapterRepository {
   ///
   /// The returned [Chapter] will have its `id` field set.
   Future<Chapter> insertRow(
-    final _i1.Session session,
-    final Chapter row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Chapter row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<Chapter>(
       row,
@@ -362,10 +362,10 @@ class ChapterRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<Chapter>> update(
-    final _i1.Session session,
-    final List<Chapter> rows, {
-    final _i1.ColumnSelections<ChapterTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Chapter> rows, {
+    _i1.ColumnSelections<ChapterTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<Chapter>(
       rows,
@@ -378,10 +378,10 @@ class ChapterRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<Chapter> updateRow(
-    final _i1.Session session,
-    final Chapter row, {
-    final _i1.ColumnSelections<ChapterTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Chapter row, {
+    _i1.ColumnSelections<ChapterTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<Chapter>(
       row,
@@ -393,10 +393,10 @@ class ChapterRepository {
   /// Updates a single [Chapter] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<Chapter?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<ChapterUpdateTable> columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<ChapterUpdateTable> columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<Chapter>(
       id,
@@ -408,15 +408,15 @@ class ChapterRepository {
   /// Updates all [Chapter]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<Chapter>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<ChapterUpdateTable> columnValues,
-    required final _i1.WhereExpressionBuilder<ChapterTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<ChapterTable>? orderBy,
-    final _i1.OrderByListBuilder<ChapterTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<ChapterUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<ChapterTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<ChapterTable>? orderBy,
+    _i1.OrderByListBuilder<ChapterTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<Chapter>(
       columnValues: columnValues(Chapter.t.updateTable),
@@ -434,9 +434,9 @@ class ChapterRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<Chapter>> delete(
-    final _i1.Session session,
-    final List<Chapter> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Chapter> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<Chapter>(
       rows,
@@ -446,9 +446,9 @@ class ChapterRepository {
 
   /// Deletes a single [Chapter].
   Future<Chapter> deleteRow(
-    final _i1.Session session,
-    final Chapter row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Chapter row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<Chapter>(
       row,
@@ -458,9 +458,9 @@ class ChapterRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<Chapter>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<ChapterTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<ChapterTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<Chapter>(
       where: where(Chapter.t),
@@ -471,10 +471,10 @@ class ChapterRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<ChapterTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<ChapterTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<Chapter>(
       where: where?.call(Chapter.t),

@@ -21,12 +21,12 @@ abstract class BoolDefaultPersist
   });
 
   factory BoolDefaultPersist({
-    final int? id,
-    final bool? boolDefaultPersistTrue,
-    final bool? boolDefaultPersistFalse,
+    int? id,
+    bool? boolDefaultPersistTrue,
+    bool? boolDefaultPersistFalse,
   }) = _BoolDefaultPersistImpl;
 
-  factory BoolDefaultPersist.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory BoolDefaultPersist.fromJson(Map<String, dynamic> jsonSerialization) {
     return BoolDefaultPersist(
       id: jsonSerialization['id'] as int?,
       boolDefaultPersistTrue:
@@ -54,9 +54,9 @@ abstract class BoolDefaultPersist
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   BoolDefaultPersist copyWith({
-    final int? id,
-    final bool? boolDefaultPersistTrue,
-    final bool? boolDefaultPersistFalse,
+    int? id,
+    bool? boolDefaultPersistTrue,
+    bool? boolDefaultPersistFalse,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -85,13 +85,13 @@ abstract class BoolDefaultPersist
   }
 
   static BoolDefaultPersistIncludeList includeList({
-    final _i1.WhereExpressionBuilder<BoolDefaultPersistTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<BoolDefaultPersistTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<BoolDefaultPersistTable>? orderByList,
-    final BoolDefaultPersistInclude? include,
+    _i1.WhereExpressionBuilder<BoolDefaultPersistTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<BoolDefaultPersistTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<BoolDefaultPersistTable>? orderByList,
+    BoolDefaultPersistInclude? include,
   }) {
     return BoolDefaultPersistIncludeList._(
       where: where,
@@ -114,23 +114,23 @@ class _Undefined {}
 
 class _BoolDefaultPersistImpl extends BoolDefaultPersist {
   _BoolDefaultPersistImpl({
-    final int? id,
-    final bool? boolDefaultPersistTrue,
-    final bool? boolDefaultPersistFalse,
+    int? id,
+    bool? boolDefaultPersistTrue,
+    bool? boolDefaultPersistFalse,
   }) : super._(
-         id: id,
-         boolDefaultPersistTrue: boolDefaultPersistTrue,
-         boolDefaultPersistFalse: boolDefaultPersistFalse,
-       );
+          id: id,
+          boolDefaultPersistTrue: boolDefaultPersistTrue,
+          boolDefaultPersistFalse: boolDefaultPersistFalse,
+        );
 
   /// Returns a shallow copy of this [BoolDefaultPersist]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   BoolDefaultPersist copyWith({
-    final Object? id = _Undefined,
-    final Object? boolDefaultPersistTrue = _Undefined,
-    final Object? boolDefaultPersistFalse = _Undefined,
+    Object? id = _Undefined,
+    Object? boolDefaultPersistTrue = _Undefined,
+    Object? boolDefaultPersistFalse = _Undefined,
   }) {
     return BoolDefaultPersist(
       id: id is int? ? id : this.id,
@@ -148,13 +148,13 @@ class BoolDefaultPersistUpdateTable
     extends _i1.UpdateTable<BoolDefaultPersistTable> {
   BoolDefaultPersistUpdateTable(super.table);
 
-  _i1.ColumnValue<bool, bool> boolDefaultPersistTrue(final bool? value) =>
+  _i1.ColumnValue<bool, bool> boolDefaultPersistTrue(bool? value) =>
       _i1.ColumnValue(
         table.boolDefaultPersistTrue,
         value,
       );
 
-  _i1.ColumnValue<bool, bool> boolDefaultPersistFalse(final bool? value) =>
+  _i1.ColumnValue<bool, bool> boolDefaultPersistFalse(bool? value) =>
       _i1.ColumnValue(
         table.boolDefaultPersistFalse,
         value,
@@ -163,7 +163,7 @@ class BoolDefaultPersistUpdateTable
 
 class BoolDefaultPersistTable extends _i1.Table<int?> {
   BoolDefaultPersistTable({super.tableRelation})
-    : super(tableName: 'bool_default_persist') {
+      : super(tableName: 'bool_default_persist') {
     updateTable = BoolDefaultPersistUpdateTable(this);
     boolDefaultPersistTrue = _i1.ColumnBool(
       'boolDefaultPersistTrue',
@@ -185,10 +185,10 @@ class BoolDefaultPersistTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    boolDefaultPersistTrue,
-    boolDefaultPersistFalse,
-  ];
+        id,
+        boolDefaultPersistTrue,
+        boolDefaultPersistFalse,
+      ];
 }
 
 class BoolDefaultPersistInclude extends _i1.IncludeObject {
@@ -203,7 +203,7 @@ class BoolDefaultPersistInclude extends _i1.IncludeObject {
 
 class BoolDefaultPersistIncludeList extends _i1.IncludeList {
   BoolDefaultPersistIncludeList._({
-    final _i1.WhereExpressionBuilder<BoolDefaultPersistTable>? where,
+    _i1.WhereExpressionBuilder<BoolDefaultPersistTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -247,14 +247,14 @@ class BoolDefaultPersistRepository {
   /// );
   /// ```
   Future<List<BoolDefaultPersist>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<BoolDefaultPersistTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<BoolDefaultPersistTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<BoolDefaultPersistTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<BoolDefaultPersistTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<BoolDefaultPersistTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<BoolDefaultPersistTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<BoolDefaultPersist>(
       where: where?.call(BoolDefaultPersist.t),
@@ -285,13 +285,13 @@ class BoolDefaultPersistRepository {
   /// );
   /// ```
   Future<BoolDefaultPersist?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<BoolDefaultPersistTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<BoolDefaultPersistTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<BoolDefaultPersistTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<BoolDefaultPersistTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<BoolDefaultPersistTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<BoolDefaultPersistTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<BoolDefaultPersist>(
       where: where?.call(BoolDefaultPersist.t),
@@ -305,9 +305,9 @@ class BoolDefaultPersistRepository {
 
   /// Finds a single [BoolDefaultPersist] by its [id] or null if no such row exists.
   Future<BoolDefaultPersist?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<BoolDefaultPersist>(
       id,
@@ -322,9 +322,9 @@ class BoolDefaultPersistRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<BoolDefaultPersist>> insert(
-    final _i1.Session session,
-    final List<BoolDefaultPersist> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<BoolDefaultPersist> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<BoolDefaultPersist>(
       rows,
@@ -336,9 +336,9 @@ class BoolDefaultPersistRepository {
   ///
   /// The returned [BoolDefaultPersist] will have its `id` field set.
   Future<BoolDefaultPersist> insertRow(
-    final _i1.Session session,
-    final BoolDefaultPersist row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    BoolDefaultPersist row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<BoolDefaultPersist>(
       row,
@@ -352,10 +352,10 @@ class BoolDefaultPersistRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<BoolDefaultPersist>> update(
-    final _i1.Session session,
-    final List<BoolDefaultPersist> rows, {
-    final _i1.ColumnSelections<BoolDefaultPersistTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<BoolDefaultPersist> rows, {
+    _i1.ColumnSelections<BoolDefaultPersistTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<BoolDefaultPersist>(
       rows,
@@ -368,10 +368,10 @@ class BoolDefaultPersistRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<BoolDefaultPersist> updateRow(
-    final _i1.Session session,
-    final BoolDefaultPersist row, {
-    final _i1.ColumnSelections<BoolDefaultPersistTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    BoolDefaultPersist row, {
+    _i1.ColumnSelections<BoolDefaultPersistTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<BoolDefaultPersist>(
       row,
@@ -383,11 +383,11 @@ class BoolDefaultPersistRepository {
   /// Updates a single [BoolDefaultPersist] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<BoolDefaultPersist?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<BoolDefaultPersistUpdateTable>
-    columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<BoolDefaultPersistUpdateTable>
+        columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<BoolDefaultPersist>(
       id,
@@ -399,16 +399,16 @@ class BoolDefaultPersistRepository {
   /// Updates all [BoolDefaultPersist]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<BoolDefaultPersist>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<BoolDefaultPersistUpdateTable>
-    columnValues,
-    required final _i1.WhereExpressionBuilder<BoolDefaultPersistTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<BoolDefaultPersistTable>? orderBy,
-    final _i1.OrderByListBuilder<BoolDefaultPersistTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<BoolDefaultPersistUpdateTable>
+        columnValues,
+    required _i1.WhereExpressionBuilder<BoolDefaultPersistTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<BoolDefaultPersistTable>? orderBy,
+    _i1.OrderByListBuilder<BoolDefaultPersistTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<BoolDefaultPersist>(
       columnValues: columnValues(BoolDefaultPersist.t.updateTable),
@@ -426,9 +426,9 @@ class BoolDefaultPersistRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<BoolDefaultPersist>> delete(
-    final _i1.Session session,
-    final List<BoolDefaultPersist> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<BoolDefaultPersist> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<BoolDefaultPersist>(
       rows,
@@ -438,9 +438,9 @@ class BoolDefaultPersistRepository {
 
   /// Deletes a single [BoolDefaultPersist].
   Future<BoolDefaultPersist> deleteRow(
-    final _i1.Session session,
-    final BoolDefaultPersist row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    BoolDefaultPersist row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<BoolDefaultPersist>(
       row,
@@ -450,9 +450,9 @@ class BoolDefaultPersistRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<BoolDefaultPersist>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<BoolDefaultPersistTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<BoolDefaultPersistTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<BoolDefaultPersist>(
       where: where(BoolDefaultPersist.t),
@@ -463,10 +463,10 @@ class BoolDefaultPersistRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<BoolDefaultPersistTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<BoolDefaultPersistTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<BoolDefaultPersist>(
       where: where?.call(BoolDefaultPersist.t),

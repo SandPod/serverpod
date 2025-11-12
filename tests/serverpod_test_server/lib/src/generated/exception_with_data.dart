@@ -25,20 +25,19 @@ abstract class ExceptionWithData
   });
 
   factory ExceptionWithData({
-    required final String message,
-    required final DateTime creationDate,
-    required final List<String> errorFields,
-    final int? someNullableField,
+    required String message,
+    required DateTime creationDate,
+    required List<String> errorFields,
+    int? someNullableField,
   }) = _ExceptionWithDataImpl;
 
-  factory ExceptionWithData.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory ExceptionWithData.fromJson(Map<String, dynamic> jsonSerialization) {
     return ExceptionWithData(
       message: jsonSerialization['message'] as String,
-      creationDate: _i1.DateTimeJsonExtension.fromJson(
-        jsonSerialization['creationDate'],
-      ),
+      creationDate:
+          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['creationDate']),
       errorFields: (jsonSerialization['errorFields'] as List)
-          .map((final e) => e as String)
+          .map((e) => e as String)
           .toList(),
       someNullableField: jsonSerialization['someNullableField'] as int?,
     );
@@ -56,10 +55,10 @@ abstract class ExceptionWithData
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ExceptionWithData copyWith({
-    final String? message,
-    final DateTime? creationDate,
-    final List<String>? errorFields,
-    final int? someNullableField,
+    String? message,
+    DateTime? creationDate,
+    List<String>? errorFields,
+    int? someNullableField,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -91,31 +90,31 @@ class _Undefined {}
 
 class _ExceptionWithDataImpl extends ExceptionWithData {
   _ExceptionWithDataImpl({
-    required final String message,
-    required final DateTime creationDate,
-    required final List<String> errorFields,
-    final int? someNullableField,
+    required String message,
+    required DateTime creationDate,
+    required List<String> errorFields,
+    int? someNullableField,
   }) : super._(
-         message: message,
-         creationDate: creationDate,
-         errorFields: errorFields,
-         someNullableField: someNullableField,
-       );
+          message: message,
+          creationDate: creationDate,
+          errorFields: errorFields,
+          someNullableField: someNullableField,
+        );
 
   /// Returns a shallow copy of this [ExceptionWithData]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   ExceptionWithData copyWith({
-    final String? message,
-    final DateTime? creationDate,
-    final List<String>? errorFields,
-    final Object? someNullableField = _Undefined,
+    String? message,
+    DateTime? creationDate,
+    List<String>? errorFields,
+    Object? someNullableField = _Undefined,
   }) {
     return ExceptionWithData(
       message: message ?? this.message,
       creationDate: creationDate ?? this.creationDate,
-      errorFields: errorFields ?? this.errorFields.map((final e0) => e0).toList(),
+      errorFields: errorFields ?? this.errorFields.map((e0) => e0).toList(),
       someNullableField: someNullableField is int?
           ? someNullableField
           : this.someNullableField,

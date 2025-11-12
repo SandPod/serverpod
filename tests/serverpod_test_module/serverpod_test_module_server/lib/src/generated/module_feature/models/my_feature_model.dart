@@ -16,12 +16,11 @@ abstract class MyModuleFeatureModel
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
   MyModuleFeatureModel._({required this.name});
 
-  factory MyModuleFeatureModel({required final String name}) =
+  factory MyModuleFeatureModel({required String name}) =
       _MyModuleFeatureModelImpl;
 
   factory MyModuleFeatureModel.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return MyModuleFeatureModel(name: jsonSerialization['name'] as String);
   }
 
@@ -30,7 +29,7 @@ abstract class MyModuleFeatureModel
   /// Returns a shallow copy of this [MyModuleFeatureModel]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  MyModuleFeatureModel copyWith({final String? name});
+  MyModuleFeatureModel copyWith({String? name});
   @override
   Map<String, dynamic> toJson() {
     return {'name': name};
@@ -48,13 +47,13 @@ abstract class MyModuleFeatureModel
 }
 
 class _MyModuleFeatureModelImpl extends MyModuleFeatureModel {
-  _MyModuleFeatureModelImpl({required final String name}) : super._(name: name);
+  _MyModuleFeatureModelImpl({required String name}) : super._(name: name);
 
   /// Returns a shallow copy of this [MyModuleFeatureModel]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  MyModuleFeatureModel copyWith({final String? name}) {
+  MyModuleFeatureModel copyWith({String? name}) {
     return MyModuleFeatureModel(name: name ?? this.name);
   }
 }

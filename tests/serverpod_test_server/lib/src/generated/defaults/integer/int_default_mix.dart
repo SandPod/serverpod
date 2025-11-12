@@ -16,22 +16,22 @@ abstract class IntDefaultMix
     implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   IntDefaultMix._({
     this.id,
-    final int? intDefaultAndDefaultModel,
-    final int? intDefaultAndDefaultPersist,
-    final int? intDefaultModelAndDefaultPersist,
-  }) : intDefaultAndDefaultModel = intDefaultAndDefaultModel ?? 20,
-       intDefaultAndDefaultPersist = intDefaultAndDefaultPersist ?? 10,
-       intDefaultModelAndDefaultPersist =
-           intDefaultModelAndDefaultPersist ?? 10;
+    int? intDefaultAndDefaultModel,
+    int? intDefaultAndDefaultPersist,
+    int? intDefaultModelAndDefaultPersist,
+  })  : intDefaultAndDefaultModel = intDefaultAndDefaultModel ?? 20,
+        intDefaultAndDefaultPersist = intDefaultAndDefaultPersist ?? 10,
+        intDefaultModelAndDefaultPersist =
+            intDefaultModelAndDefaultPersist ?? 10;
 
   factory IntDefaultMix({
-    final int? id,
-    final int? intDefaultAndDefaultModel,
-    final int? intDefaultAndDefaultPersist,
-    final int? intDefaultModelAndDefaultPersist,
+    int? id,
+    int? intDefaultAndDefaultModel,
+    int? intDefaultAndDefaultPersist,
+    int? intDefaultModelAndDefaultPersist,
   }) = _IntDefaultMixImpl;
 
-  factory IntDefaultMix.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory IntDefaultMix.fromJson(Map<String, dynamic> jsonSerialization) {
     return IntDefaultMix(
       id: jsonSerialization['id'] as int?,
       intDefaultAndDefaultModel:
@@ -63,10 +63,10 @@ abstract class IntDefaultMix
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   IntDefaultMix copyWith({
-    final int? id,
-    final int? intDefaultAndDefaultModel,
-    final int? intDefaultAndDefaultPersist,
-    final int? intDefaultModelAndDefaultPersist,
+    int? id,
+    int? intDefaultAndDefaultModel,
+    int? intDefaultAndDefaultPersist,
+    int? intDefaultModelAndDefaultPersist,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -93,13 +93,13 @@ abstract class IntDefaultMix
   }
 
   static IntDefaultMixIncludeList includeList({
-    final _i1.WhereExpressionBuilder<IntDefaultMixTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<IntDefaultMixTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<IntDefaultMixTable>? orderByList,
-    final IntDefaultMixInclude? include,
+    _i1.WhereExpressionBuilder<IntDefaultMixTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<IntDefaultMixTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<IntDefaultMixTable>? orderByList,
+    IntDefaultMixInclude? include,
   }) {
     return IntDefaultMixIncludeList._(
       where: where,
@@ -122,26 +122,26 @@ class _Undefined {}
 
 class _IntDefaultMixImpl extends IntDefaultMix {
   _IntDefaultMixImpl({
-    final int? id,
-    final int? intDefaultAndDefaultModel,
-    final int? intDefaultAndDefaultPersist,
-    final int? intDefaultModelAndDefaultPersist,
+    int? id,
+    int? intDefaultAndDefaultModel,
+    int? intDefaultAndDefaultPersist,
+    int? intDefaultModelAndDefaultPersist,
   }) : super._(
-         id: id,
-         intDefaultAndDefaultModel: intDefaultAndDefaultModel,
-         intDefaultAndDefaultPersist: intDefaultAndDefaultPersist,
-         intDefaultModelAndDefaultPersist: intDefaultModelAndDefaultPersist,
-       );
+          id: id,
+          intDefaultAndDefaultModel: intDefaultAndDefaultModel,
+          intDefaultAndDefaultPersist: intDefaultAndDefaultPersist,
+          intDefaultModelAndDefaultPersist: intDefaultModelAndDefaultPersist,
+        );
 
   /// Returns a shallow copy of this [IntDefaultMix]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   IntDefaultMix copyWith({
-    final Object? id = _Undefined,
-    final int? intDefaultAndDefaultModel,
-    final int? intDefaultAndDefaultPersist,
-    final int? intDefaultModelAndDefaultPersist,
+    Object? id = _Undefined,
+    int? intDefaultAndDefaultModel,
+    int? intDefaultAndDefaultPersist,
+    int? intDefaultModelAndDefaultPersist,
   }) {
     return IntDefaultMix(
       id: id is int? ? id : this.id,
@@ -149,8 +149,7 @@ class _IntDefaultMixImpl extends IntDefaultMix {
           intDefaultAndDefaultModel ?? this.intDefaultAndDefaultModel,
       intDefaultAndDefaultPersist:
           intDefaultAndDefaultPersist ?? this.intDefaultAndDefaultPersist,
-      intDefaultModelAndDefaultPersist:
-          intDefaultModelAndDefaultPersist ??
+      intDefaultModelAndDefaultPersist: intDefaultModelAndDefaultPersist ??
           this.intDefaultModelAndDefaultPersist,
     );
   }
@@ -159,19 +158,19 @@ class _IntDefaultMixImpl extends IntDefaultMix {
 class IntDefaultMixUpdateTable extends _i1.UpdateTable<IntDefaultMixTable> {
   IntDefaultMixUpdateTable(super.table);
 
-  _i1.ColumnValue<int, int> intDefaultAndDefaultModel(final int value) =>
+  _i1.ColumnValue<int, int> intDefaultAndDefaultModel(int value) =>
       _i1.ColumnValue(
         table.intDefaultAndDefaultModel,
         value,
       );
 
-  _i1.ColumnValue<int, int> intDefaultAndDefaultPersist(final int value) =>
+  _i1.ColumnValue<int, int> intDefaultAndDefaultPersist(int value) =>
       _i1.ColumnValue(
         table.intDefaultAndDefaultPersist,
         value,
       );
 
-  _i1.ColumnValue<int, int> intDefaultModelAndDefaultPersist(final int value) =>
+  _i1.ColumnValue<int, int> intDefaultModelAndDefaultPersist(int value) =>
       _i1.ColumnValue(
         table.intDefaultModelAndDefaultPersist,
         value,
@@ -180,7 +179,7 @@ class IntDefaultMixUpdateTable extends _i1.UpdateTable<IntDefaultMixTable> {
 
 class IntDefaultMixTable extends _i1.Table<int?> {
   IntDefaultMixTable({super.tableRelation})
-    : super(tableName: 'int_default_mix') {
+      : super(tableName: 'int_default_mix') {
     updateTable = IntDefaultMixUpdateTable(this);
     intDefaultAndDefaultModel = _i1.ColumnInt(
       'intDefaultAndDefaultModel',
@@ -209,11 +208,11 @@ class IntDefaultMixTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    intDefaultAndDefaultModel,
-    intDefaultAndDefaultPersist,
-    intDefaultModelAndDefaultPersist,
-  ];
+        id,
+        intDefaultAndDefaultModel,
+        intDefaultAndDefaultPersist,
+        intDefaultModelAndDefaultPersist,
+      ];
 }
 
 class IntDefaultMixInclude extends _i1.IncludeObject {
@@ -228,7 +227,7 @@ class IntDefaultMixInclude extends _i1.IncludeObject {
 
 class IntDefaultMixIncludeList extends _i1.IncludeList {
   IntDefaultMixIncludeList._({
-    final _i1.WhereExpressionBuilder<IntDefaultMixTable>? where,
+    _i1.WhereExpressionBuilder<IntDefaultMixTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -272,14 +271,14 @@ class IntDefaultMixRepository {
   /// );
   /// ```
   Future<List<IntDefaultMix>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<IntDefaultMixTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<IntDefaultMixTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<IntDefaultMixTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<IntDefaultMixTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<IntDefaultMixTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<IntDefaultMixTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<IntDefaultMix>(
       where: where?.call(IntDefaultMix.t),
@@ -310,13 +309,13 @@ class IntDefaultMixRepository {
   /// );
   /// ```
   Future<IntDefaultMix?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<IntDefaultMixTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<IntDefaultMixTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<IntDefaultMixTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<IntDefaultMixTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<IntDefaultMixTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<IntDefaultMixTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<IntDefaultMix>(
       where: where?.call(IntDefaultMix.t),
@@ -330,9 +329,9 @@ class IntDefaultMixRepository {
 
   /// Finds a single [IntDefaultMix] by its [id] or null if no such row exists.
   Future<IntDefaultMix?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<IntDefaultMix>(
       id,
@@ -347,9 +346,9 @@ class IntDefaultMixRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<IntDefaultMix>> insert(
-    final _i1.Session session,
-    final List<IntDefaultMix> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<IntDefaultMix> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<IntDefaultMix>(
       rows,
@@ -361,9 +360,9 @@ class IntDefaultMixRepository {
   ///
   /// The returned [IntDefaultMix] will have its `id` field set.
   Future<IntDefaultMix> insertRow(
-    final _i1.Session session,
-    final IntDefaultMix row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    IntDefaultMix row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<IntDefaultMix>(
       row,
@@ -377,10 +376,10 @@ class IntDefaultMixRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<IntDefaultMix>> update(
-    final _i1.Session session,
-    final List<IntDefaultMix> rows, {
-    final _i1.ColumnSelections<IntDefaultMixTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<IntDefaultMix> rows, {
+    _i1.ColumnSelections<IntDefaultMixTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<IntDefaultMix>(
       rows,
@@ -393,10 +392,10 @@ class IntDefaultMixRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<IntDefaultMix> updateRow(
-    final _i1.Session session,
-    final IntDefaultMix row, {
-    final _i1.ColumnSelections<IntDefaultMixTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    IntDefaultMix row, {
+    _i1.ColumnSelections<IntDefaultMixTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<IntDefaultMix>(
       row,
@@ -408,10 +407,10 @@ class IntDefaultMixRepository {
   /// Updates a single [IntDefaultMix] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<IntDefaultMix?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<IntDefaultMixUpdateTable> columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<IntDefaultMixUpdateTable> columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<IntDefaultMix>(
       id,
@@ -423,15 +422,15 @@ class IntDefaultMixRepository {
   /// Updates all [IntDefaultMix]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<IntDefaultMix>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<IntDefaultMixUpdateTable> columnValues,
-    required final _i1.WhereExpressionBuilder<IntDefaultMixTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<IntDefaultMixTable>? orderBy,
-    final _i1.OrderByListBuilder<IntDefaultMixTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<IntDefaultMixUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<IntDefaultMixTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<IntDefaultMixTable>? orderBy,
+    _i1.OrderByListBuilder<IntDefaultMixTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<IntDefaultMix>(
       columnValues: columnValues(IntDefaultMix.t.updateTable),
@@ -449,9 +448,9 @@ class IntDefaultMixRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<IntDefaultMix>> delete(
-    final _i1.Session session,
-    final List<IntDefaultMix> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<IntDefaultMix> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<IntDefaultMix>(
       rows,
@@ -461,9 +460,9 @@ class IntDefaultMixRepository {
 
   /// Deletes a single [IntDefaultMix].
   Future<IntDefaultMix> deleteRow(
-    final _i1.Session session,
-    final IntDefaultMix row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    IntDefaultMix row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<IntDefaultMix>(
       row,
@@ -473,9 +472,9 @@ class IntDefaultMixRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<IntDefaultMix>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<IntDefaultMixTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<IntDefaultMixTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<IntDefaultMix>(
       where: where(IntDefaultMix.t),
@@ -486,10 +485,10 @@ class IntDefaultMixRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<IntDefaultMixTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<IntDefaultMixTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<IntDefaultMix>(
       where: where?.call(IntDefaultMix.t),

@@ -11,9 +11,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-
-import '../scopes/scope_server_only_field.dart' as _i3;
 import '../types.dart' as _i2;
+import '../scopes/scope_server_only_field.dart' as _i3;
 
 class ScopeServerOnlyField
     implements _i1.SerializableModel, _i1.ProtocolSerialization {
@@ -24,24 +23,20 @@ class ScopeServerOnlyField
   });
 
   factory ScopeServerOnlyField.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
+      Map<String, dynamic> jsonSerialization) {
     return ScopeServerOnlyField(
       allScope: jsonSerialization['allScope'] == null
           ? null
           : _i2.Types.fromJson(
-              (jsonSerialization['allScope'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['allScope'] as Map<String, dynamic>)),
       serverOnlyScope: jsonSerialization['serverOnlyScope'] == null
           ? null
           : _i2.Types.fromJson(
-              (jsonSerialization['serverOnlyScope'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['serverOnlyScope'] as Map<String, dynamic>)),
       nested: jsonSerialization['nested'] == null
           ? null
           : _i3.ScopeServerOnlyField.fromJson(
-              (jsonSerialization['nested'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['nested'] as Map<String, dynamic>)),
     );
   }
 
@@ -55,9 +50,9 @@ class ScopeServerOnlyField
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   ScopeServerOnlyField copyWith({
-    final Object? allScope = _Undefined,
-    final Object? serverOnlyScope = _Undefined,
-    final Object? nested = _Undefined,
+    Object? allScope = _Undefined,
+    Object? serverOnlyScope = _Undefined,
+    Object? nested = _Undefined,
   }) {
     return ScopeServerOnlyField(
       allScope: allScope is _i2.Types? ? allScope : this.allScope?.copyWith(),

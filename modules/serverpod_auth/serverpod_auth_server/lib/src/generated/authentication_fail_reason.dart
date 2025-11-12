@@ -34,8 +34,7 @@ enum AuthenticationFailReason implements _i1.SerializableModel {
         return AuthenticationFailReason.blocked;
       default:
         throw ArgumentError(
-          'Value "$index" cannot be converted to "AuthenticationFailReason"',
-        );
+            'Value "$index" cannot be converted to "AuthenticationFailReason"');
     }
   }
 

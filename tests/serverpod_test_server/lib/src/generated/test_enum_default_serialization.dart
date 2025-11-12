@@ -18,7 +18,7 @@ enum TestEnumDefaultSerialization implements _i1.SerializableModel {
   beta,
   gamma;
 
-  static TestEnumDefaultSerialization fromJson(final String name) {
+  static TestEnumDefaultSerialization fromJson(String name) {
     switch (name) {
       case 'alpha':
         return TestEnumDefaultSerialization.alpha;
@@ -28,8 +28,7 @@ enum TestEnumDefaultSerialization implements _i1.SerializableModel {
         return TestEnumDefaultSerialization.gamma;
       default:
         throw ArgumentError(
-          'Value "$name" cannot be converted to "TestEnumDefaultSerialization"',
-        );
+            'Value "$name" cannot be converted to "TestEnumDefaultSerialization"');
     }
   }
 

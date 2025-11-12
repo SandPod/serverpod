@@ -32,8 +32,7 @@ abstract class Filter implements _i1.SerializableModel {
       table: jsonSerialization['table'] as String,
       constraints: (jsonSerialization['constraints'] as List)
           .map(
-            (e) => _i2.FilterConstraint.fromJson((e as Map<String, dynamic>)),
-          )
+              (e) => _i2.FilterConstraint.fromJson((e as Map<String, dynamic>)))
           .toList(),
     );
   }
@@ -73,10 +72,10 @@ class _FilterImpl extends Filter {
     required String table,
     required List<_i2.FilterConstraint> constraints,
   }) : super._(
-         name: name,
-         table: table,
-         constraints: constraints,
-       );
+          name: name,
+          table: table,
+          constraints: constraints,
+        );
 
   /// Returns a shallow copy of this [Filter]
   /// with some or all fields replaced by the given arguments.

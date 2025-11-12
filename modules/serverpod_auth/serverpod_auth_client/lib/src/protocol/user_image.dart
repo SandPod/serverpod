@@ -22,13 +22,13 @@ abstract class UserImage implements _i1.SerializableModel {
   });
 
   factory UserImage({
-    final int? id,
-    required final int userId,
-    required final int version,
-    required final String url,
+    int? id,
+    required int userId,
+    required int version,
+    required String url,
   }) = _UserImageImpl;
 
-  factory UserImage.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory UserImage.fromJson(Map<String, dynamic> jsonSerialization) {
     return UserImage(
       id: jsonSerialization['id'] as int?,
       userId: jsonSerialization['userId'] as int,
@@ -55,10 +55,10 @@ abstract class UserImage implements _i1.SerializableModel {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   UserImage copyWith({
-    final int? id,
-    final int? userId,
-    final int? version,
-    final String? url,
+    int? id,
+    int? userId,
+    int? version,
+    String? url,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -80,26 +80,26 @@ class _Undefined {}
 
 class _UserImageImpl extends UserImage {
   _UserImageImpl({
-    final int? id,
-    required final int userId,
-    required final int version,
-    required final String url,
+    int? id,
+    required int userId,
+    required int version,
+    required String url,
   }) : super._(
-         id: id,
-         userId: userId,
-         version: version,
-         url: url,
-       );
+          id: id,
+          userId: userId,
+          version: version,
+          url: url,
+        );
 
   /// Returns a shallow copy of this [UserImage]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   UserImage copyWith({
-    final Object? id = _Undefined,
-    final int? userId,
-    final int? version,
-    final String? url,
+    Object? id = _Undefined,
+    int? userId,
+    int? version,
+    String? url,
   }) {
     return UserImage(
       id: id is int? ? id : this.id,

@@ -13,9 +13,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-
-import '../models_with_list_relations/organization.dart' as _i3;
 import '../models_with_list_relations/person.dart' as _i2;
+import '../models_with_list_relations/organization.dart' as _i3;
 
 abstract class City implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   City._({
@@ -26,21 +25,21 @@ abstract class City implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   });
 
   factory City({
-    final int? id,
-    required final String name,
-    final List<_i2.Person>? citizens,
-    final List<_i3.Organization>? organizations,
+    int? id,
+    required String name,
+    List<_i2.Person>? citizens,
+    List<_i3.Organization>? organizations,
   }) = _CityImpl;
 
-  factory City.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory City.fromJson(Map<String, dynamic> jsonSerialization) {
     return City(
       id: jsonSerialization['id'] as int?,
       name: jsonSerialization['name'] as String,
       citizens: (jsonSerialization['citizens'] as List?)
-          ?.map((final e) => _i2.Person.fromJson((e as Map<String, dynamic>)))
+          ?.map((e) => _i2.Person.fromJson((e as Map<String, dynamic>)))
           .toList(),
       organizations: (jsonSerialization['organizations'] as List?)
-          ?.map((final e) => _i3.Organization.fromJson((e as Map<String, dynamic>)))
+          ?.map((e) => _i3.Organization.fromJson((e as Map<String, dynamic>)))
           .toList(),
     );
   }
@@ -65,10 +64,10 @@ abstract class City implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   City copyWith({
-    final int? id,
-    final String? name,
-    final List<_i2.Person>? citizens,
-    final List<_i3.Organization>? organizations,
+    int? id,
+    String? name,
+    List<_i2.Person>? citizens,
+    List<_i3.Organization>? organizations,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -76,9 +75,9 @@ abstract class City implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
       if (id != null) 'id': id,
       'name': name,
       if (citizens != null)
-        'citizens': citizens?.toJson(valueToJson: (final v) => v.toJson()),
+        'citizens': citizens?.toJson(valueToJson: (v) => v.toJson()),
       if (organizations != null)
-        'organizations': organizations?.toJson(valueToJson: (final v) => v.toJson()),
+        'organizations': organizations?.toJson(valueToJson: (v) => v.toJson()),
     };
   }
 
@@ -88,17 +87,16 @@ abstract class City implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
       if (id != null) 'id': id,
       'name': name,
       if (citizens != null)
-        'citizens': citizens?.toJson(valueToJson: (final v) => v.toJsonForProtocol()),
+        'citizens': citizens?.toJson(valueToJson: (v) => v.toJsonForProtocol()),
       if (organizations != null)
-        'organizations': organizations?.toJson(
-          valueToJson: (final v) => v.toJsonForProtocol(),
-        ),
+        'organizations':
+            organizations?.toJson(valueToJson: (v) => v.toJsonForProtocol()),
     };
   }
 
   static CityInclude include({
-    final _i2.PersonIncludeList? citizens,
-    final _i3.OrganizationIncludeList? organizations,
+    _i2.PersonIncludeList? citizens,
+    _i3.OrganizationIncludeList? organizations,
   }) {
     return CityInclude._(
       citizens: citizens,
@@ -107,13 +105,13 @@ abstract class City implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   }
 
   static CityIncludeList includeList({
-    final _i1.WhereExpressionBuilder<CityTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<CityTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<CityTable>? orderByList,
-    final CityInclude? include,
+    _i1.WhereExpressionBuilder<CityTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<CityTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<CityTable>? orderByList,
+    CityInclude? include,
   }) {
     return CityIncludeList._(
       where: where,
@@ -136,36 +134,36 @@ class _Undefined {}
 
 class _CityImpl extends City {
   _CityImpl({
-    final int? id,
-    required final String name,
-    final List<_i2.Person>? citizens,
-    final List<_i3.Organization>? organizations,
+    int? id,
+    required String name,
+    List<_i2.Person>? citizens,
+    List<_i3.Organization>? organizations,
   }) : super._(
-         id: id,
-         name: name,
-         citizens: citizens,
-         organizations: organizations,
-       );
+          id: id,
+          name: name,
+          citizens: citizens,
+          organizations: organizations,
+        );
 
   /// Returns a shallow copy of this [City]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   City copyWith({
-    final Object? id = _Undefined,
-    final String? name,
-    final Object? citizens = _Undefined,
-    final Object? organizations = _Undefined,
+    Object? id = _Undefined,
+    String? name,
+    Object? citizens = _Undefined,
+    Object? organizations = _Undefined,
   }) {
     return City(
       id: id is int? ? id : this.id,
       name: name ?? this.name,
       citizens: citizens is List<_i2.Person>?
           ? citizens
-          : this.citizens?.map((final e0) => e0.copyWith()).toList(),
+          : this.citizens?.map((e0) => e0.copyWith()).toList(),
       organizations: organizations is List<_i3.Organization>?
           ? organizations
-          : this.organizations?.map((final e0) => e0.copyWith()).toList(),
+          : this.organizations?.map((e0) => e0.copyWith()).toList(),
     );
   }
 }
@@ -173,10 +171,10 @@ class _CityImpl extends City {
 class CityUpdateTable extends _i1.UpdateTable<CityTable> {
   CityUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> name(final String value) => _i1.ColumnValue(
-    table.name,
-    value,
-  );
+  _i1.ColumnValue<String, String> name(String value) => _i1.ColumnValue(
+        table.name,
+        value,
+      );
 }
 
 class CityTable extends _i1.Table<int?> {
@@ -207,7 +205,7 @@ class CityTable extends _i1.Table<int?> {
       field: City.t.id,
       foreignField: _i2.Person.t.$_cityCitizensCityId,
       tableRelation: tableRelation,
-      createTable: (final foreignTableRelation) =>
+      createTable: (foreignTableRelation) =>
           _i2.PersonTable(tableRelation: foreignTableRelation),
     );
     return ___citizens!;
@@ -220,7 +218,7 @@ class CityTable extends _i1.Table<int?> {
       field: City.t.id,
       foreignField: _i3.Organization.t.cityId,
       tableRelation: tableRelation,
-      createTable: (final foreignTableRelation) =>
+      createTable: (foreignTableRelation) =>
           _i3.OrganizationTable(tableRelation: foreignTableRelation),
     );
     return ___organizations!;
@@ -228,50 +226,48 @@ class CityTable extends _i1.Table<int?> {
 
   _i1.ManyRelation<_i2.PersonTable> get citizens {
     if (_citizens != null) return _citizens!;
-    final relationTable = _i1.createRelationTable(
+    var relationTable = _i1.createRelationTable(
       relationFieldName: 'citizens',
       field: City.t.id,
       foreignField: _i2.Person.t.$_cityCitizensCityId,
       tableRelation: tableRelation,
-      createTable: (final foreignTableRelation) =>
+      createTable: (foreignTableRelation) =>
           _i2.PersonTable(tableRelation: foreignTableRelation),
     );
     _citizens = _i1.ManyRelation<_i2.PersonTable>(
       tableWithRelations: relationTable,
       table: _i2.PersonTable(
-        tableRelation: relationTable.tableRelation!.lastRelation,
-      ),
+          tableRelation: relationTable.tableRelation!.lastRelation),
     );
     return _citizens!;
   }
 
   _i1.ManyRelation<_i3.OrganizationTable> get organizations {
     if (_organizations != null) return _organizations!;
-    final relationTable = _i1.createRelationTable(
+    var relationTable = _i1.createRelationTable(
       relationFieldName: 'organizations',
       field: City.t.id,
       foreignField: _i3.Organization.t.cityId,
       tableRelation: tableRelation,
-      createTable: (final foreignTableRelation) =>
+      createTable: (foreignTableRelation) =>
           _i3.OrganizationTable(tableRelation: foreignTableRelation),
     );
     _organizations = _i1.ManyRelation<_i3.OrganizationTable>(
       tableWithRelations: relationTable,
       table: _i3.OrganizationTable(
-        tableRelation: relationTable.tableRelation!.lastRelation,
-      ),
+          tableRelation: relationTable.tableRelation!.lastRelation),
     );
     return _organizations!;
   }
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    name,
-  ];
+        id,
+        name,
+      ];
 
   @override
-  _i1.Table? getRelationTable(final String relationField) {
+  _i1.Table? getRelationTable(String relationField) {
     if (relationField == 'citizens') {
       return __citizens;
     }
@@ -284,8 +280,8 @@ class CityTable extends _i1.Table<int?> {
 
 class CityInclude extends _i1.IncludeObject {
   CityInclude._({
-    final _i2.PersonIncludeList? citizens,
-    final _i3.OrganizationIncludeList? organizations,
+    _i2.PersonIncludeList? citizens,
+    _i3.OrganizationIncludeList? organizations,
   }) {
     _citizens = citizens;
     _organizations = organizations;
@@ -297,9 +293,9 @@ class CityInclude extends _i1.IncludeObject {
 
   @override
   Map<String, _i1.Include?> get includes => {
-    'citizens': _citizens,
-    'organizations': _organizations,
-  };
+        'citizens': _citizens,
+        'organizations': _organizations,
+      };
 
   @override
   _i1.Table<int?> get table => City.t;
@@ -307,7 +303,7 @@ class CityInclude extends _i1.IncludeObject {
 
 class CityIncludeList extends _i1.IncludeList {
   CityIncludeList._({
-    final _i1.WhereExpressionBuilder<CityTable>? where,
+    _i1.WhereExpressionBuilder<CityTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -359,15 +355,15 @@ class CityRepository {
   /// );
   /// ```
   Future<List<City>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<CityTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<CityTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<CityTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final CityInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<CityTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<CityTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<CityTable>? orderByList,
+    _i1.Transaction? transaction,
+    CityInclude? include,
   }) async {
     return session.db.find<City>(
       where: where?.call(City.t),
@@ -399,14 +395,14 @@ class CityRepository {
   /// );
   /// ```
   Future<City?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<CityTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<CityTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<CityTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final CityInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<CityTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<CityTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<CityTable>? orderByList,
+    _i1.Transaction? transaction,
+    CityInclude? include,
   }) async {
     return session.db.findFirstRow<City>(
       where: where?.call(City.t),
@@ -421,10 +417,10 @@ class CityRepository {
 
   /// Finds a single [City] by its [id] or null if no such row exists.
   Future<City?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
-    final CityInclude? include,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
+    CityInclude? include,
   }) async {
     return session.db.findById<City>(
       id,
@@ -440,9 +436,9 @@ class CityRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<City>> insert(
-    final _i1.Session session,
-    final List<City> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<City> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<City>(
       rows,
@@ -454,9 +450,9 @@ class CityRepository {
   ///
   /// The returned [City] will have its `id` field set.
   Future<City> insertRow(
-    final _i1.Session session,
-    final City row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    City row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<City>(
       row,
@@ -470,10 +466,10 @@ class CityRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<City>> update(
-    final _i1.Session session,
-    final List<City> rows, {
-    final _i1.ColumnSelections<CityTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<City> rows, {
+    _i1.ColumnSelections<CityTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<City>(
       rows,
@@ -486,10 +482,10 @@ class CityRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<City> updateRow(
-    final _i1.Session session,
-    final City row, {
-    final _i1.ColumnSelections<CityTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    City row, {
+    _i1.ColumnSelections<CityTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<City>(
       row,
@@ -501,10 +497,10 @@ class CityRepository {
   /// Updates a single [City] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<City?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<CityUpdateTable> columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<CityUpdateTable> columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<City>(
       id,
@@ -516,15 +512,15 @@ class CityRepository {
   /// Updates all [City]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<City>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<CityUpdateTable> columnValues,
-    required final _i1.WhereExpressionBuilder<CityTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<CityTable>? orderBy,
-    final _i1.OrderByListBuilder<CityTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<CityUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<CityTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<CityTable>? orderBy,
+    _i1.OrderByListBuilder<CityTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<City>(
       columnValues: columnValues(City.t.updateTable),
@@ -542,9 +538,9 @@ class CityRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<City>> delete(
-    final _i1.Session session,
-    final List<City> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<City> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<City>(
       rows,
@@ -554,9 +550,9 @@ class CityRepository {
 
   /// Deletes a single [City].
   Future<City> deleteRow(
-    final _i1.Session session,
-    final City row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    City row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<City>(
       row,
@@ -566,9 +562,9 @@ class CityRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<City>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<CityTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<CityTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<City>(
       where: where(City.t),
@@ -579,10 +575,10 @@ class CityRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<CityTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<CityTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<City>(
       where: where?.call(City.t),
@@ -598,25 +594,23 @@ class CityAttachRepository {
   /// Creates a relation between this [City] and the given [Person]s
   /// by setting each [Person]'s foreign key `_cityCitizensCityId` to refer to this [City].
   Future<void> citizens(
-    final _i1.Session session,
-    final City city,
-    final List<_i2.Person> person, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    City city,
+    List<_i2.Person> person, {
+    _i1.Transaction? transaction,
   }) async {
-    if (person.any((final e) => e.id == null)) {
+    if (person.any((e) => e.id == null)) {
       throw ArgumentError.notNull('person.id');
     }
     if (city.id == null) {
       throw ArgumentError.notNull('city.id');
     }
 
-    final $person = person
-        .map(
-          (final e) => _i2.PersonImplicit(
-            e,
-            $_cityCitizensCityId: city.id,
-          ),
-        )
+    var $person = person
+        .map((e) => _i2.PersonImplicit(
+              e,
+              $_cityCitizensCityId: city.id,
+            ))
         .toList();
     await session.db.update<_i2.Person>(
       $person,
@@ -628,21 +622,20 @@ class CityAttachRepository {
   /// Creates a relation between this [City] and the given [Organization]s
   /// by setting each [Organization]'s foreign key `cityId` to refer to this [City].
   Future<void> organizations(
-    final _i1.Session session,
-    final City city,
-    final List<_i3.Organization> organization, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    City city,
+    List<_i3.Organization> organization, {
+    _i1.Transaction? transaction,
   }) async {
-    if (organization.any((final e) => e.id == null)) {
+    if (organization.any((e) => e.id == null)) {
       throw ArgumentError.notNull('organization.id');
     }
     if (city.id == null) {
       throw ArgumentError.notNull('city.id');
     }
 
-    final $organization = organization
-        .map((final e) => e.copyWith(cityId: city.id))
-        .toList();
+    var $organization =
+        organization.map((e) => e.copyWith(cityId: city.id)).toList();
     await session.db.update<_i3.Organization>(
       $organization,
       columns: [_i3.Organization.t.cityId],
@@ -657,10 +650,10 @@ class CityAttachRowRepository {
   /// Creates a relation between this [City] and the given [Person]
   /// by setting the [Person]'s foreign key `_cityCitizensCityId` to refer to this [City].
   Future<void> citizens(
-    final _i1.Session session,
-    final City city,
-    final _i2.Person person, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    City city,
+    _i2.Person person, {
+    _i1.Transaction? transaction,
   }) async {
     if (person.id == null) {
       throw ArgumentError.notNull('person.id');
@@ -669,7 +662,7 @@ class CityAttachRowRepository {
       throw ArgumentError.notNull('city.id');
     }
 
-    final $person = _i2.PersonImplicit(
+    var $person = _i2.PersonImplicit(
       person,
       $_cityCitizensCityId: city.id,
     );
@@ -683,10 +676,10 @@ class CityAttachRowRepository {
   /// Creates a relation between this [City] and the given [Organization]
   /// by setting the [Organization]'s foreign key `cityId` to refer to this [City].
   Future<void> organizations(
-    final _i1.Session session,
-    final City city,
-    final _i3.Organization organization, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    City city,
+    _i3.Organization organization, {
+    _i1.Transaction? transaction,
   }) async {
     if (organization.id == null) {
       throw ArgumentError.notNull('organization.id');
@@ -695,7 +688,7 @@ class CityAttachRowRepository {
       throw ArgumentError.notNull('city.id');
     }
 
-    final $organization = organization.copyWith(cityId: city.id);
+    var $organization = organization.copyWith(cityId: city.id);
     await session.db.updateRow<_i3.Organization>(
       $organization,
       columns: [_i3.Organization.t.cityId],
@@ -713,21 +706,19 @@ class CityDetachRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> citizens(
-    final _i1.Session session,
-    final List<_i2.Person> person, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<_i2.Person> person, {
+    _i1.Transaction? transaction,
   }) async {
-    if (person.any((final e) => e.id == null)) {
+    if (person.any((e) => e.id == null)) {
       throw ArgumentError.notNull('person.id');
     }
 
-    final $person = person
-        .map(
-          (final e) => _i2.PersonImplicit(
-            e,
-            $_cityCitizensCityId: null,
-          ),
-        )
+    var $person = person
+        .map((e) => _i2.PersonImplicit(
+              e,
+              $_cityCitizensCityId: null,
+            ))
         .toList();
     await session.db.update<_i2.Person>(
       $person,
@@ -742,17 +733,16 @@ class CityDetachRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> organizations(
-    final _i1.Session session,
-    final List<_i3.Organization> organization, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<_i3.Organization> organization, {
+    _i1.Transaction? transaction,
   }) async {
-    if (organization.any((final e) => e.id == null)) {
+    if (organization.any((e) => e.id == null)) {
       throw ArgumentError.notNull('organization.id');
     }
 
-    final $organization = organization
-        .map((final e) => e.copyWith(cityId: null))
-        .toList();
+    var $organization =
+        organization.map((e) => e.copyWith(cityId: null)).toList();
     await session.db.update<_i3.Organization>(
       $organization,
       columns: [_i3.Organization.t.cityId],
@@ -770,15 +760,15 @@ class CityDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> citizens(
-    final _i1.Session session,
-    final _i2.Person person, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    _i2.Person person, {
+    _i1.Transaction? transaction,
   }) async {
     if (person.id == null) {
       throw ArgumentError.notNull('person.id');
     }
 
-    final $person = _i2.PersonImplicit(
+    var $person = _i2.PersonImplicit(
       person,
       $_cityCitizensCityId: null,
     );
@@ -795,15 +785,15 @@ class CityDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> organizations(
-    final _i1.Session session,
-    final _i3.Organization organization, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    _i3.Organization organization, {
+    _i1.Transaction? transaction,
   }) async {
     if (organization.id == null) {
       throw ArgumentError.notNull('organization.id');
     }
 
-    final $organization = organization.copyWith(cityId: null);
+    var $organization = organization.copyWith(cityId: null);
     await session.db.updateRow<_i3.Organization>(
       $organization,
       columns: [_i3.Organization.t.cityId],

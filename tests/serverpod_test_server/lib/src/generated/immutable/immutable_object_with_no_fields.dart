@@ -21,9 +21,8 @@ abstract class ImmutableObjectWithNoFields
       _ImmutableObjectWithNoFieldsImpl;
 
   factory ImmutableObjectWithNoFields.fromJson(
-    final Map<String, dynamic> jsonSerialization,
-  ) {
-    return const ImmutableObjectWithNoFields();
+      Map<String, dynamic> jsonSerialization) {
+    return ImmutableObjectWithNoFields();
   }
 
   /// Returns a shallow copy of this [ImmutableObjectWithNoFields]
@@ -31,7 +30,7 @@ abstract class ImmutableObjectWithNoFields
   @_i1.useResult
   ImmutableObjectWithNoFields copyWith();
   @override
-  bool operator ==(final Object other) {
+  bool operator ==(Object other) {
     return identical(
           other,
           this,
@@ -69,6 +68,6 @@ class _ImmutableObjectWithNoFieldsImpl extends ImmutableObjectWithNoFields {
   @_i1.useResult
   @override
   ImmutableObjectWithNoFields copyWith() {
-    return const ImmutableObjectWithNoFields();
+    return ImmutableObjectWithNoFields();
   }
 }

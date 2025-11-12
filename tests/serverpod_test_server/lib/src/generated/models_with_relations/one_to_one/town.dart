@@ -24,13 +24,13 @@ abstract class Town implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   });
 
   factory Town({
-    final int? id,
-    required final String name,
-    final int? mayorId,
-    final _i2.Citizen? mayor,
+    int? id,
+    required String name,
+    int? mayorId,
+    _i2.Citizen? mayor,
   }) = _TownImpl;
 
-  factory Town.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory Town.fromJson(Map<String, dynamic> jsonSerialization) {
     return Town(
       id: jsonSerialization['id'] as int?,
       name: jsonSerialization['name'] as String,
@@ -38,8 +38,7 @@ abstract class Town implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
       mayor: jsonSerialization['mayor'] == null
           ? null
           : _i2.Citizen.fromJson(
-              (jsonSerialization['mayor'] as Map<String, dynamic>),
-            ),
+              (jsonSerialization['mayor'] as Map<String, dynamic>)),
     );
   }
 
@@ -63,10 +62,10 @@ abstract class Town implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   Town copyWith({
-    final int? id,
-    final String? name,
-    final int? mayorId,
-    final _i2.Citizen? mayor,
+    int? id,
+    String? name,
+    int? mayorId,
+    _i2.Citizen? mayor,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -88,18 +87,18 @@ abstract class Town implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
     };
   }
 
-  static TownInclude include({final _i2.CitizenInclude? mayor}) {
+  static TownInclude include({_i2.CitizenInclude? mayor}) {
     return TownInclude._(mayor: mayor);
   }
 
   static TownIncludeList includeList({
-    final _i1.WhereExpressionBuilder<TownTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<TownTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<TownTable>? orderByList,
-    final TownInclude? include,
+    _i1.WhereExpressionBuilder<TownTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<TownTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<TownTable>? orderByList,
+    TownInclude? include,
   }) {
     return TownIncludeList._(
       where: where,
@@ -122,26 +121,26 @@ class _Undefined {}
 
 class _TownImpl extends Town {
   _TownImpl({
-    final int? id,
-    required final String name,
-    final int? mayorId,
-    final _i2.Citizen? mayor,
+    int? id,
+    required String name,
+    int? mayorId,
+    _i2.Citizen? mayor,
   }) : super._(
-         id: id,
-         name: name,
-         mayorId: mayorId,
-         mayor: mayor,
-       );
+          id: id,
+          name: name,
+          mayorId: mayorId,
+          mayor: mayor,
+        );
 
   /// Returns a shallow copy of this [Town]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   Town copyWith({
-    final Object? id = _Undefined,
-    final String? name,
-    final Object? mayorId = _Undefined,
-    final Object? mayor = _Undefined,
+    Object? id = _Undefined,
+    String? name,
+    Object? mayorId = _Undefined,
+    Object? mayor = _Undefined,
   }) {
     return Town(
       id: id is int? ? id : this.id,
@@ -155,15 +154,15 @@ class _TownImpl extends Town {
 class TownUpdateTable extends _i1.UpdateTable<TownTable> {
   TownUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> name(final String value) => _i1.ColumnValue(
-    table.name,
-    value,
-  );
+  _i1.ColumnValue<String, String> name(String value) => _i1.ColumnValue(
+        table.name,
+        value,
+      );
 
-  _i1.ColumnValue<int, int> mayorId(final int? value) => _i1.ColumnValue(
-    table.mayorId,
-    value,
-  );
+  _i1.ColumnValue<int, int> mayorId(int? value) => _i1.ColumnValue(
+        table.mayorId,
+        value,
+      );
 }
 
 class TownTable extends _i1.Table<int?> {
@@ -194,7 +193,7 @@ class TownTable extends _i1.Table<int?> {
       field: Town.t.mayorId,
       foreignField: _i2.Citizen.t.id,
       tableRelation: tableRelation,
-      createTable: (final foreignTableRelation) =>
+      createTable: (foreignTableRelation) =>
           _i2.CitizenTable(tableRelation: foreignTableRelation),
     );
     return _mayor!;
@@ -202,13 +201,13 @@ class TownTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    name,
-    mayorId,
-  ];
+        id,
+        name,
+        mayorId,
+      ];
 
   @override
-  _i1.Table? getRelationTable(final String relationField) {
+  _i1.Table? getRelationTable(String relationField) {
     if (relationField == 'mayor') {
       return mayor;
     }
@@ -217,7 +216,7 @@ class TownTable extends _i1.Table<int?> {
 }
 
 class TownInclude extends _i1.IncludeObject {
-  TownInclude._({final _i2.CitizenInclude? mayor}) {
+  TownInclude._({_i2.CitizenInclude? mayor}) {
     _mayor = mayor;
   }
 
@@ -232,7 +231,7 @@ class TownInclude extends _i1.IncludeObject {
 
 class TownIncludeList extends _i1.IncludeList {
   TownIncludeList._({
-    final _i1.WhereExpressionBuilder<TownTable>? where,
+    _i1.WhereExpressionBuilder<TownTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -280,15 +279,15 @@ class TownRepository {
   /// );
   /// ```
   Future<List<Town>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<TownTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<TownTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<TownTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final TownInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<TownTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<TownTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<TownTable>? orderByList,
+    _i1.Transaction? transaction,
+    TownInclude? include,
   }) async {
     return session.db.find<Town>(
       where: where?.call(Town.t),
@@ -320,14 +319,14 @@ class TownRepository {
   /// );
   /// ```
   Future<Town?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<TownTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<TownTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<TownTable>? orderByList,
-    final _i1.Transaction? transaction,
-    final TownInclude? include,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<TownTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<TownTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<TownTable>? orderByList,
+    _i1.Transaction? transaction,
+    TownInclude? include,
   }) async {
     return session.db.findFirstRow<Town>(
       where: where?.call(Town.t),
@@ -342,10 +341,10 @@ class TownRepository {
 
   /// Finds a single [Town] by its [id] or null if no such row exists.
   Future<Town?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
-    final TownInclude? include,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
+    TownInclude? include,
   }) async {
     return session.db.findById<Town>(
       id,
@@ -361,9 +360,9 @@ class TownRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<Town>> insert(
-    final _i1.Session session,
-    final List<Town> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Town> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<Town>(
       rows,
@@ -375,9 +374,9 @@ class TownRepository {
   ///
   /// The returned [Town] will have its `id` field set.
   Future<Town> insertRow(
-    final _i1.Session session,
-    final Town row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Town row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<Town>(
       row,
@@ -391,10 +390,10 @@ class TownRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<Town>> update(
-    final _i1.Session session,
-    final List<Town> rows, {
-    final _i1.ColumnSelections<TownTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Town> rows, {
+    _i1.ColumnSelections<TownTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<Town>(
       rows,
@@ -407,10 +406,10 @@ class TownRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<Town> updateRow(
-    final _i1.Session session,
-    final Town row, {
-    final _i1.ColumnSelections<TownTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Town row, {
+    _i1.ColumnSelections<TownTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<Town>(
       row,
@@ -422,10 +421,10 @@ class TownRepository {
   /// Updates a single [Town] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<Town?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<TownUpdateTable> columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<TownUpdateTable> columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<Town>(
       id,
@@ -437,15 +436,15 @@ class TownRepository {
   /// Updates all [Town]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<Town>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<TownUpdateTable> columnValues,
-    required final _i1.WhereExpressionBuilder<TownTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<TownTable>? orderBy,
-    final _i1.OrderByListBuilder<TownTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<TownUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<TownTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<TownTable>? orderBy,
+    _i1.OrderByListBuilder<TownTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<Town>(
       columnValues: columnValues(Town.t.updateTable),
@@ -463,9 +462,9 @@ class TownRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<Town>> delete(
-    final _i1.Session session,
-    final List<Town> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<Town> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<Town>(
       rows,
@@ -475,9 +474,9 @@ class TownRepository {
 
   /// Deletes a single [Town].
   Future<Town> deleteRow(
-    final _i1.Session session,
-    final Town row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Town row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<Town>(
       row,
@@ -487,9 +486,9 @@ class TownRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<Town>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<TownTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<TownTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<Town>(
       where: where(Town.t),
@@ -500,10 +499,10 @@ class TownRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<TownTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<TownTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<Town>(
       where: where?.call(Town.t),
@@ -519,10 +518,10 @@ class TownAttachRowRepository {
   /// Creates a relation between the given [Town] and [Citizen]
   /// by setting the [Town]'s foreign key `mayorId` to refer to the [Citizen].
   Future<void> mayor(
-    final _i1.Session session,
-    final Town town,
-    final _i2.Citizen mayor, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Town town,
+    _i2.Citizen mayor, {
+    _i1.Transaction? transaction,
   }) async {
     if (town.id == null) {
       throw ArgumentError.notNull('town.id');
@@ -531,7 +530,7 @@ class TownAttachRowRepository {
       throw ArgumentError.notNull('mayor.id');
     }
 
-    final $town = town.copyWith(mayorId: mayor.id);
+    var $town = town.copyWith(mayorId: mayor.id);
     await session.db.updateRow<Town>(
       $town,
       columns: [Town.t.mayorId],
@@ -549,15 +548,15 @@ class TownDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> mayor(
-    final _i1.Session session,
-    final Town town, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    Town town, {
+    _i1.Transaction? transaction,
   }) async {
     if (town.id == null) {
       throw ArgumentError.notNull('town.id');
     }
 
-    final $town = town.copyWith(mayorId: null);
+    var $town = town.copyWith(mayorId: null);
     await session.db.updateRow<Town>(
       $town,
       columns: [Town.t.mayorId],

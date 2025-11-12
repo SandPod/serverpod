@@ -16,22 +16,22 @@ abstract class DoubleDefaultMix
     implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   DoubleDefaultMix._({
     this.id,
-    final double? doubleDefaultAndDefaultModel,
-    final double? doubleDefaultAndDefaultPersist,
-    final double? doubleDefaultModelAndDefaultPersist,
-  }) : doubleDefaultAndDefaultModel = doubleDefaultAndDefaultModel ?? 20.5,
-       doubleDefaultAndDefaultPersist = doubleDefaultAndDefaultPersist ?? 10.5,
-       doubleDefaultModelAndDefaultPersist =
-           doubleDefaultModelAndDefaultPersist ?? 10.5;
+    double? doubleDefaultAndDefaultModel,
+    double? doubleDefaultAndDefaultPersist,
+    double? doubleDefaultModelAndDefaultPersist,
+  })  : doubleDefaultAndDefaultModel = doubleDefaultAndDefaultModel ?? 20.5,
+        doubleDefaultAndDefaultPersist = doubleDefaultAndDefaultPersist ?? 10.5,
+        doubleDefaultModelAndDefaultPersist =
+            doubleDefaultModelAndDefaultPersist ?? 10.5;
 
   factory DoubleDefaultMix({
-    final int? id,
-    final double? doubleDefaultAndDefaultModel,
-    final double? doubleDefaultAndDefaultPersist,
-    final double? doubleDefaultModelAndDefaultPersist,
+    int? id,
+    double? doubleDefaultAndDefaultModel,
+    double? doubleDefaultAndDefaultPersist,
+    double? doubleDefaultModelAndDefaultPersist,
   }) = _DoubleDefaultMixImpl;
 
-  factory DoubleDefaultMix.fromJson(final Map<String, dynamic> jsonSerialization) {
+  factory DoubleDefaultMix.fromJson(Map<String, dynamic> jsonSerialization) {
     return DoubleDefaultMix(
       id: jsonSerialization['id'] as int?,
       doubleDefaultAndDefaultModel:
@@ -65,10 +65,10 @@ abstract class DoubleDefaultMix
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   DoubleDefaultMix copyWith({
-    final int? id,
-    final double? doubleDefaultAndDefaultModel,
-    final double? doubleDefaultAndDefaultPersist,
-    final double? doubleDefaultModelAndDefaultPersist,
+    int? id,
+    double? doubleDefaultAndDefaultModel,
+    double? doubleDefaultAndDefaultPersist,
+    double? doubleDefaultModelAndDefaultPersist,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -97,13 +97,13 @@ abstract class DoubleDefaultMix
   }
 
   static DoubleDefaultMixIncludeList includeList({
-    final _i1.WhereExpressionBuilder<DoubleDefaultMixTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<DoubleDefaultMixTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<DoubleDefaultMixTable>? orderByList,
-    final DoubleDefaultMixInclude? include,
+    _i1.WhereExpressionBuilder<DoubleDefaultMixTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<DoubleDefaultMixTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<DoubleDefaultMixTable>? orderByList,
+    DoubleDefaultMixInclude? include,
   }) {
     return DoubleDefaultMixIncludeList._(
       where: where,
@@ -126,27 +126,27 @@ class _Undefined {}
 
 class _DoubleDefaultMixImpl extends DoubleDefaultMix {
   _DoubleDefaultMixImpl({
-    final int? id,
-    final double? doubleDefaultAndDefaultModel,
-    final double? doubleDefaultAndDefaultPersist,
-    final double? doubleDefaultModelAndDefaultPersist,
+    int? id,
+    double? doubleDefaultAndDefaultModel,
+    double? doubleDefaultAndDefaultPersist,
+    double? doubleDefaultModelAndDefaultPersist,
   }) : super._(
-         id: id,
-         doubleDefaultAndDefaultModel: doubleDefaultAndDefaultModel,
-         doubleDefaultAndDefaultPersist: doubleDefaultAndDefaultPersist,
-         doubleDefaultModelAndDefaultPersist:
-             doubleDefaultModelAndDefaultPersist,
-       );
+          id: id,
+          doubleDefaultAndDefaultModel: doubleDefaultAndDefaultModel,
+          doubleDefaultAndDefaultPersist: doubleDefaultAndDefaultPersist,
+          doubleDefaultModelAndDefaultPersist:
+              doubleDefaultModelAndDefaultPersist,
+        );
 
   /// Returns a shallow copy of this [DoubleDefaultMix]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
   DoubleDefaultMix copyWith({
-    final Object? id = _Undefined,
-    final double? doubleDefaultAndDefaultModel,
-    final double? doubleDefaultAndDefaultPersist,
-    final double? doubleDefaultModelAndDefaultPersist,
+    Object? id = _Undefined,
+    double? doubleDefaultAndDefaultModel,
+    double? doubleDefaultAndDefaultPersist,
+    double? doubleDefaultModelAndDefaultPersist,
   }) {
     return DoubleDefaultMix(
       id: id is int? ? id : this.id,
@@ -156,7 +156,7 @@ class _DoubleDefaultMixImpl extends DoubleDefaultMix {
           doubleDefaultAndDefaultPersist ?? this.doubleDefaultAndDefaultPersist,
       doubleDefaultModelAndDefaultPersist:
           doubleDefaultModelAndDefaultPersist ??
-          this.doubleDefaultModelAndDefaultPersist,
+              this.doubleDefaultModelAndDefaultPersist,
     );
   }
 }
@@ -165,30 +165,30 @@ class DoubleDefaultMixUpdateTable
     extends _i1.UpdateTable<DoubleDefaultMixTable> {
   DoubleDefaultMixUpdateTable(super.table);
 
-  _i1.ColumnValue<double, double> doubleDefaultAndDefaultModel(final double value) =>
+  _i1.ColumnValue<double, double> doubleDefaultAndDefaultModel(double value) =>
       _i1.ColumnValue(
         table.doubleDefaultAndDefaultModel,
         value,
       );
 
   _i1.ColumnValue<double, double> doubleDefaultAndDefaultPersist(
-    final double value,
-  ) => _i1.ColumnValue(
-    table.doubleDefaultAndDefaultPersist,
-    value,
-  );
+          double value) =>
+      _i1.ColumnValue(
+        table.doubleDefaultAndDefaultPersist,
+        value,
+      );
 
   _i1.ColumnValue<double, double> doubleDefaultModelAndDefaultPersist(
-    final double value,
-  ) => _i1.ColumnValue(
-    table.doubleDefaultModelAndDefaultPersist,
-    value,
-  );
+          double value) =>
+      _i1.ColumnValue(
+        table.doubleDefaultModelAndDefaultPersist,
+        value,
+      );
 }
 
 class DoubleDefaultMixTable extends _i1.Table<int?> {
   DoubleDefaultMixTable({super.tableRelation})
-    : super(tableName: 'double_default_mix') {
+      : super(tableName: 'double_default_mix') {
     updateTable = DoubleDefaultMixUpdateTable(this);
     doubleDefaultAndDefaultModel = _i1.ColumnDouble(
       'doubleDefaultAndDefaultModel',
@@ -217,11 +217,11 @@ class DoubleDefaultMixTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-    id,
-    doubleDefaultAndDefaultModel,
-    doubleDefaultAndDefaultPersist,
-    doubleDefaultModelAndDefaultPersist,
-  ];
+        id,
+        doubleDefaultAndDefaultModel,
+        doubleDefaultAndDefaultPersist,
+        doubleDefaultModelAndDefaultPersist,
+      ];
 }
 
 class DoubleDefaultMixInclude extends _i1.IncludeObject {
@@ -236,7 +236,7 @@ class DoubleDefaultMixInclude extends _i1.IncludeObject {
 
 class DoubleDefaultMixIncludeList extends _i1.IncludeList {
   DoubleDefaultMixIncludeList._({
-    final _i1.WhereExpressionBuilder<DoubleDefaultMixTable>? where,
+    _i1.WhereExpressionBuilder<DoubleDefaultMixTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -280,14 +280,14 @@ class DoubleDefaultMixRepository {
   /// );
   /// ```
   Future<List<DoubleDefaultMix>> find(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<DoubleDefaultMixTable>? where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<DoubleDefaultMixTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<DoubleDefaultMixTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<DoubleDefaultMixTable>? where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<DoubleDefaultMixTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<DoubleDefaultMixTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.find<DoubleDefaultMix>(
       where: where?.call(DoubleDefaultMix.t),
@@ -318,13 +318,13 @@ class DoubleDefaultMixRepository {
   /// );
   /// ```
   Future<DoubleDefaultMix?> findFirstRow(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<DoubleDefaultMixTable>? where,
-    final int? offset,
-    final _i1.OrderByBuilder<DoubleDefaultMixTable>? orderBy,
-    final bool orderDescending = false,
-    final _i1.OrderByListBuilder<DoubleDefaultMixTable>? orderByList,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<DoubleDefaultMixTable>? where,
+    int? offset,
+    _i1.OrderByBuilder<DoubleDefaultMixTable>? orderBy,
+    bool orderDescending = false,
+    _i1.OrderByListBuilder<DoubleDefaultMixTable>? orderByList,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findFirstRow<DoubleDefaultMix>(
       where: where?.call(DoubleDefaultMix.t),
@@ -338,9 +338,9 @@ class DoubleDefaultMixRepository {
 
   /// Finds a single [DoubleDefaultMix] by its [id] or null if no such row exists.
   Future<DoubleDefaultMix?> findById(
-    final _i1.Session session,
-    final int id, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.findById<DoubleDefaultMix>(
       id,
@@ -355,9 +355,9 @@ class DoubleDefaultMixRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
   Future<List<DoubleDefaultMix>> insert(
-    final _i1.Session session,
-    final List<DoubleDefaultMix> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<DoubleDefaultMix> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insert<DoubleDefaultMix>(
       rows,
@@ -369,9 +369,9 @@ class DoubleDefaultMixRepository {
   ///
   /// The returned [DoubleDefaultMix] will have its `id` field set.
   Future<DoubleDefaultMix> insertRow(
-    final _i1.Session session,
-    final DoubleDefaultMix row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    DoubleDefaultMix row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.insertRow<DoubleDefaultMix>(
       row,
@@ -385,10 +385,10 @@ class DoubleDefaultMixRepository {
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
   Future<List<DoubleDefaultMix>> update(
-    final _i1.Session session,
-    final List<DoubleDefaultMix> rows, {
-    final _i1.ColumnSelections<DoubleDefaultMixTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<DoubleDefaultMix> rows, {
+    _i1.ColumnSelections<DoubleDefaultMixTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.update<DoubleDefaultMix>(
       rows,
@@ -401,10 +401,10 @@ class DoubleDefaultMixRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<DoubleDefaultMix> updateRow(
-    final _i1.Session session,
-    final DoubleDefaultMix row, {
-    final _i1.ColumnSelections<DoubleDefaultMixTable>? columns,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    DoubleDefaultMix row, {
+    _i1.ColumnSelections<DoubleDefaultMixTable>? columns,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateRow<DoubleDefaultMix>(
       row,
@@ -416,11 +416,11 @@ class DoubleDefaultMixRepository {
   /// Updates a single [DoubleDefaultMix] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<DoubleDefaultMix?> updateById(
-    final _i1.Session session,
-    final int id, {
-    required final _i1.ColumnValueListBuilder<DoubleDefaultMixUpdateTable>
-    columnValues,
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    int id, {
+    required _i1.ColumnValueListBuilder<DoubleDefaultMixUpdateTable>
+        columnValues,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<DoubleDefaultMix>(
       id,
@@ -432,16 +432,16 @@ class DoubleDefaultMixRepository {
   /// Updates all [DoubleDefaultMix]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
   Future<List<DoubleDefaultMix>> updateWhere(
-    final _i1.Session session, {
-    required final _i1.ColumnValueListBuilder<DoubleDefaultMixUpdateTable>
-    columnValues,
-    required final _i1.WhereExpressionBuilder<DoubleDefaultMixTable> where,
-    final int? limit,
-    final int? offset,
-    final _i1.OrderByBuilder<DoubleDefaultMixTable>? orderBy,
-    final _i1.OrderByListBuilder<DoubleDefaultMixTable>? orderByList,
-    final bool orderDescending = false,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<DoubleDefaultMixUpdateTable>
+        columnValues,
+    required _i1.WhereExpressionBuilder<DoubleDefaultMixTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<DoubleDefaultMixTable>? orderBy,
+    _i1.OrderByListBuilder<DoubleDefaultMixTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.updateWhere<DoubleDefaultMix>(
       columnValues: columnValues(DoubleDefaultMix.t.updateTable),
@@ -459,9 +459,9 @@ class DoubleDefaultMixRepository {
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
   Future<List<DoubleDefaultMix>> delete(
-    final _i1.Session session,
-    final List<DoubleDefaultMix> rows, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    List<DoubleDefaultMix> rows, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.delete<DoubleDefaultMix>(
       rows,
@@ -471,9 +471,9 @@ class DoubleDefaultMixRepository {
 
   /// Deletes a single [DoubleDefaultMix].
   Future<DoubleDefaultMix> deleteRow(
-    final _i1.Session session,
-    final DoubleDefaultMix row, {
-    final _i1.Transaction? transaction,
+    _i1.Session session,
+    DoubleDefaultMix row, {
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow<DoubleDefaultMix>(
       row,
@@ -483,9 +483,9 @@ class DoubleDefaultMixRepository {
 
   /// Deletes all rows matching the [where] expression.
   Future<List<DoubleDefaultMix>> deleteWhere(
-    final _i1.Session session, {
-    required final _i1.WhereExpressionBuilder<DoubleDefaultMixTable> where,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    required _i1.WhereExpressionBuilder<DoubleDefaultMixTable> where,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.deleteWhere<DoubleDefaultMix>(
       where: where(DoubleDefaultMix.t),
@@ -496,10 +496,10 @@ class DoubleDefaultMixRepository {
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    final _i1.Session session, {
-    final _i1.WhereExpressionBuilder<DoubleDefaultMixTable>? where,
-    final int? limit,
-    final _i1.Transaction? transaction,
+    _i1.Session session, {
+    _i1.WhereExpressionBuilder<DoubleDefaultMixTable>? where,
+    int? limit,
+    _i1.Transaction? transaction,
   }) async {
     return session.db.count<DoubleDefaultMix>(
       where: where?.call(DoubleDefaultMix.t),
