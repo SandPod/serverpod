@@ -1,8 +1,4 @@
-include: package:serverpod_lints/public.yaml
-
-linter:
-  rules:
-    public_member_api_docs: false
+include: package:serverpod_lints/internal.yaml
 
 analyzer:
   exclude:
