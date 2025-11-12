@@ -13,8 +13,13 @@ environment:
 dependencies:
   serverpod_client: SERVERPOD_VERSION
 
+dev_dependencies:
+  serverpod_lints: SERVERPOD_VERSION
+
 dependency_overrides:
   serverpod_client:
     path: ../../../packages/serverpod_client
   serverpod_serialization:
     path: ../../../packages/serverpod_serialization
+  serverpod_lints:
+    path: ../../../packages/serverpod_lints

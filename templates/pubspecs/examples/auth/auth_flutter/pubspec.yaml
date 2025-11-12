@@ -33,9 +33,9 @@ dependencies:
   serverpod_flutter: SERVERPOD_VERSION
 
 dev_dependencies:
-  flutter_lints: '>=3.0.0 <7.0.0'
   flutter_test:
     sdk: flutter
+  serverpod_lints: SERVERPOD_VERSION
 
 dependency_overrides:
   serverpod_auth_core_client:
